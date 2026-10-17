@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About the data | Solutions Footprint | Durable Solutions Hub | Sudan</title>
+  <meta name="description" content="How the Solutions Footprint dashboard collects, cleans and counts projects that contribute to durable solutions in Sudan.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="about" id="main">
+    <h1>About the data</h1>
+
+    <section class="card">
+      <h2>What Solutions Footprint shows</h2>
+      <p>Solutions Footprint maps projects that help internally displaced people, returnees, refugees and host communities move towards durable solutions in Sudan, for example boreholes instead of water trucking, or seeds instead of food distribution. It shows who is doing what and where, against the eight IASC criteria for durable solutions, and where the gaps are.</p>
+      <p>The Durable Solutions Working Group (DSWG) maintains the dashboard, with the Durable Solutions Unit (DSU) of the Resident Coordinator's Office in Sudan as secretariat. Organisations report their own projects. Inclusion is a self-assessment by the reporting organisation and does not imply endorsement by the United Nations.</p>
+    </section>
+
+    <section class="card">
+      <h2>The eight IASC criteria</h2>
+      <p>Each criterion keeps one colour across the dashboard. Grey always means no project, which is a gap. The number of each criterion is shown next to its colour.</p>
+      <table>
+        <thead><tr><th scope="col">No.</th><th scope="col">Criterion</th><th scope="col">Examples</th></tr></thead>
+        <tbody id="crit-table"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>How projects are counted</h2>
+      <ul>
+        <li>A project in several states counts once in each of its states. For state funding totals, its funding is split equally across those states.</li>
+        <li>Nationwide projects are not tied to one state. They are counted separately and are not added to every state.</li>
+        <li>Funding towards durable solutions is the total budget multiplied by the share of the budget towards durable solutions, unless the organisation reports an amount.</li>
+        <li>Status follows the dates: a project whose end date has passed shows as ended, and a project that has not started shows as pipeline.</li>
+        <li>"Ending within 6 months" counts ongoing projects whose end date falls in the next six months.</li>
+        <li>Fields that an organisation has not reported are left empty.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Sources and clean-up</h2>
+      <p>Projects come from the DSWG list "Sudan DS Interventions", where organisations report their projects. <span id="updated"></span></p>
+      <p>Before publication, state names are matched to the fixed list of 18 states (towns entered as states are recorded as localities), entries outside the eight IASC criteria are matched to the closest criterion, spelling is corrected and missing durable solutions funding is calculated from the budget and share. Every change is listed in the <a href="data/cleaning-log.md">clean-up log</a>.</p>
+      <p>State boundaries: geoBoundaries (gbOpen), simplified, for illustration only. They will be replaced by the official boundaries used by the humanitarian community in Sudan.</p>
+    </section>
+
+    <section class="card">
+      <h2>What is published</h2>
+      <p>All project information is public except the focal point's name and email address, which DSU uses only to follow up on submissions. Public enquiries about any project go to <a class="contact-link" href="#">dswg.sd@undp.org</a>. Downloads contain the same public fields, filtered as on screen.</p>
+      <p>To add a project or correct a published one, use <a href="add.html">Add your project</a>, or "Suggest a correction" on any project.</p>
+    </section>
+
+    <section class="card">
+      <h2>Map disclaimer</h2>
+      <p>The boundaries and names shown and the designations used on this map do not imply official endorsement or acceptance by the United Nations. Final boundary between the Republic of Sudan and the Republic of South Sudan has not yet been determined. Final status of the Abyei area is not yet determined.</p>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/common.js"></script>
+  <script>
+    SF.renderHeader("about");
+    document.getElementById("crit-table").innerHTML = SF.CRITERIA.map((c) =>
+      `<tr><td><span class="sw" style="background:${c.color}"></span> ${c.n}</td><td>${SF.esc(c.name)}</td><td>${SF.esc(c.hint)}</td></tr>`).join("") +
+      `<tr><td><span class="sw" style="background:${SF.GAP_COLOR}"></span></td><td>No project (gap)</td><td></td></tr>`;
+    document.querySelectorAll(".contact-link").forEach((a) => { a.href = "mailto:" + SF.config.contactEmail; a.textContent = SF.config.contactEmail; });
+    SF.loadJSON(SF.config.dataUrl).then((d) => {
+      SF.renderFooter(d.lastUpdated);
+      document.getElementById("updated").textContent =
+        `The current data covers ${d.projects.length} projects and was last updated on ${SF.fmtDateLong(SF.parseDate(d.lastUpdated))}.`;
+    }).catch(() => SF.renderFooter());
+  </script>
+</body>
+</html>

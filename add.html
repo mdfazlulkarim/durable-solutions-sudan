@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add your project | Solutions Footprint | Durable Solutions Hub | Sudan</title>
+  <meta name="description" content="Submit a project that contributes to durable solutions in Sudan for review by the Durable Solutions Unit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="form-page" id="main">
+    <div>
+      <h1 id="form-title">Add your project</h1>
+      <p class="lede" id="form-lede">Tell us about a project that helps displaced people, returnees, refugees or host communities move towards durable solutions. Fields marked <span class="req">*</span> are required.</p>
+
+      <div class="error-summary" id="error-summary" role="alert" hidden></div>
+
+      <form id="project-form" novalidate>
+        <section class="card form-section">
+          <h2><span class="n">1.</span> About the project</h2>
+          <div class="fgrid">
+            <div class="fld" data-f="name">
+              <label for="name">Project or programme name <span class="req">*</span></label>
+              <input class="input" id="name" name="name" required maxlength="250">
+            </div>
+            <div class="fld">
+              <label for="description">Short description</label>
+              <textarea class="input" id="description" name="description" maxlength="600" placeholder="What the project does, in one or two sentences"></textarea>
+            </div>
+            <div class="fld" data-f="itypes">
+              <span class="lbl" id="itypes-l">Intervention type <span class="req">*</span> <span style="color:var(--muted);font-weight:400">(choose all that apply)</span></span>
+              <div class="choice-pills" id="itypes" role="group" aria-labelledby="itypes-l"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card form-section">
+          <h2><span class="n">2.</span> Who is doing it</h2>
+          <div class="fgrid c2">
+            <div class="fld" data-f="lead">
+              <label for="lead">Lead organisation <span class="req">*</span></label>
+              <input class="input" id="lead" name="lead" required placeholder="For example IOM">
+            </div>
+            <div class="fld" data-f="orgType">
+              <label for="orgType">Organisation type <span class="req">*</span></label>
+              <select class="input" id="orgType" name="orgType" required>
+                <option value="">Choose one</option>
+                <option>UN agency</option><option>International NGO</option><option>National NGO</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="fgrid" style="margin-top:14px">
+            <div class="fld">
+              <label for="partners">Implementing partners</label>
+              <input class="input" id="partners" name="partners" placeholder="Separate names with commas">
+            </div>
+          </div>
+          <div class="fgrid c2" style="margin-top:14px">
+            <div class="fld" data-f="fpName">
+              <label for="fpName">Focal point name <span class="req">*</span></label>
+              <input class="input" id="fpName" name="fpName" required autocomplete="name">
+              <div class="help">Used by DSU to follow up. Not published.</div>
+            </div>
+            <div class="fld" data-f="fpEmail">
+              <label for="fpEmail">Focal point email <span class="req">*</span></label>
+              <input class="input" id="fpEmail" name="fpEmail" type="email" required autocomplete="email">
+              <div class="help">Not published. You receive a copy of the submission at this address. Public enquiries go to <span class="contact-email">dswg.sd@undp.org</span>.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card form-section">
+          <h2><span class="n">3.</span> Where</h2>
+          <div class="fgrid">
+            <div class="fld" data-f="scope">
+              <span class="lbl" id="scope-l">Geographic scope <span class="req">*</span></span>
+              <div class="radio-row" role="radiogroup" aria-labelledby="scope-l">
+                <label><input type="radio" name="scope" value="nationwide"> Nationwide, not tied to one state</label>
+                <label><input type="radio" name="scope" value="states"> One or more states</label>
+              </div>
+            </div>
+            <div class="fld" data-f="states" id="states-fld">
+              <span class="lbl" id="states-l">States <span class="req" id="states-req">*</span></span>
+              <div class="state-grid" id="states" role="group" aria-labelledby="states-l"></div>
+            </div>
+            <div class="fld">
+              <label for="localities">Localities</label>
+              <input class="input" id="localities" name="localities" placeholder="For example Wad Madani, Al Hasahisa">
+            </div>
+          </div>
+        </section>
+
+        <section class="card form-section">
+          <h2><span class="n">4.</span> Which IASC criteria does it contribute to? <span class="req">*</span></h2>
+          <div class="fld" data-f="criteria">
+            <div class="crit-grid" id="criteria" role="group" aria-label="IASC criteria"></div>
+          </div>
+          <div class="fld" style="margin-top:16px">
+            <label for="coordination">Coordination mechanism or cluster</label>
+            <select class="input" id="coordination" name="coordination"><option value="">Choose one</option></select>
+          </div>
+        </section>
+
+        <section class="card form-section">
+          <h2><span class="n">5.</span> When and how much</h2>
+          <div class="fgrid c3">
+            <div class="fld" data-f="start">
+              <label for="start">Start date <span class="req">*</span></label>
+              <input class="input" id="start" name="start" type="month" required placeholder="YYYY-MM">
+            </div>
+            <div class="fld" data-f="end">
+              <label for="end">End date <span class="req">*</span></label>
+              <input class="input" id="end" name="end" type="month" required placeholder="YYYY-MM">
+            </div>
+            <div class="fld" data-f="status">
+              <label for="status">Status <span class="req">*</span></label>
+              <select class="input" id="status" name="status" required>
+                <option value="">Choose one</option><option>Ongoing</option><option>Pipeline</option><option>Ended</option>
+              </select>
+            </div>
+            <div class="fld" data-f="budget">
+              <label for="budget">Total budget (USD) <span class="req">*</span></label>
+              <input class="input" id="budget" name="budget" inputmode="decimal" required placeholder="For example 2,500,000">
+            </div>
+            <div class="fld" data-f="share">
+              <label for="share">Share towards durable solutions (%) <span class="req">*</span></label>
+              <input class="input" id="share" name="share" inputmode="decimal" required placeholder="0 to 100">
+            </div>
+            <div class="fld">
+              <label for="dsAmount">Funding towards durable solutions</label>
+              <input class="input readonly" id="dsAmount" readonly tabindex="-1" value="Calculated automatically">
+            </div>
+          </div>
+          <div class="fgrid" style="margin-top:14px">
+            <div class="fld" data-f="donor">
+              <label for="donor">Donor or funding source <span class="req">*</span></label>
+              <input class="input" id="donor" name="donor" required>
+            </div>
+          </div>
+        </section>
+
+        <section class="card form-section">
+          <h2><span class="n">6.</span> People reached, planned</h2>
+          <div class="fgrid c6" id="people"></div>
+          <p class="help" style="font-size:13px;color:var(--muted);margin:10px 0 0">The groups should add up to the total. Leave a group empty if you do not know it.</p>
+          <div class="err" id="people-err" hidden></div>
+        </section>
+
+        <section class="card form-section">
+          <h2><span class="n">7.</span> Anything else</h2>
+          <div class="fld">
+            <label for="remarks">Remarks</label>
+            <textarea class="input" id="remarks" name="remarks" maxlength="800"></textarea>
+          </div>
+          <div class="fld" data-f="consent">
+            <label class="consent"><input type="checkbox" id="consent" name="consent" required> <span>I confirm this information can be published on the United Nations in Sudan website. <span class="req">*</span></span></label>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Submit for review</button>
+          <a href="index.html">Cancel</a>
+        </div>
+      </form>
+
+      <section class="card done-panel" id="done" hidden aria-live="polite">
+        <h2>Your email is ready to send</h2>
+        <p>Your email program should now show a message to <strong class="contact-email">dswg.sd@undp.org</strong> with your answers and a copy to you. Please check it and press <strong>Send</strong>. The project is not submitted until the email is sent.</p>
+        <p>If no email opened, copy the text below and send it to <a class="contact-link" href="#">dswg.sd@undp.org</a> with the subject shown.</p>
+        <p><strong>Subject:</strong> <span id="done-subject"></span></p>
+        <textarea class="input" id="done-text" readonly aria-label="Submission text"></textarea>
+        <div class="form-actions" style="margin-top:12px">
+          <button type="button" class="btn btn-primary" id="copy-btn">Copy the text</button>
+          <a class="btn" id="reopen" href="#">Open the email again</a>
+          <button type="button" class="link-btn" id="edit-btn">Edit my answers</button>
+        </div>
+      </section>
+    </div>
+
+    <aside class="sticky-side">
+      <div class="card side-card">
+        <h2>What happens next</h2>
+        <ol class="steps">
+          <li><span class="dot">1</span><span><b>You submit</b>Your email program opens with your answers, addressed to the DSWG mailbox, with a copy to you. You press Send.</span></li>
+          <li><span class="dot">2</span><span><b>DSU reviews</b>The Durable Solutions Unit checks the entry and may contact you with questions.</span></li>
+          <li><span class="dot">3</span><span><b>Published</b>Once approved, the project appears on the map with the next update. DSU tells you when it is live.</span></li>
+        </ol>
+      </div>
+      <div class="card side-card" style="font-size:14px;color:var(--ink-2)">
+        Questions about the form: <a class="contact-link" href="#">dswg.sd@undp.org</a>
+      </div>
+    </aside>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/form.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solutions Footprint | Durable Solutions Hub | Sudan</title>
+  <meta name="description" content="A public map of projects that contribute to durable solutions in Sudan, against the eight IASC criteria, reported to the Durable Solutions Working Group.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="page" id="main">
+    <!-- Filters -->
+    <aside class="card filters" aria-label="Filters">
+      <div class="filters-head">
+        <h2>Filters</h2>
+        <button type="button" class="link-btn" id="clear-all">Clear all</button>
+      </div>
+      <label class="field-label" for="f-search">Search</label>
+      <input class="input" id="f-search" type="search" placeholder="Project, partner or donor" autocomplete="off">
+      <div id="filter-groups"></div>
+    </aside>
+
+    <div class="content">
+      <section class="kpis" id="kpis" aria-label="Summary figures"></section>
+
+      <div class="showing" id="showing" aria-live="polite"></div>
+
+      <div class="map-row">
+        <section class="card map-card" aria-labelledby="map-title">
+          <div class="map-toolbar">
+            <h2 id="map-title">Projects by state</h2>
+            <div class="tool">
+            <span class="toolbar-label" id="colour-label">Colour by</span>
+            <div class="seg" role="group" aria-labelledby="colour-label" id="colour-by">
+              <button type="button" data-v="projects" aria-pressed="true">Projects</button>
+              <button type="button" data-v="orgs" aria-pressed="false">Organisations</button>
+              <button type="button" data-v="funding" aria-pressed="false">DS funding</button>
+            </div>
+            </div>
+            <div class="tool">
+            <span class="toolbar-label" id="level-label">Level</span>
+            <div class="seg" role="group" aria-labelledby="level-label">
+              <button type="button" aria-pressed="true">States</button>
+              <button type="button" disabled title="Available once projects report their localities">Localities</button>
+            </div>
+            </div>
+          </div>
+
+          <div class="nationwide-band" id="nationwide-band"></div>
+
+          <div class="map-wrap" id="map-wrap">
+            <svg class="map-svg" id="map" role="group" aria-label="Map of Sudan by state"></svg>
+            <div class="map-tip" id="map-tip" hidden></div>
+          </div>
+
+          <div class="map-legend">
+            <div>
+              <div class="legend-title" id="legend-title">Number of projects</div>
+              <div class="legend-bins" id="legend-bins"></div>
+            </div>
+            <div>
+              <div class="legend-title">Solutions ring</div>
+              <div class="ring-legend">
+                <svg viewBox="-36 -36 72 72" width="72" height="72" id="ring-sample" aria-hidden="true"></svg>
+                <div>
+                  <p>One ring per state. The centre is the number of projects. The 8 segments are the IASC criteria, clockwise from the top. A grey segment means no project, which is a gap.</p>
+                  <div class="crit-keys" id="crit-keys"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="map-foot">
+            <p>The boundaries and names shown and the designations used on this map do not imply official endorsement or acceptance by the United Nations. Final boundary between the Republic of Sudan and the Republic of South Sudan has not yet been determined. Final status of the Abyei area is not yet determined.</p>
+            <p id="source-line">Source: projects reported by organisations to the Durable Solutions Working Group. Boundaries: geoBoundaries, simplified, for illustration only.</p>
+          </div>
+        </section>
+
+        <aside class="card state-panel" id="state-panel" aria-live="polite" aria-label="Selected state"></aside>
+      </div>
+
+      <section class="card time-card" aria-labelledby="time-title">
+        <div class="time-head">
+          <div>
+            <h2 id="time-title">Time window</h2>
+            <p id="time-sub"></p>
+          </div>
+          <div class="time-controls" role="group" aria-label="Time window">
+            <button type="button" class="pill" data-t="now" aria-pressed="false">Active now</button>
+            <button type="button" class="pill" data-t="next6" aria-pressed="false">Next 6 months</button>
+            <button type="button" class="pill" data-t="year" aria-pressed="false" id="t-year"></button>
+            <button type="button" class="pill" data-t="all" aria-pressed="true">All years</button>
+            <label for="t-from">From</label>
+            <select id="t-from"></select>
+            <label for="t-to">to</label>
+            <select id="t-to"></select>
+          </div>
+        </div>
+        <svg class="time-chart" id="time-chart" role="img" aria-label="Projects active in each quarter"></svg>
+        <p class="time-note">Bars show projects active in each quarter, with the current filters. Darker bars fall inside the time window. Projects without dates are not shown.</p>
+      </section>
+    </div>
+  </main>
+
+  <dialog class="detail" id="detail" aria-labelledby="detail-title"></dialog>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

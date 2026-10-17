@@ -1,0 +1,886 @@
+{
+ "lastUpdated": "2026-10-10",
+ "projects": [
+  {
+   "id": "iom-ai-powered-preparedness-and-anticipatory-actions",
+   "name": "AI-Powered Preparedness and Anticipatory Actions",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "IOM",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": true,
+   "states": [],
+   "localities": [],
+   "criteria": [
+    1
+   ],
+   "coordination": null,
+   "start": "2026-03-15",
+   "end": "2027-03-14",
+   "reportedStatus": "Ongoing",
+   "budget": 322283.56,
+   "share": 1.0,
+   "dsFunding": 322283.56,
+   "donor": "Japan Ministry of Foreign Affairs",
+   "people": {
+    "total": 30,
+    "idps": 0,
+    "returnees": 0,
+    "refugees": 0,
+    "host": 0,
+    "other": 30
+   },
+   "remarks": null
+  },
+  {
+   "id": "iom-austrian-contribution-to-sudan-and-neighbouring-countries-crisis-r",
+   "name": "Austrian contribution to Sudan and neighbouring countries crisis response plan 2025-2026",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "IOM",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": false,
+   "states": [
+    "Aj Jazirah",
+    "Red Sea"
+   ],
+   "localities": [],
+   "criteria": [
+    2,
+    4
+   ],
+   "coordination": "Shelter Cluster",
+   "start": "2025-01-01",
+   "end": "2026-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 2484196.84,
+   "share": 0.3371,
+   "dsFunding": 837440.12,
+   "donor": "Austrian Development Agency",
+   "people": {
+    "total": 315,
+    "idps": 0,
+    "returnees": 50,
+    "refugees": 0,
+    "host": 265,
+    "other": 0
+   },
+   "remarks": null
+  },
+  {
+   "id": "iom-cooperation-on-migration-and-partnership-to-achieve-sustainable-so",
+   "name": "Cooperation on Migration and Partnership to Achieve Sustainable Solutions (COMPASS) 2.0",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "IOM",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": false,
+   "states": [
+    "Gedaref",
+    "Kassala",
+    "Khartoum",
+    "Northern",
+    "Red Sea"
+   ],
+   "localities": [],
+   "criteria": [
+    5
+   ],
+   "coordination": "Protection Cluster",
+   "start": "2024-01-01",
+   "end": "2027-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 4732048.0,
+   "share": 0.2082,
+   "dsFunding": 985198.14,
+   "donor": "Netherlands Ministry of Foreign Affairs",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "iom-integrated-multisector-support-programme-for-displaced-and-vulnera",
+   "name": "Integrated Multisector Support Programme for Displaced and Vulnerable Conflict and Crisis Affected Populations in Sudan",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "IOM",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": true,
+   "states": [],
+   "localities": [],
+   "criteria": [
+    1
+   ],
+   "coordination": "Information Management Working Group (IMWG)",
+   "start": "2024-04-01",
+   "end": "2026-06-30",
+   "reportedStatus": "Ended",
+   "budget": 13615023.0,
+   "share": 0.0803,
+   "dsFunding": 1092991.26,
+   "donor": "ECHO",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "iom-legal-assistance",
+   "name": "Legal Assistance",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "IOM",
+   "orgType": "UN agency",
+   "partners": [
+    "SOD"
+   ],
+   "nationwide": false,
+   "states": [
+    "Kassala",
+    "Khartoum",
+    "Northern"
+   ],
+   "localities": [
+    "Dongola"
+   ],
+   "criteria": [
+    5
+   ],
+   "coordination": "Legal Aid Working Group",
+   "start": "2026-01-21",
+   "end": "2026-06-25",
+   "reportedStatus": "Ended",
+   "budget": 30000.0,
+   "share": 0.2,
+   "dsFunding": 6000.0,
+   "donor": "EU (MPRR)",
+   "people": {
+    "total": 600,
+    "idps": 0,
+    "returnees": null,
+    "refugees": null,
+    "host": 0,
+    "other": 600
+   },
+   "remarks": "All are stranded migrants"
+  },
+  {
+   "id": "iom-liechtenstein-contribution-to-sudan-crp-2026",
+   "name": "Liechtenstein Contribution to Sudan CRP 2026",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "IOM",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": false,
+   "states": [
+    "Red Sea"
+   ],
+   "localities": [],
+   "criteria": [
+    2
+   ],
+   "coordination": "Durable Solutions Working Group (DSWG)",
+   "start": "2026-01-01",
+   "end": "2026-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 130208.0,
+   "share": 0.923,
+   "dsFunding": 120177.0,
+   "donor": "Government of Liechtenstein",
+   "people": {
+    "total": 7000,
+    "idps": 0,
+    "returnees": 0,
+    "refugees": 0,
+    "host": 7000,
+    "other": 0
+   },
+   "remarks": null
+  },
+  {
+   "id": "iom-remote-adjudication-interview-support-for-family-class-applicants",
+   "name": "Remote adjudication interview support for family class applicants",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "IOM",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": true,
+   "states": [],
+   "localities": [],
+   "criteria": [
+    6
+   ],
+   "coordination": null,
+   "start": "2020-10-10",
+   "end": "2026-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 20330.0,
+   "share": 1.0,
+   "dsFunding": 20330.0,
+   "donor": "Canada IRCC",
+   "people": {
+    "total": 161,
+    "idps": 0,
+    "returnees": 0,
+    "refugees": 0,
+    "host": 0,
+    "other": 161
+   },
+   "remarks": null
+  },
+  {
+   "id": "iom-strengthening-the-security-climate-nexus-in-gedaref-sudan",
+   "name": "Strengthening the Security - Climate Nexus in Gedaref, Sudan",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "IOM",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": false,
+   "states": [
+    "Gedaref"
+   ],
+   "localities": [],
+   "criteria": [
+    1,
+    3
+   ],
+   "coordination": "Durable Solutions Working Group (DSWG)",
+   "start": "2022-11-18",
+   "end": "2026-11-18",
+   "reportedStatus": "Ongoing",
+   "budget": 3000000.0,
+   "share": 1.0,
+   "dsFunding": 3000000.0,
+   "donor": "Peacebuilding Fund",
+   "people": {
+    "total": 140000,
+    "idps": 0,
+    "returnees": 0,
+    "refugees": 0,
+    "host": 140000,
+    "other": 0
+   },
+   "remarks": null
+  },
+  {
+   "id": "iom-sudan-integrated-social-sector-infrastructure-rehabilitation-proje",
+   "name": "Sudan Integrated Social Sector Infrastructure Rehabilitation Project: Health, Education, and Drinking Water",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "IOM",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": false,
+   "states": [
+    "Aj Jazirah",
+    "River Nile",
+    "Sennar",
+    "White Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    2,
+    3
+   ],
+   "coordination": "Durable Solutions Working Group (DSWG)",
+   "start": "2025-09-01",
+   "end": "2027-08-31",
+   "reportedStatus": "Ongoing",
+   "budget": 62187036.0,
+   "share": 1.0,
+   "dsFunding": 62187036.0,
+   "donor": "African Development Bank",
+   "people": {
+    "total": 2147270,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "iom-support-to-a-family-assistance-programme-facilitating-family-reuni",
+   "name": "Support to a family assistance programme facilitating family reunion for refugees and persons eligible for protection in Germany",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "IOM",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": true,
+   "states": [],
+   "localities": [],
+   "criteria": [
+    6
+   ],
+   "coordination": null,
+   "start": "2026-01-01",
+   "end": "2026-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 179477.41,
+   "share": 1.0,
+   "dsFunding": 179477.41,
+   "donor": "German Federal Foreign Office",
+   "people": {
+    "total": 2251,
+    "idps": 0,
+    "returnees": 0,
+    "refugees": 0,
+    "host": 0,
+    "other": 2251
+   },
+   "remarks": null
+  },
+  {
+   "id": "iom-supporting-evidence-based-programming-for-idps-returnee-communitie",
+   "name": "Supporting Evidence-Based Programming for IDPs, Returnee Communities, and Other Vulnerable Groups in Sudan",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "IOM",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": true,
+   "states": [],
+   "localities": [],
+   "criteria": [
+    1
+   ],
+   "coordination": "Information Management Working Group (IMWG)",
+   "start": "2025-05-01",
+   "end": "2026-04-30",
+   "reportedStatus": "Ended",
+   "budget": 2000000.0,
+   "share": 0.25,
+   "dsFunding": 500000.0,
+   "donor": "Sudan Humanitarian Fund",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "iom-supporting-the-multi-sectoral-crisis-response-in-sudan",
+   "name": "Supporting the Multi-Sectoral Crisis Response in Sudan",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "IOM",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": true,
+   "states": [],
+   "localities": [],
+   "criteria": [
+    1
+   ],
+   "coordination": "Information Management Working Group (IMWG)",
+   "start": "2024-04-15",
+   "end": "2026-09-30",
+   "reportedStatus": "Ongoing",
+   "budget": 24600000.0,
+   "share": 0.0278,
+   "dsFunding": 683261.75,
+   "donor": "US Government (BHA)",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "iom-swiss-contribution-to-core-dtm-activities",
+   "name": "Swiss Contribution to Core DTM Activities",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "IOM",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": true,
+   "states": [],
+   "localities": [],
+   "criteria": [
+    1
+   ],
+   "coordination": "Information Management Working Group (IMWG)",
+   "start": "2026-07-01",
+   "end": "2026-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 635324.0,
+   "share": 0.25,
+   "dsFunding": 158831.0,
+   "donor": "Swiss Development Cooperation",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "iom-the-sustainable-urban-integration-of-displacement-affected-communi",
+   "name": "The Sustainable Urban Integration of Displacement-affected Communities (SUIDAC) in Sub- Saharan African Cities Action in Sudan - Phase II",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "IOM",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": false,
+   "states": [
+    "River Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    1,
+    5
+   ],
+   "coordination": "Durable Solutions Working Group (DSWG)",
+   "start": "2025-07-28",
+   "end": "2028-04-30",
+   "reportedStatus": "Ongoing",
+   "budget": 1334254.0,
+   "share": 1.0,
+   "dsFunding": 1334254.0,
+   "donor": "UNOPS / Cities Alliance",
+   "people": {
+    "total": 565988,
+    "idps": 565988,
+    "returnees": 0,
+    "refugees": 0,
+    "host": 0,
+    "other": 0
+   },
+   "remarks": null
+  },
+  {
+   "id": "undp-cash-for-work-assistance-to-support-returnees",
+   "name": "Cash-for-Work Assistance to Support Returnees",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": false,
+   "states": [
+    "Blue Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    2,
+    3
+   ],
+   "coordination": "Durable Solutions Working Group (DSWG)",
+   "start": null,
+   "end": null,
+   "reportedStatus": null,
+   "budget": null,
+   "share": null,
+   "dsFunding": null,
+   "donor": null,
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "undp-rehabilitation-and-upgrading-of-3-handpumps-to-mini-waters",
+   "name": "Rehabilitation and Upgrading of 3 handpumps to mini waters",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": false,
+   "states": [
+    "Blue Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    2
+   ],
+   "coordination": "Durable Solutions Working Group (DSWG)",
+   "start": null,
+   "end": null,
+   "reportedStatus": null,
+   "budget": null,
+   "share": null,
+   "dsFunding": null,
+   "donor": null,
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "undp-rehabilitation-of-two-health-centres",
+   "name": "Rehabilitation of two health centres",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "partners": [],
+   "nationwide": false,
+   "states": [
+    "Blue Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    2
+   ],
+   "coordination": "Durable Solutions Working Group (DSWG)",
+   "start": null,
+   "end": null,
+   "reportedStatus": "Ongoing",
+   "budget": null,
+   "share": null,
+   "dsFunding": null,
+   "donor": null,
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "unfpa-combating-and-responding-to-gbv-in-sudan",
+   "name": "Combating and Responding to GBV in Sudan",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "UNFPA",
+   "orgType": "UN agency",
+   "partners": [
+    "ACTED",
+    "MTI",
+    "PIONEER"
+   ],
+   "nationwide": false,
+   "states": [
+    "Aj Jazirah",
+    "Central Darfur",
+    "Gedaref",
+    "Kassala",
+    "Khartoum",
+    "North Kordofan",
+    "Northern",
+    "Red Sea",
+    "River Nile",
+    "Sennar",
+    "South Kordofan",
+    "White Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    1
+   ],
+   "coordination": "Protection Cluster",
+   "start": "2025-05-01",
+   "end": "2026-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 100000.0,
+   "share": null,
+   "dsFunding": null,
+   "donor": null,
+   "people": {
+    "total": 169200,
+    "idps": 110000,
+    "returnees": 1200,
+    "refugees": 12000,
+    "host": 46000,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "unfpa-community-midwives-cash-voucher-assistance-program",
+   "name": "Community Midwives Cash Voucher Assistance Program",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "UNFPA",
+   "orgType": "UN agency",
+   "partners": [
+    "MTI",
+    "SRC"
+   ],
+   "nationwide": false,
+   "states": [
+    "Blue Nile",
+    "White Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    2
+   ],
+   "coordination": "Health Cluster",
+   "start": "2026-05-01",
+   "end": "2026-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 100000.0,
+   "share": null,
+   "dsFunding": null,
+   "donor": "UNFPA",
+   "people": {
+    "total": null,
+    "idps": 7000,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "unfpa-joint-programme-on-elimination-of-fgm",
+   "name": "Joint Programme on Elimination of FGM",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "UNFPA",
+   "orgType": "UN agency",
+   "partners": [
+    "CDF",
+    "NADA AL AZHAR",
+    "CVAW"
+   ],
+   "nationwide": false,
+   "states": [
+    "Aj Jazirah",
+    "Blue Nile",
+    "Gedaref",
+    "Kassala",
+    "Khartoum",
+    "North Kordofan",
+    "Northern",
+    "Red Sea",
+    "River Nile",
+    "Sennar",
+    "South Kordofan",
+    "West Kordofan",
+    "White Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    1
+   ],
+   "coordination": "Protection Cluster",
+   "start": "2026-01-01",
+   "end": "2026-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 137617.0,
+   "share": null,
+   "dsFunding": null,
+   "donor": null,
+   "people": {
+    "total": 551063,
+    "idps": 345495,
+    "returnees": 244,
+    "refugees": 78534,
+    "host": null,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "unfpa-train-midwives-on-portable-ultrasound-with-digital-health",
+   "name": "Train Midwives on Portable Ultrasound with Digital Health",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "UNFPA",
+   "orgType": "UN agency",
+   "partners": [
+    "CARE"
+   ],
+   "nationwide": false,
+   "states": [
+    "Red Sea"
+   ],
+   "localities": [],
+   "criteria": [
+    2
+   ],
+   "coordination": "Health Cluster",
+   "start": "2026-01-01",
+   "end": "2026-06-30",
+   "reportedStatus": "Ended",
+   "budget": 100000.0,
+   "share": null,
+   "dsFunding": null,
+   "donor": "Japan",
+   "people": {
+    "total": null,
+    "idps": 4124,
+    "returnees": null,
+    "refugees": null,
+    "host": 1031,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "unhcr-prospects-project-protection-education-economic-inclusion-and-cr",
+   "name": "PROSPECTS PROJECT-Protection, Education, Economic Inclusion and Critical Infrastructure",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "UNHCR",
+   "orgType": "UN agency",
+   "partners": [
+    "ILO",
+    "UNICEF"
+   ],
+   "nationwide": false,
+   "states": [
+    "Kassala",
+    "White Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    1,
+    2,
+    3
+   ],
+   "coordination": "Durable Solutions Working Group (DSWG)",
+   "start": "2025-01-01",
+   "end": "2027-06-30",
+   "reportedStatus": "Ongoing",
+   "budget": 25000000.0,
+   "share": 0.9,
+   "dsFunding": 22000000.0,
+   "donor": "Government of the Netherlands",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "unhcr-sudan-eu-igad-platform-programme-kassala-state",
+   "name": "Sudan EU IGAD Platform programme, Kassala State",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "UNHCR",
+   "orgType": "UN agency",
+   "partners": [
+    "UN-Habitat"
+   ],
+   "nationwide": false,
+   "states": [
+    "Kassala"
+   ],
+   "localities": [],
+   "criteria": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "coordination": "Durable Solutions Working Group (DSWG)",
+   "start": "2026-06-01",
+   "end": "2027-06-30",
+   "reportedStatus": "Ongoing",
+   "budget": null,
+   "share": null,
+   "dsFunding": null,
+   "donor": null,
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null
+  },
+  {
+   "id": "unhcr-unhcr-project-funded-by-mastercard-foundation",
+   "name": "UNHCR project funded by Mastercard Foundation",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "UNHCR",
+   "orgType": "UN agency",
+   "partners": [
+    "CDF",
+    "ADD",
+    "JASMAR",
+    "WHH"
+   ],
+   "nationwide": false,
+   "states": [
+    "Blue Nile",
+    "Gedaref",
+    "Kassala",
+    "Khartoum",
+    "Northern",
+    "White Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    2,
+    3,
+    7
+   ],
+   "coordination": "Durable Solutions Working Group (DSWG)",
+   "start": "2026-01-01",
+   "end": "2030-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": null,
+   "share": null,
+   "dsFunding": null,
+   "donor": "Mastercard Foundation",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null
+  }
+ ]
+}
