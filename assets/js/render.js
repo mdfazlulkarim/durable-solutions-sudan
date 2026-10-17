@@ -153,6 +153,13 @@
       return true;
     } catch (e) { return false; }
   };
+  R.updateSubmission = (savedAt, patch) => {
+    try {
+      const list = JSON.parse(localStorage.getItem(KEY) || "[]").map((x) => (x.savedAt === savedAt ? { ...x, ...patch } : x));
+      localStorage.setItem(KEY, JSON.stringify(list));
+      return true;
+    } catch (e) { return false; }
+  };
   R.removeSubmission = (savedAt) => {
     try {
       const list = JSON.parse(localStorage.getItem(KEY) || "[]").filter((x) => x.savedAt !== savedAt);

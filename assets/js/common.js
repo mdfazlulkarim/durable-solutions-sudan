@@ -9,6 +9,7 @@ SF.config = {
   geoUrl: "data/geo.json",
   orgsUrl: "data/organisations.json",
   localitiesUrl: "data/localities.json",
+  refsUrl: "data/project-refs.json",
   templateUrl: "assets/templates/solutions-footprint-projects-template.xlsx",
   hdxAdminUrl: "https://data.humdata.org/dataset/cod-ab-sdn",
   githubUrl: "https://github.com/mdfazlulkarim",

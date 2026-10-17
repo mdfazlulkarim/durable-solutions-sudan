@@ -6,7 +6,8 @@
   const form = document.getElementById("project-form");
   const $ = (id) => document.getElementById(id);
   let correcting = null;
-  let ORGS = [], LOCALITIES = {}, GEO = null, PUBLISHED = [];
+  let ORGS = [], LOCALITIES = {}, GEO = null, PUBLISHED = [], REFS = {};
+  let assignedRef = "";
   let partners = [];
 
   /* ---------- static lists ---------- */
@@ -274,9 +275,25 @@
   form.addEventListener("change", updateLive);
   $("partner-box").addEventListener("click", updateLive);
 
+  /* project number: the next number for this agency, read from the published register */
+  function refPrefix(lead) {
+    const o = findOrg(lead);
+    if (o) return o.acronym.toUpperCase().replace(/[^A-Z0-9]/g, "");
+    const words = String(lead || "").split(/\s+/).filter((w) => /^[A-Za-z]/.test(w) && !/^(of|and|for|the|in)$/i.test(w));
+    return (words.length > 1 ? words.map((w) => w[0]).join("") : String(lead || "ORG")).toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 10) || "ORG";
+  }
+  function nextRef(lead) {
+    const pre = refPrefix(lead);
+    let max = 0;
+    Object.values(REFS).forEach((r) => { const [p2, n] = String(r).split(/-(?=\d+$)/); if (p2 === pre) max = Math.max(max, Number(n) || 0); });
+    return `${pre}-${String(max + 1).padStart(3, "0")}`;
+  }
+
   /* full preview before sending */
   function showPreview() {
     const p = SF.render.fromAnswers(answers());
+    assignedRef = correcting ? (correcting.ref || "") : nextRef(leadKey());
+    $("pv-ref").textContent = assignedRef ? `${correcting ? "Correcting project" : "Your project number"}: ${assignedRef}` : "";
     $("pv-hero").innerHTML = SF.render.hero(p, { photoNote: "Your photos will appear here once the project is published" });
     $("pv-body").innerHTML = SF.render.body(p, GEO, { logoNote: isNewOrg() ? logoNote() : "" });
     $("pv-map").innerHTML = GEO ? SF.render.placeOnMap(p, GEO, PUBLISHED) : "";
@@ -309,7 +326,7 @@
       isNewOrg() ? ">>> PLEASE ALSO ATTACH YOUR ORGANISATION'S LOGO (PNG OR SVG) <<<" : null,
       "",
       correcting ? "SOLUTIONS FOOTPRINT: CORRECTION TO A PUBLISHED PROJECT" : "SOLUTIONS FOOTPRINT: NEW PROJECT SUBMISSION",
-      correcting ? `Project number: ${correcting.ref || correcting.id}` : null,
+      correcting ? `Project number: ${correcting.ref || correcting.id}` : `Project number (proposed): ${assignedRef}`,
       correcting ? `Published name: ${correcting.name}` : null,
       "",
       "1. ABOUT THE PROJECT",
@@ -354,7 +371,7 @@
     ].filter((l) => l !== null);
     const subject = (correcting
       ? `Correction to ${correcting.ref || "project"} for Solutions Footprint: ${v("name")}`
-      : `New project for Solutions Footprint: ${v("name")}`).slice(0, 160);
+      : `New project ${assignedRef} for Solutions Footprint: ${v("name")}`).slice(0, 160);
     const body = lines.join("\r\n");
     const href = `mailto:${SF.config.contactEmail}?cc=${encodeURIComponent(v("fpEmail"))}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     return { subject, body, href };
@@ -375,10 +392,11 @@
     note.innerHTML = `${SF.icon("photo")}<span><b>Attach up to 3 photos to the email before you press Send</b> (JPG or PNG, under 1 MB each).${isNewOrg() ? " <b>Please also attach your organisation's logo</b> (PNG or SVG)." : ""} The website cannot attach them for you.</span>`;
     const a = answers();
     const saved = SF.render.saveSubmission({
-      savedAt: new Date().toISOString(), correcting: correcting ? (correcting.ref || correcting.id) : null,
+      savedAt: new Date().toISOString(), correcting: correcting ? (correcting.ref || correcting.id) : null, ref: assignedRef,
       subject: mail.subject, body: mail.body, href: mail.href,
       answers: { ...a },
     });
+    $("done-ref").textContent = assignedRef ? `Your project number: ${assignedRef}. Keep it for any follow-up with the Durable Solutions Unit.` : "";
     $("saved-note").innerHTML = saved
       ? `A copy is saved in this browser. See it any time under <a href="my-submissions.html">My submissions</a>.`
       : "This browser does not allow saving, so the copy will not appear under My submissions. Your submission is not affected.";
@@ -456,8 +474,9 @@
 
   /* ---------- start ---------- */
   SF.renderHeader("add");
-  Promise.all([SF.loadJSON(SF.config.orgsUrl), SF.loadJSON(SF.config.localitiesUrl), SF.loadJSON(SF.config.dataUrl).catch(() => null), SF.loadJSON(SF.config.geoUrl).catch(() => null)])
-    .then(([orgs, locs, data, geo]) => {
+  Promise.all([SF.loadJSON(SF.config.orgsUrl), SF.loadJSON(SF.config.localitiesUrl), SF.loadJSON(SF.config.dataUrl).catch(() => null), SF.loadJSON(SF.config.geoUrl).catch(() => null), SF.loadJSON(SF.config.refsUrl).catch(() => ({}))])
+    .then(([orgs, locs, data, geo, refs]) => {
+      REFS = refs || {};
       ORGS = orgs.organisations;
       LOCALITIES = locs.states;
       GEO = geo;
