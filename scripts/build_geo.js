@@ -41,8 +41,8 @@ function loadSimplified(file, keep) {
 
 const states = loadSimplified(ADM1, 0.35);
 const statesTopo = loadSimplified.topo;
-const W = 860, H = 880;
-const proj = d3.geoMercator().fitExtent([[56, 24], [W - 56, H - 200]], states);
+const W = 860, H = 920;
+const proj = d3.geoMercator().fitExtent([[56, 24], [W - 56, H - 240]], states);
 proj.clipExtent([[0, 0], [W, H]]);
 const pathGen = d3.geoPath(proj).digits(1);
 

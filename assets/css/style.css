@@ -189,7 +189,7 @@ input[type="range"] { width: 100%; accent-color: var(--brand); margin: 10px 0 4p
 
 /* ---------- KPIs ---------- */
 .kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
-.kpi { padding: 14px 16px; }
+.kpi { padding: 14px 16px; min-width: 0; overflow: hidden; }
 .kpi-label { font-size: 13px; color: var(--ink-2); display: flex; align-items: center; gap: 8px; }
 .kpi-ico { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; background: var(--brand-tint); color: var(--brand); flex: none; }
 .kpi-ico svg { width: 17px; height: 17px; }
@@ -201,8 +201,6 @@ input[type="range"] { width: 100%; accent-color: var(--brand); margin: 10px 0 4p
 
 .showing-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
 .showing { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); }
-.downloads { font-size: 13.5px; color: var(--muted); display: inline-flex; gap: 8px; align-items: center; }
-.downloads svg { width: 15px; height: 15px; }
 .tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 6px 4px 12px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--panel); color: var(--ink); font-size: 13.5px; }
 .tag button { border: 0; background: none; cursor: pointer; width: 22px; height: 22px; border-radius: 50%; display: inline-grid; place-items: center; color: var(--muted); font-size: 16px; line-height: 1; }
 .tag button:hover { background: var(--bg); color: var(--ink); }
@@ -271,14 +269,14 @@ input[type="range"] { width: 100%; accent-color: var(--brand); margin: 10px 0 4p
 .legend-top { display: flex; justify-content: space-between; align-items: center; }
 .legend-head { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 .legend-top .link-btn { font-size: 12px; }
-#legend-body { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 0.95fr) minmax(0, 1.8fr); gap: 6px 16px; margin-top: 4px; align-items: start; }
+#legend-body { display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(250px, 1.35fr); gap: 6px 16px; margin-top: 4px; align-items: start; }
 #legend-body .legend-row { display: grid; gap: 4px; align-content: start; min-width: 0; }
 #legend-body .legend-ring svg { flex: none; width: 34px; height: 34px; }
 #legend-body .legend-ring { align-items: flex-start; font-size: 11.5px; line-height: 1.35; }
 #legend-body .legend-title { min-width: 0; }
-#legend-body .crit-keys { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2px 8px; font-size: 11.5px; }
-#legend-body .crit-keys span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-@media (max-width: 1100px) { #legend-body { grid-template-columns: 1fr; } }
+#legend-body .crit-keys { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: repeat(4, auto); grid-auto-flow: column; gap: 2px 8px; font-size: 11.5px; }
+#legend-body .crit-keys span { white-space: nowrap; }
+
 .legend-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
 .legend-title { font-weight: 600; font-size: 12px; min-width: 118px; }
 .legend-bins { display: flex; flex-wrap: wrap; gap: 6px 14px; }
@@ -631,3 +629,35 @@ textarea.input { min-height: 84px; resize: vertical; }
 
 /* full-width rows below the filters and content */
 .page > .full-row { grid-column: 1 / -1; }
+
+/* summary card mini charts */
+.kbar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin: 8px 0 6px; background: var(--track); }
+.kbar i { display: block; height: 100%; }
+.kleg { display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 11.5px; color: var(--muted); }
+.kleg b { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; }
+.kdots { display: grid; grid-template-columns: repeat(9, 12px); gap: 3px; margin: 8px 0 6px; }
+.kdots i { width: 12px; height: 12px; border-radius: 3px; background: var(--brand); }
+.kdots i.off { background: var(--map-none); }
+.kmonths { display: flex; gap: 4px; align-items: flex-end; height: 40px; margin: 8px 0 0; }
+.kmonths div { flex: 1; text-align: center; font-size: 10px; color: var(--muted); }
+.kmonths i { display: block; background: #e2895f; border-radius: 2px; margin: 0 auto 2px; width: 100%; }
+.ktop { font-size: 12.5px; color: var(--ink-2); margin-top: 8px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; }
+.ktop div { display: flex; justify-content: space-between; gap: 8px; }
+.ktop span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; flex: 1; }
+.ktop b { font-weight: 600; color: var(--ink); white-space: nowrap; }
+.clear-link { font-size: 12.5px; margin-left: 6px; }
+/* no browser focus frame on map shapes; keyboard focus shows the outline instead */
+.map-svg .state:focus, .map-svg .ring:focus, .map-svg .agency-chip:focus, .map-svg:focus { outline: none; }
+
+#legend-body .legend-bins { display: grid; grid-template-columns: repeat(4, auto); justify-content: start; gap: 4px 10px; }
+#legend-body .legend-bins .none { grid-column: 1 / -1; }
+#legend-body .legend-bins span { white-space: nowrap; }
+
+/* when the map is narrow, the legend and disclaimer sit below the map instead of over it */
+.map-wrap { container-type: inline-size; }
+@container (max-width: 640px) {
+  .map-legend { position: static; margin: 8px 0 0; box-shadow: none; }
+  .map-disclaimer { position: static; margin-top: 8px; border: 1px solid var(--line); border-radius: 6px; }
+  #legend-body { grid-template-columns: auto minmax(0, 1fr); }
+  #legend-body .legend-row:last-child { grid-column: 1 / -1; }
+}

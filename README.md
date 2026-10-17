@@ -14,9 +14,10 @@ Contact: [dswg.sd@undp.org](mailto:dswg.sd@undp.org)
 - Clicking a state zooms in, with badges for the lead agencies working there; each badge opens that agency's projects in the state.
 - Side panel that starts with all of Sudan (including a link to the nationwide projects) and switches to the selected state. The project list sits under the map: the first 5 projects, with "Show all" when there are more.
 - Project pop-up with photos (or the agency logo when there are none), key figures, IASC criteria icons, a small locator map, "Show on map", "Copy link" and "Suggest a correction".
+- Summary cards with small charts (status, organisation types, states covered, top donors, projects ending by month).
+- "Clear all" links on the area selector and the time window.
 - Filters: minimum share towards durable solutions (top, default 0%), search, IASC criteria, intervention type, organisation type and name, organisation leadership (WLO, RLO, YLO, OPD), status, target group, geographic scope, donor and coordination mechanism, with counts and removable tags.
 - Time window, contributing agencies strip with logos, light and dark mode, and a statement that the list is not exhaustive.
-- Download of the filtered data as CSV or Excel (link above the map).
 - "Add your project" menu: **Add one project** (form) or **Add multiple projects** (Excel template).
 - The form opens a pre-filled email to dswg.sd@undp.org with a copy to the submitter. It has organisation lists by type, leadership, partner picker, localities by state, budget and share formatting, and "Add another project". Photos are not uploaded on the form: the email asks the submitter to attach up to 3 photos.
 - Both template links download the file directly (the page fetches it), also when the dashboard is embedded in another site.
@@ -35,7 +36,6 @@ assets/css/style.css    All styles
 assets/js/common.js     Shared settings: contact email, IASC criteria and colours, states, lists, header and footer
 assets/js/app.js        Map explorer logic
 assets/js/form.js       Form logic and the email it builds
-assets/vendor/          SheetJS (Excel download), loaded only when someone downloads Excel
 assets/img/             UN Sudan logo (placeholder until the site moves to un.org) and favicon
 assets/js/icons.js      OCHA humanitarian icons used for the IASC criteria
 assets/img/logos/       Agency logos (full logo and a small square mark)
@@ -151,7 +151,6 @@ To embed on sudan.un.org:
 - Icons: [OCHA Humanitarian Icons](https://brand.unocha.org/d/xEPytAUjC3sH/icons), released for free use.
 - Boundaries: OCHA administrative boundaries for Sudan via [geoBoundaries](https://www.geoboundaries.org), CC BY 3.0 IGO; [Natural Earth](https://www.naturalearthdata.com), public domain.
 - Agency logos belong to their organisations.
-- Excel export: [SheetJS Community Edition](https://sheetjs.com), Apache 2.0.
 - Typeface: IBM Plex Sans, SIL Open Font License.
 
 The boundaries and names shown and the designations used on the map do not imply official endorsement or acceptance by the United Nations.

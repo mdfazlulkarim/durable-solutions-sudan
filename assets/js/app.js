@@ -283,23 +283,51 @@
     list.forEach((p) => (p.status && st[p.status] != null ? st[p.status]++ : st.none++));
     const leads = new Set(list.map((p) => p.lead).filter(Boolean));
     const partners = new Set(list.flatMap((p) => p.partners).filter((o) => !leads.has(o)));
-    const covered = STATES.filter((s) => per[s].projects.length).length;
-    const nationwide = list.filter((p) => p.nationwide).length;
+    const coveredStates = STATES.filter((s) => per[s].projects.length);
+    const covered = coveredStates.length;
     const fundingList = list.filter((p) => p.dsFunding != null);
     const ds = fundingList.reduce((a, p) => a + p.dsFunding, 0);
-    const budget = list.reduce((a, p) => a + (p.budget || 0), 0);
-    const soon = list.filter((p) => p._endingSoon).length;
-    const statusParts = [`${st.Ongoing} ongoing`, `${st.Pipeline} pipeline`, `${st.Ended} ended`];
-    if (st.none) statusParts.push(`${st.none} with no status`);
+    const soonList = list.filter((p) => p._endingSoon);
+    const pct = (n, t) => (t ? (n / t) * 100 : 0);
+    const bar = (parts, total) => {
+      const ps = parts.filter((x) => x[1] > 0);
+      return `<div class="kbar" role="img" aria-label="${esc(ps.map((x) => `${x[1]} ${x[0]}`).join(", "))}">${ps.map((x) => `<i style="width:${pct(x[1], total)}%;background:${x[2]}"></i>`).join("")}</div>
+        <div class="kleg">${ps.map((x) => `<span><b style="background:${x[2]}"></b>${x[1]} ${x[0]}</span>`).join("")}</div>`;
+    };
+    // projects by status
+    const projBody = bar([["ongoing", st.Ongoing, "#1d5fae"], ["pipeline", st.Pipeline, "#6250d6"], ["ended", st.Ended, "#9aa0a9"], ["no status", st.none, "var(--map-none)"]], list.length);
+    // organisations by type (leads and partners)
+    const types = orgTypeRows(list);
+    const typeShort = { "UN agencies": "UN", "International NGOs": "INGO", "National NGOs": "NNGO", "Red Cross / Red Crescent": "RC", "Authorities": "authorities", "Other": "other", "Type not reported": "not reported" };
+    const typeCol = ["#1d5fae", "#4485d2", "#73a5e0", "#a3c4ec", "#6250d6", "#b7a9f5", "var(--map-none)"];
+    const orgBody = bar(types.map((r, i) => [typeShort[r.l] || r.l, r.n, r.l === "Type not reported" ? "var(--map-none)" : typeCol[i]]), types.reduce((a, r) => a + r.n, 0));
+    // states: 18 squares
+    const statesBody = `<div class="kdots" role="img" aria-label="${covered} of 18 states have projects">${STATES.map((_, i) => `<i class="${i < covered ? "" : "off"}"></i>`).join("")}</div>
+      <div class="kleg"><span><b style="background:var(--map-none)"></b>${18 - covered} state${18 - covered === 1 ? "" : "s"} with no projects</span></div>`;
+    // DS funding: top donors
+    const donors = new Map();
+    fundingList.forEach((p) => p.donor && donors.set(p.donor, (donors.get(p.donor) || 0) + p.dsFunding));
+    const topDonors = [...donors.entries()].sort((x, y) => y[1] - x[1]).slice(0, 3);
+    const fundBody = topDonors.length
+      ? `<div class="ktop">${topDonors.map(([d, v]) => `<div><span title="${esc(d)}">${esc(d)}</span><b>${SF.fmtMoney(v)}</b></div>`).join("")}</div>`
+      : `<div class="kleg" style="margin-top:8px">No funding reported</div>`;
+    // ending: one bar per month, this month to six months ahead
+    const months = [];
+    for (let i = 0; i <= 6; i++) {
+      const m = new Date(SF.today.getFullYear(), SF.today.getMonth() + i, 1);
+      months.push({ m, n: soonList.filter((p) => p._end.getFullYear() === m.getFullYear() && p._end.getMonth() === m.getMonth()).length });
+    }
+    const mMax = Math.max(1, ...months.map((x) => x.n));
+    const endBody = `<div class="kmonths" role="img" aria-label="${esc(months.filter((x) => x.n).map((x) => `${x.n} in ${SF.fmtMonth(x.m)}`).join(", ") || "None")}">${months.map((x) => `<div title="${x.n} ending in ${SF.fmtMonth(x.m)}"><i style="height:${x.n ? Math.max(4, (x.n / mMax) * 26) : 1}px"></i>${SF.fmtMonth(x.m).slice(0, 3)}</div>`).join("")}</div>`;
     const cards = [
-      { i: "reporting", l: "Projects", v: SF.fmtInt(list.length), s: statusParts.join(", ") },
-      { i: "partnership", l: "Organisations", v: SF.fmtInt(leads.size + partners.size), s: `${leads.size} lead organisation${leads.size === 1 ? "" : "s"}, plus ${partners.size} implementing partner${partners.size === 1 ? "" : "s"}` },
-      { i: "location", l: "States covered", v: `${covered} of 18`, s: `plus ${nationwide} nationwide project${nationwide === 1 ? "" : "s"}` },
-      { i: "fund", l: "DS funding", v: SF.fmtMoney(ds) || "$0", s: `of ${SF.fmtMoney(budget) || "$0"} total budgets. ${fundingList.length} of ${list.length} projects report an amount` },
-      { i: "time", warn: true, l: "Ending within 6 months", v: SF.fmtInt(soon), s: `end by ${SF.fmtMonth(SF.addMonths(SF.today, 6))}` },
+      { i: "reporting", l: "Projects", v: SF.fmtInt(list.length), body: projBody },
+      { i: "partnership", l: "Organisations", v: SF.fmtInt(leads.size + partners.size), body: orgBody },
+      { i: "location", l: "States covered", v: `${covered} of 18`, body: statesBody },
+      { i: "fund", l: "DS funding", v: SF.fmtMoney(ds) || "$0", body: fundBody },
+      { i: "time", warn: true, l: "Ending within 6 months", v: SF.fmtInt(soonList.length), body: endBody },
     ];
     document.getElementById("kpis").innerHTML = cards.map((c) => `
-      <div class="card kpi"><div class="kpi-label"><span class="kpi-ico${c.warn ? " warn" : ""}">${SF.icon(c.i)}</span>${c.l}</div><div class="kpi-value">${c.v}</div><div class="kpi-sub">${c.s}</div></div>`).join("");
+      <div class="card kpi"><div class="kpi-label"><span class="kpi-ico${c.warn ? " warn" : ""}">${SF.icon(c.i)}</span>${c.l}</div><div class="kpi-value">${c.v}</div>${c.body}</div>`).join("");
   }
 
   /* ---------------- map ---------------- */
@@ -533,7 +561,7 @@
     const noneLabel = state.colourBy === "funding" ? "No funding reported" : "No projects reported";
     document.getElementById("legend-bins").innerHTML =
       bs.map((b, i) => `<span><i style="background:${SEQ[i + offset]}"></i>${b.label}</span>`).join("") +
-      `<span><i style="background:var(--map-none);border:1px solid var(--line-2)"></i>${noneLabel}</span>`;
+      `<span class="none"><i style="background:var(--map-none);border:1px solid var(--line-2)"></i>${noneLabel}</span>`;
   }
 
   const tip = () => document.getElementById("map-tip");
@@ -646,7 +674,7 @@
     panel.innerHTML = `
       <div class="sp-head">
         <div><div class="sp-kicker">${isAll ? "Overview" : "Selected state"}</div><h2 class="sp-name">${esc(name)}</h2></div>
-        <div class="sp-select"><label for="sp-change">Change area</label><select id="sp-change">${options}</select></div>
+        <div class="sp-select"><label for="sp-change">Change area${isAll ? "" : ' <button type="button" class="link-btn clear-link" id="sp-clear">Clear all</button>'}</label><select id="sp-change">${options}</select></div>
       </div>
       <div class="mini-kpis">
         <div class="mini"><div class="l">Projects</div><div class="v">${projects.length}</div></div>
@@ -665,6 +693,7 @@
           <span class="n">${a.crit[c.n] || '<span class="gap-word">gap</span>'}</span></div>`).join("")}`;
 
     panel.querySelector("#sp-change").addEventListener("change", (e) => selectState(e.target.value || null));
+    panel.querySelector("#sp-clear")?.addEventListener("click", (e) => { e.preventDefault(); selectState(null); });
     panel.querySelector("#sp-nw")?.addEventListener("click", openNationwide);
     panel.querySelectorAll(".agency-btn").forEach((b) => b.addEventListener("click", () => {
       const org = b.dataset.org;
@@ -870,6 +899,7 @@
       state.time = { mode: "custom", from: f, to: t };
       render();
     };
+    document.getElementById("t-clear").addEventListener("click", () => { state.time = { mode: "all" }; render(); });
     from.addEventListener("change", onRange);
     to.addEventListener("change", onRange);
   }
@@ -877,6 +907,7 @@
     const list = filtered("time");
     const w = timeWindow();
     document.querySelectorAll(".pill[data-t]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.t === state.time.mode)));
+    document.getElementById("t-clear").hidden = state.time.mode === "all";
     const from = document.getElementById("t-from"), to = document.getElementById("t-to");
     from.value = w ? Math.max(YEARS[0], w[0].getFullYear()) : YEARS[0];
     to.value = w ? Math.min(YEARS[YEARS.length - 1], w[1].getFullYear()) : YEARS[YEARS.length - 1];
@@ -919,81 +950,7 @@
     }));
   }
 
-  /* ---------------- downloads ---------------- */
-  function exportRows(list) {
-    return list.map((p) => ({
-      "Project or programme name": p.name,
-      "Lead organisation": p.lead || "",
-      "Organisation type": p.orgType || "",
-      "Organisation leadership": p.leadership.join("; "),
-      "Implementing partners": p.partners.join("; "),
-      "Geographic scope": p.nationwide ? "Nationwide" : "One or more states",
-      "States": p.states.join("; "),
-      "Localities": p.localities.join("; "),
-      "IASC criteria": p.criteria.map((n) => `${n}. ${CRITERIA[n - 1].name}`).join("; "),
-      "Intervention type": p.interventionTypes.join("; "),
-      "Description": p.description || "",
-      "Coordination mechanism or cluster": p.coordination || "",
-      "Start date": p.start || "",
-      "End date": p.end || "",
-      "Status": p.status || "",
-      "Total budget (USD)": p.budget ?? "",
-      "Share towards durable solutions (%)": p.share != null ? Math.round(p.share * 1000) / 10 : "",
-      "Funding towards durable solutions (USD)": p.dsFunding ?? "",
-      "Donor or funding source": p.donor || "",
-      "People reached, planned: total": p.people.total ?? "",
-      "IDPs": p.people.idps ?? "",
-      "Returnees": p.people.returnees ?? "",
-      "Refugees": p.people.refugees ?? "",
-      "Host community": p.people.host ?? "",
-      "Other": p.people.other ?? "",
-      "Remarks": p.remarks || "",
-      "Contact": SF.config.contactEmail,
-      "Data last updated": LAST_UPDATED,
-    }));
-  }
   const NOT_EXHAUSTIVE = "This is not an exhaustive list of projects contributing to durable solutions in Sudan. It shows only projects that organisations have reported to the Durable Solutions Working Group.";
-  function fileName(ext) { return `solutions-footprint-sudan-${new Date().toISOString().slice(0, 10)}.${ext}`; }
-  function downloadCSV(rows) {
-    const cols = Object.keys(rows[0] || { Project: "" });
-    const q = (v) => { const s = String(v ?? ""); return /[",\n;]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
-    const csv = "﻿" + [cols.map(q).join(","), ...rows.map((r) => cols.map((c) => q(r[c])).join(","))].join("\r\n");
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
-    a.download = fileName("csv");
-    document.body.appendChild(a); a.click(); a.remove();
-  }
-  function loadScript(src) {
-    return new Promise((res, rej) => { const s = document.createElement("script"); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
-  }
-  async function downloadXLSX(rows) {
-    if (!window.XLSX) await loadScript("assets/vendor/xlsx.mini.min.js");
-    const ws = XLSX.utils.json_to_sheet(rows);
-    ws["!cols"] = Object.keys(rows[0] || {}).map((k) => ({ wch: Math.min(48, Math.max(10, k.length + 2)) }));
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Projects");
-    const notes = XLSX.utils.aoa_to_sheet([
-      ["Solutions Footprint, Durable Solutions Hub | Sudan"],
-      [`Projects matching the filters on screen: ${rows.length}`],
-      [`Data last updated: ${LAST_UPDATED}`],
-      ["Source: projects reported by organisations to the Durable Solutions Working Group (DSWG)."],
-      [NOT_EXHAUSTIVE],
-      [`Contact: ${SF.config.contactEmail}`],
-    ]);
-    XLSX.utils.book_append_sheet(wb, notes, "About");
-    XLSX.writeFile(wb, fileName("xlsx"));
-  }
-  function bindDownloads() {
-    const host = document.getElementById("downloads");
-    host.innerHTML = `${SF.icons.download}<span>Download filtered data:</span><button type="button" class="link-btn" data-dl="csv">CSV</button><button type="button" class="link-btn" data-dl="xlsx">Excel</button>`;
-    host.addEventListener("click", async (e) => {
-      const kind = e.target.dataset.dl;
-      if (!kind) return;
-      const rows = exportRows(filtered());
-      try { kind === "csv" ? downloadCSV(rows) : await downloadXLSX(rows); }
-      catch (err) { alert("The Excel download could not start. Please try the CSV download."); }
-    });
-  }
 
   /* ---------------- render ---------------- */
   function render() {
@@ -1025,7 +982,6 @@
     buildFilterPanel();
     buildMap();
     buildTime();
-    bindDownloads();
     renderAgencies();
     document.querySelectorAll("#colour-by button").forEach((b) => b.addEventListener("click", () => {
       state.colourBy = b.dataset.v;

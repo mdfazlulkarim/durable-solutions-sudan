@@ -39,7 +39,6 @@
 
       <div class="showing-row">
         <div class="showing" id="showing" aria-live="polite"></div>
-        <div class="downloads" id="downloads"></div>
       </div>
 
       <div class="map-row">
@@ -84,7 +83,7 @@
                   <span class="legend-title">Solutions ring</span>
                   <span class="legend-ring">
                     <svg viewBox="-24 -24 48 48" width="34" height="34" id="ring-sample" class="ring-svg" aria-hidden="true"></svg>
-                    <span>Centre: projects. Segments: the 8 IASC criteria, clockwise from the top. Grey: a gap.</span>
+                    <span>The number in the centre is the number of projects. Segments: the 8 IASC criteria, clockwise from the top. Grey: a gap.</span>
                   </span>
                 </div>
                 <div class="legend-row">
@@ -125,6 +124,7 @@
           <select id="t-from"></select>
           <label for="t-to">to</label>
           <select id="t-to"></select>
+          <button type="button" class="link-btn clear-link" id="t-clear" hidden>Clear all</button>
         </div>
       </div>
       <svg class="time-chart" id="time-chart" role="img" aria-label="Projects active in each quarter"></svg>
