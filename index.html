@@ -70,71 +70,76 @@
             <button type="button" class="btn btn-sm map-back" id="map-back" hidden></button>
             <svg class="map-svg" id="map" role="group" aria-label="Map of Sudan by state"></svg>
             <div class="map-tip" id="map-tip" hidden></div>
-            <div class="map-disclaimer" id="map-disclaimer">
-              <p>The boundaries and names shown and the designations used on this map do not imply official endorsement or acceptance by the United Nations. Final boundary between the Republic of Sudan and the Republic of South Sudan has not yet been determined. Final status of the Abyei area is not yet determined.</p>
+            <div class="map-legend" id="map-legend">
+              <div class="legend-top">
+                <span class="legend-head">Legend</span>
+                <button type="button" class="link-btn" id="legend-toggle" aria-expanded="true" aria-controls="legend-body">Hide legend</button>
+              </div>
+              <div id="legend-body">
+                <div class="legend-row">
+                  <span class="legend-title" id="legend-title">Number of projects</span>
+                  <span class="legend-bins" id="legend-bins"></span>
+                </div>
+                <div class="legend-row">
+                  <span class="legend-title">Solutions ring</span>
+                  <span class="legend-ring">
+                    <svg viewBox="-24 -24 48 48" width="34" height="34" id="ring-sample" class="ring-svg" aria-hidden="true"></svg>
+                    <span>Centre: projects. Segments: the 8 IASC criteria, clockwise from the top. Grey: a gap.</span>
+                  </span>
+                </div>
+                <div class="legend-row">
+                  <span class="legend-title">IASC criteria</span>
+                  <span class="crit-keys" id="crit-keys"></span>
+                </div>
+              </div>
             </div>
+            <div class="map-disclaimer" id="map-disclaimer">The boundaries and names shown and the designations used on this map do not imply official endorsement or acceptance by the United Nations. Final boundary between the Republic of Sudan and the Republic of South Sudan has not yet been determined. Final status of the Abyei area is not yet determined.</div>
           </div>
 
-          <div class="map-legend">
-            <div class="legend-row">
-              <span class="legend-title" id="legend-title">Number of projects</span>
-              <span class="legend-bins" id="legend-bins"></span>
-            </div>
-            <div class="legend-row">
-              <span class="legend-title">Solutions ring</span>
-              <span class="legend-ring">
-                <svg viewBox="-24 -24 48 48" width="42" height="42" id="ring-sample" aria-hidden="true"></svg>
-                <span>Centre: number of projects. Segments: the 8 IASC criteria, clockwise from the top. Grey: no project, a gap.</span>
-              </span>
-            </div>
-            <div class="legend-row">
-              <span class="legend-title">IASC criteria</span>
-              <span class="crit-keys" id="crit-keys"></span>
-            </div>
-          </div>
-          <p class="map-source" id="source-line">Source: projects reported by organisations to the Durable Solutions Working Group.</p>
         </section>
 
-        <section class="card list-card" aria-labelledby="list-title">
-          <div class="list-head"><h2 id="list-title">Projects</h2><small>Ongoing projects first, ending soonest at the top. Select a project for details.</small></div>
-          <div id="proj-list"></div>
-        </section>
         </div>
 
         <aside class="card state-panel" id="state-panel" aria-live="polite" aria-label="Selected area"></aside>
       </div>
 
-      <section class="card time-card" aria-labelledby="time-title">
-        <div class="time-head">
-          <div>
-            <h2 id="time-title">Time window</h2>
-            <p id="time-sub"></p>
-          </div>
-          <div class="time-controls" role="group" aria-label="Time window">
-            <button type="button" class="pill" data-t="now" aria-pressed="false">Active now</button>
-            <button type="button" class="pill" data-t="next6" aria-pressed="false">Next 6 months</button>
-            <button type="button" class="pill" data-t="year" aria-pressed="false" id="t-year"></button>
-            <button type="button" class="pill" data-t="all" aria-pressed="true">All years</button>
-            <label for="t-from">From</label>
-            <select id="t-from"></select>
-            <label for="t-to">to</label>
-            <select id="t-to"></select>
-          </div>
-        </div>
-        <svg class="time-chart" id="time-chart" role="img" aria-label="Projects active in each quarter"></svg>
-        <p class="time-note">Bars show projects active in each quarter, with the current filters. Darker bars fall inside the time window. Projects without dates are not shown.</p>
+      <section class="card list-card" aria-labelledby="list-title">
+        <div class="list-head"><h2 id="list-title">Projects</h2><small>Ongoing projects first, ending soonest at the top. Select a project for details.</small></div>
+        <div id="proj-list"></div>
       </section>
 
-      <section class="card agencies-card" aria-labelledby="agencies-title">
-        <div class="agencies-head">
-          <div>
-            <h2 id="agencies-title">Contributing agencies</h2>
-            <p>UN agencies that have reported projects to the Durable Solutions Working Group. Select an agency to see its projects.</p>
-          </div>
-        </div>
-        <div class="logo-strip" id="logo-strip"></div>
-      </section>
     </div>
+
+    <section class="card time-card full-row" aria-labelledby="time-title">
+      <div class="time-head">
+        <div>
+          <h2 id="time-title">Time window</h2>
+          <p id="time-sub"></p>
+        </div>
+        <div class="time-controls" role="group" aria-label="Time window">
+          <button type="button" class="pill" data-t="now" aria-pressed="false">Active now</button>
+          <button type="button" class="pill" data-t="next6" aria-pressed="false">Next 6 months</button>
+          <button type="button" class="pill" data-t="year" aria-pressed="false" id="t-year"></button>
+          <button type="button" class="pill" data-t="all" aria-pressed="true">All years</button>
+          <label for="t-from">From</label>
+          <select id="t-from"></select>
+          <label for="t-to">to</label>
+          <select id="t-to"></select>
+        </div>
+      </div>
+      <svg class="time-chart" id="time-chart" role="img" aria-label="Projects active in each quarter"></svg>
+      <p class="time-note">Bars show projects active in each quarter, with the current filters. Darker bars fall inside the time window. Projects without dates are not shown.</p>
+    </section>
+
+    <section class="card agencies-card full-row" aria-labelledby="agencies-title">
+      <div class="agencies-head">
+        <div>
+          <h2 id="agencies-title">Contributing agencies</h2>
+          <p>UN agencies that have reported projects to the Durable Solutions Working Group. Select an agency to see its projects.</p>
+        </div>
+      </div>
+      <div class="logo-strip" id="logo-strip"></div>
+    </section>
   </main>
 
   <dialog class="modal" id="detail" aria-labelledby="detail-title"></dialog>

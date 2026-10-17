@@ -359,7 +359,7 @@
     if (GEO.abyei) {
       el("path", { d: GEO.abyei.path, class: "abyei" }, gStates);
       const t = el("text", { x: GEO.abyei.x, y: GEO.abyei.y + 22, class: "lbl lbl-abyei", "text-anchor": "middle", "font-size": 11 }, gLabels);
-      t.textContent = "Abyei";
+      t.textContent = "Abyei PCA";
       mapNodes.__abyeiLabel = t;
     }
     GEO.states.forEach((s) => {
@@ -386,6 +386,12 @@
     document.getElementById("crit-keys").innerHTML = CRITERIA.map((c) => `<span>${SF.critIcon(c.n, c.color)}<b>${c.n}</b> ${c.ring}</span>`).join("");
     document.getElementById("map-back").innerHTML = `${SF.icons.back}Back to all of Sudan`;
     document.getElementById("map-back").addEventListener("click", () => selectState(null));
+    const lt = document.getElementById("legend-toggle"), lb = document.getElementById("legend-body");
+    lt.addEventListener("click", () => {
+      lb.hidden = !lb.hidden;
+      lt.textContent = lb.hidden ? "Show legend" : "Hide legend";
+      lt.setAttribute("aria-expanded", String(!lb.hidden));
+    });
   }
 
   /* zoom: animate the viewBox towards a state, or back to the whole map */
@@ -906,8 +912,7 @@
   function renderAgencies() {
     const ags = agenciesIn(ALL.filter((p) => p.orgType === "UN agency"));
     const strip = document.getElementById("logo-strip");
-    strip.innerHTML = ags.map(([org, list]) => `<button type="button" class="logo-tile" data-org="${esc(org)}" title="${esc(org)}: ${list.length} project${list.length === 1 ? "" : "s"}" aria-label="${esc(org)}, ${list.length} projects">${SF.logoImg(org, "full")}</button>`).join("") +
-      `<a class="logo-tile is-add" href="add.html">${SF.icons.plus}<span style="color:inherit">Your organisation here?<br>Add your project</span></a>`;
+    strip.innerHTML = ags.map(([org, list]) => `<button type="button" class="logo-tile" data-org="${esc(org)}" title="${esc(org)}: ${list.length} project${list.length === 1 ? "" : "s"}" aria-label="${esc(org)}, ${list.length} projects">${SF.logoImg(org, "full")}</button>`).join("");
     strip.querySelectorAll(".logo-tile[data-org]").forEach((b) => b.addEventListener("click", () => {
       const org = b.dataset.org;
       openAgency(org, ALL.filter((p) => p.lead === org), "Sudan");
@@ -1016,8 +1021,6 @@
       return;
     }
     SF.renderFooter(LAST_UPDATED);
-    document.getElementById("source-line").textContent =
-      `Source: projects reported by organisations to the Durable Solutions Working Group. Last updated ${SF.fmtDateLong(SF.parseDate(LAST_UPDATED))}. Boundaries: OCHA via geoBoundaries, and Natural Earth, simplified.`;
     document.getElementById("not-exhaustive").innerHTML = `${SF.icons.info}<span>${NOT_EXHAUSTIVE} To add yours, use <a href="add.html">Add your project</a>.</span>`;
     buildFilterPanel();
     buildMap();
