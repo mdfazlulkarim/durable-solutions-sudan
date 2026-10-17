@@ -35,10 +35,12 @@ function loadSimplified(file, keep) {
   const gj = JSON.parse(fs.readFileSync(file, "utf8"));
   let topo = presimplify(topology({ layer: gj }));
   topo = simplify(topo, quantile(topo, keep));
+  loadSimplified.topo = topo;
   return rewind(feature(topo, topo.objects.layer));
 }
 
 const states = loadSimplified(ADM1, 0.35);
+const statesTopo = loadSimplified.topo;
 const W = 860, H = 800;
 const proj = d3.geoMercator().fitExtent([[56, 24], [W - 56, H - 120]], states);
 proj.clipExtent([[0, 0], [W, H]]);
@@ -64,8 +66,8 @@ const LABELS = {
   "818": { name: "EGYPT", at: [31.5, 22.6] },
   "434": { name: "LIBYA", at: [23.2, 21.4] },
   "148": { name: "CHAD", at: [21.4, 15.2] },
-  "140": { name: "CENTRAL AFRICAN REP.", at: [23.9, 9.15] },
-  "728": { name: "SOUTH SUDAN", at: [33.4, 7.75] },
+  "140": { name: "CENTRAL AFRICAN REP.", at: [22.7, 8.55] },
+  "728": { name: "SOUTH SUDAN", at: [31.6, 8.7] },
   "231": { name: "ETHIOPIA", at: [37.4, 10.0] },
   "232": { name: "ERITREA", at: [38.6, 16.4] },
   "682": { name: "SAUDI ARABIA", at: [39.8, 22.6], anchor: "end" },
@@ -93,6 +95,8 @@ const result = {
   land,
   labels,
   undeterminedBoundary: sdnSsd,
+  // outer edge of Sudan (all states together), drawn as a thin dark line
+  outline: pathGen(mesh(statesTopo, statesTopo.objects.layer, (a, b) => a === b)),
   states: stateOut.filter((s) => s.name !== "Abyei").sort((a, b) => a.name.localeCompare(b.name)),
   abyei: stateOut.find((s) => s.name === "Abyei") || null,
 };

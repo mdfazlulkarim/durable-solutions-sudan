@@ -12,13 +12,14 @@ Contact: [dswg.sd@undp.org](mailto:dswg.sd@undp.org)
 
 - Map of the 18 states with neighbouring countries for context, shaded by projects, organisations or funding towards durable solutions, with a solutions ring per state (eight IASC segments, grey for a gap). The UN map disclaimer sits inside the map.
 - Clicking a state zooms in, with badges for the lead agencies working there; each badge opens that agency's projects in the state.
-- Side panel that starts with all of Sudan and switches to the selected state or to nationwide projects.
+- Side panel that starts with all of Sudan (including a link to the nationwide projects) and switches to the selected state. The project list sits under the map: the first 5 projects, with "Show all" when there are more.
 - Project pop-up with photos (or the agency logo when there are none), key figures, IASC criteria icons, a small locator map, "Show on map", "Copy link" and "Suggest a correction".
 - Filters: minimum share towards durable solutions (top, default 0%), search, IASC criteria, intervention type, organisation type and name, organisation leadership (WLO, RLO, YLO, OPD), status, target group, geographic scope, donor and coordination mechanism, with counts and removable tags.
 - Time window, contributing agencies strip with logos, light and dark mode, and a statement that the list is not exhaustive.
 - Download of the filtered data as CSV or Excel (link above the map).
 - "Add your project" menu: **Add one project** (form) or **Add multiple projects** (Excel template).
-- The form opens a pre-filled email to dswg.sd@undp.org with a copy to the submitter. It has organisation lists by type, leadership, partner picker, localities by state, budget and share formatting, up to 3 photos (under 1 MB each, attached by the submitter) and "Add another project".
+- The form opens a pre-filled email to dswg.sd@undp.org with a copy to the submitter. It has organisation lists by type, leadership, partner picker, localities by state, budget and share formatting, and "Add another project". Photos are not uploaded on the form: the email asks the submitter to attach up to 3 photos.
+- Both template links download the file directly (the page fetches it), also when the dashboard is embedded in another site.
 
 The Projects and Gaps views (Phases 2 and 3) are not built yet. Their menu links are commented out in `assets/js/common.js` (`SF.renderHeader`).
 
@@ -76,7 +77,7 @@ Save the returned file in `data/source/` and pass it to the same command, after 
 python3 scripts/build_data.py data/source/<export>.xlsx data/source/<returned-template>.xlsx
 ```
 
-The example row (row 2, starting with "Example") is skipped.
+The template has 15 ready rows, no example row, and hidden Lists and Localities sheets that feed the drop-downs. The lead organisation drop-down follows the organisation type in the same row. Rebuild it with `python3 scripts/build_template.py` (this also sets the file author and dates).
 
 ### Internal project numbers
 

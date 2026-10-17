@@ -292,14 +292,14 @@
     const statusParts = [`${st.Ongoing} ongoing`, `${st.Pipeline} pipeline`, `${st.Ended} ended`];
     if (st.none) statusParts.push(`${st.none} with no status`);
     const cards = [
-      { l: "Projects", v: SF.fmtInt(list.length), s: statusParts.join(", ") },
-      { l: "Organisations", v: SF.fmtInt(leads.size + partners.size), s: `${leads.size} lead organisation${leads.size === 1 ? "" : "s"}, plus ${partners.size} implementing partner${partners.size === 1 ? "" : "s"}` },
-      { l: "States covered", v: `${covered} of 18`, s: `plus ${nationwide} nationwide project${nationwide === 1 ? "" : "s"}` },
-      { l: "DS funding", v: SF.fmtMoney(ds) || "$0", s: `of ${SF.fmtMoney(budget) || "$0"} total budgets. ${fundingList.length} of ${list.length} projects report an amount` },
-      { l: "Ending within 6 months", v: SF.fmtInt(soon), s: `end by ${SF.fmtMonth(SF.addMonths(SF.today, 6))}` },
+      { i: "reporting", l: "Projects", v: SF.fmtInt(list.length), s: statusParts.join(", ") },
+      { i: "partnership", l: "Organisations", v: SF.fmtInt(leads.size + partners.size), s: `${leads.size} lead organisation${leads.size === 1 ? "" : "s"}, plus ${partners.size} implementing partner${partners.size === 1 ? "" : "s"}` },
+      { i: "location", l: "States covered", v: `${covered} of 18`, s: `plus ${nationwide} nationwide project${nationwide === 1 ? "" : "s"}` },
+      { i: "fund", l: "DS funding", v: SF.fmtMoney(ds) || "$0", s: `of ${SF.fmtMoney(budget) || "$0"} total budgets. ${fundingList.length} of ${list.length} projects report an amount` },
+      { i: "time", warn: true, l: "Ending within 6 months", v: SF.fmtInt(soon), s: `end by ${SF.fmtMonth(SF.addMonths(SF.today, 6))}` },
     ];
     document.getElementById("kpis").innerHTML = cards.map((c) => `
-      <div class="card kpi"><div class="kpi-label">${c.l}</div><div class="kpi-value">${c.v}</div><div class="kpi-sub">${c.s}</div></div>`).join("");
+      <div class="card kpi"><div class="kpi-label"><span class="kpi-ico${c.warn ? " warn" : ""}">${SF.icon(c.i)}</span>${c.l}</div><div class="kpi-value">${c.v}</div><div class="kpi-sub">${c.s}</div></div>`).join("");
   }
 
   /* ---------------- map ---------------- */
@@ -323,7 +323,7 @@
       el("path", { d: arcPath(r0, r1, a0, a1), style: `fill:${crit[c.n] > 0 ? c.color : "var(--gap)"}` }, g);
     });
     el("circle", { r: r0 - 0.5, style: "fill:var(--ring-bg)" }, g);
-    const t = el("text", { class: "ring-num" }, g);
+    const t = el("text", { class: "ring-num", "text-anchor": "middle", dy: "0.35em" }, g);
     t.textContent = total;
   }
 
@@ -347,7 +347,12 @@
       t.textContent = l.name;
     });
     const gStates = el("g", {}, svg);
+    if (GEO.outline) el("path", { d: GEO.outline, class: "sudan-outline" }, svg);
     if (GEO.undeterminedBoundary) el("path", { d: GEO.undeterminedBoundary, class: "border-undetermined" }, svg);
+    // outlines drawn above every state, so the whole border always shows
+    mapNodes.__flash = el("g", {}, svg);
+    mapNodes.__hover = el("path", { class: "hover-outline", d: "" }, svg);
+    mapNodes.__sel = el("path", { class: "sel-outline", d: "" }, svg);
     const gRings = el("g", {}, svg);
     const gLabels = el("g", {}, svg);
     gZoom = el("g", {}, svg);
@@ -367,11 +372,12 @@
       [path, ring].forEach((n) => {
         n.addEventListener("click", pick);
         n.addEventListener("mousemove", (e) => showTip(e, s.name));
-        n.addEventListener("mouseleave", hideTip);
+        n.addEventListener("mouseenter", () => mapNodes.__hover.setAttribute("d", s.path));
+        n.addEventListener("mouseleave", () => { hideTip(); mapNodes.__hover.setAttribute("d", ""); });
       });
       path.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
-      path.addEventListener("focus", () => showTip(null, s.name));
-      path.addEventListener("blur", hideTip);
+      path.addEventListener("focus", () => { showTip(null, s.name); mapNodes.__hover.setAttribute("d", s.path); });
+      path.addEventListener("blur", () => { hideTip(); mapNodes.__hover.setAttribute("d", ""); });
     });
 
     const sample = document.getElementById("ring-sample");
@@ -481,10 +487,10 @@
         const im = el("image", { href: logo.mark, x: -13, y: -13, width: 26, height: 26, preserveAspectRatio: "xMidYMid meet" }, chip);
         im.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", logo.mark);
       } else {
-        const t = el("text", { class: "chip-text" }, chip); t.textContent = org.slice(0, 6);
+        const t = el("text", { class: "chip-text", "text-anchor": "middle", dy: "0.35em" }, chip); t.textContent = org.slice(0, 6);
       }
       el("circle", { class: "chip-badge", cx: size / 2 - 4, cy: -size / 2 + 4, r: 8 }, chip);
-      const bt = el("text", { class: "chip-badge-t", x: size / 2 - 4, y: -size / 2 + 4 }, chip);
+      const bt = el("text", { class: "chip-badge-t", x: size / 2 - 4, y: -size / 2 + 4, "text-anchor": "middle", dy: "0.35em" }, chip);
       bt.textContent = list.length;
       const open = () => openAgency(org, list, name);
       chip.addEventListener("click", open);
@@ -503,11 +509,11 @@
       if (!node) return;
       const a = per[name], n = a.projects.length;
       node.path.style.fill = binColour(valueOf(a), bs);
-      node.path.classList.toggle("is-selected", state.selected === name);
       node.path.classList.toggle("is-dim", zoomed && state.selected !== name);
       node.path.setAttribute("aria-label", `${name}: ${n} project${n === 1 ? "" : "s"}, ${a.orgs.size} organisations`);
       if (n > 0) drawRing(node.ring, a.crit, n);
     });
+    mapNodes.__sel.setAttribute("d", zoomed ? mapNodes[state.selected].s.path : "");
     renderZoomLayer();
     placeOverlays();
     const target = targetViewBox();
@@ -548,7 +554,7 @@
     const band = document.getElementById("nationwide-band");
     band.innerHTML = `${SF.icons.globe}<span class="grow"><strong>${nw.length} nationwide project${nw.length === 1 ? "" : "s"}</strong> ${nw.length === 1 ? "is" : "are"} not tied to one state, so ${nw.length === 1 ? "it is" : "they are"} listed here instead of being painted on every state.${nw.length ? ` Led by ${leads.size} organisation${leads.size === 1 ? "" : "s"}.` : ""}</span>
       ${nw.length ? '<button type="button" class="link-btn" id="nw-view">View list</button>' : ""}`;
-    band.querySelector("#nw-view")?.addEventListener("click", () => selectState(NATIONWIDE, true));
+    band.querySelector("#nw-view")?.addEventListener("click", openNationwide);
   }
 
   /* ---------------- side panel ---------------- */
@@ -572,8 +578,8 @@
     const pct = progressPct(p);
     return pct == null ? "" : `<div class="progress" aria-hidden="true"><i style="width:${(pct * 100).toFixed(0)}%"></i></div>`;
   }
-  function critDots(p) {
-    return `<span class="crit-dots" aria-label="IASC criteria ${p.criteria.join(", ")}">${CRITERIA.map((c) => `<i style="background:${p.criteria.includes(c.n) ? c.color : "var(--gap)"}"></i>`).join("")}</span>`;
+  function critIcons(p) {
+    return `<span class="crit-icons" aria-label="IASC criteria ${p.criteria.join(", ")}">${p.criteria.map((n) => { const c = CRITERIA[n - 1]; return `<span class="ci" style="background:${c.color}" title="${c.n}. ${esc(c.name)}">${SF.critIcon(n)}</span>`; }).join("")}</span>`;
   }
   function dateRange(p) {
     return p._start || p._end ? `${SF.fmtMonth(p._start)}${p._start && p._end ? " to " : ""}${SF.fmtMonth(p._end)}` : "";
@@ -584,7 +590,8 @@
     return `<button type="button" class="proj-card" data-id="${esc(p.id)}">
       <div class="t">${esc(p.name)}</div>
       <div class="o">${esc(p.lead)}${p.partners.length ? ` with ${esc(p.partners.join(", "))}` : ""}</div>
-      <div class="d">${dateRange(p) ? `<span>${dateRange(p)}</span>` : ""}${statusChip(p)}${critDots(p)}</div>
+      <div class="d">${dateRange(p) ? `<span>${dateRange(p)}</span>` : ""}${statusChip(p)}</div>
+      <div style="margin-top:6px">${critIcons(p)}</div>
       ${progress(p)}${funding}
     </button>`;
   }
@@ -618,23 +625,21 @@
 
   function renderPanel(list, per) {
     const panel = document.getElementById("state-panel");
-    const sel = state.selected;
-    const isNW = sel === NATIONWIDE, isAll = !sel;
-    const name = isAll ? "All of Sudan" : isNW ? "Nationwide" : sel;
-    const projects = isAll ? list : isNW ? list.filter((p) => p.nationwide) : per[sel].projects;
-    const a = isAll || isNW ? aggOf(projects) : per[sel];
+    const sel = state.selected && state.selected !== NATIONWIDE ? state.selected : null;
+    const isAll = !sel;
+    const name = isAll ? "All of Sudan" : sel;
+    const projects = isAll ? list : per[sel].projects;
+    const a = isAll ? aggOf(projects) : per[sel];
     const orgRows = orgTypeRows(projects);
     const orgMax = Math.max(1, ...orgRows.map((r) => r.n));
     const critMax = Math.max(1, ...a.crit);
-    const sorted = sortForPanel(projects);
-    const shown = state.showAll ? sorted : sorted.slice(0, 3);
-    const options = [`<option value=""${isAll ? " selected" : ""}>All of Sudan</option>`, `<option value="${NATIONWIDE}"${isNW ? " selected" : ""}>Nationwide</option>`]
+    const nw = isAll ? projects.filter((p) => p.nationwide).length : 0;
+    const options = [`<option value=""${isAll ? " selected" : ""}>All of Sudan</option>`]
       .concat(STATES.map((s) => `<option${s === sel ? " selected" : ""}>${s}</option>`)).join("");
-    const kicker = isAll ? "Overview" : isNW ? "Not tied to one state" : "Selected state";
 
     panel.innerHTML = `
       <div class="sp-head">
-        <div><div class="sp-kicker">${kicker}</div><h2 class="sp-name">${esc(name)}</h2></div>
+        <div><div class="sp-kicker">${isAll ? "Overview" : "Selected state"}</div><h2 class="sp-name">${esc(name)}</h2></div>
         <div class="sp-select"><label for="sp-change">Change area</label><select id="sp-change">${options}</select></div>
       </div>
       <div class="mini-kpis">
@@ -642,6 +647,7 @@
         <div class="mini"><div class="l">Organisations</div><div class="v">${a.orgs.size}</div></div>
         <div class="mini"><div class="l">DS funding</div><div class="v${a.fundingN ? "" : " small"}">${a.fundingN ? SF.fmtMoney(a.funding) : "None reported"}</div></div>
       </div>
+      ${nw ? `<div class="panel-note"><span>${SF.icons.globe}Includes ${nw} nationwide project${nw === 1 ? "" : "s"}</span><button type="button" class="link-btn" id="sp-nw">View</button></div>` : ""}
       ${a.soon ? `<div class="alert-soon">${SF.icons.clock}${a.soon} project${a.soon === 1 ? "" : "s"} end${a.soon === 1 ? "s" : ""} within 6 months</div>` : ""}
       ${projects.length === 0 ? `<p class="empty-note">No projects reported here with the current filters. Every IASC criterion is a gap.</p>` : ""}
       ${agencyButtons(projects, name)}
@@ -650,18 +656,51 @@
       <div class="sp-section">IASC criteria covered</div>
       ${CRITERIA.map((c) => `<div class="bar-row crit" title="${c.n}. ${esc(c.name)}">${SF.critIcon(c.n, c.color)}<span>${c.n}. ${c.short}</span>
           <span class="bar${a.crit[c.n] ? "" : " is-gap"}">${a.crit[c.n] ? `<i style="width:${(a.crit[c.n] / critMax) * 100}%;background:${c.color}"></i>` : ""}</span>
-          <span class="n">${a.crit[c.n] || '<span class="gap-word">gap</span>'}</span></div>`).join("")}
-      ${projects.length ? `<div class="sp-section">${state.showAll ? `All projects: ${esc(name)}` : "Projects ending soonest"}<small>Select a project for details</small></div>
-      <div id="sp-cards">${shown.map(projectCard).join("")}</div>
-      ${sorted.length > 3 ? `<div class="panel-more"><button type="button" class="link-btn" id="sp-more">${state.showAll ? "Show fewer" : `View all ${sorted.length} projects`}</button></div>` : ""}` : ""}`;
+          <span class="n">${a.crit[c.n] || '<span class="gap-word">gap</span>'}</span></div>`).join("")}`;
 
     panel.querySelector("#sp-change").addEventListener("change", (e) => selectState(e.target.value || null));
-    panel.querySelector("#sp-more")?.addEventListener("click", () => { state.showAll = !state.showAll; render(); });
-    panel.querySelectorAll(".proj-card").forEach((b) => b.addEventListener("click", () => openDetail(b.dataset.id)));
+    panel.querySelector("#sp-nw")?.addEventListener("click", openNationwide);
     panel.querySelectorAll(".agency-btn").forEach((b) => b.addEventListener("click", () => {
       const org = b.dataset.org;
       openAgency(org, projects.filter((p) => p.lead === org), name);
     }));
+    renderList(projects, name);
+  }
+
+  /* ---------------- project list under the map ---------------- */
+  const LIST_SIZE = 5;
+  function projectRow(p) {
+    const money = p.dsFunding != null
+      ? `<div class="money"><b>${SF.fmtMoney(p.dsFunding)}</b> towards DS${p.share != null ? ` (${SF.fmtPct(p.share)})` : ""}</div>` : "";
+    const where = p.nationwide ? "Nationwide" : p.states.length > 2 ? `${p.states.length} states` : p.states.join(", ");
+    return `<button type="button" class="proj-row" data-id="${esc(p.id)}">
+      <div>
+        <div class="t">${esc(p.name)}</div>
+        <div class="o"><span class="lg">${SF.logoImg(p.lead)}</span><span>${esc(p.lead)}${p.partners.length ? ` with ${esc(p.partners.join(", "))}` : ""}</span></div>
+      </div>
+      <div class="when">
+        <div class="line">${dateRange(p) ? `<span>${dateRange(p)}</span>` : ""}${statusChip(p)}</div>
+        ${progress(p)}
+        <div style="margin-top:4px">${esc(where)}</div>
+      </div>
+      <div class="right">${critIcons(p)}${money}</div>
+    </button>`;
+  }
+  function renderList(projects, name) {
+    const sorted = sortForPanel(projects);
+    const shown = state.showAll ? sorted : sorted.slice(0, LIST_SIZE);
+    document.getElementById("list-title").textContent = `Projects in ${name} (${projects.length})`;
+    const host = document.getElementById("proj-list");
+    host.innerHTML = projects.length
+      ? shown.map(projectRow).join("") + (sorted.length > LIST_SIZE
+        ? `<div class="list-more"><button type="button" class="btn btn-sm" id="list-more">${state.showAll ? "Show fewer" : `Show all ${sorted.length} projects`}</button></div>` : "")
+      : `<p class="empty-note">No projects reported here with the current filters.</p>`;
+    host.querySelectorAll(".proj-row").forEach((b) => b.addEventListener("click", () => openDetail(b.dataset.id)));
+    host.querySelector("#list-more")?.addEventListener("click", () => {
+      state.showAll = !state.showAll;
+      renderList(projects, name);
+      if (!state.showAll) document.querySelector(".list-card").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   }
 
   /* ---------------- dialogs ---------------- */
@@ -671,22 +710,47 @@
     d.onclick = (e) => { if (e.target === d) d.close(); };
   }
 
-  function openAgency(org, list, area) {
+  // A list pop-up (one agency's projects, or the nationwide projects). Projects opened
+  // from it get a Back button that returns here at the same scroll position.
+  function openList({ title, subtitle, logoOrg, projects, backLabel, nudge }) {
     const d = document.getElementById("agency");
-    const logo = SF.LOGOS[org];
-    const sorted = sortForPanel(list);
+    const sorted = sortForPanel(projects);
+    const args = arguments[0];
     d.innerHTML = `
       <button type="button" class="modal-close" aria-label="Close" data-close>&times;</button>
       <div class="modal-scroll">
         <div class="agency-modal-head">
-          <div class="logo-box">${SF.logoImg(org, "full")}</div>
-          <div><h2 id="agency-title">${esc(logo ? logo.name : org)}</h2><p>${list.length} project${list.length === 1 ? "" : "s"} in ${esc(area)}, with the current filters</p></div>
+          <div class="logo-box">${logoOrg ? SF.logoImg(logoOrg, "full") : `<span style="color:var(--brand)">${SF.icons.globe}</span>`}</div>
+          <div><h2 id="agency-title">${esc(title)}</h2><p>${esc(subtitle)}</p></div>
         </div>
         <div class="agency-modal-body">${sorted.map(projectCard).join("")}</div>
-        <div class="pop-nudge">Is your organisation working on durable solutions here? <a href="add.html">Add your project</a>.</div>
+        <div class="pop-nudge">${nudge || 'Is your organisation working on durable solutions here? <a href="add.html">Add your project</a>.'}</div>
       </div>`;
-    d.querySelectorAll(".proj-card").forEach((b) => b.addEventListener("click", () => { d.close(); openDetail(b.dataset.id); }));
+    const logoBox = d.querySelector(".logo-box svg");
+    if (logoBox) { logoBox.style.width = "34px"; logoBox.style.height = "34px"; }
+    d.querySelectorAll(".proj-card").forEach((b) => b.addEventListener("click", () => {
+      const scroll = d.querySelector(".modal-scroll").scrollTop;
+      d.close();
+      openDetail(b.dataset.id, { back: { label: backLabel, fn: () => { openList(args); d.querySelector(".modal-scroll").scrollTop = scroll; } } });
+    }));
     openModal(d);
+  }
+  function openAgency(org, list, area) {
+    const logo = SF.LOGOS[org];
+    openList({
+      title: logo ? logo.name : org,
+      subtitle: `${list.length} project${list.length === 1 ? "" : "s"} in ${area}, with the current filters`,
+      logoOrg: org, projects: list, backLabel: `Back to ${org} projects`,
+    });
+  }
+  function openNationwide() {
+    const list = filtered().filter((p) => p.nationwide);
+    openList({
+      title: "Nationwide projects",
+      subtitle: `${list.length} project${list.length === 1 ? "" : "s"} not tied to one state, with the current filters`,
+      projects: list, backLabel: "Back to nationwide projects",
+      nudge: 'Working on durable solutions across Sudan? <a href="add.html">Add your project</a>.',
+    });
   }
 
   function miniMap(p) {
@@ -725,6 +789,7 @@
       ["Contact", `<a href="mailto:${SF.config.contactEmail}?subject=${encodeURIComponent(`Solutions Footprint: ${p.name}`)}">${SF.config.contactEmail}</a>`],
     ].filter(([, v]) => v);
     d.innerHTML = `
+      ${opts.back ? `<button type="button" class="modal-back" id="pop-back">${SF.icons.back}${esc(opts.back.label)}</button>` : ""}
       <button type="button" class="modal-close" aria-label="Close" data-close>&times;</button>
       <div class="modal-scroll">
         <div class="hero" id="hero">${hero}</div>
@@ -761,6 +826,7 @@
       d.querySelector(".nav.next").addEventListener("click", () => go(1));
     }
     d.querySelector("#pop-show").addEventListener("click", () => { d.close(); showOnMap(p); });
+    d.querySelector("#pop-back")?.addEventListener("click", () => { d.close(); opts.back.fn(); });
     d.querySelector("#pop-link").addEventListener("click", async () => {
       const url = `${location.origin}${location.pathname}#project=${encodeURIComponent(p.id)}`;
       try { await navigator.clipboard.writeText(url); SF.toast("Link copied"); }
@@ -772,12 +838,14 @@
   }
 
   function showOnMap(p) {
-    if (p.nationwide) { selectState(NATIONWIDE, true); return; }
+    if (p.nationwide) { selectState(null); openNationwide(); return; }
     if (p.states.length === 1) { selectState(p.states[0]); document.getElementById("map-wrap").scrollIntoView({ behavior: "smooth", block: "center" }); return; }
     selectState(null);
     document.getElementById("map-wrap").scrollIntoView({ behavior: "smooth", block: "center" });
-    p.states.forEach((s) => mapNodes[s]?.path.classList.add("is-flash"));
-    setTimeout(() => p.states.forEach((s) => mapNodes[s]?.path.classList.remove("is-flash")), 3200);
+    const g = mapNodes.__flash;
+    g.innerHTML = "";
+    p.states.forEach((s) => mapNodes[s] && el("path", { d: mapNodes[s].s.path, class: "flash-outline" }, g));
+    setTimeout(() => (g.innerHTML = ""), 3200);
   }
 
   /* ---------------- time window ---------------- */

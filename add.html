@@ -8,7 +8,7 @@
   <script>try{var t=localStorage.getItem("sf-theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 </head>
@@ -24,7 +24,7 @@
       <div class="multi-box" id="multi-box">
         <span id="multi-ico"></span>
         <div class="grow"><b>Adding several projects?</b>Download the Excel template, fill in one row per project, and email it to <span class="contact-email">dswg.sd@undp.org</span>.</div>
-        <a class="btn" id="template-link" href="#" download>Download the template</a>
+        <a class="btn" id="template-link" href="#" data-template>Download the template</a>
       </div>
 
       <div class="error-summary" id="error-summary" role="alert" hidden></div>
@@ -174,23 +174,8 @@
         </section>
 
         <section class="card form-section">
-          <h2><span class="n">7.</span> Photos <span style="font-weight:400;color:var(--muted);font-size:15px">(optional)</span></h2>
-          <div class="fld" data-f="photos">
-            <div class="photo-drop">
-              <span id="photo-ico"></span>
-              <div style="flex:1;min-width:220px;font-size:14px;color:var(--ink-2)">Up to 3 photos of the project, JPG or PNG, under 1 MB each. Photos make your project stand out on the map.</div>
-              <label class="btn" for="photos">Choose photos</label>
-              <input type="file" id="photos" accept="image/jpeg,image/png" multiple class="sr-only">
-            </div>
-            <div class="photo-list" id="photo-list"></div>
-          </div>
-          <div class="fld" data-f="photoConsent" id="photo-consent-fld" hidden>
-            <label class="consent"><input type="checkbox" id="photoConsent"> <span>I have consent from the people shown to publish these photos. <span class="req">*</span></span></label>
-          </div>
-        </section>
-
-        <section class="card form-section">
-          <h2><span class="n">8.</span> Anything else</h2>
+          <h2><span class="n">7.</span> Photos and anything else</h2>
+          <div class="photo-note"><span id="photo-ico"></span><span><b>Photos:</b> you can attach up to 3 photos of the project (JPG or PNG, under 1 MB each) to the email when you send it. Photos make your project stand out on the map. By attaching photos, you confirm you have consent from the people shown to publish them.</span></div>
           <div class="fld">
             <label for="remarks">Remarks</label>
             <textarea class="input" id="remarks" name="remarks" maxlength="800"></textarea>
@@ -226,7 +211,7 @@
       <div class="card side-card">
         <h2>What happens next</h2>
         <ol class="steps">
-          <li><span class="dot">1</span><span><b>You submit</b>Your email program opens with your answers, addressed to the DSWG mailbox, with a copy to you. Attach any photos, then press Send.</span></li>
+          <li><span class="dot">1</span><span><b>You submit</b>Your email program opens with your answers, addressed to the DSWG mailbox, with a copy to you. Attach up to 3 photos, then press Send.</span></li>
           <li><span class="dot">2</span><span><b>DSU reviews</b>The Durable Solutions Unit checks the entry and may contact you with questions.</span></li>
           <li><span class="dot">3</span><span><b>Published</b>Once approved, the project appears on the map with the next update. DSU tells you when it is live.</span></li>
         </ol>

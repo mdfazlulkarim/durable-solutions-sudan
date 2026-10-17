@@ -176,7 +176,7 @@ SF.addMenuHTML = (id = "add") => `
     <button class="btn btn-primary" id="${id}-btn" aria-haspopup="true" aria-expanded="false" aria-controls="${id}-menu">${SF.icons.plus}Add your project${SF.icons.chevron}</button>
     <div class="dropdown-menu" id="${id}-menu" role="menu" hidden>
       <a class="menu-item" role="menuitem" href="add.html"><span class="mi-ico">${SF.icons.form}</span><span><b>Add one project</b><small>Fill in a short online form.</small></span></a>
-      <a class="menu-item" role="menuitem" href="${SF.config.templateUrl}" download><span class="mi-ico">${SF.icons.sheet}</span><span><b>Add multiple projects</b><small>Download the Excel template, fill in one row per project and email it to ${SF.config.contactEmail}.</small></span></a>
+      <a class="menu-item" role="menuitem" href="${SF.config.templateUrl}" download data-template><span class="mi-ico">${SF.icons.sheet}</span><span><b>Add multiple projects</b><small>Download the Excel template, fill in one row per project and email it to ${SF.config.contactEmail}.</small></span></a>
     </div>
   </div>`;
 SF.bindDropdown = (id) => {
@@ -187,6 +187,36 @@ SF.bindDropdown = (id) => {
   document.addEventListener("click", (e) => { if (!menu.contains(e.target)) close(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !menu.hidden) { close(); btn.focus(); } });
   menu.addEventListener("click", () => setTimeout(close, 50));
+};
+
+/* Template links save the file straight away instead of opening it in the browser,
+   including when the page is embedded in another site. */
+SF.downloadTemplate = async (e) => {
+  if (e) e.preventDefault();
+  const url = SF.config.templateUrl;
+  const name = url.split("/").pop();
+  try {
+    const r = await fetch(url, { cache: "no-cache" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const blob = new Blob([await r.arrayBuffer()], { type: "application/octet-stream" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    SF.toast("Template downloaded");
+  } catch (err) {
+    SF.toast("Your download did not start. Right-click the link and choose Save link as.");
+  }
+};
+SF.bindTemplateLinks = (root = document) => {
+  root.querySelectorAll("[data-template]").forEach((a) => {
+    if (a.dataset.bound) return;
+    a.dataset.bound = "1";
+    a.href = SF.config.templateUrl;
+    a.setAttribute("download", SF.config.templateUrl.split("/").pop());
+    a.addEventListener("click", SF.downloadTemplate);
+  });
 };
 
 SF.renderHeader = (active) => {
@@ -230,6 +260,7 @@ SF.renderHeader = (active) => {
   document.addEventListener("sf-theme", paint);
   paint();
   SF.bindDropdown("add");
+  SF.bindTemplateLinks();
 };
 
 SF.renderFooter = (lastUpdated) => {

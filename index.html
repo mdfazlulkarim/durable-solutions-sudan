@@ -8,7 +8,7 @@
   <script>try{var t=localStorage.getItem("sf-theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 </head>
@@ -43,6 +43,7 @@
       </div>
 
       <div class="map-row">
+        <div class="map-col">
         <section class="card map-card" aria-labelledby="map-title">
           <div class="map-toolbar">
             <h2 id="map-title">Projects by state</h2>
@@ -93,6 +94,12 @@
           </div>
           <p class="map-source" id="source-line">Source: projects reported by organisations to the Durable Solutions Working Group.</p>
         </section>
+
+        <section class="card list-card" aria-labelledby="list-title">
+          <div class="list-head"><h2 id="list-title">Projects</h2><small>Ongoing projects first, ending soonest at the top. Select a project for details.</small></div>
+          <div id="proj-list"></div>
+        </section>
+        </div>
 
         <aside class="card state-panel" id="state-panel" aria-live="polite" aria-label="Selected area"></aside>
       </div>

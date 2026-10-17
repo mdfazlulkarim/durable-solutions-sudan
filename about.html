@@ -8,7 +8,7 @@
   <script>try{var t=localStorage.getItem("sf-theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 </head>
@@ -22,7 +22,7 @@
       <h2>What Solutions Footprint shows</h2>
       <p>Solutions Footprint maps projects that help internally displaced people, returnees, refugees and host communities move towards durable solutions in Sudan, for example boreholes instead of water trucking, or seeds instead of food distribution. It shows who is doing what and where, against the eight IASC criteria for durable solutions, and where the gaps are.</p>
       <p>The Durable Solutions Working Group (DSWG) maintains the dashboard, with the Durable Solutions Unit (DSU) of the Resident Coordinator's Office in Sudan as secretariat. Organisations report their own projects. Inclusion is a self-assessment by the reporting organisation and does not imply endorsement by the United Nations.</p>
-      <p><strong>This is not an exhaustive list of projects contributing to durable solutions in Sudan.</strong> It shows only projects that organisations have reported to the Durable Solutions Working Group. To add yours, use <a href="add.html">Add your project</a>, or <a id="tpl" href="#" download>download the Excel template</a> to add several at once.</p>
+      <p><strong>This is not an exhaustive list of projects contributing to durable solutions in Sudan.</strong> It shows only projects that organisations have reported to the Durable Solutions Working Group. To add yours, use <a href="add.html">Add your project</a>, or <a id="tpl" href="#" data-template>download the Excel template</a> to add several at once.</p>
     </section>
 
     <section class="card">
@@ -80,7 +80,7 @@
   <script src="assets/js/icons.js"></script>
   <script>
     SF.renderHeader("about");
-    document.getElementById("tpl").href = SF.config.templateUrl;
+    SF.bindTemplateLinks();
     document.getElementById("crit-table").innerHTML = SF.CRITERIA.map((c) =>
       `<tr><td><span class="ci" style="background:${c.color}">${SF.critIcon(c.n)}</span><b>${c.n}</b></td><td>${SF.esc(c.name)}</td><td>${SF.esc(c.hint)}</td></tr>`).join("") +
       `<tr><td><span class="ci" style="background:var(--gap)"></span></td><td>No project (gap)</td><td></td></tr>`;

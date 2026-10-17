@@ -5,11 +5,9 @@
   const { esc, CRITERIA, STATES } = SF;
   const form = document.getElementById("project-form");
   const $ = (id) => document.getElementById(id);
-  const MAX_PHOTOS = 3, MAX_BYTES = 1024 * 1024;
   let correcting = null;
   let ORGS = [], LOCALITIES = {};
   let partners = [];
-  let photos = [];
 
   /* ---------- static lists ---------- */
   $("itypes").innerHTML = SF.INTERVENTION_TYPES.map((t, i) =>
@@ -28,7 +26,6 @@
     `<div class="fld"><label for="pp-${g.key}">${g.label}</label><input class="input" id="pp-${g.key}" name="pp-${g.key}" inputmode="numeric" autocomplete="off"></div>`).join("");
   document.querySelectorAll(".contact-email").forEach((e) => (e.textContent = SF.config.contactEmail));
   document.querySelectorAll(".contact-link").forEach((a) => { a.href = `mailto:${SF.config.contactEmail}`; a.textContent = SF.config.contactEmail; });
-  $("template-link").href = SF.config.templateUrl;
   $("hdx-link").href = SF.config.hdxAdminUrl;
   $("multi-ico").innerHTML = SF.icons.sheet;
   $("photo-ico").innerHTML = SF.icon("photo");
@@ -167,31 +164,6 @@
     e.target.value = raw ? Number(raw).toLocaleString("en-US") : "";
   }));
 
-  /* ---------- photos ---------- */
-  function renderPhotos() {
-    $("photo-list").innerHTML = photos.map((p, i) => `<div class="photo-item"><img src="${p.url}" alt=""><div><span title="${esc(p.file.name)}">${esc(p.file.name)}</span><button type="button" class="link-btn" data-rm="${i}">Remove</button></div></div>`).join("");
-    $("photo-list").querySelectorAll("[data-rm]").forEach((b) => b.addEventListener("click", () => {
-      URL.revokeObjectURL(photos[Number(b.dataset.rm)].url);
-      photos.splice(Number(b.dataset.rm), 1);
-      renderPhotos();
-    }));
-    $("photo-consent-fld").hidden = photos.length === 0;
-  }
-  $("photos").addEventListener("change", (e) => {
-    const msgs = [];
-    [...e.target.files].forEach((f) => {
-      if (!/^image\/(jpeg|png)$/.test(f.type)) msgs.push(`${f.name} is not a JPG or PNG image.`);
-      else if (f.size > MAX_BYTES) msgs.push(`${f.name} is ${(f.size / 1048576).toFixed(1)} MB. Each photo must be under 1 MB.`);
-      else if (photos.length >= MAX_PHOTOS) msgs.push(`Only ${MAX_PHOTOS} photos can be added. ${f.name} was not added.`);
-      else photos.push({ file: f, url: URL.createObjectURL(f) });
-    });
-    e.target.value = "";
-    renderPhotos();
-    const fld = form.querySelector('[data-f="photos"]');
-    fld.querySelector(".err[data-gen]")?.remove();
-    if (msgs.length) { const m = document.createElement("div"); m.className = "err"; m.dataset.gen = "1"; m.textContent = msgs.join(" "); fld.appendChild(m); }
-  });
-
   /* ---------- validation ---------- */
   function validate() {
     const errors = [];
@@ -222,10 +194,9 @@
     $("people-err").hidden = !peopleErr;
     $("people-err").textContent = peopleErr;
     if (peopleErr) add("people", peopleErr);
-    if (photos.length && !$("photoConsent").checked) add("photoConsent", "Confirm you have consent to publish the photos, or remove them.");
     if (!$("consent").checked) add("consent", "Confirm the information can be published.");
 
-    form.querySelectorAll(".fld").forEach((f) => { f.classList.remove("has-err"); if (f.dataset.f !== "photos") f.querySelector(".err[data-gen]")?.remove(); });
+    form.querySelectorAll(".fld").forEach((f) => { f.classList.remove("has-err"); f.querySelector(".err[data-gen]")?.remove(); });
     errors.forEach((e) => {
       const fld = form.querySelector(`[data-f="${e.f}"]`);
       if (!fld) return;
@@ -248,7 +219,7 @@
     const fld = e.target.closest(".fld.has-err");
     if (!fld) return;
     fld.classList.remove("has-err");
-    if (fld.dataset.f !== "photos") fld.querySelector(".err[data-gen]")?.remove();
+    fld.querySelector(".err[data-gen]")?.remove();
   };
   form.addEventListener("input", clearErr);
   form.addEventListener("change", clearErr);
@@ -263,6 +234,9 @@
     const leadership = checked("leadership").map((k) => (SF.LEADERSHIP.find((l) => l.key === k) || { label: "None of these" }).label).join("; ");
     const locs = checked("localities");
     const lines = [
+      ">>> PLEASE ATTACH UP TO 3 PROJECT PHOTOS (JPG OR PNG, UNDER 1 MB EACH) BEFORE SENDING <<<",
+      "By attaching photos, you confirm you have consent from the people shown to publish them.",
+      "",
       correcting ? "SOLUTIONS FOOTPRINT: CORRECTION TO A PUBLISHED PROJECT" : "SOLUTIONS FOOTPRINT: NEW PROJECT SUBMISSION",
       correcting ? `Project number: ${correcting.ref || correcting.id}` : null,
       correcting ? `Published name: ${correcting.name}` : null,
@@ -301,11 +275,7 @@
       "6. PEOPLE REACHED, PLANNED",
       people,
       "",
-      "7. PHOTOS",
-      photos.length ? `Attached to this email: ${photos.map((p) => p.file.name).join("; ")}` : "None",
-      photos.length ? "Consent from the people shown to publish the photos: Yes" : null,
-      "",
-      "8. ANYTHING ELSE",
+      "7. ANYTHING ELSE",
       `Remarks: ${v("remarks")}`,
       "Consent to publish on the United Nations in Sudan website: Yes",
       "",
@@ -327,9 +297,8 @@
     $("done-text").value = mail.body;
     $("reopen").href = mail.href;
     const note = $("attach-note");
-    note.hidden = !photos.length;
-    note.innerHTML = photos.length ? `${SF.icon("photo")}<span><b>Remember to attach your photos</b> to the email before you press Send: ${photos.map((p) => esc(p.file.name)).join(", ")}. The website cannot attach them for you.</span>` : "";
-    note.querySelector("svg")?.setAttribute("style", "width:22px;height:22px;flex:none");
+    note.hidden = false;
+    note.innerHTML = `${SF.icon("photo")}<span><b>Attach up to 3 photos to the email before you press Send</b> (JPG or PNG, under 1 MB each). The website cannot attach them for you.</span>`;
     form.hidden = true;
     $("multi-box").hidden = true;
     $("done").hidden = false;
@@ -349,7 +318,6 @@
     const keep = { orgType: $("orgType").value, lead: $("lead").value, leadOther: $("leadOther").value, fpName: $("fpName").value, fpEmail: $("fpEmail").value, leadership: checked("leadership") };
     form.reset();
     partners = []; renderPartners();
-    photos.forEach((p) => URL.revokeObjectURL(p.url)); photos = []; renderPhotos();
     correcting = null;
     $("correcting").hidden = true;
     $("form-title").textContent = "Add your project";
