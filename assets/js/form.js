@@ -6,7 +6,7 @@
   const form = document.getElementById("project-form");
   const $ = (id) => document.getElementById(id);
   let correcting = null;
-  let ORGS = [], LOCALITIES = {};
+  let ORGS = [], LOCALITIES = {}, GEO = null, PUBLISHED = [];
   let partners = [];
 
   /* ---------- static lists ---------- */
@@ -224,6 +224,58 @@
   form.addEventListener("input", clearErr);
   form.addEventListener("change", clearErr);
 
+  /* ---------- answers as a project (for the previews) ---------- */
+  const okNum = (v) => { const n = num(v); return n == null || isNaN(n) ? null : n; };
+  const leadKey = () => ($("lead").value === "__other" ? $("leadOther").value.trim() : $("lead").value);
+  const isNewOrg = () => { const k = leadKey(); return !!k && !SF.LOGOS[k]; };
+  function answers() {
+    const o = findOrg($("lead").value);
+    return {
+      name: $("name").value.trim(), description: $("description").value.trim(), itypes: checked("itypes"),
+      orgType: $("orgType").value, lead: leadKey(), leadName: o ? orgLabel(o) : leadKey(), leadership: checked("leadership"),
+      partners: partners.slice(), scope: scope(), states: checked("states"), localities: checked("localities"),
+      criteria: checked("criteria"), coordination: $("coordination").value, start: monthOk($("start").value) ? $("start").value : "",
+      end: monthOk($("end").value) ? $("end").value : "", status: $("status").value, budget: okNum($("budget").value),
+      share: okNum($("share").value), donor: $("donor").value.trim(),
+      people: Object.fromEntries(PEOPLE.map((g) => [g.key, okNum($(`pp-${g.key}`).value)])), remarks: $("remarks").value.trim(),
+    };
+  }
+  const logoNote = () => `${SF.icon("photo").replace("<svg ", '<svg style="width:20px;height:20px;flex:none" ')}<span><b>First project from ${esc(leadKey())}?</b> Please attach your organisation's logo (PNG or SVG) to the email, so it appears on the map.</span>`;
+
+  /* live preview card in the right-hand column */
+  let liveTimer;
+  function updateLive() {
+    clearTimeout(liveTimer);
+    liveTimer = setTimeout(() => {
+      const p = SF.render.fromAnswers(answers());
+      $("live-body").innerHTML = SF.render.card(p, !R_DATES(p) ? `<div class="mc-line">Add dates and budget to see the timeline and funding.</div>` : "");
+    }, 120);
+  }
+  const R_DATES = (p) => p._start || p._end || p.dsFunding != null;
+  form.addEventListener("input", updateLive);
+  form.addEventListener("change", updateLive);
+  $("partner-box").addEventListener("click", updateLive);
+
+  /* full preview before sending */
+  function showPreview() {
+    const p = SF.render.fromAnswers(answers());
+    $("pv-hero").innerHTML = SF.render.hero(p, { photoNote: "Your photos will appear here once the project is published" });
+    $("pv-body").innerHTML = SF.render.body(p, GEO, { logoNote: isNewOrg() ? logoNote() : "" });
+    $("pv-map").innerHTML = GEO ? SF.render.placeOnMap(p, GEO, PUBLISHED) : "";
+    $("pv-lock").innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+    form.hidden = true;
+    $("multi-box").hidden = true;
+    $("live-card").hidden = true;
+    $("preview").hidden = false;
+    $("main").classList.add("previewing");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  $("pv-edit").addEventListener("click", () => {
+    $("preview").hidden = true; $("main").classList.remove("previewing"); form.hidden = false; $("multi-box").hidden = !!correcting; $("live-card").hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  $("pv-send").addEventListener("click", sendNow);
+
   /* ---------- email ---------- */
   function buildEmail() {
     const v = (id) => $(id).value.trim();
@@ -236,6 +288,7 @@
     const lines = [
       ">>> PLEASE ATTACH UP TO 3 PROJECT PHOTOS (JPG OR PNG, UNDER 1 MB EACH) BEFORE SENDING <<<",
       "By attaching photos, you confirm you have consent from the people shown to publish them.",
+      isNewOrg() ? ">>> PLEASE ALSO ATTACH YOUR ORGANISATION'S LOGO (PNG OR SVG) <<<" : null,
       "",
       correcting ? "SOLUTIONS FOOTPRINT: CORRECTION TO A PUBLISHED PROJECT" : "SOLUTIONS FOOTPRINT: NEW PROJECT SUBMISSION",
       correcting ? `Project number: ${correcting.ref || correcting.id}` : null,
@@ -292,19 +345,31 @@
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     if (!validate()) return;
+    showPreview();
+  });
+  function sendNow() {
     const mail = buildEmail();
     $("done-subject").textContent = mail.subject;
     $("done-text").value = mail.body;
     $("reopen").href = mail.href;
     const note = $("attach-note");
     note.hidden = false;
-    note.innerHTML = `${SF.icon("photo")}<span><b>Attach up to 3 photos to the email before you press Send</b> (JPG or PNG, under 1 MB each). The website cannot attach them for you.</span>`;
-    form.hidden = true;
-    $("multi-box").hidden = true;
+    note.innerHTML = `${SF.icon("photo")}<span><b>Attach up to 3 photos to the email before you press Send</b> (JPG or PNG, under 1 MB each).${isNewOrg() ? " <b>Please also attach your organisation's logo</b> (PNG or SVG)." : ""} The website cannot attach them for you.</span>`;
+    const a = answers();
+    const saved = SF.render.saveSubmission({
+      savedAt: new Date().toISOString(), correcting: correcting ? (correcting.ref || correcting.id) : null,
+      subject: mail.subject, body: mail.body, href: mail.href,
+      answers: { ...a },
+    });
+    $("saved-note").innerHTML = saved
+      ? `A copy is saved in this browser. See it any time under <a href="my-submissions.html">My submissions</a>.`
+      : "This browser does not allow saving, so the copy will not appear under My submissions. Your submission is not affected.";
+    $("preview").hidden = true;
+    $("main").classList.remove("previewing");
     $("done").hidden = false;
     $("done").scrollIntoView({ behavior: "smooth", block: "start" });
     window.location.href = mail.href;
-  });
+  }
   $("copy-btn").addEventListener("click", async () => {
     const t = $("done-text");
     try { await navigator.clipboard.writeText(t.value); }
@@ -312,7 +377,7 @@
     $("copy-btn").textContent = "Copied";
     setTimeout(() => ($("copy-btn").textContent = "Copy the text"), 2000);
   });
-  $("edit-btn").addEventListener("click", () => { $("done").hidden = true; form.hidden = false; $("multi-box").hidden = false; });
+  $("edit-btn").addEventListener("click", () => { $("done").hidden = true; form.hidden = false; $("multi-box").hidden = !!correcting; $("live-card").hidden = false; });
   $("another-btn").addEventListener("click", () => {
     // keep who is doing it and the focal point; clear the project itself
     const keep = { orgType: $("orgType").value, lead: $("lead").value, leadOther: $("leadOther").value, fpName: $("fpName").value, fpEmail: $("fpEmail").value, leadership: checked("leadership") };
@@ -326,7 +391,8 @@
     form.querySelectorAll('input[name="leadership"]').forEach((i) => (i.checked = keep.leadership.includes(i.value)));
     syncScope(); updateDS();
     history.replaceState(null, "", "add.html");
-    $("done").hidden = true; form.hidden = false; $("multi-box").hidden = false;
+    $("done").hidden = true; $("preview").hidden = true; form.hidden = false; $("multi-box").hidden = false; $("live-card").hidden = false;
+    updateLive();
     window.scrollTo({ top: 0, behavior: "smooth" });
     $("name").focus();
   });
@@ -372,15 +438,18 @@
 
   /* ---------- start ---------- */
   SF.renderHeader("add");
-  Promise.all([SF.loadJSON(SF.config.orgsUrl), SF.loadJSON(SF.config.localitiesUrl), SF.loadJSON(SF.config.dataUrl).catch(() => null)])
-    .then(([orgs, locs, data]) => {
+  Promise.all([SF.loadJSON(SF.config.orgsUrl), SF.loadJSON(SF.config.localitiesUrl), SF.loadJSON(SF.config.dataUrl).catch(() => null), SF.loadJSON(SF.config.geoUrl).catch(() => null)])
+    .then(([orgs, locs, data, geo]) => {
       ORGS = orgs.organisations;
       LOCALITIES = locs.states;
+      GEO = geo;
+      PUBLISHED = data ? data.projects.map(SF.enrich) : [];
       $("partner-list").innerHTML = ORGS.map((o) => `<option value="${esc(orgLabel(o))}">`).join("");
       SF.renderFooter(data && data.lastUpdated);
       const id = new URLSearchParams(location.search).get("correct");
       const p = id && data && data.projects.find((x) => x.id === id);
       if (p) prefill(p);
+      updateLive();
     })
     .catch(() => SF.renderFooter());
 })();

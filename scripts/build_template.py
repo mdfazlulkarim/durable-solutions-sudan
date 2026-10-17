@@ -142,8 +142,9 @@ def build():
     line("3. Choose the organisation type first: the lead organisation list then shows only organisations of that type. If yours is not listed, type its name.", height=30)
     line("4. Where a cell can hold several answers (intervention types, states, localities, partners), separate them with semicolons (;).")
     line("5. Funding towards durable solutions is calculated for you from the budget and the share. The share is self-assessed by your organisation.", height=30)
-    line(f"6. Save the file and email it to {SF_EMAIL}. Attach up to 3 photos per project (JPG or PNG, under 1 MB each), named with the project name. By attaching photos, you confirm you have consent from the people shown to publish them.", height=44)
-    line("7. The Durable Solutions Unit reviews every project, may contact the focal point, and confirms when projects are published.")
+    line(f"6. Save the file and email it to the Durable Solutions Unit at {SF_EMAIL}. Attach up to 3 photos per project (JPG or PNG, under 1 MB each), named with the project name. By attaching photos, you confirm you have consent from the people shown to publish them.", height=44)
+    line("7. First project from your organisation on the map? Please also attach your organisation's logo (PNG or SVG) to the email, so it appears on the map.", height=30)
+    line("8. The Durable Solutions Unit reviews every project, may contact the focal point, and confirms when projects are published.")
     r += 1
     line("What is published", "h")
     line("All project information is published on the United Nations in Sudan website, except the focal point's name and email address.")

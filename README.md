@@ -20,6 +20,9 @@ Contact: [dswg.sd@undp.org](mailto:dswg.sd@undp.org)
 - Time window, contributing agencies strip with logos, light and dark mode, and a statement that the list is not exhaustive.
 - "Add your project" menu: **Add one project** (form) or **Add multiple projects** (Excel template).
 - The form opens a pre-filled email to dswg.sd@undp.org with a copy to the submitter. It has organisation lists by type, leadership, partner picker, localities by state, budget and share formatting, and "Add another project". Photos are not uploaded on the form: the email asks the submitter to attach up to 3 photos.
+- Before sending, a **preview** shows the project exactly as it will appear (same drawing code as the map, in `assets/js/render.js`) and its place on the map: how each state's count changes and which IASC gaps it fills. A live preview card fills in while people type.
+- Organisations without a logo on the site are asked to attach one (preview, email and template).
+- **My submissions** (`my-submissions.html`) lists the projects sent from that browser, saved only in the browser (localStorage), with a clear notice that clearing browser data empties the list. A project shows as "Published" once one with the same name and lead agency appears in `data/projects.json`.
 - Both template links download the file directly (the page fetches it), also when the dashboard is embedded in another site.
 
 The Projects and Gaps views (Phases 2 and 3) are not built yet. Their menu links are commented out in `assets/js/common.js` (`SF.renderHeader`).
@@ -35,7 +38,10 @@ about.html              About the data
 assets/css/style.css    All styles
 assets/js/common.js     Shared settings: contact email, IASC criteria and colours, states, lists, header and footer
 assets/js/app.js        Map explorer logic
-assets/js/form.js       Form logic and the email it builds
+assets/js/form.js       Form logic, live preview, preview step and the email it builds
+assets/js/render.js     Shared drawing of a project (pop-up, cards, place on the map) and the browser-only submissions list
+assets/js/mine.js       My submissions page
+my-submissions.html     My submissions page
 assets/img/             UN Sudan logo (placeholder until the site moves to un.org) and favicon
 assets/js/icons.js      OCHA humanitarian icons used for the IASC criteria
 assets/img/logos/       Agency logos (full logo and a small square mark)

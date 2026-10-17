@@ -79,7 +79,11 @@ SF.LOGOS = {
 };
 SF.logoImg = (org, kind = "mark", cls = "") => {
   const l = SF.LOGOS[org];
-  return l ? `<img src="${l[kind]}" alt="${SF.esc(org)}" class="${cls}" loading="lazy">` : `<span>${SF.esc(org)}</span>`;
+  if (l) return `<img src="${l[kind]}" alt="${SF.esc(org)}" class="${cls}" loading="lazy">`;
+  // no logo yet: a short badge (the acronym, or the initials of a long name)
+  const name = String(org || "");
+  const short = name.length <= 7 ? name : name.split(/\s+/).filter((w) => /^[A-Za-z]/.test(w) && !/^(of|and|for|the|in)$/i.test(w)).map((w) => w[0].toUpperCase()).join("").slice(0, 4);
+  return `<span title="${SF.esc(name)}">${SF.esc(kind === "full" ? name : short)}</span>`;
 };
 
 /* ---------- dates ---------- */
@@ -228,6 +232,7 @@ SF.renderHeader = (active) => {
     // { key: "projects", href: "projects.html", label: "Projects" },
     // { key: "gaps", href: "gaps.html", label: "Gaps" },
     { key: "about", href: "about.html", label: "About the data" },
+    { key: "mine", href: "my-submissions.html", label: "My submissions" },
   ];
   const action = active === "add" ? `<a class="btn" href="index.html">Back to the map</a>` : SF.addMenuHTML("add");
   el.className = "site-header";

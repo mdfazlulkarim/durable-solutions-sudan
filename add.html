@@ -191,9 +191,29 @@
         </div>
       </form>
 
+      <section id="preview" hidden aria-labelledby="pv-title">
+        <h2 id="pv-title" style="font-size:24px;margin:0 0 4px">Preview your project</h2>
+        <p class="lede">This is how your project will appear on the Solutions Footprint map once the Durable Solutions Unit publishes it. Check it, then send it.</p>
+        <div class="flow">
+          <div class="on"><span class="n">1</span><span><b>You send it to the Durable Solutions Unit</b>Your answers go by email to the DSWG mailbox, managed by the Unit.</span></div>
+          <div><span class="n">2</span><span><b>The Unit reviews it</b>The Durable Solutions Unit checks the entry and may contact you.</span></div>
+          <div><span class="n">3</span><span><b>It goes on the map</b>Published on the United Nations in Sudan website for donors, partners and authorities.</span></div>
+        </div>
+        <div class="pv-grid">
+          <div class="pv-box"><h2>Your project, as visitors will see it <span class="tag-new">Preview</span></h2><div class="hero" id="pv-hero"></div><div id="pv-body"></div></div>
+          <div class="pv-box"><h2>Your place on the map <small>How your states will change</small></h2><div id="pv-map"></div></div>
+        </div>
+        <div class="private"><span id="pv-lock"></span><span><b>What stays private:</b> your name and email are used only by the Durable Solutions Unit to follow up. They are never published.</span></div>
+        <div class="pv-actions">
+          <button type="button" class="btn" id="pv-edit">Edit my answers</button>
+          <button type="button" class="btn btn-primary" id="pv-send">Looks good, send to the Durable Solutions Unit</button>
+        </div>
+      </section>
+
       <section class="card done-panel" id="done" hidden aria-live="polite">
         <h2>Your email is ready to send</h2>
-        <p>Your email program should now show a message to <strong class="contact-email">dswg.sd@undp.org</strong> with your answers and a copy to you. Please check it and press <strong>Send</strong>. The project is not submitted until the email is sent.</p>
+        <p>Your email program should now show a message to the Durable Solutions Unit (<strong class="contact-email">dswg.sd@undp.org</strong>) with your answers and a copy to you. Please check it and press <strong>Send</strong>. The project is not submitted until the email is sent.</p>
+        <p id="saved-note" style="font-size:14px;color:var(--ink-2)"></p>
         <div class="attach-note" id="attach-note" hidden></div>
         <p>If no email opened, copy the text below and send it to <a class="contact-link" href="#">dswg.sd@undp.org</a> with the subject shown.</p>
         <p><strong>Subject:</strong> <span id="done-subject"></span></p>
@@ -208,11 +228,16 @@
     </div>
 
     <aside class="sticky-side">
+      <div class="card side-card" id="live-card">
+        <h2 style="display:flex;justify-content:space-between;align-items:center;gap:8px">Live preview <span class="live-tag">Updates as you type</span></h2>
+        <div id="live-body"></div>
+        <p style="font-size:13px;color:var(--ink-2);margin:10px 0 0">When you press Submit, you will see the full preview: your pop-up and your place on the map.</p>
+      </div>
       <div class="card side-card">
         <h2>What happens next</h2>
         <ol class="steps">
-          <li><span class="dot">1</span><span><b>You submit</b>Your email program opens with your answers, addressed to the DSWG mailbox, with a copy to you. Attach up to 3 photos, then press Send.</span></li>
-          <li><span class="dot">2</span><span><b>DSU reviews</b>The Durable Solutions Unit checks the entry and may contact you with questions.</span></li>
+          <li><span class="dot">1</span><span><b>You send it to the Durable Solutions Unit</b>After a preview, your email program opens with your answers, with a copy to you. Attach up to 3 photos, then press Send.</span></li>
+          <li><span class="dot">2</span><span><b>The Unit reviews</b>The Durable Solutions Unit checks the entry and may contact you with questions.</span></li>
           <li><span class="dot">3</span><span><b>Published</b>Once approved, the project appears on the map with the next update. DSU tells you when it is live.</span></li>
         </ol>
       </div>
@@ -226,6 +251,7 @@
 
   <script src="assets/js/common.js"></script>
   <script src="assets/js/icons.js"></script>
+  <script src="assets/js/render.js"></script>
   <script src="assets/js/form.js"></script>
 </body>
 </html>

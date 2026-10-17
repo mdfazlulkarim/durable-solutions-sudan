@@ -599,25 +599,11 @@
     if (scroll || (name && window.innerWidth < 1280)) document.getElementById("state-panel").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  function statusChip(p) {
-    if (p._endingSoon) return `<span class="chip soon">Ends ${SF.fmtMonth(p._end)}</span>`;
-    if (!p.status) return "";
-    return `<span class="chip ${p.status.toLowerCase()}">${p.status}</span>`;
-  }
-  function progressPct(p) {
-    if (!p._start || !p._end) return null;
-    return Math.max(0, Math.min(1, (SF.today - p._start) / (p._end - p._start)));
-  }
-  function progress(p) {
-    const pct = progressPct(p);
-    return pct == null ? "" : `<div class="progress" aria-hidden="true"><i style="width:${(pct * 100).toFixed(0)}%"></i></div>`;
-  }
-  function critIcons(p) {
-    return `<span class="crit-icons" aria-label="IASC criteria ${p.criteria.join(", ")}">${p.criteria.map((n) => { const c = CRITERIA[n - 1]; return `<span class="ci" style="background:${c.color}" title="${c.n}. ${esc(c.name)}">${SF.critIcon(n)}</span>`; }).join("")}</span>`;
-  }
-  function dateRange(p) {
-    return p._start || p._end ? `${SF.fmtMonth(p._start)}${p._start && p._end ? " to " : ""}${SF.fmtMonth(p._end)}` : "";
-  }
+  const statusChip = (p) => SF.render.statusChip(p);
+  const progressPct = (p) => SF.render.progressPct(p);
+  const progress = (p) => SF.render.progress(p);
+  const critIcons = (p) => SF.render.critIcons(p);
+  const dateRange = (p) => SF.render.dateRange(p);
   function projectCard(p) {
     const funding = p.dsFunding != null
       ? `<div class="f">${SF.fmtMoney(p.dsFunding)} towards durable solutions${p.share != null ? ` (${SF.fmtPct(p.share)} of budget)` : ""}</div>` : "";
@@ -788,63 +774,20 @@
     });
   }
 
-  function miniMap(p) {
-    const on = new Set(p.states);
-    return `<svg class="mini-map" viewBox="40 14 780 680" role="img" aria-label="${esc(p.nationwide ? "Nationwide" : p.states.join(", "))}">
-      <rect class="bg" x="0" y="0" width="${GEO.width}" height="${GEO.height}"/>
-      ${GEO.states.map((s) => `<path d="${s.path}" class="${p.nationwide || on.has(s.name) ? "on" : ""}"/>`).join("")}
-    </svg>`;
-  }
+  const miniMap = (p) => SF.render.miniMap(p, GEO);
 
   function openDetail(id, opts = {}) {
     const p = ALL.find((x) => x.id === id);
     if (!p) return;
     const d = document.getElementById("detail");
-    const logo = SF.LOGOS[p.lead];
     const photos = p.photos || [];
-    const hero = photos.length
-      ? `<img class="photo" src="${esc(photos[0])}" alt="Photo of ${esc(p.name)}">${photos.length > 1 ? `<button type="button" class="nav prev" aria-label="Previous photo">&#8249;</button><button type="button" class="nav next" aria-label="Next photo">&#8250;</button><div class="dots">${photos.map((_, i) => `<i class="${i ? "" : "on"}"></i>`).join("")}</div>` : ""}`
-      : `<div class="logo-hero"><div class="logo-card">${SF.logoImg(p.lead, "full")}</div></div>`;
-    const figs = [];
-    if (p.dsFunding != null) figs.push({ ico: SF.icon("fund"), l: "Towards durable solutions", v: SF.fmtMoney(p.dsFunding), s: p.budget != null ? `of ${SF.fmtMoney(p.budget)} total budget` : "" });
-    if (p.share != null) figs.push({ ico: SF.icon("fund"), l: "Share of budget", v: SF.fmtPct(p.share), s: "self-assessed" });
-    if (p.people.total != null) figs.push({ ico: SF.icon("people"), l: "People reached, planned", v: SF.fmtInt(p.people.total), s: "" });
-    if (p._start || p._end) {
-      const pct = progressPct(p);
-      figs.push({ ico: SF.icon("calendar"), l: "Dates", v: dateRange(p), s: pct != null ? `<div class="progress"><i style="width:${(pct * 100).toFixed(0)}%"></i></div>` : "" });
-    }
-    const groupMax = Math.max(1, ...SF.TARGET_GROUPS.map((g) => p.people[g.key] || 0));
-    const groups = SF.TARGET_GROUPS.filter((g) => p.people[g.key] > 0);
-    const details = [
-      ["Donor or funding source", esc(p.donor)],
-      ["Coordination mechanism", esc(p.coordination)],
-      ["Intervention type", esc(p.interventionTypes.join(", "))],
-      ["Organisation leadership", esc(p.leadership.map((k) => (SF.LEADERSHIP.find((x) => x.key === k) || { label: k }).label).join(", "))],
-      ["Remarks", esc(p.remarks)],
-      ["Contact", `<a href="mailto:${SF.config.contactEmail}?subject=${encodeURIComponent(`Solutions Footprint: ${p.name}`)}">${SF.config.contactEmail}</a>`],
-    ].filter(([, v]) => v);
+    const hero = SF.render.hero(p);
     d.innerHTML = `
       ${opts.back ? `<button type="button" class="modal-back" id="pop-back">${SF.icons.back}${esc(opts.back.label)}</button>` : ""}
       <button type="button" class="modal-close" aria-label="Close" data-close>&times;</button>
       <div class="modal-scroll">
         <div class="hero" id="hero">${hero}</div>
-        <div class="pop-body">
-          <div class="pop-chips">${statusChip(p)}${p.nationwide ? '<span class="chip">Nationwide</span>' : ""}</div>
-          <h2 class="pop-title" id="detail-title">${esc(p.name)}</h2>
-          <div class="pop-org"><span class="lg">${SF.logoImg(p.lead)}</span><span><b>${esc(logo ? `${p.lead}, ${logo.name}` : p.lead)}</b>${p.partners.length ? `<br>with ${esc(p.partners.join(", "))}` : ""}</span></div>
-          ${p.description ? `<p style="margin:0 0 14px">${esc(p.description)}</p>` : ""}
-          ${figs.length ? `<div class="figs">${figs.map((f) => `<div class="fig"><div class="l">${f.ico}${f.l}</div><div class="v">${f.v}</div>${f.s ? `<div class="s">${f.s}</div>` : ""}</div>`).join("")}</div>` : ""}
-          <div class="pop-section">IASC criteria</div>
-          <div class="crit-list">${p.criteria.map((n) => { const c = CRITERIA[n - 1]; return `<span class="crit-pill"><span class="ci" style="background:${c.color}">${SF.critIcon(n)}</span>${c.n}. ${esc(c.name)}</span>`; }).join("")}</div>
-          <div class="pop-section">Where</div>
-          <div class="where">${miniMap(p)}
-            <dl><dt>States</dt><dd>${p.nationwide ? "Nationwide" : esc(p.states.join(", "))}</dd>
-            ${p.localities.length ? `<dt>Localities</dt><dd>${esc(p.localities.join(", "))}</dd>` : ""}</dl>
-          </div>
-          ${groups.length ? `<div class="pop-section">People reached, planned, by group</div>
-            <div class="people-bars">${groups.map((g) => `<div class="pb"><span>${g.label}</span><span class="bar"><i style="width:${(p.people[g.key] / groupMax) * 100}%;background:var(--brand)"></i></span><span class="n">${SF.fmtInt(p.people[g.key])}</span></div>`).join("")}</div>` : ""}
-          ${details.length ? `<div class="pop-section">Details</div><dl class="pop-dl">${details.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>` : ""}
-        </div>
+        ${SF.render.body(p, GEO, { titleId: "detail-title" })}
         <div class="pop-actions">
           <button type="button" class="btn" id="pop-show">${SF.icons.pin}Show on map</button>
           <button type="button" class="btn" id="pop-link">${SF.icons.link}Copy link</button>
