@@ -1,0 +1,1065 @@
+{
+ "types": [
+  "UN agency",
+  "International NGO",
+  "National NGO",
+  "Red Cross / Red Crescent",
+  "Authorities",
+  "Other"
+ ],
+ "organisations": [
+  {
+   "acronym": "FAO",
+   "name": "Food and Agriculture Organization",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "IFAD",
+   "name": "International Fund for Agricultural Development",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "ILO",
+   "name": "International Labour Organization",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "IOM",
+   "name": "International Organization for Migration",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "OCHA",
+   "name": "Office for the Coordination of Humanitarian Affairs",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "OHCHR",
+   "name": "Office of the United Nations High Commissioner for Human Rights",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "UN Women",
+   "name": "United Nations Entity for Gender Equality and the Empowerment of Women",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "UN-Habitat",
+   "name": "United Nations Human Settlements Programme",
+   "type": "UN agency",
+   "aliases": [
+    "UN HABITAT",
+    "UNHABITAT"
+   ]
+  },
+  {
+   "acronym": "UNAIDS",
+   "name": "Joint United Nations Programme on HIV/AIDS",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "UNDP",
+   "name": "United Nations Development Programme",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "UNEP",
+   "name": "United Nations Environment Programme",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "UNESCO",
+   "name": "United Nations Educational, Scientific and Cultural Organization",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "UNFPA",
+   "name": "United Nations Population Fund",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "UNHCR",
+   "name": "United Nations High Commissioner for Refugees",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "UNICEF",
+   "name": "United Nations Children's Fund",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "UNIDO",
+   "name": "United Nations Industrial Development Organization",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "UNMAS",
+   "name": "United Nations Mine Action Service",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "UNODC",
+   "name": "United Nations Office on Drugs and Crime",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "UNOPS",
+   "name": "United Nations Office for Project Services",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "WFP",
+   "name": "World Food Programme",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "WHO",
+   "name": "World Health Organization",
+   "type": "UN agency"
+  },
+  {
+   "acronym": "AAH",
+   "name": "Action Against Hunger",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "AAR JAPAN",
+   "name": "AAR Japan",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "ACF",
+   "name": "Action Contre la Faim (Action Against Hunger)",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "ACF-Spain",
+   "name": "Action Against Hunger, Spain",
+   "type": "International NGO",
+   "aliases": [
+    "ACF -Spain"
+   ]
+  },
+  {
+   "acronym": "Act Appeal",
+   "name": "Act Appeal",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "ACTED",
+   "name": "Agency for Technical Cooperation and Development",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "ADRA",
+   "name": "Adventist Development and Relief Agency",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "AFO",
+   "name": "African Friendship Organization",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "AHA",
+   "name": "Africa Humanitarian Action",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "AHDO",
+   "name": "Alegtinam Human Development Organization",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "ALIGHT",
+   "name": "We Are Alight",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "ALIMA",
+   "name": "The Alliance for International Medical Action",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "ASSIST",
+   "name": "Humanitarian Assistance Program",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "BFD/B",
+   "name": "Building Foundation Development/Benna",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "BRHO",
+   "name": "Build Resilience Humanitarian Organization",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "CADUS",
+   "name": "CADUS for International Disaster Response",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "CAFOD",
+   "name": "Catholic Agency for Overseas Development",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "CARE",
+   "name": "CARE International in Sudan",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "CIS",
+   "name": "CARE International Switzerland",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "CISP",
+   "name": "International Committee for the Development of Peoples",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "COOPI",
+   "name": "Cooperazione Internazionale",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "CORE",
+   "name": "Community Organized Relief Effort",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "CRS",
+   "name": "Catholic Relief Services",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "CWW",
+   "name": "Concern Worldwide",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "DRC",
+   "name": "Danish Refugee Council",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "EMERGENCY NGO",
+   "name": "EMERGENCY NGO",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "GOAL",
+   "name": "GOAL Global",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "HA UK",
+   "name": "Human Appeal UK",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "HFO",
+   "name": "Healthcare Foundation Organization",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "HI",
+   "name": "Humanity and Inclusion",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "HIF",
+   "name": "Handicap International Federation",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "IAS/LMI",
+   "name": "IAS/LM International",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "IHH",
+   "name": "Humanitarian Relief Foundation",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "IMC",
+   "name": "International Medical Corps",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "INTERSOS",
+   "name": "INTERSOS",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "IRC",
+   "name": "International Rescue Committee",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "IRW",
+   "name": "Islamic Relief Worldwide",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "ISRA",
+   "name": "Islamic Relief Agency Organization",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "JVC",
+   "name": "Japan International Volunteer Center",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "KPHF",
+   "name": "Kuwaiti Patients Helping Funds",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "LMI",
+   "name": "LM International (formerly International Aid Services)",
+   "type": "International NGO",
+   "aliases": [
+    "LM/IAS"
+   ]
+  },
+  {
+   "acronym": "MAS",
+   "name": "Muslim Aid Sudan",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "MC",
+   "name": "Mercy Corps",
+   "type": "International NGO",
+   "aliases": [
+    "MERCY CORPS"
+   ]
+  },
+  {
+   "acronym": "Medair",
+   "name": "Medair",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "MedGlobal",
+   "name": "MedGlobal",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "MfP",
+   "name": "Music for Peace",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "MSF",
+   "name": "Medecins Sans Frontieres",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "MSF Belgium",
+   "name": "Medecins Sans Frontieres, Belgium",
+   "type": "International NGO",
+   "aliases": [
+    "MSF/Belgium"
+   ]
+  },
+  {
+   "acronym": "MSF Holland",
+   "name": "Medecins Sans Frontieres, Holland",
+   "type": "International NGO",
+   "aliases": [
+    "MSF- Holland"
+   ]
+  },
+  {
+   "acronym": "MSF Spain",
+   "name": "Medecins Sans Frontieres, Spain",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "MSF Switzerland",
+   "name": "Medecins Sans Frontieres, Switzerland",
+   "type": "International NGO",
+   "aliases": [
+    "MSF - Switzerland"
+   ]
+  },
+  {
+   "acronym": "MTI",
+   "name": "Medical Teams International",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "Muslim Hands",
+   "name": "Muslim Hands United for the Needy",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "NCA",
+   "name": "Norwegian Church Aid",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "NEF",
+   "name": "Near East Foundation",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "NP",
+   "name": "Nonviolent Peaceforce",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "NRC",
+   "name": "Norwegian Refugee Council",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "PA",
+   "name": "Practical Action Sudan",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "PI",
+   "name": "Plan International",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "PUI",
+   "name": "Premiere Urgence Internationale",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "RI",
+   "name": "Relief International",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "SAMA",
+   "name": "Sudanese American Medical Association",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "SAPA",
+   "name": "Sudanese American Physicians Association",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "SCI",
+   "name": "Save the Children International",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "SI",
+   "name": "Solidarites International",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "SIF",
+   "name": "Secours Islamique France",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "SOS-CVI",
+   "name": "SOS Children's Villages International",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "SP",
+   "name": "Samaritan's Purse",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "Sudanaid",
+   "name": "Caritas Sudan",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "TGH",
+   "name": "Triangle Generation Humanitaire",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "VSF-G",
+   "name": "Veterinaires Sans Frontieres Germany",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "WCC",
+   "name": "Woman and Child Care Organization",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "WES",
+   "name": "Water Environmental Sanitation",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "WHH",
+   "name": "Welthungerhilfe",
+   "type": "International NGO",
+   "aliases": [
+    "German Agro Action"
+   ]
+  },
+  {
+   "acronym": "WR",
+   "name": "World Relief",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "WTI",
+   "name": "Windle Trust International",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "WVI",
+   "name": "World Vision International",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "ZOA",
+   "name": "ZOA International",
+   "type": "International NGO"
+  },
+  {
+   "acronym": "AAO",
+   "name": "Alsawaid Alkhadara Organization",
+   "type": "National NGO",
+   "aliases": [
+    "Alswaid Alkhdara Organization"
+   ]
+  },
+  {
+   "acronym": "ADD",
+   "name": "Addition for Disasters Assistance and Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "AGWA",
+   "name": "Sudan Agwa Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "AHSWCD",
+   "name": "Abu Hadia Society for Women and Community Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "AIDO",
+   "name": "Aid for Impact and Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "Al Juzour",
+   "name": "Al Juzour Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "Al-SO",
+   "name": "Al-Sadagat Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "AlNahda",
+   "name": "Alnahda Organization for Peace and Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "AMVO",
+   "name": "Almanar Voluntary Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "AOPDHA",
+   "name": "Alaioun Organization for Peace, Development and Humanitarian Aid",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "AORD",
+   "name": "Alsalam Organization for Rehabilitation and Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "AOSCD",
+   "name": "Alshrooq Organization for Social and Cultural Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "APDHWO",
+   "name": "Anhar for Peace Development and Humanitarian Work Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "APO",
+   "name": "Aid Point Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "AR",
+   "name": "Al Ruhama",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "ARC",
+   "name": "African Relief Committee",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "Asyaj",
+   "name": "Asyaj Charity Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "AUTASH",
+   "name": "Auttash Organization for Peace and Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "AWAFY",
+   "name": "AWAFY Sudanese Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "Ayadina",
+   "name": "Ayadina for Sudan Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "BDO",
+   "name": "Betay Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "BFD",
+   "name": "Building Foundation for Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "BRDO",
+   "name": "Building Resilience Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "CAFA",
+   "name": "CAFA Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "CDF",
+   "name": "Child Development Foundation",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "CDP",
+   "name": "Community Development Program",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "CORD",
+   "name": "Charity Organization for Rehabilitation and Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "D AL-N",
+   "name": "Durat Al-Nile",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "DAO",
+   "name": "Depth Action Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "DCD",
+   "name": "Dar for Community Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "DCO",
+   "name": "Dirar Charity Organisation Sudan",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "DDRA",
+   "name": "Darfur Development and Reconstruction Agency",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "DevAO",
+   "name": "Developmental Aid Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "DOFDAHR",
+   "name": "DOFDAHR Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "ECDO",
+   "name": "Elamar Charitable Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "FPDO",
+   "name": "Friends of Peace and Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "FSC",
+   "name": "Future Stars Center for Development and Capacity Building",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "FSTS",
+   "name": "Food Security Technical Secretariat",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "GDO",
+   "name": "Green Dream Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "HCRO",
+   "name": "Humanitarian Conflict Resolution Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "HDPO",
+   "name": "Humanity for Development and Prosperity Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "HFDO",
+   "name": "Hope and Friendship for Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "HOPE",
+   "name": "Sudan Hope and Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "JAIDAN",
+   "name": "JAIDAN Youth Organization for Peace and Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "JHSO",
+   "name": "JASMAR Human Security Organization",
+   "type": "National NGO",
+   "aliases": [
+    "JASMAR"
+   ]
+  },
+  {
+   "acronym": "JMCO",
+   "name": "Jabal Marra Charity Organization for Rural Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "JPRD",
+   "name": "Aljuzur Organization for Peace, Rehabilitation and Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "KSCS",
+   "name": "Kabkabiya Smallholders Charitable Society",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "Labena",
+   "name": "Labena Organization for Women Development and Capacity Building",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "NACP",
+   "name": "National Association for Child Protection",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "NADA",
+   "name": "NADA Elazhar for Disaster Prevention and Sustainable Development",
+   "type": "National NGO",
+   "aliases": [
+    "NADA AL AZHAR",
+    "NADA ALAZHAR"
+   ]
+  },
+  {
+   "acronym": "Naha",
+   "name": "Naha",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "NIDAA",
+   "name": "Sudanese Development Call Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "NIDO",
+   "name": "National Initiative Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "NORD",
+   "name": "National Organization for Sustainable Rural Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "NORD (Relief)",
+   "name": "National Organization for Relief and Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "NPO",
+   "name": "National Planning Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "NRRDO",
+   "name": "Nuba Relief and Rehabilitation Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "NUMAD",
+   "name": "National Units for Mine Action and Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "PBA",
+   "name": "Peace Bridge Association",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "PHCO",
+   "name": "Pan Health Care Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "PHF",
+   "name": "Patient Helping Fund",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "PLRD",
+   "name": "Peace Light for Rural Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "PODR",
+   "name": "Peoples' Organization for Development and Rehabilitation",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "PORD",
+   "name": "Peace Organization for Rural Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "PORD Sudan",
+   "name": "PORD Sudan",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "Raira",
+   "name": "Raira Organization for Awareness and Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "RAISE",
+   "name": "Raise for Development and Humanitarian Aid",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "RCDO",
+   "name": "Rural Community Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "RDO",
+   "name": "Rural Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "RHF",
+   "name": "Rufaida Health Foundation",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SADO",
+   "name": "Sudan Assist for Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SAHARI",
+   "name": "Sahari Organization for Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SAHO",
+   "name": "Sudan Aid Hand Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SAO",
+   "name": "Samaritan Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SCEFA",
+   "name": "Sudanese Coalition for Education for All",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SDO",
+   "name": "Sudanese Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SFPA",
+   "name": "Sudan Family Planning Association",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SOLD",
+   "name": "Sudan Organization for Local Community Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SORD",
+   "name": "Sudanese Organization for Relief and Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SORR",
+   "name": "Sudanese Organisation for Relief and Recovery",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SOS Sahel",
+   "name": "SOS Sahel Sudan Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SOSD",
+   "name": "Shimoos Organization for Sustainable Development",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SSDHA",
+   "name": "Sawa Sudan for Development and Humanitarian Aid",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SSDO",
+   "name": "Sudan Social Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SVO",
+   "name": "Saeker Voluntary Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "SZWO",
+   "name": "Sudan Zero Waste Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "TACO",
+   "name": "Tawasul Al Sudan Charity Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "TADO",
+   "name": "Tabasheer for Aid and Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "TDO",
+   "name": "Trust for Rehabilitation and Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "UPO",
+   "name": "United Peace Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "VCO",
+   "name": "Vet-Care Organization Sudan",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "Volunteers",
+   "name": "Volunteers",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "WAVs",
+   "name": "We Are All Values",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "WPDO",
+   "name": "Women for Peace and Development Organization",
+   "type": "National NGO"
+  },
+  {
+   "acronym": "CRUZROJA",
+   "name": "Cruz Roja Espanola",
+   "type": "Red Cross / Red Crescent"
+  },
+  {
+   "acronym": "GRC",
+   "name": "German Red Cross",
+   "type": "Red Cross / Red Crescent"
+  },
+  {
+   "acronym": "SpRC",
+   "name": "Spanish Red Cross",
+   "type": "Red Cross / Red Crescent"
+  },
+  {
+   "acronym": "SRCS",
+   "name": "Sudanese Red Crescent Society",
+   "type": "Red Cross / Red Crescent",
+   "aliases": [
+    "SRC"
+   ]
+  },
+  {
+   "acronym": "MoE",
+   "name": "Ministry of Education",
+   "type": "Authorities"
+  },
+  {
+   "acronym": "MoH",
+   "name": "Ministry of Health",
+   "type": "Authorities"
+  },
+  {
+   "acronym": "MOPER",
+   "name": "Ministry of Production and Economic Resources",
+   "type": "Authorities"
+  },
+  {
+   "acronym": "CCS",
+   "name": "Cash Consortium of Sudan",
+   "type": "Other"
+  },
+  {
+   "acronym": "RR",
+   "name": "Red Rose",
+   "type": "Other"
+  }
+ ]
+}

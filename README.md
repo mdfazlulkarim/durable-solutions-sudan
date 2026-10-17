@@ -10,13 +10,15 @@ Contact: [dswg.sd@undp.org](mailto:dswg.sd@undp.org)
 
 ## What is in Phase 1
 
-- Map of the 18 states, shaded by projects, organisations or funding towards durable solutions, with a solutions ring per state (eight IASC segments, grey for a gap).
-- Separate band for nationwide projects.
-- Summary figures, a state panel, project details and "Suggest a correction".
-- Filters: search, IASC criteria, intervention type, organisation type and name, status, minimum share towards durable solutions, target group, geographic scope, donor and coordination mechanism, with counts and removable tags.
-- Time window with quick choices, a year range and a chart of projects active per quarter.
-- Download of the filtered data as CSV or Excel.
-- "Add your project" form, which opens a pre-filled email to dswg.sd@undp.org with a copy to the submitter.
+- Map of the 18 states with neighbouring countries for context, shaded by projects, organisations or funding towards durable solutions, with a solutions ring per state (eight IASC segments, grey for a gap). The UN map disclaimer sits inside the map.
+- Clicking a state zooms in, with badges for the lead agencies working there; each badge opens that agency's projects in the state.
+- Side panel that starts with all of Sudan and switches to the selected state or to nationwide projects.
+- Project pop-up with photos (or the agency logo when there are none), key figures, IASC criteria icons, a small locator map, "Show on map", "Copy link" and "Suggest a correction".
+- Filters: minimum share towards durable solutions (top, default 0%), search, IASC criteria, intervention type, organisation type and name, organisation leadership (WLO, RLO, YLO, OPD), status, target group, geographic scope, donor and coordination mechanism, with counts and removable tags.
+- Time window, contributing agencies strip with logos, light and dark mode, and a statement that the list is not exhaustive.
+- Download of the filtered data as CSV or Excel (link above the map).
+- "Add your project" menu: **Add one project** (form) or **Add multiple projects** (Excel template).
+- The form opens a pre-filled email to dswg.sd@undp.org with a copy to the submitter. It has organisation lists by type, leadership, partner picker, localities by state, budget and share formatting, up to 3 photos (under 1 MB each, attached by the submitter) and "Add another project".
 
 The Projects and Gaps views (Phases 2 and 3) are not built yet. Their menu links are commented out in `assets/js/common.js` (`SF.renderHeader`).
 
@@ -34,12 +36,21 @@ assets/js/app.js        Map explorer logic
 assets/js/form.js       Form logic and the email it builds
 assets/vendor/          SheetJS (Excel download), loaded only when someone downloads Excel
 assets/img/             UN Sudan logo (placeholder until the site moves to un.org) and favicon
+assets/js/icons.js      OCHA humanitarian icons used for the IASC criteria
+assets/img/logos/       Agency logos (full logo and a small square mark)
+assets/photos/          Project photos, named <project number>-1.jpg (up to 3)
+assets/templates/       Excel template for adding several projects
 data/projects.json      The published project data (public fields only)
-data/geo.json           Pre-drawn state boundaries for the map
+data/project-refs.json  Permanent internal project numbers (for example IOM-001)
+data/organisations.json Organisation list used by the form and the template
+data/localities.json    Localities (OCHA admin 2) grouped by state
+data/geo.json           Pre-drawn boundaries for the map (states, Abyei, neighbouring countries)
 data/cleaning-log.md    Every change made to the source data before publication
-data/boundaries/        Boundary source file used to build data/geo.json
-scripts/build_data.py   Turns SharePoint exports into data/projects.json
-scripts/build_geo.js    Turns a boundary file into data/geo.json
+data/boundaries/        Boundary source files used to build the map files
+scripts/build_data.py   Turns SharePoint exports and returned templates into data/projects.json
+scripts/build_template.py  Builds the Excel template
+scripts/organisations_source.py  The organisation list; run it to rewrite data/organisations.json
+scripts/build_geo.js    Builds data/geo.json and data/localities.json
 ```
 
 ## Handover note
@@ -56,6 +67,32 @@ scripts/build_geo.js    Turns a boundary file into data/geo.json
    You can pass several files; later files fill in or update earlier ones.
 4. Set `LAST_UPDATED` at the top of `scripts/build_data.py` to the date of the export before running it.
 5. Check `data/cleaning-log.md`, then commit `data/projects.json` and `data/cleaning-log.md`. The site updates within a minute or two.
+
+### Load a returned Excel template
+
+Save the returned file in `data/source/` and pass it to the same command, after the SharePoint export:
+
+```
+python3 scripts/build_data.py data/source/<export>.xlsx data/source/<returned-template>.xlsx
+```
+
+The example row (row 2, starting with "Example") is skipped.
+
+### Internal project numbers
+
+Each project gets a permanent number: the lead agency's acronym and a running number (IOM-001, IOM-002, UNDP-001). Numbers are stored in `data/project-refs.json`, never change and are never reused. They are not shown on the site; they appear only when someone suggests a correction (on the form and in the email subject), so DSU knows which project it is about.
+
+### Add photos to a project
+
+Save up to 3 photos (JPG or PNG, under 1 MB) as `assets/photos/<project number>-1.jpg`, `-2.jpg`, `-3.jpg`, then re-run the data update. Without photos, the pop-up shows the agency logo.
+
+### Add an agency logo
+
+Save the logo as `assets/img/logos/<ACRONYM>.png` (full logo, about 96 px high) and `<ACRONYM>-mark.png` (square emblem), and add the agency to `SF.LOGOS` in `assets/js/common.js`.
+
+### Change the organisation list
+
+Edit `scripts/organisations_source.py`, then run it, and run `python3 scripts/build_template.py` so the template lists match.
 
 ### Publish an approved project
 
@@ -77,11 +114,11 @@ Fixed lists (intervention types, organisation types, target groups, coordination
 
 ### Replace the boundaries
 
-The map uses geoBoundaries (gbOpen, CC BY 4.0), simplified, for illustration. To use the official OCHA boundaries, save the state-level (admin 1) GeoJSON in `data/boundaries/` and run:
+States and localities come from OCHA's administrative boundaries for Sudan, through geoBoundaries (CC BY 3.0 IGO); neighbouring countries from Natural Earth. To use files downloaded directly from OCHA on HDX, save the admin 1 and admin 2 GeoJSON files in `data/boundaries/` and run:
 
 ```
-npm install d3-geo topojson-server topojson-simplify topojson-client polylabel
-node scripts/build_geo.js data/boundaries/<file>.geojson
+npm install d3-geo topojson-server topojson-simplify topojson-client polylabel world-atlas@2.0.2
+node scripts/build_geo.js data/boundaries/<admin1>.geojson data/boundaries/<admin2>.geojson
 ```
 
 State names are matched in `NAME_FIX` at the top of `scripts/build_geo.js`.
@@ -95,6 +132,7 @@ State names are matched in `NAME_FIX` at the top of `scripts/build_geo.js`.
 - Funding towards durable solutions is budget times share, unless the organisation gives an amount.
 - Status follows the dates and is worked out in the browser each day.
 - Fields that are not reported are left empty.
+- This is not an exhaustive list of projects contributing to durable solutions in Sudan; it shows only projects reported to the DSWG.
 - Focal point names and emails are never published. Every project shows dswg.sd@undp.org as its contact.
 
 ## Publish with GitHub Pages
@@ -109,7 +147,9 @@ To embed on sudan.un.org:
 
 ## Credits
 
-- Boundaries: [geoBoundaries](https://www.geoboundaries.org), CC BY 4.0.
+- Icons: [OCHA Humanitarian Icons](https://brand.unocha.org/d/xEPytAUjC3sH/icons), released for free use.
+- Boundaries: OCHA administrative boundaries for Sudan via [geoBoundaries](https://www.geoboundaries.org), CC BY 3.0 IGO; [Natural Earth](https://www.naturalearthdata.com), public domain.
+- Agency logos belong to their organisations.
 - Excel export: [SheetJS Community Edition](https://sheetjs.com), Apache 2.0.
 - Typeface: IBM Plex Sans, SIL Open Font License.
 

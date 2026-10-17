@@ -5,27 +5,38 @@
   const { esc, CRITERIA, STATES } = SF;
   const form = document.getElementById("project-form");
   const $ = (id) => document.getElementById(id);
+  const MAX_PHOTOS = 3, MAX_BYTES = 1024 * 1024;
   let correcting = null;
+  let ORGS = [], LOCALITIES = {};
+  let partners = [];
+  let photos = [];
 
-  /* ---------- build the choice lists ---------- */
+  /* ---------- static lists ---------- */
   $("itypes").innerHTML = SF.INTERVENTION_TYPES.map((t, i) =>
     `<label><input type="checkbox" name="itypes" value="${esc(t)}" id="it-${i}"> ${esc(t)}</label>`).join("");
   $("states").innerHTML = STATES.map((s, i) =>
     `<label><input type="checkbox" name="states" value="${esc(s)}" id="st-${i}"> ${esc(s)}</label>`).join("");
   $("criteria").innerHTML = CRITERIA.map((c) =>
-    `<label class="crit-opt"><input type="checkbox" name="criteria" value="${c.n}"><i style="background:${c.color}"></i>
+    `<label class="crit-opt"><input type="checkbox" name="criteria" value="${c.n}"><span class="ci" style="background:${c.color}">${SF.critIcon(c.n)}</span>
       <span><b>${c.n}. ${esc(c.name)}</b><small>${esc(c.hint)}</small></span></label>`).join("");
   $("coordination").innerHTML += SF.COORDINATION_OPTIONS.map((o) => `<option>${esc(o)}</option>`).join("");
+  $("orgType").innerHTML += SF.ORG_TYPES.map((o) => `<option>${esc(o.key)}</option>`).join("");
+  $("leadership").innerHTML = SF.LEADERSHIP.map((l) => `<label><input type="checkbox" name="leadership" value="${l.key}"> ${esc(l.label)}</label>`).join("") +
+    `<label><input type="checkbox" name="leadership" value="none"> None of these</label>`;
   const PEOPLE = [{ key: "total", label: "Total" }, ...SF.TARGET_GROUPS];
   $("people").innerHTML = PEOPLE.map((g) =>
-    `<div class="fld"><label for="pp-${g.key}">${g.label}</label><input class="input" id="pp-${g.key}" name="pp-${g.key}" inputmode="numeric"></div>`).join("");
+    `<div class="fld"><label for="pp-${g.key}">${g.label}</label><input class="input" id="pp-${g.key}" name="pp-${g.key}" inputmode="numeric" autocomplete="off"></div>`).join("");
   document.querySelectorAll(".contact-email").forEach((e) => (e.textContent = SF.config.contactEmail));
   document.querySelectorAll(".contact-link").forEach((a) => { a.href = `mailto:${SF.config.contactEmail}`; a.textContent = SF.config.contactEmail; });
+  $("template-link").href = SF.config.templateUrl;
+  $("hdx-link").href = SF.config.hdxAdminUrl;
+  $("multi-ico").innerHTML = SF.icons.sheet;
+  $("photo-ico").innerHTML = SF.icon("photo");
 
   /* ---------- helpers ---------- */
+  const digits = (v) => String(v || "").replace(/[^\d.]/g, "");
   const num = (v) => {
-    if (v == null) return null;
-    const s = String(v).replace(/[,\s$]/g, "");
+    const s = digits(v);
     if (s === "") return null;
     const n = Number(s);
     return isFinite(n) ? n : NaN;
@@ -38,21 +49,148 @@
     const [y, m] = v.split("-").map(Number);
     return SF.fmtMonth(new Date(y, m - 1, 1));
   };
+  const orgLabel = (o) => (o.acronym === o.name ? o.name : `${o.acronym}, ${o.name}`);
+  const findOrg = (txt) => {
+    const t = (txt || "").trim().toLowerCase();
+    return ORGS.find((o) => o.acronym.toLowerCase() === t || o.name.toLowerCase() === t || orgLabel(o).toLowerCase() === t || (o.aliases || []).some((a) => a.toLowerCase() === t));
+  };
 
+  /* ---------- organisation type, then name ---------- */
+  function fillLead(type, value) {
+    const sel = $("lead");
+    if (!type) { sel.disabled = true; sel.innerHTML = `<option value="">Choose the organisation type first</option>`; syncLead(); return; }
+    const list = ORGS.filter((o) => o.type === type);
+    sel.disabled = false;
+    sel.innerHTML = `<option value="">Choose one</option>` + list.map((o) => `<option value="${esc(o.acronym)}">${esc(orgLabel(o))}</option>`).join("") +
+      `<option value="__other">Other (not listed)</option>`;
+    if (value) sel.value = value;
+    syncLead();
+  }
+  function syncLead() {
+    const other = $("lead").value === "__other";
+    $("lead-other-fld").hidden = !other;
+    const t = $("orgType").value;
+    $("leadership-fld").hidden = !(t === "National NGO" || t === "Other");
+    if ($("leadership-fld").hidden) form.querySelectorAll('input[name="leadership"]').forEach((i) => (i.checked = false));
+  }
+  $("orgType").addEventListener("change", () => fillLead($("orgType").value));
+  $("lead").addEventListener("change", syncLead);
+  $("leadership").addEventListener("change", (e) => {
+    if (e.target.value === "none" && e.target.checked) form.querySelectorAll('input[name="leadership"]:not([value="none"])').forEach((i) => (i.checked = false));
+    else if (e.target.checked) form.querySelector('input[name="leadership"][value="none"]').checked = false;
+  });
+  const leadName = () => ($("lead").value === "__other" ? $("leadOther").value.trim() : $("lead").value);
+
+  /* ---------- implementing partners (pick from the list or type) ---------- */
+  function renderPartners() {
+    const box = $("partner-box"), input = $("partner-input");
+    box.querySelectorAll(".ch").forEach((c) => c.remove());
+    partners.forEach((p, i) => {
+      const ch = document.createElement("span");
+      ch.className = "ch";
+      ch.innerHTML = `${esc(p)}<button type="button" aria-label="Remove ${esc(p)}">&times;</button>`;
+      ch.querySelector("button").addEventListener("click", () => { partners.splice(i, 1); renderPartners(); });
+      box.insertBefore(ch, input);
+    });
+  }
+  function addPartner(txt) {
+    const t = (txt || "").replace(/,$/, "").trim();
+    if (!t) return;
+    const o = findOrg(t);
+    const name = o ? o.acronym : t;
+    if (!partners.includes(name)) partners.push(name);
+    $("partner-input").value = "";
+    renderPartners();
+  }
+  $("partner-input").addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === ",") { e.preventDefault(); addPartner(e.target.value); }
+    else if (e.key === "Backspace" && !e.target.value && partners.length) { partners.pop(); renderPartners(); }
+  });
+  $("partner-input").addEventListener("input", (e) => { if (findOrg(e.target.value) && e.inputType === "insertReplacementText") addPartner(e.target.value); });
+  $("partner-input").addEventListener("change", (e) => { if (findOrg(e.target.value)) addPartner(e.target.value); });
+  $("partner-box").addEventListener("click", () => $("partner-input").focus());
+
+  /* ---------- states and localities ---------- */
+  function renderLocalities(keep) {
+    const host = $("loc-groups");
+    const prev = keep || checked("localities");
+    const nw = scope() === "nationwide";
+    const sts = nw ? [] : checked("states");
+    host.innerHTML = sts.map((st) => {
+      const list = LOCALITIES[st] || [];
+      return `<fieldset class="loc-group"><legend>${esc(st)}</legend>
+        <p class="loc-tools"><button type="button" class="link-btn" data-all="${esc(st)}">Select all</button> &nbsp; <button type="button" class="link-btn" data-none="${esc(st)}">Clear</button></p>
+        <div class="loc-grid">${list.map((l) => `<label><input type="checkbox" name="localities" value="${esc(l)}" data-state="${esc(st)}"${prev.includes(l) ? " checked" : ""}> ${esc(l)}</label>`).join("")}</div>
+      </fieldset>`;
+    }).join("");
+    $("loc-help").textContent = nw ? "Localities cannot be chosen for nationwide projects." : sts.length ? "Tick the localities where the project works, if you know them." : "Choose the states first; their localities appear here.";
+    $("loc-fld").classList.toggle("is-disabled", nw);
+    host.querySelectorAll("[data-all],[data-none]").forEach((b) => b.addEventListener("click", () => {
+      const st = b.dataset.all || b.dataset.none;
+      host.querySelectorAll(`input[data-state="${CSS.escape(st)}"]`).forEach((i) => (i.checked = !!b.dataset.all));
+    }));
+  }
+  function syncScope() {
+    const nw = scope() === "nationwide";
+    $("states-fld").classList.toggle("is-disabled", nw);
+    $("states-req").hidden = nw;
+    form.querySelectorAll('input[name="states"]').forEach((i) => { i.disabled = nw; if (nw) i.checked = false; });
+    renderLocalities();
+  }
+  form.querySelectorAll('input[name="scope"]').forEach((r) => r.addEventListener("change", syncScope));
+  $("states").addEventListener("change", () => {
+    if (!scope()) form.querySelector('input[name="scope"][value="states"]').checked = true;
+    renderLocalities();
+  });
+
+  /* ---------- budget and share ---------- */
+  function fmtBudgetInput() {
+    const el = $("budget");
+    const raw = el.value.replace(/[^\d]/g, "");
+    el.value = raw ? Number(raw).toLocaleString("en-US") : "";
+    updateDS();
+  }
   function updateDS() {
     const b = num($("budget").value), s = num($("share").value);
     $("dsAmount").value = b > 0 && s >= 0 && s <= 100 ? SF.fmtUSD((b * s) / 100) : "Calculated automatically";
   }
-  $("budget").addEventListener("input", updateDS);
-  $("share").addEventListener("input", updateDS);
+  $("budget").addEventListener("input", fmtBudgetInput);
+  $("share").addEventListener("input", () => {
+    const el = $("share");
+    let v = el.value.replace(/[^\d.]/g, "");
+    if (Number(v) > 100) v = "100";
+    el.value = v;
+    updateDS();
+  });
+  ["pp-total", "pp-idps", "pp-returnees", "pp-refugees", "pp-host", "pp-other"].forEach((id) => $(id).addEventListener("input", (e) => {
+    const raw = e.target.value.replace(/[^\d]/g, "");
+    e.target.value = raw ? Number(raw).toLocaleString("en-US") : "";
+  }));
 
-  function syncScope() {
-    const nw = scope() === "nationwide";
-    $("states-fld").style.opacity = nw ? 0.5 : 1;
-    $("states-req").hidden = nw;
-    form.querySelectorAll('input[name="states"]').forEach((i) => { i.disabled = nw; if (nw) i.checked = false; });
+  /* ---------- photos ---------- */
+  function renderPhotos() {
+    $("photo-list").innerHTML = photos.map((p, i) => `<div class="photo-item"><img src="${p.url}" alt=""><div><span title="${esc(p.file.name)}">${esc(p.file.name)}</span><button type="button" class="link-btn" data-rm="${i}">Remove</button></div></div>`).join("");
+    $("photo-list").querySelectorAll("[data-rm]").forEach((b) => b.addEventListener("click", () => {
+      URL.revokeObjectURL(photos[Number(b.dataset.rm)].url);
+      photos.splice(Number(b.dataset.rm), 1);
+      renderPhotos();
+    }));
+    $("photo-consent-fld").hidden = photos.length === 0;
   }
-  form.querySelectorAll('input[name="scope"]').forEach((r) => r.addEventListener("change", syncScope));
+  $("photos").addEventListener("change", (e) => {
+    const msgs = [];
+    [...e.target.files].forEach((f) => {
+      if (!/^image\/(jpeg|png)$/.test(f.type)) msgs.push(`${f.name} is not a JPG or PNG image.`);
+      else if (f.size > MAX_BYTES) msgs.push(`${f.name} is ${(f.size / 1048576).toFixed(1)} MB. Each photo must be under 1 MB.`);
+      else if (photos.length >= MAX_PHOTOS) msgs.push(`Only ${MAX_PHOTOS} photos can be added. ${f.name} was not added.`);
+      else photos.push({ file: f, url: URL.createObjectURL(f) });
+    });
+    e.target.value = "";
+    renderPhotos();
+    const fld = form.querySelector('[data-f="photos"]');
+    fld.querySelector(".err[data-gen]")?.remove();
+    if (msgs.length) { const m = document.createElement("div"); m.className = "err"; m.dataset.gen = "1"; m.textContent = msgs.join(" "); fld.appendChild(m); }
+  });
 
   /* ---------- validation ---------- */
   function validate() {
@@ -61,8 +199,9 @@
     const v = (id) => $(id).value.trim();
     if (!v("name")) add("name", "Enter the project or programme name.");
     if (!checked("itypes").length) add("itypes", "Choose at least one intervention type.");
-    if (!v("lead")) add("lead", "Enter the lead organisation.");
     if (!v("orgType")) add("orgType", "Choose the organisation type.");
+    if (!v("lead")) add("lead", "Choose the lead organisation.");
+    if ($("lead").value === "__other" && !v("leadOther")) add("leadOther", "Enter the name of the organisation.");
     if (!v("fpName")) add("fpName", "Enter the focal point's name.");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("fpEmail"))) add("fpEmail", "Enter a valid focal point email address.");
     if (!scope()) add("scope", "Choose the geographic scope.");
@@ -76,7 +215,6 @@
     if (b == null || isNaN(b) || b <= 0) add("budget", "Enter the total budget in US dollars, as a number above 0.");
     const s = num(v("share"));
     if (s == null || isNaN(s) || s < 0 || s > 100) add("share", "Enter the share as a number from 0 to 100.");
-    if (!v("donor")) add("donor", "Enter the donor or funding source.");
     let peopleErr = "";
     const pv = PEOPLE.map((g) => num($(`pp-${g.key}`).value));
     if (pv.some((x) => x != null && (isNaN(x) || x < 0 || !Number.isInteger(x)))) peopleErr = "People reached must be whole numbers.";
@@ -84,15 +222,14 @@
     $("people-err").hidden = !peopleErr;
     $("people-err").textContent = peopleErr;
     if (peopleErr) add("people", peopleErr);
+    if (photos.length && !$("photoConsent").checked) add("photoConsent", "Confirm you have consent to publish the photos, or remove them.");
     if (!$("consent").checked) add("consent", "Confirm the information can be published.");
 
-    form.querySelectorAll(".fld").forEach((f) => { f.classList.remove("has-err"); f.querySelector(".err[data-gen]")?.remove(); });
-    form.querySelectorAll(".choice-pills").forEach((f) => f.classList.remove("has-err"));
+    form.querySelectorAll(".fld").forEach((f) => { f.classList.remove("has-err"); if (f.dataset.f !== "photos") f.querySelector(".err[data-gen]")?.remove(); });
     errors.forEach((e) => {
       const fld = form.querySelector(`[data-f="${e.f}"]`);
       if (!fld) return;
       fld.classList.add("has-err");
-      fld.querySelector(".choice-pills")?.classList.add("has-err");
       const m = document.createElement("div");
       m.className = "err"; m.dataset.gen = "1"; m.textContent = e.msg;
       fld.appendChild(m);
@@ -106,14 +243,29 @@
     return errors.length === 0;
   }
 
+  // clear a field's error as soon as it is changed
+  const clearErr = (e) => {
+    const fld = e.target.closest(".fld.has-err");
+    if (!fld) return;
+    fld.classList.remove("has-err");
+    if (fld.dataset.f !== "photos") fld.querySelector(".err[data-gen]")?.remove();
+  };
+  form.addEventListener("input", clearErr);
+  form.addEventListener("change", clearErr);
+
   /* ---------- email ---------- */
   function buildEmail() {
     const v = (id) => $(id).value.trim();
     const b = num(v("budget")), s = num(v("share"));
+    const leadOrg = findOrg($("lead").value);
+    const lead = $("lead").value === "__other" ? `${v("leadOther")} (not in the list)` : leadOrg ? orgLabel(leadOrg) : v("lead");
     const people = PEOPLE.map((g) => `${g.label}: ${v(`pp-${g.key}`)}`).join("; ");
+    const leadership = checked("leadership").map((k) => (SF.LEADERSHIP.find((l) => l.key === k) || { label: "None of these" }).label).join("; ");
+    const locs = checked("localities");
     const lines = [
-      correcting ? `SOLUTIONS FOOTPRINT: CORRECTION TO A PUBLISHED PROJECT` : `SOLUTIONS FOOTPRINT: NEW PROJECT SUBMISSION`,
-      correcting ? `Published project: ${correcting.name} (ID ${correcting.id})` : null,
+      correcting ? "SOLUTIONS FOOTPRINT: CORRECTION TO A PUBLISHED PROJECT" : "SOLUTIONS FOOTPRINT: NEW PROJECT SUBMISSION",
+      correcting ? `Project number: ${correcting.ref || correcting.id}` : null,
+      correcting ? `Published name: ${correcting.name}` : null,
       "",
       "1. ABOUT THE PROJECT",
       `Project or programme name: ${v("name")}`,
@@ -121,16 +273,17 @@
       `Intervention type: ${checked("itypes").join("; ")}`,
       "",
       "2. WHO IS DOING IT",
-      `Lead organisation: ${v("lead")}`,
       `Organisation type: ${v("orgType")}`,
-      `Implementing partners: ${v("partners")}`,
+      `Lead organisation: ${lead}`,
+      leadership ? `Organisation leadership: ${leadership}` : null,
+      `Implementing partners: ${partners.join("; ")}`,
       `Focal point name (not published): ${v("fpName")}`,
       `Focal point email (not published): ${v("fpEmail")}`,
       "",
       "3. WHERE",
       `Geographic scope: ${scope() === "nationwide" ? "Nationwide" : "One or more states"}`,
       `States: ${checked("states").join("; ")}`,
-      `Localities: ${v("localities")}`,
+      `Localities: ${locs.join("; ")}`,
       "",
       "4. IASC CRITERIA",
       `Criteria: ${checked("criteria").map((n) => `${n}. ${CRITERIA[n - 1].name}`).join("; ")}`,
@@ -140,21 +293,27 @@
       `Start date: ${fmtMonthValue(v("start"))}`,
       `End date: ${fmtMonthValue(v("end"))}`,
       `Status: ${v("status")}`,
-      `Total budget (USD): ${SF.fmtUSD(b)}`,
-      `Share towards durable solutions: ${s}%`,
-      `Funding towards durable solutions (calculated): ${SF.fmtUSD((b * s) / 100)}`,
+      `Total budget: ${SF.fmtUSD(b)}`,
+      `Durable solutions share (self-assessed): ${s}%`,
+      `Durable solutions funding (calculated): ${SF.fmtUSD((b * s) / 100)}`,
       `Donor or funding source: ${v("donor")}`,
       "",
       "6. PEOPLE REACHED, PLANNED",
       people,
       "",
-      "7. ANYTHING ELSE",
+      "7. PHOTOS",
+      photos.length ? `Attached to this email: ${photos.map((p) => p.file.name).join("; ")}` : "None",
+      photos.length ? "Consent from the people shown to publish the photos: Yes" : null,
+      "",
+      "8. ANYTHING ELSE",
       `Remarks: ${v("remarks")}`,
       "Consent to publish on the United Nations in Sudan website: Yes",
       "",
       `Sent from the Solutions Footprint form on ${SF.fmtDateLong(new Date())}.`,
     ].filter((l) => l !== null);
-    const subject = `${correcting ? "Correction" : "New project"} for Solutions Footprint: ${v("name")}`.slice(0, 150);
+    const subject = (correcting
+      ? `Correction to ${correcting.ref || "project"} for Solutions Footprint: ${v("name")}`
+      : `New project for Solutions Footprint: ${v("name")}`).slice(0, 160);
     const body = lines.join("\r\n");
     const href = `mailto:${SF.config.contactEmail}?cc=${encodeURIComponent(v("fpEmail"))}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     return { subject, body, href };
@@ -167,7 +326,12 @@
     $("done-subject").textContent = mail.subject;
     $("done-text").value = mail.body;
     $("reopen").href = mail.href;
+    const note = $("attach-note");
+    note.hidden = !photos.length;
+    note.innerHTML = photos.length ? `${SF.icon("photo")}<span><b>Remember to attach your photos</b> to the email before you press Send: ${photos.map((p) => esc(p.file.name)).join(", ")}. The website cannot attach them for you.</span>` : "";
+    note.querySelector("svg")?.setAttribute("style", "width:22px;height:22px;flex:none");
     form.hidden = true;
+    $("multi-box").hidden = true;
     $("done").hidden = false;
     $("done").scrollIntoView({ behavior: "smooth", block: "start" });
     window.location.href = mail.href;
@@ -179,33 +343,54 @@
     $("copy-btn").textContent = "Copied";
     setTimeout(() => ($("copy-btn").textContent = "Copy the text"), 2000);
   });
-  $("edit-btn").addEventListener("click", () => { $("done").hidden = true; form.hidden = false; });
+  $("edit-btn").addEventListener("click", () => { $("done").hidden = true; form.hidden = false; $("multi-box").hidden = false; });
+  $("another-btn").addEventListener("click", () => {
+    // keep who is doing it and the focal point; clear the project itself
+    const keep = { orgType: $("orgType").value, lead: $("lead").value, leadOther: $("leadOther").value, fpName: $("fpName").value, fpEmail: $("fpEmail").value, leadership: checked("leadership") };
+    form.reset();
+    partners = []; renderPartners();
+    photos.forEach((p) => URL.revokeObjectURL(p.url)); photos = []; renderPhotos();
+    correcting = null;
+    $("correcting").hidden = true;
+    $("form-title").textContent = "Add your project";
+    $("orgType").value = keep.orgType; fillLead(keep.orgType, keep.lead);
+    $("leadOther").value = keep.leadOther; $("fpName").value = keep.fpName; $("fpEmail").value = keep.fpEmail;
+    form.querySelectorAll('input[name="leadership"]').forEach((i) => (i.checked = keep.leadership.includes(i.value)));
+    syncScope(); updateDS();
+    history.replaceState(null, "", "add.html");
+    $("done").hidden = true; form.hidden = false; $("multi-box").hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    $("name").focus();
+  });
 
   /* ---------- "Suggest a correction": prefill from the published data ---------- */
-  async function prefill(id) {
-    let data;
-    try { data = await SF.loadJSON(SF.config.dataUrl); } catch { return; }
-    const p = data.projects.find((x) => x.id === id);
-    if (!p) return;
+  function prefill(p) {
     correcting = p;
-    document.title = `Suggest a correction | Solutions Footprint`;
+    document.title = "Suggest a correction | Solutions Footprint";
     $("form-title").textContent = "Suggest a correction";
     $("form-lede").innerHTML = `Change what is wrong or missing for <strong>${esc(p.name)}</strong>, then submit. DSU reviews every correction before it is published. Fields marked <span class="req">*</span> are required.`;
+    $("correcting").hidden = false;
+    $("correcting").textContent = `Correcting project ${p.ref || p.id}`;
+    $("multi-box").hidden = true;
     const set = (id, v) => { if (v != null) $(id).value = v; };
-    set("name", p.name); set("description", p.description); set("lead", p.lead);
-    set("orgType", p.orgType || ""); set("partners", (p.partners || []).join(", "));
-    set("localities", (p.localities || []).join(", "));
+    set("name", p.name); set("description", p.description);
+    const lo = findOrg(p.lead);
+    const type = p.orgType || (lo && lo.type) || "";
+    $("orgType").value = type;
+    if (lo && lo.type === type) fillLead(type, lo.acronym);
+    else { fillLead(type, "__other"); set("leadOther", p.lead); }
+    form.querySelectorAll('input[name="leadership"]').forEach((i) => (i.checked = (p.leadership || []).includes(i.value)));
+    partners = (p.partners || []).slice(); renderPartners();
     if (p.coordination && ![...$("coordination").options].some((o) => o.value === p.coordination)) {
       $("coordination").insertAdjacentHTML("beforeend", `<option>${esc(p.coordination)}</option>`);
     }
     set("coordination", p.coordination || "");
     set("start", p.start ? p.start.slice(0, 7) : ""); set("end", p.end ? p.end.slice(0, 7) : "");
-    const status = p.reportedStatus && ["Ongoing", "Pipeline", "Ended"].includes(p.reportedStatus) ? p.reportedStatus : "";
-    set("status", status);
+    set("status", ["Ongoing", "Pipeline", "Ended"].includes(p.reportedStatus) ? p.reportedStatus : "");
     set("budget", p.budget != null ? Math.round(p.budget).toLocaleString("en-US") : "");
     set("share", p.share != null ? Math.round(p.share * 1000) / 10 : "");
     set("donor", p.donor); set("remarks", p.remarks);
-    PEOPLE.forEach((g) => set(`pp-${g.key}`, p.people && p.people[g.key] != null ? p.people[g.key] : ""));
+    PEOPLE.forEach((g) => set(`pp-${g.key}`, p.people && p.people[g.key] != null ? Number(p.people[g.key]).toLocaleString("en-US") : ""));
     const tick = (name, vals) => form.querySelectorAll(`input[name="${name}"]`).forEach((i) => (i.checked = vals.includes(i.value)));
     tick("itypes", p.interventionTypes || []);
     tick("states", p.states || []);
@@ -213,11 +398,21 @@
     const sc = form.querySelector(`input[name="scope"][value="${p.nationwide ? "nationwide" : "states"}"]`);
     if (sc) sc.checked = true;
     syncScope();
+    renderLocalities(p.localities || []);
     updateDS();
   }
 
+  /* ---------- start ---------- */
   SF.renderHeader("add");
-  SF.loadJSON(SF.config.dataUrl).then((d) => SF.renderFooter(d.lastUpdated)).catch(() => SF.renderFooter());
-  const params = new URLSearchParams(location.search);
-  if (params.get("correct")) prefill(params.get("correct"));
+  Promise.all([SF.loadJSON(SF.config.orgsUrl), SF.loadJSON(SF.config.localitiesUrl), SF.loadJSON(SF.config.dataUrl).catch(() => null)])
+    .then(([orgs, locs, data]) => {
+      ORGS = orgs.organisations;
+      LOCALITIES = locs.states;
+      $("partner-list").innerHTML = ORGS.map((o) => `<option value="${esc(orgLabel(o))}">`).join("");
+      SF.renderFooter(data && data.lastUpdated);
+      const id = new URLSearchParams(location.search).get("correct");
+      const p = id && data && data.projects.find((x) => x.id === id);
+      if (p) prefill(p);
+    })
+    .catch(() => SF.renderFooter());
 })();

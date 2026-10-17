@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Add your project | Solutions Footprint | Durable Solutions Hub | Sudan</title>
   <meta name="description" content="Submit a project that contributes to durable solutions in Sudan for review by the Durable Solutions Unit.">
+  <script>try{var t=localStorage.getItem("sf-theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,6 +19,13 @@
     <div>
       <h1 id="form-title">Add your project</h1>
       <p class="lede" id="form-lede">Tell us about a project that helps displaced people, returnees, refugees or host communities move towards durable solutions. Fields marked <span class="req">*</span> are required.</p>
+      <div class="correcting" id="correcting" hidden></div>
+
+      <div class="multi-box" id="multi-box">
+        <span id="multi-ico"></span>
+        <div class="grow"><b>Adding several projects?</b>Download the Excel template, fill in one row per project, and email it to <span class="contact-email">dswg.sd@undp.org</span>.</div>
+        <a class="btn" id="template-link" href="#" download>Download the template</a>
+      </div>
 
       <div class="error-summary" id="error-summary" role="alert" hidden></div>
 
@@ -43,23 +51,30 @@
         <section class="card form-section">
           <h2><span class="n">2.</span> Who is doing it</h2>
           <div class="fgrid c2">
-            <div class="fld" data-f="lead">
-              <label for="lead">Lead organisation <span class="req">*</span></label>
-              <input class="input" id="lead" name="lead" required placeholder="For example IOM">
-            </div>
             <div class="fld" data-f="orgType">
               <label for="orgType">Organisation type <span class="req">*</span></label>
-              <select class="input" id="orgType" name="orgType" required>
-                <option value="">Choose one</option>
-                <option>UN agency</option><option>International NGO</option><option>National NGO</option><option>Other</option>
-              </select>
+              <select class="input" id="orgType" name="orgType" required><option value="">Choose one</option></select>
+            </div>
+            <div class="fld" data-f="lead">
+              <label for="lead">Lead organisation <span class="req">*</span></label>
+              <select class="input" id="lead" name="lead" required disabled><option value="">Choose the organisation type first</option></select>
             </div>
           </div>
-          <div class="fgrid" style="margin-top:14px">
-            <div class="fld">
-              <label for="partners">Implementing partners</label>
-              <input class="input" id="partners" name="partners" placeholder="Separate names with commas">
+          <div class="fld" data-f="leadOther" id="lead-other-fld" style="margin-top:14px" hidden>
+            <label for="leadOther">Name of the organisation <span class="req">*</span></label>
+            <input class="input" id="leadOther" name="leadOther" placeholder="Full name, and acronym if any">
+          </div>
+          <div class="fld" id="leadership-fld" style="margin-top:14px" hidden>
+            <span class="lbl" id="leadership-l">Is your organisation&hellip; <span style="color:var(--muted);font-weight:400">(choose all that apply)</span></span>
+            <div class="check-col" id="leadership" role="group" aria-labelledby="leadership-l"></div>
+          </div>
+          <div class="fld" data-f="partners" style="margin-top:14px">
+            <label for="partner-input">Implementing partners</label>
+            <div class="chips-input" id="partner-box">
+              <input id="partner-input" list="partner-list" placeholder="Type to search, then press Enter. Not listed? Type the name." autocomplete="off">
             </div>
+            <datalist id="partner-list"></datalist>
+            <div class="help">Pick from the list, or type a name that is not listed and press Enter.</div>
           </div>
           <div class="fgrid c2" style="margin-top:14px">
             <div class="fld" data-f="fpName">
@@ -89,9 +104,11 @@
               <span class="lbl" id="states-l">States <span class="req" id="states-req">*</span></span>
               <div class="state-grid" id="states" role="group" aria-labelledby="states-l"></div>
             </div>
-            <div class="fld">
-              <label for="localities">Localities</label>
-              <input class="input" id="localities" name="localities" placeholder="For example Wad Madani, Al Hasahisa">
+            <div class="fld" id="loc-fld">
+              <span class="lbl">Localities</span>
+              <div class="help" id="loc-help" style="margin-top:0">Choose the states first; their localities appear here. Not available for nationwide projects.</div>
+              <div id="loc-groups"></div>
+              <div class="help">Locality names follow OCHA's administrative boundaries for Sudan (admin 2). <a id="hdx-link" href="#" target="_blank" rel="noopener">See the OCHA reference on HDX</a>.</div>
             </div>
           </div>
         </section>
@@ -126,21 +143,25 @@
             </div>
             <div class="fld" data-f="budget">
               <label for="budget">Total budget (USD) <span class="req">*</span></label>
-              <input class="input" id="budget" name="budget" inputmode="decimal" required placeholder="For example 2,500,000">
+              <div class="affix"><span class="pre">$</span><input class="input" id="budget" name="budget" inputmode="numeric" required placeholder="2,500,000" autocomplete="off"></div>
             </div>
             <div class="fld" data-f="share">
-              <label for="share">Share towards durable solutions (%) <span class="req">*</span></label>
-              <input class="input" id="share" name="share" inputmode="decimal" required placeholder="0 to 100">
+              <label for="share">Durable solutions share <span class="req">*</span>
+                <span class="tip"><button type="button" class="tip-btn" aria-label="How to estimate the share" aria-describedby="share-tip">i</button>
+                  <span class="tip-pop" role="tooltip" id="share-tip"><b>How to estimate the share</b>For now, this is a self-assessment by your organisation. Estimate what percentage of the total budget goes to activities that help people move towards durable solutions, such as restoring services, livelihoods, housing, documentation or social cohesion. Activities that meet only short-term needs, such as food distribution or water trucking, should not be counted. If the whole project contributes, enter 100. DSU may follow up to agree a common method later.</span>
+                </span>
+              </label>
+              <div class="affix suffix"><input class="input" id="share" name="share" inputmode="decimal" required placeholder="0 to 100" autocomplete="off"><span class="suf">%</span></div>
             </div>
             <div class="fld">
-              <label for="dsAmount">Funding towards durable solutions</label>
+              <label for="dsAmount">Durable solutions funding</label>
               <input class="input readonly" id="dsAmount" readonly tabindex="-1" value="Calculated automatically">
             </div>
           </div>
           <div class="fgrid" style="margin-top:14px">
-            <div class="fld" data-f="donor">
-              <label for="donor">Donor or funding source <span class="req">*</span></label>
-              <input class="input" id="donor" name="donor" required>
+            <div class="fld">
+              <label for="donor">Donor or funding source</label>
+              <input class="input" id="donor" name="donor" placeholder="Optional">
             </div>
           </div>
         </section>
@@ -153,7 +174,23 @@
         </section>
 
         <section class="card form-section">
-          <h2><span class="n">7.</span> Anything else</h2>
+          <h2><span class="n">7.</span> Photos <span style="font-weight:400;color:var(--muted);font-size:15px">(optional)</span></h2>
+          <div class="fld" data-f="photos">
+            <div class="photo-drop">
+              <span id="photo-ico"></span>
+              <div style="flex:1;min-width:220px;font-size:14px;color:var(--ink-2)">Up to 3 photos of the project, JPG or PNG, under 1 MB each. Photos make your project stand out on the map.</div>
+              <label class="btn" for="photos">Choose photos</label>
+              <input type="file" id="photos" accept="image/jpeg,image/png" multiple class="sr-only">
+            </div>
+            <div class="photo-list" id="photo-list"></div>
+          </div>
+          <div class="fld" data-f="photoConsent" id="photo-consent-fld" hidden>
+            <label class="consent"><input type="checkbox" id="photoConsent"> <span>I have consent from the people shown to publish these photos. <span class="req">*</span></span></label>
+          </div>
+        </section>
+
+        <section class="card form-section">
+          <h2><span class="n">8.</span> Anything else</h2>
           <div class="fld">
             <label for="remarks">Remarks</label>
             <textarea class="input" id="remarks" name="remarks" maxlength="800"></textarea>
@@ -172,12 +209,14 @@
       <section class="card done-panel" id="done" hidden aria-live="polite">
         <h2>Your email is ready to send</h2>
         <p>Your email program should now show a message to <strong class="contact-email">dswg.sd@undp.org</strong> with your answers and a copy to you. Please check it and press <strong>Send</strong>. The project is not submitted until the email is sent.</p>
+        <div class="attach-note" id="attach-note" hidden></div>
         <p>If no email opened, copy the text below and send it to <a class="contact-link" href="#">dswg.sd@undp.org</a> with the subject shown.</p>
         <p><strong>Subject:</strong> <span id="done-subject"></span></p>
         <textarea class="input" id="done-text" readonly aria-label="Submission text"></textarea>
         <div class="form-actions" style="margin-top:12px">
           <button type="button" class="btn btn-primary" id="copy-btn">Copy the text</button>
           <a class="btn" id="reopen" href="#">Open the email again</a>
+          <button type="button" class="btn" id="another-btn">Add another project</button>
           <button type="button" class="link-btn" id="edit-btn">Edit my answers</button>
         </div>
       </section>
@@ -187,7 +226,7 @@
       <div class="card side-card">
         <h2>What happens next</h2>
         <ol class="steps">
-          <li><span class="dot">1</span><span><b>You submit</b>Your email program opens with your answers, addressed to the DSWG mailbox, with a copy to you. You press Send.</span></li>
+          <li><span class="dot">1</span><span><b>You submit</b>Your email program opens with your answers, addressed to the DSWG mailbox, with a copy to you. Attach any photos, then press Send.</span></li>
           <li><span class="dot">2</span><span><b>DSU reviews</b>The Durable Solutions Unit checks the entry and may contact you with questions.</span></li>
           <li><span class="dot">3</span><span><b>Published</b>Once approved, the project appears on the map with the next update. DSU tells you when it is live.</span></li>
         </ol>
@@ -201,6 +240,7 @@
   <footer id="site-footer"></footer>
 
   <script src="assets/js/common.js"></script>
+  <script src="assets/js/icons.js"></script>
   <script src="assets/js/form.js"></script>
 </body>
 </html>

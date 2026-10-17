@@ -1,12 +1,16 @@
 /* Shared settings and helpers for every page. */
 "use strict";
 
-const SF = (window.SF = {});
+const SF = (window.SF = window.SF || {});
 
 SF.config = {
   contactEmail: "dswg.sd@undp.org",
   dataUrl: "data/projects.json",
   geoUrl: "data/geo.json",
+  orgsUrl: "data/organisations.json",
+  localitiesUrl: "data/localities.json",
+  templateUrl: "assets/templates/solutions-footprint-projects-template.xlsx",
+  hdxAdminUrl: "https://data.humdata.org/dataset/cod-ab-sdn",
   githubUrl: "https://github.com/mdfazlulkarim",
   linkedinUrl: "https://www.linkedin.com/in/fazlulkarim/",
 };
@@ -21,7 +25,12 @@ SF.CRITERIA = [
   { n: 7, name: "Participation in public affairs", short: "Participation in public affairs", ring: "Participation", color: "#6250D6", hint: "Voice in local decisions, community groups" },
   { n: 8, name: "Access to effective remedies and justice", short: "Remedies and justice", ring: "Remedies and justice", color: "#E34948", hint: "Access to justice and redress for violations" },
 ];
-SF.GAP_COLOR = "#D6D5CF";
+SF.GAP_COLOR = "var(--gap)";
+SF.critIcon = (n, color) => {
+  const svg = (SF.OCHA && SF.OCHA[String(n)]) || "";
+  return color ? svg.replace("<svg ", `<svg style="color:${color}" `) : svg;
+};
+SF.icon = (key) => (SF.OCHA && SF.OCHA[key]) || "";
 
 SF.STATES = [
   "Aj Jazirah", "Blue Nile", "Central Darfur", "East Darfur", "Gedaref", "Kassala",
@@ -38,7 +47,15 @@ SF.ORG_TYPES = [
   { key: "UN agency", label: "UN agencies" },
   { key: "International NGO", label: "International NGOs" },
   { key: "National NGO", label: "National NGOs" },
+  { key: "Red Cross / Red Crescent", label: "Red Cross / Red Crescent" },
+  { key: "Authorities", label: "Authorities" },
   { key: "Other", label: "Other" },
+];
+SF.LEADERSHIP = [
+  { key: "WLO", label: "Women-led organisation (WLO)" },
+  { key: "RLO", label: "Refugee-led organisation (RLO)" },
+  { key: "YLO", label: "Youth-led organisation (YLO)" },
+  { key: "OPD", label: "Organisation of persons with disabilities (OPD)" },
 ];
 SF.TARGET_GROUPS = [
   { key: "idps", label: "IDPs" },
@@ -53,6 +70,17 @@ SF.COORDINATION_OPTIONS = [
   "Health Cluster", "Education Cluster", "WASH Cluster", "Food Security and Livelihoods Cluster",
   "Legal Aid Working Group", "Other",
 ];
+// Agency logos: full logo for the strip and pop-ups, square mark for small badges
+SF.LOGOS = {
+  IOM: { full: "assets/img/logos/IOM.png", mark: "assets/img/logos/IOM-mark.png", name: "International Organization for Migration" },
+  UNDP: { full: "assets/img/logos/UNDP.png", mark: "assets/img/logos/UNDP-mark.png", name: "United Nations Development Programme" },
+  UNFPA: { full: "assets/img/logos/UNFPA.png", mark: "assets/img/logos/UNFPA-mark.png", name: "United Nations Population Fund" },
+  UNHCR: { full: "assets/img/logos/UNHCR.png", mark: "assets/img/logos/UNHCR-mark.png", name: "United Nations High Commissioner for Refugees" },
+};
+SF.logoImg = (org, kind = "mark", cls = "") => {
+  const l = SF.LOGOS[org];
+  return l ? `<img src="${l[kind]}" alt="${SF.esc(org)}" class="${cls}" loading="lazy">` : `<span>${SF.esc(org)}</span>`;
+};
 
 /* ---------- dates ---------- */
 SF.today = (() => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); })();
@@ -73,7 +101,11 @@ SF.enrich = (p) => {
   p._end = SF.parseDate(p.end);
   p.status = SF.deriveStatus(p);
   p._endingSoon = p.status === "Ongoing" && p._end && p._end >= SF.today && p._end <= SF.addMonths(SF.today, 6);
-  p._orgs = [p.lead, ...(p.partners || [])].filter(Boolean);
+  p.partners = p.partners || [];
+  p.partnerTypes = p.partnerTypes || [];
+  p.leadership = p.leadership || [];
+  p.photos = p.photos || [];
+  p._orgs = [p.lead, ...p.partners].filter(Boolean);
   return p;
 };
 SF.deriveStatus = (p) => {
@@ -95,7 +127,7 @@ SF.fmtMoney = (v, opts = {}) => {
   if (a >= 1e3) return `$${(v / 1e3).toFixed(a >= 1e5 || opts.round ? 0 : 1).replace(/\.0$/, "")}K`;
   return `$${Math.round(v).toLocaleString("en-US")}`;
 };
-SF.fmtUSD = (v) => (v == null ? "" : `$${Math.round(v).toLocaleString("en-US")}`);
+SF.fmtUSD = (v) => (v == null || isNaN(v) ? "" : `$${Math.round(v).toLocaleString("en-US")}`);
 SF.fmtPct = (s) => (s == null ? "" : `${Math.round(s * 100)}%`);
 
 SF.esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -105,18 +137,59 @@ SF.loadJSON = async (url) => {
   if (!r.ok) throw new Error(`Could not load ${url}`);
   return r.json();
 };
+SF.toast = (msg) => {
+  const t = document.createElement("div");
+  t.className = "toast"; t.setAttribute("role", "status"); t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2200);
+};
+
+/* ---------- theme (light / dark) ---------- */
+SF.setTheme = (t) => {
+  document.documentElement.dataset.theme = t;
+  try { localStorage.setItem("sf-theme", t); } catch (e) { /* storage may be blocked */ }
+  document.dispatchEvent(new CustomEvent("sf-theme", { detail: t }));
+};
 
 /* ---------- header and footer, shared by all pages ---------- */
 SF.icons = {
   download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>',
   plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+  chevron: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>',
   globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>',
   clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>',
+  sheet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M4 15h16M10 3v18"/></svg>',
+  form: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>',
+  back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>',
+  link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>',
+  pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+  moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>',
+  sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
   github: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.6 5.6.6 11.9c0 5 3.3 9.3 7.8 10.8.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.5-1.5 7.8-5.8 7.8-10.8C23.4 5.6 18.3.5 12 .5z"/></svg>',
   linkedin: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg>',
 };
 
-SF.renderHeader = (active, opts = {}) => {
+/* The "Add your project" menu: one project (form) or several (Excel template) */
+SF.addMenuHTML = (id = "add") => `
+  <div class="dropdown">
+    <button class="btn btn-primary" id="${id}-btn" aria-haspopup="true" aria-expanded="false" aria-controls="${id}-menu">${SF.icons.plus}Add your project${SF.icons.chevron}</button>
+    <div class="dropdown-menu" id="${id}-menu" role="menu" hidden>
+      <a class="menu-item" role="menuitem" href="add.html"><span class="mi-ico">${SF.icons.form}</span><span><b>Add one project</b><small>Fill in a short online form.</small></span></a>
+      <a class="menu-item" role="menuitem" href="${SF.config.templateUrl}" download><span class="mi-ico">${SF.icons.sheet}</span><span><b>Add multiple projects</b><small>Download the Excel template, fill in one row per project and email it to ${SF.config.contactEmail}.</small></span></a>
+    </div>
+  </div>`;
+SF.bindDropdown = (id) => {
+  const btn = document.getElementById(`${id}-btn`), menu = document.getElementById(`${id}-menu`);
+  if (!btn || !menu) return;
+  const close = () => { menu.hidden = true; btn.setAttribute("aria-expanded", "false"); };
+  btn.addEventListener("click", (e) => { e.stopPropagation(); menu.hidden = !menu.hidden; btn.setAttribute("aria-expanded", String(!menu.hidden)); if (!menu.hidden) menu.querySelector("a,button")?.focus(); });
+  document.addEventListener("click", (e) => { if (!menu.contains(e.target)) close(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !menu.hidden) { close(); btn.focus(); } });
+  menu.addEventListener("click", () => setTimeout(close, 50));
+};
+
+SF.renderHeader = (active) => {
   const el = document.getElementById("site-header");
   if (!el) return;
   const nav = [
@@ -126,24 +199,12 @@ SF.renderHeader = (active, opts = {}) => {
     // { key: "gaps", href: "gaps.html", label: "Gaps" },
     { key: "about", href: "about.html", label: "About the data" },
   ];
-  const download = opts.download
-    ? `<div class="dropdown">
-         <button class="btn" id="dl-btn" aria-haspopup="true" aria-expanded="false">${SF.icons.download}Download data</button>
-         <div class="dropdown-menu" id="dl-menu" hidden>
-           <div class="hint">Projects matching the current filters</div>
-           <button type="button" data-dl="csv">CSV (.csv)</button>
-           <button type="button" data-dl="xlsx">Excel (.xlsx)</button>
-         </div>
-       </div>`
-    : "";
-  const add = active === "add"
-    ? `<a class="btn" href="index.html">Back to the map</a>`
-    : `<a class="btn btn-primary" href="add.html">${SF.icons.plus}Add your project</a>`;
+  const action = active === "add" ? `<a class="btn" href="index.html">Back to the map</a>` : SF.addMenuHTML("add");
   el.className = "site-header";
   el.innerHTML = `
     <div class="header-inner">
       <a class="brand" href="index.html" aria-label="Solutions Footprint home">
-        <img src="assets/img/un-sudan-logo.png" alt="United Nations Sudan" width="153" height="42">
+        <img class="brand-logo" src="assets/img/un-sudan-logo.png" alt="United Nations Sudan" width="153" height="42">
         <span class="brand-divider" aria-hidden="true"></span>
         <span>
           <span class="brand-kicker">Durable Solutions Hub | Sudan</span><br>
@@ -153,8 +214,22 @@ SF.renderHeader = (active, opts = {}) => {
       <nav class="main-nav" aria-label="Views">
         ${nav.map((n) => `<a href="${n.href}"${n.key === active ? ' aria-current="page"' : ""}>${n.label}</a>`).join("")}
       </nav>
-      <div class="header-actions">${download}${add}</div>
+      <div class="header-actions">
+        <button type="button" class="btn icon-toggle" id="theme-btn"></button>
+        ${action}
+      </div>
     </div>`;
+  const tb = document.getElementById("theme-btn");
+  const paint = () => {
+    const dark = document.documentElement.dataset.theme === "dark";
+    tb.innerHTML = dark ? SF.icons.sun : SF.icons.moon;
+    tb.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+    tb.title = dark ? "Light mode" : "Dark mode";
+  };
+  tb.addEventListener("click", () => SF.setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
+  document.addEventListener("sf-theme", paint);
+  paint();
+  SF.bindDropdown("add");
 };
 
 SF.renderFooter = (lastUpdated) => {
@@ -169,5 +244,6 @@ SF.renderFooter = (lastUpdated) => {
         <a href="${SF.config.githubUrl}" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">${SF.icons.github}</a>
         <a href="${SF.config.linkedinUrl}" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">${SF.icons.linkedin}</a>
       </span>
+      <span class="footer-credits">Icons: <a href="https://brand.unocha.org/d/xEPytAUjC3sH/icons" target="_blank" rel="noopener">OCHA Humanitarian Icons</a>, United Nations Office for the Coordination of Humanitarian Affairs. Boundaries: OCHA administrative boundaries for Sudan via geoBoundaries (CC BY 3.0 IGO), and Natural Earth. Agency logos belong to their organisations.</span>
     </div>`;
 };
