@@ -128,12 +128,14 @@
           <h2><span class="n">5.</span> When and how much</h2>
           <div class="fgrid c3">
             <div class="fld" data-f="start">
-              <label for="start">Start date <span class="req">*</span></label>
-              <input class="input" id="start" name="start" type="month" required placeholder="YYYY-MM">
+              <label for="start-m">Start date <span class="req">*</span></label>
+              <div class="ym"><select class="input" id="start-m" aria-label="Start date: month"><option value="">Month</option><option value="01">January</option><option value="02">February</option><option value="03">March</option><option value="04">April</option><option value="05">May</option><option value="06">June</option><option value="07">July</option><option value="08">August</option><option value="09">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select><select class="input" id="start-y" aria-label="Start date: year"><option value="">Year</option><option>2015</option><option>2016</option><option>2017</option><option>2018</option><option>2019</option><option>2020</option><option>2021</option><option>2022</option><option>2023</option><option>2024</option><option>2025</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option><option>2030</option><option>2031</option><option>2032</option><option>2033</option><option>2034</option><option>2035</option><option>2036</option><option>2037</option><option>2038</option><option>2039</option><option>2040</option></select></div>
+              <input type="hidden" id="start" name="start" value="">
             </div>
             <div class="fld" data-f="end">
-              <label for="end">End date <span class="req">*</span></label>
-              <input class="input" id="end" name="end" type="month" required placeholder="YYYY-MM">
+              <label for="end-m">End date <span class="req">*</span></label>
+              <div class="ym"><select class="input" id="end-m" aria-label="End date: month"><option value="">Month</option><option value="01">January</option><option value="02">February</option><option value="03">March</option><option value="04">April</option><option value="05">May</option><option value="06">June</option><option value="07">July</option><option value="08">August</option><option value="09">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select><select class="input" id="end-y" aria-label="End date: year"><option value="">Year</option><option>2015</option><option>2016</option><option>2017</option><option>2018</option><option>2019</option><option>2020</option><option>2021</option><option>2022</option><option>2023</option><option>2024</option><option>2025</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option><option>2030</option><option>2031</option><option>2032</option><option>2033</option><option>2034</option><option>2035</option><option>2036</option><option>2037</option><option>2038</option><option>2039</option><option>2040</option></select></div>
+              <input type="hidden" id="end" name="end" value="">
             </div>
             <div class="fld" data-f="status">
               <label for="status">Status <span class="req">*</span></label>

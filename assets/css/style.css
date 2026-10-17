@@ -724,3 +724,8 @@ textarea.input { min-height: 84px; resize: vertical; }
 .form-page.previewing > aside, .form-page.previewing #form-title, .form-page.previewing #form-lede, .form-page.previewing #correcting { display: none !important; }
 .hero .logo-card span { font-size: 26px; display: block; max-width: 320px; text-align: center; line-height: 1.2; }
 .pv-box .where dl, .pv-box .pop-dl { grid-template-columns: 130px minmax(0, 1fr); }
+
+.ym { display: grid; grid-template-columns: 1.3fr 1fr; gap: 8px; }
+.error-summary a { color: inherit; }
+.krisk { font-size: 12.5px; color: var(--ink-2); margin-top: 6px; }
+.krisk b { font-size: 18px; color: var(--warn-ink); margin-right: 2px; }

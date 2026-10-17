@@ -304,21 +304,32 @@
     // states: 18 squares
     const statesBody = `<div class="kdots" role="img" aria-label="${covered} of 18 states have projects">${STATES.map((_, i) => `<i class="${i < covered ? "" : "off"}"></i>`).join("")}</div>
       <div class="kleg"><span><b style="background:var(--map-none)"></b>${18 - covered} state${18 - covered === 1 ? "" : "s"} with no projects</span></div>`;
-    // DS funding: top donors
+    // DS funding: one bar split by donor (top 3, then the rest)
+    const SHORT = { "African Development Bank": "AfDB", "Peacebuilding Fund": "PBF", "Government of the Netherlands": "Netherlands",
+      "Netherlands Ministry of Foreign Affairs": "Netherlands MFA", "Sudan Humanitarian Fund": "SHF", "US Government (BHA)": "US BHA",
+      "Austrian Development Agency": "ADA", "Swiss Development Cooperation": "SDC", "UNOPS / Cities Alliance": "Cities Alliance",
+      "Japan Ministry of Foreign Affairs": "Japan MOFA", "German Federal Foreign Office": "Germany", "Government of Liechtenstein": "Liechtenstein" };
     const donors = new Map();
-    fundingList.forEach((p) => p.donor && donors.set(p.donor, (donors.get(p.donor) || 0) + p.dsFunding));
-    const topDonors = [...donors.entries()].sort((x, y) => y[1] - x[1]).slice(0, 3);
-    const fundBody = topDonors.length
-      ? `<div class="ktop">${topDonors.map(([d, v]) => `<div><span title="${esc(d)}">${esc(d)}</span><b>${SF.fmtMoney(v)}</b></div>`).join("")}</div>`
+    fundingList.forEach((p) => { const k = p.donor || "Donor not reported"; donors.set(k, (donors.get(k) || 0) + p.dsFunding); });
+    const sortedD = [...donors.entries()].sort((x, y) => y[1] - x[1]);
+    const top = sortedD.slice(0, 3), rest = sortedD.slice(3);
+    const restSum = rest.reduce((a2, x) => a2 + x[1], 0);
+    const dCol = ["#1d5fae", "#4485d2", "#73a5e0"];
+    const pctR = (v) => (ds ? Math.round((v / ds) * 100) : 0);
+    const dParts = top.map(([dn, v], i) => [`${SHORT[dn] || (dn.length > 16 ? dn.slice(0, 15) + "." : dn)} ${pctR(v)}%`, v, dCol[i], dn]);
+    if (rest.length) dParts.push([`${rest.length} other${rest.length === 1 ? "" : "s"} ${pctR(restSum)}%`, restSum, "var(--map-none)", rest.map((x) => x[0]).join(", ")]);
+    const fundBody = ds > 0
+      ? `<div class="kbar" role="img" aria-label="${esc(dParts.map((x) => x[0]).join(", "))}">${dParts.map((x) => `<i style="width:${(x[1] / ds) * 100}%;background:${x[2]}" title="${esc(x[3])}: ${SF.fmtMoney(x[1])}"></i>`).join("")}</div>
+        <div class="kleg">${dParts.map((x) => `<span title="${esc(x[3])}"><b style="background:${x[2]}"></b>${esc(x[0])}</span>`).join("")}</div>`
       : `<div class="kleg" style="margin-top:8px">No funding reported</div>`;
-    // ending: one bar per month, this month to six months ahead
-    const months = [];
-    for (let i = 0; i <= 6; i++) {
-      const m = new Date(SF.today.getFullYear(), SF.today.getMonth() + i, 1);
-      months.push({ m, n: soonList.filter((p) => p._end.getFullYear() === m.getFullYear() && p._end.getMonth() === m.getMonth()).length });
-    }
-    const mMax = Math.max(1, ...months.map((x) => x.n));
-    const endBody = `<div class="kmonths" role="img" aria-label="${esc(months.filter((x) => x.n).map((x) => `${x.n} in ${SF.fmtMonth(x.m)}`).join(", ") || "None")}">${months.map((x) => `<div title="${x.n} ending in ${SF.fmtMonth(x.m)}"><i style="height:${x.n ? Math.max(4, (x.n / mMax) * 26) : 1}px"></i>${SF.fmtMonth(x.m).slice(0, 3)}</div>`).join("")}</div>`;
+    // ending: funding at risk, and the share of ongoing projects affected
+    const ongoing = list.filter((p) => p.status === "Ongoing").length;
+    const atRisk = soonList.reduce((a2, p) => a2 + (p.dsFunding || 0), 0);
+    const endBody = soonList.length
+      ? `<div class="krisk">${atRisk > 0 ? `<b>${SF.fmtMoney(atRisk)}</b> towards durable solutions ends with them` : "No funding reported for these projects"}</div>
+        <div class="kbar"><i style="width:${ongoing ? (soonList.length / ongoing) * 100 : 0}%;background:#e2895f"></i></div>
+        <div class="kleg">${soonList.length} of ${ongoing} ongoing project${ongoing === 1 ? "" : "s"} (${ongoing ? Math.round((soonList.length / ongoing) * 100) : 0}%), by ${SF.fmtMonth(SF.addMonths(SF.today, 6))}</div>`
+      : `<div class="kleg" style="margin-top:8px">No projects end in the next 6 months</div>`;
     const cards = [
       { i: "reporting", l: "Projects", v: SF.fmtInt(list.length), body: projBody },
       { i: "partnership", l: "Organisations", v: SF.fmtInt(leads.size + partners.size), body: orgBody },

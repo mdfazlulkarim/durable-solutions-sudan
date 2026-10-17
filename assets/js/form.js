@@ -179,8 +179,8 @@
     if (!scope()) add("scope", "Choose the geographic scope.");
     if (scope() === "states" && !checked("states").length) add("states", "Choose at least one state.");
     if (!checked("criteria").length) add("criteria", "Choose at least one IASC criterion.");
-    if (!monthOk(v("start"))) add("start", "Enter the start month as YYYY-MM.");
-    if (!monthOk(v("end"))) add("end", "Enter the end month as YYYY-MM.");
+    if (!monthOk(v("start"))) add("start", "Choose the start month and year.");
+    if (!monthOk(v("end"))) add("end", "Choose the end month and year.");
     if (monthOk(v("start")) && monthOk(v("end")) && v("end") < v("start")) add("end", "The end date must be after the start date.");
     if (!v("status")) add("status", "Choose the status.");
     const b = num(v("budget"));
@@ -209,10 +209,28 @@
     if (errors.length) {
       sum.innerHTML = `<strong>Please check ${errors.length} field${errors.length === 1 ? "" : "s"}:</strong><ul style="margin:6px 0 0;padding-left:20px">${errors.map((e) => `<li>${esc(e.msg)}</li>`).join("")}</ul>`;
       sum.hidden = false;
-      sum.scrollIntoView({ behavior: "smooth", block: "start" });
+      sum.querySelectorAll("li").forEach((li, i) => {
+        const f = errors[i].f;
+        li.innerHTML = `<a href="#" data-goto="${f}">${li.textContent}</a>`;
+      });
+      sum.querySelectorAll("[data-goto]").forEach((a) => a.addEventListener("click", (ev) => { ev.preventDefault(); goTo(a.dataset.goto); }));
+      goTo(errors[0].f);
     } else sum.hidden = true;
     return errors.length === 0;
   }
+
+  // take the person straight to a field with an error
+  function goTo(f) {
+    const fld = form.querySelector(`[data-f="${f}"]`);
+    if (!fld) return;
+    fld.scrollIntoView({ behavior: "smooth", block: "center" });
+    const input = fld.querySelector("input:not([type=hidden]):not([disabled]), select:not([disabled]), textarea");
+    if (input) setTimeout(() => input.focus({ preventScroll: true }), 350);
+  }
+  // month and year drop-downs fill the hidden YYYY-MM value
+  const syncYM = (k) => { const m = $(`${k}-m`).value, y = $(`${k}-y`).value; $(k).value = m && y ? `${y}-${m}` : ""; };
+  const setYM = (k, v) => { const [y, m] = (v || "").split("-"); $(`${k}-y`).value = y || ""; $(`${k}-m`).value = m || ""; syncYM(k); };
+  ["start", "end"].forEach((k) => ["m", "y"].forEach((x) => $(`${k}-${x}`).addEventListener("change", () => syncYM(k))));
 
   // clear a field's error as soon as it is changed
   const clearErr = (e) => {
@@ -419,7 +437,7 @@
       $("coordination").insertAdjacentHTML("beforeend", `<option>${esc(p.coordination)}</option>`);
     }
     set("coordination", p.coordination || "");
-    set("start", p.start ? p.start.slice(0, 7) : ""); set("end", p.end ? p.end.slice(0, 7) : "");
+    setYM("start", p.start ? p.start.slice(0, 7) : ""); setYM("end", p.end ? p.end.slice(0, 7) : "");
     set("status", ["Ongoing", "Pipeline", "Ended"].includes(p.reportedStatus) ? p.reportedStatus : "");
     set("budget", p.budget != null ? Math.round(p.budget).toLocaleString("en-US") : "");
     set("share", p.share != null ? Math.round(p.share * 1000) / 10 : "");
