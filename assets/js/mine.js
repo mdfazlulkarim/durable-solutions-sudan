@@ -4,7 +4,8 @@
 (() => {
   const { esc } = SF;
   const $ = (id) => document.getElementById(id);
-  let GEO = null, PUBLISHED = [];
+  let GEO = null, PUBLISHED = [], STATUS = {};
+  const API = String(SF.config.apiUrl || "").replace(/\/$/, "");
 
   SF.renderHeader("mine");
   $("notice").innerHTML = `${SF.icons.info}<span><b>Saved only in this browser on this device.</b> If you clear your browser data, use a private window or switch to another device, this list will be empty. Your submissions are not lost: the Durable Solutions Unit has them and keeps the map up to date.</span>`;
@@ -36,6 +37,9 @@
     return n;
   }
   function isPublished(e) {
+    const st = e.id && STATUS[e.id];
+    if (st && st.status === "published") return PUBLISHED.find((p) => p.ref && p.ref === (st.ref || e.ref)) || { id: null };
+    if (st && st.status !== "unknown") return null;
     const lead = String((e.answers || {}).lead || "").toLowerCase();
     let best = null, bestN = 0;
     PUBLISHED.forEach((p) => {
@@ -68,7 +72,13 @@
       const pub = isPublished(e);
       const removeOn = e.publishedAt ? new Date(new Date(e.publishedAt).getTime() + KEEP_DAYS * 864e5) : null;
       const sent = new Date(e.savedAt);
-      const status = pub || e.publishedAt ? `<span class="st-badge live">Published on the map</span>` : `<span class="st-badge sent">${e.correcting ? "Correction sent, awaiting review" : "Sent, awaiting review"}</span>`;
+      const st = (e.id && STATUS[e.id]) || {};
+      const status = pub || e.publishedAt ? `<span class="st-badge live">Published on the map</span>`
+        : st.status === "rejected" ? `<span class="st-badge sent">Not published. The Durable Solutions Unit may contact you.</span>`
+        : `<span class="st-badge sent">${e.correcting ? "Correction sent, awaiting review" : "Sent, awaiting review"}</span>`;
+      const direct = e.sent === "direct";
+      const nPhotos = st.photos != null ? st.photos : e.photos || 0;
+      const canAddPhotos = direct && API && st.status === "pending" && nPhotos < 3;
       return `<div class="card mine-item">
         ${SF.render.card(p)}
         <div class="meta">
@@ -76,10 +86,12 @@
           ${e.ref ? `<div class="mine-ref">Project number: <b>${esc(e.ref)}</b></div>` : ""}
           <div>Sent on ${SF.fmtDateLong(sent)}</div>
           ${removeOn ? `<div class="pub-note">This project is now on the map. It will be removed from this list on ${SF.fmtDateLong(removeOn)}.</div>` : ""}
-          ${pub ? `<a class="btn" href="index.html#project=${encodeURIComponent(pub.id)}">${SF.icons.pin}View on the map</a>` : ""}
+          ${direct ? `<div>${nPhotos ? `${nPhotos} photo${nPhotos === 1 ? "" : "s"} sent` : "No photos sent yet"}</div>` : ""}
+          ${pub && pub.id ? `<a class="btn" href="index.html#project=${encodeURIComponent(pub.id)}">${SF.icons.pin}View on the map</a>` : ""}
           <button type="button" class="btn" data-preview="${i}">See the preview</button>
-          <button type="button" class="btn" data-copy="${i}">Copy the email text</button>
-          <a class="btn" href="${esc(e.href)}">Open the email again</a>
+          ${canAddPhotos ? `<label class="btn">${SF.icon("photo").replace("<svg ", '<svg style="width:18px;height:18px" ')}Add photos<input type="file" accept="image/*" multiple class="sr-only" data-photos="${i}" data-room="${3 - nPhotos}"></label>` : ""}
+          ${direct ? "" : `<button type="button" class="btn" data-copy="${i}">Copy the email text</button>
+          <a class="btn" href="${esc(e.href)}">Open the email again</a>`}
           <button type="button" class="link-btn" data-remove="${esc(e.savedAt)}">Remove from this list</button>
         </div>
       </div>`;
@@ -89,6 +101,22 @@
       const e = list[Number(b.dataset.copy)];
       const text = `Subject: ${e.subject}\n\n${e.body}`;
       try { await navigator.clipboard.writeText(text); SF.toast("Email text copied"); } catch { prompt("Copy this text:", text); }
+    }));
+    host.querySelectorAll("[data-photos]").forEach((inp) => inp.addEventListener("change", async () => {
+      const e = list[Number(inp.dataset.photos)];
+      const lbl = inp.closest("label");
+      try {
+        lbl.classList.add("is-disabled");
+        const imgs = [];
+        for (const f of [...inp.files].slice(0, Number(inp.dataset.room))) imgs.push(await SF.shrinkImage(f));
+        const r = await fetch(`${API}/api/photos`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: e.id, token: e.token, photos: imgs.map(({ name, type, data }) => ({ name, type, data })) }) });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok || !j.ok) throw new Error(j.error || `The server answered ${r.status}`);
+        STATUS[e.id] = { ...(STATUS[e.id] || {}), photos: j.photos };
+        SF.render.updateSubmission(e.savedAt, { photos: j.photos });
+        SF.toast(`${imgs.length} photo${imgs.length === 1 ? "" : "s"} sent`);
+        render();
+      } catch (x) { alert(x.message); lbl.classList.remove("is-disabled"); }
     }));
     host.querySelectorAll("[data-remove]").forEach((b) => b.addEventListener("click", () => {
       if (confirm("Remove this project from the list in this browser? Your submission to the Durable Solutions Unit is not affected.")) {
@@ -111,10 +139,16 @@
     d.showModal();
   }
 
-  Promise.all([SF.loadJSON(SF.config.dataUrl).catch(() => null), SF.loadJSON(SF.config.geoUrl).catch(() => null)]).then(([data, geo]) => {
+  Promise.all([SF.loadJSON(SF.config.dataUrl).catch(() => null), SF.loadJSON(SF.config.geoUrl).catch(() => null), SF.loadLogos()]).then(([data, geo]) => {
     PUBLISHED = data ? data.projects : [];
     GEO = geo;
     SF.renderFooter(data && data.lastUpdated);
     render();
+    // statuses of projects sent straight to the back end
+    const mine = (SF.render.loadSubmissions() || []).filter((e) => e.id && e.token);
+    if (API && mine.length) {
+      fetch(`${API}/api/status?items=${mine.map((e) => `${e.id}:${e.token}`).join(",")}`)
+        .then((r) => r.json()).then((j) => { if (j.ok) { STATUS = j.items; render(); } }).catch(() => {});
+    }
   });
 })();

@@ -1,0 +1,22 @@
+{
+ "IOM": {
+  "full": "assets/img/logos/IOM.png",
+  "mark": "assets/img/logos/IOM-mark.png",
+  "name": "International Organization for Migration"
+ },
+ "UNDP": {
+  "full": "assets/img/logos/UNDP.png",
+  "mark": "assets/img/logos/UNDP-mark.png",
+  "name": "United Nations Development Programme"
+ },
+ "UNFPA": {
+  "full": "assets/img/logos/UNFPA.png",
+  "mark": "assets/img/logos/UNFPA-mark.png",
+  "name": "United Nations Population Fund"
+ },
+ "UNHCR": {
+  "full": "assets/img/logos/UNHCR.png",
+  "mark": "assets/img/logos/UNHCR-mark.png",
+  "name": "United Nations High Commissioner for Refugees"
+ }
+}

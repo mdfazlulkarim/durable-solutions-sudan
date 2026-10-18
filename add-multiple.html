@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add multiple projects | Solutions Footprint | Durable Solutions Hub | Sudan</title>
+  <meta name="description" content="Send several projects that contribute to durable solutions in Sudan at once, using the Excel template.">
+  <script>try{var t=localStorage.getItem("sf-theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="multi-page" id="main">
+    <div>
+      <p class="multi-kicker">Add your project</p>
+      <h1>Add multiple projects</h1>
+      <p class="lede" id="lede">Fill in the Excel template, upload it here, and the page checks every row before sending.</p>
+    </div>
+
+    <div class="multi-steps">
+      <div class="card multi-step">
+        <span class="step-n">Step 1</span>
+        <b>Download the template</b>
+        <p>15 rows, with drop-down lists for organisations, states and IASC criteria. Instructions are on the first sheet.</p>
+        <a class="btn" href="#" data-template>Download the template (.xlsx)</a>
+      </div>
+      <div class="card multi-step">
+        <span class="step-n">Step 2</span>
+        <b>Upload the filled template</b>
+        <label class="photo-drop xl-drop" for="xl-in"><span id="xl-ico"></span><span id="xl-label"><b>Choose the Excel file</b><br><small>The filled copy of the template</small></span></label>
+        <input type="file" id="xl-in" accept=".xlsx,.xlsm,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" class="sr-only">
+      </div>
+      <div class="card multi-step">
+        <span class="step-n">Step 3</span>
+        <b id="step3-title">Check and send</b>
+        <div id="step3"><p>The rows from your file appear below once it is uploaded.</p></div>
+      </div>
+    </div>
+
+    <div class="send-err" id="xl-err" role="alert" hidden></div>
+
+    <section class="card tbl-card" id="rows-card" hidden>
+      <div class="rows-head"><h2>Rows in your file</h2><span id="rows-sum"></span></div>
+      <div class="tbl-wrap"><table class="rows-tbl">
+        <thead><tr><th>Row</th><th>Project</th><th>Lead</th><th>States</th><th>Dates</th><th>Budget</th><th>Check</th></tr></thead>
+        <tbody id="rows-body"></tbody>
+      </table></div>
+    </section>
+
+    <section class="card multi-note" id="photo-note-m" hidden>
+      <b>Photos and logos</b>
+      <p>After sending, each project has an <b>Add photos</b> button under <a href="my-submissions.html">My submissions</a>, with the same automatic resizing to under 1 MB. Organisations new to the map can email their logo to <a class="contact-link" href="#">dswg.sd@undp.org</a>.</p>
+    </section>
+
+    <div class="hp" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+    <div id="ts-box"></div>
+    <div class="multi-actions" id="send-row" hidden>
+      <button type="button" class="btn btn-primary" id="send-btn">Send to the Durable Solutions Unit</button>
+      <span id="send-hint"></span>
+    </div>
+
+    <section class="card done-panel sent-panel" id="sent" hidden aria-live="polite">
+      <div class="sent-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></div>
+      <h2 id="sent-title">Received. Thank you.</h2>
+      <p>The Durable Solutions Unit will review the projects and publish them on the map. Each one has its own number:</p>
+      <ul class="sent-list" id="sent-list"></ul>
+      <p style="font-size:14px;color:var(--ink-2)">You can follow them, and add photos, under <a href="my-submissions.html">My submissions</a> on this device.</p>
+      <div class="form-actions"><a class="btn btn-primary" href="my-submissions.html">My submissions</a><a class="btn" href="add-multiple.html">Upload another file</a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/icons.js"></script>
+  <script src="assets/js/render.js"></script>
+  <script src="assets/vendor/xlsx.mini.min.js"></script>
+  <script src="assets/js/multi.js"></script>
+</body>
+</html>

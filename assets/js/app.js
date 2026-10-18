@@ -923,7 +923,7 @@
   async function init() {
     SF.renderHeader("map");
     try {
-      const [data, geo] = await Promise.all([SF.loadJSON(SF.config.dataUrl), SF.loadJSON(SF.config.geoUrl)]);
+      const [data, geo] = await Promise.all([SF.loadJSON(SF.config.dataUrl), SF.loadJSON(SF.config.geoUrl), SF.loadLogos()]);
       ALL = data.projects.map(SF.enrich);
       LAST_UPDATED = data.lastUpdated;
       GEO = geo;

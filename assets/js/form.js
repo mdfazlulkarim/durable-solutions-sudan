@@ -1,4 +1,5 @@
-/* "Add your project" form. Builds an email to the DSWG mailbox; nothing is stored on this site. */
+/* "Add your project" form. Sends the project straight to the Durable Solutions Unit when the back end
+   is switched on (SF.config.apiUrl), otherwise builds an email to the DSWG mailbox. */
 "use strict";
 
 (() => {
@@ -9,6 +10,8 @@
   let ORGS = [], LOCALITIES = {}, GEO = null, PUBLISHED = [], REFS = {};
   let assignedRef = "";
   let partners = [];
+  const API = String(SF.config.apiUrl || "").replace(/\/$/, "");
+  let photos = [], logo = null, tsWidget = null;
 
   /* ---------- static lists ---------- */
   $("itypes").innerHTML = SF.INTERVENTION_TYPES.map((t, i) =>
@@ -30,6 +33,14 @@
   $("hdx-link").href = SF.config.hdxAdminUrl;
   $("multi-ico").innerHTML = SF.icons.sheet;
   $("photo-ico").innerHTML = SF.icon("photo");
+  if (API) {
+    $("photo-note").hidden = true;
+    $("photo-box").hidden = false;
+    $("photo-ico2").innerHTML = SF.icon("photo");
+    $("flow-1").textContent = "Your answers and photos go straight to the Unit. No email to write.";
+    $("next-1").textContent = "After a preview, press Send. Your answers and photos go straight to the Unit; no email needed.";
+    $("next-3").textContent = "Once approved, the project appears on the map. Its status changes to Published under My submissions.";
+  }
 
   /* ---------- helpers ---------- */
   const digits = (v) => String(v || "").replace(/[^\d.]/g, "");
@@ -70,6 +81,7 @@
     const t = $("orgType").value;
     $("leadership-fld").hidden = !(t === "National NGO" || t === "Other");
     if ($("leadership-fld").hidden) form.querySelectorAll('input[name="leadership"]').forEach((i) => (i.checked = false));
+    syncLogo();
   }
   $("orgType").addEventListener("change", () => fillLead($("orgType").value));
   $("lead").addEventListener("change", syncLead);
@@ -78,6 +90,41 @@
     else if (e.target.checked) form.querySelector('input[name="leadership"][value="none"]').checked = false;
   });
   const leadName = () => ($("lead").value === "__other" ? $("leadOther").value.trim() : $("lead").value);
+
+  /* ---------- photos and logo (only when the back end is on) ---------- */
+  function drawPhotos() {
+    $("photo-list").innerHTML = photos.map((p, i) => `<div class="photo-item"><img src="${p.url}" alt="Photo ${i + 1}"><div><span>${esc(p.name)}</span>
+      <span class="shrunk">${p.origSize > p.size ? `${SF.fmtSize(p.origSize)} made smaller to ${SF.fmtSize(p.size)}` : SF.fmtSize(p.size)}</span>
+      <button type="button" data-rm="${i}">Remove</button></div></div>`).join("");
+    $("photo-list").querySelectorAll("[data-rm]").forEach((b) => b.addEventListener("click", () => { photos.splice(Number(b.dataset.rm), 1); drawPhotos(); }));
+    document.querySelector('label[for="photo-in"]').hidden = photos.length >= 3;
+  }
+  $("photo-in").addEventListener("change", async (e) => {
+    const err = $("photo-err"); err.hidden = true;
+    const files = [...e.target.files];
+    if (files.length > 3 - photos.length) { err.hidden = false; err.textContent = `Up to 3 photos. The first ${3 - photos.length} were added.`; }
+    for (const f of files.slice(0, 3 - photos.length)) {
+      try { photos.push(await SF.shrinkImage(f)); }
+      catch (x) { err.hidden = false; err.textContent = x.message; }
+    }
+    e.target.value = "";
+    drawPhotos();
+  });
+  function syncLogo() {
+    const show = !!API && !!leadKey() && isNewOrg();
+    $("logo-box").hidden = !show;
+    $("logo-prev").innerHTML = logo ? `<img src="${logo.url}" alt="Logo">` : esc(leadKey().slice(0, 5));
+    $("logo-rm").hidden = !logo;
+  }
+  $("logo-in").addEventListener("change", async (e) => {
+    const f = e.target.files[0];
+    if (!f) return;
+    try { logo = await SF.shrinkImage(f, { keepPng: true, maxSide: 800 }); } catch (x) { alert(x.message); }
+    e.target.value = "";
+    syncLogo();
+  });
+  $("logo-rm").addEventListener("click", () => { logo = null; syncLogo(); });
+  $("leadOther").addEventListener("input", syncLogo);
 
   /* ---------- implementing partners (pick from the list or type) ---------- */
   function renderPartners() {
@@ -263,7 +310,9 @@
       people: Object.fromEntries(PEOPLE.map((g) => [g.key, okNum($(`pp-${g.key}`).value)])), remarks: $("remarks").value.trim(),
     };
   }
-  const logoNote = () => `${SF.icon("photo").replace("<svg ", '<svg style="width:20px;height:20px;flex:none" ')}<span><b>First project from ${esc(leadKey())}?</b> Please attach your organisation's logo (PNG or SVG) to the email, so it appears on the map.</span>`;
+  const logoNote = () => `${SF.icon("photo").replace("<svg ", '<svg style="width:20px;height:20px;flex:none" ')}<span><b>First project from ${esc(leadKey())}?</b> ${API
+    ? "Add your organisation's logo in section 7 (Photos and anything else), so it appears on the map."
+    : "Please attach your organisation's logo (PNG or SVG) to the email, so it appears on the map."}</span>`;
 
   /* live preview card in the right-hand column */
   let liveTimer;
@@ -296,10 +345,13 @@
   /* full preview before sending */
   function showPreview() {
     const p = SF.render.fromAnswers(answers());
+    p.photos = photos.map((x) => x.url);
     assignedRef = correcting ? (correcting.ref || "") : nextRef(leadKey());
-    $("pv-ref").textContent = assignedRef ? `${correcting ? "Correcting project" : "Your project number"}: ${assignedRef}` : "";
-    $("pv-hero").innerHTML = SF.render.hero(p, { photoNote: "Your photos will appear here once the project is published" });
-    $("pv-body").innerHTML = SF.render.body(p, GEO, { logoNote: isNewOrg() ? logoNote() : "" });
+    $("pv-ref").textContent = assignedRef ? `${correcting ? "Correcting project" : "Your project number"}: ${assignedRef}${API && !correcting ? " (confirmed when you send)" : ""}` : "";
+    $("pv-hero").innerHTML = SF.render.hero(p, { photoNote: API ? "Add photos in section 7 to show them here" : "Your photos will appear here once the project is published" });
+    $("pv-body").innerHTML = SF.render.body(p, GEO, { logoNote: isNewOrg() && !logo ? logoNote() : "" });
+    $("send-err").hidden = true;
+    renderTurnstile();
     $("pv-map").innerHTML = GEO ? SF.render.placeOnMap(p, GEO, PUBLISHED) : "";
     $("pv-lock").innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
     form.hidden = true;
@@ -313,7 +365,64 @@
     $("preview").hidden = true; $("main").classList.remove("previewing"); form.hidden = false; $("multi-box").hidden = !!correcting; $("live-card").hidden = false;
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
-  $("pv-send").addEventListener("click", sendNow);
+  $("pv-send").addEventListener("click", () => (API ? sendDirect() : sendNow()));
+
+  /* ---------- sending straight to the back end ---------- */
+  function renderTurnstile() {
+    const key = SF.config.turnstileSiteKey;
+    if (!API || !key || tsWidget !== null) { if (tsWidget !== null && window.turnstile) window.turnstile.reset(tsWidget); return; }
+    const go = () => { tsWidget = window.turnstile.render("#ts-box", { sitekey: key }); };
+    if (window.turnstile) return go();
+    const sc = document.createElement("script");
+    sc.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    sc.async = true; sc.onload = go;
+    document.head.appendChild(sc);
+  }
+  async function sendDirect() {
+    const btn = $("pv-send"), err = $("send-err");
+    err.hidden = true;
+    const label = btn.textContent;
+    btn.disabled = true; btn.textContent = "Sending...";
+    const a = answers();
+    try {
+      const body = {
+        answers: { ...a, refPrefix: refPrefix(leadKey()) },
+        private: { fpName: $("fpName").value.trim(), fpEmail: $("fpEmail").value.trim() },
+        photos: photos.map(({ name, type, data }) => ({ name, type, data })),
+        logo: logo && isNewOrg() ? { name: logo.name, type: logo.type, data: logo.data } : null,
+        correction: correcting ? { id: correcting.id } : null,
+        website: $("website").value,
+        turnstile: tsWidget !== null && window.turnstile ? window.turnstile.getResponse(tsWidget) : "",
+      };
+      const r = await fetch(`${API}/api/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || !j.ok) throw new Error(j.error || `the server answered ${r.status}`);
+      assignedRef = j.ref;
+      const saved = SF.render.saveSubmission({
+        savedAt: new Date().toISOString(), sent: "direct", id: j.id, token: j.token, ref: j.ref,
+        correcting: correcting ? (correcting.ref || correcting.id) : null, photos: photos.length, answers: { ...a },
+      });
+      $("sent-ref").textContent = j.ref || "";
+      $("sent-photos").textContent = photos.length ? `${photos.length} sent` : "None";
+      $("sent-lede").textContent = correcting
+        ? "The Durable Solutions Unit will review your correction and update the map. There is nothing else you need to do."
+        : "The Durable Solutions Unit will review your project and publish it on the map. There is nothing else you need to do.";
+      $("sent-saved").innerHTML = saved
+        ? `The status updates under <a href="my-submissions.html">My submissions</a> on this device. Keep the project number if you need to contact us about it.`
+        : "Keep the project number if you need to contact us about it.";
+      $("preview").hidden = true;
+      $("main").classList.remove("previewing");
+      $("sent").hidden = false;
+      $("sent").scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (e) {
+      err.hidden = false;
+      err.innerHTML = `Your project could not be sent directly (${esc(e.message)}). <button type="button" class="link-btn" id="send-email">Send it by email instead</button>`;
+      $("send-email").addEventListener("click", sendNow);
+      if (tsWidget !== null && window.turnstile) window.turnstile.reset(tsWidget);
+    } finally {
+      btn.disabled = false; btn.textContent = label;
+    }
+  }
 
   /* ---------- email ---------- */
   function buildEmail() {
@@ -418,6 +527,7 @@
     setTimeout(() => ($("copy-btn").textContent = "Copy the text"), 2000);
   });
   $("edit-btn").addEventListener("click", () => { $("done").hidden = true; form.hidden = false; $("multi-box").hidden = !!correcting; $("live-card").hidden = false; });
+  $("another-btn2").addEventListener("click", () => $("another-btn").click());
   $("another-btn").addEventListener("click", () => {
     // keep who is doing it and the focal point; clear the project itself
     const keep = { orgType: $("orgType").value, lead: $("lead").value, leadOther: $("leadOther").value, fpName: $("fpName").value, fpEmail: $("fpEmail").value, leadership: checked("leadership") };
@@ -431,7 +541,8 @@
     form.querySelectorAll('input[name="leadership"]').forEach((i) => (i.checked = keep.leadership.includes(i.value)));
     syncScope(); updateDS();
     history.replaceState(null, "", "add.html");
-    $("done").hidden = true; $("preview").hidden = true; form.hidden = false; $("multi-box").hidden = false; $("live-card").hidden = false;
+    photos = []; drawPhotos();
+    $("done").hidden = true; $("sent").hidden = true; $("preview").hidden = true; form.hidden = false; $("multi-box").hidden = false; $("live-card").hidden = false;
     updateLive();
     window.scrollTo({ top: 0, behavior: "smooth" });
     $("name").focus();
@@ -478,7 +589,7 @@
 
   /* ---------- start ---------- */
   SF.renderHeader("add");
-  Promise.all([SF.loadJSON(SF.config.orgsUrl), SF.loadJSON(SF.config.localitiesUrl), SF.loadJSON(SF.config.dataUrl).catch(() => null), SF.loadJSON(SF.config.geoUrl).catch(() => null), SF.loadJSON(SF.config.refsUrl).catch(() => ({}))])
+  Promise.all([SF.loadJSON(SF.config.orgsUrl), SF.loadJSON(SF.config.localitiesUrl), SF.loadJSON(SF.config.dataUrl).catch(() => null), SF.loadJSON(SF.config.geoUrl).catch(() => null), SF.loadJSON(SF.config.refsUrl).catch(() => ({})), SF.loadLogos()])
     .then(([orgs, locs, data, geo, refs]) => {
       REFS = refs || {};
       ORGS = orgs.organisations;
