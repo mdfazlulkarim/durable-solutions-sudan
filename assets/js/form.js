@@ -230,7 +230,11 @@
   }
   // month and year drop-downs fill the hidden YYYY-MM value
   const syncYM = (k) => { const m = $(`${k}-m`).value, y = $(`${k}-y`).value; $(k).value = m && y ? `${y}-${m}` : ""; };
-  const setYM = (k, v) => { const [y, m] = (v || "").split("-"); $(`${k}-y`).value = y || ""; $(`${k}-m`).value = m || ""; syncYM(k); };
+  const setYM = (k, v) => {
+    const [y, m] = (v || "").split("-"), sel = $(`${k}-y`);
+    // A project being corrected may start before the first year in the list: add that year
+    if (y && ![...sel.options].some((o) => o.value === y)) sel.insertBefore(new Option(y, y), sel.options[1]);
+    sel.value = y || ""; $(`${k}-m`).value = m || ""; syncYM(k); };
   ["start", "end"].forEach((k) => ["m", "y"].forEach((x) => $(`${k}-${x}`).addEventListener("change", () => syncYM(k))));
 
   // clear a field's error as soon as it is changed
