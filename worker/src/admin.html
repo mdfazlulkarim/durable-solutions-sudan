@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin | Solutions Footprint</title>
+  <script>try{var t=localStorage.getItem("sf-theme")}catch(e){}document.documentElement.dataset.theme=t||"light";</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{SITE_URL}}assets/css/style.css">
+  <link rel="icon" href="{{SITE_URL}}assets/img/favicon.svg" type="image/svg+xml">
+  <style>
+    body { background: var(--bg); }
+    .adm-head { background: #1c2230; color: #fff; }
+    .adm-head .in { max-width: 1180px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+    .adm-head .ttl { display: flex; flex-direction: column; flex: 1 1 auto; }
+    .adm-head .ttl small { font-size: 12px; color: #c3c9d3; }
+    .adm-head .ttl b { font-size: 18px; }
+    .adm-nav { display: flex; flex-wrap: wrap; gap: 4px; }
+    .adm-nav a { color: #c3c9d3; text-decoration: none; padding: 8px 12px; border-radius: 8px; font-size: 14px; }
+    .adm-nav a[aria-current="page"] { background: var(--brand); color: #fff; }
+    .adm-nav a:hover { color: #fff; }
+    .adm-who { font-size: 13px; color: #c3c9d3; }
+    .adm-who button { background: none; border: 0; color: #fff; text-decoration: underline; cursor: pointer; font: inherit; padding: 0; }
+    .adm-main { max-width: 1180px; margin: 0 auto; padding: 24px; display: flex; flex-direction: column; gap: 18px; min-height: 70vh; }
+    .adm-main h1 { margin: 0; font-size: 26px; }
+    .lede2 { margin: 6px 0 0; color: var(--ink-2); font-size: 15px; }
+    .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .row.between { justify-content: space-between; align-items: flex-end; }
+    .grow { flex: 1 1 auto; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+    .stat { padding: 16px; }
+    .stat .l { font-size: 13px; color: var(--muted); }
+    .stat .v { font-size: 28px; font-weight: 700; margin-top: 4px; }
+    .stat .v.warn { color: var(--warn-ink); }
+    .tbl-card { overflow: hidden; }
+    .tbl-tools { padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; border-bottom: 1px solid var(--line); }
+    .tab { font: inherit; font-size: 14px; padding: 8px 12px; border: 0; border-radius: 8px; background: none; color: var(--ink-2); cursor: pointer; text-decoration: none; }
+    .tab[aria-current="true"] { background: var(--brand-tint); color: var(--brand); font-weight: 500; }
+    .tbl-wrap { overflow-x: auto; }
+    table.adm { width: 100%; border-collapse: collapse; font-size: 14px; }
+    table.adm th { background: var(--panel-2); text-align: left; color: var(--muted); font-size: 13px; font-weight: 500; padding: 10px 12px; white-space: nowrap; }
+    table.adm td { padding: 11px 12px; border-top: 1px solid var(--line); vertical-align: middle; }
+    table.adm th:first-child, table.adm td:first-child { padding-left: 18px; }
+    table.adm tr.click { cursor: pointer; }
+    table.adm tr.click:hover td { background: var(--brand-tint-2); }
+    .ref { font-weight: 500; white-space: nowrap; }
+    .pill2 { display: inline-block; border-radius: 999px; padding: 3px 10px; font-size: 13px; font-weight: 500; white-space: nowrap; }
+    .pill2.ok { background: #e6f4ec; color: #1a7a4c; }
+    .pill2.warn { background: var(--warn-bg); color: var(--warn-ink); }
+    .pill2.err { background: var(--err-bg); color: var(--err); }
+    .pill2.info { background: var(--brand-tint); color: var(--brand); }
+    .pill2.mute { background: var(--track); color: var(--muted); }
+    :root[data-theme="dark"] .pill2.ok { background: #183b2a; color: #7fd6a6; }
+    .note-box { border-radius: 10px; padding: 14px 16px; font-size: 14px; line-height: 1.5; background: var(--brand-tint); color: var(--brand-dark); }
+    :root[data-theme="dark"] .note-box { color: var(--ink); }
+    .note-box.warn { background: var(--warn-bg); color: var(--warn-ink); }
+    .split { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; }
+    .split > .main { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+    .split > .side { flex: 1 1 330px; min-width: 0; display: flex; flex-direction: column; gap: 14px; position: sticky; top: 12px; }
+    .ed { padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+    .ed h2 { margin: 0; font-size: 17px; display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+    .ed h2 small { font-size: 13px; color: var(--muted); font-weight: 400; }
+    .g2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .g3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .g6 { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+    @media (max-width: 700px) { .g2, .g3 { grid-template-columns: 1fr; } .g6 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    .f { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500; min-width: 0; }
+    .f .input { font-weight: 400; }
+    .f small { font-weight: 400; color: var(--muted); font-size: 12px; }
+    .f.changed .input, .f.changed .choice-pills { box-shadow: 0 0 0 2px var(--warn-ink); border-radius: 8px; }
+    .was { font-weight: 400; font-size: 12px; color: var(--warn-ink); }
+    .choice-pills.sm label { padding: 5px 11px; font-size: 13px; }
+    .crit-opt2 .ci { width: 20px; height: 20px; border-radius: 5px; display: inline-flex; align-items: center; justify-content: center; color: #fff; }
+    .crit-opt2 .ci svg { width: 14px; height: 14px; }
+    .ph-list { display: flex; flex-wrap: wrap; gap: 10px; }
+    .ph { width: 150px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; font-size: 12px; background: var(--panel); }
+    .ph img { width: 100%; height: 96px; object-fit: cover; display: block; background: var(--map-water); }
+    .ph div { padding: 6px 8px; display: flex; justify-content: space-between; gap: 6px; align-items: center; }
+    .ph button { background: none; border: 0; color: var(--err); cursor: pointer; font: inherit; font-size: 12px; padding: 0; }
+    .ph-add { width: 150px; min-height: 126px; border: 2px dashed var(--brand-line); background: var(--brand-tint-2); border-radius: 8px; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--brand); font-size: 13px; cursor: pointer; padding: 8px; }
+    .ph-add input { display: none; }
+    .checks { display: flex; flex-direction: column; gap: 10px; }
+    .chk { display: flex; gap: 10px; font-size: 14px; line-height: 1.45; }
+    .chk svg { width: 18px; height: 18px; flex: none; margin-top: 2px; }
+    .chk.warn { background: var(--warn-bg); color: var(--warn-ink); border-radius: 8px; padding: 10px 12px; }
+    .chk.error { background: var(--err-bg); color: var(--err); border-radius: 8px; padding: 10px 12px; }
+    .chk a, .chk button.linkish { color: inherit; }
+    button.linkish { background: none; border: 0; padding: 0; font: inherit; text-decoration: underline; cursor: pointer; color: var(--brand); }
+    .bar-actions { padding: 14px 18px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; position: sticky; bottom: 10px; z-index: 5; }
+    .btn-danger { border-color: var(--err-line); background: var(--err-bg); color: var(--err); }
+    .btn[disabled] { opacity: .6; cursor: progress; }
+    .login { max-width: 420px; margin: 8vh auto; padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+    .login h1 { font-size: 22px; margin: 0; }
+    .err-line { color: var(--err); font-size: 14px; min-height: 20px; }
+    .diff { font-size: 13px; display: flex; flex-direction: column; gap: 6px; }
+    .diff b { font-weight: 500; }
+    .logo-cell img { max-height: 28px; max-width: 110px; display: block; }
+    .muted { color: var(--muted); }
+    .empty { padding: 28px; text-align: center; color: var(--muted); }
+    .spin { display: inline-block; width: 14px; height: 14px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: sp .8s linear infinite; vertical-align: -2px; }
+    @keyframes sp { to { transform: rotate(360deg); } }
+    .cmp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
+    .cmp > div { border-right: 1px solid var(--line); }
+    @media (max-width: 760px) { .cmp { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="adm-head">
+    <div class="in">
+      <div class="ttl"><small>Solutions Footprint</small><b>Admin</b></div>
+      <nav class="adm-nav" id="nav" aria-label="Admin" hidden>
+        <a href="#/queue" data-k="queue">Review queue</a>
+        <a href="#/projects" data-k="projects">All projects</a>
+        <a href="#/orgs" data-k="orgs">Organisations</a>
+        <a href="#/history" data-k="history">History</a>
+        <a href="{{SITE_URL}}" target="_blank" rel="noopener">Open the map</a>
+      </nav>
+      <span class="adm-who" id="who" hidden>Signed in as DSU admin · <button type="button" id="logout">Sign out</button></span>
+    </div>
+  </header>
+  <main class="adm-main" id="app"><p class="muted">Loading…</p></main>
+  <dialog class="modal" id="detail" aria-label="Project preview"></dialog>
+
+  <script src="{{SITE_URL}}assets/js/common.js"></script>
+  <script src="{{SITE_URL}}assets/js/icons.js"></script>
+  <script src="{{SITE_URL}}assets/js/render.js"></script>
+  <script>
+  "use strict";
+  (() => {
+    const SITE = "{{SITE_URL}}";
+    const API = location.origin + "/admin/api";
+    const app = document.getElementById("app");
+    const esc = SF.esc;
+    const PEOPLE = [{ key: "total", label: "Total" }, ...SF.TARGET_GROUPS];
+    let GEO = null, ORGS = [], LOCALITIES = {}, ME = null;
+
+    /* ---------- helpers ---------- */
+    async function api(path, opts = {}) {
+      const r = await fetch(API + path, {
+        method: opts.method || "GET", credentials: "same-origin",
+        headers: { "Content-Type": "application/json", "X-SF-Admin": "1" },
+        body: opts.body ? JSON.stringify(opts.body) : undefined,
+      });
+      const j = await r.json().catch(() => ({ ok: false, error: "The server did not answer properly." }));
+      if (r.status === 401 && path !== "/login") { showLogin(); throw new Error("Please sign in."); }
+      if (!j.ok) throw new Error(j.error || "Something went wrong.");
+      return j;
+    }
+    const fmtDay = (iso) => iso ? new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: new Date(iso).getFullYear() === new Date().getFullYear() ? undefined : "numeric" }) : "";
+    const fmtWhen = (iso) => iso ? new Date(iso).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "";
+    const daysSince = (iso) => iso ? Math.floor((Date.now() - new Date(iso)) / 864e5) : null;
+    const monthOf = (d) => (d ? String(d).slice(0, 7) : "");
+    const fmtDates = (s, e) => s || e ? `${SF.fmtMonth(SF.parseDate(s))} to ${SF.fmtMonth(SF.parseDate(e))}` : "";
+    const busy = (btn, on, label) => { if (!btn) return; if (on) { btn.dataset.l = btn.innerHTML; btn.innerHTML = `<span class="spin"></span> ${label || "Working"}`; btn.disabled = true; } else { btn.innerHTML = btn.dataset.l || btn.innerHTML; btn.disabled = false; } };
+    const ICON_OK = '<svg viewBox="0 0 24 24" fill="none" stroke="#1a7a4c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>';
+    const ICON_WARN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 7v6"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>';
+    function setNav(k) { document.querySelectorAll("#nav a[data-k]").forEach((a) => { if (a.dataset.k === k) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); }); }
+    const fail = (e) => { app.innerHTML = `<div class="note-box warn">${esc(e.message || e)}</div>`; };
+
+    function checkChip(checks) {
+      const e = checks.find((c) => c.level === "error"), w = checks.find((c) => c.level === "warn");
+      if (e) return `<span class="pill2 err">${esc(e.text)}</span>`;
+      if (w) return `<span class="pill2 warn">${esc(w.kind === "duplicate" ? `Looks like ${w.ref || "a published project"}` : w.text)}</span>`;
+      return `<span class="pill2 ok">All good</span>`;
+    }
+
+    /* ---------- sign in ---------- */
+    function showLogin() {
+      document.getElementById("nav").hidden = true; document.getElementById("who").hidden = true;
+      app.innerHTML = `<form class="card login" id="login-form">
+        <h1>Sign in</h1>
+        <p class="lede2" style="margin:0">Admin pages for the Durable Solutions Unit.</p>
+        <label class="f">Password<input class="input" type="password" id="pw" autocomplete="current-password" required></label>
+        <div class="err-line" id="login-err" role="alert"></div>
+        <button class="btn btn-primary" type="submit" id="login-btn">Sign in</button>
+      </form>`;
+      document.getElementById("pw").focus();
+      document.getElementById("login-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const b = document.getElementById("login-btn");
+        busy(b, true, "Signing in");
+        try { await api("/login", { method: "POST", body: { password: document.getElementById("pw").value } }); await boot(); }
+        catch (err) { document.getElementById("login-err").textContent = err.message; busy(b, false); }
+      });
+    }
+    document.getElementById("logout").addEventListener("click", async () => { await api("/logout", { method: "POST" }).catch(() => {}); showLogin(); });
+
+    /* ---------- start ---------- */
+    async function boot() {
+      ME = await api("/me");
+      document.getElementById("nav").hidden = false; document.getElementById("who").hidden = false;
+      route();
+    }
+    async function loadLists() {
+      const [orgs, locs, geo, logos] = await Promise.all([
+        SF.loadJSON(SITE + "data/organisations.json").catch(() => ({ organisations: [] })),
+        SF.loadJSON(SITE + "data/localities.json").catch(() => ({ states: {} })),
+        SF.loadJSON(SITE + "data/geo.json").catch(() => null),
+        SF.loadJSON(SITE + "data/logos.json").catch(() => ({})),
+      ]);
+      ORGS = orgs.organisations || []; LOCALITIES = locs.states || {}; GEO = geo;
+      Object.assign(SF.LOGOS, logos || {});
+      Object.values(SF.LOGOS).forEach((l) => { ["full", "mark"].forEach((k) => { if (l[k] && !/^https?:|^\//.test(l[k])) l[k] = SITE + l[k]; }); });
+    }
+    window.addEventListener("hashchange", route);
+    async function route() {
+      const h = location.hash.replace(/^#\/?/, "").split("/");
+      window.scrollTo(0, 0);
+      try {
+        if (h[0] === "review" && h[1]) { setNav("queue"); return await viewReview(h[1]); }
+        if (h[0] === "project" && h[1]) { setNav("projects"); return await viewProject(decodeURIComponent(h[1])); }
+        if (h[0] === "projects") { setNav("projects"); return await viewProjects(); }
+        if (h[0] === "orgs") { setNav("orgs"); return await viewOrgs(); }
+        if (h[0] === "history") { setNav("history"); return await viewHistory(); }
+        setNav("queue"); return await viewQueue(["published", "rejected"].includes(h[1]) ? h[1] : "pending");
+      } catch (e) { if (e.message !== "Please sign in.") fail(e); }
+    }
+
+    /* ---------- review queue ---------- */
+    async function viewQueue(status) {
+      ME = await api("/me");
+      const { items } = await api(`/queue?status=${status}`);
+      const warn = status === "pending" ? items.filter((i) => i.checks.some((c) => c.level !== "info")).length : 0;
+      const oldest = daysSince(ME.oldestPending);
+      const setup = [];
+      if (!ME.setup.github) setup.push("The GitHub key (GITHUB_TOKEN) is not added yet, so publishing will not work.");
+      app.innerHTML = `
+        ${setup.map((s) => `<div class="note-box warn">${esc(s)}</div>`).join("")}
+        ${!ME.imported ? `<div class="note-box"><b>First step:</b> copy the projects already on the map into the admin database, so you can edit them here.
+          <div style="margin-top:10px"><button class="btn btn-primary" id="seed">Import the current map data</button></div></div>` : ""}
+        <div class="row between">
+          <div><h1>Review queue</h1><p class="lede2">New projects from the form and Excel uploads. Nothing appears on the map until you publish it.</p></div>
+          <a class="btn" href="#/project/new">Add a project yourself</a>
+        </div>
+        <div class="stats">
+          <div class="card stat"><div class="l">To review</div><div class="v">${ME.counts.pending || 0}</div></div>
+          <div class="card stat"><div class="l">With warnings</div><div class="v warn">${warn}</div></div>
+          <div class="card stat"><div class="l">Published on the map</div><div class="v">${ME.published}</div></div>
+          <div class="card stat"><div class="l">Oldest waiting</div><div class="v">${oldest == null ? "None" : oldest === 0 ? "Today" : `${oldest} day${oldest === 1 ? "" : "s"}`}</div></div>
+        </div>
+        <div class="card tbl-card">
+          <div class="tbl-tools">
+            <a class="tab" href="#/queue" aria-current="${status === "pending"}">To review (${ME.counts.pending || 0})</a>
+            <a class="tab" href="#/queue/published" aria-current="${status === "published"}">Published</a>
+            <a class="tab" href="#/queue/rejected" aria-current="${status === "rejected"}">Not published</a>
+            <span class="grow"></span>
+            <label class="row" style="gap:8px;font-size:14px;color:var(--muted)">Search <input class="input" type="search" id="q" placeholder="Name, number or agency" style="width:220px"></label>
+          </div>
+          <div class="tbl-wrap">${items.length ? `<table class="adm"><thead><tr>
+            <th>${status === "pending" ? "Received" : "Reviewed"}</th><th>Number</th><th>Project</th><th>Lead</th><th>Came from</th><th>${status === "pending" ? "Checks" : ""}</th><th><span class="sr-only">Action</span></th>
+          </tr></thead><tbody>${items.map((i) => `<tr class="click" data-id="${i.id}" data-q="${esc(`${i.ref} ${i.name} ${i.lead}`.toLowerCase())}">
+            <td>${fmtDay(status === "pending" ? i.receivedAt : i.reviewedAt)}</td>
+            <td class="ref">${esc(i.ref || "")}</td>
+            <td>${i.kind === "correction" ? "<span class='pill2 info'>Correction</span> " : ""}${esc(i.name)}</td>
+            <td>${esc(i.lead)}</td>
+            <td>${i.source === "excel" ? `Excel upload${i.row ? `, row ${i.row}` : ""}` : i.kind === "correction" ? "Suggest a correction" : "Form"}${i.photos ? `, ${i.photos} photo${i.photos === 1 ? "" : "s"}` : ""}</td>
+            <td>${status === "pending" ? checkChip(i.checks) : ""}</td>
+            <td><a class="btn btn-sm ${status === "pending" ? "btn-primary" : ""}" href="#/review/${i.id}">${status === "pending" ? "Review" : "Open"}</a></td>
+          </tr>`).join("")}</tbody></table>` : `<div class="empty">${status === "pending" ? "Nothing waiting for review." : "Nothing here yet."}</div>`}</div>
+        </div>
+        <div class="note-box">You get an email (through GitHub) when something new arrives. Use <a href="#/projects">All projects</a> to edit anything already on the map.</div>`;
+      app.querySelectorAll("tr.click").forEach((tr) => tr.addEventListener("click", (e) => { if (!e.target.closest("a")) location.hash = `#/review/${tr.dataset.id}`; }));
+      const q = document.getElementById("q");
+      q.addEventListener("input", () => app.querySelectorAll("tr[data-q]").forEach((tr) => (tr.hidden = !tr.dataset.q.includes(q.value.toLowerCase().trim()))));
+      document.getElementById("seed")?.addEventListener("click", async (e) => {
+        busy(e.target, true, "Importing");
+        try { const r = await api("/setup", { method: "POST" }); SF.toast(`Imported ${r.imported} projects`); route(); }
+        catch (err) { busy(e.target, false); alert(err.message); }
+      });
+    }
+
+    /* ---------- the editor (used for submissions and published projects) ---------- */
+    function pills(name, options, chosen, extra = "") {
+      const set = new Set((chosen || []).map(String));
+      const all = [...options, ...[...set].filter((v) => !options.some((o) => String(o.value ?? o) === v)).map((v) => ({ value: v, label: v }))];
+      return `<div class="choice-pills sm" ${extra}>${all.map((o) => { const v = String(o.value ?? o), l = o.label ?? o; return `<label${o.cls ? ` class="${o.cls}"` : ""}><input type="checkbox" name="${name}" value="${esc(v)}"${set.has(v) ? " checked" : ""}> ${o.html || esc(l)}</label>`; }).join("")}</div>`;
+    }
+    function editorHTML(d, priv, opts = {}) {
+      const people = d.people || {};
+      const orgOpts = ORGS.map((o) => `<option value="${esc(o.acronym)}">${esc(o.acronym === o.name ? o.name : `${o.acronym}, ${o.name}`)}</option>`).join("");
+      const typeOpts = [...new Set([...SF.ORG_TYPES.map((t) => t.key), d.orgType].filter(Boolean))];
+      return `
+      <section class="card ed"><h2>Project <small>Every field can be edited before publishing</small></h2>
+        <label class="f" data-k="name">Project name<input class="input" id="e-name" value="${esc(d.name)}" maxlength="250"></label>
+        <label class="f" data-k="description">Short description<textarea class="input" id="e-description" rows="2" maxlength="600">${esc(d.description || "")}</textarea></label>
+        <div class="f" data-k="interventionTypes">Intervention type${pills("e-itypes", SF.INTERVENTION_TYPES, d.interventionTypes)}</div>
+      </section>
+      <section class="card ed"><h2>Who</h2>
+        <div class="g2">
+          <label class="f" data-k="orgType">Organisation type<select class="input" id="e-orgType"><option value="">Not set</option>${typeOpts.map((t) => `<option${t === d.orgType ? " selected" : ""}>${esc(t)}</option>`).join("")}</select></label>
+          <label class="f" data-k="lead">Lead organisation<input class="input" id="e-lead" list="dl-orgs" value="${esc(d.lead)}"><small>Use the acronym from the list when there is one</small></label>
+        </div>
+        <label class="f" data-k="leadName">Full name of the lead organisation<input class="input" id="e-leadName" value="${esc(d.leadName || "")}" placeholder="Only needed for organisations without a logo on the map"></label>
+        <div class="f" data-k="leadership">Organisation leadership${pills("e-leadership", SF.LEADERSHIP.map((l) => ({ value: l.key, label: l.label })), d.leadership)}</div>
+        <label class="f" data-k="partners">Implementing partners<input class="input" id="e-partners" value="${esc((d.partners || []).join("; "))}"><small>Separate with semicolons (;)</small></label>
+        <datalist id="dl-orgs">${orgOpts}</datalist>
+      </section>
+      <section class="card ed"><h2>Where</h2>
+        <label class="row" style="gap:8px;font-size:14px" data-k="nationwide"><input type="checkbox" id="e-nationwide"${d.nationwide ? " checked" : ""}> Nationwide</label>
+        <div class="f" data-k="states" id="e-states-wrap">States${pills("e-states", SF.STATES, d.states)}</div>
+        <label class="f" data-k="localities">Localities<textarea class="input" id="e-localities" rows="2">${esc((d.localities || []).join("; "))}</textarea><small id="loc-check">Separate with semicolons (;)</small></label>
+      </section>
+      <section class="card ed"><h2>IASC criteria and coordination</h2>
+        <div class="f" data-k="criteria">IASC criteria${pills("e-criteria", SF.CRITERIA.map((c) => ({ value: c.n, cls: "crit-opt2", html: `<span class="ci" style="background:${c.color}">${SF.critIcon(c.n)}</span> ${c.n}. ${esc(c.short)}` })), d.criteria)}</div>
+        <label class="f" data-k="coordination">Coordination mechanism or cluster<input class="input" id="e-coordination" list="dl-coord" value="${esc(d.coordination || "")}"></label>
+        <datalist id="dl-coord">${SF.COORDINATION_OPTIONS.map((o) => `<option value="${esc(o)}">`).join("")}</datalist>
+      </section>
+      <section class="card ed"><h2>When and how much</h2>
+        <div class="g3">
+          <label class="f" data-k="start">Start<input class="input" type="month" id="e-start" value="${monthOf(d.start)}"></label>
+          <label class="f" data-k="end">End<input class="input" type="month" id="e-end" value="${monthOf(d.end)}"></label>
+          <label class="f" data-k="reportedStatus">Reported status<select class="input" id="e-status"><option value="">Not set</option>${["Ongoing", "Pipeline", "Ended"].map((s) => `<option${s === d.reportedStatus ? " selected" : ""}>${s}</option>`).join("")}</select><small>The map works out the status from the dates</small></label>
+          <label class="f" data-k="budget">Total budget (USD)<input class="input" id="e-budget" inputmode="decimal" value="${d.budget ?? ""}"></label>
+          <label class="f" data-k="share">Durable solutions share (%)<input class="input" id="e-share" inputmode="decimal" value="${d.share != null ? Math.round(d.share * 1000) / 10 : ""}"></label>
+          <label class="f">Durable solutions funding<input class="input" id="e-ds" readonly value=""></label>
+        </div>
+        <label class="f" data-k="donor">Donor or funding source<input class="input" id="e-donor" value="${esc(d.donor || "")}"></label>
+      </section>
+      <section class="card ed"><h2>People reached, planned</h2>
+        <div class="g6" data-k="people">${PEOPLE.map((g) => `<label class="f">${g.label}<input class="input" id="e-pp-${g.key}" inputmode="numeric" value="${people[g.key] ?? ""}"></label>`).join("")}</div>
+      </section>
+      <section class="card ed"><h2>Photos and remarks <small>Up to 3 photos, each made smaller to under 1 MB</small></h2>
+        <div class="ph-list" id="e-photos"></div>
+        <label class="f" data-k="remarks">Remarks<textarea class="input" id="e-remarks" rows="2" maxlength="800">${esc(d.remarks || "")}</textarea></label>
+      </section>
+      <section class="card ed"><h2>Private to DSU <small>Never published on the map</small></h2>
+        <div class="g2">
+          <label class="f">Focal point<input class="input" id="e-fpName" value="${esc(priv.fpName || "")}"></label>
+          <label class="f">Focal point email<input class="input" id="e-fpEmail" type="email" value="${esc(priv.fpEmail || "")}"></label>
+        </div>
+        ${opts.note !== undefined ? `<label class="f">Internal note<textarea class="input" id="e-note" rows="2" placeholder="Only visible here">${esc(opts.note || "")}</textarea></label>` : ""}
+      </section>`;
+    }
+    function bindEditor(state, onChange) {
+      const g = (id) => document.getElementById(id);
+      const checked = (n) => [...document.querySelectorAll(`input[name="${n}"]:checked`)].map((i) => i.value);
+      const num = (v) => { const s = String(v || "").replace(/[^\d.]/g, ""); return s === "" ? null : Number(s); };
+      const splitList = (v) => String(v || "").split(/;|\n/).map((x) => x.trim()).filter(Boolean);
+      function values() {
+        const start = g("e-start").value, end = g("e-end").value;
+        const share = num(g("e-share").value);
+        return {
+          name: g("e-name").value.trim(), description: g("e-description").value.trim() || null, interventionTypes: checked("e-itypes"),
+          orgType: g("e-orgType").value || null, lead: g("e-lead").value.trim(), leadName: g("e-leadName").value.trim() || undefined,
+          leadership: checked("e-leadership"), partners: splitList(g("e-partners").value), partnerTypes: [],
+          nationwide: g("e-nationwide").checked, states: g("e-nationwide").checked ? [] : checked("e-states"),
+          localities: g("e-nationwide").checked ? [] : splitList(g("e-localities").value), criteria: checked("e-criteria").map(Number),
+          coordination: g("e-coordination").value.trim() || null,
+          start: start ? `${start}-01` : null, end: end ? `${end}-01` : null, reportedStatus: g("e-status").value || null,
+          budget: num(g("e-budget").value), share: share != null ? Math.min(100, share) / 100 : null,
+          dsFunding: num(g("e-budget").value) != null && share != null ? (num(g("e-budget").value) * share) / 100 : null,
+          donor: g("e-donor").value.trim() || null,
+          people: Object.fromEntries(PEOPLE.map((p) => [p.key, num(g(`e-pp-${p.key}`).value)])),
+          remarks: g("e-remarks").value.trim() || null,
+        };
+      }
+      const priv = () => ({ fpName: g("e-fpName").value.trim(), fpEmail: g("e-fpEmail").value.trim() });
+      function refresh() {
+        const v = values();
+        g("e-ds").value = v.dsFunding != null ? SF.fmtUSD(v.dsFunding) : "";
+        g("e-states-wrap").style.opacity = v.nationwide ? 0.45 : 1;
+        const known = new Set(v.states.flatMap((s) => LOCALITIES[s] || []));
+        const unknown = v.localities.filter((l) => !known.has(l));
+        g("loc-check").innerHTML = unknown.length && v.states.length ? `<span style="color:var(--warn-ink)">Not in the OCHA list for the chosen states: ${esc(unknown.join(", "))}</span>` : "Separate with semicolons (;)";
+        onChange && onChange(v);
+      }
+      // photos
+      function drawPhotos() {
+        const host = g("e-photos");
+        host.innerHTML = state.photos.map((p, i) => `<div class="ph"><img src="${esc(p.url)}" alt=""><div><span>${esc(p.label || (p.path ? "On the map" : "New"))}</span><button type="button" data-rm="${i}">Remove</button></div></div>`).join("") +
+          (state.photos.length < 3 ? `<label class="ph-add">Add a photo<br>(made smaller automatically)<input type="file" accept="image/*" id="e-ph-in" multiple></label>` : "");
+        host.querySelectorAll("[data-rm]").forEach((b) => b.addEventListener("click", async () => {
+          const p = state.photos.splice(Number(b.dataset.rm), 1)[0];
+          if (p.file && state.deleteFileNow) await api(`/file/${p.file}`, { method: "DELETE" }).catch(() => {});
+          drawPhotos(); refresh();
+        }));
+        g("e-ph-in")?.addEventListener("change", async (e) => {
+          for (const f of [...e.target.files].slice(0, 3 - state.photos.length)) {
+            try {
+              const img = await SF.shrinkImage(f);
+              const r = await api("/file", { method: "POST", body: { owner: state.owner, kind: "photo", image: img } });
+              state.photos.push({ file: r.file, url: r.url, label: SF.fmtSize(img.size) });
+            } catch (err) { alert(err.message); }
+          }
+          drawPhotos(); refresh();
+        });
+      }
+      drawPhotos();
+      const host = document.querySelector(".split");
+      host.addEventListener("input", refresh);
+      host.addEventListener("change", refresh);
+      refresh();
+      return { values, priv, refresh };
+    }
+    function previewCard(v, photos) {
+      const p = SF.enrich(JSON.parse(JSON.stringify({ ...v, id: "pv", photos: photos.map((x) => x.url) })));
+      return SF.render.card(p);
+    }
+    function openPopup(v, photos, title) {
+      const p = SF.enrich(JSON.parse(JSON.stringify({ ...v, id: "pv", photos: photos.map((x) => x.url) })));
+      const d = document.getElementById("detail");
+      d.innerHTML = `<button type="button" class="modal-close" aria-label="Close" data-close>&times;</button>
+        <div class="modal-scroll"><div class="hero">${SF.render.hero(p)}</div>${SF.render.body(p, GEO)}</div>`;
+      d.querySelector("[data-close]").addEventListener("click", () => d.close());
+      d.showModal();
+    }
+    function openCompare(a, b) {
+      const d = document.getElementById("detail");
+      const pa = SF.enrich(JSON.parse(JSON.stringify({ ...a.data, id: "a", photos: [] })));
+      const pb = SF.enrich(JSON.parse(JSON.stringify({ ...b.data, id: "b", photos: [] })));
+      d.style.width = "min(1180px, calc(100vw - 24px))";
+      d.innerHTML = `<button type="button" class="modal-close" aria-label="Close" data-close>&times;</button>
+        <div class="modal-scroll"><div class="cmp"><div><p class="pv-ref" style="padding:16px 22px 0">${esc(a.label)}</p>${SF.render.body(pa, GEO)}</div><div><p class="pv-ref" style="padding:16px 22px 0">${esc(b.label)}</p>${SF.render.body(pb, GEO)}</div></div></div>`;
+      d.querySelector("[data-close]").addEventListener("click", () => { d.close(); d.style.width = ""; });
+      d.showModal();
+    }
+    // Which fields differ between two versions of a project
+    const FIELD_LABELS = { name: "Project name", description: "Description", interventionTypes: "Intervention type", orgType: "Organisation type", lead: "Lead organisation", leadership: "Leadership", partners: "Partners", nationwide: "Nationwide", states: "States", localities: "Localities", criteria: "IASC criteria", coordination: "Coordination", start: "Start", end: "End", reportedStatus: "Reported status", budget: "Budget", share: "Share", donor: "Donor", people: "People", remarks: "Remarks" };
+    function diff(a, b) {
+      const norm = (k, v) => k === "start" || k === "end" ? monthOf(v) : k === "share" && v != null ? Math.round(v * 1000) : Array.isArray(v) ? [...v].map(String).sort().join("|") : v && typeof v === "object" ? JSON.stringify(v) : v ?? "";
+      return Object.keys(FIELD_LABELS).filter((k) => String(norm(k, a[k])) !== String(norm(k, b[k])));
+    }
+    const show = (k, v) => k === "start" || k === "end" ? SF.fmtMonth(SF.parseDate(v)) : k === "share" ? SF.fmtPct(v) : k === "budget" ? SF.fmtUSD(v) : k === "people" ? (v && v.total != null ? SF.fmtInt(v.total) : "") : Array.isArray(v) ? v.join(", ") : v === true ? "Yes" : v === false ? "No" : v ?? "";
+
+    /* ---------- review one submission ---------- */
+    async function viewReview(id) {
+      const { item: s } = await api(`/submission/${id}`);
+      const pending = s.status === "pending";
+      const isCorr = s.kind === "correction" && s.current;
+      const state = { owner: s.id, photos: [...(isCorr ? (s.current.data.photos || []).map((p) => ({ path: p, url: SITE + p, label: "On the map" })) : []), ...s.photos.map((p) => ({ ...p, label: SF.fmtSize(p.size || 0) }))], deleteFileNow: false };
+      let asUpdateOf = null;
+      const dup = s.checks.find((c) => c.kind === "duplicate");
+      app.innerHTML = `
+        <a href="#/queue">Back to the queue</a>
+        <div class="row between">
+          <div><div class="muted" style="font-size:13px">${esc(s.ref || "")} · received ${fmtWhen(s.receivedAt)} from ${s.source === "excel" ? `an Excel upload${s.row ? ` (row ${s.row})` : ""}` : isCorr ? "Suggest a correction" : "the form"}</div>
+          <h1 id="rv-title">${esc(s.data.name || "")}</h1></div>
+          <span class="pill2 ${pending ? "info" : s.status === "published" ? "ok" : "mute"}">${pending ? (isCorr ? "Correction awaiting review" : "Awaiting review") : s.status === "published" ? `Published ${fmtDay(s.reviewedAt)}` : `Not published ${fmtDay(s.reviewedAt)}`}</span>
+        </div>
+        <div class="split">
+          <div class="main">${editorHTML(s.data, s.private, { note: s.note || "" })}</div>
+          <aside class="side">
+            <section class="card ed"><h2>Checks</h2><div class="checks" id="checks"></div></section>
+            ${s.logo ? `<section class="card ed"><h2>Logo sent with the project</h2><img src="${esc(s.logo.url)}" alt="Logo" style="max-height:70px;max-width:220px;object-fit:contain"><small class="muted">It is added to the map for ${esc(s.data.lead)} when you publish.</small></section>` : ""}
+            <section class="card" style="overflow:hidden">
+              <div style="padding:14px 18px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line)">How it will look on the map</div>
+              <div style="padding:14px" id="pv-card"></div>
+              <div style="padding:0 18px 16px"><button type="button" class="linkish" id="pv-open">Open the full pop-up</button></div>
+            </section>
+          </aside>
+        </div>
+        ${pending ? `<div class="card bar-actions">
+          <button type="button" class="btn btn-danger" id="b-reject">Do not publish</button>
+          <a class="btn" id="b-reply" href="#">Reply to the submitter</a>
+          <button type="button" class="btn" id="b-save">Save changes</button>
+          <span class="grow"></span>
+          <span class="muted" style="font-size:13px">The map updates about 2 minutes after publishing</span>
+          <button type="button" class="btn btn-primary" id="b-publish">Publish to the map</button>
+        </div>` : `<div class="card bar-actions"><span class="muted grow" style="font-size:14px">${s.note ? `Note: ${esc(s.note)}` : "This submission has been reviewed."}</span>${s.status === "rejected" ? `<button type="button" class="btn" id="b-reopen">Move back to the queue</button>` : ""}</div>`}`;
+
+      function drawChecks(v) {
+        const items = [];
+        s.checks.forEach((c) => {
+          if (c.kind === "duplicate") {
+            items.push(`<div class="chk warn">${ICON_WARN}<div><b>Possible duplicate.</b> ${esc(c.text)}.
+              <div class="row" style="gap:12px;margin-top:6px"><button type="button" class="linkish" id="c-compare" style="color:inherit">Compare side by side</button>
+              ${pending ? `<label class="row" style="gap:6px"><input type="checkbox" id="c-update"${asUpdateOf ? " checked" : ""}> Treat as an update to ${esc(c.ref || "")}</label>` : ""}</div></div></div>`);
+          } else if (c.level === "error") items.push(`<div class="chk error">${ICON_WARN}<span>${esc(c.text)}</span></div>`);
+          else if (c.level === "warn") items.push(`<div class="chk warn">${ICON_WARN}<span>${esc(c.text)}</span></div>`);
+          else items.push(`<div class="chk">${ICON_WARN.replace("currentColor", "var(--muted)")}<span>${esc(c.text)}</span></div>`);
+        });
+        if (isCorr) {
+          const changed = diff(v, s.current.data);
+          document.querySelectorAll(".f.changed").forEach((f) => f.classList.remove("changed"));
+          document.querySelectorAll(".was").forEach((x) => x.remove());
+          changed.forEach((k) => { const f = document.querySelector(`[data-k="${k}"]`); if (f) { f.classList.add("changed"); f.insertAdjacentHTML("beforeend", `<span class="was">On the map now: ${esc(show(k, s.current.data[k])) || "empty"}</span>`); } });
+          items.unshift(`<div class="chk">${ICON_OK}<span>Correction to ${esc(s.current.ref || "")}: <b>${changed.length}</b> field${changed.length === 1 ? "" : "s"} changed${changed.length ? ` (${changed.map((k) => FIELD_LABELS[k].toLowerCase()).join(", ")})` : ""}. Changed fields are outlined.</span></div>`);
+        }
+        if (!s.checks.some((c) => c.level !== "info") && !isCorr) items.unshift(`<div class="chk">${ICON_OK}<span>No problems found</span></div>`);
+        document.getElementById("checks").innerHTML = items.join("");
+        document.getElementById("c-compare")?.addEventListener("click", async () => {
+          const { item } = await api(`/project/${encodeURIComponent(dup.id)}`);
+          openCompare({ label: `This submission (${s.ref})`, data: ed.values() }, { label: `On the map now (${item.ref})`, data: item.data });
+        });
+        document.getElementById("c-update")?.addEventListener("change", (e) => { asUpdateOf = e.target.checked ? dup.id : null; });
+      }
+      const ed = bindEditor(state, (v) => {
+        document.getElementById("pv-card").innerHTML = previewCard(v, state.photos);
+        document.getElementById("rv-title").textContent = v.name || "Untitled";
+        if (document.getElementById("checks")) drawChecks(v);
+      });
+      drawChecks(ed.values());
+      document.getElementById("pv-open").addEventListener("click", () => openPopup(ed.values(), state.photos));
+
+      const body = () => ({ data: ed.values(), private: ed.priv(), note: document.getElementById("e-note")?.value || "", photos: state.photos.filter((p) => p.file), photosFinal: state.photos.map((p) => (p.path ? { path: p.path } : { file: p.file })), asUpdateOf });
+      document.getElementById("b-save")?.addEventListener("click", async (e) => {
+        busy(e.target, true, "Saving");
+        try { await api(`/submission/${s.id}`, { method: "PUT", body: body() }); SF.toast("Saved"); } catch (err) { alert(err.message); }
+        busy(e.target, false);
+      });
+      document.getElementById("b-publish")?.addEventListener("click", async (e) => {
+        const btns = document.querySelectorAll(".bar-actions .btn");
+        busy(e.target, true, "Publishing");
+        btns.forEach((b) => (b.disabled = true));
+        try {
+          await api(`/submission/${s.id}`, { method: "PUT", body: body() });
+          const r = await api(`/submission/${s.id}/publish`, { method: "POST", body: body() });
+          SF.toast(`${r.ref} published. The map updates in about 2 minutes.`);
+          location.hash = "#/queue";
+        } catch (err) { alert(err.message); busy(e.target, false); btns.forEach((b) => (b.disabled = false)); }
+      });
+      document.getElementById("b-reject")?.addEventListener("click", async (e) => {
+        const note = prompt("Not publishing this project. Add a short internal note (optional):", "");
+        if (note === null) return;
+        busy(e.target, true, "Saving");
+        try { await api(`/submission/${s.id}/reject`, { method: "POST", body: { note } }); SF.toast("Moved to Not published"); location.hash = "#/queue"; }
+        catch (err) { alert(err.message); busy(e.target, false); }
+      });
+      document.getElementById("b-reopen")?.addEventListener("click", async () => { await api(`/submission/${s.id}/reopen`, { method: "POST", body: {} }); route(); });
+      const reply = document.getElementById("b-reply");
+      if (reply) {
+        const upd = () => { const v = ed.values(), p = ed.priv(); reply.href = `mailto:${encodeURIComponent(p.fpEmail || "")}?cc=${SF.config.contactEmail}&subject=${encodeURIComponent(`Your project ${s.ref} for the Solutions Footprint: ${v.name}`)}&body=${encodeURIComponent(`Dear ${p.fpName || "colleague"},\r\n\r\nThank you for submitting "${v.name}" (${s.ref}) to the Solutions Footprint.\r\n\r\n\r\n\r\nKind regards,\r\nDurable Solutions Unit, RCO Sudan`)}`; };
+        upd(); document.querySelector(".split").addEventListener("input", upd);
+      }
+    }
+
+    /* ---------- all projects ---------- */
+    async function viewProjects() {
+      const { items } = await api("/projects");
+      app.innerHTML = `
+        <div class="row between">
+          <div><h1>All projects</h1><p class="lede2">Everything in the database. Edit a project and press <b>Save and publish</b> to update the map.</p></div>
+          <div class="row"><a class="btn" href="${API}/export">Download a backup (JSON)</a><a class="btn btn-primary" href="#/project/new">Add a project yourself</a></div>
+        </div>
+        ${!items.length ? `<div class="note-box">No projects yet. Go to the <a href="#/queue">Review queue</a> and import the current map data first.</div>` : ""}
+        <div class="card tbl-card">
+          <div class="tbl-tools"><span class="muted" style="font-size:14px">${items.filter((i) => i.published).length} on the map, ${items.filter((i) => !i.published).length} hidden</span><span class="grow"></span>
+            <label class="row" style="gap:8px;font-size:14px;color:var(--muted)">Search <input class="input" type="search" id="q" placeholder="Name, number, agency or state" style="width:260px"></label></div>
+          <div class="tbl-wrap"><table class="adm"><thead><tr><th>Number</th><th>Project</th><th>Lead</th><th>States</th><th>Dates</th><th>Budget</th><th>People</th><th>Map</th></tr></thead>
+          <tbody>${items.map((i) => `<tr class="click" data-id="${esc(i.id)}" data-q="${esc(`${i.ref} ${i.name} ${i.lead} ${i.states.join(" ")}`.toLowerCase())}">
+            <td class="ref">${esc(i.ref || "")}</td><td>${esc(i.name)}</td><td>${esc(i.lead)}</td><td>${esc(i.states.join(", "))}</td>
+            <td style="white-space:nowrap">${fmtDates(i.start, i.end)}</td><td>${SF.fmtMoney(i.budget)}</td><td>${i.people == null ? '<span class="pill2 warn">Empty</span>' : SF.fmtInt(i.people)}</td>
+            <td>${i.published ? '<span class="pill2 ok">On the map</span>' : '<span class="pill2 mute">Hidden</span>'}</td></tr>`).join("")}</tbody></table></div>
+        </div>`;
+      app.querySelectorAll("tr.click").forEach((tr) => tr.addEventListener("click", () => (location.hash = `#/project/${encodeURIComponent(tr.dataset.id)}`)));
+      const q = document.getElementById("q");
+      q.addEventListener("input", () => app.querySelectorAll("tr[data-q]").forEach((tr) => (tr.hidden = !tr.dataset.q.includes(q.value.toLowerCase().trim()))));
+    }
+
+    /* ---------- edit one published project (or add one) ---------- */
+    async function viewProject(id) {
+      const isNew = id === "new";
+      const item = isNew ? { id: "new", ref: "", published: true, data: { people: {}, states: [], criteria: [], interventionTypes: [], leadership: [], partners: [], localities: [] }, private: {}, photos: [] } : (await api(`/project/${encodeURIComponent(id)}`)).item;
+      const state = { owner: `project:${isNew ? "new" : item.id}`, photos: item.photos.map((p) => ({ ...p, label: p.path ? "On the map" : "New" })), deleteFileNow: true };
+      app.innerHTML = `
+        <a href="#/projects">Back to all projects</a>
+        <div class="row between">
+          <div><div class="muted" style="font-size:13px">${isNew ? "New project, added by DSU" : `${esc(item.ref || "")} · last changed ${fmtWhen(item.updatedAt)}`}</div><h1 id="rv-title">${esc(item.data.name || "New project")}</h1></div>
+          ${isNew ? "" : `<span class="pill2 ${item.published ? "ok" : "mute"}">${item.published ? "On the map" : "Hidden from the map"}</span>`}
+        </div>
+        <div class="split">
+          <div class="main">${editorHTML(item.data, item.private)}</div>
+          <aside class="side">
+            <section class="card" style="overflow:hidden">
+              <div style="padding:14px 18px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line)">How it looks on the map</div>
+              <div style="padding:14px" id="pv-card"></div>
+              <div style="padding:0 18px 16px"><button type="button" class="linkish" id="pv-open">Open the full pop-up</button></div>
+            </section>
+            ${isNew ? "" : `<section class="card ed"><h2>Project number</h2><p style="margin:0;font-size:14px">${esc(item.ref || "")}. Numbers never change and are never reused.</p></section>`}
+          </aside>
+        </div>
+        <div class="card bar-actions">
+          ${isNew ? "" : `<button type="button" class="btn btn-danger" id="b-delete">Delete</button>
+          <button type="button" class="btn" id="b-hide">${item.published ? "Hide from the map" : "Keep hidden, save changes"}</button>`}
+          <span class="grow"></span>
+          <span class="muted" style="font-size:13px">The map updates about 2 minutes after saving</span>
+          <button type="button" class="btn btn-primary" id="b-publish">${isNew ? "Publish to the map" : item.published ? "Save and publish" : "Save and put back on the map"}</button>
+        </div>`;
+      const ed = bindEditor(state, (v) => {
+        document.getElementById("pv-card").innerHTML = previewCard(v, state.photos);
+        document.getElementById("rv-title").textContent = v.name || "New project";
+      });
+      document.getElementById("pv-open").addEventListener("click", () => openPopup(ed.values(), state.photos));
+      const save = async (btn, published) => {
+        const btns = document.querySelectorAll(".bar-actions .btn");
+        busy(btn, true, "Publishing"); btns.forEach((b) => (b.disabled = true));
+        try {
+          const r = await api(`/project/${encodeURIComponent(isNew ? "new" : item.id)}`, { method: "PUT", body: { data: ed.values(), private: ed.priv(), photos: state.photos.map((p) => (p.path ? { path: p.path } : { file: p.file })), published } });
+          SF.toast(`${r.ref} saved. The map updates in about 2 minutes.`);
+          location.hash = `#/project/${encodeURIComponent(r.id)}`;
+          if (!isNew) route();
+        } catch (err) { alert(err.message); busy(btn, false); btns.forEach((b) => (b.disabled = false)); }
+      };
+      document.getElementById("b-publish").addEventListener("click", (e) => save(e.target, true));
+      document.getElementById("b-hide")?.addEventListener("click", (e) => save(e.target, false));
+      document.getElementById("b-delete")?.addEventListener("click", async (e) => {
+        if (!confirm(`Delete ${item.ref} "${item.data.name}" from the database and the map? Its number will not be reused. To keep it but take it off the map, use "Hide from the map" instead.`)) return;
+        busy(e.target, true, "Deleting");
+        try { await api(`/project/${encodeURIComponent(item.id)}`, { method: "DELETE" }); SF.toast("Deleted"); location.hash = "#/projects"; }
+        catch (err) { alert(err.message); busy(e.target, false); }
+      });
+    }
+
+    /* ---------- organisations and logos ---------- */
+    async function viewOrgs() {
+      const { logos, leads } = await api("/orgs");
+      const byKey = Object.fromEntries(logos.map((l) => [l.acronym, l]));
+      const keys = [...new Set([...leads.map((l) => l.lead).filter(Boolean), ...logos.map((l) => l.acronym)])].sort();
+      const orgName = (k) => (byKey[k] && byKey[k].name) || (ORGS.find((o) => o.acronym === k) || {}).name || "";
+      app.innerHTML = `
+        <div><h1>Organisations</h1><p class="lede2">Lead organisations on the map and their logos. A logo you add here is published straight away.</p></div>
+        <div class="card tbl-card"><div class="tbl-wrap"><table class="adm"><thead><tr><th>Organisation</th><th>Projects</th><th>Logo</th><th><span class="sr-only">Action</span></th></tr></thead>
+        <tbody>${keys.map((k) => { const l = leads.find((x) => x.lead === k) || { n: 0 }; return `<tr>
+          <td><b style="font-weight:500">${esc(k)}</b><br><span class="muted" style="font-size:13px">${esc(orgName(k))}</span></td>
+          <td>${l.n || 0}</td>
+          <td class="logo-cell">${byKey[k] ? `<img src="${esc(byKey[k].fullUrl)}" alt="${esc(k)} logo">` : '<span class="pill2 warn">No logo</span>'}</td>
+          <td><label class="btn btn-sm">${byKey[k] ? "Replace" : "Add logo"}<input type="file" accept="image/png,image/jpeg,image/webp" data-org="${esc(k)}" hidden></label></td></tr>`; }).join("")}</tbody></table></div></div>
+        <section class="card ed"><h2>Add a logo for another organisation</h2>
+          <div class="g3"><label class="f">Acronym<input class="input" id="o-acr" list="dl-orgs2"></label><label class="f">Full name<input class="input" id="o-name"></label>
+          <label class="f">Logo file<input class="input" type="file" id="o-file" accept="image/png,image/jpeg,image/webp"></label></div>
+          <datalist id="dl-orgs2">${ORGS.map((o) => `<option value="${esc(o.acronym)}">`).join("")}</datalist>
+          <div><button type="button" class="btn btn-primary" id="o-go">Publish logo</button></div>
+        </section>`;
+      const upload = async (acr, name, file, btn) => {
+        if (!acr || !file) return alert("Choose the organisation and a logo file.");
+        busy(btn, true, "Publishing");
+        try {
+          const img = await SF.shrinkImage(file, { keepPng: true, maxSide: 800 });
+          await api("/logo", { method: "POST", body: { acronym: acr, name: name || orgName(acr) || acr, image: img } });
+          SF.toast(`Logo for ${acr} published`); route();
+        } catch (err) { alert(err.message); busy(btn, false); }
+      };
+      app.querySelectorAll("input[data-org]").forEach((i) => i.addEventListener("change", () => upload(i.dataset.org, "", i.files[0], i.closest("label"))));
+      document.getElementById("o-acr").addEventListener("change", (e) => { const n = orgName(e.target.value.trim()); if (n && !document.getElementById("o-name").value) document.getElementById("o-name").value = n; });
+      document.getElementById("o-go").addEventListener("click", (e) => upload(document.getElementById("o-acr").value.trim(), document.getElementById("o-name").value.trim(), document.getElementById("o-file").files[0], e.target));
+    }
+
+    /* ---------- history ---------- */
+    async function viewHistory() {
+      const { items, repo } = await api("/log");
+      app.innerHTML = `
+        <div><h1>History</h1><p class="lede2">Every change made from these pages. Each change to the map is also a commit on GitHub, so it can be undone there.</p></div>
+        <div class="card tbl-card"><div class="tbl-wrap">${items.length ? `<table class="adm"><thead><tr><th>When</th><th>What</th><th>Project</th><th>GitHub</th></tr></thead><tbody>
+          ${items.map((i) => `<tr><td style="white-space:nowrap">${fmtWhen(i.at)}</td><td>${esc(i.action[0].toUpperCase() + i.action.slice(1))}</td><td>${esc(i.detail || "")}</td>
+          <td>${i.commit_sha ? `<a href="https://github.com/${esc(repo)}/commit/${esc(i.commit_sha)}" target="_blank" rel="noopener">${esc(i.commit_sha.slice(0, 7))}</a>` : ""}</td></tr>`).join("")}
+        </tbody></table>` : `<div class="empty">Nothing yet.</div>`}</div></div>`;
+    }
+
+    loadLists().finally(() => boot().catch((e) => { if (e.message !== "Please sign in.") fail(e); }));
+  })();
+  </script>
+</body>
+</html>

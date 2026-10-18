@@ -11,7 +11,12 @@ SF.config = {
   localitiesUrl: "data/localities.json",
   refsUrl: "data/project-refs.json",
   templateUrl: "assets/templates/solutions-footprint-projects-template.xlsx",
+  logosUrl: "data/logos.json",
   hdxAdminUrl: "https://data.humdata.org/dataset/cod-ab-sdn",
+  // Back end that receives projects directly (no email needed). Leave empty to use email only.
+  apiUrl: "",
+  // Optional spam protection (Cloudflare Turnstile site key). Leave empty if not used.
+  turnstileSiteKey: "",
   githubUrl: "https://github.com/mdfazlulkarim",
   linkedinUrl: "https://www.linkedin.com/in/fazlulkarim/",
 };
@@ -78,6 +83,39 @@ SF.LOGOS = {
   UNFPA: { full: "assets/img/logos/UNFPA.png", mark: "assets/img/logos/UNFPA-mark.png", name: "United Nations Population Fund" },
   UNHCR: { full: "assets/img/logos/UNHCR.png", mark: "assets/img/logos/UNHCR-mark.png", name: "United Nations High Commissioner for Refugees" },
 };
+// Logos added later through the admin pages are listed in data/logos.json
+SF.loadLogos = () => SF.loadJSON(SF.config.logosUrl).then((l) => { Object.assign(SF.LOGOS, l || {}); }).catch(() => {});
+
+/* Make a photo or logo smaller in the browser, to under 1 MB, before it is sent.
+   Returns { name, type, data (base64), size, origSize, url (for a preview) }. */
+SF.MAX_IMAGE = 950 * 1024;
+SF.shrinkImage = async (file, opts = {}) => {
+  const max = opts.maxBytes || SF.MAX_IMAGE, side = opts.maxSide || 1600;
+  const okType = /^image\/(jpeg|png|webp)$/.test(file.type);
+  const toB64 = (blob) => new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(",")[1]); r.onerror = rej; r.readAsDataURL(blob); });
+  const done = async (blob, type) => ({ name: file.name.replace(/\.[^.]+$/, "") + (type === "image/png" ? ".png" : ".jpg"), type, data: await toB64(blob), size: blob.size, origSize: file.size, url: URL.createObjectURL(blob) });
+  if (okType && file.size <= max && !opts.force) return { ...(await done(file, file.type)), name: file.name, type: file.type };
+  const src = URL.createObjectURL(file);
+  const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error(`"${file.name}" could not be opened as a photo. Please use a JPG or PNG file.`)); i.src = src; });
+  URL.revokeObjectURL(src);
+  const png = !!opts.keepPng && file.type === "image/png";
+  let scale = Math.min(1, side / Math.max(img.naturalWidth, img.naturalHeight));
+  for (let round = 0; round < 8; round++) {
+    const c = document.createElement("canvas");
+    c.width = Math.max(1, Math.round(img.naturalWidth * scale)); c.height = Math.max(1, Math.round(img.naturalHeight * scale));
+    const g = c.getContext("2d");
+    if (!png) { g.fillStyle = "#ffffff"; g.fillRect(0, 0, c.width, c.height); }
+    g.drawImage(img, 0, 0, c.width, c.height);
+    for (const q of png ? [null] : [0.85, 0.75, 0.65]) {
+      const blob = await new Promise((r) => c.toBlob(r, png ? "image/png" : "image/jpeg", q || undefined));
+      if (blob && blob.size <= max) return done(blob, png ? "image/png" : "image/jpeg");
+    }
+    scale *= 0.75;
+  }
+  throw new Error(`"${file.name}" could not be made smaller than 1 MB.`);
+};
+SF.fmtSize = (b) => (b >= 1024 * 1024 ? `${(b / 1024 / 1024).toFixed(1)} MB` : `${Math.max(1, Math.round(b / 1024))} KB`);
+
 SF.logoImg = (org, kind = "mark", cls = "") => {
   const l = SF.LOGOS[org];
   if (l) return `<img src="${l[kind]}" alt="${SF.esc(org)}" class="${cls}" loading="lazy">`;
@@ -181,7 +219,7 @@ SF.addMenuHTML = (id = "add") => `
     <button class="btn btn-primary" id="${id}-btn" aria-haspopup="true" aria-expanded="false" aria-controls="${id}-menu">${SF.icons.plus}Add your project${SF.icons.chevron}</button>
     <div class="dropdown-menu" id="${id}-menu" role="menu" hidden>
       <a class="menu-item" role="menuitem" href="add.html"><span class="mi-ico">${SF.icons.form}</span><span><b>Add one project</b><small>Fill in a short online form.</small></span></a>
-      <a class="menu-item" role="menuitem" href="${SF.config.templateUrl}" download data-template><span class="mi-ico">${SF.icons.sheet}</span><span><b>Add multiple projects</b><small>Download the Excel template, fill in one row per project and email it to ${SF.config.contactEmail}.</small></span></a>
+      <a class="menu-item" role="menuitem" href="add-multiple.html"><span class="mi-ico">${SF.icons.sheet}</span><span><b>Add multiple projects</b><small>Fill in the Excel template, one row per project, and send them all at once.</small></span></a>
     </div>
   </div>`;
 SF.bindDropdown = (id) => {

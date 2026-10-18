@@ -25,6 +25,8 @@ Contact: [dswg.sd@undp.org](mailto:dswg.sd@undp.org)
 - **My submissions** (`my-submissions.html`) lists the projects sent from that browser, saved only in the browser (localStorage), with a clear notice that clearing browser data empties the list. A submission shows as "Published on the map" when a published project from the same lead organisation matches at least 4 of 7 data points (project number, name, start month, end month, total budget within 1%, states, IASC criteria). Published items are removed from the list 3 days later.
 - When a project is sent, the form proposes the next project number for that agency (for example UNHCR-004), read from `data/project-refs.json`. It appears in the preview, the email subject and My submissions. DSU keeps that number when publishing; this assumes one person at DSU handles the numbering.
 - Both template links download the file directly (the page fetches it), also when the dashboard is embedded in another site.
+- **Add multiple projects** (`add-multiple.html`): people upload the filled Excel template, the page checks every row (missing fields, unknown states, dates, consent) and sends the ready rows. The Excel reader is bundled in `assets/vendor/` (SheetJS, Apache 2.0 licence).
+- **Direct sending (back end):** when `SF.config.apiUrl` is set in `assets/js/common.js`, the form and the Excel page send projects straight to the review queue, with up to 3 photos and a logo, each made smaller in the browser to under 1 MB. If sending fails, the form offers the email route. With `apiUrl` empty, the site works by email as before.
 
 The Projects and Gaps views (Phases 2 and 3) are not built yet. Their menu links are commented out in `assets/js/common.js` (`SF.renderHeader`).
 
@@ -48,6 +50,11 @@ assets/js/icons.js      OCHA humanitarian icons used for the IASC criteria
 assets/img/logos/       Agency logos (full logo and a small square mark)
 assets/photos/          Project photos, named <project number>-1.jpg (up to 3)
 assets/templates/       Excel template for adding several projects
+assets/vendor/          Excel reader for the upload page (SheetJS)
+add-multiple.html       Upload the Excel template and send several projects
+assets/js/multi.js      Logic of the upload page
+data/logos.json         Agency logos shown on the map (written by the admin pages)
+worker/                 Back end on Cloudflare: review queue, admin pages, publishing (see below)
 data/projects.json      The published project data (public fields only)
 data/project-refs.json  Permanent internal project numbers (for example IOM-001)
 data/organisations.json Organisation list used by the form and the template
@@ -102,14 +109,34 @@ Save the logo as `assets/img/logos/<ACRONYM>.png` (full logo, about 96 px high) 
 
 Edit `scripts/organisations_source.py`, then run it, and run `python3 scripts/build_template.py` so the template lists match.
 
-### Publish an approved project
+### Review and publish (admin pages)
 
-Submissions arrive by email at dswg.sd@undp.org. Once DSU approves one:
+Once the back end is on, the admin pages replace the SharePoint list as the place where the data is kept:
+`https://solutions-footprint.<subdomain>.workers.dev/admin`
 
-- **Preferred:** add it to the SharePoint list and re-run the data update above.
-- **Quick fix:** edit `data/projects.json` directly on GitHub. Copy an existing project block, give it a unique `id`, and fill in the fields. Leave unknown values as `null` or `[]`. `criteria` uses the numbers 1 to 8. Dates use `YYYY-MM-DD`. `share` is a fraction (0.4 means 40%).
+- **Review queue:** new projects from the form and the Excel page, with checks (possible duplicate, organisation without a logo, empty fields). Open one, edit any field, then **Publish to the map**, **Do not publish**, or **Reply to the submitter** (opens your email).
+- **All projects:** every project, including private fields (focal point name and email). Edit and **Save and publish**, hide from the map, or delete. **Download a backup** saves everything as JSON.
+- **Organisations:** logos of lead organisations; a new logo is published straight away.
+- **History:** every change, each linked to its commit on GitHub, so any change can be undone there.
 
-Then tell the submitter the project is live.
+Publishing writes `data/projects.json`, `data/project-refs.json`, `data/logos.json` and any photos or logos to this repository in one commit. GitHub Pages updates the map within about two minutes. Focal point names and emails stay in the database and are never published. Project numbers are given by the back end when a project is received and never change or get reused.
+
+The first time the back end is used it copies the projects already on the map into its database, so numbering continues from the existing numbers. Publishing is blocked until that copy is done.
+
+`scripts/build_data.py` is still there for a one-off import of a SharePoint export, but once the admin pages are in use, change data there rather than with the script (the script would overwrite edits made in the admin pages).
+
+### Set up the back end (once)
+
+The back end is a Cloudflare Worker (free plan) with a Cloudflare D1 database. Its code is in `worker/`; the settings are in `worker/wrangler.toml`.
+
+1. In Cloudflare, create a D1 database called `solutions-footprint` and put its ID in `worker/wrangler.toml` (already done).
+2. On GitHub, create a private repository `durable-solutions-sudan-inbox` and click Watch, All activity. Each new submission opens an issue there, and GitHub emails you.
+3. Create a fine-grained GitHub key with access to `durable-solutions-sudan` and `durable-solutions-sudan-inbox`, with Contents and Issues set to Read and write.
+4. In Cloudflare, Workers & Pages, Create application, Import a repository: choose `durable-solutions-sudan`, set the root directory (path) to `worker`, keep the name `solutions-footprint`, and deploy.
+5. In the Worker, Settings, Variables and Secrets, add two secrets: `GITHUB_TOKEN` (the key) and `ADMIN_PASSWORD`. Optional: `TURNSTILE_SECRET` for spam protection, with the matching site key in `SF.config.turnstileSiteKey`.
+6. Put the Worker address in `SF.config.apiUrl` in `assets/js/common.js` (for example `https://solutions-footprint.ds-sudan.workers.dev`) and commit. The form now sends projects directly.
+
+Secrets are never kept in this repository. To test the Worker on a computer, put them in `worker/.dev.vars` (excluded from the repository) and run `npx wrangler dev` in `worker/`.
 
 ### Change text
 
@@ -158,6 +185,7 @@ To embed on sudan.un.org:
 - Icons: [OCHA Humanitarian Icons](https://brand.unocha.org/d/xEPytAUjC3sH/icons), released for free use.
 - Boundaries: OCHA administrative boundaries for Sudan via [geoBoundaries](https://www.geoboundaries.org), CC BY 3.0 IGO; [Natural Earth](https://www.naturalearthdata.com), public domain.
 - Agency logos belong to their organisations.
-- Typeface: IBM Plex Sans, SIL Open Font License.
+- Typeface: Roboto, SIL Open Font License.
+- Excel reader: SheetJS Community Edition, Apache 2.0 licence.
 
 The boundaries and names shown and the designations used on the map do not imply official endorsement or acceptance by the United Nations.

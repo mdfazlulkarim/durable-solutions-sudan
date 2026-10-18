@@ -23,8 +23,8 @@
 
       <div class="multi-box" id="multi-box">
         <span id="multi-ico"></span>
-        <div class="grow"><b>Adding several projects?</b>Download the Excel template, fill in one row per project, and email it to <span class="contact-email">dswg.sd@undp.org</span>.</div>
-        <a class="btn" id="template-link" href="#" data-template>Download the template</a>
+        <div class="grow"><b>Adding several projects?</b>Fill in the Excel template, one row per project, and send them all at once.</div>
+        <a class="btn" href="add-multiple.html">Add multiple projects</a>
       </div>
 
       <div class="error-summary" id="error-summary" role="alert" hidden></div>
@@ -177,7 +177,21 @@
 
         <section class="card form-section">
           <h2><span class="n">7.</span> Photos and anything else</h2>
-          <div class="photo-note"><span id="photo-ico"></span><span><b>Photos:</b> you can attach up to 3 photos of the project (JPG or PNG, under 1 MB each) to the email when you send it. Photos make your project stand out on the map. By attaching photos, you confirm you have consent from the people shown to publish them.</span></div>
+          <div class="photo-note" id="photo-note"><span id="photo-ico"></span><span><b>Photos:</b> you can attach up to 3 photos of the project (JPG or PNG, under 1 MB each) to the email when you send it. Photos make your project stand out on the map. By attaching photos, you confirm you have consent from the people shown to publish them.</span></div>
+          <div id="photo-box" hidden>
+            <span class="lbl" id="photo-l">Photos <span style="color:var(--muted);font-weight:400">(optional, up to 3)</span></span>
+            <p class="help-line">Large photos are made smaller on your device, to under 1 MB each, before sending. Only add photos you have permission to share, with consent from the people shown.</p>
+            <label class="photo-drop" for="photo-in"><span id="photo-ico2"></span><span><b>Choose photos</b><br><small style="color:var(--muted)">JPG or PNG, any size</small></span></label>
+            <input type="file" id="photo-in" accept="image/*" multiple class="sr-only" aria-labelledby="photo-l">
+            <div class="photo-list" id="photo-list"></div>
+            <div class="err" id="photo-err" hidden></div>
+          </div>
+          <div class="fld" id="logo-box" hidden>
+            <span class="lbl" id="logo-l">Your organisation's logo <span style="color:var(--muted);font-weight:400">(optional)</span></span>
+            <p class="help-line">Your organisation is new to the map. Add its logo so it shows on your project and among the contributing agencies. A PNG with a clear background works best.</p>
+            <div class="logo-pick"><span class="logo-prev" id="logo-prev"></span><label class="btn" for="logo-in">Choose logo</label><input type="file" id="logo-in" accept="image/png,image/jpeg,image/webp" class="sr-only" aria-labelledby="logo-l"><button type="button" class="link-btn" id="logo-rm" hidden>Remove</button></div>
+          </div>
+          <div class="hp" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
           <div class="fld">
             <label for="remarks">Remarks</label>
             <textarea class="input" id="remarks" name="remarks" maxlength="800"></textarea>
@@ -198,7 +212,7 @@
         <p class="pv-ref" id="pv-ref"></p>
         <p class="lede">This is how your project will appear on the Solutions Footprint map once the Durable Solutions Unit publishes it. Check it, then send it.</p>
         <div class="flow">
-          <div class="on"><span class="n">1</span><span><b>You send it to the Durable Solutions Unit</b>Your answers go by email to the DSWG mailbox, managed by the Unit.</span></div>
+          <div class="on"><span class="n">1</span><span><b>You send it to the Durable Solutions Unit</b><span id="flow-1">Your answers go by email to the DSWG mailbox, managed by the Unit.</span></span></div>
           <div><span class="n">2</span><span><b>The Unit reviews it</b>The Durable Solutions Unit checks the entry and may contact you.</span></div>
           <div><span class="n">3</span><span><b>It goes on the map</b>Published on the United Nations in Sudan website for donors, partners and authorities.</span></div>
         </div>
@@ -207,9 +221,27 @@
           <div class="pv-box"><h2>Your place on the map <small>How your states will change</small></h2><div id="pv-map"></div></div>
         </div>
         <div class="private"><span id="pv-lock"></span><span><b>What stays private:</b> your name and email are used only by the Durable Solutions Unit to follow up. They are never published.</span></div>
+        <div id="ts-box"></div>
+        <div class="send-err" id="send-err" role="alert" hidden></div>
         <div class="pv-actions">
           <button type="button" class="btn" id="pv-edit">Edit my answers</button>
           <button type="button" class="btn btn-primary" id="pv-send">Looks good, send to the Durable Solutions Unit</button>
+        </div>
+      </section>
+
+      <section class="card done-panel sent-panel" id="sent" hidden aria-live="polite">
+        <div class="sent-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></div>
+        <h2>Received. Thank you.</h2>
+        <p id="sent-lede">The Durable Solutions Unit will review your project and publish it on the map. There is nothing else you need to do.</p>
+        <div class="sent-facts">
+          <div><span>Project number</span><b id="sent-ref"></b></div>
+          <div><span>Status</span><span class="chip pipeline">Awaiting review</span></div>
+          <div><span>Photos</span><b id="sent-photos"></b></div>
+        </div>
+        <p id="sent-saved" style="font-size:14px;color:var(--ink-2)"></p>
+        <div class="form-actions" style="margin-top:12px">
+          <button type="button" class="btn btn-primary" id="another-btn2">Add another project</button>
+          <a class="btn" href="my-submissions.html">My submissions</a>
         </div>
       </section>
 
@@ -240,9 +272,9 @@
       <div class="card side-card">
         <h2>What happens next</h2>
         <ol class="steps">
-          <li><span class="dot">1</span><span><b>You send it to the Durable Solutions Unit</b>After a preview, your email program opens with your answers, with a copy to you. Attach up to 3 photos, then press Send.</span></li>
+          <li><span class="dot">1</span><span><b>You send it to the Durable Solutions Unit</b><span id="next-1">After a preview, your email program opens with your answers, with a copy to you. Attach up to 3 photos, then press Send.</span></span></li>
           <li><span class="dot">2</span><span><b>The Unit reviews</b>The Durable Solutions Unit checks the entry and may contact you with questions.</span></li>
-          <li><span class="dot">3</span><span><b>Published</b>Once approved, the project appears on the map with the next update. DSU tells you when it is live.</span></li>
+          <li><span class="dot">3</span><span><b>Published</b><span id="next-3">Once approved, the project appears on the map with the next update. DSU tells you when it is live.</span></span></li>
         </ol>
       </div>
       <div class="card side-card" style="font-size:14px;color:var(--ink-2)">
