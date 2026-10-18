@@ -299,9 +299,11 @@ def build():
 
 
 def recalc():
-    """Calculate the formulas with LibreOffice (as the xlsx skill requires)."""
-    script = Path("/mnt/skills/public/xlsx/scripts/recalc.py")
-    if script.exists():
+    """Optional: calculate the formulas before saving, if a recalculation script is set
+    in the RECALC_SCRIPT environment variable. Excel recalculates on opening anyway."""
+    import os
+    script = Path(os.environ.get("RECALC_SCRIPT", ""))
+    if script.is_file():
         out = subprocess.run(["python3", str(script), str(OUT), "60"], capture_output=True, text=True)
         print(out.stdout.strip())
 
@@ -332,6 +334,22 @@ def set_properties():
                                 ("xsi", "http://www.w3.org/2001/XMLSchema-instance")):
                     if f"xmlns:{ns}=" not in x:
                         x = x.replace("<cp:coreProperties ", f'<cp:coreProperties xmlns:{ns}="{uri}" ', 1)
+                data = x.encode("utf-8")
+            elif item.filename == "docProps/app.xml":
+                x = data.decode("utf-8")
+                x = re.sub(r"<Application>.*?</Application>|<Application/>", "<Application>Microsoft Excel</Application>", x)
+                x = re.sub(r"<AppVersion>.*?</AppVersion>", "<AppVersion>16.0300</AppVersion>", x)
+                if "<Application>" not in x:
+                    x = x.replace("</Properties>", "<Application>Microsoft Excel</Application></Properties>")
+                data = x.encode("utf-8")
+            elif item.filename == "xl/workbook.xml":
+                x = data.decode("utf-8")
+                x = re.sub(r"<fileVersion[^>]*/>", '<fileVersion appName="xl" lastEdited="7" lowestEdited="7" rupBuild="27425"/>', x)
+                data = x.encode("utf-8")
+            if item.filename.endswith(".xml") and b"libreoffice.org" in data:
+                x = data.decode("utf-8")
+                x = re.sub(r'<ext xmlns:loext="[^"]*"[^>]*>.*?</ext>', "", x)
+                x = x.replace("<extLst></extLst>", "")
                 data = x.encode("utf-8")
             zout.writestr(item, data)
     shutil.move(str(tmp), OUT)
