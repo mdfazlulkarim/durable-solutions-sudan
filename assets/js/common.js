@@ -21,6 +21,13 @@ SF.config = {
   linkedinUrl: "https://www.linkedin.com/in/fazlulkarim/",
 };
 
+/* Test mode: turned on from test.html, in one browser only. Projects sent from that browser go to the
+   review queue on the back end; everyone else keeps using email until apiUrl above is set. */
+SF.TEST_API = "https://solutions-footprint.ds-sudan.workers.dev";
+try {
+  if (!SF.config.apiUrl && localStorage.getItem("sf-test-mode") === "on") { SF.config.apiUrl = SF.TEST_API; SF.testMode = true; }
+} catch (e) { /* storage may be blocked */ }
+
 SF.CRITERIA = [
   { n: 1, name: "Safety and security", short: "Safety and security", ring: "Safety", color: "#2A78D6", hint: "Protection, social cohesion, mine action, disaster risk reduction" },
   { n: 2, name: "Adequate standard of living", short: "Standard of living", ring: "Standard of living", color: "#EB6834", hint: "Water, health, education, shelter and other basic services" },
@@ -275,6 +282,10 @@ SF.renderHeader = (active) => {
   ];
   const action = active === "add" ? `<a class="btn" href="index.html">Back to the map</a>` : SF.addMenuHTML("add");
   el.className = "site-header";
+  if (SF.testMode && !document.getElementById("test-bar")) {
+    el.insertAdjacentHTML("beforebegin", `<div class="test-bar" id="test-bar"><b>Test mode, in this browser only.</b> Projects you send go to the new review queue, not by email. <a href="test.html">Test page</a> · <button type="button" id="test-off">Leave test mode</button></div>`);
+    document.getElementById("test-off").addEventListener("click", () => { try { localStorage.removeItem("sf-test-mode"); } catch (e) {} location.reload(); });
+  }
   el.innerHTML = `
     <div class="header-inner">
       <a class="brand" href="index.html" aria-label="Solutions Footprint home">

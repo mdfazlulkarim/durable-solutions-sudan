@@ -791,3 +791,12 @@ textarea.input { min-height: 84px; resize: vertical; }
 .multi-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; font-size: 13px; color: var(--muted); }
 .sent-list { margin: 10px 0 14px; padding-left: 20px; line-height: 1.7; }
 #logo-box { margin-bottom: 16px; }
+
+/* test mode bar (test.html) */
+.test-bar { background: #5541b5; color: #fff; font-size: 14px; padding: 8px 24px; text-align: center; }
+.test-bar a, .test-bar button { color: #fff; font: inherit; text-decoration: underline; background: none; border: 0; padding: 0; cursor: pointer; }
+.test-page { max-width: 820px; margin: 0 auto; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.test-page h1 { font-size: 28px; margin: 0; }
+.test-page .card { padding: 20px; }
+.test-page ol { margin: 8px 0 0; padding-left: 20px; line-height: 1.7; }
+.test-state { font-weight: 500; }
