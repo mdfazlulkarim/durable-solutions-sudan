@@ -29,15 +29,24 @@ try {
 } catch (e) { /* storage may be blocked */ }
 
 SF.CRITERIA = [
-  { n: 1, name: "Safety and security", short: "Safety and security", ring: "Safety", color: "#2A78D6", hint: "Protection, social cohesion, mine action, disaster risk reduction" },
-  { n: 2, name: "Adequate standard of living", short: "Standard of living", ring: "Standard of living", color: "#EB6834", hint: "Water, health, education, shelter and other basic services" },
-  { n: 3, name: "Access to livelihoods and employment", short: "Livelihoods and employment", ring: "Livelihoods", color: "#1BAF7A", hint: "Jobs, skills, cash-for-work, markets" },
-  { n: 4, name: "Housing, land and property", short: "Housing, land and property", ring: "Housing and land", color: "#EDA100", hint: "Restoring homes, land and property rights" },
-  { n: 5, name: "Access to documentation", short: "Documentation", ring: "Documentation", color: "#E87BA4", hint: "Civil and legal documents, legal counselling" },
-  { n: 6, name: "Family reunification", short: "Family reunification", ring: "Family reunification", color: "#008300", hint: "Tracing and reuniting separated families" },
-  { n: 7, name: "Participation in public affairs", short: "Participation in public affairs", ring: "Participation", color: "#6250D6", hint: "Voice in local decisions, community groups" },
-  { n: 8, name: "Access to effective remedies and justice", short: "Remedies and justice", ring: "Remedies and justice", color: "#E34948", hint: "Access to justice and redress for violations" },
+  { n: 1, name: "Safety and security", short: "Safety and security", ring: "Safety", color: "#2A78D6", hint: "Protection, social cohesion, mine action, disaster risk reduction",
+    brief: "People live in long-term safety and security, without risk of attacks, violence, harassment or landmines, and can move freely." },
+  { n: 2, name: "Adequate standard of living", short: "Standard of living", ring: "Standard of living", color: "#EB6834", hint: "Water, health, education, shelter and other basic services",
+    brief: "People have at least a minimum level of food, water, housing, health care and basic education, without discrimination." },
+  { n: 3, name: "Access to livelihoods and employment", short: "Livelihoods and employment", ring: "Livelihoods", color: "#1BAF7A", hint: "Jobs, skills, cash-for-work, markets",
+    brief: "People can find work or other ways to earn a living that let them meet their basic needs." },
+  { n: 4, name: "Housing, land and property", short: "Housing, land and property", ring: "Housing and land", color: "#EDA100", hint: "Restoring homes, land and property rights",
+    brief: "People can get back their homes, land and property, or receive fair compensation, through mechanisms that work." },
+  { n: 5, name: "Access to documentation", short: "Documentation", ring: "Documentation", color: "#E87BA4", hint: "Civil and legal documents, legal counselling",
+    brief: "People can obtain or replace personal and other documents, such as identity cards, birth certificates and property deeds." },
+  { n: 6, name: "Family reunification", short: "Family reunification", ring: "Family reunification", color: "#008300", hint: "Tracing and reuniting separated families",
+    brief: "Family members separated by displacement can find each other and reunite if they wish." },
+  { n: 7, name: "Participation in public affairs", short: "Participation in public affairs", ring: "Participation", color: "#6250D6", hint: "Voice in local decisions, community groups",
+    brief: "People can take part in public affairs and community decisions on an equal footing with residents, including voting." },
+  { n: 8, name: "Access to effective remedies and justice", short: "Remedies and justice", ring: "Remedies and justice", color: "#E34948", hint: "Access to justice and redress for violations",
+    brief: "People can seek justice and redress for violations linked to their displacement, including through courts and reparation schemes." },
 ];
+SF.IASC_SOURCE = { label: "IASC Framework on Durable Solutions for Internally Displaced Persons (2010)", url: "https://interagencystandingcommittee.org/node/2875" };
 SF.GAP_COLOR = "var(--gap)";
 SF.critIcon = (n, color) => {
   const svg = (SF.OCHA && SF.OCHA[String(n)]) || "";

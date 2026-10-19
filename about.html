@@ -29,9 +29,10 @@
       <h2>The eight IASC criteria</h2>
       <p>Each criterion keeps one colour and one icon across the dashboard. Grey always means no project, which is a gap. The number of each criterion is shown next to its colour.</p>
       <table>
-        <thead><tr><th scope="col">No.</th><th scope="col">Criterion</th><th scope="col">Examples</th></tr></thead>
+        <thead><tr><th scope="col">No.</th><th scope="col">Criterion</th><th scope="col">What it means</th><th scope="col">Examples</th></tr></thead>
         <tbody id="crit-table"></tbody>
       </table>
+      <p style="font-size:14px;color:var(--muted)" id="iasc-source"></p>
     </section>
 
     <section class="card">
@@ -82,8 +83,9 @@
     SF.renderHeader("about");
     SF.bindTemplateLinks();
     document.getElementById("crit-table").innerHTML = SF.CRITERIA.map((c) =>
-      `<tr><td><span class="ci" style="background:${c.color}">${SF.critIcon(c.n)}</span><b>${c.n}</b></td><td>${SF.esc(c.name)}</td><td>${SF.esc(c.hint)}</td></tr>`).join("") +
-      `<tr><td><span class="ci" style="background:var(--gap)"></span></td><td>No project (gap)</td><td></td></tr>`;
+      `<tr><td><span class="ci" style="background:${c.color}">${SF.critIcon(c.n)}</span><b>${c.n}</b></td><td>${SF.esc(c.name)}</td><td>${SF.esc(c.brief)}</td><td>${SF.esc(c.hint)}</td></tr>`).join("") +
+      `<tr><td><span class="ci" style="background:var(--gap)"></span></td><td>No project (gap)</td><td></td><td></td></tr>`;
+    document.getElementById("iasc-source").innerHTML = `Source: <a href="${SF.IASC_SOURCE.url}" target="_blank" rel="noopener">${SF.esc(SF.IASC_SOURCE.label)}</a>`;
     document.querySelectorAll(".contact-link").forEach((a) => { a.href = "mailto:" + SF.config.contactEmail; a.textContent = SF.config.contactEmail; });
     SF.loadJSON(SF.config.dataUrl).then((d) => {
       SF.renderFooter(d.lastUpdated);

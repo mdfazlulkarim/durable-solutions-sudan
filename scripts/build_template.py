@@ -33,6 +33,18 @@ CRITERIA = [
     "Housing, land and property", "Access to documentation", "Family reunification",
     "Participation in public affairs", "Access to effective remedies and justice",
 ]
+# Short explanations of the criteria (same text as SF.CRITERIA in assets/js/common.js)
+IASC_BRIEFS = [
+    "People live in long-term safety and security, without risk of attacks, violence, harassment or landmines, and can move freely.",
+    "People have at least a minimum level of food, water, housing, health care and basic education, without discrimination.",
+    "People can find work or other ways to earn a living that let them meet their basic needs.",
+    "People can get back their homes, land and property, or receive fair compensation, through mechanisms that work.",
+    "People can obtain or replace personal and other documents, such as identity cards, birth certificates and property deeds.",
+    "Family members separated by displacement can find each other and reunite if they wish.",
+    "People can take part in public affairs and community decisions on an equal footing with residents, including voting.",
+    "People can seek justice and redress for violations linked to their displacement, including through courts and reparation schemes.",
+]
+IASC_URL = "https://interagencystandingcommittee.org/node/2875"
 INTERVENTION_TYPES = [
     "Basic services rehabilitation", "Livelihoods and cash-for-work", "Shelter and housing",
     "Legal aid and documentation", "Social cohesion and peacebuilding",
@@ -172,6 +184,11 @@ def build():
     pair("Organisation leadership", "WLO (women-led); RLO (refugee-led); YLO (youth-led); OPD (organisation of persons with disabilities). For national NGOs and other organisations.", 30)
     pair("Dates", "Month and year as YYYY-MM, for example 2026-01.")
     pair("Status", "Ongoing, Pipeline or Ended.")
+    r += 1
+    line("The eight IASC criteria", "h")
+    for i, (name, brief) in enumerate(zip(CRITERIA, IASC_BRIEFS), 1):
+        pair(f"{i}. {name}", brief, 28 if len(brief) > 110 else None)
+    pair("Source", f"IASC Framework on Durable Solutions for Internally Displaced Persons (2010): {IASC_URL}", 28)
     r += 1
     line("Columns", "h")
     for k, h, _, req, note in COLUMNS:
