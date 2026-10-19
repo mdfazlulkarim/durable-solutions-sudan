@@ -15,11 +15,15 @@
     fpEmail: "Focal point email", scope: "Geographic scope", states: "States", localities: "Localities",
     coordination: "Coordination mechanism or cluster", start: "Start date", end: "End date", status: "Status",
     budget: "Total budget", share: "Share towards durable solutions", donor: "Donor or funding source",
-    donor1: "Donor 1", d1Amount: "Donor 1 amount", donor2: "Donor 2", d2Amount: "Donor 2 amount", donor3: "Donor 3", d3Amount: "Donor 3 amount",
-    pTotal: "People reached, planned: total", pIdps: "IDPs", pReturnees: "Returnees", pRefugees: "Refugees", pHost: "Host community",
-    pOther: "Other", remarks: "Remarks", consent: "Consent to publish",
+    pTotalOld: "People reached, planned: total", pIdps: "IDPs", pReturnees: "Returnees", pRefugees: "Refugees", pHost: "Host community",
+    pOther: "Other or not specified", pOtherOld: "Other", femalePct: "Women and girls (%)", pwdPct: "Persons with disabilities (%)",
+    pwdFemalePct: "Of whom women and girls (%)", remarks: "Remarks", consent: "Consent to publish",
   };
   for (let i = 1; i <= 8; i++) COLS[`c${i}`] = `IASC ${i}.`;
+  for (let i = 1; i <= 5; i++) { COLS[`donor${i}`] = `Donor ${i}`; COLS[`d${i}Amount`] = `Donor ${i} amount`; }
+  const GROUPS = [["idps", "IDPs"], ["returnees", "Returnees"], ["refugees", "Refugees"], ["host", "Host community"], ["other", "Other or not specified"]];
+  const SEXES = ["women", "girls", "men", "boys"];
+  GROUPS.forEach(([g, gl]) => SEXES.forEach((x) => (COLS[`sx_${g}_${x}`] = `${gl}: ${x}`)));
   const STATE_FIX = { "al jazirah": "Aj Jazirah", "al jazeera": "Aj Jazirah", "gezira": "Aj Jazirah", "al gezira": "Aj Jazirah", "northern state": "Northern" };
   const LEAD_KEYS = { wlo: "WLO", women: "WLO", rlo: "RLO", refugee: "RLO", ylo: "YLO", youth: "YLO", opd: "OPD", disabilit: "OPD" };
 
@@ -100,25 +104,60 @@
     if (share != null && !isNaN(share) && share > 0 && share <= 1 && String(r.share).indexOf("%") < 0 && !Number.isInteger(share)) share = share * 100;
     if (share == null || isNaN(share) || share < 0 || share > 100) errors.push("Durable solutions share is missing or not between 0 and 100");
     // donors, each with an amount (older copies of the template have one donor column)
-    const donors = [1, 2, 3].map((i) => ({ name: txt(r[`donor${i}`]), amount: num(r[`d${i}Amount`]) })).filter((d) => d.name || d.amount != null);
+    const donors = [1, 2, 3, 4, 5].map((i) => ({ name: txt(r[`donor${i}`]), amount: num(r[`d${i}Amount`]) })).filter((d) => d.name || d.amount != null);
     if (!donors.length && txt(r.donor)) donors.push({ name: txt(r.donor), amount: null });
     if (donors.some((d) => !d.name)) errors.push("A donor amount is given without the donor's name");
     if (donors.some((d) => d.amount != null && (isNaN(d.amount) || d.amount <= 0))) errors.push("A donor amount is not a number above 0");
     if (donors.length > 1 && donors.some((d) => d.amount == null)) errors.push("With more than one donor, give the amount from each");
     if (budget > 0 && donors.reduce((a, d) => a + (d.amount || 0), 0) > budget) errors.push("Donor amounts add up to more than the total budget");
-    const people = {};
-    [["total", "pTotal"], ["idps", "pIdps"], ["returnees", "pReturnees"], ["refugees", "pRefugees"], ["host", "pHost"], ["other", "pOther"]].forEach(([k, c]) => {
-      const v = num(r[c]);
-      if (v != null && (isNaN(v) || v < 0)) errors.push(`People (${k}) is not a number`);
-      people[k] = v == null || isNaN(v) ? null : Math.round(v);
+    // people: five groups (the total adds them up), with an optional breakdown by women, girls, men and boys
+    const people = {}, peopleSex = {};
+    let bad = false, fem = 0, sexAll = 0;
+    GROUPS.forEach(([g, gl]) => {
+      let v = num(r[{ idps: "pIdps", returnees: "pReturnees", refugees: "pRefugees", host: "pHost", other: "pOther" }[g]]);
+      if (g === "other" && v == null) v = num(r.pOtherOld);
+      if (v != null && (isNaN(v) || v < 0 || !Number.isInteger(v))) bad = true;
+      const row = Object.fromEntries(SEXES.map((x) => [x, num(r[`sx_${g}_${x}`])]));
+      const given = SEXES.filter((x) => row[x] != null);
+      if (given.some((x) => isNaN(row[x]) || row[x] < 0 || !Number.isInteger(row[x]))) bad = true;
+      if (given.length && !bad) {
+        const sum = given.reduce((a, x) => a + row[x], 0);
+        if (v == null) v = sum;
+        else if (v !== sum) errors.push(`${gl}: the breakdown adds up to ${sum.toLocaleString("en-US")}, but the ${gl} column says ${v.toLocaleString("en-US")}`);
+        peopleSex[g] = Object.fromEntries(SEXES.map((x) => [x, row[x] == null ? null : row[x]]));
+        fem += (row.women || 0) + (row.girls || 0); sexAll += sum;
+      }
+      people[g] = v == null || isNaN(v) ? null : Math.round(v);
     });
+    // copies of the old template have a typed total: anything not in a group goes under "Other or not specified"
+    const oldTotal = num(r.pTotalOld);
+    if (oldTotal > 0) { const known = GROUPS.reduce((a, [g]) => a + (people[g] || 0), 0); if (oldTotal > known) people.other = (people.other || 0) + oldTotal - known; }
+    const groupVals = GROUPS.map(([g]) => people[g]).filter((v) => v != null);
+    people.total = groupVals.length ? groupVals.reduce((a, v) => a + v, 0) : null;
+    if (bad) errors.push("People reached must be whole numbers");
+    else if (!(people.total > 0)) errors.push("People reached is missing: fill in at least one group");
+    const pctOk = (v) => v == null || (!isNaN(v) && v >= 0 && v <= 100);
+    let femPct = num(r.femalePct);
+    if (femPct != null && femPct > 0 && femPct <= 1 && !Number.isInteger(femPct)) femPct *= 100; // typed as a percentage cell
+    if (sexAll > 0) femPct = Math.round((fem / sexAll) * 1000) / 10;
+    if (femPct == null) errors.push("Women and girls (%) is missing");
+    else if (!pctOk(femPct)) errors.push("Women and girls (%) is not between 0 and 100");
+    const pwd = num(r.pwdPct), pwdF = num(r.pwdFemalePct);
+    if (!pctOk(pwd)) errors.push("Persons with disabilities (%) is not between 0 and 100");
+    if (!pctOk(pwdF)) errors.push("Of whom women and girls (%) is not between 0 and 100");
+    const peopleExtra = {
+      femaleShare: femPct == null || isNaN(femPct) ? null : femPct / 100,
+      pwdShare: pwd == null || isNaN(pwd) ? null : pwd / 100,
+      pwdFemaleShare: pwd == null || pwdF == null || isNaN(pwdF) ? null : pwdF / 100,
+      peopleSex: Object.keys(peopleSex).length ? peopleSex : null,
+    };
     if (!yes(r.consent)) errors.push("Consent to publish is not Yes");
     const answers = {
       name, description: txt(r.description), itypes, orgType, lead, leadName: o ? orgLabel(o) : lead, refPrefix: refPrefix(leadRaw), leadership, partners,
       scope: nationwide ? "nationwide" : "states", states, localities, criteria, coordination: txt(r.coordination),
       start: start === "bad" ? "" : start, end: end === "bad" ? "" : end, status, budget: isNaN(budget) ? null : budget, share: isNaN(share) ? null : share,
       donors: donors.filter((d) => d.name).map((d) => ({ name: d.name, amount: d.amount == null || isNaN(d.amount) ? null : d.amount })),
-      donor: donors.map((d) => d.name).filter(Boolean).join("; "), people, remarks: txt(r.remarks),
+      donor: donors.map((d) => d.name).filter(Boolean).join("; "), people, peopleExtra, remarks: txt(r.remarks),
     };
     return { row: rowNo, answers, private: { fpName, fpEmail }, errors, notes };
   }
@@ -136,7 +175,12 @@
       if (hi < 0) throw new Error("The header row was not found. Please use the Solutions Footprint template and keep its first row.");
       const head = grid[hi].map((h) => txt(h).replace(/\s*\*$/, "").toLowerCase());
       const idx = {};
-      Object.entries(COLS).forEach(([k, label]) => { const l = label.toLowerCase(); const i = head.findIndex((h) => h === l || h.startsWith(l)); if (i >= 0) idx[k] = i; });
+      Object.entries(COLS).forEach(([k, label]) => {
+        const l = label.toLowerCase();
+        let i = head.findIndex((h) => h === l);
+        if (i < 0 && !/old$/i.test(k)) i = head.findIndex((h) => h.startsWith(l) && !/: (women|girls|men|boys)$/.test(h) && !/ amount/.test(h.slice(l.length)));
+        if (i >= 0) idx[k] = i;
+      });
       ROWS = [];
       grid.slice(hi + 1).forEach((cells, j) => {
         const r = {};

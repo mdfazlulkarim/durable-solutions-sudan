@@ -34,8 +34,13 @@
   $("leadership").innerHTML = SF.LEADERSHIP.map((l) => `<label><input type="checkbox" name="leadership" value="${l.key}"> ${esc(l.label)}</label>`).join("") +
     `<label><input type="checkbox" name="leadership" value="none"> None of these</label>`;
   const PEOPLE = [{ key: "total", label: "Total" }, ...SF.TARGET_GROUPS];
-  $("people").innerHTML = PEOPLE.map((g) =>
-    `<div class="fld"><label for="pp-${g.key}">${g.label}</label><input class="input" id="pp-${g.key}" name="pp-${g.key}" inputmode="numeric" autocomplete="off"></div>`).join("");
+  // the groups first, then the total, which adds them up and cannot be typed in
+  $("people").innerHTML = [...SF.TARGET_GROUPS, PEOPLE[0]].map((g) => g.key === "total"
+    ? `<div class="fld"><label for="pp-total">Total</label><input class="input readonly" id="pp-total" name="pp-total" readonly tabindex="-1" placeholder="Adds up"></div>`
+    : `<div class="fld"><label for="pp-${g.key}">${g.label}</label><input class="input" id="pp-${g.key}" name="pp-${g.key}" inputmode="numeric" autocomplete="off"></div>`).join("");
+  const SEX = [{ key: "women", label: "Women" }, { key: "girls", label: "Girls" }, { key: "men", label: "Men" }, { key: "boys", label: "Boys" }];
+  $("sex-tbl").innerHTML = `<thead><tr><th scope="col">Group</th>${SEX.map((x) => `<th scope="col">${x.label}</th>`).join("")}<th scope="col">Group total</th></tr></thead><tbody>${SF.TARGET_GROUPS.map((g) =>
+    `<tr><th scope="row">${g.label}</th>${SEX.map((x) => `<td><input class="input" id="sx-${g.key}-${x.key}" inputmode="numeric" autocomplete="off" aria-label="${g.label}: ${x.label.toLowerCase()}"></td>`).join("")}<td class="sx-sum" id="sx-${g.key}-sum"></td></tr>`).join("")}</tbody>`;
   document.querySelectorAll(".contact-email").forEach((e) => (e.textContent = SF.config.contactEmail));
   document.querySelectorAll(".contact-link").forEach((a) => { a.href = `mailto:${SF.config.contactEmail}`; a.textContent = SF.config.contactEmail; });
   $("hdx-link").href = SF.config.hdxAdminUrl;
@@ -223,6 +228,7 @@
   function syncDonors() {
     const rows = [...$("donor-rows").children];
     rows.forEach((r) => (r.querySelector(".rm").hidden = rows.length === 1 && !r.querySelector("input").value));
+    $("add-donor").hidden = rows.length >= SF.MAX_DONORS; // up to 5 donors per project
     const ds = donorsGiven(), b = num($("budget").value), sum = ds.reduce((a, d) => a + (d.amount || 0), 0);
     const box = $("donor-sum");
     box.classList.toggle("over", !!(b && sum > b));
@@ -252,13 +258,99 @@
     el.value = v;
     updateDS();
   });
-  ["pp-total", "pp-idps", "pp-returnees", "pp-refugees", "pp-host", "pp-other"].forEach((id) => $(id).addEventListener("input", (e) => {
-    const raw = e.target.value.replace(/[^\d]/g, "");
-    e.target.value = raw ? Number(raw).toLocaleString("en-US") : "";
-  }));
+
+
+  /* ---------- people: the total adds up the groups; optional breakdown by women, girls, men and boys ---------- */
+  const fmtN = (n) => (n == null ? "" : Number(n).toLocaleString("en-US"));
+  const sexCell = (g, x) => num($(`sx-${g}-${x}`).value);
+  function syncPeople() {
+    let fem = 0, all = 0, anySex = false;
+    SF.TARGET_GROUPS.forEach((g) => {
+      const cells = SEX.map((x) => sexCell(g.key, x.key));
+      const has = cells.some((v) => v != null);
+      const sum = cells.reduce((a, v) => a + (v > 0 ? v : 0), 0);
+      const inp = $(`pp-${g.key}`);
+      // a group with a breakdown takes its number from the breakdown
+      inp.readOnly = has; inp.classList.toggle("readonly", has); inp.tabIndex = has ? -1 : 0;
+      if (has) inp.value = fmtN(sum);
+      $(`sx-${g.key}-sum`).textContent = has ? fmtN(sum) : "";
+      if (has) { anySex = true; fem += (cells[0] > 0 ? cells[0] : 0) + (cells[1] > 0 ? cells[1] : 0); all += sum; }
+    });
+    const groups = SF.TARGET_GROUPS.map((g) => num($(`pp-${g.key}`).value)).filter((v) => v != null && !isNaN(v));
+    $("pp-total").value = groups.length ? fmtN(groups.reduce((a, v) => a + v, 0)) : "";
+    if ($("pp-pwd")) syncPwd();
+    // share of women and girls: from the breakdown when there is one, otherwise typed in
+    const f = $("pp-female");
+    f.readOnly = anySex; f.classList.toggle("readonly", anySex); f.tabIndex = anySex ? -1 : 0;
+    if (anySex) f.value = all ? String(Math.round((fem / all) * 1000) / 10) : "";
+    const v = f.value;
+    $("pp-male").value = v === "" ? "Calculated automatically" : `${Math.round((100 - Number(v)) * 10) / 10}%`;
+    const tot = num($("pp-total").value) || 0;
+    $("female-note").textContent = anySex ? (all < tot ? `Calculated from the breakdown: ${fmtN(all)} of the ${fmtN(tot)} people` : "Calculated from the breakdown") : "";
+  }
+  // the extra people figures, as shares from 0 to 1, plus the breakdown when there is one
+  function peopleExtra() {
+    const sh = (id) => { const v = num($(id).value); return v == null || isNaN(v) ? null : Math.min(100, Math.max(0, v)) / 100; };
+    const sex = {};
+    SF.TARGET_GROUPS.forEach((g) => {
+      const row = Object.fromEntries(SEX.map((x) => [x.key, okNum($(`sx-${g.key}-${x.key}`).value)]));
+      if (Object.values(row).some((v) => v != null)) sex[g.key] = row;
+    });
+    return { femaleShare: sh("pp-female"), pwdShare: sh("pp-pwd"), pwdFemaleShare: $("pp-pwd").value ? sh("pp-pwd-f") : null, peopleSex: Object.keys(sex).length ? sex : null };
+  }
+  function peopleEmailLines() {
+    const x = peopleExtra(), pc = (v) => (v == null ? "" : `${Math.round(v * 1000) / 10}%`);
+    const lines = [`Women and girls: ${pc(x.femaleShare)}`, `Persons with disabilities: ${pc(x.pwdShare)}${x.pwdFemaleShare != null ? ` (of whom women and girls: ${pc(x.pwdFemaleShare)})` : ""}`];
+    if (x.peopleSex) Object.entries(x.peopleSex).forEach(([g, r]) => lines.push(`${(SF.TARGET_GROUPS.find((t) => t.key === g) || {}).label}: women ${r.women ?? ""}, girls ${r.girls ?? ""}, men ${r.men ?? ""}, boys ${r.boys ?? ""}`));
+    return lines;
+  }
+  let submitted = false;
+  function checkPeople() {
+    const vals = [...SF.TARGET_GROUPS.map((g) => num($(`pp-${g.key}`).value)), ...SF.TARGET_GROUPS.flatMap((g) => SEX.map((x) => sexCell(g.key, x.key)))];
+    const total = num($("pp-total").value);
+    const bad = [...SF.TARGET_GROUPS.map((g) => $(`pp-${g.key}`)), ...$("sex-tbl").querySelectorAll("input")].some((i) => i.value.trim() && !/^[\d,\s]+$/.test(i.value.trim()));
+    const msg = bad || vals.some((x) => x != null && (isNaN(x) || x < 0 || !Number.isInteger(x))) ? "People reached must be whole numbers, for example 1,250."
+      : submitted && !(total > 0) ? "Enter the number of people reached in at least one group. If you only know the total, enter it under \"Other or not specified\"." : "";
+    $("people-err").hidden = !msg;
+    $("people-err").textContent = msg;
+    $("people").closest(".fld").classList.toggle("has-err", !!msg);
+    return msg;
+  }
+  // whole numbers get thousands separators; anything else (such as 12.5) is left as typed, so the check can flag it
+  const fmtCell = (e) => { if (e.target.matches("#people input, #sex-tbl input")) { const raw = e.target.value.replace(/[,\s]/g, ""); if (/^\d+$/.test(raw)) e.target.value = Number(raw).toLocaleString("en-US"); } };
+  ["people", "sex-tbl"].forEach((id) => {
+    $(id).addEventListener("input", (e) => { fmtCell(e); syncPeople(); if (!$("people-err").hidden) checkPeople(); });
+    $(id).addEventListener("change", checkPeople);
+  });
+  $("sex-toggle").addEventListener("click", () => {
+    const box = $("sex-box"), open = box.hidden;
+    if (!open && SF.TARGET_GROUPS.some((g) => SEX.some((x) => sexCell(g.key, x.key) != null)) && !confirm("Remove the breakdown by women, girls, men and boys?")) return;
+    box.hidden = !open;
+    if (!open) { $("sex-tbl").querySelectorAll("input").forEach((i) => (i.value = "")); syncPeople(); }
+    $("sex-toggle").setAttribute("aria-expanded", String(open));
+    $("sex-toggle").textContent = open ? "Remove the breakdown" : "+ Add a breakdown by women, girls, men and boys (optional)";
+  });
+  // persons with disabilities: share of the total, then the share of women and girls among them
+  const pct = (e) => { let v = e.target.value.replace(/[^\d.]/g, ""); if (Number(v) > 100) v = "100"; e.target.value = v; return v; };
+  function syncPwd() {
+    const v = $("pp-pwd").value, f = $("pp-pwd-f").value, tot = num($("pp-total").value);
+    $("pp-pwd-f").disabled = v === "";
+    if (v === "") $("pp-pwd-f").value = "";
+    $("pp-pwd-m").value = v === "" || f === "" ? "Calculated automatically" : `${Math.round((100 - Number(f)) * 10) / 10}%`;
+    $("pwd-note").textContent = v !== "" && tot ? `About ${fmtN(Math.round((tot * Number(v)) / 100))} of the ${fmtN(tot)} people` : "";
+  }
+  $("pp-pwd").addEventListener("input", (e) => { pct(e); syncPwd(); });
+  $("pp-pwd-f").addEventListener("input", (e) => { pct(e); syncPwd(); });
+  $("pp-female").addEventListener("input", (e) => {
+    let v = e.target.value.replace(/[^\d.]/g, "");
+    if (Number(v) > 100) v = "100";
+    e.target.value = v;
+    syncPeople();
+  });
 
   /* ---------- validation ---------- */
   function validate() {
+    submitted = true;
     const errors = [];
     const add = (f, msg) => errors.push({ f, msg });
     const v = (id) => $(id).value.trim();
@@ -285,13 +377,14 @@
     else if (ds.some((d) => d.amount != null && (isNaN(d.amount) || d.amount <= 0))) add("donors", "Donor amounts must be numbers above 0.");
     else if (ds.length > 1 && ds.some((d) => d.amount == null)) add("donors", "With more than one donor, enter the amount from each donor.");
     else if (b > 0 && ds.reduce((a, d) => a + (d.amount || 0), 0) > b) add("donors", "The donor amounts add up to more than the total budget.");
-    let peopleErr = "";
-    const pv = PEOPLE.map((g) => num($(`pp-${g.key}`).value));
-    if (pv.some((x) => x != null && (isNaN(x) || x < 0 || !Number.isInteger(x)))) peopleErr = "People reached must be whole numbers.";
-    else if (pv[0] != null && pv.slice(1).some((x) => x != null) && pv.slice(1).reduce((a, x) => a + (x || 0), 0) > pv[0]) peopleErr = "The groups add up to more than the total.";
-    $("people-err").hidden = !peopleErr;
-    $("people-err").textContent = peopleErr;
+    const peopleErr = checkPeople();
     if (peopleErr) add("people", peopleErr);
+    const fem = num($("pp-female").value);
+    if (fem == null) add("female", "Enter the share of women and girls (0 to 100), or add the breakdown by women, girls, men and boys.");
+    else if (isNaN(fem) || fem < 0 || fem > 100) add("female", "Enter the share of women and girls as a number from 0 to 100.");
+    const pwd = num($("pp-pwd").value), pwdF = num($("pp-pwd-f").value);
+    if (pwd != null && (isNaN(pwd) || pwd < 0 || pwd > 100)) add("pwd", "Enter the share of persons with disabilities as a number from 0 to 100.");
+    if (pwdF != null && (isNaN(pwdF) || pwdF < 0 || pwdF > 100)) add("pwdFemale", "Enter the share of women and girls among persons with disabilities as a number from 0 to 100.");
     if (!$("consent").checked) add("consent", "Confirm the information can be published.");
 
     form.querySelectorAll(".fld").forEach((f) => { f.classList.remove("has-err"); f.querySelector(".err[data-gen]")?.remove(); });
@@ -299,6 +392,7 @@
       const fld = form.querySelector(`[data-f="${e.f}"]`);
       if (!fld) return;
       fld.classList.add("has-err");
+      if (fld.querySelector("#people-err")) return; // this field shows its own message
       const m = document.createElement("div");
       m.className = "err"; m.dataset.gen = "1"; m.textContent = e.msg;
       fld.appendChild(m);
@@ -337,7 +431,7 @@
   // clear a field's error as soon as it is changed
   const clearErr = (e) => {
     const fld = e.target.closest(".fld.has-err");
-    if (!fld) return;
+    if (!fld || fld.dataset.f === "people") return; // the people check updates itself
     fld.classList.remove("has-err");
     fld.querySelector(".err[data-gen]")?.remove();
   };
@@ -357,7 +451,7 @@
       criteria: checked("criteria"), coordination: $("coordination").value, start: monthOk($("start").value) ? $("start").value : "",
       end: monthOk($("end").value) ? $("end").value : "", status: $("status").value, budget: okNum($("budget").value),
       share: okNum($("share").value), donors: donorsGiven().filter((d) => d.name), donor: donorsGiven().map((d) => d.name).filter(Boolean).join("; "),
-      people: Object.fromEntries(PEOPLE.map((g) => [g.key, okNum($(`pp-${g.key}`).value)])), remarks: $("remarks").value.trim(),
+      people: Object.fromEntries(PEOPLE.map((g) => [g.key, okNum($(`pp-${g.key}`).value)])), peopleExtra: peopleExtra(), remarks: $("remarks").value.trim(),
     };
   }
   const logoNote = () => `${SF.icon("photo").replace("<svg ", '<svg style="width:20px;height:20px;flex:none" ')}<span><b>First project from ${esc(leadKey())}?</b> ${API
@@ -525,6 +619,7 @@
       "",
       "6. PEOPLE REACHED, PLANNED",
       people,
+      ...peopleEmailLines(),
       "",
       "7. ANYTHING ELSE",
       `Remarks: ${v("remarks")}`,
@@ -627,10 +722,22 @@
     set("share", p.share != null ? Math.round(p.share * 1000) / 10 : "");
     $("donor-rows").innerHTML = "";
     const pd = p.donors && p.donors.length ? p.donors : p.donor ? [{ name: p.donor, amount: null }] : [];
-    if (pd.length) pd.forEach((d) => donorRow(d.name, d.amount != null ? Math.round(d.amount).toLocaleString("en-US") : ""));
+    if (pd.length) pd.slice(0, SF.MAX_DONORS).forEach((d) => donorRow(d.name, d.amount != null ? Math.round(d.amount).toLocaleString("en-US") : ""));
     else donorRow();
     set("remarks", p.remarks);
     PEOPLE.forEach((g) => set(`pp-${g.key}`, p.people && p.people[g.key] != null ? Number(p.people[g.key]).toLocaleString("en-US") : ""));
+    // older entries may give a total without groups: the rest goes under "Other or not specified"
+    if (p.people && p.people.total != null) {
+      const known = SF.TARGET_GROUPS.reduce((acc, g) => acc + (p.people[g.key] || 0), 0);
+      if (p.people.total > known) set("pp-other", Number((p.people.other || 0) + p.people.total - known).toLocaleString("en-US"));
+    }
+    if (p.peopleSex) {
+      $("sex-box").hidden = false; $("sex-toggle").setAttribute("aria-expanded", "true"); $("sex-toggle").textContent = "Remove the breakdown";
+      Object.entries(p.peopleSex).forEach(([g, row]) => SEX.forEach((x) => { if (row && row[x.key] != null) set(`sx-${g}-${x.key}`, Number(row[x.key]).toLocaleString("en-US")); }));
+    }
+    const pc = (v) => (v != null ? String(Math.round(v * 1000) / 10) : "");
+    set("pp-female", pc(p.femaleShare)); set("pp-pwd", pc(p.pwdShare)); set("pp-pwd-f", pc(p.pwdFemaleShare));
+    syncPeople(); syncPwd();
     const tick = (name, vals) => form.querySelectorAll(`input[name="${name}"]`).forEach((i) => (i.checked = vals.includes(i.value)));
     tick("itypes", p.interventionTypes || []);
     tick("states", p.states || []);

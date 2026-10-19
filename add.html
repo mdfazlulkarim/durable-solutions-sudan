@@ -171,10 +171,43 @@
         </section>
 
         <section class="card form-section">
-          <h2><span class="n">6.</span> People reached, planned</h2>
-          <div class="fgrid c6" id="people"></div>
-          <p class="help" style="font-size:13px;color:var(--muted);margin:10px 0 0">The groups should add up to the total. Leave a group empty if you do not know it.</p>
-          <div class="err" id="people-err" hidden></div>
+          <h2><span class="n">6.</span> People reached, planned <span class="req">*</span></h2>
+          <div class="fld" data-f="people">
+            <div class="fgrid c6" id="people"></div>
+            <p class="help" id="people-help" style="font-size:13px;color:var(--muted);margin:10px 0 0">The total adds up the groups. If you only know the total, enter it under "Other or not specified".</p>
+            <div class="err" id="people-err" hidden></div>
+            <button type="button" class="link-btn sex-toggle" id="sex-toggle" aria-expanded="false" aria-controls="sex-box">+ Add a breakdown by women, girls, men and boys (optional)</button>
+            <div class="sex-box" id="sex-box" hidden>
+              <div class="tbl-wrap"><table class="sex-tbl" id="sex-tbl"></table></div>
+              <p class="help" style="font-size:13px;color:var(--muted);margin:8px 0 0">Girls and boys are under 18. When a group has a breakdown, its number is the sum of the breakdown.</p>
+            </div>
+          </div>
+          <div class="fgrid c3 gender-row">
+            <div class="fld" data-f="female">
+              <label for="pp-female">Women and girls <span style="color:var(--muted);font-weight:400">(% of the total)</span> <span class="req">*</span></label>
+              <div class="affix suffix"><input class="input" id="pp-female" name="pp-female" inputmode="decimal" placeholder="0 to 100" autocomplete="off"><span class="suf">%</span></div>
+              <small class="female-note" id="female-note"></small>
+            </div>
+            <div class="fld">
+              <label for="pp-male">Men and boys <span style="color:var(--muted);font-weight:400">(% of the total)</span></label>
+              <input class="input readonly" id="pp-male" readonly tabindex="-1" value="Calculated automatically">
+            </div>
+          </div>
+          <div class="fgrid c3 gender-row">
+            <div class="fld" data-f="pwd">
+              <label for="pp-pwd">Persons with disabilities <span style="color:var(--muted);font-weight:400">(% of the total)</span></label>
+              <div class="affix suffix"><input class="input" id="pp-pwd" name="pp-pwd" inputmode="decimal" placeholder="0 to 100" autocomplete="off"><span class="suf">%</span></div>
+              <small class="female-note" id="pwd-note"></small>
+            </div>
+            <div class="fld" data-f="pwdFemale">
+              <label for="pp-pwd-f">Of whom women and girls <span style="color:var(--muted);font-weight:400">(%)</span></label>
+              <div class="affix suffix"><input class="input" id="pp-pwd-f" name="pp-pwd-f" inputmode="decimal" placeholder="0 to 100" autocomplete="off" disabled><span class="suf">%</span></div>
+            </div>
+            <div class="fld">
+              <label for="pp-pwd-m">Of whom men and boys <span style="color:var(--muted);font-weight:400">(%)</span></label>
+              <input class="input readonly" id="pp-pwd-m" readonly tabindex="-1" value="Calculated automatically">
+            </div>
+          </div>
         </section>
 
         <section class="card form-section">
