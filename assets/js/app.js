@@ -403,8 +403,8 @@
       { i: "reporting", l: "Projects", v: SF.fmtInt(list.length), body: projBody, f: "status", on: state.status.size > 0 },
       { i: "partnership", l: "Organisations", v: SF.fmtInt(leads.size + partners.size), body: orgBody, f: "involved", on: state.involved.size > 0 },
       { i: "location", l: "States covered", v: `${covered} of 18`, body: statesBody, f: "state", on: !!selState,
-        corner: `<label class="kselect${selState ? " on" : ""}" title="Select a state"><span>${esc(selState || "All states")}</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <select aria-label="Select a state"><option value="">All of Sudan</option>${[...STATES].sort().map((st) => `<option value="${esc(st)}"${st === selState ? " selected" : ""}>${esc(st)} (${per[st].projects.length})</option>`).join("")}</select></label>` },
+        corner: `<div class="kselect-wrap"><button type="button" class="kselect${selState ? " on" : ""}" aria-haspopup="listbox" aria-expanded="false" title="Select a state"><span>${esc(selState || "All states")}</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="kmenu" role="listbox" aria-label="Select a state" hidden><button type="button" role="option" data-pick="" aria-selected="${!selState}" class="${selState ? "" : "on"}">All of Sudan</button>${[...STATES].sort().map((st) => { const n = per[st].projects.length; return `<button type="button" role="option" data-pick="${esc(st)}" aria-selected="${st === selState}" class="${st === selState ? "on" : ""}${n ? "" : " zero"}"><span>${esc(st)}</span><em>${n}</em></button>`; }).join("")}</div></div>` },
       { i: "fund", l: "DS funding", v: SF.fmtMoney(ds) || "$0", body: fundBody, f: "donors", on: state.donors.size > 0 },
       { i: "time", warn: true, l: "Ending within 6 months", v: SF.fmtInt(soonBase.length), body: endBody, f: "endingSoon", on: state.endingSoon, noIcon: true },
     ];
@@ -414,12 +414,14 @@
         ? `<button type="button" class="kclear" data-clear="${c.f}" aria-label="Clear the ${c.l} filter">Clear <span aria-hidden="true">&times;</span></button>`
         : c.noIcon ? "" : `<span class="kf" title="Click a coloured item to filter" aria-hidden="true">${FUNNEL}</span>`}<div class="kpi-value">${c.v}</div>${c.body}</div>`).join("");
     host.onclick = onKpiClick;
-    host.onchange = (e) => { if (e.target.closest(".kselect")) selectState(e.target.value || null); };
+
   }
 
   function onKpiClick(e) {
     const t = e.target.closest("button, i[data-k], i[data-donors]");
     if (!t) return;
+    if (t.classList.contains("kselect")) { toggleStateMenu(t); return; }
+    if ("pick" in t.dataset) { selectState(t.dataset.pick || null); return; }
     if (t.dataset.clear) {
       const f = t.dataset.clear;
       if (f === "state") { selectState(null); return; }
@@ -436,6 +438,23 @@
     if ("donors" in t.dataset) { openDonors(); return; }
     if ("soonList" in t.dataset) openEnding();
   }
+
+  // State drop-down on the States covered card
+  function toggleStateMenu(btn, open) {
+    const menu = btn.parentElement.querySelector(".kmenu");
+    const show = open ?? menu.hidden;
+    menu.hidden = !show;
+    btn.setAttribute("aria-expanded", String(show));
+    if (show) (menu.querySelector(".on") || menu.firstElementChild).scrollIntoView({ block: "nearest" });
+  }
+  document.addEventListener("click", (e) => {
+    const btn = document.querySelector(".kselect[aria-expanded='true']");
+    if (btn && !e.target.closest(".kselect-wrap")) toggleStateMenu(btn, false);
+  });
+  document.addEventListener("keydown", (e) => {
+    const btn = document.querySelector(".kselect[aria-expanded='true']");
+    if (btn && e.key === "Escape") { toggleStateMenu(btn, false); btn.focus(); }
+  });
 
   function flashStates(names) {
     document.getElementById("map-wrap").scrollIntoView({ behavior: "smooth", block: "center" });
