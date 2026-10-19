@@ -879,3 +879,9 @@ dialog.modal-donors { width: min(720px, calc(100vw - 24px)); }
 .klink[data-soon-list] { text-decoration: none; }
 .klink .u { text-decoration: underline; text-underline-offset: 2px; }
 .klink .kmore { display: inline-grid; }
+
+/* IASC criteria: short explanation in a pop-up, and the source */
+.crit-tip { vertical-align: 1px; margin-left: 2px; }
+.crit-tip .tip-pop { font-weight: 400; }
+.crit-tip .tip-pop b { font-weight: 500; }
+.iasc-source { margin: 10px 0 0; font-size: 13px; color: var(--muted); }

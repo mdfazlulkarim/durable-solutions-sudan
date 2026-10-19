@@ -20,7 +20,15 @@
     `<label><input type="checkbox" name="states" value="${esc(s)}" id="st-${i}"> ${esc(s)}</label>`).join("");
   $("criteria").innerHTML = CRITERIA.map((c) =>
     `<label class="crit-opt"><input type="checkbox" name="criteria" value="${c.n}"><span class="ci" style="background:${c.color}">${SF.critIcon(c.n)}</span>
-      <span><b>${c.n}. ${esc(c.name)}</b><small>${esc(c.hint)}</small></span></label>`).join("");
+      <span><b>${c.n}. ${esc(c.name)} <span class="tip crit-tip"><button type="button" class="tip-btn" aria-label="What ${esc(c.name)} means" aria-describedby="cb-${c.n}">i</button><span class="tip-pop" role="tooltip" id="cb-${c.n}"><b>What this means</b>${esc(c.brief)}</span></span></b><small>${esc(c.hint)}</small></span></label>`).join("");
+  // the "i" opens a short explanation in a pop-up; it must not tick the box
+  $("criteria").addEventListener("click", (e) => {
+    const b = e.target.closest(".crit-tip");
+    if (!b) return;
+    e.preventDefault();
+    b.querySelector(".tip-btn").focus();
+  });
+  $("iasc-source").innerHTML = `Source: <a href="${SF.IASC_SOURCE.url}" target="_blank" rel="noopener">${esc(SF.IASC_SOURCE.label)}</a>`;
   $("coordination").innerHTML += SF.COORDINATION_OPTIONS.map((o) => `<option>${esc(o)}</option>`).join("");
   $("orgType").innerHTML += SF.ORG_TYPES.map((o) => `<option>${esc(o.key)}</option>`).join("");
   $("leadership").innerHTML = SF.LEADERSHIP.map((l) => `<label><input type="checkbox" name="leadership" value="${l.key}"> ${esc(l.label)}</label>`).join("") +
