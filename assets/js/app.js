@@ -396,7 +396,7 @@
       ? `<div class="krisk">${atRisk > 0 ? `<b>${SF.fmtMoney(atRisk)}</b> towards durable solutions ends with them` : "No funding reported for these projects"}</div>
         <div class="kbar"><i style="width:${ongoing ? (soonBase.length / ongoing) * 100 : 0}%;background:#e2895f"></i></div>
         <div class="kleg">${soonBase.length} of ${ongoing} ongoing project${ongoing === 1 ? "" : "s"} (${ongoing ? Math.round((soonBase.length / ongoing) * 100) : 0}%), by ${SF.fmtMonth(SF.addMonths(SF.today, 6))}</div>
-        <button type="button" class="klink" data-soon aria-pressed="${state.endingSoon}">${state.endingSoon ? "Showing only these projects" : (soonBase.length === 1 ? "Show this project →" : `Show these ${soonBase.length} projects →`)}</button>`
+        <button type="button" class="klink" data-soon-list><span class="u">${soonBase.length === 1 ? "See the project" : `See the ${soonBase.length} projects`}</span> <span class="kmore" aria-hidden="true">…</span></button>`
       : `<div class="kleg" style="margin-top:8px">No projects end in the next 6 months</div>`;
 
     const cards = [
@@ -406,13 +406,13 @@
         corner: `<label class="kselect${selState ? " on" : ""}" title="Select a state"><span>${esc(selState || "All states")}</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <select aria-label="Select a state"><option value="">All of Sudan</option>${[...STATES].sort().map((st) => `<option value="${esc(st)}"${st === selState ? " selected" : ""}>${esc(st)} (${per[st].projects.length})</option>`).join("")}</select></label>` },
       { i: "fund", l: "DS funding", v: SF.fmtMoney(ds) || "$0", body: fundBody, f: "donors", on: state.donors.size > 0 },
-      { i: "time", warn: true, l: "Ending within 6 months", v: SF.fmtInt(soonBase.length), body: endBody, f: "endingSoon", on: state.endingSoon },
+      { i: "time", warn: true, l: "Ending within 6 months", v: SF.fmtInt(soonBase.length), body: endBody, f: "endingSoon", on: state.endingSoon, noIcon: true },
     ];
     const host = document.getElementById("kpis");
     host.innerHTML = cards.map((c) => `
       <div class="card kpi${c.on ? " is-on" : ""}"><div class="kpi-label"><span class="kpi-ico${c.warn ? " warn" : ""}">${SF.icon(c.i)}</span>${c.l}</div>${c.corner ? c.corner : c.on
         ? `<button type="button" class="kclear" data-clear="${c.f}" aria-label="Clear the ${c.l} filter">Clear <span aria-hidden="true">&times;</span></button>`
-        : `<span class="kf" title="Click a coloured item to filter" aria-hidden="true">${FUNNEL}</span>`}<div class="kpi-value">${c.v}</div>${c.body}</div>`).join("");
+        : c.noIcon ? "" : `<span class="kf" title="Click a coloured item to filter" aria-hidden="true">${FUNNEL}</span>`}<div class="kpi-value">${c.v}</div>${c.body}</div>`).join("");
     host.onclick = onKpiClick;
     host.onchange = (e) => { if (e.target.closest(".kselect")) selectState(e.target.value || null); };
   }
@@ -434,7 +434,7 @@
     if (t.dataset.state) { selectState(t.dataset.state === state.selected ? null : t.dataset.state); return; }
     if ("gaps" in t.dataset) { flashStates(STATES.filter((s) => !PER[s].projects.length)); return; }
     if ("donors" in t.dataset) { openDonors(); return; }
-    if ("soon" in t.dataset) { state.endingSoon = !state.endingSoon; render(); }
+    if ("soonList" in t.dataset) openEnding();
   }
 
   function flashStates(names) {
@@ -899,9 +899,9 @@
 
   // A list pop-up (one agency's projects, or the nationwide projects). Projects opened
   // from it get a Back button that returns here at the same scroll position.
-  function openList({ title, subtitle, logoOrg, projects, backLabel, nudge }) {
+  function openList({ title, subtitle, logoOrg, projects, backLabel, nudge, action, sort }) {
     const d = document.getElementById("agency");
-    const sorted = sortForPanel(projects);
+    const sorted = sort ? sort(projects) : sortForPanel(projects);
     const args = arguments[0];
     d.innerHTML = `
       <button type="button" class="modal-close" aria-label="Close" data-close>&times;</button>
@@ -910,9 +910,11 @@
           <div class="logo-box">${logoOrg ? SF.logoImg(logoOrg, "full") : `<span style="color:var(--brand)">${SF.icons.globe}</span>`}</div>
           <div><h2 id="agency-title">${esc(title)}</h2><p>${esc(subtitle)}</p></div>
         </div>
+        ${action ? `<div class="list-action"><button type="button" class="btn${action.done ? "" : " btn-primary"}" data-action${action.done ? " disabled" : ""}>${esc(action.label)}</button></div>` : ""}
         <div class="agency-modal-body">${sorted.map(projectCard).join("")}</div>
         <div class="pop-nudge">${nudge || 'Is your organisation working on durable solutions here? <a href="add.html">Add your project</a>.'}</div>
       </div>`;
+    d.querySelector("[data-action]")?.addEventListener("click", () => { d.close(); action.fn(); });
     const logoBox = d.querySelector(".logo-box svg");
     if (logoBox) { logoBox.style.width = "34px"; logoBox.style.height = "34px"; }
     d.querySelectorAll(".proj-card").forEach((b) => b.addEventListener("click", () => {
@@ -928,6 +930,20 @@
       title: logo ? logo.name : org,
       subtitle: `${list.length} project${list.length === 1 ? "" : "s"} in ${area}, with the current filters`,
       logoOrg: org, projects: list, backLabel: `Back to ${org} projects`,
+    });
+  }
+  // Projects ending within 6 months, soonest first, with a button to filter the dashboard to them
+  function openEnding() {
+    const list = filtered("endingSoon").filter((p) => p._endingSoon);
+    const money = list.reduce((a, p) => a + (p.dsFunding || 0), 0);
+    openList({
+      title: "Projects ending within 6 months",
+      subtitle: `${list.length} ongoing project${list.length === 1 ? " ends" : "s end"} by ${SF.fmtMonth(SF.addMonths(SF.today, 6))}, with the current filters${money > 0 ? `. ${SF.fmtMoney(money)} towards durable solutions ends with them` : ""}.`,
+      projects: list, backLabel: "Back to projects ending soon",
+      sort: (ps) => [...ps].sort((a, b) => a._end - b._end),
+      action: state.endingSoon
+        ? { label: "The dashboard shows only these projects", done: true }
+        : { label: "Show only these projects on the dashboard", fn: () => { state.endingSoon = true; render(); } },
     });
   }
   function openNationwide() {
