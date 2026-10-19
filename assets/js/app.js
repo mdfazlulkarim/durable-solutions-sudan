@@ -305,10 +305,8 @@
     const statesBody = `<div class="kdots" role="img" aria-label="${covered} of 18 states have projects">${STATES.map((_, i) => `<i class="${i < covered ? "" : "off"}"></i>`).join("")}</div>
       <div class="kleg"><span><b style="background:var(--map-none)"></b>${18 - covered} state${18 - covered === 1 ? "" : "s"} with no projects</span></div>`;
     // DS funding: one bar split by donor (top 3, then the rest)
-    const SHORT = { "African Development Bank": "AfDB", "Peacebuilding Fund": "PBF", "Government of the Netherlands": "Netherlands",
-      "Netherlands Ministry of Foreign Affairs": "Netherlands MFA", "Sudan Humanitarian Fund": "SHF", "US Government (BHA)": "US BHA",
-      "Austrian Development Agency": "ADA", "Swiss Development Cooperation": "SDC", "UNOPS / Cities Alliance": "Cities Alliance",
-      "Japan Ministry of Foreign Affairs": "Japan MOFA", "German Federal Foreign Office": "Germany", "Government of Liechtenstein": "Liechtenstein" };
+    // Long donor names: use the acronym in brackets when there is one, for example "African Development Bank (AfDB)"
+    const shortDonor = (dn) => { const m = /^[^,]*\(([^)]+)\)$/.exec(dn); return m ? m[1] : dn.length > 16 ? dn.slice(0, 15) + "." : dn; };
     const donors = new Map();
     fundingList.forEach((p) => { const k = p.donor || "Donor not reported"; donors.set(k, (donors.get(k) || 0) + p.dsFunding); });
     const sortedD = [...donors.entries()].sort((x, y) => y[1] - x[1]);
@@ -316,7 +314,7 @@
     const restSum = rest.reduce((a2, x) => a2 + x[1], 0);
     const dCol = ["#1d5fae", "#4485d2", "#73a5e0"];
     const pctR = (v) => (ds ? Math.round((v / ds) * 100) : 0);
-    const dParts = top.map(([dn, v], i) => [`${SHORT[dn] || (dn.length > 16 ? dn.slice(0, 15) + "." : dn)} ${pctR(v)}%`, v, dCol[i], dn]);
+    const dParts = top.map(([dn, v], i) => [`${shortDonor(dn)} ${pctR(v)}%`, v, dCol[i], dn]);
     if (rest.length) dParts.push([`${rest.length} other${rest.length === 1 ? "" : "s"} ${pctR(restSum)}%`, restSum, "var(--map-none)", rest.map((x) => x[0]).join(", ")]);
     const fundBody = ds > 0
       ? `<div class="kbar" role="img" aria-label="${esc(dParts.map((x) => x[0]).join(", "))}">${dParts.map((x) => `<i style="width:${(x[1] / ds) * 100}%;background:${x[2]}" title="${esc(x[3])}: ${SF.fmtMoney(x[1])}"></i>`).join("")}</div>
