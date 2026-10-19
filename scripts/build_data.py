@@ -34,7 +34,7 @@ LOG = ROOT / "data" / "cleaning-log.md"
 REFS = ROOT / "data" / "project-refs.json"
 PHOTOS = ROOT / "assets" / "photos"
 
-LAST_UPDATED = "2026-10-10"  # date shown as "Last updated" on the site
+LAST_UPDATED = "2026-10-19"  # date shown as "Last updated" on the site
 
 ORGS = json.loads((ROOT / "data" / "organisations.json").read_text(encoding="utf-8"))["organisations"]
 ORG_INDEX = {}
@@ -66,6 +66,14 @@ NAME_FIX = {
     "Rehabilitation of two health center": "Rehabilitation of two health centres",
     "Sudan EU IGAD Platform programme-Kassala Sate": "Sudan EU IGAD Platform programme, Kassala State",
     "Mastercard Foundation": "UNHCR project funded by Mastercard Foundation",
+}
+# Long entries in the name field: a short name, with the full text kept as the description
+NAME_SPLIT = {
+    "Solar systems for health facilities to ensure reliable electricity for essential services, including emergency obstetric care, safe deliveries, cold-chain needs where applicable, and services in areas with limited infrastructure.": "Solar systems for health facilities",
+    "Rehabilitation of health facilities to restore damaged or non-functional health infrastructure and enable displaced and returning populations, as well as host communities, to access essential health services sustainably.": "Rehabilitation of health facilities",
+    "Medical equipment to enable health facilities to resume or improve service delivery, particularly emergency obstetric and newborn care (EmONC), and maintain essential reproductive health services.": "Medical equipment for health facilities",
+    "BenIMS/DHIS2 to Strengthen health information management, service monitoring, planning, and evidence-based resource allocation, supporting more sustainable health-system management.": "BenIMS/DHIS2 health information management",
+    "Women Architects of Recovery - assessment aiming to identify opportunities to use women's potential in recovery of Sudan": "Women Architects of Recovery",
 }
 DONOR_FIX = {"The Government of Netherlands": "Government of the Netherlands"}
 DONOR_FROM_NAME = {"Mastercard Foundation": "Mastercard Foundation"}
@@ -247,7 +255,11 @@ def merge(records):
 def build(rec):
     raw_name = clean_text(rec["Project / Programme Name"])
     name = NAME_FIX.get(raw_name, raw_name)
-    if name != raw_name:
+    description = None
+    if raw_name in NAME_SPLIT:
+        name, description = NAME_SPLIT[raw_name], raw_name
+        log["notes"].append(f"Long project name shortened to '{name}'; the full text is kept as the description.")
+    elif name != raw_name:
         log["notes"].append(f"Project name '{raw_name}' changed to '{name}'.")
     lead = clean_text(rec.get("UN Agency"))
     states, localities, nationwide = parse_states(rec.get("State(s) Covered"), name)
@@ -283,7 +295,7 @@ def build(rec):
     return {
         "id": pid,
         "name": name,
-        "description": None,
+        "description": description,
         "interventionTypes": [],
         "lead": lead,
         # The SharePoint column for the lead organisation is "UN Agency"
