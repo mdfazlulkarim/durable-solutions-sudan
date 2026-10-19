@@ -75,40 +75,20 @@ NAME_SPLIT = {
     "BenIMS/DHIS2 to Strengthen health information management, service monitoring, planning, and evidence-based resource allocation, supporting more sustainable health-system management.": "BenIMS/DHIS2 health information management",
     "Women Architects of Recovery - assessment aiming to identify opportunities to use women's potential in recovery of Sudan": "Women Architects of Recovery",
 }
-# Donor names follow the OCHA Financial Tracking Service convention: governments
-# (and their ministries, agencies and state funds) by country name; pooled funds,
-# foundations and multilateral organisations by name, with the acronym where common.
-# Several donors are separated by a comma.
+# Donor names are kept as entered, except agreed fixes: spelling and formatting,
+# and one name for the same donor entered in different ways.
 DONOR_FIX = {
-    "The Government of Netherlands": "Netherlands",
-    "Government of the Netherlands": "Netherlands",
-    "Netherlands Ministry of Foreign Affairs": "Netherlands",
-    "Japan": "Japan", "Government of Japan": "Japan", "Japan Ministry of Foreign Affairs": "Japan",
-    "Japan Supplementary Fund": "Japan",
-    "CANADA": "Canada", "Canada IRCC": "Canada",
-    "Swiss Development Cooperation": "Switzerland",
-    "Swiss Agency for Development and Cooperation (SDC)": "Switzerland",
-    "Swiss Agency for Development & Cooperation (SDC)": "Switzerland",
-    "Swiss Agency for Development and Cooperation (SDC), UNHCR": "Switzerland, UNHCR",
-    "Swiss Agency for Development & Cooperation (SDC) + UNHCR": "Switzerland, UNHCR",
-    "Austrian Development Agency": "Austria",
-    "German Federal Foreign Office": "Germany",
-    "Government of Liechtenstein": "Liechtenstein",
-    "Directorate General for Development Cooperation of the Italian Ministry of Foreign Affairs / AICS": "Italy",
-    "Republic of Korea (RoK)": "Republic of Korea",
-    "US Government (BHA)": "United States",
-    "Norway and Sida": "Norway, Sweden", "Norway, Sida": "Norway, Sweden",
-    "Kuwait Fund for Arab Economic Development (KFAED)": "Kuwait",
-    "King Salman Humanitarian Aid & Relief Centre (KSRelief)": "Saudi Arabia",
-    "EducationAboveAll_Qatar Fund for Development": "Education Above All Foundation, Qatar",
-    "Education Above All, Qatar Fund for Development": "Education Above All Foundation, Qatar",
-    "ECHO": "European Union", "EU (MPRR)": "European Union",
-    "HF, ECHO": "Sudan Humanitarian Fund (SHF), European Union",
-    "Sudan Humanitarian Fund": "Sudan Humanitarian Fund (SHF)",
-    "Peacebuilding Fund": "UN Peacebuilding Fund (PBF)",
+    "The Government of Netherlands": "Government of the Netherlands",
+    "CANADA": "Government of Canada",
+    "Canada IRCC": "Government of Canada",
     "UN_Central Emergency Response Fund (CERF)": "Central Emergency Response Fund (CERF)",
-    "African Development Bank": "African Development Bank (AfDB)",
-    "UNOPS / Cities Alliance": "Cities Alliance",
+    "Japan": "Government of Japan",
+    "Norway and Sida": "Norway, Sida",
+    "HF, ECHO": "Sudan Humanitarian Fund, ECHO",
+    "Swiss Development Cooperation": "Swiss Agency for Development and Cooperation (SDC)",
+    "Swiss Agency for Development & Cooperation (SDC)": "Swiss Agency for Development and Cooperation (SDC)",
+    "Swiss Agency for Development & Cooperation (SDC) + UNHCR": "Swiss Agency for Development and Cooperation (SDC), UNHCR",
+    "EducationAboveAll_Qatar Fund for Development": "Education Above All, Qatar Fund for Development",
 }
 DONOR_FROM_NAME = {"Mastercard Foundation": "Mastercard Foundation"}
 PARTNER_FIX = {"UN HABITAT": "UN-Habitat"}

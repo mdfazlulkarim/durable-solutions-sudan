@@ -305,8 +305,16 @@
     const statesBody = `<div class="kdots" role="img" aria-label="${covered} of 18 states have projects">${STATES.map((_, i) => `<i class="${i < covered ? "" : "off"}"></i>`).join("")}</div>
       <div class="kleg"><span><b style="background:var(--map-none)"></b>${18 - covered} state${18 - covered === 1 ? "" : "s"} with no projects</span></div>`;
     // DS funding: one bar split by donor (top 3, then the rest)
-    // Long donor names: use the acronym in brackets when there is one, for example "African Development Bank (AfDB)"
-    const shortDonor = (dn) => { const m = /^[^,]*\(([^)]+)\)$/.exec(dn); return m ? m[1] : dn.length > 16 ? dn.slice(0, 15) + "." : dn; };
+    // Short labels for long donor names; otherwise the acronym in brackets, otherwise the name cut at 16 characters
+    const SHORT = { "African Development Bank": "AfDB", "Peacebuilding Fund": "PBF", "Government of the Netherlands": "Netherlands",
+      "Netherlands Ministry of Foreign Affairs": "Netherlands MFA", "Sudan Humanitarian Fund": "SHF", "Sudan Humanitarian Fund, ECHO": "SHF, ECHO",
+      "US Government (BHA)": "US BHA", "Austrian Development Agency": "ADA", "UNOPS / Cities Alliance": "Cities Alliance",
+      "Japan Ministry of Foreign Affairs": "Japan MOFA", "Japan Supplementary Fund": "Japan", "Government of Japan": "Japan",
+      "German Federal Foreign Office": "Germany", "Government of Liechtenstein": "Liechtenstein", "Government of Canada": "Canada",
+      "Swiss Agency for Development and Cooperation (SDC), UNHCR": "SDC, UNHCR",
+      "Directorate General for Development Cooperation of the Italian Ministry of Foreign Affairs / AICS": "AICS",
+      "Education Above All, Qatar Fund for Development": "EAA, QFFD" };
+    const shortDonor = (dn) => { if (SHORT[dn]) return SHORT[dn]; const m = /^[^,]*\(([^)]+)\)$/.exec(dn); return m ? m[1] : dn.length > 16 ? dn.slice(0, 15) + "." : dn; };
     const donors = new Map();
     fundingList.forEach((p) => { const k = p.donor || "Donor not reported"; donors.set(k, (donors.get(k) || 0) + p.dsFunding); });
     const sortedD = [...donors.entries()].sort((x, y) => y[1] - x[1]);
