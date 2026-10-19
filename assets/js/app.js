@@ -17,6 +17,7 @@
     search: "", criteria: new Set(), itypes: new Set(), orgTypes: new Set(), leadership: new Set(),
     orgName: "", status: new Set(), minShare: 0, includeUnreported: true, groups: new Set(),
     scope: new Set(), donors: new Set(), coord: new Set(),
+    endingSoon: false,
     time: { mode: "all", from: null, to: null },
     colourBy: "projects",
     selected: null, // null = all of Sudan, NATIONWIDE, or a state name
@@ -74,6 +75,7 @@
       else if (p.share * 100 < state.minShare) return false;
     }
     if (except !== "time" && !inWindow(p, timeWindow())) return false;
+    if (except !== "endingSoon" && state.endingSoon && !p._endingSoon) return false;
     return true;
   }
   const filtered = (except) => ALL.filter((p) => passes(p, except));
@@ -235,6 +237,7 @@
     state.search = ""; state.orgName = ""; state.minShare = 0; state.includeUnreported = true;
     Object.keys(GROUPS).forEach((g) => state[g].clear());
     state.time = { mode: "all", from: null, to: null };
+    state.endingSoon = false;
     render();
   }
 
@@ -257,6 +260,7 @@
     if (state.orgName) tags.push({ label: `Organisation: ${state.orgName}`, clear: () => (state.orgName = "") });
     if (state.minShare > 0) tags.push({ label: `At least ${state.minShare}% towards durable solutions`, clear: () => (state.minShare = 0) });
     if (!state.includeUnreported) tags.push({ label: "Share reported", clear: () => (state.includeUnreported = true) });
+    if (state.endingSoon) tags.push({ label: "Ending within 6 months", clear: () => (state.endingSoon = false) });
     const el = document.getElementById("showing");
     el.innerHTML = `<span>Showing</span>`;
     const timeTag = document.createElement("span");
@@ -278,73 +282,205 @@
   }
 
   /* ---------------- KPIs ---------------- */
+  // Each card works as a filter: clicking a coloured item filters the dashboard.
+  // A card's breakdown ignores its own filter, so the other items stay visible (faded) and can be added.
+  const FUNNEL = '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M1.5 2h13a.5.5 0 0 1 .4.8L10 9v4.5a.5.5 0 0 1-.7.45l-2.5-1.1a.5.5 0 0 1-.3-.46V9L1.1 2.8A.5.5 0 0 1 1.5 2z"/></svg>';
+  const DONOR_SHORT = { "African Development Bank": "AfDB", "Peacebuilding Fund": "PBF", "Government of the Netherlands": "Netherlands",
+    "Netherlands Ministry of Foreign Affairs": "Netherlands MFA", "Sudan Humanitarian Fund": "SHF", "Sudan Humanitarian Fund, ECHO": "SHF, ECHO",
+    "US Government (BHA)": "US BHA", "Austrian Development Agency": "ADA", "UNOPS / Cities Alliance": "Cities Alliance",
+    "Japan Ministry of Foreign Affairs": "Japan MOFA", "Japan Supplementary Fund": "Japan", "Government of Japan": "Japan",
+    "German Federal Foreign Office": "Germany", "Government of Liechtenstein": "Liechtenstein", "Government of Canada": "Canada",
+    "Swiss Agency for Development and Cooperation (SDC), UNHCR": "SDC, UNHCR",
+    "Directorate General for Development Cooperation of the Italian Ministry of Foreign Affairs / AICS": "AICS",
+    "Education Above All, Qatar Fund for Development": "EAA, QFFD" };
+  // Short label for a long donor name; otherwise the acronym in brackets, otherwise the name cut at 16 characters
+  const shortDonor = (dn) => { if (DONOR_SHORT[dn]) return DONOR_SHORT[dn]; const m = /^[^,]*\(([^)]+)\)$/.exec(dn); return m ? m[1] : dn.length > 16 ? dn.slice(0, 15) + "." : dn; };
+  const NO_DONOR = "Donor not reported";
+
+  // Donors in a list of projects: funding towards durable solutions and number of projects, largest first
+  function donorRows(projects) {
+    const m = new Map();
+    projects.forEach((p) => {
+      const k = p.donor || NO_DONOR;
+      const r = m.get(k) || { name: k, funding: 0, n: 0 };
+      r.funding += p.dsFunding || 0; r.n++;
+      m.set(k, r);
+    });
+    return [...m.values()].sort((a, b) => (a.name === NO_DONOR) - (b.name === NO_DONOR) || b.funding - a.funding || a.name.localeCompare(b.name));
+  }
+
   function renderKPIs(list, per) {
+    const pct = (n, t) => (t ? (n / t) * 100 : 0);
+    // parts: [label, count or amount, colour, filter key, filter value, tooltip]
+    const bar = (parts, total, key) => {
+      const ps = parts.filter((x) => x[1] > 0);
+      const anyOn = key && ps.some((x) => x[4] != null && state[key].has(x[4]));
+      const item = (x, tag) => {
+        const on = key && x[4] != null && state[key].has(x[4]);
+        const can = key && x[4] != null;
+        return tag === "i"
+          ? `<i style="width:${pct(x[1], total)}%;background:${x[2]}"${can ? ` data-k="${key}" data-v="${esc(x[4])}"` : ""} class="${on ? "on" : ""}" title="${esc(x[5] || x[0])}"></i>`
+          : `<${can ? `button type="button" data-k="${key}" data-v="${esc(x[4])}" aria-pressed="${on}"` : "span"} class="kitem${on ? " on" : ""}" title="${esc(x[5] || "")}"><b style="background:${x[2]}"></b>${esc(x[0])}</${can ? "button" : "span"}>`;
+      };
+      return `<div class="kbar${anyOn ? " has-on" : ""}" role="img" aria-label="${esc(ps.map((x) => x[0]).join(", "))}">${ps.map((x) => item(x, "i")).join("")}</div>
+        <div class="kleg${anyOn ? " has-on" : ""}">${ps.map((x) => item(x, "span")).join("")}</div>`;
+    };
+
+    // Projects by status (breakdown without the status filter)
+    const stBase = filtered("status");
     const st = { Ongoing: 0, Pipeline: 0, Ended: 0, none: 0 };
-    list.forEach((p) => (p.status && st[p.status] != null ? st[p.status]++ : st.none++));
+    stBase.forEach((p) => (p.status && st[p.status] != null ? st[p.status]++ : st.none++));
+    const projBody = bar([
+      [`${st.Ongoing} ongoing`, st.Ongoing, "#1d5fae", "Ongoing", "Show only ongoing projects"],
+      [`${st.Pipeline} pipeline`, st.Pipeline, "#6250d6", "Pipeline", "Show only pipeline projects"],
+      [`${st.Ended} ended`, st.Ended, "#9aa0a9", "Ended", "Show only ended projects"],
+      [`${st.none} no status`, st.none, "var(--map-none)", "none", "Show only projects with no dates reported"],
+    ].map(([l, n, c, v, t]) => [l, n, c, null, v, t]), stBase.length, "status");
+
+    // Organisations by type, leads and partners (breakdown without the organisation type filter)
     const leads = new Set(list.map((p) => p.lead).filter(Boolean));
     const partners = new Set(list.flatMap((p) => p.partners).filter((o) => !leads.has(o)));
-    const coveredStates = STATES.filter((s) => per[s].projects.length);
-    const covered = coveredStates.length;
-    const fundingList = list.filter((p) => p.dsFunding != null);
-    const ds = fundingList.reduce((a, p) => a + p.dsFunding, 0);
-    const soonList = list.filter((p) => p._endingSoon);
-    const pct = (n, t) => (t ? (n / t) * 100 : 0);
-    const bar = (parts, total) => {
-      const ps = parts.filter((x) => x[1] > 0);
-      return `<div class="kbar" role="img" aria-label="${esc(ps.map((x) => `${x[1]} ${x[0]}`).join(", "))}">${ps.map((x) => `<i style="width:${pct(x[1], total)}%;background:${x[2]}"></i>`).join("")}</div>
-        <div class="kleg">${ps.map((x) => `<span><b style="background:${x[2]}"></b>${x[1]} ${x[0]}</span>`).join("")}</div>`;
-    };
-    // projects by status
-    const projBody = bar([["ongoing", st.Ongoing, "#1d5fae"], ["pipeline", st.Pipeline, "#6250d6"], ["ended", st.Ended, "#9aa0a9"], ["no status", st.none, "var(--map-none)"]], list.length);
-    // organisations by type (leads and partners)
-    const types = orgTypeRows(list);
+    const types = orgTypeRows(filtered("orgTypes"));
     const typeShort = { "UN agencies": "UN", "International NGOs": "INGO", "National NGOs": "NNGO", "Red Cross / Red Crescent": "RC", "Authorities": "authorities", "Other": "other", "Type not reported": "not reported" };
     const typeCol = ["#1d5fae", "#4485d2", "#73a5e0", "#a3c4ec", "#6250d6", "#b7a9f5", "var(--map-none)"];
-    const orgBody = bar(types.map((r, i) => [typeShort[r.l] || r.l, r.n, r.l === "Type not reported" ? "var(--map-none)" : typeCol[i]]), types.reduce((a, r) => a + r.n, 0));
-    // states: 18 squares
-    const statesBody = `<div class="kdots" role="img" aria-label="${covered} of 18 states have projects">${STATES.map((_, i) => `<i class="${i < covered ? "" : "off"}"></i>`).join("")}</div>
-      <div class="kleg"><span><b style="background:var(--map-none)"></b>${18 - covered} state${18 - covered === 1 ? "" : "s"} with no projects</span></div>`;
-    // DS funding: one bar split by donor (top 3, then the rest)
-    // Short labels for long donor names; otherwise the acronym in brackets, otherwise the name cut at 16 characters
-    const SHORT = { "African Development Bank": "AfDB", "Peacebuilding Fund": "PBF", "Government of the Netherlands": "Netherlands",
-      "Netherlands Ministry of Foreign Affairs": "Netherlands MFA", "Sudan Humanitarian Fund": "SHF", "Sudan Humanitarian Fund, ECHO": "SHF, ECHO",
-      "US Government (BHA)": "US BHA", "Austrian Development Agency": "ADA", "UNOPS / Cities Alliance": "Cities Alliance",
-      "Japan Ministry of Foreign Affairs": "Japan MOFA", "Japan Supplementary Fund": "Japan", "Government of Japan": "Japan",
-      "German Federal Foreign Office": "Germany", "Government of Liechtenstein": "Liechtenstein", "Government of Canada": "Canada",
-      "Swiss Agency for Development and Cooperation (SDC), UNHCR": "SDC, UNHCR",
-      "Directorate General for Development Cooperation of the Italian Ministry of Foreign Affairs / AICS": "AICS",
-      "Education Above All, Qatar Fund for Development": "EAA, QFFD" };
-    const shortDonor = (dn) => { if (SHORT[dn]) return SHORT[dn]; const m = /^[^,]*\(([^)]+)\)$/.exec(dn); return m ? m[1] : dn.length > 16 ? dn.slice(0, 15) + "." : dn; };
-    const donors = new Map();
-    fundingList.forEach((p) => { const k = p.donor || "Donor not reported"; donors.set(k, (donors.get(k) || 0) + p.dsFunding); });
-    const sortedD = [...donors.entries()].sort((x, y) => y[1] - x[1]);
+    const typeKey = (l) => (SF.ORG_TYPES.find((o) => o.label === l) || {}).key;
+    const orgBody = bar(types.map((r, i) => {
+      const k = typeKey(r.l);
+      return [`${r.n} ${typeShort[r.l] || r.l}`, r.n, r.l === "Type not reported" ? "var(--map-none)" : typeCol[i], null, k || null, k ? `Show only projects led by ${r.l.toLowerCase().replace("un ", "UN ").replace("ngos", "NGOs")}` : ""];
+    }), types.reduce((a, r) => a + r.n, 0), "orgTypes");
+
+    // States: one square per state, states with projects first (most projects first)
+    const ranked = STATES.map((s) => [s, per[s].projects.length]).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    const covered = ranked.filter((r) => r[1] > 0).length;
+    const empty = ranked.filter((r) => !r[1]).map((r) => r[0]);
+    const selState = state.selected && state.selected !== NATIONWIDE ? state.selected : null;
+    const statesBody = `<div class="kdots" role="group" aria-label="${covered} of 18 states have projects">${ranked.map(([s, n]) =>
+      `<button type="button" class="${n ? "" : "off"}${s === selState ? " on" : ""}" data-state="${esc(s)}" title="${esc(s)}: ${n ? `${n} project${n === 1 ? "" : "s"}. Click to select` : "no projects"}" aria-label="${esc(s)}, ${n} projects"></button>`).join("")}</div>
+      <div class="kleg">${empty.length ? `<button type="button" class="kitem" data-gaps title="Outline these states on the map: ${esc(empty.join(", "))}"><b style="background:var(--map-none)"></b>${empty.length} state${empty.length === 1 ? "" : "s"} with no projects</button>` : '<span class="kitem">Every state has projects</span>'}</div>`;
+
+    // DS funding by donor: top 3, then the rest, with "…" for the full list (breakdown without the donor filter)
+    const fundList = list.filter((p) => p.dsFunding != null);
+    const ds = fundList.reduce((a, p) => a + p.dsFunding, 0);
+    const dBase = filtered("donors").filter((p) => p.dsFunding != null);
+    const dTotal = dBase.reduce((a, p) => a + p.dsFunding, 0);
+    const sortedD = donorRows(dBase).filter((r) => r.funding > 0);
     const top = sortedD.slice(0, 3), rest = sortedD.slice(3);
-    const restSum = rest.reduce((a2, x) => a2 + x[1], 0);
+    const restSum = rest.reduce((a2, x) => a2 + x.funding, 0);
+    const pctR = (v) => (dTotal ? Math.round((v / dTotal) * 100) : 0);
     const dCol = ["#1d5fae", "#4485d2", "#73a5e0"];
-    const pctR = (v) => (ds ? Math.round((v / ds) * 100) : 0);
-    const dParts = top.map(([dn, v], i) => [`${shortDonor(dn)} ${pctR(v)}%`, v, dCol[i], dn]);
-    if (rest.length) dParts.push([`${rest.length} other${rest.length === 1 ? "" : "s"} ${pctR(restSum)}%`, restSum, "var(--map-none)", rest.map((x) => x[0]).join(", ")]);
-    const fundBody = ds > 0
-      ? `<div class="kbar" role="img" aria-label="${esc(dParts.map((x) => x[0]).join(", "))}">${dParts.map((x) => `<i style="width:${(x[1] / ds) * 100}%;background:${x[2]}" title="${esc(x[3])}: ${SF.fmtMoney(x[1])}"></i>`).join("")}</div>
-        <div class="kleg">${dParts.map((x) => `<span title="${esc(x[3])}"><b style="background:${x[2]}"></b>${esc(x[0])}</span>`).join("")}</div>`
-      : `<div class="kleg" style="margin-top:8px">No funding reported</div>`;
-    // ending: funding at risk, and the share of ongoing projects affected
-    const ongoing = list.filter((p) => p.status === "Ongoing").length;
-    const atRisk = soonList.reduce((a2, p) => a2 + (p.dsFunding || 0), 0);
-    const endBody = soonList.length
+    const dParts = top.map((r, i) => [`${shortDonor(r.name)} ${pctR(r.funding)}%`, r.funding, dCol[i], null, r.name === NO_DONOR ? null : r.name, `${r.name}: ${SF.fmtMoney(r.funding)}`]);
+    const restOn = rest.some((r) => state.donors.has(r.name)) || [...state.donors].some((d) => !sortedD.some((r) => r.name === d));
+    let fundBody = dTotal > 0 ? bar(dParts, dTotal, "donors") : `<div class="kleg" style="margin-top:8px">No funding reported</div>`;
+    if (dTotal > 0 && rest.length) {
+      fundBody = fundBody.replace(/<\/div>\s*$/, `<button type="button" class="kitem${restOn ? " on" : ""}" data-donors title="See all donors"><b style="background:var(--map-none)"></b>${rest.length} other${rest.length === 1 ? "" : "s"} ${pctR(restSum)}% <span class="kmore" aria-hidden="true">…</span></button></div>`);
+      fundBody = fundBody.replace(/(<div class="kbar[^"]*"[^>]*>)([\s\S]*?)(<\/div>)/, (m0, a, b, c) => `${a}${b}<i style="width:${pct(restSum, dTotal)}%;background:var(--map-none)" data-donors class="${restOn ? "on" : ""}" title="${rest.length} other donors: see all"></i>${c}`);
+      // a selected donor outside the top 3: fade the top 3 as well
+      if (restOn) fundBody = fundBody.replace('class="kbar"', 'class="kbar has-on"').replace('class="kleg"', 'class="kleg has-on"');
+    }
+
+    // Ending within 6 months (count without this filter)
+    const soonBase = filtered("endingSoon").filter((p) => p._endingSoon);
+    const ongoing = filtered("endingSoon").filter((p) => p.status === "Ongoing").length;
+    const atRisk = soonBase.reduce((a2, p) => a2 + (p.dsFunding || 0), 0);
+    const endBody = soonBase.length
       ? `<div class="krisk">${atRisk > 0 ? `<b>${SF.fmtMoney(atRisk)}</b> towards durable solutions ends with them` : "No funding reported for these projects"}</div>
-        <div class="kbar"><i style="width:${ongoing ? (soonList.length / ongoing) * 100 : 0}%;background:#e2895f"></i></div>
-        <div class="kleg">${soonList.length} of ${ongoing} ongoing project${ongoing === 1 ? "" : "s"} (${ongoing ? Math.round((soonList.length / ongoing) * 100) : 0}%), by ${SF.fmtMonth(SF.addMonths(SF.today, 6))}</div>`
+        <div class="kbar"><i style="width:${ongoing ? (soonBase.length / ongoing) * 100 : 0}%;background:#e2895f"></i></div>
+        <div class="kleg">${soonBase.length} of ${ongoing} ongoing project${ongoing === 1 ? "" : "s"} (${ongoing ? Math.round((soonBase.length / ongoing) * 100) : 0}%), by ${SF.fmtMonth(SF.addMonths(SF.today, 6))}</div>
+        <button type="button" class="klink" data-soon aria-pressed="${state.endingSoon}">${state.endingSoon ? "Showing only these projects" : (soonBase.length === 1 ? "Show this project →" : `Show these ${soonBase.length} projects →`)}</button>`
       : `<div class="kleg" style="margin-top:8px">No projects end in the next 6 months</div>`;
+
     const cards = [
-      { i: "reporting", l: "Projects", v: SF.fmtInt(list.length), body: projBody },
-      { i: "partnership", l: "Organisations", v: SF.fmtInt(leads.size + partners.size), body: orgBody },
-      { i: "location", l: "States covered", v: `${covered} of 18`, body: statesBody },
-      { i: "fund", l: "DS funding", v: SF.fmtMoney(ds) || "$0", body: fundBody },
-      { i: "time", warn: true, l: "Ending within 6 months", v: SF.fmtInt(soonList.length), body: endBody },
+      { i: "reporting", l: "Projects", v: SF.fmtInt(list.length), body: projBody, f: "status", on: state.status.size > 0 },
+      { i: "partnership", l: "Organisations", v: SF.fmtInt(leads.size + partners.size), body: orgBody, f: "orgTypes", on: state.orgTypes.size > 0 },
+      { i: "location", l: "States covered", v: `${covered} of 18`, body: statesBody, f: "state", on: !!selState },
+      { i: "fund", l: "DS funding", v: SF.fmtMoney(ds) || "$0", body: fundBody, f: "donors", on: state.donors.size > 0 },
+      { i: "time", warn: true, l: "Ending within 6 months", v: SF.fmtInt(soonBase.length), body: endBody, f: "endingSoon", on: state.endingSoon },
     ];
-    document.getElementById("kpis").innerHTML = cards.map((c) => `
-      <div class="card kpi"><div class="kpi-label"><span class="kpi-ico${c.warn ? " warn" : ""}">${SF.icon(c.i)}</span>${c.l}</div><div class="kpi-value">${c.v}</div>${c.body}</div>`).join("");
+    const host = document.getElementById("kpis");
+    host.innerHTML = cards.map((c) => `
+      <div class="card kpi${c.on ? " is-on" : ""}"><div class="kpi-label"><span class="kpi-ico${c.warn ? " warn" : ""}">${SF.icon(c.i)}</span>${c.l}</div>${c.on
+        ? `<button type="button" class="kclear" data-clear="${c.f}" aria-label="Clear the ${c.l} filter">Clear <span aria-hidden="true">&times;</span></button>`
+        : `<span class="kf" title="Click a coloured item to filter" aria-hidden="true">${FUNNEL}</span>`}<div class="kpi-value">${c.v}</div>${c.body}</div>`).join("");
+    host.onclick = onKpiClick;
+  }
+
+  function onKpiClick(e) {
+    const t = e.target.closest("button, i[data-k], i[data-donors]");
+    if (!t) return;
+    if (t.dataset.clear) {
+      const f = t.dataset.clear;
+      if (f === "state") { selectState(null); return; }
+      if (f === "endingSoon") state.endingSoon = false; else state[f].clear();
+      render(); return;
+    }
+    if (t.dataset.k) {
+      const set = state[t.dataset.k], v = t.dataset.v;
+      set.has(v) ? set.delete(v) : set.add(v);
+      render(); return;
+    }
+    if (t.dataset.state) { selectState(t.dataset.state === state.selected ? null : t.dataset.state); return; }
+    if ("gaps" in t.dataset) { flashStates(STATES.filter((s) => !PER[s].projects.length)); return; }
+    if ("donors" in t.dataset) { openDonors(); return; }
+    if ("soon" in t.dataset) { state.endingSoon = !state.endingSoon; render(); }
+  }
+
+  function flashStates(names) {
+    document.getElementById("map-wrap").scrollIntoView({ behavior: "smooth", block: "center" });
+    const g = mapNodes.__flash;
+    g.innerHTML = "";
+    names.forEach((s) => mapNodes[s] && el("path", { d: mapNodes[s].s.path, class: "flash-outline" }, g));
+    setTimeout(() => (g.innerHTML = ""), 3200);
+  }
+
+  // All donors, in a window: funding towards durable solutions with the current filters; click to filter
+  function openDonors() {
+    const d = document.getElementById("donors");
+    let q = "";
+    const draw = () => {
+      const base = filtered("donors");
+      const rows = donorRows(base);
+      const total = base.reduce((a, p) => a + (p.dsFunding || 0), 0);
+      const max = Math.max(1, ...rows.map((r) => r.funding));
+      const shown = rows.filter((r) => !q || r.name.toLowerCase().includes(q));
+      const named = rows.filter((r) => r.name !== NO_DONOR).length;
+      d.querySelector(".dl-sub").textContent = `${named} donor${named === 1 ? "" : "s"}, ${SF.fmtMoney(total) || "$0"} towards durable solutions with the current filters. Select donors to filter the dashboard.`;
+      d.querySelector(".dl-rows").innerHTML = shown.length ? shown.map((r) => {
+        const on = state.donors.has(r.name), nr = r.name === NO_DONOR;
+        const p = total ? (r.funding / total) * 100 : 0;
+        return `<button type="button" class="dl-row${on ? " on" : ""}${nr ? " nr" : ""}" ${nr ? "disabled" : `data-v="${esc(r.name)}" aria-pressed="${on}"`}>
+          <span class="dl-check" aria-hidden="true">${on ? "✓" : ""}</span>
+          <span class="dl-name">${esc(r.name)}</span>
+          <span class="dl-bar"><i style="width:${r.funding ? Math.max(1.5, (r.funding / max) * 100) : 0}%"></i></span>
+          <span class="dl-amt">${r.funding ? SF.fmtMoney(r.funding) : "Not reported"}</span>
+          <span class="dl-pct">${r.funding ? (p < 1 ? "<1%" : `${Math.round(p)}%`) : ""}</span>
+          <span class="dl-n">${r.n}</span>
+        </button>`;
+      }).join("") : '<p class="dl-empty">No donor matches your search.</p>';
+      d.querySelector("[data-dl-clear]").hidden = !state.donors.size;
+    };
+    d.innerHTML = `
+      <button type="button" class="modal-close" aria-label="Close" data-close>&times;</button>
+      <div class="dl">
+        <h2 id="donors-title">All donors</h2>
+        <p class="dl-sub"></p>
+        <input class="input dl-search" type="search" placeholder="Search donors" aria-label="Search donors" autocomplete="off">
+        <div class="dl-head"><span></span><span>Donor</span><span></span><span>DS funding</span><span>%</span><span>Projects</span></div>
+        <div class="dl-rows"></div>
+        <p class="dl-note">Projects with several donors are listed under the combined name, as reported.</p>
+      </div>
+      <div class="dl-actions"><button type="button" class="btn" data-dl-clear>Clear donors</button><span class="spacer"></span><button type="button" class="btn btn-primary" data-close>Done</button></div>`;
+    d.querySelector(".dl-search").addEventListener("input", (e) => { q = e.target.value.trim().toLowerCase(); draw(); });
+    d.querySelector(".dl-rows").addEventListener("click", (e) => {
+      const b = e.target.closest(".dl-row[data-v]");
+      if (!b) return;
+      const v = b.dataset.v;
+      state.donors.has(v) ? state.donors.delete(v) : state.donors.add(v);
+      render(); draw();
+    });
+    d.querySelector("[data-dl-clear]").addEventListener("click", () => { state.donors.clear(); render(); draw(); });
+    draw();
+    openModal(d);
+    d.querySelector(".dl-search").focus();
   }
 
   /* ---------------- map ---------------- */
