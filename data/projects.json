@@ -1,5 +1,5 @@
 {
- "lastUpdated": "2026-10-10",
+ "lastUpdated": "2026-10-19",
  "projects": [
   {
    "id": "iom-ai-powered-preparedness-and-anticipatory-actions",
@@ -655,6 +655,53 @@
    "ref": "UNDP-003"
   },
   {
+   "id": "unfpa-benims-dhis2-health-information-management",
+   "name": "BenIMS/DHIS2 health information management",
+   "description": "BenIMS/DHIS2 to Strengthen health information management, service monitoring, planning, and evidence-based resource allocation, supporting more sustainable health-system management.",
+   "interventionTypes": [],
+   "lead": "UNFPA",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Aj Jazirah",
+    "Blue Nile",
+    "Gedaref",
+    "Kassala",
+    "Khartoum",
+    "North Kordofan",
+    "Northern",
+    "Red Sea",
+    "River Nile",
+    "Sennar",
+    "South Kordofan",
+    "White Nile"
+   ],
+   "localities": [],
+   "criteria": [],
+   "coordination": "Health Cluster",
+   "start": "2026-01-01",
+   "end": "2026-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 100000.0,
+   "share": null,
+   "dsFunding": null,
+   "donor": "UNFPA",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNFPA-005"
+  },
+  {
    "id": "unfpa-combating-and-responding-to-gbv-in-sudan",
    "name": "Combating and Responding to GBV in Sudan",
    "description": null,
@@ -757,6 +804,56 @@
    "ref": "UNFPA-004"
   },
   {
+   "id": "unfpa-gender-and-disability-effects-of-the-regional-crisis-on-inclusio",
+   "name": "Gender and Disability: Effects of the Regional Crisis on Inclusion of Most Vulnerable Groups",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "UNFPA",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [
+    "UNDP"
+   ],
+   "partnerTypes": [
+    "UN agency"
+   ],
+   "nationwide": false,
+   "states": [
+    "Aj Jazirah",
+    "Blue Nile",
+    "Gedaref",
+    "Kassala",
+    "Khartoum",
+    "Red Sea",
+    "River Nile",
+    "Sennar",
+    "White Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    2
+   ],
+   "coordination": null,
+   "start": "2026-09-01",
+   "end": "2027-06-30",
+   "reportedStatus": "Ongoing",
+   "budget": 100000.0,
+   "share": null,
+   "dsFunding": null,
+   "donor": "Joint SDG Fund",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNFPA-010"
+  },
+  {
    "id": "unfpa-joint-programme-on-elimination-of-fgm",
    "name": "Joint Programme on Elimination of FGM",
    "description": null,
@@ -815,6 +912,238 @@
    "ref": "UNFPA-002"
   },
   {
+   "id": "unfpa-medical-equipment-for-health-facilities",
+   "name": "Medical equipment for health facilities",
+   "description": "Medical equipment to enable health facilities to resume or improve service delivery, particularly emergency obstetric and newborn care (EmONC), and maintain essential reproductive health services.",
+   "interventionTypes": [],
+   "lead": "UNFPA",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [
+    "CARE",
+    "SAPA",
+    "SFPA",
+    "CDF",
+    "PHF",
+    "MTI",
+    "JHSO"
+   ],
+   "partnerTypes": [
+    "International NGO",
+    "International NGO",
+    "National NGO",
+    "National NGO",
+    "National NGO",
+    "International NGO",
+    "National NGO"
+   ],
+   "nationwide": false,
+   "states": [
+    "Aj Jazirah",
+    "Blue Nile",
+    "Gedaref",
+    "Kassala",
+    "Khartoum",
+    "Northern",
+    "Red Sea",
+    "River Nile",
+    "Sennar",
+    "White Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    1
+   ],
+   "coordination": "Health Cluster",
+   "start": "2026-01-01",
+   "end": "2026-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 1000000.0,
+   "share": null,
+   "dsFunding": null,
+   "donor": "HF, ECHO",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNFPA-006"
+  },
+  {
+   "id": "unfpa-midwifery-schools",
+   "name": "Midwifery Schools",
+   "description": null,
+   "interventionTypes": [],
+   "lead": "UNFPA",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [
+    "CARE",
+    "MTI"
+   ],
+   "partnerTypes": [
+    "International NGO",
+    "International NGO"
+   ],
+   "nationwide": false,
+   "states": [
+    "Khartoum",
+    "White Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    1
+   ],
+   "coordination": "Health Cluster",
+   "start": "2026-01-01",
+   "end": "2026-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 200000.0,
+   "share": null,
+   "dsFunding": null,
+   "donor": "CANADA",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNFPA-007"
+  },
+  {
+   "id": "unfpa-rehabilitation-of-health-facilities",
+   "name": "Rehabilitation of health facilities",
+   "description": "Rehabilitation of health facilities to restore damaged or non-functional health infrastructure and enable displaced and returning populations, as well as host communities, to access essential health services sustainably.",
+   "interventionTypes": [],
+   "lead": "UNFPA",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [
+    "CARE",
+    "SAPA",
+    "SFPA",
+    "CDF",
+    "PHF",
+    "MTI",
+    "JHSO"
+   ],
+   "partnerTypes": [
+    "International NGO",
+    "International NGO",
+    "National NGO",
+    "National NGO",
+    "National NGO",
+    "International NGO",
+    "National NGO"
+   ],
+   "nationwide": false,
+   "states": [
+    "Aj Jazirah",
+    "Blue Nile",
+    "Gedaref",
+    "Kassala",
+    "Khartoum",
+    "Northern",
+    "Red Sea",
+    "River Nile",
+    "Sennar",
+    "White Nile"
+   ],
+   "localities": [],
+   "criteria": [],
+   "coordination": "Health Cluster",
+   "start": "2026-01-01",
+   "end": "2027-09-30",
+   "reportedStatus": "Ongoing",
+   "budget": 1500000.0,
+   "share": null,
+   "dsFunding": null,
+   "donor": "Norway, Sida",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNFPA-008"
+  },
+  {
+   "id": "unfpa-solar-systems-for-health-facilities",
+   "name": "Solar systems for health facilities",
+   "description": "Solar systems for health facilities to ensure reliable electricity for essential services, including emergency obstetric care, safe deliveries, cold-chain needs where applicable, and services in areas with limited infrastructure.",
+   "interventionTypes": [],
+   "lead": "UNFPA",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [
+    "CARE",
+    "SAPA",
+    "SFPA",
+    "CDF",
+    "PHF",
+    "MTI",
+    "JHSO"
+   ],
+   "partnerTypes": [
+    "International NGO",
+    "International NGO",
+    "National NGO",
+    "National NGO",
+    "National NGO",
+    "International NGO",
+    "National NGO"
+   ],
+   "nationwide": false,
+   "states": [
+    "Aj Jazirah",
+    "Blue Nile",
+    "Gedaref",
+    "Kassala",
+    "Khartoum",
+    "Northern",
+    "Red Sea",
+    "River Nile",
+    "Sennar",
+    "White Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    1
+   ],
+   "coordination": "Health Cluster",
+   "start": "2026-01-01",
+   "end": "2027-09-30",
+   "reportedStatus": "Ongoing",
+   "budget": 700000.0,
+   "share": null,
+   "dsFunding": null,
+   "donor": "Norway and Sida",
+   "people": {
+    "total": null,
+    "idps": 69525,
+    "returnees": 9179,
+    "refugees": 4990,
+    "host": 255149,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNFPA-009"
+  },
+  {
    "id": "unfpa-train-midwives-on-portable-ultrasound-with-digital-health",
    "name": "Train Midwives on Portable Ultrasound with Digital Health",
    "description": null,
@@ -855,6 +1184,53 @@
    "remarks": null,
    "photos": [],
    "ref": "UNFPA-003"
+  },
+  {
+   "id": "unfpa-women-architects-of-recovery",
+   "name": "Women Architects of Recovery",
+   "description": "Women Architects of Recovery - assessment aiming to identify opportunities to use women's potential in recovery of Sudan",
+   "interventionTypes": [],
+   "lead": "UNFPA",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Aj Jazirah",
+    "Blue Nile",
+    "Gedaref",
+    "Kassala",
+    "Khartoum",
+    "Northern",
+    "Red Sea",
+    "River Nile",
+    "Sennar",
+    "White Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    3
+   ],
+   "coordination": null,
+   "start": "2026-10-30",
+   "end": "2027-06-30",
+   "reportedStatus": "Ongoing",
+   "budget": 100000.0,
+   "share": null,
+   "dsFunding": null,
+   "donor": null,
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNFPA-011"
   },
   {
    "id": "unhcr-prospects-project-protection-education-economic-inclusion-and-cr",
