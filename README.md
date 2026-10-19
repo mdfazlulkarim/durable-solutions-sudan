@@ -166,6 +166,7 @@ State names are matched in `NAME_FIX` at the top of `scripts/build_geo.js`.
 - A project in several states counts once in each state; its funding is split equally across them for state totals.
 - Nationwide projects are counted separately from state totals.
 - Funding towards durable solutions is budget times share, unless the organisation gives an amount.
+- A project can name several donors. With more than one donor, the amount from each is required (form, Excel template and admin pages), and the amounts cannot add up to more than the total budget. On the map, funding towards durable solutions is split between the donors in line with those amounts. The data keeps `donor` (the names) and `donors` (each name with its amount).
 - Status follows the dates and is worked out in the browser each day.
 - Fields that are not reported are left empty.
 - This is not an exhaustive list of projects contributing to durable solutions in Sudan; it shows only projects reported to the DSWG.

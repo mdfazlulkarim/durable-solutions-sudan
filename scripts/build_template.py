@@ -73,7 +73,12 @@ COLUMNS = [
     ("budget", "Total budget (USD)", 16, True, "Number in US dollars, without the $ sign."),
     ("share", "Share towards durable solutions (%)", 18, True, "Self-assessed: the percentage of the budget that helps people move towards durable solutions (restoring services, livelihoods, housing, documentation, social cohesion). Short-term relief such as food distribution or water trucking does not count."),
     ("dsFunding", "Funding towards durable solutions (USD)", 18, False, "Calculated automatically. Do not type here."),
-    ("donor", "Donor or funding source", 24, False, "Optional."),
+    ("donor1", "Donor 1", 22, False, "Optional. The donor or funding source. If more than one donor funds the project, use Donor 2 and Donor 3 and give the amount from each."),
+    ("d1Amount", "Donor 1 amount (USD)", 14, False, "Needed when there is more than one donor. Number in US dollars, without the $ sign."),
+    ("donor2", "Donor 2", 22, False, "Optional. A second donor."),
+    ("d2Amount", "Donor 2 amount (USD)", 14, False, "Needed when there is more than one donor."),
+    ("donor3", "Donor 3", 22, False, "Optional. A third donor. More than three: add a second row in a new file, or email the Durable Solutions Unit."),
+    ("d3Amount", "Donor 3 amount (USD)", 14, False, "Needed when there is more than one donor."),
     ("pTotal", "People reached, planned: total", 14, False, "Leave empty if not known."),
     ("pIdps", "IDPs", 10, False, ""),
     ("pReturnees", "Returnees", 10, False, ""),
@@ -250,7 +255,7 @@ def build():
                 c.number_format = '"$"#,##0'
                 continue
             c.fill = input_fill
-            if k == "budget":
+            if k == "budget" or k.endswith("Amount"):
                 c.number_format = '"$"#,##0'
             elif k == "share":
                 c.number_format = "0%"

@@ -386,6 +386,8 @@ def read_template(path):
     ws = wb["Projects"]
     hdr = [(clean_text(c.value) or "").rstrip(" *") for c in ws[1]]
     keymap = {k: hdr.index(h) for k, h, *_ in COLUMNS if h in hdr}
+    if "Donor or funding source" in hdr:  # copies of the template from before October 2026
+        keymap["donor"] = hdr.index("Donor or funding source")
     for row in ws.iter_rows(min_row=2, values_only=True):
         r = {k: row[i] for k, i in keymap.items()}
         name = clean_text(r.get("name"))
@@ -420,6 +422,12 @@ def build_from_template(r):
               [("total", "pTotal"), ("idps", "pIdps"), ("returnees", "pReturnees"), ("refugees", "pRefugees"), ("host", "pHost"), ("other", "pOther")]}
     partners = parse_partners(";".join(re.split(r";", clean_text(r.get("partners")) or "")), lead)
     coord = clean_text(r.get("coordination"))
+    donors = []
+    for i in (1, 2, 3):
+        dn = clean_text(r.get(f"donor{i}"))
+        if dn:
+            amt = to_number(r.get(f"d{i}Amount"))
+            donors.append({"name": DONOR_FIX.get(dn, dn), "amount": round(amt, 2) if amt else None})
     pid = re.sub(r"[^a-z0-9]+", "-", f"{lead}-{name}".lower()).strip("-")[:70]
     return {
         "id": pid, "name": name, "description": clean_text(r.get("description")), "interventionTypes": itypes,
@@ -434,7 +442,8 @@ def build_from_template(r):
         "budget": round(budget, 2) if budget is not None else None,
         "share": round(share, 4) if share is not None else None,
         "dsFunding": round(ds, 2) if ds is not None else None,
-        "donor": DONOR_FIX.get(clean_text(r.get("donor")), clean_text(r.get("donor"))),
+        "donor": "; ".join(d["name"] for d in donors) if donors else DONOR_FIX.get(clean_text(r.get("donor")), clean_text(r.get("donor"))),
+        "donors": donors,
         "people": {k: (int(v) if v is not None else None) for k, v in people.items()},
         "remarks": clean_text(r.get("remarks")), "photos": [],
     }

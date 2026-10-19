@@ -188,12 +188,49 @@
     renderLocalities();
   });
 
+  /* ---------- donors, each with an amount ---------- */
+  function donorRow(name = "", amount = "") {
+    const row = document.createElement("div");
+    row.className = "donor-row";
+    const n = $("donor-rows").children.length + 1;
+    row.innerHTML = `<input class="input" name="donorName" placeholder="Donor ${n}" aria-label="Donor ${n}" autocomplete="off" value="${esc(name)}">
+      <div class="affix"><span class="pre">$</span><input class="input" name="donorAmount" inputmode="numeric" placeholder="Amount (USD)" aria-label="Amount from donor ${n} in US dollars" autocomplete="off" value="${esc(amount)}"></div>
+      <button type="button" class="rm" aria-label="Remove donor ${n}">&times;</button>`;
+    row.querySelector('[name="donorAmount"]').addEventListener("input", (e) => {
+      const raw = e.target.value.replace(/[^\d]/g, "");
+      e.target.value = raw ? Number(raw).toLocaleString("en-US") : "";
+      syncDonors();
+    });
+    row.querySelector('[name="donorName"]').addEventListener("input", syncDonors);
+    row.querySelector(".rm").addEventListener("click", () => { row.remove(); if (!$("donor-rows").children.length) donorRow(); syncDonors(); updateLive(); });
+    $("donor-rows").appendChild(row);
+    syncDonors();
+    return row;
+  }
+  const donorEntries = () => [...$("donor-rows").querySelectorAll(".donor-row")].map((r) => ({
+    name: r.querySelector('[name="donorName"]').value.trim(),
+    amount: num(r.querySelector('[name="donorAmount"]').value),
+  }));
+  const donorsGiven = () => donorEntries().filter((d) => d.name || d.amount != null);
+  function syncDonors() {
+    const rows = [...$("donor-rows").children];
+    rows.forEach((r) => (r.querySelector(".rm").hidden = rows.length === 1 && !r.querySelector("input").value));
+    const ds = donorsGiven(), b = num($("budget").value), sum = ds.reduce((a, d) => a + (d.amount || 0), 0);
+    const box = $("donor-sum");
+    box.classList.toggle("over", !!(b && sum > b));
+    box.textContent = ds.length > 1 && sum > 0 ? `Donors add up to ${SF.fmtUSD(sum)}${b ? ` of the ${SF.fmtUSD(b)} total budget` : ""}${b && sum > b ? ", which is more than the budget" : ""}.` : "";
+    $("donors-help").textContent = ds.length > 1 ? "With more than one donor, give the amount from each." : "If more than one donor funds the project, add each one with the amount it gives.";
+  }
+  $("add-donor").addEventListener("click", () => { const r = donorRow(); r.querySelector("input").focus(); });
+  donorRow();
+
   /* ---------- budget and share ---------- */
   function fmtBudgetInput() {
     const el = $("budget");
     const raw = el.value.replace(/[^\d]/g, "");
     el.value = raw ? Number(raw).toLocaleString("en-US") : "";
     updateDS();
+    syncDonors();
   }
   function updateDS() {
     const b = num($("budget").value), s = num($("share").value);
@@ -235,6 +272,11 @@
     if (b == null || isNaN(b) || b <= 0) add("budget", "Enter the total budget in US dollars, as a number above 0.");
     const s = num(v("share"));
     if (s == null || isNaN(s) || s < 0 || s > 100) add("share", "Enter the share as a number from 0 to 100.");
+    const ds = donorsGiven();
+    if (ds.some((d) => !d.name)) add("donors", "Enter the name of each donor, or remove the empty row.");
+    else if (ds.some((d) => d.amount != null && (isNaN(d.amount) || d.amount <= 0))) add("donors", "Donor amounts must be numbers above 0.");
+    else if (ds.length > 1 && ds.some((d) => d.amount == null)) add("donors", "With more than one donor, enter the amount from each donor.");
+    else if (b > 0 && ds.reduce((a, d) => a + (d.amount || 0), 0) > b) add("donors", "The donor amounts add up to more than the total budget.");
     let peopleErr = "";
     const pv = PEOPLE.map((g) => num($(`pp-${g.key}`).value));
     if (pv.some((x) => x != null && (isNaN(x) || x < 0 || !Number.isInteger(x)))) peopleErr = "People reached must be whole numbers.";
@@ -306,7 +348,7 @@
       partners: partners.slice(), scope: scope(), states: checked("states"), localities: checked("localities"),
       criteria: checked("criteria"), coordination: $("coordination").value, start: monthOk($("start").value) ? $("start").value : "",
       end: monthOk($("end").value) ? $("end").value : "", status: $("status").value, budget: okNum($("budget").value),
-      share: okNum($("share").value), donor: $("donor").value.trim(),
+      share: okNum($("share").value), donors: donorsGiven().filter((d) => d.name), donor: donorsGiven().map((d) => d.name).filter(Boolean).join("; "),
       people: Object.fromEntries(PEOPLE.map((g) => [g.key, okNum($(`pp-${g.key}`).value)])), remarks: $("remarks").value.trim(),
     };
   }
@@ -471,7 +513,7 @@
       `Total budget: ${SF.fmtUSD(b)}`,
       `Durable solutions share (self-assessed): ${s}%`,
       `Durable solutions funding (calculated): ${SF.fmtUSD((b * s) / 100)}`,
-      `Donor or funding source: ${v("donor")}`,
+      `Donors: ${donorsGiven().map((d) => (d.amount != null ? `${d.name}: ${SF.fmtUSD(d.amount)}` : d.name)).join("; ")}`,
       "",
       "6. PEOPLE REACHED, PLANNED",
       people,
@@ -533,6 +575,7 @@
     const keep = { orgType: $("orgType").value, lead: $("lead").value, leadOther: $("leadOther").value, fpName: $("fpName").value, fpEmail: $("fpEmail").value, leadership: checked("leadership") };
     form.reset();
     partners = []; renderPartners();
+    $("donor-rows").innerHTML = ""; donorRow();
     correcting = null;
     $("correcting").hidden = true;
     $("form-title").textContent = "Add your project";
@@ -574,7 +617,11 @@
     set("status", ["Ongoing", "Pipeline", "Ended"].includes(p.reportedStatus) ? p.reportedStatus : "");
     set("budget", p.budget != null ? Math.round(p.budget).toLocaleString("en-US") : "");
     set("share", p.share != null ? Math.round(p.share * 1000) / 10 : "");
-    set("donor", p.donor); set("remarks", p.remarks);
+    $("donor-rows").innerHTML = "";
+    const pd = p.donors && p.donors.length ? p.donors : p.donor ? [{ name: p.donor, amount: null }] : [];
+    if (pd.length) pd.forEach((d) => donorRow(d.name, d.amount != null ? Math.round(d.amount).toLocaleString("en-US") : ""));
+    else donorRow();
+    set("remarks", p.remarks);
     PEOPLE.forEach((g) => set(`pp-${g.key}`, p.people && p.people[g.key] != null ? Number(p.people[g.key]).toLocaleString("en-US") : ""));
     const tick = (name, vals) => form.querySelectorAll(`input[name="${name}"]`).forEach((i) => (i.checked = vals.includes(i.value)));
     tick("itypes", p.interventionTypes || []);

@@ -53,7 +53,7 @@
     const groupMax = Math.max(1, ...SF.TARGET_GROUPS.map((g) => p.people[g.key] || 0));
     const groups = SF.TARGET_GROUPS.filter((g) => p.people[g.key] > 0);
     const details = [
-      ["Donor or funding source", esc(p.donor)],
+      [(p.donors || []).length > 1 ? "Donors" : "Donor or funding source", esc(SF.donorText(p))],
       ["Coordination mechanism", esc(p.coordination)],
       ["Intervention type", esc((p.interventionTypes || []).join(", "))],
       ["Organisation leadership", esc((p.leadership || []).map((k) => (SF.LEADERSHIP.find((x) => x.key === k) || { label: k }).label).join(", "))],
@@ -135,7 +135,7 @@
       start: a.start ? `${a.start}-01` : null,
       end: a.end ? (() => { const [y, m] = a.end.split("-").map(Number); return new Date(Date.UTC(y, m, 0)).toISOString().slice(0, 10); })() : null,
       reportedStatus: a.status || null, budget: a.budget ?? null, share: a.share != null ? a.share / 100 : null,
-      dsFunding: a.budget != null && a.share != null ? (a.budget * a.share) / 100 : null, donor: a.donor || null,
+      dsFunding: a.budget != null && a.share != null ? (a.budget * a.share) / 100 : null, donor: (a.donors || []).length ? a.donors.map((d) => d.name).join("; ") : a.donor || null, donors: a.donors || [],
       people: a.people || { total: null, idps: null, returnees: null, refugees: null, host: null, other: null },
       remarks: a.remarks || null, photos: [],
     };

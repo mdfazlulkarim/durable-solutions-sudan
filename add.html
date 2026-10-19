@@ -160,11 +160,12 @@
               <input class="input readonly" id="dsAmount" readonly tabindex="-1" value="Calculated automatically">
             </div>
           </div>
-          <div class="fgrid" style="margin-top:14px">
-            <div class="fld">
-              <label for="donor">Donor or funding source</label>
-              <input class="input" id="donor" name="donor" placeholder="Optional">
-            </div>
+          <div class="fld donors-fld" data-f="donors" style="margin-top:14px">
+            <span class="lbl" id="donors-l">Donor or funding source <span style="color:var(--muted);font-weight:400">(optional)</span></span>
+            <p class="help-line" id="donors-help">If more than one donor funds the project, add each one with the amount it gives.</p>
+            <div class="donor-rows" id="donor-rows" role="group" aria-labelledby="donors-l"></div>
+            <button type="button" class="link-btn" id="add-donor">+ Add another donor</button>
+            <div class="donor-sum" id="donor-sum" aria-live="polite"></div>
           </div>
         </section>
 

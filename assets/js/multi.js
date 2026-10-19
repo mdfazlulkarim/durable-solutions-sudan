@@ -15,6 +15,7 @@
     fpEmail: "Focal point email", scope: "Geographic scope", states: "States", localities: "Localities",
     coordination: "Coordination mechanism or cluster", start: "Start date", end: "End date", status: "Status",
     budget: "Total budget", share: "Share towards durable solutions", donor: "Donor or funding source",
+    donor1: "Donor 1", d1Amount: "Donor 1 amount", donor2: "Donor 2", d2Amount: "Donor 2 amount", donor3: "Donor 3", d3Amount: "Donor 3 amount",
     pTotal: "People reached, planned: total", pIdps: "IDPs", pReturnees: "Returnees", pRefugees: "Refugees", pHost: "Host community",
     pOther: "Other", remarks: "Remarks", consent: "Consent to publish",
   };
@@ -98,6 +99,13 @@
     let share = num(r.share);
     if (share != null && !isNaN(share) && share > 0 && share <= 1 && String(r.share).indexOf("%") < 0 && !Number.isInteger(share)) share = share * 100;
     if (share == null || isNaN(share) || share < 0 || share > 100) errors.push("Durable solutions share is missing or not between 0 and 100");
+    // donors, each with an amount (older copies of the template have one donor column)
+    const donors = [1, 2, 3].map((i) => ({ name: txt(r[`donor${i}`]), amount: num(r[`d${i}Amount`]) })).filter((d) => d.name || d.amount != null);
+    if (!donors.length && txt(r.donor)) donors.push({ name: txt(r.donor), amount: null });
+    if (donors.some((d) => !d.name)) errors.push("A donor amount is given without the donor's name");
+    if (donors.some((d) => d.amount != null && (isNaN(d.amount) || d.amount <= 0))) errors.push("A donor amount is not a number above 0");
+    if (donors.length > 1 && donors.some((d) => d.amount == null)) errors.push("With more than one donor, give the amount from each");
+    if (budget > 0 && donors.reduce((a, d) => a + (d.amount || 0), 0) > budget) errors.push("Donor amounts add up to more than the total budget");
     const people = {};
     [["total", "pTotal"], ["idps", "pIdps"], ["returnees", "pReturnees"], ["refugees", "pRefugees"], ["host", "pHost"], ["other", "pOther"]].forEach(([k, c]) => {
       const v = num(r[c]);
@@ -109,7 +117,8 @@
       name, description: txt(r.description), itypes, orgType, lead, leadName: o ? orgLabel(o) : lead, refPrefix: refPrefix(leadRaw), leadership, partners,
       scope: nationwide ? "nationwide" : "states", states, localities, criteria, coordination: txt(r.coordination),
       start: start === "bad" ? "" : start, end: end === "bad" ? "" : end, status, budget: isNaN(budget) ? null : budget, share: isNaN(share) ? null : share,
-      donor: txt(r.donor), people, remarks: txt(r.remarks),
+      donors: donors.filter((d) => d.name).map((d) => ({ name: d.name, amount: d.amount == null || isNaN(d.amount) ? null : d.amount })),
+      donor: donors.map((d) => d.name).filter(Boolean).join("; "), people, remarks: txt(r.remarks),
     };
     return { row: rowNo, answers, private: { fpName, fpEmail }, errors, notes };
   }
