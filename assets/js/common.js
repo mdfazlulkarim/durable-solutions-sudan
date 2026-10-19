@@ -90,6 +90,19 @@ SF.LOGOS = {
   UNFPA: { full: "assets/img/logos/UNFPA.png", mark: "assets/img/logos/UNFPA-mark.png", name: "United Nations Population Fund" },
   UNHCR: { full: "assets/img/logos/UNHCR.png", mark: "assets/img/logos/UNHCR-mark.png", name: "United Nations High Commissioner for Refugees" },
 };
+/* Donors: a project can name several, each with the amount it gives. Older entries have one text field. */
+SF.donorList = (p) => (p.donors && p.donors.length ? p.donors.map((d) => d.name).filter(Boolean) : p.donor ? [p.donor] : []);
+SF.donorText = (p) => (p.donors && p.donors.length
+  ? p.donors.map((d) => (d.amount != null ? `${d.name} (${SF.fmtMoney(d.amount)})` : d.name)).join(", ")
+  : p.donor || "");
+// Split an amount (for example funding towards durable solutions) across the donors, in line with what each gives
+SF.donorSplit = (p, total) => {
+  const ds = (p.donors || []).filter((d) => d.name);
+  const sum = ds.reduce((a, d) => a + (d.amount || 0), 0);
+  if (ds.length > 1 && sum > 0 && ds.every((d) => d.amount > 0)) return ds.map((d) => [d.name, (total * d.amount) / sum]);
+  return [[SF.donorList(p)[0] || "Donor not reported", total]];
+};
+
 // Logos added later through the admin pages are listed in data/logos.json
 SF.loadLogos = () => SF.loadJSON(SF.config.logosUrl).then((l) => { Object.assign(SF.LOGOS, l || {}); }).catch(() => {});
 

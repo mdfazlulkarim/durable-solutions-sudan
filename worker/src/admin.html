@@ -317,7 +317,7 @@
           <label class="f" data-k="share">Durable solutions share (%)<input class="input" id="e-share" inputmode="decimal" value="${d.share != null ? Math.round(d.share * 1000) / 10 : ""}"></label>
           <label class="f">Durable solutions funding<input class="input" id="e-ds" readonly value=""></label>
         </div>
-        <label class="f" data-k="donor">Donor or funding source<input class="input" id="e-donor" value="${esc(d.donor || "")}"></label>
+        <label class="f" data-k="donors">Donors and amounts<input class="input" id="e-donors" value="${esc((d.donors && d.donors.length ? d.donors : d.donor ? [{ name: d.donor, amount: null }] : []).map((x) => (x.amount != null ? `${x.name}: ${x.amount}` : x.name)).join("; "))}"><small>For example: Japan: 60000; ECHO: 40000. With more than one donor, give each amount.</small></label>
       </section>
       <section class="card ed"><h2>People reached, planned</h2>
         <div class="g6" data-k="people">${PEOPLE.map((g) => `<label class="f">${g.label}<input class="input" id="e-pp-${g.key}" inputmode="numeric" value="${people[g.key] ?? ""}"></label>`).join("")}</div>
@@ -352,7 +352,8 @@
           start: start ? `${start}-01` : null, end: end ? `${end}-01` : null, reportedStatus: g("e-status").value || null,
           budget: num(g("e-budget").value), share: share != null ? Math.min(100, share) / 100 : null,
           dsFunding: num(g("e-budget").value) != null && share != null ? (num(g("e-budget").value) * share) / 100 : null,
-          donor: g("e-donor").value.trim() || null,
+          donors: splitList(g("e-donors").value).map((x) => { const m = x.match(/^(.*?)\s*:\s*\$?\s*([\d.,]+)\s*$/); return m ? { name: m[1].trim(), amount: Number(m[2].replace(/,/g, "")) } : { name: x, amount: null }; }),
+          donor: splitList(g("e-donors").value).map((x) => x.replace(/\s*:\s*\$?\s*[\d.,]+\s*$/, "")).join("; ") || null,
           people: Object.fromEntries(PEOPLE.map((p) => [p.key, num(g(`e-pp-${p.key}`).value)])),
           remarks: g("e-remarks").value.trim() || null,
         };
@@ -418,12 +419,13 @@
       d.showModal();
     }
     // Which fields differ between two versions of a project
-    const FIELD_LABELS = { name: "Project name", description: "Description", interventionTypes: "Intervention type", orgType: "Organisation type", lead: "Lead organisation", leadership: "Leadership", partners: "Partners", nationwide: "Nationwide", states: "States", localities: "Localities", criteria: "IASC criteria", coordination: "Coordination", start: "Start", end: "End", reportedStatus: "Reported status", budget: "Budget", share: "Share", donor: "Donor", people: "People", remarks: "Remarks" };
+    const FIELD_LABELS = { name: "Project name", description: "Description", interventionTypes: "Intervention type", orgType: "Organisation type", lead: "Lead organisation", leadership: "Leadership", partners: "Partners", nationwide: "Nationwide", states: "States", localities: "Localities", criteria: "IASC criteria", coordination: "Coordination", start: "Start", end: "End", reportedStatus: "Reported status", budget: "Budget", share: "Share", donors: "Donors", people: "People", remarks: "Remarks" };
     function diff(a, b) {
       const norm = (k, v) => k === "start" || k === "end" ? monthOf(v) : k === "share" && v != null ? Math.round(v * 1000) : Array.isArray(v) ? [...v].map(String).sort().join("|") : v && typeof v === "object" ? JSON.stringify(v) : v ?? "";
-      return Object.keys(FIELD_LABELS).filter((k) => String(norm(k, a[k])) !== String(norm(k, b[k])));
+      const dn = (o) => (o.donors && o.donors.length ? o.donors : o.donor ? [{ name: o.donor, amount: null }] : []).map((x) => `${x.name}|${x.amount ?? ""}`).join(";");
+      return Object.keys(FIELD_LABELS).filter((k) => (k === "donors" ? dn(a) !== dn(b) : String(norm(k, a[k])) !== String(norm(k, b[k]))));
     }
-    const show = (k, v) => k === "start" || k === "end" ? SF.fmtMonth(SF.parseDate(v)) : k === "share" ? SF.fmtPct(v) : k === "budget" ? SF.fmtUSD(v) : k === "people" ? (v && v.total != null ? SF.fmtInt(v.total) : "") : Array.isArray(v) ? v.join(", ") : v === true ? "Yes" : v === false ? "No" : v ?? "";
+    const show = (k, v) => k === "start" || k === "end" ? SF.fmtMonth(SF.parseDate(v)) : k === "share" ? SF.fmtPct(v) : k === "budget" ? SF.fmtUSD(v) : k === "people" ? (v && v.total != null ? SF.fmtInt(v.total) : "") : k === "donors" ? (v || []).map((x) => (x.amount != null ? `${x.name}: ${SF.fmtUSD(x.amount)}` : x.name)).join(", ") : Array.isArray(v) ? v.join(", ") : v === true ? "Yes" : v === false ? "No" : v ?? "";
 
     /* ---------- review one submission ---------- */
     async function viewReview(id) {

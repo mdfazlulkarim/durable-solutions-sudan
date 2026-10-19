@@ -35,7 +35,7 @@
     status: (p, set) => [...set].some((s) => (s === "none" ? !p._start && !p._end : p.status === s)),
     groups: (p, set) => [...set].some((g) => p.people && p.people[g] > 0),
     scope: (p, set) => set.has(p.nationwide ? "nationwide" : "states"),
-    donors: (p, set) => set.has(p.donor),
+    donors: (p, set) => SF.donorList(p).some((d) => set.has(d)),
     coord: (p, set) => set.has(p.coordination),
     involved: (p, set) => (p.lead && set.has(p.orgType || "none")) || p.partners.some((_, i) => set.has(p.partnerTypes[i] || "none")),
   };
@@ -58,7 +58,7 @@
   }
   function matchSearch(p, q) {
     if (!q) return true;
-    const hay = [p.name, p.lead, ...p.partners, p.donor, ...(p.states || []), ...(p.localities || []), p.remarks, p.coordination, p.description]
+    const hay = [p.name, p.lead, ...p.partners, ...SF.donorList(p), ...(p.states || []), ...(p.localities || []), p.remarks, p.coordination, p.description]
       .filter(Boolean).join(" ").toLowerCase();
     return q.toLowerCase().split(/\s+/).every((w) => hay.includes(w));
   }
@@ -156,7 +156,7 @@
       status: [{ v: "Ongoing", label: "Ongoing" }, { v: "Pipeline", label: "Pipeline" }, { v: "Ended", label: "Ended" }, { v: "none", label: "No dates reported" }],
       groups: SF.TARGET_GROUPS.map((g) => ({ v: g.key, label: g.label })),
       scope: [{ v: "nationwide", label: "Nationwide" }, { v: "states", label: "One or more states" }],
-      donors: count((p) => [p.donor]).map((d) => ({ v: d, label: d })),
+      donors: count((p) => SF.donorList(p)).map((d) => ({ v: d, label: d })),
       coord: count((p) => [p.coordination]).map((d) => ({ v: d, label: d })),
       involved: [...SF.ORG_TYPES.map((o) => ({ v: o.key, label: `With ${o.label} (lead or partner)` })), { v: "none", label: "With organisations of type not reported" }],
     };
@@ -304,10 +304,12 @@
   function donorRows(projects) {
     const m = new Map();
     projects.forEach((p) => {
-      const k = p.donor || NO_DONOR;
-      const r = m.get(k) || { name: k, funding: 0, n: 0 };
-      r.funding += p.dsFunding || 0; r.n++;
-      m.set(k, r);
+      // projects with several donors and amounts are split between the donors
+      SF.donorSplit(p, p.dsFunding || 0).forEach(([k, v]) => {
+        const r = m.get(k) || { name: k, funding: 0, n: 0 };
+        r.funding += v; r.n++;
+        m.set(k, r);
+      });
     });
     return [...m.values()].sort((a, b) => (a.name === NO_DONOR) - (b.name === NO_DONOR) || b.funding - a.funding || a.name.localeCompare(b.name));
   }
@@ -498,7 +500,7 @@
         <input class="input dl-search" type="search" placeholder="Search donors" aria-label="Search donors" autocomplete="off">
         <div class="dl-head"><span></span><span>Donor</span><span></span><span>DS funding</span><span>%</span><span>Projects</span></div>
         <div class="dl-rows"></div>
-        <p class="dl-note">Projects with several donors are listed under the combined name, as reported.</p>
+        <p class="dl-note">Projects that give an amount for each donor are split between them; others are listed under the name as reported.</p>
       </div>
       <div class="dl-actions"><button type="button" class="btn" data-dl-clear>Clear donors</button><span class="spacer"></span><button type="button" class="btn btn-primary" data-close>Done</button></div>`;
     d.querySelector(".dl-search").addEventListener("input", (e) => { q = e.target.value.trim().toLowerCase(); draw(); });

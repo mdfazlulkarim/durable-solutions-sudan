@@ -159,6 +159,10 @@ function projectFromAnswers(a) {
     people[k] = v == null ? null : Math.max(0, Math.round(v));
   });
   const start = ym(a.start), end = ym(a.end);
+  // several donors, each with the amount it gives
+  const donors = (Array.isArray(a.donors) ? a.donors : []).slice(0, 10)
+    .map((d) => ({ name: str(d && d.name, 160), amount: numOrNull(d && d.amount) }))
+    .filter((d) => d.name).map((d) => ({ name: d.name, amount: d.amount != null && d.amount > 0 ? Math.round(d.amount * 100) / 100 : null }));
   return {
     name: str(a.name, 250),
     description: text(a.description, 600) || null,
@@ -179,7 +183,8 @@ function projectFromAnswers(a) {
     budget: budget != null ? Math.round(budget * 100) / 100 : null,
     share: share != null ? Math.round(share * 10000) / 10000 : null,
     dsFunding: budget != null && share != null ? Math.round(budget * share * 100) / 100 : null,
-    donor: str(a.donor, 200) || null,
+    donor: donors.length ? donors.map((d) => d.name).join("; ") : str(a.donor, 200) || null,
+    donors,
     people,
     remarks: text(a.remarks, 800) || null,
     photos: [],
@@ -201,6 +206,7 @@ function checkAnswers(p) {
   if (!p.nationwide && !p.states.length) errs.push("Choose at least one state, or nationwide");
   if (!p.criteria.length) errs.push("Choose at least one IASC criterion");
   if (p.start && p.end && p.end < p.start) errs.push("End date is before the start date");
+  if ((p.donors || []).length > 1 && p.donors.some((d) => d.amount == null)) errs.push("With more than one donor, the amount from each donor is needed");
   return errs;
 }
 

@@ -793,6 +793,16 @@ textarea.input { min-height: 84px; resize: vertical; }
 .multi-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; font-size: 13px; color: var(--muted); }
 .sent-list { margin: 10px 0 14px; padding-left: 20px; line-height: 1.7; }
 #logo-box { margin-bottom: 16px; }
+/* donors with amounts */
+.donor-rows { display: flex; flex-direction: column; gap: 8px; }
+.donor-row { display: grid; grid-template-columns: minmax(0, 1fr) 200px 36px; gap: 8px; align-items: center; }
+.donor-row .rm { width: 36px; height: 36px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--panel); color: var(--muted); cursor: pointer; font-size: 18px; line-height: 1; }
+.donor-row .rm:hover { color: var(--err); border-color: var(--err-line); }
+.donor-row .rm[hidden] { display: block; visibility: hidden; }
+#add-donor { margin-top: 8px; font-size: 14px; }
+.donor-sum { font-size: 13px; color: var(--ink-2); margin-top: 6px; }
+.donor-sum.over { color: var(--err); }
+@media (max-width: 560px) { .donor-row { grid-template-columns: minmax(0, 1fr) 36px; } .donor-row .affix { grid-column: 1; } .donor-row .rm { grid-row: 1 / span 2; grid-column: 2; } }
 
 /* test mode bar (test.html) */
 .test-bar { background: #5541b5; color: #fff; font-size: 14px; padding: 8px 24px; text-align: center; }
