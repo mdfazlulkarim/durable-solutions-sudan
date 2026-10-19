@@ -850,3 +850,10 @@ dialog.modal-donors { width: min(720px, calc(100vw - 24px)); }
   .dl-head, .dl-row { grid-template-columns: 18px minmax(0, 1fr) 76px 52px; }
   .dl-head span:nth-child(3), .dl-row .dl-bar, .dl-head span:nth-child(5), .dl-row .dl-pct { display: none; }
 }
+.kselect { position: absolute; top: 12px; right: 12px; max-width: 58%; height: 26px; display: inline-flex; align-items: center; gap: 4px; padding: 0 8px 0 10px; border: 1px solid var(--line); border-radius: 999px; font-size: 11.5px; color: var(--ink-2); background: var(--panel); cursor: pointer; }
+.kselect span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.kselect svg { width: 11px; height: 11px; flex: none; }
+.kselect:hover, .kselect:focus-within { border-color: var(--brand); color: var(--brand); }
+.kselect.on { background: var(--brand); border-color: var(--brand); color: var(--on-brand); font-weight: 500; }
+.kselect select { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; font-size: 14px; }
+.kpi:has(.kselect) .kpi-label { padding-right: 96px; }
