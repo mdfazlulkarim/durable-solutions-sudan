@@ -375,7 +375,7 @@ def read_template(path):
     for row in ws.iter_rows(min_row=2, values_only=True):
         r = {k: row[i] for k, i in keymap.items()}
         name = clean_text(r.get("name"))
-        if not name or name.lower().startswith("example"):
+        if not name or name.lower().startswith(("example", "need more rows")):  # template hint rows
             continue
         yield build_from_template(r)
 
@@ -386,7 +386,10 @@ def build_from_template(r):
     o = org_lookup(lead_raw)
     lead = o["acronym"] if o else lead_raw
     nationwide = (clean_text(r.get("scope")) or "").lower().startswith("nation")
-    states, localities, _ = parse_states(None if nationwide else r.get("states"), name)
+    states, localities, said_nationwide = parse_states(None if nationwide else r.get("states"), name)
+    if said_nationwide and not states:  # "Nationwide" typed in the States column
+        nationwide = True
+        log["notes"].append(f"{name}: 'Nationwide' entered as a state; recorded as a nationwide project.")
     localities += [x.strip() for x in re.split(r";|,", clean_text(r.get("localities")) or "") if x.strip()]
     budget, share = to_number(r.get("budget")), to_number(r.get("share"))
     if share is not None and share > 1:

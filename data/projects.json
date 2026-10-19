@@ -540,6 +540,139 @@
    "ref": "IOM-008"
   },
   {
+   "id": "undp-addressing-life-saving-access-to-solar-water-provision-in-madani-",
+   "name": "Addressing Life Saving Access to Solar Water Provision in Madani Locality Al Gezira",
+   "description": "Award No: 1395433–CERF | Duration: 12 months",
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Aj Jazirah"
+   ],
+   "localities": [
+    "Medani Al Kubra"
+   ],
+   "criteria": [
+    2,
+    3
+   ],
+   "coordination": null,
+   "start": "2025-06-01",
+   "end": "2026-06-30",
+   "reportedStatus": "Ended",
+   "budget": 1200000.85,
+   "share": 0.5,
+   "dsFunding": 600000.43,
+   "donor": "Central Emergency Response Fund (CERF)",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNDP-010"
+  },
+  {
+   "id": "undp-addressing-the-urgent-needs-of-idps-and-host-communities-to-stren",
+   "name": "Addressing the Urgent Needs of IDPs and Host Communities to Strengthen the Resilience and Social Stability of Conflict-affected Communities in Sudan",
+   "description": "Award No: 1339192 – Italy | Duration: 36 months",
+   "interventionTypes": [
+    "Social cohesion and peacebuilding"
+   ],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Gedaref",
+    "Kassala"
+   ],
+   "localities": [
+    "Reifi Khashm Elgirba",
+    "Halfa Aj Jadeedah",
+    "Gala'a Al Nahal",
+    "Al Qureisha"
+   ],
+   "criteria": [
+    2,
+    3,
+    4
+   ],
+   "coordination": null,
+   "start": "2024-12-01",
+   "end": "2027-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 1118568.23,
+   "share": 0.75,
+   "dsFunding": 838926.17,
+   "donor": "Directorate General for Development Cooperation of the Italian Ministry of Foreign Affairs / AICS",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": "Budget converted from EUR 1,000,000 at the UN operational rate of 15 October 2026.",
+   "photos": [],
+   "ref": "UNDP-006"
+  },
+  {
+   "id": "undp-advancing-human-security-through-the-hdp-nexus-approach-in-crisis",
+   "name": "Advancing Human Security through the HDP Nexus Approach in Crisis-Affected Countries",
+   "description": "JSB 2025 | Duration: 12 months",
+   "interventionTypes": [
+    "Social cohesion and peacebuilding"
+   ],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Khartoum"
+   ],
+   "localities": [],
+   "criteria": [
+    2,
+    3,
+    4
+   ],
+   "coordination": null,
+   "start": "2026-03-01",
+   "end": "2027-03-31",
+   "reportedStatus": "Ongoing",
+   "budget": 1496767.0,
+   "share": 0.75,
+   "dsFunding": 1122575.25,
+   "donor": "Japan Supplementary Fund",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNDP-014"
+  },
+  {
    "id": "undp-cash-for-work-assistance-to-support-returnees",
    "name": "Cash-for-Work Assistance to Support Returnees",
    "description": null,
@@ -577,6 +710,187 @@
    "remarks": null,
    "photos": [],
    "ref": "UNDP-001"
+  },
+  {
+   "id": "undp-catalyzing-wash-assistance-for-health-and-gender-equality-in-suda",
+   "name": "Catalyzing WASH Assistance for Health and Gender Equality in Sudan",
+   "description": "Award No: 1338193 – KSRelief | Duration: 16 months (480 days)",
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Gedaref",
+    "Kassala"
+   ],
+   "localities": [
+    "Madeinat Kassala",
+    "Halfa Aj Jadeedah",
+    "Reifi Aroma",
+    "Reifi Khashm Elgirba",
+    "Al Mafaza",
+    "Al Fashaga"
+   ],
+   "criteria": [
+    2
+   ],
+   "coordination": null,
+   "start": "2024-10-01",
+   "end": "2026-02-28",
+   "reportedStatus": "Ended",
+   "budget": 3500000.0,
+   "share": 0.25,
+   "dsFunding": 875000.0,
+   "donor": "King Salman Humanitarian Aid & Relief Centre (KSRelief)",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": "Name in the agreement: Support and Empowerment in the Water and Sanitation Sector in Sudan.",
+   "photos": [],
+   "ref": "UNDP-004"
+  },
+  {
+   "id": "undp-employment-and-self-employment-through-strengthening-food-and-liv",
+   "name": "Employment and Self-employment through Strengthening Food and Livelihood Security for Conflict-Affected Populations in Sudan",
+   "description": "Award No: 1338200 – Silatech/EAA | Duration: 24 months",
+   "interventionTypes": [
+    "Livelihoods and cash-for-work"
+   ],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Gedaref",
+    "Kassala",
+    "River Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    2,
+    3,
+    4
+   ],
+   "coordination": null,
+   "start": "2024-10-01",
+   "end": "2026-09-30",
+   "reportedStatus": "Ended",
+   "budget": 5000000.0,
+   "share": 0.75,
+   "dsFunding": 3750000.0,
+   "donor": "Education Above All, Qatar Fund for Development",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNDP-005"
+  },
+  {
+   "id": "undp-enhancing-access-to-water-infrastructure-for-idps-refugees-and-ho",
+   "name": "Enhancing Access To Water Infrastructure For IDPs Refugees And Host Communities Project in the Republic of Sudan",
+   "description": "Award No: 1382316–Kuwait (Kuwait-447) | Duration: 12 months",
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Gedaref",
+    "Kassala",
+    "River Nile",
+    "Sennar"
+   ],
+   "localities": [],
+   "criteria": [
+    2
+   ],
+   "coordination": null,
+   "start": "2025-04-01",
+   "end": "2026-04-30",
+   "reportedStatus": "Ended",
+   "budget": 2000000.0,
+   "share": 0.25,
+   "dsFunding": 500000.0,
+   "donor": "Kuwait Fund for Arab Economic Development (KFAED)",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNDP-009"
+  },
+  {
+   "id": "undp-powering-sudan-s-agriculture-renewable-water-solutions-for-sustai",
+   "name": "Powering Sudan's Agriculture: Renewable Water Solutions for Sustainable Future",
+   "description": "Award No: 1527487 - Kuwait (457-Agriculture) | Duration: 18 months",
+   "interventionTypes": [
+    "Basic services rehabilitation",
+    "Livelihoods and cash-for-work"
+   ],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Aj Jazirah",
+    "Kassala",
+    "Red Sea",
+    "White Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    2,
+    3,
+    4
+   ],
+   "coordination": null,
+   "start": "2025-11-01",
+   "end": "2027-04-30",
+   "reportedStatus": "Ongoing",
+   "budget": 2000000.0,
+   "share": 0.75,
+   "dsFunding": 1500000.0,
+   "donor": "Kuwait Fund for Arab Economic Development (KFAED)",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNDP-012"
   },
   {
    "id": "undp-rehabilitation-and-upgrading-of-3-handpumps-to-mini-waters",
@@ -653,6 +967,234 @@
    "remarks": null,
    "photos": [],
    "ref": "UNDP-003"
+  },
+  {
+   "id": "undp-relief-employment-and-vital-infrastructure-for-the-vulnerable-in-",
+   "name": "Relief, Employment and Vital Infrastructure for the Vulnerable in Emergencies (REVIVE) Phase II",
+   "description": "REVIVE ii | Duration: 12 months",
+   "interventionTypes": [
+    "Basic services rehabilitation",
+    "Livelihoods and cash-for-work"
+   ],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Blue Nile",
+    "Central Darfur",
+    "White Nile"
+   ],
+   "localities": [
+    "As Salam / Ar Rawat",
+    "Kosti",
+    "Ed Damazine",
+    "Ar Rusayris",
+    "Azum"
+   ],
+   "criteria": [
+    2,
+    3,
+    4
+   ],
+   "coordination": null,
+   "start": "2026-07-01",
+   "end": "2027-06-30",
+   "reportedStatus": "Ongoing",
+   "budget": 6000000.0,
+   "share": 0.75,
+   "dsFunding": 4500000.0,
+   "donor": "Republic of Korea (RoK)",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNDP-015"
+  },
+  {
+   "id": "undp-strengthening-the-food-security-and-livelihoods-of-idps-and-host-",
+   "name": "Strengthening the Food Security and Livelihoods of IDPs and Host Communities in the Red Sea State, Sudan",
+   "description": "Award No: 1382315–JSB (2024) | Duration: 12 months",
+   "interventionTypes": [
+    "Livelihoods and cash-for-work"
+   ],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Red Sea"
+   ],
+   "localities": [
+    "Tawkar",
+    "Port Sudan",
+    "Sinkat"
+   ],
+   "criteria": [
+    2,
+    3,
+    4
+   ],
+   "coordination": null,
+   "start": "2025-03-01",
+   "end": "2026-03-31",
+   "reportedStatus": "Ended",
+   "budget": 1000000.0,
+   "share": 0.75,
+   "dsFunding": 750000.0,
+   "donor": "Government of Japan",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNDP-008"
+  },
+  {
+   "id": "undp-strengthening-the-resilience-of-idps-refugees-and-vulnera-kuwait",
+   "name": "Strengthening the Resilience of IDPs, Refugees and Vulnerable Host Communities in East Sudan (Kuwait Fund)",
+   "description": "Award No: 1527488 - Kuwait (460-STRIDES) | Duration: 24 months",
+   "interventionTypes": [
+    "Basic services rehabilitation",
+    "Livelihoods and cash-for-work"
+   ],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Gedaref",
+    "Kassala",
+    "Red Sea"
+   ],
+   "localities": [],
+   "criteria": [
+    2,
+    3,
+    4
+   ],
+   "coordination": null,
+   "start": "2025-11-01",
+   "end": "2027-10-31",
+   "reportedStatus": "Ongoing",
+   "budget": 2000000.0,
+   "share": 0.75,
+   "dsFunding": 1500000.0,
+   "donor": "Kuwait Fund for Arab Economic Development (KFAED)",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": null,
+   "photos": [],
+   "ref": "UNDP-013"
+  },
+  {
+   "id": "undp-strengthening-the-resilience-of-idps-refugees-and-vulnera-sdc",
+   "name": "Strengthening the Resilience of IDPs, Refugees and Vulnerable Host Communities in East Sudan (SDC)",
+   "description": "Award No: 1396453–SDC (Livelihoods) | Duration: 24 months",
+   "interventionTypes": [
+    "Livelihoods and cash-for-work"
+   ],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Blue Nile",
+    "Central Darfur",
+    "Gedaref",
+    "Kassala",
+    "Red Sea"
+   ],
+   "localities": [],
+   "criteria": [
+    2,
+    3,
+    4
+   ],
+   "coordination": null,
+   "start": "2025-07-01",
+   "end": "2027-06-30",
+   "reportedStatus": "Ongoing",
+   "budget": 6009615.38,
+   "share": 0.75,
+   "dsFunding": 4507211.54,
+   "donor": "Swiss Agency for Development and Cooperation (SDC)",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": "Budget converted from CHF 5,000,000 at the UN operational rate of 15 October 2026. Includes a top-up that added Blue Nile and Central Darfur.",
+   "photos": [],
+   "ref": "UNDP-011"
+  },
+  {
+   "id": "undp-supporting-durable-solutions-in-sudan-multi-year-capacity-to-oper",
+   "name": "Supporting Durable Solutions in Sudan: Multi-Year Capacity to Operationalise Solutions",
+   "description": "Award No: 1382756–SDC (Durable Solution) + Award No: 1403393-UNHCR | Duration: 36 months",
+   "interventionTypes": [
+    "Data, evidence and preparedness"
+   ],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": true,
+   "states": [],
+   "localities": [],
+   "criteria": [
+    2,
+    3,
+    4
+   ],
+   "coordination": null,
+   "start": "2025-01-01",
+   "end": "2027-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 1830528.85,
+   "share": 1.0,
+   "dsFunding": 1830528.85,
+   "donor": "Swiss Agency for Development and Cooperation (SDC), UNHCR",
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null
+   },
+   "remarks": "Budget converted from CHF 1,523,000 at the UN operational rate of 15 October 2026.",
+   "photos": [],
+   "ref": "UNDP-007"
   },
   {
    "id": "unfpa-benims-dhis2-health-information-management",
