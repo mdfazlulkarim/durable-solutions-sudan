@@ -137,6 +137,8 @@
       reportedStatus: a.status || null, budget: a.budget ?? null, share: a.share != null ? a.share / 100 : null,
       dsFunding: a.budget != null && a.share != null ? (a.budget * a.share) / 100 : null, donor: (a.donors || []).length ? a.donors.map((d) => d.name).join("; ") : a.donor || null, donors: a.donors || [],
       people: a.people || { total: null, idps: null, returnees: null, refugees: null, host: null, other: null },
+      femaleShare: (a.peopleExtra || {}).femaleShare ?? null, pwdShare: (a.peopleExtra || {}).pwdShare ?? null,
+      pwdFemaleShare: (a.peopleExtra || {}).pwdFemaleShare ?? null, peopleSex: (a.peopleExtra || {}).peopleSex || null,
       remarks: a.remarks || null, photos: [],
     };
     return SF.enrich(p);

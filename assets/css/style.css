@@ -885,3 +885,13 @@ dialog.modal-donors { width: min(720px, calc(100vw - 24px)); }
 .crit-tip .tip-pop { font-weight: 400; }
 .crit-tip .tip-pop b { font-weight: 500; }
 .iasc-source { margin: 10px 0 0; font-size: 13px; color: var(--muted); }
+.gender-row { margin-top: 14px; }
+.sex-toggle { margin-top: 10px; font-size: 14px; }
+.sex-box { margin-top: 10px; }
+.sex-tbl { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px; }
+.sex-tbl th { text-align: left; font-weight: 500; color: var(--ink-2); padding: 6px 8px 6px 0; font-size: 13px; }
+.sex-tbl thead th { color: var(--muted); }
+.sex-tbl td { padding: 4px 8px 4px 0; }
+.sex-tbl .input { padding: 7px 10px; }
+.sex-tbl .sx-sum { font-weight: 500; min-width: 70px; }
+.female-note { font-size: 12px; color: var(--muted); }

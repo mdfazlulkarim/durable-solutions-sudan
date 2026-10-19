@@ -388,6 +388,10 @@ def read_template(path):
     keymap = {k: hdr.index(h) for k, h, *_ in COLUMNS if h in hdr}
     if "Donor or funding source" in hdr:  # copies of the template from before October 2026
         keymap["donor"] = hdr.index("Donor or funding source")
+    if "People reached, planned: total" in hdr:
+        keymap["pTotalOld"] = hdr.index("People reached, planned: total")
+    if "Other" in hdr and "pOther" not in keymap:
+        keymap["pOther"] = hdr.index("Other")
     for row in ws.iter_rows(min_row=2, values_only=True):
         r = {k: row[i] for k, i in keymap.items()}
         name = clean_text(r.get("name"))
@@ -418,12 +422,32 @@ def build_from_template(r):
                 lead_types.add(val)
     itypes = [t for t in ITYPES if any(t.lower() == x.strip().lower() for x in re.split(r";", clean_text(r.get("itypes")) or ""))]
     start, end = month_date(r.get("start")), month_date(r.get("end"), end=True)
-    people = {k: to_number(r.get(c)) for k, c in
-              [("total", "pTotal"), ("idps", "pIdps"), ("returnees", "pReturnees"), ("refugees", "pRefugees"), ("host", "pHost"), ("other", "pOther")]}
+    groups = [("idps", "pIdps"), ("returnees", "pReturnees"), ("refugees", "pRefugees"), ("host", "pHost"), ("other", "pOther")]
+    people = {k: to_number(r.get(c)) for k, c in groups}
+    sexes = ("women", "girls", "men", "boys")
+    people_sex, fem, sex_all = {}, 0, 0
+    for g, _ in groups:
+        row = {x: to_number(r.get(f"sx_{g}_{x}")) for x in sexes}
+        if any(v is not None for v in row.values()):
+            people_sex[g] = {x: (int(v) if v is not None else None) for x, v in row.items()}
+            total_g = sum(v or 0 for v in row.values())
+            if people[g] is None:
+                people[g] = total_g
+            fem += (row["women"] or 0) + (row["girls"] or 0)
+            sex_all += total_g
+    old_total = to_number(r.get("pTotalOld"))  # copies of the template from before October 2026
+    known = sum(v or 0 for v in people.values())
+    if old_total and old_total > known:
+        people["other"] = (people["other"] or 0) + old_total - known
+    vals = [v for v in people.values() if v is not None]
+    people["total"] = sum(vals) if vals else None
+    pct = lambda v: (None if v is None else round(min(100, max(0, v * 100 if 0 < v <= 1 and v != int(v) else v)) / 100, 3))
+    female_share = round(fem / sex_all, 3) if sex_all else pct(to_number(r.get("femalePct")))
+    pwd_share = pct(to_number(r.get("pwdPct")))
     partners = parse_partners(";".join(re.split(r";", clean_text(r.get("partners")) or "")), lead)
     coord = clean_text(r.get("coordination"))
     donors = []
-    for i in (1, 2, 3):
+    for i in (1, 2, 3, 4, 5):
         dn = clean_text(r.get(f"donor{i}"))
         if dn:
             amt = to_number(r.get(f"d{i}Amount"))
@@ -444,7 +468,11 @@ def build_from_template(r):
         "dsFunding": round(ds, 2) if ds is not None else None,
         "donor": "; ".join(d["name"] for d in donors) if donors else DONOR_FIX.get(clean_text(r.get("donor")), clean_text(r.get("donor"))),
         "donors": donors,
-        "people": {k: (int(v) if v is not None else None) for k, v in people.items()},
+        "people": {k: (int(v) if v is not None else None) for k, v in [("total", people["total"])] + [(g, people[g]) for g, _ in groups]},
+        "femaleShare": female_share,
+        "pwdShare": pwd_share,
+        "pwdFemaleShare": pct(to_number(r.get("pwdFemalePct"))) if pwd_share is not None else None,
+        "peopleSex": people_sex or None,
         "remarks": clean_text(r.get("remarks")), "photos": [],
     }
 

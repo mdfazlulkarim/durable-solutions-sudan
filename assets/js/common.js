@@ -84,7 +84,7 @@ SF.TARGET_GROUPS = [
   { key: "returnees", label: "Returnees" },
   { key: "refugees", label: "Refugees" },
   { key: "host", label: "Host community" },
-  { key: "other", label: "Other" },
+  { key: "other", label: "Other or not specified" },
 ];
 SF.COORDINATION_OPTIONS = [
   "Durable Solutions Working Group (DSWG)", "Area Durable Solutions Working Group (ADSWG)",
@@ -100,6 +100,7 @@ SF.LOGOS = {
   UNHCR: { full: "assets/img/logos/UNHCR.png", mark: "assets/img/logos/UNHCR-mark.png", name: "United Nations High Commissioner for Refugees" },
 };
 /* Donors: a project can name several, each with the amount it gives. Older entries have one text field. */
+SF.MAX_DONORS = 5;
 SF.donorList = (p) => (p.donors && p.donors.length ? p.donors.map((d) => d.name).filter(Boolean) : p.donor ? [p.donor] : []);
 SF.donorText = (p) => (p.donors && p.donors.length
   ? p.donors.map((d) => (d.amount != null ? `${d.name} (${SF.fmtMoney(d.amount)})` : d.name)).join(", ")

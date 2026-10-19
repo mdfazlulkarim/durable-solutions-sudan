@@ -24,6 +24,7 @@ from openpyxl.comments import Comment
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
+from openpyxl.worksheet.properties import Outline
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "templates" / "solutions-footprint-projects-template.xlsx"
@@ -85,18 +86,21 @@ COLUMNS = [
     ("budget", "Total budget (USD)", 16, True, "Number in US dollars, without the $ sign."),
     ("share", "Share towards durable solutions (%)", 18, True, "Self-assessed: the percentage of the budget that helps people move towards durable solutions (restoring services, livelihoods, housing, documentation, social cohesion). Short-term relief such as food distribution or water trucking does not count."),
     ("dsFunding", "Funding towards durable solutions (USD)", 18, False, "Calculated automatically. Do not type here."),
-    ("donor1", "Donor 1", 22, False, "Optional. The donor or funding source. If more than one donor funds the project, use Donor 2 and Donor 3 and give the amount from each."),
-    ("d1Amount", "Donor 1 amount (USD)", 14, False, "Needed when there is more than one donor. Number in US dollars, without the $ sign."),
-    ("donor2", "Donor 2", 22, False, "Optional. A second donor."),
-    ("d2Amount", "Donor 2 amount (USD)", 14, False, "Needed when there is more than one donor."),
-    ("donor3", "Donor 3", 22, False, "Optional. A third donor. More than three: add a second row in a new file, or email the Durable Solutions Unit."),
-    ("d3Amount", "Donor 3 amount (USD)", 14, False, "Needed when there is more than one donor."),
-    ("pTotal", "People reached, planned: total", 14, False, "Leave empty if not known."),
-    ("pIdps", "IDPs", 10, False, ""),
-    ("pReturnees", "Returnees", 10, False, ""),
-    ("pRefugees", "Refugees", 10, False, ""),
-    ("pHost", "Host community", 12, False, ""),
-    ("pOther", "Other", 10, False, ""),
+] + [c for i in range(1, 6) for c in (
+    (f"donor{i}", f"Donor {i}", 22, False, "Optional. The donor or funding source." if i == 1 else f"Optional. Donor {i} (up to 5 donors per project)."),
+    (f"d{i}Amount", f"Donor {i} amount (USD)", 14, False, "Needed when there is more than one donor. Number in US dollars, without the $ sign."),
+)] + [
+    ("pIdps", "IDPs", 10, False, "Number of IDPs reached, planned. At least one group is required."),
+    ("pReturnees", "Returnees", 11, False, "Number of returnees."),
+    ("pRefugees", "Refugees", 10, False, "Number of refugees."),
+    ("pHost", "Host community", 12, False, "Number of people in the host community."),
+    ("pOther", "Other or not specified", 13, False, "People not in a group above. If you only know the total, enter it here."),
+    ("pTotal", "Total people (calculated)", 13, False, "Adds up the five groups. Do not type here."),
+    ("femalePct", "Women and girls (%)", 12, True, "Share of all people reached, from 0 to 100. If you fill in the breakdown by women, girls, men and boys, it is calculated from that instead."),
+    ("pwdPct", "Persons with disabilities (%)", 13, False, "Optional. Share of all people reached, from 0 to 100."),
+    ("pwdFemalePct", "Of whom women and girls (%)", 13, False, "Optional. Share of women and girls among persons with disabilities, from 0 to 100."),
+] + [(f"sx_{g}_{x}", f"{gl}: {x}", 10, False, "") for g, gl in (("idps", "IDPs"), ("returnees", "Returnees"), ("refugees", "Refugees"), ("host", "Host community"), ("other", "Other or not specified"))
+     for x in ("women", "girls", "men", "boys")] + [
     ("remarks", "Remarks", 30, False, ""),
     ("consent", "Consent to publish", 12, True, "Write Yes to confirm the information can be published on the United Nations in Sudan website."),
 ]
@@ -192,7 +196,10 @@ def build():
     r += 1
     line("Columns", "h")
     for k, h, _, req, note in COLUMNS:
+        if k.startswith("sx_"):
+            continue
         pair(h + (" *" if req else ""), note, 28 if len(note) > 110 else None)
+    pair("Breakdown by women, girls, men and boys", "Optional. These 20 columns are folded away between 'Of whom women and girls (%)' and 'Remarks': click the + above the column letters, over the Remarks column, to open them. For each group, give the number of women, girls, men and boys (girls and boys are under 18). When a group has a breakdown, its number should equal the sum of the breakdown.", 44)
     r += 1
     ins.cell(row=r, column=2, value=f"Questions: {SF_EMAIL}").font = f(size=10, italic=True)
 
@@ -259,13 +266,23 @@ def build():
             c.comment = Comment(note, "DSU")
         ws.column_dimensions[get_column_letter(ci)].width = w
     ws.row_dimensions[1].height = 48
+    # the breakdown by women, girls, men and boys is folded away (click + above the column letters to open it)
+    sx = [col_of[k] for k, *_ in COLUMNS if k.startswith("sx_")]
+    ws.column_dimensions.group(sx[0], sx[-1], hidden=True, outline_level=1)
+    ws.sheet_properties.outlinePr = Outline(summaryBelow=True, summaryRight=False)
     B, S = col_of["budget"], col_of["share"]
+    G0, G1 = col_of["pIdps"], col_of["pOther"]
     for row in range(2, last + 1):
         for ci, (k, *_rest) in enumerate(COLUMNS, 1):
             c = ws.cell(row=row, column=ci)
             c.font = f(size=10)
             c.border = Border(bottom=thin, left=thin, right=thin)
             c.alignment = Alignment(vertical="top", wrap_text=k in ("name", "description", "remarks", "itypes", "states", "localities", "partners"))
+            if k == "pTotal":
+                c.value = f'=IF(COUNT({G0}{row}:{G1}{row})=0,"",SUM({G0}{row}:{G1}{row}))'
+                c.fill = calc_fill
+                c.number_format = "#,##0"
+                continue
             if k == "dsFunding":
                 c.value = f'=IF(AND(ISNUMBER({B}{row}),ISNUMBER({S}{row})),{B}{row}*{S}{row},"")'
                 c.fill = calc_fill
@@ -276,6 +293,10 @@ def build():
                 c.number_format = '"$"#,##0'
             elif k == "share":
                 c.number_format = "0%"
+            elif k in ("femalePct", "pwdPct", "pwdFemalePct"):
+                c.number_format = "0"
+            elif k.startswith("sx_"):
+                c.number_format = "#,##0"
             elif k.startswith("p") and k != "partners":
                 c.number_format = "#,##0"
             elif k in ("start", "end"):

@@ -320,7 +320,13 @@
         <label class="f" data-k="donors">Donors and amounts<input class="input" id="e-donors" value="${esc((d.donors && d.donors.length ? d.donors : d.donor ? [{ name: d.donor, amount: null }] : []).map((x) => (x.amount != null ? `${x.name}: ${x.amount}` : x.name)).join("; "))}"><small>For example: Japan: 60000; ECHO: 40000. With more than one donor, give each amount.</small></label>
       </section>
       <section class="card ed"><h2>People reached, planned</h2>
-        <div class="g6" data-k="people">${PEOPLE.map((g) => `<label class="f">${g.label}<input class="input" id="e-pp-${g.key}" inputmode="numeric" value="${people[g.key] ?? ""}"></label>`).join("")}</div>
+        <div class="g6" data-k="people">${PEOPLE.map((g) => `<label class="f">${g.label}<input class="input" id="e-pp-${g.key}" inputmode="numeric" value="${people[g.key] ?? ""}"${g.key === "total" ? ' readonly title="Adds up the groups"' : ""}></label>`).join("")}</div>
+        <div class="g3">
+          <label class="f" data-k="femaleShare">Women and girls (%)<input class="input" id="e-fem" inputmode="decimal" value="${d.femaleShare != null ? Math.round(d.femaleShare * 1000) / 10 : ""}"></label>
+          <label class="f" data-k="pwdShare">Persons with disabilities (%)<input class="input" id="e-pwd" inputmode="decimal" value="${d.pwdShare != null ? Math.round(d.pwdShare * 1000) / 10 : ""}"></label>
+          <label class="f" data-k="pwdFemaleShare">Of whom women and girls (%)<input class="input" id="e-pwdf" inputmode="decimal" value="${d.pwdFemaleShare != null ? Math.round(d.pwdFemaleShare * 1000) / 10 : ""}"></label>
+        </div>
+        ${d.peopleSex ? `<small class="muted">Breakdown by women, girls, men and boys: ${esc(Object.entries(d.peopleSex).map(([g, r]) => `${(SF.TARGET_GROUPS.find((t) => t.key === g) || { label: g }).label} ${r.women ?? 0}/${r.girls ?? 0}/${r.men ?? 0}/${r.boys ?? 0}`).join("; "))} (women/girls/men/boys). Kept as sent.</small>` : ""}
       </section>
       <section class="card ed"><h2>Photos and remarks <small>Up to 3 photos, each made smaller to under 1 MB</small></h2>
         <div class="ph-list" id="e-photos"></div>
@@ -355,6 +361,10 @@
           donors: splitList(g("e-donors").value).map((x) => { const m = x.match(/^(.*?)\s*:\s*\$?\s*([\d.,]+)\s*$/); return m ? { name: m[1].trim(), amount: Number(m[2].replace(/,/g, "")) } : { name: x, amount: null }; }),
           donor: splitList(g("e-donors").value).map((x) => x.replace(/\s*:\s*\$?\s*[\d.,]+\s*$/, "")).join("; ") || null,
           people: Object.fromEntries(PEOPLE.map((p) => [p.key, num(g(`e-pp-${p.key}`).value)])),
+          femaleShare: num(g("e-fem").value) != null ? Math.min(100, num(g("e-fem").value)) / 100 : null,
+          pwdShare: num(g("e-pwd").value) != null ? Math.min(100, num(g("e-pwd").value)) / 100 : null,
+          pwdFemaleShare: num(g("e-pwdf").value) != null ? Math.min(100, num(g("e-pwdf").value)) / 100 : null,
+          peopleSex: state.peopleSex || null,
           remarks: g("e-remarks").value.trim() || null,
         };
       }
@@ -362,6 +372,8 @@
       function refresh() {
         const v = values();
         g("e-ds").value = v.dsFunding != null ? SF.fmtUSD(v.dsFunding) : "";
+        const grp = SF.TARGET_GROUPS.map((t) => v.people[t.key]).filter((x) => x != null);
+        if (grp.length) g("e-pp-total").value = grp.reduce((x, y) => x + y, 0);
         g("e-states-wrap").style.opacity = v.nationwide ? 0.45 : 1;
         const known = new Set(v.states.flatMap((s) => LOCALITIES[s] || []));
         const unknown = v.localities.filter((l) => !known.has(l));
@@ -432,7 +444,7 @@
       const { item: s } = await api(`/submission/${id}`);
       const pending = s.status === "pending";
       const isCorr = s.kind === "correction" && s.current;
-      const state = { owner: s.id, photos: [...(isCorr ? (s.current.data.photos || []).map((p) => ({ path: p, url: SITE + p, label: "On the map" })) : []), ...s.photos.map((p) => ({ ...p, label: SF.fmtSize(p.size || 0) }))], deleteFileNow: false };
+      const state = { peopleSex: s.data.peopleSex || null, owner: s.id, photos: [...(isCorr ? (s.current.data.photos || []).map((p) => ({ path: p, url: SITE + p, label: "On the map" })) : []), ...s.photos.map((p) => ({ ...p, label: SF.fmtSize(p.size || 0) }))], deleteFileNow: false };
       let asUpdateOf = null;
       const dup = s.checks.find((c) => c.kind === "duplicate");
       app.innerHTML = `
@@ -556,7 +568,7 @@
     async function viewProject(id) {
       const isNew = id === "new";
       const item = isNew ? { id: "new", ref: "", published: true, data: { people: {}, states: [], criteria: [], interventionTypes: [], leadership: [], partners: [], localities: [] }, private: {}, photos: [] } : (await api(`/project/${encodeURIComponent(id)}`)).item;
-      const state = { owner: `project:${isNew ? "new" : item.id}`, photos: item.photos.map((p) => ({ ...p, label: p.path ? "On the map" : "New" })), deleteFileNow: true };
+      const state = { peopleSex: item.data.peopleSex || null, owner: `project:${isNew ? "new" : item.id}`, photos: item.photos.map((p) => ({ ...p, label: p.path ? "On the map" : "New" })), deleteFileNow: true };
       app.innerHTML = `
         <a href="#/projects">Back to all projects</a>
         <div class="row between">

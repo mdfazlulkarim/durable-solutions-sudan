@@ -158,9 +158,26 @@ function projectFromAnswers(a) {
     const v = numOrNull((a.people || {})[k]);
     people[k] = v == null ? null : Math.max(0, Math.round(v));
   });
+  // the total adds up the groups (older entries may only have a total)
+  const groupVals = ["idps", "returnees", "refugees", "host", "other"].map((k) => people[k]).filter((v) => v != null);
+  if (groupVals.length) people.total = groupVals.reduce((s, v) => s + v, 0);
+  const ex = a.peopleExtra || a;
+  const toShare = (v) => { const n = numOrNull(v); return n == null ? null : Math.round(Math.min(1, Math.max(0, n)) * 1000) / 1000; };
+  let peopleSex = null;
+  if (ex.peopleSex && typeof ex.peopleSex === "object") {
+    peopleSex = {};
+    ["idps", "returnees", "refugees", "host", "other"].forEach((g) => {
+      const r = ex.peopleSex[g];
+      if (!r) return;
+      const row = {};
+      ["women", "girls", "men", "boys"].forEach((x) => { const n = numOrNull(r[x]); row[x] = n == null ? null : Math.max(0, Math.round(n)); });
+      if (Object.values(row).some((v) => v != null)) peopleSex[g] = row;
+    });
+    if (!Object.keys(peopleSex).length) peopleSex = null;
+  }
   const start = ym(a.start), end = ym(a.end);
   // several donors, each with the amount it gives
-  const donors = (Array.isArray(a.donors) ? a.donors : []).slice(0, 10)
+  const donors = (Array.isArray(a.donors) ? a.donors : []).slice(0, 5) // up to 5 donors per project
     .map((d) => ({ name: str(d && d.name, 160), amount: numOrNull(d && d.amount) }))
     .filter((d) => d.name).map((d) => ({ name: d.name, amount: d.amount != null && d.amount > 0 ? Math.round(d.amount * 100) / 100 : null }));
   return {
@@ -186,6 +203,10 @@ function projectFromAnswers(a) {
     donor: donors.length ? donors.map((d) => d.name).join("; ") : str(a.donor, 200) || null,
     donors,
     people,
+    femaleShare: toShare(ex.femaleShare),
+    pwdShare: toShare(ex.pwdShare),
+    pwdFemaleShare: toShare(ex.pwdShare) == null ? null : toShare(ex.pwdFemaleShare),
+    peopleSex,
     remarks: text(a.remarks, 800) || null,
     photos: [],
   };
@@ -431,6 +452,9 @@ async function storeSubmission(env, item, meta) {
   const a = item.answers || {};
   const p = projectFromAnswers(a);
   const errs = checkAnswers(p);
+  // new submissions must give the people reached and the share of women and girls
+  if (!(p.people.total > 0)) errs.push("People reached is missing");
+  if (p.femaleShare == null) errs.push("The share of women and girls is missing");
   if (errs.length) throw new HttpError(400, errs.join("; "));
   const priv = { fpName: str(item.private?.fpName, 120), fpEmail: str(item.private?.fpEmail, 160) };
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(priv.fpEmail)) throw new HttpError(400, "A valid focal point email is needed.");
