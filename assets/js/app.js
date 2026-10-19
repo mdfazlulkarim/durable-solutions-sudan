@@ -17,6 +17,7 @@
     search: "", criteria: new Set(), itypes: new Set(), orgTypes: new Set(), leadership: new Set(),
     orgName: "", status: new Set(), minShare: 0, includeUnreported: true, groups: new Set(),
     scope: new Set(), donors: new Set(), coord: new Set(),
+    involved: new Set(), // organisation types taking part, as lead or partner (from the Organisations card)
     endingSoon: false,
     time: { mode: "all", from: null, to: null },
     colourBy: "projects",
@@ -36,6 +37,7 @@
     scope: (p, set) => set.has(p.nationwide ? "nationwide" : "states"),
     donors: (p, set) => set.has(p.donor),
     coord: (p, set) => set.has(p.coordination),
+    involved: (p, set) => (p.lead && set.has(p.orgType || "none")) || p.partners.some((_, i) => set.has(p.partnerTypes[i] || "none")),
   };
 
   function timeWindow() {
@@ -156,6 +158,7 @@
       scope: [{ v: "nationwide", label: "Nationwide" }, { v: "states", label: "One or more states" }],
       donors: count((p) => [p.donor]).map((d) => ({ v: d, label: d })),
       coord: count((p) => [p.coordination]).map((d) => ({ v: d, label: d })),
+      involved: [...SF.ORG_TYPES.map((o) => ({ v: o.key, label: `With ${o.label} (lead or partner)` })), { v: "none", label: "With organisations of type not reported" }],
     };
   }
   const GROUP_META = [
@@ -337,17 +340,24 @@
       [`${st.none} no status`, st.none, "var(--map-none)", "none", "Show only projects with no dates reported"],
     ].map(([l, n, c, v, t]) => [l, n, c, null, v, t]), stBase.length, "status");
 
-    // Organisations by type, leads and partners (breakdown without the organisation type filter)
+    // Organisations by type, leads and partners. A click shows projects where an organisation of that type
+    // takes part, as lead or partner (breakdown without that filter)
     const leads = new Set(list.map((p) => p.lead).filter(Boolean));
     const partners = new Set(list.flatMap((p) => p.partners).filter((o) => !leads.has(o)));
-    const types = orgTypeRows(filtered("orgTypes"));
-    const typeShort = { "UN agencies": "UN", "International NGOs": "INGO", "National NGOs": "NNGO", "Red Cross / Red Crescent": "RC", "Authorities": "authorities", "Other": "other", "Type not reported": "not reported" };
-    const typeCol = ["#1d5fae", "#4485d2", "#73a5e0", "#a3c4ec", "#6250d6", "#b7a9f5", "var(--map-none)"];
-    const typeKey = (l) => (SF.ORG_TYPES.find((o) => o.label === l) || {}).key;
-    const orgBody = bar(types.map((r, i) => {
-      const k = typeKey(r.l);
-      return [`${r.n} ${typeShort[r.l] || r.l}`, r.n, r.l === "Type not reported" ? "var(--map-none)" : typeCol[i], null, k || null, k ? `Show only projects led by ${r.l.toLowerCase().replace("un ", "UN ").replace("ngos", "NGOs")}` : ""];
-    }), types.reduce((a, r) => a + r.n, 0), "orgTypes");
+    const typeOf = new Map();
+    filtered("involved").forEach((p) => {
+      if (p.lead && !typeOf.has(p.lead)) typeOf.set(p.lead, p.orgType || "none");
+      p.partners.forEach((o, i) => { if (!typeOf.has(o)) typeOf.set(o, p.partnerTypes[i] || "none"); });
+    });
+    const typeShort = { "UN agency": "UN", "International NGO": "INGO", "National NGO": "NNGO", "Red Cross / Red Crescent": "RC", "Authorities": "authorities", "Other": "other", none: "not reported" };
+    const typeCol = ["#1d5fae", "#4485d2", "#73a5e0", "#a3c4ec", "#6250d6", "#b7a9f5"];
+    const typeRows = [...SF.ORG_TYPES.map((o) => o.key), "none"].map((k, i) => {
+      const names = [...typeOf].filter(([, t]) => t === k).map(([o]) => o).sort();
+      const what = k === "none" ? "organisations with type not reported" : SF.ORG_TYPES.find((o) => o.key === k).label;
+      return [`${names.length} ${typeShort[k]}`, names.length, k === "none" ? "var(--map-none)" : typeCol[i], null, k,
+        `${names.join(", ")}. Click to show projects with ${what}, as lead or partner`];
+    });
+    const orgBody = bar(typeRows, typeRows.reduce((a, r) => a + r[1], 0), "involved");
 
     // States: one square per state, states with projects first (most projects first)
     const ranked = STATES.map((s) => [s, per[s].projects.length]).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
@@ -391,17 +401,20 @@
 
     const cards = [
       { i: "reporting", l: "Projects", v: SF.fmtInt(list.length), body: projBody, f: "status", on: state.status.size > 0 },
-      { i: "partnership", l: "Organisations", v: SF.fmtInt(leads.size + partners.size), body: orgBody, f: "orgTypes", on: state.orgTypes.size > 0 },
-      { i: "location", l: "States covered", v: `${covered} of 18`, body: statesBody, f: "state", on: !!selState },
+      { i: "partnership", l: "Organisations", v: SF.fmtInt(leads.size + partners.size), body: orgBody, f: "involved", on: state.involved.size > 0 },
+      { i: "location", l: "States covered", v: `${covered} of 18`, body: statesBody, f: "state", on: !!selState,
+        corner: `<label class="kselect${selState ? " on" : ""}" title="Select a state"><span>${esc(selState || "All states")}</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <select aria-label="Select a state"><option value="">All of Sudan</option>${[...STATES].sort().map((st) => `<option value="${esc(st)}"${st === selState ? " selected" : ""}>${esc(st)} (${per[st].projects.length})</option>`).join("")}</select></label>` },
       { i: "fund", l: "DS funding", v: SF.fmtMoney(ds) || "$0", body: fundBody, f: "donors", on: state.donors.size > 0 },
       { i: "time", warn: true, l: "Ending within 6 months", v: SF.fmtInt(soonBase.length), body: endBody, f: "endingSoon", on: state.endingSoon },
     ];
     const host = document.getElementById("kpis");
     host.innerHTML = cards.map((c) => `
-      <div class="card kpi${c.on ? " is-on" : ""}"><div class="kpi-label"><span class="kpi-ico${c.warn ? " warn" : ""}">${SF.icon(c.i)}</span>${c.l}</div>${c.on
+      <div class="card kpi${c.on ? " is-on" : ""}"><div class="kpi-label"><span class="kpi-ico${c.warn ? " warn" : ""}">${SF.icon(c.i)}</span>${c.l}</div>${c.corner ? c.corner : c.on
         ? `<button type="button" class="kclear" data-clear="${c.f}" aria-label="Clear the ${c.l} filter">Clear <span aria-hidden="true">&times;</span></button>`
         : `<span class="kf" title="Click a coloured item to filter" aria-hidden="true">${FUNNEL}</span>`}<div class="kpi-value">${c.v}</div>${c.body}</div>`).join("");
     host.onclick = onKpiClick;
+    host.onchange = (e) => { if (e.target.closest(".kselect")) selectState(e.target.value || null); };
   }
 
   function onKpiClick(e) {
