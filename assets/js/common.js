@@ -14,7 +14,9 @@ SF.config = {
   logosUrl: "data/logos.json",
   hdxAdminUrl: "https://data.humdata.org/dataset/cod-ab-sdn",
   // Back end that receives projects directly (no email needed). Leave empty to use email only.
-  apiUrl: "",
+  apiUrl: "https://solutions-footprint.ds-sudan.workers.dev",
+  // Back end used for signing in (DSU admins now, agency editors later). Leave empty to hide the Sign in button.
+  authUrl: "https://solutions-footprint.ds-sudan.workers.dev",
   // Optional spam protection (Cloudflare Turnstile site key). Leave empty if not used.
   turnstileSiteKey: "",
   githubUrl: "https://github.com/mdfazlulkarim",
@@ -23,9 +25,16 @@ SF.config = {
 
 /* Test mode: turned on from test.html, in one browser only. Projects sent from that browser go to the
    review queue on the back end; everyone else keeps using email until apiUrl above is set. */
+// Show the short address (…/sudan/mapping/) instead of …/index.html
+try { if (/\/index\.html$/.test(location.pathname)) history.replaceState(null, "", location.pathname.replace(/index\.html$/, "") + location.search + location.hash); } catch (e) { /* not important */ }
+
 SF.TEST_API = "https://solutions-footprint.ds-sudan.workers.dev";
 try {
-  if (!SF.config.apiUrl && localStorage.getItem("sf-test-mode") === "on") { SF.config.apiUrl = SF.TEST_API; SF.testMode = true; }
+  if (localStorage.getItem("sf-test-mode") === "on") {
+    if (!SF.config.apiUrl) SF.config.apiUrl = SF.TEST_API;
+    if (!SF.config.authUrl) SF.config.authUrl = SF.TEST_API;
+    SF.testMode = true;
+  }
 } catch (e) { /* storage may be blocked */ }
 
 SF.CRITERIA = [
@@ -237,6 +246,7 @@ SF.icons = {
   back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>',
   link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>',
   pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+  user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>',
   moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>',
   sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
   github: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.7.5.6 5.6.6 11.9c0 5 3.3 9.3 7.8 10.8.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.5-1.5 7.8-5.8 7.8-10.8C23.4 5.6 18.3.5 12 .5z"/></svg>',
@@ -296,14 +306,14 @@ SF.renderHeader = (active) => {
   const el = document.getElementById("site-header");
   if (!el) return;
   const nav = [
-    { key: "map", href: "index.html", label: "Map" },
+    { key: "map", href: "./", label: "Map" },
     // Phase 2 and 3 views stay hidden until they are released:
     // { key: "projects", href: "projects.html", label: "Projects" },
     // { key: "gaps", href: "gaps.html", label: "Gaps" },
     { key: "about", href: "about.html", label: "About the data" },
     { key: "mine", href: "my-submissions.html", label: "My submissions" },
   ];
-  const action = active === "add" ? `<a class="btn" href="index.html">Back to the map</a>` : SF.addMenuHTML("add");
+  const action = active === "add" ? `<a class="btn" href="./">Back to the map</a>` : SF.addMenuHTML("add");
   el.className = "site-header";
   if (SF.testMode && !document.getElementById("test-bar")) {
     el.insertAdjacentHTML("beforebegin", `<div class="test-bar" id="test-bar"><b>Test mode, in this browser only.</b> Projects you send go to the new review queue, not by email. <a href="test.html">Test page</a> · <button type="button" id="test-off">Leave test mode</button></div>`);
@@ -311,7 +321,7 @@ SF.renderHeader = (active) => {
   }
   el.innerHTML = `
     <div class="header-inner">
-      <a class="brand" href="index.html" aria-label="Solutions Footprint home">
+      <a class="brand" href="./" aria-label="Solutions Footprint home">
         <img class="brand-logo" src="assets/img/un-sudan-logo.png" alt="United Nations Sudan" width="153" height="42">
         <span class="brand-divider" aria-hidden="true"></span>
         <span>
@@ -325,6 +335,7 @@ SF.renderHeader = (active) => {
       <div class="header-actions">
         <button type="button" class="btn icon-toggle" id="theme-btn"></button>
         ${action}
+        ${SF.config.authUrl ? '<div class="dropdown" id="acct"></div>' : ""}
       </div>
     </div>`;
   const tb = document.getElementById("theme-btn");
@@ -339,6 +350,154 @@ SF.renderHeader = (active) => {
   paint();
   SF.bindDropdown("add");
   SF.bindTemplateLinks();
+  SF.auth.drawButton();
+};
+
+/* ---------- sign in with an emailed 6-digit code ----------
+   For DSU admins now, and for approved agency editors later. Only emails on the approved list get a code.
+   The session key is kept in this browser for 24 hours, or until Sign out. */
+SF.auth = {
+  KEY: "sf-session",
+  get() {
+    try { const s = JSON.parse(localStorage.getItem(SF.auth.KEY) || "null"); return s && s.token && s.expires > Date.now() ? s : null; } catch (e) { return null; }
+  },
+  save(s) { try { localStorage.setItem(SF.auth.KEY, JSON.stringify(s)); } catch (e) { /* storage may be blocked */ } },
+  clear() { try { localStorage.removeItem(SF.auth.KEY); } catch (e) { /* storage may be blocked */ } },
+  async post(path, body) {
+    let r;
+    try {
+      r = await fetch(SF.config.authUrl + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    } catch (e) { throw Object.assign(new Error("The sign-in service could not be reached. Please check your connection and try again."), { code: "offline" }); }
+    const j = await r.json().catch(() => ({ ok: false, error: "The sign-in service did not answer properly. Please try again." }));
+    if (!j.ok) throw Object.assign(new Error(j.error || "Something went wrong. Please try again."), { code: j.code || "" });
+    return j;
+  },
+  initials(s) {
+    const parts = (s.name ? String(s.name).split(/\s+/) : String(s.email || "").split("@")[0].split(/[._-]+/)).filter(Boolean);
+    return ((parts[0] || "?")[0] + (parts.length > 1 ? parts[parts.length - 1][0] : "")).toUpperCase();
+  },
+  roleLabel: (s) => (s.role === "admin" ? "DSU admin" : `${s.agency || "Agency"} admin`),
+  drawButton() {
+    const host = document.getElementById("acct");
+    if (!host) return;
+    const s = SF.auth.get();
+    if (!s) {
+      host.innerHTML = `<button type="button" class="btn signin-btn" id="signin-btn">${SF.icons.user}<span>Sign in</span></button>`;
+      document.getElementById("signin-btn").addEventListener("click", () => SF.auth.open());
+      return;
+    }
+    const admin = s.role === "admin";
+    host.innerHTML = `
+      <button type="button" class="avatar-btn" id="acct-btn" aria-haspopup="true" aria-expanded="false" aria-controls="acct-menu" title="Signed in as ${SF.esc(s.name || s.email)}">${SF.esc(SF.auth.initials(s))}</button>
+      <div class="dropdown-menu acct-menu" id="acct-menu" role="menu" hidden>
+        <div class="acct-who"><b>${SF.esc(s.name || s.email)}</b>${s.name ? `${SF.esc(s.email)}<br>` : "Signed in<br>"}<span class="acct-role">${SF.esc(SF.auth.roleLabel(s))}</span></div>
+        ${admin ? `<a class="menu-item" role="menuitem" href="manage.html#/projects">Manage all projects</a>
+        <a class="menu-item" role="menuitem" href="manage.html#/queue">Review queue</a>
+        <a class="menu-item" role="menuitem" href="manage.html#/editors">Approved editors</a>` : `<a class="menu-item" role="menuitem" href="manage.html#/projects">${SF.esc(s.agency || "My agency")} projects</a>
+        <a class="menu-item" role="menuitem" href="manage.html#/changes">Sent for review</a>`}
+        <button type="button" class="menu-item" role="menuitem" id="signout-btn">Sign out</button>
+      </div>`;
+    SF.bindDropdown("acct");
+    document.getElementById("signout-btn").addEventListener("click", () => SF.auth.signOut());
+  },
+  signOut() {
+    SF.auth.clear();
+    SF.toast("Signed out");
+    if (/manage\.html$/.test(location.pathname)) location.href = "./";
+    else SF.auth.drawButton();
+  },
+  // The sign-in window: email, then the code from the email
+  open(note) {
+    let d = document.getElementById("signin");
+    if (!d) {
+      d = document.createElement("dialog");
+      d.className = "modal signin-modal"; d.id = "signin"; d.setAttribute("aria-labelledby", "signin-title");
+      document.body.appendChild(d);
+      d.addEventListener("click", (e) => { if (e.target === d) d.close(); });
+    }
+    let email = "";
+    try { email = localStorage.getItem("sf-signin-email") || ""; } catch (e) { /* storage may be blocked */ }
+    const close = '<button type="button" class="modal-close" aria-label="Close" data-close>&times;</button>';
+    const wire = () => d.querySelectorAll("[data-close]").forEach((b) => b.addEventListener("click", () => d.close()));
+    const busy = (b, on, label) => { if (on) { b.dataset.l = b.textContent; b.textContent = label; b.disabled = true; } else { b.textContent = b.dataset.l || b.textContent; b.disabled = false; } };
+
+    const stepEmail = (msg) => {
+      d.innerHTML = `${close}<form class="signin-box" id="si-form" novalidate>
+        <h2 id="signin-title">Sign in</h2>
+        <p>${note ? SF.esc(note) + " " : ""}For DSU and approved agency editors. We will email you a 6-digit code. No password needed.</p>
+        <label class="field-label" for="si-email">Work email</label>
+        <input class="input" id="si-email" type="email" autocomplete="email" inputmode="email" required value="${SF.esc(email)}">
+        <div class="signin-err" id="si-err" role="alert">${msg ? SF.esc(msg) : ""}</div>
+        <button type="submit" class="btn btn-primary signin-go" id="si-go">Send code</button>
+      </form>`;
+      wire();
+      const input = d.querySelector("#si-email");
+      setTimeout(() => input.focus(), 30);
+      d.querySelector("#si-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const err = d.querySelector("#si-err"), go = d.querySelector("#si-go");
+        email = input.value.trim().toLowerCase();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = "Please enter a valid email address."; input.focus(); return; }
+        err.textContent = ""; busy(go, true, "Sending the code");
+        try {
+          const r = await SF.auth.post("/api/auth/start", { email });
+          try { localStorage.setItem("sf-signin-email", email); } catch (x) { /* storage may be blocked */ }
+          stepCode(r);
+        } catch (x) {
+          busy(go, false);
+          if (x.code === "not_approved") stepRefused(x.message); else err.textContent = x.message;
+        }
+      });
+    };
+    const stepRefused = (msg) => {
+      d.innerHTML = `${close}<div class="signin-box">
+        <h2 id="signin-title">Sign in</h2>
+        <div class="signin-stop" role="alert"><b>${SF.esc(email)} is not on the approved list.</b><br>${SF.esc(msg.replace(/^This email is not on the approved list\.\s*/, ""))}</div>
+        <p class="signin-small">Partners can still add projects with "Add your project", no sign-in needed.</p>
+        <button type="button" class="btn signin-go" id="si-back">Use a different email</button>
+      </div>`;
+      wire();
+      d.querySelector("#si-back").addEventListener("click", () => stepEmail());
+    };
+    const stepCode = (r) => {
+      d.innerHTML = `${close}<form class="signin-box" id="si-form" novalidate>
+        <h2 id="signin-title">Check your email</h2>
+        <p>We sent a 6-digit code to <b>${SF.esc(email)}</b>. It works for ${r.minutes || 10} minutes.</p>
+        <label class="field-label" for="si-code">Code</label>
+        <input class="input signin-code" id="si-code" inputmode="numeric" autocomplete="one-time-code" maxlength="7" placeholder="000000" required>
+        ${r.devCode ? `<p class="signin-small">Local test only, code: <b>${SF.esc(r.devCode)}</b></p>` : ""}
+        <div class="signin-err" id="si-err" role="alert"></div>
+        <button type="submit" class="btn btn-primary signin-go" id="si-go">Sign in</button>
+        <p class="signin-small">No email? Check your junk mail, <button type="button" class="link-btn" id="si-again">send a new code</button> or <button type="button" class="link-btn" id="si-other">use a different email</button>.</p>
+      </form>`;
+      wire();
+      const input = d.querySelector("#si-code");
+      setTimeout(() => input.focus(), 30);
+      d.querySelector("#si-other").addEventListener("click", () => stepEmail());
+      d.querySelector("#si-again").addEventListener("click", async (e) => {
+        const err = d.querySelector("#si-err");
+        try { await SF.auth.post("/api/auth/start", { email }); err.textContent = ""; SF.toast("A new code is on its way"); }
+        catch (x) { err.textContent = x.message; }
+      });
+      d.querySelector("#si-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const err = d.querySelector("#si-err"), go = d.querySelector("#si-go");
+        const code = input.value.replace(/\D/g, "");
+        if (code.length !== 6) { err.textContent = "The code has 6 digits."; input.focus(); return; }
+        err.textContent = ""; busy(go, true, "Checking");
+        try {
+          const s = await SF.auth.post("/api/auth/verify", { email, code });
+          SF.auth.save({ token: s.token, expires: s.expires, email: s.email, name: s.name || "", role: s.role, agency: s.agency || null });
+          d.close();
+          SF.auth.drawButton();
+          SF.toast("Signed in");
+          document.dispatchEvent(new CustomEvent("sf-signed-in"));
+        } catch (x) { busy(go, false); err.textContent = x.message; input.select(); }
+      });
+    };
+    stepEmail();
+    if (!d.open) d.showModal();
+  },
 };
 
 SF.renderFooter = (lastUpdated) => {

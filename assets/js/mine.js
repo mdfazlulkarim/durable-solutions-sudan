@@ -83,11 +83,11 @@
         ${SF.render.card(p)}
         <div class="meta">
           <div>${status}</div>
-          ${e.ref ? `<div class="mine-ref">Project number: <b>${esc(e.ref)}</b></div>` : ""}
+          ${e.ref ? `<div class="mine-ref">Project code: <b>${esc(e.ref)}</b></div>` : ""}
           <div>Sent on ${SF.fmtDateLong(sent)}</div>
           ${removeOn ? `<div class="pub-note">This project is now on the map. It will be removed from this list on ${SF.fmtDateLong(removeOn)}.</div>` : ""}
           ${direct ? `<div>${nPhotos ? `${nPhotos} photo${nPhotos === 1 ? "" : "s"} sent` : "No photos sent yet"}</div>` : ""}
-          ${pub && pub.id ? `<a class="btn" href="index.html#project=${encodeURIComponent(pub.id)}">${SF.icons.pin}View on the map</a>` : ""}
+          ${pub && pub.id ? `<a class="btn" href="./#project=${encodeURIComponent(pub.id)}">${SF.icons.pin}View on the map</a>` : ""}
           <button type="button" class="btn" data-preview="${i}">See the preview</button>
           ${canAddPhotos ? `<label class="btn">${SF.icon("photo").replace("<svg ", '<svg style="width:18px;height:18px" ')}Add photos<input type="file" accept="image/*" multiple class="sr-only" data-photos="${i}" data-room="${3 - nPhotos}"></label>` : ""}
           ${direct ? "" : `<button type="button" class="btn" data-copy="${i}">Copy the email text</button>

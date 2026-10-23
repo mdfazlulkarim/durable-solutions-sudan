@@ -2,6 +2,3 @@ data/source/
 node_modules/
 .DS_Store
 __pycache__/
-worker/.dev.vars
-worker/.wrangler/
-worker/node_modules/

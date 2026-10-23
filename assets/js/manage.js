@@ -1,151 +1,28 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
-  <title>Admin | Solutions Footprint</title>
-  <script>try{var t=localStorage.getItem("sf-theme")}catch(e){}document.documentElement.dataset.theme=t||"light";</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{SITE_URL}}assets/css/style.css">
-  <link rel="icon" href="{{SITE_URL}}assets/img/favicon.svg" type="image/svg+xml">
-  <style>
-    body { background: var(--bg); }
-    .adm-head { background: #1c2230; color: #fff; }
-    .adm-head .in { max-width: 1180px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
-    .adm-head .ttl { display: flex; flex-direction: column; flex: 1 1 auto; }
-    .adm-head .ttl small { font-size: 12px; color: #c3c9d3; }
-    .adm-head .ttl b { font-size: 18px; }
-    .adm-nav { display: flex; flex-wrap: wrap; gap: 4px; }
-    .adm-nav a { color: #c3c9d3; text-decoration: none; padding: 8px 12px; border-radius: 8px; font-size: 14px; }
-    .adm-nav a[aria-current="page"] { background: var(--brand); color: #fff; }
-    .adm-nav a:hover { color: #fff; }
-    .adm-who { font-size: 13px; color: #c3c9d3; }
-    .adm-who button { background: none; border: 0; color: #fff; text-decoration: underline; cursor: pointer; font: inherit; padding: 0; }
-    .adm-main { max-width: 1180px; margin: 0 auto; padding: 24px; display: flex; flex-direction: column; gap: 18px; min-height: 70vh; }
-    .adm-main h1 { margin: 0; font-size: 26px; }
-    .lede2 { margin: 6px 0 0; color: var(--ink-2); font-size: 15px; }
-    .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-    .row.between { justify-content: space-between; align-items: flex-end; }
-    .grow { flex: 1 1 auto; }
-    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
-    .stat { padding: 16px; }
-    .stat .l { font-size: 13px; color: var(--muted); }
-    .stat .v { font-size: 28px; font-weight: 700; margin-top: 4px; }
-    .stat .v.warn { color: var(--warn-ink); }
-    .tbl-card { overflow: hidden; }
-    .tbl-tools { padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; border-bottom: 1px solid var(--line); }
-    .tab { font: inherit; font-size: 14px; padding: 8px 12px; border: 0; border-radius: 8px; background: none; color: var(--ink-2); cursor: pointer; text-decoration: none; }
-    .tab[aria-current="true"] { background: var(--brand-tint); color: var(--brand); font-weight: 500; }
-    .tbl-wrap { overflow-x: auto; }
-    table.adm { width: 100%; border-collapse: collapse; font-size: 14px; }
-    table.adm th { background: var(--panel-2); text-align: left; color: var(--muted); font-size: 13px; font-weight: 500; padding: 10px 12px; white-space: nowrap; }
-    table.adm td { padding: 11px 12px; border-top: 1px solid var(--line); vertical-align: middle; }
-    table.adm th:first-child, table.adm td:first-child { padding-left: 18px; }
-    table.adm tr.click { cursor: pointer; }
-    table.adm tr.click:hover td { background: var(--brand-tint-2); }
-    .ref { font-weight: 500; white-space: nowrap; }
-    .pill2 { display: inline-block; border-radius: 999px; padding: 3px 10px; font-size: 13px; font-weight: 500; white-space: nowrap; }
-    .pill2.ok { background: #e6f4ec; color: #1a7a4c; }
-    .pill2.warn { background: var(--warn-bg); color: var(--warn-ink); }
-    .pill2.err { background: var(--err-bg); color: var(--err); }
-    .pill2.info { background: var(--brand-tint); color: var(--brand); }
-    .pill2.mute { background: var(--track); color: var(--muted); }
-    :root[data-theme="dark"] .pill2.ok { background: #183b2a; color: #7fd6a6; }
-    .note-box { border-radius: 10px; padding: 14px 16px; font-size: 14px; line-height: 1.5; background: var(--brand-tint); color: var(--brand-dark); }
-    :root[data-theme="dark"] .note-box { color: var(--ink); }
-    .note-box.warn { background: var(--warn-bg); color: var(--warn-ink); }
-    .split { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; }
-    .split > .main { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
-    .split > .side { flex: 1 1 330px; min-width: 0; display: flex; flex-direction: column; gap: 14px; position: sticky; top: 12px; }
-    .ed { padding: 20px; display: flex; flex-direction: column; gap: 14px; }
-    .ed h2 { margin: 0; font-size: 17px; display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
-    .ed h2 small { font-size: 13px; color: var(--muted); font-weight: 400; }
-    .g2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-    .g3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-    .g6 { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
-    @media (max-width: 700px) { .g2, .g3 { grid-template-columns: 1fr; } .g6 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    .f { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 500; min-width: 0; }
-    .f .input { font-weight: 400; }
-    .f small { font-weight: 400; color: var(--muted); font-size: 12px; }
-    .f.changed .input, .f.changed .choice-pills { box-shadow: 0 0 0 2px var(--warn-ink); border-radius: 8px; }
-    .was { font-weight: 400; font-size: 12px; color: var(--warn-ink); }
-    .choice-pills.sm label { padding: 5px 11px; font-size: 13px; }
-    .crit-opt2 .ci { width: 20px; height: 20px; border-radius: 5px; display: inline-flex; align-items: center; justify-content: center; color: #fff; }
-    .crit-opt2 .ci svg { width: 14px; height: 14px; }
-    .ph-list { display: flex; flex-wrap: wrap; gap: 10px; }
-    .ph { width: 150px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; font-size: 12px; background: var(--panel); }
-    .ph img { width: 100%; height: 96px; object-fit: cover; display: block; background: var(--map-water); }
-    .ph div { padding: 6px 8px; display: flex; justify-content: space-between; gap: 6px; align-items: center; }
-    .ph button { background: none; border: 0; color: var(--err); cursor: pointer; font: inherit; font-size: 12px; padding: 0; }
-    .ph-add { width: 150px; min-height: 126px; border: 2px dashed var(--brand-line); background: var(--brand-tint-2); border-radius: 8px; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--brand); font-size: 13px; cursor: pointer; padding: 8px; }
-    .ph-add input { display: none; }
-    .checks { display: flex; flex-direction: column; gap: 10px; }
-    .chk { display: flex; gap: 10px; font-size: 14px; line-height: 1.45; }
-    .chk svg { width: 18px; height: 18px; flex: none; margin-top: 2px; }
-    .chk.warn { background: var(--warn-bg); color: var(--warn-ink); border-radius: 8px; padding: 10px 12px; }
-    .chk.error { background: var(--err-bg); color: var(--err); border-radius: 8px; padding: 10px 12px; }
-    .chk a, .chk button.linkish { color: inherit; }
-    button.linkish { background: none; border: 0; padding: 0; font: inherit; text-decoration: underline; cursor: pointer; color: var(--brand); }
-    .bar-actions { padding: 14px 18px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; position: sticky; bottom: 10px; z-index: 5; }
-    .btn-danger { border-color: var(--err-line); background: var(--err-bg); color: var(--err); }
-    .btn[disabled] { opacity: .6; cursor: progress; }
-    .login { max-width: 420px; margin: 8vh auto; padding: 28px; display: flex; flex-direction: column; gap: 14px; }
-    .login h1 { font-size: 22px; margin: 0; }
-    .err-line { color: var(--err); font-size: 14px; min-height: 20px; }
-    .diff { font-size: 13px; display: flex; flex-direction: column; gap: 6px; }
-    .diff b { font-weight: 500; }
-    .logo-cell img { max-height: 28px; max-width: 110px; display: block; }
-    .muted { color: var(--muted); }
-    .empty { padding: 28px; text-align: center; color: var(--muted); }
-    .spin { display: inline-block; width: 14px; height: 14px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: sp .8s linear infinite; vertical-align: -2px; }
-    @keyframes sp { to { transform: rotate(360deg); } }
-    .cmp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
-    .cmp > div { border-right: 1px solid var(--line); }
-    @media (max-width: 760px) { .cmp { grid-template-columns: 1fr; } }
-  </style>
-</head>
-<body>
-  <header class="adm-head">
-    <div class="in">
-      <div class="ttl"><small>Solutions Footprint</small><b>Admin</b></div>
-      <nav class="adm-nav" id="nav" aria-label="Admin" hidden>
-        <a href="#/queue" data-k="queue">Review queue</a>
-        <a href="#/projects" data-k="projects">All projects</a>
-        <a href="#/orgs" data-k="orgs">Organisations</a>
-        <a href="#/history" data-k="history">History</a>
-        <a href="{{SITE_URL}}" target="_blank" rel="noopener">Open the map</a>
-      </nav>
-      <span class="adm-who" id="who" hidden>Signed in as DSU admin · <button type="button" id="logout">Sign out</button></span>
-    </div>
-  </header>
-  <main class="adm-main" id="app"><p class="muted">Loading…</p></main>
-  <dialog class="modal" id="detail" aria-label="Project preview"></dialog>
-
-  <script src="{{SITE_URL}}assets/js/common.js"></script>
-  <script src="{{SITE_URL}}assets/js/icons.js"></script>
-  <script src="{{SITE_URL}}assets/js/render.js"></script>
-  <script>
+/* Manage pages for signed-in DSU admins: review queue, all projects, organisations, approved editors, history.
+   They talk to the back end with the session key from the Sign in window (see SF.auth in common.js). */
   "use strict";
   (() => {
-    const SITE = "{{SITE_URL}}";
-    const API = location.origin + "/admin/api";
+    const SITE = ""; // this page is part of the website, so map data and photos are found next to it
+    const API = (SF.config.authUrl || "") + "/admin/api";
     const app = document.getElementById("app");
     const esc = SF.esc;
     const PEOPLE = [{ key: "total", label: "Total" }, ...SF.TARGET_GROUPS];
-    let GEO = null, ORGS = [], LOCALITIES = {}, ME = null;
+    let GEO = null, ORGS = [], LOCALITIES = {}, ME = null, AGENCY = null;
 
     /* ---------- helpers ---------- */
     async function api(path, opts = {}) {
-      const r = await fetch(API + path, {
-        method: opts.method || "GET", credentials: "same-origin",
-        headers: { "Content-Type": "application/json", "X-SF-Admin": "1" },
-        body: opts.body ? JSON.stringify(opts.body) : undefined,
-      });
+      const s = SF.auth.get();
+      if (!s) { showLogin(); throw new Error("Please sign in."); }
+      let r;
+      try {
+        r = await fetch(API + path, {
+          method: opts.method || "GET",
+          headers: { "Content-Type": "application/json", "X-SF-Admin": "1", Authorization: `Bearer ${s.token}` },
+          body: opts.body ? JSON.stringify(opts.body) : undefined,
+        });
+      } catch (e) { throw new Error("The back end could not be reached. Please check your connection and try again."); }
       const j = await r.json().catch(() => ({ ok: false, error: "The server did not answer properly." }));
-      if (r.status === 401 && path !== "/login") { showLogin(); throw new Error("Please sign in."); }
+      if (r.status === 401) { SF.auth.clear(); SF.auth.drawButton(); showLogin("Your session has ended. Please sign in again."); throw new Error("Please sign in."); }
       if (!j.ok) throw new Error(j.error || "Something went wrong.");
       return j;
     }
@@ -168,30 +45,33 @@
     }
 
     /* ---------- sign in ---------- */
-    function showLogin() {
-      document.getElementById("nav").hidden = true; document.getElementById("who").hidden = true;
-      app.innerHTML = `<form class="card login" id="login-form">
-        <h1>Sign in</h1>
-        <p class="lede2" style="margin:0">Admin pages for the Durable Solutions Unit.</p>
-        <label class="f">Password<input class="input" type="password" id="pw" autocomplete="current-password" required></label>
-        <div class="err-line" id="login-err" role="alert"></div>
-        <button class="btn btn-primary" type="submit" id="login-btn">Sign in</button>
-      </form>`;
-      document.getElementById("pw").focus();
-      document.getElementById("login-form").addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const b = document.getElementById("login-btn");
-        busy(b, true, "Signing in");
-        try { await api("/login", { method: "POST", body: { password: document.getElementById("pw").value } }); await boot(); }
-        catch (err) { document.getElementById("login-err").textContent = err.message; busy(b, false); }
-      });
+    function showLogin(msg) {
+      document.getElementById("nav").hidden = true;
+      if (!SF.config.authUrl) {
+        app.innerHTML = `<div class="card gate"><h1>Manage projects</h1><p>Sign-in is not switched on for this site yet.</p><a class="btn" href="./">Back to the map</a></div>`;
+        return;
+      }
+      app.innerHTML = `<div class="card gate"><h1>Manage projects</h1>
+        <p>${esc(msg || "For the Durable Solutions Unit. Sign in with your work email to see and edit all projects.")}</p>
+        <button type="button" class="btn btn-primary" id="gate-signin">${SF.icons.user} Sign in</button></div>`;
+      document.getElementById("gate-signin").addEventListener("click", () => SF.auth.open());
     }
-    document.getElementById("logout").addEventListener("click", async () => { await api("/logout", { method: "POST" }).catch(() => {}); showLogin(); });
+    document.addEventListener("sf-signed-in", () => boot().catch((e) => { if (e.message !== "Please sign in.") fail(e); }));
 
     /* ---------- start ---------- */
     async function boot() {
+      const s = SF.auth.get();
+      if (!s) return showLogin();
       ME = await api("/me");
-      document.getElementById("nav").hidden = false; document.getElementById("who").hidden = false;
+      // keep the name, role and agency in this browser up to date
+      const m = ME.me || {};
+      if (m.email && (m.role !== s.role || (m.name || "") !== (s.name || "") || (m.agency || null) !== (s.agency || null))) {
+        SF.auth.save({ ...s, name: m.name || "", role: m.role, agency: m.agency || null }); SF.auth.drawButton();
+      }
+      AGENCY = m.role === "agency" ? m.agency : null;
+      document.querySelectorAll("#nav [data-role]").forEach((a) => (a.hidden = a.dataset.role !== (AGENCY ? "agency" : "admin")));
+      document.getElementById("nav-projects").textContent = AGENCY ? `${AGENCY} projects` : "All projects";
+      document.getElementById("nav").hidden = false;
       route();
     }
     async function loadLists() {
@@ -210,11 +90,17 @@
       const h = location.hash.replace(/^#\/?/, "").split("/");
       window.scrollTo(0, 0);
       try {
+        if (AGENCY) {
+          if (h[0] === "project" && h[1]) { setNav("projects"); return await viewProject(decodeURIComponent(h[1])); }
+          if (h[0] === "changes") { setNav("changes"); return await viewChanges(); }
+          setNav("projects"); return await viewProjects();
+        }
         if (h[0] === "review" && h[1]) { setNav("queue"); return await viewReview(h[1]); }
         if (h[0] === "project" && h[1]) { setNav("projects"); return await viewProject(decodeURIComponent(h[1])); }
         if (h[0] === "projects") { setNav("projects"); return await viewProjects(); }
         if (h[0] === "orgs") { setNav("orgs"); return await viewOrgs(); }
         if (h[0] === "history") { setNav("history"); return await viewHistory(); }
+        if (h[0] === "editors") { setNav("editors"); return await viewEditors(); }
         setNav("queue"); return await viewQueue(["published", "rejected"].includes(h[1]) ? h[1] : "pending");
       } catch (e) { if (e.message !== "Please sign in.") fail(e); }
     }
@@ -229,6 +115,8 @@
       if (!ME.setup.github) setup.push("The GitHub key (GITHUB_TOKEN) is not added yet, so publishing will not work.");
       app.innerHTML = `
         ${setup.map((s) => `<div class="note-box warn">${esc(s)}</div>`).join("")}
+        ${ME.setup.mirror && ME.setup.mirrorStatus && ME.setup.mirrorStatus !== "ok" ? `<div class="note-box warn"><b>The git page was not updated with the latest change.</b> ${esc(ME.setup.mirrorStatus.replace(/^\S+\s/, "").slice(0, 160))}<br>Most often the GitHub key does not include the durable-solutions-sudan repository yet.
+          <div style="margin-top:10px"><button class="btn" id="mirror-sync">Copy everything to the git page now</button></div></div>` : ""}
         ${!ME.imported ? `<div class="note-box"><b>First step:</b> copy the projects already on the map into the admin database, so you can edit them here.
           <div style="margin-top:10px"><button class="btn btn-primary" id="seed">Import the current map data</button></div></div>` : ""}
         <div class="row between">
@@ -256,15 +144,20 @@
             <td class="ref">${esc(i.ref || "")}</td>
             <td>${i.kind === "correction" ? "<span class='pill2 info'>Correction</span> " : ""}${esc(i.name)}</td>
             <td>${esc(i.lead)}</td>
-            <td>${i.source === "excel" ? `Excel upload${i.row ? `, row ${i.row}` : ""}` : i.kind === "correction" ? "Suggest a correction" : "Form"}${i.photos ? `, ${i.photos} photo${i.photos === 1 ? "" : "s"}` : ""}</td>
+            <td>${i.source === "agency" ? `${esc(i.byName || i.by || "")} (${esc(i.lead)} admin)` : i.source === "excel" ? `Excel upload${i.row ? `, row ${i.row}` : ""}` : i.kind === "correction" ? "Suggest a correction" : "Form"}${i.photos ? `, ${i.photos} photo${i.photos === 1 ? "" : "s"}` : ""}</td>
             <td>${status === "pending" ? checkChip(i.checks) : ""}</td>
             <td><a class="btn btn-sm ${status === "pending" ? "btn-primary" : ""}" href="#/review/${i.id}">${status === "pending" ? "Review" : "Open"}</a></td>
           </tr>`).join("")}</tbody></table>` : `<div class="empty">${status === "pending" ? "Nothing waiting for review." : "Nothing here yet."}</div>`}</div>
         </div>
-        <div class="note-box">You get an email (through GitHub) when something new arrives. Use <a href="#/projects">All projects</a> to edit anything already on the map.</div>`;
+        <div class="note-box">${ME.setup.inbox ? "You get an email (through GitHub) when something new arrives. " : ""}Use <a href="#/projects">All projects</a> to edit anything already on the map.</div>`;
       app.querySelectorAll("tr.click").forEach((tr) => tr.addEventListener("click", (e) => { if (!e.target.closest("a")) location.hash = `#/review/${tr.dataset.id}`; }));
       const q = document.getElementById("q");
       q.addEventListener("input", () => app.querySelectorAll("tr[data-q]").forEach((tr) => (tr.hidden = !tr.dataset.q.includes(q.value.toLowerCase().trim()))));
+      document.getElementById("mirror-sync")?.addEventListener("click", async (e) => {
+        busy(e.target, true, "Copying");
+        try { await api("/mirror-sync", { method: "POST" }); SF.toast("The git page now matches the hub"); route(); }
+        catch (err) { alert(err.message); busy(e.target, false); }
+      });
       document.getElementById("seed")?.addEventListener("click", async (e) => {
         busy(e.target, true, "Importing");
         try { const r = await api("/setup", { method: "POST" }); SF.toast(`Imported ${r.imported} projects`); route(); }
@@ -301,7 +194,7 @@
       <section class="card ed"><h2>Where</h2>
         <label class="row" style="gap:8px;font-size:14px" data-k="nationwide"><input type="checkbox" id="e-nationwide"${d.nationwide ? " checked" : ""}> Nationwide</label>
         <div class="f" data-k="states" id="e-states-wrap">States${pills("e-states", SF.STATES, d.states)}</div>
-        <label class="f" data-k="localities">Localities<textarea class="input" id="e-localities" rows="2">${esc((d.localities || []).join("; "))}</textarea><small id="loc-check">Separate with semicolons (;)</small></label>
+        <div class="f" data-k="localities">Localities<small id="loc-check">Choose the states first; their localities appear here.</small><div id="e-loc-groups" data-start="${esc(JSON.stringify(d.localities || []))}"></div></div>
       </section>
       <section class="card ed"><h2>IASC criteria and coordination</h2>
         <div class="f" data-k="criteria">IASC criteria${pills("e-criteria", SF.CRITERIA.map((c) => ({ value: c.n, cls: "crit-opt2", html: `<span class="ci" style="background:${c.color}">${SF.critIcon(c.n)}</span> ${c.n}. ${esc(c.short)}` })), d.criteria)}</div>
@@ -353,7 +246,7 @@
           orgType: g("e-orgType").value || null, lead: g("e-lead").value.trim(), leadName: g("e-leadName").value.trim() || undefined,
           leadership: checked("e-leadership"), partners: splitList(g("e-partners").value), partnerTypes: [],
           nationwide: g("e-nationwide").checked, states: g("e-nationwide").checked ? [] : checked("e-states"),
-          localities: g("e-nationwide").checked ? [] : splitList(g("e-localities").value), criteria: checked("e-criteria").map(Number),
+          localities: g("e-nationwide").checked ? [] : checked("e-loc"), criteria: checked("e-criteria").map(Number),
           coordination: g("e-coordination").value.trim() || null,
           start: start ? `${start}-01` : null, end: end ? `${end}-01` : null, reportedStatus: g("e-status").value || null,
           budget: num(g("e-budget").value), share: share != null ? Math.min(100, share) / 100 : null,
@@ -375,10 +268,33 @@
         const grp = SF.TARGET_GROUPS.map((t) => v.people[t.key]).filter((x) => x != null);
         if (grp.length) g("e-pp-total").value = grp.reduce((x, y) => x + y, 0);
         g("e-states-wrap").style.opacity = v.nationwide ? 0.45 : 1;
-        const known = new Set(v.states.flatMap((s) => LOCALITIES[s] || []));
-        const unknown = v.localities.filter((l) => !known.has(l));
-        g("loc-check").innerHTML = unknown.length && v.states.length ? `<span style="color:var(--warn-ink)">Not in the OCHA list for the chosen states: ${esc(unknown.join(", "))}</span>` : "Separate with semicolons (;)";
         onChange && onChange(v);
+      }
+      // Localities: a tick list for each chosen state (OCHA admin 2 names), as on the form.
+      // Names that are not in the OCHA list are kept in an extra group, so nothing is lost.
+      let locKey = "";
+      function drawLocalities(force) {
+        const host = g("e-loc-groups");
+        const nw = g("e-nationwide").checked;
+        const sts = nw ? [] : checked("e-states");
+        const key = `${nw}|${sts.join(",")}`;
+        if (key === locKey && !force) return;
+        locKey = key;
+        const chosen = host.dataset.start ? JSON.parse(host.dataset.start) : checked("e-loc");
+        delete host.dataset.start;
+        const known = new Set(sts.flatMap((st) => LOCALITIES[st] || []));
+        const other = chosen.filter((l) => !known.has(l));
+        const box = (l, st) => `<label><input type="checkbox" name="e-loc" value="${esc(l)}" data-state="${esc(st)}"${chosen.includes(l) ? " checked" : ""}> ${esc(l)}</label>`;
+        host.innerHTML = sts.map((st) => `<fieldset class="loc-group"><legend>${esc(st)}</legend>
+            <p class="loc-tools"><button type="button" class="link-btn" data-all="${esc(st)}">Select all</button> &nbsp; <button type="button" class="link-btn" data-none="${esc(st)}">Clear</button></p>
+            <div class="loc-grid">${(LOCALITIES[st] || []).map((l) => box(l, st)).join("")}</div></fieldset>`).join("") +
+          (other.length && !nw ? `<fieldset class="loc-group"><legend>Not in the OCHA list for the chosen states</legend><div class="loc-grid">${other.map((l) => box(l, "_other")).join("")}</div></fieldset>` : "");
+        g("loc-check").textContent = nw ? "Localities cannot be chosen for nationwide projects." : sts.length ? "Tick the localities where the project works." : "Choose the states first; their localities appear here.";
+        host.querySelectorAll("[data-all],[data-none]").forEach((b) => b.addEventListener("click", () => {
+          const st = b.dataset.all || b.dataset.none;
+          host.querySelectorAll(`input[data-state="${CSS.escape(st)}"]`).forEach((i) => (i.checked = !!b.dataset.all));
+          refresh();
+        }));
       }
       // photos
       function drawPhotos() {
@@ -404,7 +320,8 @@
       drawPhotos();
       const host = document.querySelector(".split");
       host.addEventListener("input", refresh);
-      host.addEventListener("change", refresh);
+      host.addEventListener("change", (e) => { if (e.target.name === "e-states" || e.target.id === "e-nationwide") drawLocalities(); refresh(); });
+      drawLocalities(true);
       refresh();
       return { values, priv, refresh };
     }
@@ -437,23 +354,47 @@
       const dn = (o) => (o.donors && o.donors.length ? o.donors : o.donor ? [{ name: o.donor, amount: null }] : []).map((x) => `${x.name}|${x.amount ?? ""}`).join(";");
       return Object.keys(FIELD_LABELS).filter((k) => (k === "donors" ? dn(a) !== dn(b) : String(norm(k, a[k])) !== String(norm(k, b[k]))));
     }
-    const show = (k, v) => k === "start" || k === "end" ? SF.fmtMonth(SF.parseDate(v)) : k === "share" ? SF.fmtPct(v) : k === "budget" ? SF.fmtUSD(v) : k === "people" ? (v && v.total != null ? SF.fmtInt(v.total) : "") : k === "donors" ? (v || []).map((x) => (x.amount != null ? `${x.name}: ${SF.fmtUSD(x.amount)}` : x.name)).join(", ") : Array.isArray(v) ? v.join(", ") : v === true ? "Yes" : v === false ? "No" : v ?? "";
+    const show = (k, v) => k === "start" || k === "end" ? SF.fmtMonth(SF.parseDate(v)) : k === "share" ? SF.fmtPct(v) : k === "budget" ? SF.fmtUSD(v) : k === "people" ? (v ? [["total", "Total"], ...SF.TARGET_GROUPS.map((t) => [t.key, t.label])].filter(([g]) => v[g] != null).map(([g, l]) => `${l} ${SF.fmtInt(v[g])}`).join(", ") : "") : k === "donors" ? (v || []).map((x) => (x.amount != null ? `${x.name}: ${SF.fmtUSD(x.amount)}` : x.name)).join(", ") : Array.isArray(v) ? v.join(", ") : v === true ? "Yes" : v === false ? "No" : v ?? "";
 
     /* ---------- review one submission ---------- */
     async function viewReview(id) {
       const { item: s } = await api(`/submission/${id}`);
       const pending = s.status === "pending";
       const isCorr = s.kind === "correction" && s.current;
-      const state = { peopleSex: s.data.peopleSex || null, owner: s.id, photos: [...(isCorr ? (s.current.data.photos || []).map((p) => ({ path: p, url: SITE + p, label: "On the map" })) : []), ...s.photos.map((p) => ({ ...p, label: SF.fmtSize(p.size || 0) }))], deleteFileNow: false };
+      const keep = isCorr ? (Array.isArray(s.private._photosKeep) ? s.private._photosKeep : s.current.data.photos || []) : [];
+      const state = { peopleSex: s.data.peopleSex || null, owner: s.id, photos: [...keep.map((p) => ({ path: p, url: SITE + p, label: "On the map" })), ...s.photos.map((p) => ({ ...p, label: SF.fmtSize(p.size || 0) }))], deleteFileNow: false };
       let asUpdateOf = null;
       const dup = s.checks.find((c) => c.kind === "duplicate");
+      // A short summary at the top: what the sender changed, or what the new project is
+      const from = s.source === "agency" ? `${s.byName || s.by || ""} (${s.data.lead} admin)` : s.source === "excel" ? `an Excel upload${s.row ? `, row ${s.row}` : ""}` : "the online form";
+      let summary;
+      if (isCorr) {
+        const ch = diff(s.data, s.current.data);
+        summary = `<section class="card ed rv-sum"><h2>What changed <small>Sent by ${esc(from)} on ${fmtWhen(s.receivedAt)}</small></h2>
+          ${ch.length ? `<table class="chg-t"><tbody>${ch.map((k) => `<tr><th>${esc(FIELD_LABELS[k])}</th><td><span class="chg-from">${esc(show(k, s.current.data[k])) || "<i>empty</i>"}</span> <span aria-hidden="true">→</span> <span class="chg-to">${esc(show(k, s.data[k])) || "<i>empty</i>"}</span></td></tr>`).join("")}</tbody></table>`
+            : `<p class="muted" style="margin:0">No field differs from the version on the map${s.photos.length ? ", apart from new photos" : ""}.</p>`}
+          ${s.photos.length ? `<p style="margin:8px 0 0;font-size:14px">${s.photos.length} new photo${s.photos.length === 1 ? "" : "s"} sent.</p>` : ""}</section>`;
+      } else {
+        const d = s.data;
+        const where = d.nationwide ? "Nationwide" : (d.states || []).join(", ");
+        summary = `<section class="card ed rv-sum"><h2>New project <small>Sent by ${esc(from)} on ${fmtWhen(s.receivedAt)}</small></h2>
+          <table class="chg-t"><tbody>
+            <tr><th>Lead</th><td>${esc(d.lead || "")}${d.leadName ? `, ${esc(d.leadName)}` : ""}</td></tr>
+            <tr><th>Where</th><td>${esc(where)}${(d.localities || []).length ? ` (${esc(d.localities.join(", "))})` : ""}</td></tr>
+            <tr><th>When</th><td>${esc(fmtDates(d.start, d.end))}</td></tr>
+            <tr><th>Budget</th><td>${d.budget != null ? esc(SF.fmtUSD(d.budget)) : "<i>empty</i>"}${d.share != null ? `, ${esc(SF.fmtPct(d.share))} towards durable solutions` : ""}</td></tr>
+            <tr><th>People reached</th><td>${esc(show("people", d.people)) || "<i>empty</i>"}</td></tr>
+            <tr><th>IASC criteria</th><td>${esc((d.criteria || []).map((n) => (SF.CRITERIA.find((c) => c.n === Number(n)) || { short: n }).short).join(", "))}</td></tr>
+          </tbody></table></section>`;
+      }
       app.innerHTML = `
         <a href="#/queue">Back to the queue</a>
         <div class="row between">
-          <div><div class="muted" style="font-size:13px">${esc(s.ref || "")} · received ${fmtWhen(s.receivedAt)} from ${s.source === "excel" ? `an Excel upload${s.row ? ` (row ${s.row})` : ""}` : isCorr ? "Suggest a correction" : "the form"}</div>
+          <div><div class="muted" style="font-size:13px">${esc(s.ref || "")} · received ${fmtWhen(s.receivedAt)} from ${s.source === "agency" ? `${esc(s.byName || s.by || "")} (${esc(s.data.lead)} admin)` : s.source === "excel" ? `an Excel upload${s.row ? ` (row ${s.row})` : ""}` : isCorr ? "Suggest a correction" : "the form"}</div>
           <h1 id="rv-title">${esc(s.data.name || "")}</h1></div>
           <span class="pill2 ${pending ? "info" : s.status === "published" ? "ok" : "mute"}">${pending ? (isCorr ? "Correction awaiting review" : "Awaiting review") : s.status === "published" ? `Published ${fmtDay(s.reviewedAt)}` : `Not published ${fmtDay(s.reviewedAt)}`}</span>
         </div>
+        ${summary}
         <div class="split">
           <div class="main">${editorHTML(s.data, s.private, { note: s.note || "" })}</div>
           <aside class="side">
@@ -509,7 +450,7 @@
       drawChecks(ed.values());
       document.getElementById("pv-open").addEventListener("click", () => openPopup(ed.values(), state.photos));
 
-      const body = () => ({ data: ed.values(), private: ed.priv(), note: document.getElementById("e-note")?.value || "", photos: state.photos.filter((p) => p.file), photosFinal: state.photos.map((p) => (p.path ? { path: p.path } : { file: p.file })), asUpdateOf });
+      const body = () => ({ data: ed.values(), private: { ...ed.priv(), ...(s.private._photosKeep ? { _photosKeep: s.private._photosKeep } : {}) }, note: document.getElementById("e-note")?.value || "", photos: state.photos.filter((p) => p.file), photosFinal: state.photos.map((p) => (p.path ? { path: p.path } : { file: p.file })), asUpdateOf });
       document.getElementById("b-save")?.addEventListener("click", async (e) => {
         busy(e.target, true, "Saving");
         try { await api(`/submission/${s.id}`, { method: "PUT", body: body() }); SF.toast("Saved"); } catch (err) { alert(err.message); }
@@ -536,18 +477,19 @@
       document.getElementById("b-reopen")?.addEventListener("click", async () => { await api(`/submission/${s.id}/reopen`, { method: "POST", body: {} }); route(); });
       const reply = document.getElementById("b-reply");
       if (reply) {
-        const upd = () => { const v = ed.values(), p = ed.priv(); reply.href = `mailto:${encodeURIComponent(p.fpEmail || "")}?cc=${SF.config.contactEmail}&subject=${encodeURIComponent(`Your project ${s.ref} for the Solutions Footprint: ${v.name}`)}&body=${encodeURIComponent(`Dear ${p.fpName || "colleague"},\r\n\r\nThank you for submitting "${v.name}" (${s.ref}) to the Solutions Footprint.\r\n\r\n\r\n\r\nKind regards,\r\nDurable Solutions Unit, RCO Sudan`)}`; };
+        const upd = () => { const v = ed.values(), p = ed.priv(); reply.href = `mailto:${encodeURIComponent(s.by || p.fpEmail || "")}?cc=${SF.config.contactEmail}&subject=${encodeURIComponent(`Your project ${s.ref} for the Solutions Footprint: ${v.name}`)}&body=${encodeURIComponent(`Dear ${p.fpName || "colleague"},\r\n\r\nThank you for submitting "${v.name}" (${s.ref}) to the Solutions Footprint.\r\n\r\n\r\n\r\nKind regards,\r\nDurable Solutions Unit, RCO Sudan`)}`; };
         upd(); document.querySelector(".split").addEventListener("input", upd);
       }
     }
 
     /* ---------- all projects ---------- */
     async function viewProjects() {
+      if (AGENCY) return viewAgencyProjects();
       const { items } = await api("/projects");
       app.innerHTML = `
         <div class="row between">
           <div><h1>All projects</h1><p class="lede2">Everything in the database. Edit a project and press <b>Save and publish</b> to update the map.</p></div>
-          <div class="row"><a class="btn" href="${API}/export">Download a backup (JSON)</a><a class="btn btn-primary" href="#/project/new">Add a project yourself</a></div>
+          <div class="row"><button type="button" class="btn" id="b-export">Download a backup (JSON)</button><a class="btn btn-primary" href="#/project/new">Add a project yourself</a></div>
         </div>
         ${!items.length ? `<div class="note-box">No projects yet. Go to the <a href="#/queue">Review queue</a> and import the current map data first.</div>` : ""}
         <div class="card tbl-card">
@@ -560,12 +502,26 @@
             <td>${i.published ? '<span class="pill2 ok">On the map</span>' : '<span class="pill2 mute">Hidden</span>'}</td></tr>`).join("")}</tbody></table></div>
         </div>`;
       app.querySelectorAll("tr.click").forEach((tr) => tr.addEventListener("click", () => (location.hash = `#/project/${encodeURIComponent(tr.dataset.id)}`)));
+      document.getElementById("b-export").addEventListener("click", async (e) => {
+        busy(e.target, true, "Preparing");
+        try {
+          const r = await fetch(API + "/export", { headers: { Authorization: `Bearer ${SF.auth.get()?.token || ""}` } });
+          if (!r.ok) throw new Error("The backup could not be made. Please sign in again and retry.");
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(await r.blob());
+          a.download = `solutions-footprint-backup-${new Date().toISOString().slice(0, 10)}.json`;
+          document.body.appendChild(a); a.click(); a.remove();
+          setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+        } catch (err) { alert(err.message); }
+        busy(e.target, false);
+      });
       const q = document.getElementById("q");
       q.addEventListener("input", () => app.querySelectorAll("tr[data-q]").forEach((tr) => (tr.hidden = !tr.dataset.q.includes(q.value.toLowerCase().trim()))));
     }
 
     /* ---------- edit one published project (or add one) ---------- */
     async function viewProject(id) {
+      if (AGENCY) return viewAgencyProject(id);
       const isNew = id === "new";
       const item = isNew ? { id: "new", ref: "", published: true, data: { people: {}, states: [], criteria: [], interventionTypes: [], leadership: [], partners: [], localities: [] }, private: {}, photos: [] } : (await api(`/project/${encodeURIComponent(id)}`)).item;
       const state = { peopleSex: item.data.peopleSex || null, owner: `project:${isNew ? "new" : item.id}`, photos: item.photos.map((p) => ({ ...p, label: p.path ? "On the map" : "New" })), deleteFileNow: true };
@@ -583,7 +539,7 @@
               <div style="padding:14px" id="pv-card"></div>
               <div style="padding:0 18px 16px"><button type="button" class="linkish" id="pv-open">Open the full pop-up</button></div>
             </section>
-            ${isNew ? "" : `<section class="card ed"><h2>Project number</h2><p style="margin:0;font-size:14px">${esc(item.ref || "")}. Numbers never change and are never reused.</p></section>`}
+            ${isNew ? "" : `<section class="card ed"><h2>Project code</h2><p style="margin:0;font-size:14px"><b>${esc(item.ref || "")}</b><br>Country, number, lead agency, start year and end year. The number never changes and is never reused; the agency and years update when the lead or dates change.</p></section>`}
           </aside>
         </div>
         <div class="card bar-actions">
@@ -592,12 +548,14 @@
           <span class="grow"></span>
           <span class="muted" style="font-size:13px">The map updates about 2 minutes after saving</span>
           <button type="button" class="btn btn-primary" id="b-publish">${isNew ? "Publish to the map" : item.published ? "Save and publish" : "Save and put back on the map"}</button>
-        </div>`;
+        </div>
+        ${isNew ? "" : `<section class="card tbl-card"><div class="tbl-tools"><b style="font-weight:600">History of this project</b></div><div class="tbl-wrap" id="p-log"><div class="empty">Loading…</div></div></section>`}`;
       const ed = bindEditor(state, (v) => {
         document.getElementById("pv-card").innerHTML = previewCard(v, state.photos);
         document.getElementById("rv-title").textContent = v.name || "New project";
       });
       document.getElementById("pv-open").addEventListener("click", () => openPopup(ed.values(), state.photos));
+      if (!isNew) drawProjectLog(item.id);
       const save = async (btn, published) => {
         const btns = document.querySelectorAll(".bar-actions .btn");
         busy(btn, true, "Publishing"); btns.forEach((b) => (b.disabled = true));
@@ -652,19 +610,226 @@
       document.getElementById("o-go").addEventListener("click", (e) => upload(document.getElementById("o-acr").value.trim(), document.getElementById("o-name").value.trim(), document.getElementById("o-file").files[0], e.target));
     }
 
-    /* ---------- history ---------- */
+    /* ---------- history: the change log ---------- */
+    const ACTIONS = { published: "Published", updated: "Published changes", added: "Added", edited: "Edited", hidden: "Hidden from the map", deleted: "Deleted",
+      "not published": "Not published", "sent for review": "Sent for review", logo: "Logo", import: "Import", "editor added": "Person added", "editor changed": "Person changed", "editor removed": "Person removed", "code changed": "Code changed", codes: "Project codes", "git page copied": "Git page updated" };
+    const actionText = (a) => ACTIONS[a] || (a ? a[0].toUpperCase() + a.slice(1) : "");
+    function changesHTML(changes) {
+      if (!changes || !changes.length) return "";
+      return `<details class="chg"><summary>${changes.length} field${changes.length === 1 ? "" : "s"} changed</summary><table class="chg-t"><tbody>${changes.map((c) =>
+        `<tr><th>${esc(c.field)}</th><td><span class="chg-from">${esc(c.from) || "<i>empty</i>"}</span> <span aria-hidden="true">→</span> <span class="chg-to">${esc(c.to) || "<i>empty</i>"}</span></td></tr>`).join("")}</tbody></table></details>`;
+    }
+    function logRows(items, repo) {
+      return items.map((i) => `<tr data-q="${esc(`${i.at} ${i.action} ${i.detail} ${i.by_name} ${i.by_email} ${(i.changes || []).map((c) => c.field).join(" ")}`.toLowerCase())}">
+        <td style="white-space:nowrap">${fmtWhen(i.at)}</td>
+        <td>${i.by_name || i.by_email ? esc(i.by_name || i.by_email) : '<span class="muted">Automatic</span>'}${i.by_name && i.by_email ? `<br><span class="muted" style="font-size:12px">${esc(i.by_email)}</span>` : ""}</td>
+        <td>${esc(actionText(i.action))}</td>
+        <td>${esc(i.detail || "")}${changesHTML(i.changes)}</td>
+        <td class="gh">${i.commit_sha ? `<a href="https://github.com/${esc(repo)}/commit/${esc(i.commit_sha)}" target="_blank" rel="noopener">${esc(i.commit_sha.slice(0, 7))}</a>` : ""}</td></tr>`).join("");
+    }
+    function logCsv(items) {
+      const q = (v) => `"${String(v == null ? "" : v).replace(/"/g, '""')}"`;
+      const rows = [["When (UTC)", "Name", "Email", "What", "Details", "Field", "Before", "After", "GitHub commit"]];
+      items.forEach((i) => {
+        const base = [i.at, i.by_name || (i.by_email ? "" : "Automatic"), i.by_email, actionText(i.action), i.detail];
+        if (i.changes && i.changes.length) i.changes.forEach((c) => rows.push([...base, c.field, c.from, c.to, i.commit_sha || ""]));
+        else rows.push([...base, "", "", "", i.commit_sha || ""]);
+      });
+      const blob = new Blob(["\ufeff" + rows.map((r) => r.map(q).join(",")).join("\r\n")], { type: "text/csv;charset=utf-8" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob); a.download = `solutions-footprint-change-log-${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    }
+    // The GitHub column stays closed until someone opens it
+    const ghToggle = () => `<button type="button" class="linkish gh-toggle" aria-expanded="false" style="font-size:13px;margin-left:12px">Show GitHub commits</button>`;
+    function bindGhToggle(root) {
+      root.querySelectorAll(".gh-toggle").forEach((b) => b.addEventListener("click", () => {
+        const t = b.closest(".tbl-card, #p-log").querySelector("table.log-t");
+        const open = t.classList.toggle("hide-gh") === false;
+        b.textContent = open ? "Hide GitHub commits" : "Show GitHub commits"; b.setAttribute("aria-expanded", String(open));
+      }));
+    }
     async function viewHistory() {
-      const { items, repo } = await api("/log");
+      const { items, repo } = await api("/log?limit=5000");
       app.innerHTML = `
-        <div><h1>History</h1><p class="lede2">Every change made from these pages. Each change to the map is also a commit on GitHub, so it can be undone there.</p></div>
-        <div class="card tbl-card"><div class="tbl-wrap">${items.length ? `<table class="adm"><thead><tr><th>When</th><th>What</th><th>Project</th><th>GitHub</th></tr></thead><tbody>
-          ${items.map((i) => `<tr><td style="white-space:nowrap">${fmtWhen(i.at)}</td><td>${esc(i.action[0].toUpperCase() + i.action.slice(1))}</td><td>${esc(i.detail || "")}</td>
-          <td>${i.commit_sha ? `<a href="https://github.com/${esc(repo)}/commit/${esc(i.commit_sha)}" target="_blank" rel="noopener">${esc(i.commit_sha.slice(0, 7))}</a>` : ""}</td></tr>`).join("")}
-        </tbody></table>` : `<div class="empty">Nothing yet.</div>`}</div></div>`;
+        <div class="row between">
+          <div><h1>History</h1><p class="lede2">The change log: every change, who made it and when. For project edits, open "fields changed" to see each value before and after. Changes to the map are also commits on GitHub, so they can be undone there.</p></div>
+          <button type="button" class="btn" id="b-csv">Download the log (Excel CSV)</button>
+        </div>
+        <div class="card tbl-card">
+          <div class="tbl-tools"><span class="muted" style="font-size:14px">${items.length} entr${items.length === 1 ? "y" : "ies"}</span>${ghToggle()}<span class="grow"></span>
+            <label class="row" style="gap:8px;font-size:14px;color:var(--muted)">Search <input class="input" type="search" id="q" placeholder="Name, project, number or field" style="width:260px"></label></div>
+          <div class="tbl-wrap">${items.length ? `<table class="adm log-t hide-gh"><thead><tr><th>When</th><th>Who</th><th>What</th><th>Details</th><th class="gh">GitHub</th></tr></thead><tbody>${logRows(items, repo)}</tbody></table>` : `<div class="empty">Nothing yet.</div>`}</div>
+        </div>`;
+      document.getElementById("b-csv").addEventListener("click", () => logCsv(items));
+      bindGhToggle(app);
+      const q = document.getElementById("q");
+      q.addEventListener("input", () => app.querySelectorAll("tr[data-q]").forEach((tr) => (tr.hidden = !tr.dataset.q.includes(q.value.toLowerCase().trim()))));
+    }
+    async function drawProjectLog(id) {
+      const host = document.getElementById("p-log");
+      if (!host) return;
+      try {
+        const { items, repo } = await api(`/log?project=${encodeURIComponent(id)}&limit=200`);
+        host.innerHTML = items.length ? `<div class="tbl-tools" style="border-top:0">${ghToggle()}</div><table class="adm log-t hide-gh"><thead><tr><th>When</th><th>Who</th><th>What</th><th>Details</th><th class="gh">GitHub</th></tr></thead><tbody>${logRows(items, repo)}</tbody></table>`
+          : `<div class="empty">No changes recorded yet. Changes made from now on are listed here.</div>`;
+        bindGhToggle(host);
+      } catch (e) { host.innerHTML = `<div class="empty">${esc(e.message)}</div>`; }
     }
 
+    /* ---------- agency admins: their own agency's projects ---------- */
+    async function viewAgencyProjects() {
+      const { items } = await api("/projects");
+      app.innerHTML = `
+        <div class="row between">
+          <div><h1>${esc(AGENCY)} projects</h1><p class="lede2">Projects led by ${esc(AGENCY)}. Edit one and press <b>Send to DSU for review</b>. The map changes once the Durable Solutions Unit publishes it.</p></div>
+          <a class="btn btn-primary" href="#/project/new">Add a new ${esc(AGENCY)} project</a>
+        </div>
+        <div class="card tbl-card">
+          <div class="tbl-tools"><span class="muted" style="font-size:14px">${items.length} project${items.length === 1 ? "" : "s"}</span><span class="grow"></span>
+            <label class="row" style="gap:8px;font-size:14px;color:var(--muted)">Search <input class="input" type="search" id="q" placeholder="Name, number or state" style="width:240px"></label></div>
+          <div class="tbl-wrap">${items.length ? `<table class="adm"><thead><tr><th>Number</th><th>Project</th><th>States</th><th>Dates</th><th>Budget</th><th>People</th><th>Status</th></tr></thead>
+          <tbody>${items.map((i) => `<tr class="click" data-id="${esc(i.id)}" data-q="${esc(`${i.ref} ${i.name} ${i.states.join(" ")}`.toLowerCase())}">
+            <td class="ref">${esc(i.ref || "")}</td><td>${esc(i.name)}</td><td>${esc(i.states.join(", "))}</td>
+            <td style="white-space:nowrap">${fmtDates(i.start, i.end)}</td><td>${SF.fmtMoney(i.budget)}</td><td>${i.people == null ? '<span class="pill2 warn">Empty</span>' : SF.fmtInt(i.people)}</td>
+            <td>${i.pending ? '<span class="pill2 info">Sent for review</span>' : i.published ? '<span class="pill2 ok">On the map</span>' : '<span class="pill2 mute">Hidden</span>'}</td></tr>`).join("")}</tbody></table>` : `<div class="empty">No ${esc(AGENCY)} projects on the map yet. Use "Add a new ${esc(AGENCY)} project".</div>`}</div>
+        </div>`;
+      app.querySelectorAll("tr.click").forEach((tr) => tr.addEventListener("click", () => (location.hash = `#/project/${encodeURIComponent(tr.dataset.id)}`)));
+      const q = document.getElementById("q");
+      q.addEventListener("input", () => app.querySelectorAll("tr[data-q]").forEach((tr) => (tr.hidden = !tr.dataset.q.includes(q.value.toLowerCase().trim()))));
+    }
+    async function viewAgencyProject(id) {
+      const isNew = id === "new";
+      const blank = { lead: AGENCY, people: {}, states: [], criteria: [], interventionTypes: [], leadership: [], partners: [], localities: [] };
+      const item = isNew ? { id: "new", ref: "", data: blank, private: {}, photos: [], pending: null } : (await api(`/project/${encodeURIComponent(id)}`)).item;
+      // continue from the version already sent, if it is still waiting for review
+      const start = item.pending ? item.pending : item;
+      const keep = item.pending && Array.isArray(item.pending.private._photosKeep) ? item.pending.private._photosKeep : (item.data.photos || []);
+      const state = { peopleSex: start.data.peopleSex || null, owner: "agency", deleteFileNow: true,
+        photos: [...keep.map((p) => ({ path: p, url: SITE + p, label: "On the map" })), ...(item.pending ? item.pending.photos.map((p) => ({ ...p, label: "New" })) : [])] };
+      app.innerHTML = `
+        <a href="#/projects">Back to ${esc(AGENCY)} projects</a>
+        <div class="row between">
+          <div><div class="muted" style="font-size:13px">${isNew ? `New ${esc(AGENCY)} project` : `${esc(item.ref || "")} · on the map since ${fmtDay(item.updatedAt)}`}</div><h1 id="rv-title">${esc(start.data.name || "New project")}</h1></div>
+          ${item.pending ? '<span class="pill2 info">Sent for review</span>' : isNew ? "" : '<span class="pill2 ok">On the map</span>'}
+        </div>
+        ${item.pending ? `<div class="note-box">You sent changes on ${fmtWhen(item.pending.at)}. They are waiting for review by the Durable Solutions Unit. You can still change them: sending again replaces your earlier version.</div>` : ""}
+        <div class="split">
+          <div class="main">${editorHTML(start.data, start.private || {})}</div>
+          <aside class="side">
+            <section class="card" style="overflow:hidden">
+              <div style="padding:14px 18px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line)">How it will look on the map</div>
+              <div style="padding:14px" id="pv-card"></div>
+              <div style="padding:0 18px 16px"><button type="button" class="linkish" id="pv-open">Open the full pop-up</button></div>
+            </section>
+            <section class="card ed"><h2>What happens next</h2><p style="margin:0;font-size:14px;line-height:1.5">Your changes go to the Durable Solutions Unit. They check them and publish them to the map, usually within a few working days. See <a href="#/changes">Sent for review</a>.</p></section>
+          </aside>
+        </div>
+        <div class="card bar-actions">
+          <span class="grow"></span>
+          <span class="muted" style="font-size:13px">Nothing changes on the map until DSU publishes</span>
+          <button type="button" class="btn btn-primary" id="b-send">Send to DSU for review</button>
+        </div>`;
+      // the lead organisation stays the agency; the private section is the agency's own focal point
+      const lead = document.getElementById("e-lead");
+      lead.value = item.data.lead || AGENCY; lead.readOnly = true; lead.title = "Projects stay under your agency";
+      const privH = [...app.querySelectorAll(".ed h2")].find((h) => /Private to DSU/.test(h.textContent));
+      if (privH) privH.innerHTML = "Focal point <small>Never published on the map</small>";
+      const ed = bindEditor(state, (v) => {
+        document.getElementById("pv-card").innerHTML = previewCard(v, state.photos);
+        document.getElementById("rv-title").textContent = v.name || "New project";
+      });
+      document.getElementById("pv-open").addEventListener("click", () => openPopup(ed.values(), state.photos));
+      document.getElementById("b-send").addEventListener("click", async (e) => {
+        busy(e.target, true, "Sending");
+        try {
+          const r = await api(`/project/${encodeURIComponent(isNew ? "new" : item.id)}`, { method: "PUT", body: { data: { ...ed.values(), lead: lead.value }, private: ed.priv(), photos: state.photos.map((p) => (p.path ? { path: p.path } : { file: p.file })) } });
+          SF.toast(`${r.ref} sent to DSU for review`);
+          location.hash = "#/changes";
+        } catch (err) { alert(err.message); busy(e.target, false); }
+      });
+    }
+    async function viewChanges() {
+      const { items } = await api("/changes");
+      const st = (i) => i.status === "pending" ? '<span class="pill2 info">Waiting for review</span>' : i.status === "published" ? '<span class="pill2 ok">Published</span>' : '<span class="pill2 mute">Not published</span>';
+      app.innerHTML = `
+        <div><h1>Sent for review</h1><p class="lede2">Changes and new projects you sent to the Durable Solutions Unit, and what happened to them.</p></div>
+        <div class="card tbl-card"><div class="tbl-wrap">${items.length ? `<table class="adm"><thead><tr><th>Sent</th><th>Number</th><th>Project</th><th>Type</th><th>Status</th></tr></thead><tbody>
+          ${items.map((i) => `<tr${i.status === "pending" && i.targetId ? ` class="click" data-id="${esc(i.targetId)}"` : ""}><td style="white-space:nowrap">${fmtWhen(i.receivedAt)}</td><td class="ref">${esc(i.ref || "")}</td><td>${esc(i.name)}</td>
+            <td>${i.kind === "new" ? "New project" : "Changes"}</td><td>${st(i)}${i.reviewedAt ? `<br><span class="muted" style="font-size:13px">${fmtDay(i.reviewedAt)}</span>` : ""}</td></tr>`).join("")}
+        </tbody></table>` : `<div class="empty">Nothing sent yet. Open one of your <a href="#/projects">${esc(AGENCY)} projects</a> to suggest changes.</div>`}</div></div>`;
+      app.querySelectorAll("tr.click").forEach((tr) => tr.addEventListener("click", () => (location.hash = `#/project/${encodeURIComponent(tr.dataset.id)}`)));
+    }
+
+    /* ---------- approved editors ---------- */
+    async function viewEditors() {
+      const { items, me, leads } = await api("/editors");
+      const agencies = [...new Set([...(leads || []), ...ORGS.map((o) => o.acronym)])].filter(Boolean).sort();
+      const roleText = (i) => (i.role === "agency" ? `${esc(i.agency)} admin` : "DSU admin");
+      app.innerHTML = `
+        <div><h1>Approved editors</h1><p class="lede2">Only these people can sign in. Anyone else is asked to contact the DSWG or their agency focal point. Removing someone signs them out at once.</p></div>
+        <div class="card tbl-card"><div class="tbl-wrap"><table class="adm"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Can see</th><th>Last signed in</th><th><span class="sr-only">Action</span></th></tr></thead><tbody>
+          ${items.map((i) => `<tr>
+            <td><b style="font-weight:500">${esc(i.name || "")}</b>${i.email === me ? ' <span class="pill2 info">You</span>' : ""}</td>
+            <td>${esc(i.email)}</td>
+            <td>${roleText(i)}${i.owner ? ' <span class="pill2 mute">Owner</span>' : ""}</td>
+            <td>${i.role === "agency" ? `${esc(i.agency)} projects only; changes go to the review queue` : "All projects; can publish"}</td>
+            <td>${i.last_signin ? fmtWhen(i.last_signin) : '<span class="muted">Not yet</span>'}</td>
+            <td style="white-space:nowrap"><button type="button" class="btn btn-sm" data-edit="${esc(i.email)}">Edit</button>${i.owner ? "" : ` <button type="button" class="btn btn-sm btn-danger" data-rm="${esc(i.email)}">Remove</button>`}</td></tr>`).join("")}
+        </tbody></table></div></div>
+        <section class="card ed"><h2 id="ed-title">Add a person</h2>
+          <form class="ed-add" id="ed-form">
+            <label class="f">Name<input class="input" id="ed-name" required placeholder="First and last name"></label>
+            <label class="f">Work email<input class="input" type="email" id="ed-email" required placeholder="name@un.org"></label>
+            <label class="f sm">Role<select class="input" id="ed-role"><option value="agency">Agency admin</option><option value="admin">DSU admin</option></select></label>
+            <label class="f sm" id="ed-agency-wrap">Agency<input class="input" id="ed-agency" list="dl-agencies" placeholder="For example IOM"></label>
+            <button type="submit" class="btn btn-primary" id="ed-go">Add</button>
+            <button type="button" class="btn" id="ed-cancel" hidden>Cancel</button>
+          </form>
+          <datalist id="dl-agencies">${agencies.map((a) => `<option value="${esc(a)}">`).join("")}</datalist>
+          <div class="err-line" id="ed-err" role="alert"></div>
+          <small class="muted"><b>Agency admin:</b> sees and edits only their agency's projects (the lead organisation), and can add new ones. Their changes wait in your review queue. <b>DSU admin:</b> sees everything and publishes.</small>
+        </section>`;
+      const g = (id) => document.getElementById(id);
+      let editing = null;
+      const syncRole = () => { g("ed-agency-wrap").hidden = g("ed-role").value !== "agency"; };
+      g("ed-role").addEventListener("change", syncRole); syncRole();
+      const reset = () => { editing = null; g("ed-form").reset(); g("ed-email").readOnly = false; g("ed-title").textContent = "Add a person"; g("ed-go").textContent = "Add"; g("ed-cancel").hidden = true; g("ed-role").disabled = false; syncRole(); };
+      g("ed-cancel").addEventListener("click", reset);
+      app.querySelectorAll("[data-edit]").forEach((b) => b.addEventListener("click", () => {
+        const i = items.find((x) => x.email === b.dataset.edit);
+        editing = i;
+        g("ed-title").textContent = `Edit ${i.name || i.email}`; g("ed-go").textContent = "Save"; g("ed-cancel").hidden = false;
+        g("ed-name").value = i.name || ""; g("ed-email").value = i.email; g("ed-email").readOnly = true;
+        g("ed-role").value = i.role === "agency" ? "agency" : "admin"; g("ed-role").disabled = !!i.owner; g("ed-agency").value = i.agency || "";
+        syncRole(); g("ed-name").focus(); g("ed-form").scrollIntoView({ block: "center" });
+      }));
+      g("ed-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const err = g("ed-err"), b = g("ed-go");
+        const body = { name: g("ed-name").value.trim(), email: g("ed-email").value.trim(), role: g("ed-role").value, agency: g("ed-agency").value.trim() };
+        if (!body.name) { err.textContent = "Please enter the person's name."; return; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) { err.textContent = "Please enter a valid email address."; return; }
+        if (body.role === "agency" && !body.agency) { err.textContent = "Choose the agency this person can edit."; return; }
+        err.textContent = ""; busy(b, true, "Saving");
+        try {
+          if (editing) await api(`/editors/${encodeURIComponent(editing.email)}`, { method: "PUT", body });
+          else await api("/editors", { method: "POST", body });
+          SF.toast(`${body.name} ${editing ? "saved" : "added"}`);
+          if (editing && editing.email === me) { const s = SF.auth.get(); if (s) { SF.auth.save({ ...s, name: body.name }); SF.auth.drawButton(); } }
+          route();
+        } catch (x) { err.textContent = x.message; busy(b, false); }
+      });
+      app.querySelectorAll("[data-rm]").forEach((b) => b.addEventListener("click", async () => {
+        const email = b.dataset.rm;
+        if (!confirm(`Remove ${email}? They will be signed out and will not be able to sign in again.`)) return;
+        busy(b, true, "Removing");
+        try { await api(`/editors/${encodeURIComponent(email)}`, { method: "DELETE" }); SF.toast(`${email} removed`); if (email === me) { SF.auth.clear(); location.href = "./"; } else route(); }
+        catch (x) { alert(x.message); busy(b, false); }
+      }));
+    }
+
+    SF.renderHeader("manage");
+    SF.renderFooter();
     loadLists().finally(() => boot().catch((e) => { if (e.message !== "Please sign in.") fail(e); }));
   })();
-  </script>
-</body>
-</html>
