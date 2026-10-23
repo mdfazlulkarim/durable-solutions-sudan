@@ -4,80 +4,87 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Women and girls | Solutions Footprint | Durable Solutions Hub | Sudan</title>
-  <meta name="description" content="Evidence on women and girls in Sudan's crisis and recovery: needs, the funding gap, who is doing what, projects on the map, and stories from the field.">
+  <meta name="description" content="Women and girls in Sudan: what they face, what is missing, and why investing in women pays off for recovery. The evidence in five minutes.">
   <script>try{var t=localStorage.getItem("sf-theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261024">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261024b">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 </head>
 <body>
   <header id="site-header"></header>
 
-  <main class="wm" id="main">
-    <section class="wm-hero" aria-labelledby="wm-title">
-      <p class="wm-kicker">Durable Solutions Hub | Sudan</p>
-      <h1 id="wm-title">Women and girls</h1>
-      <p class="wm-lede">Women and girls carry the heaviest burden of Sudan's war, and they are already leading much of the response. This page brings the evidence together: what women and girls face, where funding falls short, why investing in women pays off for recovery and development, and who is doing what.</p>
-      <div class="wm-actions">
-        <a class="btn btn-primary" href="#funding">See the funding gap</a>
-        <button type="button" class="btn" id="wm-csv">Download the figures (CSV)</button>
-        <button type="button" class="btn" id="wm-print">Save as PDF</button>
-      </div>
-      <p class="wm-asof" id="wm-asof"></p>
+  <main class="w2" id="main">
+    <!-- 30 seconds: the message, three numbers and the ask -->
+    <section class="w2-top" aria-labelledby="w2-title">
+      <p class="w2-kicker" id="w2-kicker"></p>
+      <h1 id="w2-title"></h1>
+      <p class="w2-sub" id="w2-sub"></p>
+      <div class="w2-big" id="w2-big"></div>
+      <div class="w2-ask" id="w2-ask"></div>
     </section>
 
-    <section class="wm-sec" aria-labelledby="h-glance">
-      <h2 id="h-glance">At a glance</h2>
-      <div class="wm-stats" id="wm-stats"></div>
+    <!-- 5 minutes: three things to know, then the detail -->
+    <section class="w2-sec" aria-labelledby="h-know">
+      <h2 id="h-know">Three things to know</h2>
+      <div class="w2-msgs" id="w2-msgs"></div>
     </section>
 
-    <section class="card wm-sec wm-pad" id="funding" aria-labelledby="h-funding">
-      <h2 id="h-funding">The funding gap</h2>
-      <p class="wm-intro">Needs have grown faster than funding. Services for women and girls are often the first to close when money runs short.</p>
-      <div class="wm-fund" id="wm-fund"></div>
+    <section class="w2-sec" aria-labelledby="h-face">
+      <h2 id="h-face">What women and girls face</h2>
+      <div class="w2-tiles" id="w2-face"></div>
+      <details class="w2-more"><summary>More detail on protection, health, food, education and leadership</summary><div class="w2-needs" id="w2-needs"></div></details>
     </section>
 
-    <section class="wm-sec" aria-labelledby="h-invest">
+    <section class="w2-sec" id="funding" aria-labelledby="h-fund">
+      <h2 id="h-fund">What is missing</h2>
+      <div class="w2-fund" id="w2-fund"></div>
+    </section>
+
+    <section class="w2-sec" aria-labelledby="h-invest">
       <h2 id="h-invest">Why investing in women pays off</h2>
-      <p class="wm-intro">Women are not only among those most in need. They keep families fed, run local services and hold communities together, which is where recovery and development start.</p>
-      <div class="wm-invest" id="wm-invest"></div>
+      <p class="w2-lead">Women keep families fed, run local services and hold communities together. That is where recovery and development start.</p>
+      <div class="w2-tiles w2-tiles-3" id="w2-invest"></div>
+      <details class="w2-more"><summary>Three more reasons</summary><div class="w2-tiles w2-tiles-3" id="w2-invest-more"></div></details>
     </section>
 
-    <section class="card wm-sec wm-pad" aria-labelledby="h-needs">
-      <h2 id="h-needs">What women and girls face</h2>
-      <div class="wm-needs" id="wm-needs"></div>
+    <section class="w2-sec" aria-labelledby="h-voices">
+      <h2 id="h-voices">Voices from the field</h2>
+      <div class="w2-voices" id="w2-voices"></div>
+      <details class="w2-more" id="w2-more-stories-wrap"><summary>More stories</summary><div class="w2-voices" id="w2-more-stories"></div></details>
     </section>
 
-    <section class="wm-sec" aria-labelledby="h-actors">
-      <h2 id="h-actors">Who is doing what</h2>
-      <p class="wm-intro">A selection of actors with published results for women and girls in Sudan. It is not a complete list.</p>
-      <div class="wm-actors" id="wm-actors"></div>
+    <section class="w2-sec" aria-labelledby="h-who">
+      <h2 id="h-who">Who is doing what</h2>
+      <div class="card w2-table-wrap"><table class="w2-table" id="w2-actors"></table></div>
+      <p class="w2-small">A selection of actors with published results for women and girls in Sudan, not a complete list.</p>
     </section>
 
-    <section class="card wm-sec wm-pad" aria-labelledby="h-map">
+    <section class="w2-sec" aria-labelledby="h-map">
       <h2 id="h-map">On the Solutions Footprint map</h2>
-      <div id="wm-map"><p class="muted">Loading…</p></div>
+      <div id="w2-map"></div>
     </section>
 
-    <section class="wm-sec" aria-labelledby="h-stories">
-      <h2 id="h-stories">Stories from the field</h2>
-      <div class="wm-stories" id="wm-stories"></div>
-      <h3 class="wm-h3">Latest reports on women and girls in Sudan</h3>
-      <div class="card wm-news" id="wm-news"><p class="muted" style="margin:0">Loading…</p></div>
+    <section class="w2-sec" aria-labelledby="h-news">
+      <h2 id="h-news">Latest reports</h2>
+      <div class="card w2-news" id="w2-news"><p class="w2-small" style="margin:0">Loading…</p></div>
     </section>
 
-    <section class="card wm-sec wm-pad" aria-labelledby="h-sources">
-      <h2 id="h-sources">Sources</h2>
-      <p class="wm-intro">Figures come from the latest published reports at the time of writing. Where sources differ, the page uses the most recent one and says which.</p>
-      <ol class="wm-sources" id="wm-sources"></ol>
+    <section class="w2-sec w2-end">
+      <div class="w2-tools">
+        <button type="button" class="btn" id="w2-print">Save as PDF</button>
+        <button type="button" class="btn" id="w2-csv">Download all figures (CSV)</button>
+        <a class="btn btn-primary" id="w2-contact" href="#">Contact the DSWG</a>
+      </div>
+      <details class="w2-more w2-sources" id="w2-sources-wrap"><summary id="w2-sources-sum">Sources</summary><ol class="w2-src-list" id="w2-sources"></ol></details>
     </section>
   </main>
 
   <footer id="site-footer"></footer>
-  <script src="assets/js/common.js?v=20261024"></script>
-  <script src="assets/js/icons.js?v=20261024"></script>
-  <script src="assets/js/women.js?v=20261024"></script>
+  <script src="assets/js/common.js?v=20261024b"></script>
+  <script src="assets/js/icons.js?v=20261024b"></script>
+  <script src="assets/js/icons-theme.js?v=20261024b"></script>
+  <script src="assets/js/women.js?v=20261024b"></script>
 </body>
 </html>

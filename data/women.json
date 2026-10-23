@@ -221,37 +221,43 @@
    "value": "20M",
    "title": "Women-led organisations reach the people others cannot",
    "text": "The 85 women-led organisations behind UN Women's 2026 gender alert reach nearly 20 million people in need. They run community kitchens, safe spaces and survivor support, and negotiate access where formal systems have collapsed.",
-   "src": "unw-alert"
+   "src": "unw-alert",
+   "icon": "leadership"
   },
   {
    "value": "1 in 3",
    "title": "Women lead a large share of the local response",
    "text": "By the end of 2025 the Sudan Humanitarian Fund had supported more than 1,000 mutual aid groups, and over one third of them were women-led. US$25 million went to mutual aid groups in 2025.",
-   "src": "hnrp-reset"
+   "src": "hnrp-reset",
+   "icon": "partnership"
   },
   {
    "value": "110",
    "title": "Small grants open the door",
    "text": "Since 2020 the Women's Peace and Humanitarian Fund has supported 110 women's organisations in Sudan. Close to half received UN funding for the first time.",
-   "src": "wphf"
+   "src": "wphf",
+   "icon": "protection"
   },
   {
    "value": "87%",
    "title": "Women keep farms running",
    "text": "In CARE's 2025 survey of 492 farmers in Darfur and South Kordofan, 87% were women, as men migrated or joined armed groups. Access to finance and inputs is their main barrier. CARE calls for funding women's farming groups directly.",
-   "src": "care"
+   "src": "care",
+   "icon": "agriculture"
   },
   {
    "value": "30%",
    "title": "Room to grow the economy",
    "text": "Women make up about 30% of Sudan's labour force. Recovery that brings more women into paid work, farming value chains and enterprise adds income for whole households.",
-   "src": "wb-labour"
+   "src": "wb-labour",
+   "icon": "trending"
   },
   {
    "value": "No seat",
    "title": "Missing from the peace table",
    "text": "Women mediate local conflicts and negotiate humanitarian access, yet they have had no meaningful role as negotiators in the official peace talks of the past three years.",
-   "src": "unw-alert"
+   "src": "unw-alert",
+   "icon": "advocacy"
   }
  ],
  "needs": [
@@ -424,5 +430,128 @@
    "src": "care"
   }
  ],
- "keywords": "women|woman|girls?|gender|gbv|fgm|midwi\\w*|maternal|mothers?|pregnan\\w*|female|sexual|reproductive"
+ "keywords": "women|woman|girls?|gender|gbv|fgm|midwi\\w*|maternal|mothers?|pregnan\\w*|female|sexual|reproductive",
+ "hero": {
+  "kicker": "Women and girls in Sudan",
+  "title": "War hits women and girls hardest. The services that protect them are closing for lack of funds.",
+  "sub": "The evidence in five minutes: what women and girls face, what is missing, and why investing in women pays off for recovery."
+ },
+ "top": [
+  {
+   "icon": "people-in-need",
+   "value": "17M+",
+   "label": "women and girls need humanitarian aid in 2026",
+   "note": "About half of everyone in need in Sudan",
+   "src": [
+    "unw-remarks",
+    "hnrp-summary"
+   ]
+  },
+  {
+   "icon": "gender-based-violence",
+   "value": "12.7M",
+   "label": "women and girls need help after gender-based violence",
+   "note": "Four times as many as when the war began",
+   "src": "unw-elobeid"
+  },
+  {
+   "icon": "fund",
+   "value": "US$78M",
+   "label": "still missing for women's health and protection in 2026",
+   "note": "About 60% of UNFPA's appeal for Sudan",
+   "src": "unfpa-sitrep"
+  }
+ ],
+ "ask": {
+  "title": "What is needed now",
+  "items": [
+   {
+    "b": "Close the US$78 million gap",
+    "t": "in UNFPA's 2026 appeal for women's health, midwives, safe spaces and survivor care."
+   },
+   {
+    "b": "Fund women-led organisations directly",
+    "t": "with flexible money, before more of them close."
+   },
+   {
+    "b": "Count women and girls",
+    "t": "in every project, so the gaps can be seen and filled."
+   }
+  ]
+ },
+ "messages": [
+  {
+   "icon": "trending",
+   "stat": "4×",
+   "title": "Needs are rising fast",
+   "text": "Women and girls needing help after gender-based violence have quadrupled since the war began in 2023. Households headed by women face three times the risk of severe hunger.",
+   "src": [
+    "unw-elobeid",
+    "unw-food"
+   ]
+  },
+  {
+   "icon": "leadership",
+   "stat": "20M",
+   "title": "Women already lead the response",
+   "text": "Women-led organisations reach nearly 20 million people in need. One in three local mutual aid groups funded by the Sudan Humanitarian Fund by the end of 2025 was led by women.",
+   "src": [
+    "unw-alert",
+    "hnrp-reset"
+   ]
+  },
+  {
+   "icon": "poverty",
+   "stat": "85%",
+   "title": "The money is not reaching them",
+   "text": "85% of women-led organisations lost funding in 2025. Half expect to close within a year without urgent support.",
+   "src": [
+    "unw-alert",
+    "unw-elobeid"
+   ]
+  }
+ ],
+ "face": [
+  {
+   "icon": "internally-displaced",
+   "value": "4.3M",
+   "label": "women and girls displaced inside Sudan",
+   "src": "unw-remarks"
+  },
+  {
+   "icon": "food-security",
+   "value": "13.6M",
+   "label": "need food and livelihood support",
+   "src": "unw-remarks"
+  },
+  {
+   "icon": "pregnant",
+   "value": "805K",
+   "label": "pregnant women in need of aid",
+   "src": "unfpa-sitrep"
+  },
+  {
+   "icon": "school-closed",
+   "value": "4.1M",
+   "label": "girls out of school",
+   "src": "unicef-edu"
+  },
+  {
+   "icon": "health-facility-destroyed",
+   "value": "37%",
+   "label": "of health facilities not working",
+   "src": "un-keyfacts"
+  },
+  {
+   "icon": "person-1",
+   "value": "1 in 3",
+   "label": "women married before 18 (latest survey, 2014)",
+   "src": "child-marriage"
+  }
+ ],
+ "investTop": [
+  "20M",
+  "1 in 3",
+  "87%"
+ ]
 }
