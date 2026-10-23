@@ -1,0 +1,428 @@
+{
+ "updated": "2026-10-24",
+ "sources": {
+  "unw-remarks": {
+   "org": "UN Women",
+   "title": "Remarks by Anna Mutavati on Sudan's war on women and girls as the conflict enters its fourth year",
+   "date": "2026-04-14",
+   "url": "https://www.unwomen.org/en/news-stories/press-briefing/2026/04/remarks-by-anna-mutavati-un-women-regional-director-for-east-and-southern-africa-on-sudans-war-on-women-and-girls-as-conflict-enters-fourth-year"
+  },
+  "unw-alert": {
+   "org": "UN Women",
+   "title": "Gender alert: The impact of the war in Sudan on women and girls (press release)",
+   "date": "2026-04-14",
+   "url": "https://www.unwomen.org/en/news-stories/press-release/2026/04/sudans-war-on-women-the-number-of-people-in-need-of-sexual-violence-support-quadruples-as-abuse-of-women-and-girls-becomes-the-blueprint-of-war-three-years-on"
+  },
+  "unw-elobeid": {
+   "org": "UN Women",
+   "title": "Drone attacks by day and sexual violence by night leave no safe window for women and girls to collect water in El Obeid",
+   "date": "2026-07-24",
+   "url": "https://www.unwomen.org/en/news-stories/statement/2026/07/drone-attacks-by-day-and-sexual-violence-by-night-leave-no-safe-window-for-women-and-girls-to-collect-water-amidst-rainy-season-in-sudans-el-obeid"
+  },
+  "unw-food": {
+   "org": "UN Women",
+   "title": "Women-led households at triple risk of severe food insecurity in Sudan (Gender snapshot)",
+   "date": "2025-08-05",
+   "url": "https://www.unwomen.org/en/news-stories/press-release/2025/08/women-led-households-at-triple-risk-of-severe-food-insecurity-in-sudan"
+  },
+  "unw-open": {
+   "org": "UN Women",
+   "title": "UN Women in Sudan: results 2025 (UN Women Transparency Portal)",
+   "date": "2025",
+   "url": "https://open.unwomen.org/en/our-reach/SD"
+  },
+  "unfpa-gbv": {
+   "org": "UNFPA",
+   "title": "Gender-based violence in Sudan: crisis overview and response priorities in 2026",
+   "date": "2026-03-24",
+   "url": "https://sudan.unfpa.org/en/publications/gender-based-violence-sudan-crisis-overview-and-response-priorities-2026"
+  },
+  "unfpa-sitrep": {
+   "org": "UNFPA",
+   "title": "UNFPA Sudan situation report, 1 to 31 August 2026",
+   "date": "2026-08-31",
+   "url": "https://arabstates.unfpa.org/sites/default/files/pub-pdf/2date26-1date/UNFPA%20Sudan%20SitRep_August2026.pdf"
+  },
+  "unfpa-cpd": {
+   "org": "UNFPA",
+   "title": "Country programme document for Sudan, 2026 to 2028",
+   "date": "2025-12-05",
+   "url": "https://aa.unfpa.org/sites/default/files/board-documents/main-document/DP.FPA_.CPD_.SDN_.8%20-%20Sudan%20CPD%20-%20Final%20-%205Dec25.pdf"
+  },
+  "hnrp-summary": {
+   "org": "OCHA",
+   "title": "Sudan Humanitarian Needs and Response Plan 2026 (summary)",
+   "date": "2026",
+   "url": "https://reliefweb.int/report/sudan/sudan-humanitarian-needs-and-response-plan-2026-summary"
+  },
+  "hnrp-needs": {
+   "org": "OCHA",
+   "title": "Sudan HNRP 2026: humanitarian needs and risks",
+   "date": "2026",
+   "url": "https://humanitarianaction.info/plan/1514/document/sudan-humanitarian-needs-and-response-plan-2026/article/12-humanitarian-needs-and-risks-1"
+  },
+  "hnrp-reset": {
+   "org": "OCHA",
+   "title": "Sudan HNRP 2026: implementing the humanitarian reset in Sudan",
+   "date": "2026",
+   "url": "https://humanitarianaction.info/plan/1514/document/sudan-humanitarian-needs-and-response-plan-2026/article/22-implementing-humanitarian-reset-sudan"
+  },
+  "un-keyfacts": {
+   "org": "United Nations",
+   "title": "Sudan key facts and figures, July 2026 (citing the Nutrition Cluster, WHO and the Financial Tracking Service)",
+   "date": "2026-08-13",
+   "url": "https://unric.org/en/wp-content/uploads/sites/15/2026/08/Sudan_Key_Facts_and_Figures_July_2026.pdf"
+  },
+  "unicef-edu": {
+   "org": "UNICEF",
+   "title": "Remarks by UNICEF Deputy Executive Director Hannan Sulieman on safeguarding education in Sudan",
+   "date": "2026-08-10",
+   "url": "https://allafrica.com/stories/202608110086.html"
+  },
+  "wphf": {
+   "org": "Women's Peace and Humanitarian Fund",
+   "title": "Surviving violence, rebuilding communities: Ikhlas Awad Yaseen",
+   "date": "2026",
+   "url": "https://wphfund.org/wphf-at-10/ikhlas-awad-yaseen"
+  },
+  "care": {
+   "org": "CARE",
+   "title": "New CARE research confirms Sudanese women farmers are hardest hit by food system collapse",
+   "date": "2025-09-04",
+   "url": "https://www.care.org/media-and-press/new-care-research-confirms-sudanese-women-farmers-are-hardest-hit-by-food-system-collapse/"
+  },
+  "gbvaor-wlo": {
+   "org": "GBV Area of Responsibility, Sudan",
+   "title": "Frontline resilience: mapping the role and needs of women-led organisations in Sudan",
+   "date": "2025",
+   "url": "https://gbvaor.net/sites/default/files/2025-09/Frontline%20Resilience.pdf"
+  },
+  "mics-fgm": {
+   "org": "Central Bureau of Statistics and UNICEF",
+   "title": "Multiple Indicator Cluster Survey 2014 (FGM country profile, 28 Too Many)",
+   "date": "2014",
+   "url": "https://www.fgmcri.org/media/uploads/Country%20Research%20and%20Resources/Sudan/sudan_country_profile_key_findings_v1_(november_2019).pdf"
+  },
+  "child-marriage": {
+   "org": "UNICEF data",
+   "title": "Child marriage country profile: Sudan",
+   "date": "2014",
+   "url": "https://childmarriagedata.org/country-profiles/sudan"
+  },
+  "wb-labour": {
+   "org": "World Bank (World Development Indicators)",
+   "title": "Labour force, female (% of total labour force): Sudan",
+   "date": "2023",
+   "url": "https://tradingeconomics.com/sudan/labor-force-female-percent-of-total-labor-force-wb-data.html"
+  },
+  "tnh-mutual": {
+   "org": "The New Humanitarian",
+   "title": "Strength in solidarity: how mutual aid is helping women survive Sudan's war",
+   "date": "2025-01-28",
+   "url": "https://www.thenewhumanitarian.org/news-feature/2025/01/28/how-mutual-aid-helping-women-survive-sudan-war"
+  }
+ },
+ "headline": [
+  {
+   "value": "17M+",
+   "label": "women and girls need humanitarian assistance in 2026",
+   "src": "unw-remarks"
+  },
+  {
+   "value": "12.7M",
+   "label": "women and girls need services after gender-based violence, four times as many as when the war began",
+   "src": "unw-elobeid"
+  },
+  {
+   "value": "4.3M",
+   "label": "women and girls are displaced inside Sudan",
+   "src": "unw-remarks"
+  },
+  {
+   "value": "13.6M",
+   "label": "women and girls need food and livelihoods support this year",
+   "src": "unw-remarks"
+  },
+  {
+   "value": "3.4M",
+   "label": "pregnant and breastfeeding women need nutrition support",
+   "src": "un-keyfacts"
+  },
+  {
+   "value": "4.1M",
+   "label": "girls are out of school, about half of Sudan's 8 million out-of-school children",
+   "src": "unicef-edu"
+  },
+  {
+   "value": "3×",
+   "label": "the risk of severe food insecurity for households headed by women",
+   "src": "unw-food"
+  },
+  {
+   "value": "20M",
+   "label": "people in need are reached by the 85 women-led organisations surveyed by UN Women",
+   "src": "unw-alert",
+   "positive": true
+  }
+ ],
+ "funding": {
+  "hnrp": {
+   "required": 2900000000,
+   "received": 1170000000,
+   "pct": 40.8,
+   "asOf": "13 August 2026",
+   "src": "un-keyfacts"
+  },
+  "unfpa": {
+   "required": 129200000,
+   "gapTotal": 78000000,
+   "asOf": "August 2026",
+   "src": "unfpa-sitrep",
+   "gap": [
+    {
+     "label": "Sexual and reproductive health",
+     "value": 30500000
+    },
+    {
+     "label": "Gender-based violence",
+     "value": 34800000
+    },
+    {
+     "label": "Refugee response inside Sudan",
+     "value": 12700000
+    }
+   ]
+  },
+  "gbv": {
+   "required": 93000000,
+   "targeted": 2010000,
+   "reached": 669000,
+   "reachedAsOf": "January to August 2026",
+   "src": "unfpa-gbv",
+   "reachedSrc": "unfpa-sitrep"
+  },
+  "wlo": [
+   {
+    "text": "85% of women-led organisations surveyed were hit by funding cuts or reductions in 2025.",
+    "src": "unw-alert"
+   },
+   {
+    "text": "Half expect to suspend work or close within a year without urgent financial support.",
+    "src": "unw-elobeid"
+   },
+   {
+    "text": "Two-thirds report that safe spaces and services after gender-based violence have closed or been cut back in their communities.",
+    "src": "unw-elobeid"
+   }
+  ]
+ },
+ "invest": [
+  {
+   "value": "20M",
+   "title": "Women-led organisations reach the people others cannot",
+   "text": "The 85 women-led organisations behind UN Women's 2026 gender alert reach nearly 20 million people in need. They run community kitchens, safe spaces and survivor support, and negotiate access where formal systems have collapsed.",
+   "src": "unw-alert"
+  },
+  {
+   "value": "1 in 3",
+   "title": "Women lead a large share of the local response",
+   "text": "By the end of 2025 the Sudan Humanitarian Fund had supported more than 1,000 mutual aid groups, and over one third of them were women-led. US$25 million went to mutual aid groups in 2025.",
+   "src": "hnrp-reset"
+  },
+  {
+   "value": "110",
+   "title": "Small grants open the door",
+   "text": "Since 2020 the Women's Peace and Humanitarian Fund has supported 110 women's organisations in Sudan. Close to half received UN funding for the first time.",
+   "src": "wphf"
+  },
+  {
+   "value": "87%",
+   "title": "Women keep farms running",
+   "text": "In CARE's 2025 survey of 492 farmers in Darfur and South Kordofan, 87% were women, as men migrated or joined armed groups. Access to finance and inputs is their main barrier. CARE calls for funding women's farming groups directly.",
+   "src": "care"
+  },
+  {
+   "value": "30%",
+   "title": "Room to grow the economy",
+   "text": "Women make up about 30% of Sudan's labour force. Recovery that brings more women into paid work, farming value chains and enterprise adds income for whole households.",
+   "src": "wb-labour"
+  },
+  {
+   "value": "No seat",
+   "title": "Missing from the peace table",
+   "text": "Women mediate local conflicts and negotiate humanitarian access, yet they have had no meaningful role as negotiators in the official peace talks of the past three years.",
+   "src": "unw-alert"
+  }
+ ],
+ "needs": [
+  {
+   "key": "protection",
+   "title": "Protection and gender-based violence",
+   "points": [
+    {
+     "text": "12.4 million people need services after gender-based violence in 2026. The response plan targets 2.01 million of them.",
+     "src": "unfpa-gbv"
+    },
+    {
+     "text": "Sexual assault made up 27% of reported protection incidents (August 2025), and 26% of women and girls avoid certain areas because they feel unsafe.",
+     "src": "hnrp-needs"
+    },
+    {
+     "text": "Two-thirds of women front-line responders saw a significant rise in sexual violence in 2025; half report further escalation in 2026.",
+     "src": "unw-alert"
+    },
+    {
+     "text": "One in five women working for women-led organisations has received threats.",
+     "src": "unw-alert"
+    }
+   ]
+  },
+  {
+   "key": "health",
+   "title": "Health and maternal care",
+   "points": [
+    {
+     "text": "8.1 million women of reproductive age and 805,000 pregnant women are in need of humanitarian assistance.",
+     "src": "unfpa-sitrep"
+    },
+    {
+     "text": "Maternal mortality was 256 deaths per 100,000 live births in 2023 and is believed to have risen since the war began.",
+     "src": "unfpa-cpd"
+    },
+    {
+     "text": "37% of health facilities are not functioning.",
+     "src": "un-keyfacts"
+    },
+    {
+     "text": "27% of married women have an unmet need for family planning.",
+     "src": "unfpa-cpd"
+    },
+    {
+     "text": "Almost 30% of households headed by women did not know where to find maternal and reproductive health services.",
+     "src": "hnrp-needs"
+    }
+   ]
+  },
+  {
+   "key": "food",
+   "title": "Food, water and livelihoods",
+   "points": [
+    {
+     "text": "13.6 million women and girls need food and livelihoods support in 2026.",
+     "src": "unw-remarks"
+    },
+    {
+     "text": "75% of households headed by women cannot meet basic food needs; only 1.9% are food secure, against 5.9% of households headed by men.",
+     "src": "unw-food"
+    },
+    {
+     "text": "73% of women do not meet minimum dietary diversity, a risk for mothers and their babies.",
+     "src": "unw-food"
+    },
+    {
+     "text": "Households headed by women are about 40% more likely to face extreme water deprivation.",
+     "src": "hnrp-needs"
+    }
+   ]
+  },
+  {
+   "key": "education",
+   "title": "Education and harmful practices",
+   "points": [
+    {
+     "text": "4.1 million girls are out of school.",
+     "src": "unicef-edu"
+    },
+    {
+     "text": "One in three women aged 20 to 24 was married before 18 (2014, latest survey).",
+     "src": "child-marriage"
+    },
+    {
+     "text": "One girl in seven is pregnant by the age of 18.",
+     "src": "unfpa-cpd"
+    },
+    {
+     "text": "86.6% of women aged 15 to 49 have undergone female genital mutilation (2014, latest survey).",
+     "src": "mics-fgm"
+    }
+   ]
+  },
+  {
+   "key": "voice",
+   "title": "Voice and leadership",
+   "points": [
+    {
+     "text": "A Women's Advisory Group of 22 Sudanese and refugee women humanitarian leaders now informs senior humanitarian decisions.",
+     "src": "hnrp-reset"
+    },
+    {
+     "text": "99% of women-led organisations surveyed face funding shortages, obstruction or insecurity.",
+     "src": "unw-alert"
+    },
+    {
+     "text": "In the GBV coordination survey, all 58 organisations take part in coordination meetings, but more than half have no women with disabilities in their leadership.",
+     "src": "gbvaor-wlo"
+    }
+   ]
+  }
+ ],
+ "actors": [
+  {
+   "name": "UNFPA",
+   "what": "Sexual and reproductive health, midwives, safe spaces for women and girls, services after gender-based violence, dignity kits; leads the coordination of the gender-based violence response.",
+   "figures": [
+    "543,266 people reached with sexual and reproductive health care (January to August 2026)",
+    "673,000 people reached with services after gender-based violence",
+    "101 women and girls' safe spaces and 88 health facilities supported"
+   ],
+   "src": "unfpa-sitrep"
+  },
+  {
+   "name": "UN Women",
+   "what": "Works with and funds women-led organisations across Sudan, runs protection and wellbeing services, gives women economic support and training, and backs women's role in peace.",
+   "figures": [
+    "15,566 women and girls reached with protection and wellbeing services in five states (2025)",
+    "11,864 women and girls used 16 safe spaces",
+    "3,702 women received economic support"
+   ],
+   "src": "unw-open"
+  },
+  {
+   "name": "Women's Peace and Humanitarian Fund",
+   "what": "Flexible grants to women's rights and women-led organisations for protection, safe spaces, dignity kits and local peace committees.",
+   "figures": [
+    "110 organisations supported in Sudan since 2020",
+    "Close to half received UN funding for the first time"
+   ],
+   "src": "wphf"
+  },
+  {
+   "name": "Sudan Humanitarian Fund",
+   "what": "Pooled fund that now finances local mutual aid groups directly, many of them led by women.",
+   "figures": [
+    "US$25 million to mutual aid groups in 2025",
+    "More than 1,000 groups supported, over one third women-led"
+   ],
+   "src": "hnrp-reset"
+  },
+  {
+   "name": "Women-led organisations and women's emergency response rooms",
+   "what": "Community kitchens, sanitary products, medical and psychosocial support for survivors, help for displaced women, local mediation.",
+   "figures": [
+    "Nearly 20 million people reached",
+    "85% hit by funding cuts in 2025"
+   ],
+   "src": "unw-alert"
+  },
+  {
+   "name": "CARE",
+   "what": "Research and support for women farmers; calls for agriculture to be treated as life-saving aid and for direct funding of women's farming groups.",
+   "figures": [
+    "492 farmers surveyed in 2025, 87% of them women",
+    "89% reported lower productivity"
+   ],
+   "src": "care"
+  }
+ ],
+ "keywords": "women|woman|girls?|gender|gbv|fgm|midwi\\w*|maternal|mothers?|pregnan\\w*|female|sexual|reproductive"
+}
