@@ -113,6 +113,30 @@
       </div>`).join("");
   }
 
+  // Projects that did not work, latest first, each with its year and a link to the evaluation; then the lessons
+  function drawFailed() {
+    const f = D.failed, n = f.show || 5;
+    $("h-fail").textContent = f.title;
+    $("w2-fail-lead").textContent = f.lead;
+    const row = (c) => `
+      <li class="card w2-fail">
+        <div class="w2-fail-y">${esc(c.year)}</div>
+        <div class="w2-fail-b">
+          <h3>${esc(c.name)}</h3>
+          <p class="w2-fail-m">${[c.period, c.who, c.where].filter(Boolean).map(esc).join(" · ")}</p>
+          <p>${esc(c.what)}${cite(c.src)}</p>
+          ${SRC[c.src] ? `<a class="w2-fail-a" href="${esc(SRC[c.src].url)}" target="_blank" rel="noopener">Read the report</a>` : ""}
+        </div>
+      </li>`;
+    const first = f.items.slice(0, n), rest = f.items.slice(n);
+    $("w2-fails").innerHTML = first.map(row).join("");
+    $("w2-fails-more").innerHTML = rest.map(row).join("");
+    $("w2-fails-more-wrap").hidden = !rest.length;
+    if (rest.length) $("w2-fails-more-sum").textContent = `${rest.length} older cases (${rest[rest.length - 1].year} to ${rest[0].year})`;
+    $("w2-learn").innerHTML = `<h3>${esc(f.lessonsTitle)}</h3><ul>${f.lessons.map((l) => `
+      <li><span class="w2-ico sm">${icon(l.icon)}</span><div><b>${esc(l.t)}.</b> ${esc(l.d)}</div></li>`).join("")}</ul>`;
+  }
+
   function drawVoices(st) {
     const items = ((st && st.items) || []).filter((x) => x.topic === "women")
       .sort((a, b) => (a.sort || 99) - (b.sort || 99) || String(b.date).localeCompare(String(a.date)));
@@ -280,7 +304,7 @@
           VIEW = `${bb[0] - 6} ${bb[1] - 6} ${bb[2] - bb[0] + 12} ${bb[3] - bb[1] + 12}`;
         }
         // drawn in page order, so the source numbers run from the top of the page down
-        drawTop(); drawMessages(); drawFace(); drawSolutions(); drawFunding(); drawVoices(stories); drawProjects(data); drawActors(); drawAgencies(); drawSources();
+        drawTop(); drawMessages(); drawFace(); drawSolutions(); drawFailed(); drawFunding(); drawVoices(stories); drawProjects(data); drawActors(); drawAgencies(); drawSources();
         drawNews();
         SF.renderFooter(data && data.lastUpdated);
         $("main").removeAttribute("data-locked");
