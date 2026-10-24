@@ -38,6 +38,12 @@
         <div class="w2-big-l">${esc(t.label)}</div>
         <div class="w2-big-n">${esc(t.note)}</div></div>
       </div>`).join("");
+    // the positive side, up front: what investing in women returns (details in the solutions section)
+    const r = D.roi;
+    $("w2-pays").innerHTML = `
+      <div class="w2-pays-h"><span>${esc(r.heroTitle)}</span><a href="#solutions">See the evidence</a></div>
+      <div class="w2-pays-g">${r.items.map((i) => `
+        <div class="w2-pay"><div class="w2-pay-v">${esc(i.value)}${cite(i.src)}</div><div class="w2-pay-l">${esc(i.short)}</div></div>`).join("")}</div>`;
     $("w2-ask").innerHTML = `
       <div class="w2-ask-h">${esc(D.ask.title)}</div>
       <ol>${D.ask.items.map((a) => `<li><b>${esc(a.b)}</b> ${esc(a.t)}</li>`).join("")}</ol>`;
