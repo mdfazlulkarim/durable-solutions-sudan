@@ -179,14 +179,79 @@
     });
   }
 
+  /* ---------- early access ----------
+     While the page is under development, only people with early access can open it: the owners and the
+     people a DSU admin adds as "Early access" on the Approved editors page. The list is kept on the back end,
+     never in this file. Everyone else sees a short note with the contact for early access. */
+  const ACCESS_EMAIL = "md.karim@un.org";
+  const accessLink = `<a href="mailto:${ACCESS_EMAIL}?subject=${encodeURIComponent("Early access: Women and girls page")}">${ACCESS_EMAIL}</a>`;
+  const signInOpts = {
+    intro: "For people with early access to this page. We will email you a 6-digit code. No password needed.",
+    refused: `This page is under development. For early access, please contact ${accessLink}.`,
+  };
+  let loaded = false;
+
+  function gate(state, s) {
+    const main = $("main");
+    main.setAttribute("data-locked", "");
+    const lock = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+    const body = {
+      checking: `<p class="w2-small" style="margin:0">Checking access…</p>`,
+      out: `<p>For early access, please contact ${accessLink}.</p>
+        <div class="w2-gate-act"><button type="button" class="btn btn-primary" id="w2-signin">${SF.icons.user}<span>Sign in</span></button></div>
+        <p class="w2-small">Already have early access? Sign in with your work email. We will email you a 6-digit code.</p>`,
+      denied: `<p>You are signed in as <b>${esc((s && s.email) || "")}</b>, which does not have early access yet. For early access, please contact ${accessLink}.</p>
+        <div class="w2-gate-act"><button type="button" class="btn" id="w2-other">Sign in with a different email</button></div>`,
+      offline: `<p>The page could not check your access. Please check your connection and reload the page.</p>
+        <div class="w2-gate-act"><button type="button" class="btn" onclick="location.reload()">Reload</button></div>`,
+    }[state];
+    $("w2-gate").innerHTML = state === "checking" ? body : `<div class="card w2-gate-card">
+        <span class="w2-gate-ico">${lock}</span>
+        <p class="w2-kicker">Women and girls in Sudan</p>
+        <h1>This page is under development</h1>
+        ${body}</div>`;
+    if ($("w2-signin")) $("w2-signin").addEventListener("click", () => SF.auth.open(signInOpts));
+    if ($("w2-other")) $("w2-other").addEventListener("click", () => { SF.auth.clear(); SF.auth.drawButton(); SF.auth.open(signInOpts); });
+  }
+
+  // Asks the back end, so access cannot be given by changing anything in this browser
+  async function hasAccess() {
+    const s = SF.auth.get();
+    if (!s || !SF.config.authUrl) return { state: "out" };
+    let r;
+    try { r = await fetch(SF.config.authUrl + "/api/auth/me", { headers: { Authorization: `Bearer ${s.token}` }, cache: "no-store" }); }
+    catch (e) { return { state: "offline" }; }
+    if (r.status === 401) { SF.auth.clear(); SF.auth.drawButton(); return { state: "out" }; }
+    const j = await r.json().catch(() => ({}));
+    if (!j.ok) return { state: "offline" };
+    return (j.pages || []).includes("women") ? { state: "in" } : { state: "denied", s: j };
+  }
+
+  function load() {
+    if (loaded) return;
+    loaded = true;
+    Promise.all([SF.loadJSON("data/women.json"), SF.loadJSON(SF.config.dataUrl).catch(() => null), SF.loadJSON("data/stories.json").catch(() => null)])
+      .then(([d, data, stories]) => {
+        D = d; SRC = d.sources;
+        drawTop(); drawMessages(); drawFace(); drawFunding(); drawInvest(); drawVoices(stories); drawActors(); drawMap(data); drawSources();
+        drawNews();
+        SF.renderFooter(data && data.lastUpdated);
+        $("w2-contact").href = mailto();
+        $("main").removeAttribute("data-locked");
+      })
+      .catch(() => { $("main").removeAttribute("data-locked"); $("main").insertAdjacentHTML("afterbegin", `<div class="note-box warn">The page data could not be loaded. Please reload the page.</div>`); });
+  }
+
+  async function check() {
+    gate("checking");
+    const a = await hasAccess();
+    if (a.state === "in") load(); else gate(a.state, a.s);
+  }
+
   SF.renderHeader("women");
-  Promise.all([SF.loadJSON("data/women.json"), SF.loadJSON(SF.config.dataUrl).catch(() => null), SF.loadJSON("data/stories.json").catch(() => null)])
-    .then(([d, data, stories]) => {
-      D = d; SRC = d.sources;
-      drawTop(); drawMessages(); drawFace(); drawFunding(); drawInvest(); drawVoices(stories); drawActors(); drawMap(data); drawSources();
-      drawNews();
-      SF.renderFooter(data && data.lastUpdated);
-      $("w2-contact").href = mailto();
-    })
-    .catch(() => { $("main").insertAdjacentHTML("afterbegin", `<div class="note-box warn">The page data could not be loaded. Please reload the page.</div>`); SF.renderFooter(); });
+  SF.renderFooter();
+  document.addEventListener("sf-signed-in", check);
+  // after Sign out, start again from a clean page, so nothing of the page stays behind
+  document.addEventListener("sf-signed-out", () => { if (loaded) location.reload(); else check(); });
+  check();
 })();
