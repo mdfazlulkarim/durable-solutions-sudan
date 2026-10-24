@@ -179,28 +179,6 @@
     });
   }
 
-  function csv() {
-    const rows = [["Section", "Figure", "Source", "Source date", "Link"]];
-    const src = (k) => { k = [].concat(k)[0]; const s = SRC[k]; return s ? [`${s.org}: ${s.title}`, s.date, s.url] : ["", "", ""]; };
-    D.top.forEach((t) => rows.push(["Headline", `${t.value} ${t.label} (${t.note})`, ...src(t.src)]));
-    D.messages.forEach((m) => rows.push(["Key message", `${m.title}: ${m.text}`, ...src(m.src)]));
-    D.face.forEach((t) => rows.push(["What women and girls face", `${t.value} ${t.label}`, ...src(t.src)]));
-    D.needs.forEach((n) => n.points.forEach((p) => rows.push([n.title, p.text, ...src(p.src)])));
-    const f = D.funding;
-    rows.push(["What is missing", `Gender-based violence: ${people(f.gbv.reached)} reached (${f.gbv.reachedAsOf}) of 12.4 million in need; ${people(f.gbv.targeted)} targeted; ${usd(f.gbv.required)} required`, ...src(f.gbv.src)]);
-    rows.push(["What is missing", `UNFPA 2026 appeal: ${usd(f.unfpa.gapTotal)} missing of ${usd(f.unfpa.required)}, ${f.unfpa.asOf}`, ...src(f.unfpa.src)]);
-    f.unfpa.gap.forEach((x) => rows.push(["What is missing", `UNFPA missing for ${x.label}: ${usd(x.value)}`, ...src(f.unfpa.src)]));
-    rows.push(["What is missing", `Sudan humanitarian appeal 2026: ${f.hnrp.pct}% funded, ${usd(f.hnrp.received)} of ${usd(f.hnrp.required)}, ${f.hnrp.asOf}`, ...src(f.hnrp.src)]);
-    f.wlo.forEach((w) => rows.push(["What is missing", w.text, ...src(w.src)]));
-    D.invest.forEach((i) => rows.push(["Why invest in women", `${i.title}: ${i.text}`, ...src(i.src)]));
-    D.actors.forEach((a) => a.figures.forEach((x) => rows.push([`Who is doing what: ${a.name}`, x, ...src(a.src)])));
-    const q = (v) => `"${String(v == null ? "" : v).replace(/"/g, '""')}"`;
-    const blob = new Blob(["﻿" + rows.map((r) => r.map(q).join(",")).join("\r\n")], { type: "text/csv;charset=utf-8" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob); a.download = `women-and-girls-sudan-figures-${D.updated}.csv`;
-    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-  }
-
   SF.renderHeader("women");
   Promise.all([SF.loadJSON("data/women.json"), SF.loadJSON(SF.config.dataUrl).catch(() => null), SF.loadJSON("data/stories.json").catch(() => null)])
     .then(([d, data, stories]) => {
@@ -209,8 +187,6 @@
       drawNews();
       SF.renderFooter(data && data.lastUpdated);
       $("w2-contact").href = mailto();
-      $("w2-csv").addEventListener("click", csv);
-      $("w2-print").addEventListener("click", () => { document.querySelectorAll("details.w2-more").forEach((x) => (x.open = true)); window.print(); });
     })
     .catch(() => { $("main").insertAdjacentHTML("afterbegin", `<div class="note-box warn">The page data could not be loaded. Please reload the page.</div>`); SF.renderFooter(); });
 })();
