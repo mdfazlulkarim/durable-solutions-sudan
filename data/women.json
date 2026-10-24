@@ -150,6 +150,60 @@
    "title": "Statement to the Humanitarian Country Team on the escalation of hostilities in Blue Nile State",
    "date": "",
    "url": "https://reliefweb.int/report/sudan/statement-sudan-women-advisory-group-humanitarian-country-team-hct-escalation-hostilities-blue-nile-state-enar"
+  },
+  "pbf-review": {
+   "org": "UN Peacebuilding Fund",
+   "title": "Sudan PBF portfolio 2019 to 2024 review",
+   "date": "2026-01",
+   "url": "https://www.un.org/peacebuilding/sites/default/files/documents/sudan_pbf_portfolio_2019-2024_review_final.pdf"
+  },
+  "sfcg-2023": {
+   "org": "Search for Common Ground",
+   "title": "Final evaluation: Strengthening the political and peacebuilding role of women in Sudan's transition",
+   "date": "2023-02",
+   "url": "https://cnxus.org/wp-content/uploads/2023/09/Final-evaluation_Strengthening-the-Political-and-Peacebuilding-Role-of-Women-in-Sudans-Transition_Feb-2023.pdf"
+  },
+  "pbf-darfur": {
+   "org": "UN Peacebuilding Fund",
+   "title": "Final evaluation of the Peacebuilding Fund Darfur programme",
+   "date": "2024-01",
+   "url": "https://www.un.org/peacebuilding/sites/www.un.org.peacebuilding/files/documents/00119471_-_sdn.pdf"
+  },
+  "wb-thamarat": {
+   "org": "World Bank",
+   "title": "Sudan Family Support Project: implementation status and results report",
+   "date": "2024-06",
+   "url": "https://documents1.worldbank.org/curated/en/099062724154535730/text/P173521-4f382089-ebb2-4152-96e8-beaae8017cbd.txt"
+  },
+  "unw-cpe": {
+   "org": "UN Women",
+   "title": "Country portfolio evaluation, UN Women Sudan (2018 to 2023): annexes",
+   "date": "",
+   "url": "https://gate.unwomen.org/EvaluationDocument/Download?evaluationDocumentID=10086"
+  },
+  "jrp-kassala": {
+   "org": "FAO, UNICEF and WFP",
+   "title": "Final evaluation of the Joint Resilience Project in Kassala",
+   "date": "2018-02",
+   "url": "https://unevaluation.org/member_publications/final-evaluation-joint-resilience-project-kassala"
+  },
+  "undef-2015": {
+   "org": "UN Democracy Fund",
+   "title": "Evaluation report: Supporting the role of women leaders in Sudan and South Sudan",
+   "date": "2015-10",
+   "url": "https://www.un.org/democracyfund/sites/default/files/sudan_-_udf-10-366-sud_-_evaluation_report.pdf"
+  },
+  "unw-2012": {
+   "org": "UN Women",
+   "title": "Programme evaluation: Building capacities for gender equality in governance and protection of women's rights in Sudan",
+   "date": "2012-06-25",
+   "url": "https://gate.unwomen.org/EvaluationDocument/Download?evaluationDocumentID=3574"
+  },
+  "undp-ggepp": {
+   "org": "UNDP",
+   "title": "Evaluation: Good governance and equity in political participation in post-conflict Sudan",
+   "date": "",
+   "url": "https://erc.undp.org/evaluation/documents/download/2291"
   }
  },
  "headline": [
@@ -674,6 +728,122 @@
    {
     "key": "UNDP",
     "name": "United Nations Development Programme"
+   }
+  ]
+ },
+ "failed": {
+  "title": "What has not worked, and what we learned",
+  "lead": "Evaluations of past projects for women and girls in Sudan, latest first. Each links to the evaluation or report.",
+  "show": 5,
+  "items": [
+   {
+    "year": "2023",
+    "period": "Planned for 2023",
+    "name": "Peacebuilding Fund call for projects led by and for women",
+    "who": "UN Peacebuilding Fund",
+    "where": "Sudan",
+    "what": "Ready to launch, then suspended when the war began in April 2023. The Fund's review also found that including women was \"tokenistic in many projects\".",
+    "src": "pbf-review"
+   },
+   {
+    "year": "2023",
+    "period": "2020 to 2023",
+    "name": "Strengthening the political and peacebuilding role of women",
+    "who": "Search for Common Ground",
+    "where": "Gedaref, West and South Kordofan, Khartoum",
+    "what": "Women gained seats on committees but not power: \"seats, but no microphones\". It missed its target for young women (59% against 75%), gave no follow-up after training and lost activities after the 2021 coup.",
+    "src": "sfcg-2023"
+   },
+   {
+    "year": "2022",
+    "period": "2020 to 2022",
+    "name": "Peacebuilding Fund Darfur programme",
+    "who": "UNDP, UNHCR, UNICEF, FAO, UN-Habitat and IOM",
+    "where": "Five Darfur states",
+    "what": "It started without a gender analysis of the conflict. Activities for women were not fully delivered because of tribal fighting, the seasons and funding, and their effect on peace is unclear.",
+    "src": "pbf-darfur"
+   },
+   {
+    "year": "2021",
+    "period": "2021, stopped after 8 of 50 months",
+    "name": "Sudan Family Support Programme (Thamarat)",
+    "who": "World Bank and the Ministry of Finance",
+    "where": "Sudan",
+    "what": "The cash support stopped after the October 2021 coup, having reached 1.48 million of 2.2 million families. It never recorded the share of women among the people paid (the target was 50%), and the planned gender work was not done.",
+    "src": "wb-thamarat"
+   },
+   {
+    "year": "2021",
+    "period": "2016 to 2021",
+    "name": "Promoting Women's Rights in Darfur, and seven other projects",
+    "who": "UN Women",
+    "where": "Darfur and other states",
+    "what": "Eight projects, including this one of about US$500,000, had no monitoring framework and no evaluation on record, so no one can say whether they worked.",
+    "src": "unw-cpe"
+   },
+   {
+    "year": "2017",
+    "period": "2014 to 2017",
+    "name": "Joint Resilience Project",
+    "who": "UNICEF, WFP and FAO",
+    "where": "Kassala",
+    "what": "Gender indicators were added only in the third year and many village livelihood targets were missed. With no complaints system, aid sometimes went to people who were not the most vulnerable, and there was no exit plan.",
+    "src": "jrp-kassala"
+   },
+   {
+    "year": "2014",
+    "period": "2012 to 2014",
+    "name": "Supporting the role of women leaders",
+    "who": "Search for Common Ground and Badya Centre, UN Democracy Fund",
+    "where": "West and South Kordofan",
+    "what": "No exit strategy, and a women-only approach left out the men and traditional leaders who hold power. The planned conference and end survey were not approved, and networks without funding faded or closed.",
+    "src": "undef-2015"
+   },
+   {
+    "year": "2012",
+    "period": "2008 to 2012",
+    "name": "Gender equality in governance and protection of women's rights",
+    "who": "UN Women",
+    "where": "Khartoum, Darfur and other states",
+    "what": "Reform of the rape law stalled for lack of political will. In one small income project, 20 sewing machines sat locked up for over a year, and funds reached partners 3 to 9 months late.",
+    "src": "unw-2012"
+   },
+   {
+    "year": "2009",
+    "period": "2005 to 2009",
+    "name": "Good governance and equity in political participation",
+    "who": "UNDP",
+    "where": "Khartoum, Wad Madani and the South (before 2011)",
+    "what": "The policy reform part was \"the least successful\", and women's forums went quiet once project staff left.",
+    "src": "undp-ggepp"
+   }
+  ],
+  "lessonsTitle": "What we learned",
+  "lessons": [
+   {
+    "icon": "fund",
+    "t": "Plan for shocks",
+    "d": "The 2021 coup and the 2023 war stopped projects outright. Flexible funding lets work move or change instead of stopping."
+   },
+   {
+    "icon": "meeting",
+    "t": "Seats are not power",
+    "d": "Training women alone gave them seats without influence. Work with the men and leaders who decide, too."
+   },
+   {
+    "icon": "partnership",
+    "t": "Plan the exit from day one",
+    "d": "Groups, forums and networks faded when the money ended. Budget for follow-up and local ownership."
+   },
+   {
+    "icon": "report",
+    "t": "Count women from the start",
+    "d": "Gender targets added late, or never, left no evidence. Set baselines and targets for women at the design stage."
+   },
+   {
+    "icon": "people-in-need",
+    "t": "Ask women, and make it easy to take part",
+    "d": "Without complaint channels or suitable timings, women were left out. Consult them and fit activities to their day."
    }
   ]
  }
