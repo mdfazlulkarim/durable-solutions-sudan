@@ -485,8 +485,7 @@
  "hero": {
   "kicker": "Women and girls in Sudan",
   "title": "War hits women and girls hardest. The services that protect them are closing for lack of funds.",
-  "sub": "Investing in women pays back many times over: every US$1 spent on ending maternal deaths and the unmet need for family planning returns US$8.40.",
-  "subSrc": "unfpa-roi"
+  "sub": "Investing in women and girls pays back many times over, and women are already leading the response."
  },
  "top": [
   {
@@ -611,7 +610,8 @@
     "label": "back for every US$1 spent on ending maternal deaths and the unmet need for family planning",
     "src": "unfpa-roi",
     "sudan": "805,000 pregnant women need aid.",
-    "sudanSrc": "unfpa-sitrep"
+    "sudanSrc": "unfpa-sitrep",
+    "short": "back for every US$1 spent on mothers' health and family planning"
    },
    {
     "icon": "child-protection",
@@ -619,7 +619,8 @@
     "label": "back for every US$1 spent on ending child marriage",
     "src": "unfpa-roi",
     "sudan": "1 in 3 women were married before 18 (2014).",
-    "sudanSrc": "child-marriage"
+    "sudanSrc": "child-marriage",
+    "short": "back for every US$1 spent on ending child marriage"
    },
    {
     "icon": "education",
@@ -627,7 +628,8 @@
     "label": "what women with secondary education earn, compared with women with no education",
     "src": "wb-girls",
     "sudan": "4.1 million girls are out of school.",
-    "sudanSrc": "unicef-edu"
+    "sudanSrc": "unicef-edu",
+    "short": "the earnings of women with secondary education, compared with none"
    },
    {
     "icon": "agriculture",
@@ -635,7 +637,8 @@
     "label": "fewer people facing hunger worldwide if women farmers had the same productivity and pay as men",
     "src": "fao-roi",
     "sudan": "87% of farmers surveyed in 2025 were women.",
-    "sudanSrc": "care"
+    "sudanSrc": "care",
+    "short": "fewer hungry people if women farmers had equal support"
    },
    {
     "icon": "meeting",
@@ -643,9 +646,11 @@
     "label": "more likely that a peace agreement lasts 15 years when women help make it",
     "src": "unw-peace",
     "sudan": "Women have had no seat as negotiators in the official talks.",
-    "sudanSrc": "unw-alert"
+    "sudanSrc": "unw-alert",
+    "short": "more likely that a peace deal lasts 15 years"
    }
-  ]
+  ],
+  "heroTitle": "What investing in women and girls returns"
  },
  "works": {
   "title": "In Sudan, women are already part of the solution",
