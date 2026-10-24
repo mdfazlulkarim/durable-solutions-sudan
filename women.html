@@ -9,13 +9,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261024d">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261024e">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 </head>
 <body>
   <header id="site-header"></header>
 
-  <main class="w2" id="main">
+  <main class="w2" id="main" data-locked>
+    <!-- Early access: shown instead of the page until the back end confirms access -->
+    <section class="w2-gate" id="w2-gate" aria-live="polite"><p class="w2-small" style="margin:0">Checking access…</p></section>
+
     <!-- 30 seconds: the message, three numbers and the ask -->
     <section class="w2-top" aria-labelledby="w2-title">
       <p class="w2-kicker" id="w2-kicker"></p>
@@ -80,9 +83,9 @@
   </main>
 
   <footer id="site-footer"></footer>
-  <script src="assets/js/common.js?v=20261024d"></script>
-  <script src="assets/js/icons.js?v=20261024d"></script>
-  <script src="assets/js/icons-theme.js?v=20261024d"></script>
-  <script src="assets/js/women.js?v=20261024d"></script>
+  <script src="assets/js/common.js?v=20261024e"></script>
+  <script src="assets/js/icons.js?v=20261024e"></script>
+  <script src="assets/js/icons-theme.js?v=20261024e"></script>
+  <script src="assets/js/women.js?v=20261024e"></script>
 </body>
 </html>
