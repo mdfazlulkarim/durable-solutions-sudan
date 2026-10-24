@@ -23,15 +23,14 @@
   const cite = (keys) => [].concat(keys || []).filter((k) => SRC[k]).map((k) => {
     if (!ORDER.includes(k)) ORDER.push(k);
     const n = ORDER.indexOf(k) + 1, s = SRC[k];
-    return `<a class="w2-cite" href="#src-${esc(k)}" data-src="${esc(k)}" title="${esc(`Source: ${s.org}, ${when(s.date)}`)}">${n}</a>`;
+    return `<a class="w2-cite" href="#src-${esc(k)}" data-src="${esc(k)}" title="${esc(`Source: ${s.org}${s.date ? `, ${when(s.date)}` : ""}`)}">${n}</a>`;
   }).join("");
-  const mailto = () => `mailto:${SF.config.contactEmail}?subject=${encodeURIComponent("Supporting women and girls in Sudan")}`;
 
   function drawTop() {
     const h = D.hero;
     $("w2-kicker").textContent = `${h.kicker} · ${when(D.updated).replace(/^\d+ /, "")}`;
     $("w2-title").textContent = h.title;
-    $("w2-sub").textContent = h.sub;
+    $("w2-sub").innerHTML = `${esc(h.sub)}${cite(h.subSrc)}`;
     $("w2-big").innerHTML = D.top.map((t) => `
       <div class="w2-big-c">
         <span class="w2-ico">${icon(t.icon)}</span>
@@ -41,8 +40,7 @@
       </div>`).join("");
     $("w2-ask").innerHTML = `
       <div class="w2-ask-h">${esc(D.ask.title)}</div>
-      <ol>${D.ask.items.map((a) => `<li><b>${esc(a.b)}</b> ${esc(a.t)}</li>`).join("")}</ol>
-      <a class="btn w2-ask-btn" href="${mailto()}">Contact the DSWG</a>`;
+      <ol>${D.ask.items.map((a) => `<li><b>${esc(a.b)}</b> ${esc(a.t)}</li>`).join("")}</ol>`;
   }
 
   function drawMessages() {
@@ -94,25 +92,41 @@
       </div>`;
   }
 
-  function drawInvest() {
-    const card = (i) => `
+  // Solutions: the return on investing in women (global evidence, each tied to Sudan), then what already works in Sudan
+  function drawSolutions() {
+    const r = D.roi;
+    $("w2-roi").innerHTML = `
+      <h3 class="w2-roi-h">${esc(r.title)}</h3>
+      <div class="w2-roi-g">${r.items.map((i) => `
+        <div class="w2-roi-c">
+          <span class="w2-ico">${icon(i.icon)}</span>
+          <div class="w2-roi-v">${esc(i.value)}${cite(i.src)}</div>
+          <p class="w2-roi-l">${esc(i.label)}</p>
+          <p class="w2-roi-s"><b>In Sudan:</b> ${esc(i.sudan)}${cite(i.sudanSrc)}</p>
+        </div>`).join("")}</div>
+      <p class="w2-roi-n">${esc(r.lead)}</p>`;
+    $("w2-works-h").textContent = D.works.title;
+    $("w2-works").innerHTML = D.works.items.map((i) => `
       <div class="card w2-tile w2-inv">
         <span class="w2-ico">${icon(i.icon)}</span>
         <div><div class="w2-tile-v">${esc(i.value)}</div><h3>${esc(i.title)}</h3><p>${esc(i.text)}${cite(i.src)}</p></div>
-      </div>`;
-    $("w2-invest").innerHTML = D.invest.filter((i) => D.investTop.includes(i.value)).map(card).join("");
-    $("w2-invest-more").innerHTML = D.invest.filter((i) => !D.investTop.includes(i.value)).map(card).join("");
+      </div>`).join("");
   }
 
   function drawVoices(st) {
     const items = ((st && st.items) || []).filter((x) => x.topic === "women")
       .sort((a, b) => (a.sort || 99) - (b.sort || 99) || String(b.date).localeCompare(String(a.date)));
+    const theme = (s) => { const t = `${s.title} ${s.summary}`; return /midwi|pregnan|maternal|birth/i.test(t) ? "pregnant" : /farm|harvest|food/i.test(t) ? "agriculture" : /mutual aid|solidarity|kitchen/i.test(t) ? "partnership" : /peace|leader/i.test(t) ? "leadership" : "person-1"; };
     const card = (s) => `
-      <article class="card w2-voice">
+      <article class="card w2-voice${s.photo ? " has-photo" : ""}">
+        ${s.photo ? `<figure class="w2-ph"><img src="${esc(s.photo)}" alt="${esc(s.photoAlt || "")}" loading="lazy"><figcaption>${esc(s.photoCredit || "")}</figcaption></figure>`
+          : `<div class="w2-ph w2-ph-none" aria-hidden="true">${icon(theme(s))}<span>${esc(s.place || s.org || "")}</span></div>`}
+        <div class="w2-voice-b">
         ${s.quote ? `<blockquote>“${esc(s.quote.replace(/^["“]|["”]$/g, ""))}”</blockquote>${s.quoteBy ? `<p class="w2-by">${esc(s.quoteBy)}</p>` : ""}` : ""}
         <h3><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a></h3>
         ${s.summary ? `<p>${esc(s.summary)}</p>` : ""}
         <p class="w2-small">${esc(s.org || "")}${s.date ? ` · ${esc(when(s.date))}` : ""}${s.place ? ` · ${esc(s.place)}` : ""}</p>
+        </div>
       </article>`;
     const quoted = items.filter((s) => s.quote);
     const first = (quoted.length >= 2 ? quoted : items).slice(0, 2);
@@ -127,24 +141,50 @@
       <tr><th scope="row">${esc(a.name)}</th><td>${esc(a.what)}</td><td>${esc(a.figures[0])}${cite(a.src)}</td></tr>`).join("")}</tbody>`;
   }
 
-  function drawMap(data) {
+  // A small map of Sudan with the project's states filled in
+  let GEO = null, VIEW = "0 0 860 920";
+  function miniMap(states) {
+    if (!GEO) return "";
+    const on = new Set(states || []);
+    return `<svg class="w2-mini" viewBox="${VIEW}" role="img" aria-label="${esc(`Map of Sudan showing ${on.size} state${on.size === 1 ? "" : "s"}`)}">${
+      GEO.states.map((st) => `<path d="${st.path}" class="${on.has(st.name) ? "on" : ""}"><title>${esc(st.name)}</title></path>`).join("")}</svg>`;
+  }
+  const years = (p) => { const a = String(p.start || "").slice(0, 4), b = String(p.end || "").slice(0, 4); return a && b && a !== b ? `${a} to ${b}` : a || b || ""; };
+  const listStates = (st) => (st.length <= 3 ? st.join(", ") : `${st.slice(0, 2).join(", ")} and ${st.length - 2} more states`);
+
+  function drawProjects(data) {
     const projects = (data && data.projects) || [];
     const rx = new RegExp(`\\b(${D.keywords})\\b`, "i");
-    const focus = projects.filter((p) => rx.test(`${p.name || ""} ${p.description || ""} ${p.remarks || ""}`));
+    const focus = projects.filter((p) => rx.test(`${p.name || ""} ${p.description || ""} ${p.remarks || ""}`))
+      .sort((a, b) => (b.budget || 0) - (a.budget || 0) || String(a.name).localeCompare(String(b.name)));
     const budget = focus.reduce((s, p) => s + (p.budget || 0), 0);
     const states = new Set(focus.flatMap((p) => p.states || []));
     const reporting = projects.filter((p) => p.femaleShare != null && p.people && p.people.total);
-    const reached = reporting.reduce((s, p) => s + p.people.total * p.femaleShare, 0);
-    $("w2-map").innerHTML = `
-      <div class="w2-map">
-        <div class="card w2-tile"><span class="w2-ico">${icon("protection")}</span><div><div class="w2-tile-v">${focus.length} of ${projects.length}</div>
-          <div class="w2-tile-l">projects on the map focus on women and girls: ${budget ? `$${trim((budget / 1e6).toFixed(1))} million` : "no budget reported"} in ${states.size} state${states.size === 1 ? "" : "s"}</div></div></div>
-        <div class="card w2-tile w2-warn"><span class="w2-ico">${icon("report")}</span><div><div class="w2-tile-v">${reporting.length} of ${projects.length}</div>
-          <div class="w2-tile-l">projects report how many women and girls they reach${reporting.length ? `: about ${people(Math.round(reached))}` : ""}. ${reporting.length < projects.length ? `Partners can add it through <a href="add.html">Add your project</a> or a correction.` : ""}</div></div></div>
-      </div>
-      ${focus.length ? `<details class="w2-more"><summary>See the ${focus.length} projects</summary><ul class="w2-proj">${focus.map((p) =>
-        `<li><a href="./#project=${encodeURIComponent(p.id)}">${esc(p.name)}</a> <span class="w2-small">${esc(p.lead)}${p.budget ? `, ${esc(SF.fmtMoney(p.budget))}` : ""}</span></li>`).join("")}</ul>
-        <p class="w2-small">Projects whose name or description mentions women, girls, gender, gender-based violence, female genital mutilation, midwives or maternal health.</p></details>` : ""}`;
+    $("w2-proj-sum").innerHTML = `<b>${focus.length} of ${projects.length}</b> projects on the map focus on women and girls${budget ? `: <b>${usd(budget)}</b>` : ""} in ${states.size} state${states.size === 1 ? "" : "s"}.
+      <span class="w2-gapnote">${icon("report")}<span>${reporting.length ? `Only ${reporting.length} of ${projects.length} projects report` : `None of the ${projects.length} projects reports yet`} how many women and girls they reach. Partners can add it through <a href="add.html">Add your project</a>.</span></span>`;
+    $("w2-proj").innerHTML = focus.map((p) => {
+      const st = p.nationwide ? ["Nationwide"] : p.states || [];
+      return `
+      <article class="card w2-pc">
+        <div class="w2-pc-top">
+          <div class="w2-pc-head">
+            <div class="w2-pc-org">${SF.logoImg(p.lead, "mark", "w2-pc-logo")}<span>${esc(p.lead || "")}</span></div>
+            <h3>${esc(p.name)}</h3>
+          </div>
+          ${miniMap(p.nationwide ? GEO && GEO.states.map((x) => x.name) : p.states)}
+        </div>
+        <p class="w2-pc-meta">${[years(p), p.budget ? `US${SF.fmtMoney(p.budget)}` : "", p.people && p.people.total ? `${people(p.people.total)} people` : ""].filter(Boolean).map(esc).join(" · ")}</p>
+        <p class="w2-pc-where">${esc(listStates(st))}</p>
+        <a class="w2-pc-link" href="./#project=${encodeURIComponent(p.id)}">View on the map</a>
+      </article>`; }).join("") || `<p class="w2-small">No projects yet.</p>`;
+  }
+
+  function drawAgencies() {
+    const a = D.agencies;
+    $("w2-agencies-h").textContent = a.title;
+    $("w2-agencies").innerHTML = `<p class="w2-lead">${esc(a.lead)}</p>
+      <ul class="w2-logos">${a.items.map((i) => { const l = SF.LOGOS[i.key];
+        return `<li title="${esc(i.name)}">${l ? `<img src="${esc(l.full)}" alt="${esc(i.name)}" loading="lazy">` : `<span class="w2-logo-t">${esc(i.key)}<small>${esc(i.name !== i.key ? i.name : "")}</small></span>`}</li>`; }).join("")}</ul>`;
   }
 
   async function drawNews() {
@@ -166,7 +206,7 @@
   function drawSources() {
     Object.keys(SRC).forEach((k) => { if (!ORDER.includes(k)) ORDER.push(k); });
     $("w2-sources-sum").textContent = `Sources (${ORDER.length})`;
-    $("w2-sources").innerHTML = ORDER.map((k) => { const s = SRC[k]; return `<li id="src-${esc(k)}">${esc(s.org)}, <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>, ${esc(when(s.date))}.</li>`; }).join("");
+    $("w2-sources").innerHTML = ORDER.map((k) => { const s = SRC[k]; return `<li id="src-${esc(k)}">${esc(s.org)}, <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>${s.date ? `, ${esc(when(s.date))}` : ""}.</li>`; }).join("");
     // a source number opens the list and jumps to the source
     document.addEventListener("click", (e) => {
       const a = e.target.closest("a.w2-cite");
@@ -230,13 +270,19 @@
   function load() {
     if (loaded) return;
     loaded = true;
-    Promise.all([SF.loadJSON("data/women.json"), SF.loadJSON(SF.config.dataUrl).catch(() => null), SF.loadJSON("data/stories.json").catch(() => null)])
-      .then(([d, data, stories]) => {
+    Promise.all([SF.loadJSON("data/women.json"), SF.loadJSON(SF.config.dataUrl).catch(() => null), SF.loadJSON("data/stories.json").catch(() => null),
+      SF.loadJSON("data/geo.json").catch(() => null), SF.loadLogos()])
+      .then(([d, data, stories, geo]) => {
         D = d; SRC = d.sources;
-        drawTop(); drawMessages(); drawFace(); drawFunding(); drawInvest(); drawVoices(stories); drawActors(); drawMap(data); drawSources();
+        if (geo && geo.states) {
+          GEO = geo;
+          const bb = geo.states.reduce((m, x) => [Math.min(m[0], x.bbox[0]), Math.min(m[1], x.bbox[1]), Math.max(m[2], x.bbox[2]), Math.max(m[3], x.bbox[3])], [1e9, 1e9, -1e9, -1e9]);
+          VIEW = `${bb[0] - 6} ${bb[1] - 6} ${bb[2] - bb[0] + 12} ${bb[3] - bb[1] + 12}`;
+        }
+        // drawn in page order, so the source numbers run from the top of the page down
+        drawTop(); drawMessages(); drawFace(); drawSolutions(); drawFunding(); drawVoices(stories); drawProjects(data); drawActors(); drawAgencies(); drawSources();
         drawNews();
         SF.renderFooter(data && data.lastUpdated);
-        $("w2-contact").href = mailto();
         $("main").removeAttribute("data-locked");
       })
       .catch(() => { $("main").removeAttribute("data-locked"); $("main").insertAdjacentHTML("afterbegin", `<div class="note-box warn">The page data could not be loaded. Please reload the page.</div>`); });

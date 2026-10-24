@@ -120,6 +120,36 @@
    "title": "Strength in solidarity: how mutual aid is helping women survive Sudan's war",
    "date": "2025-01-28",
    "url": "https://www.thenewhumanitarian.org/news-feature/2025/01/28/how-mutual-aid-helping-women-survive-sudan-war"
+  },
+  "unfpa-roi": {
+   "org": "UNFPA",
+   "title": "Investing in three transformative results: realizing powerful returns",
+   "date": "2022",
+   "url": "https://www.unfpa.org/sites/default/files/pub-pdf/Investment_report_8%20Nov_FINAL.pdf"
+  },
+  "wb-girls": {
+   "org": "World Bank",
+   "title": "Missed opportunities: the high cost of not educating girls",
+   "date": "2018-07-11",
+   "url": "https://www.worldbank.org/en/topic/education/publication/missed-opportunities-the-high-cost-of-not-educating-girls"
+  },
+  "fao-roi": {
+   "org": "FAO",
+   "title": "The status of women in agrifood systems (news release)",
+   "date": "2023-04-13",
+   "url": "https://www.fao.org/newsroom/detail/women-s-equality-in-agrifood-systems-could-boost-the-global-economy-by-1-trillion-reduce-food-insecurity-by-45-million-new-fao-report/en"
+  },
+  "unw-peace": {
+   "org": "UN Women",
+   "title": "Women at the forefront of peacebuilding (citing Stone, 2015, a study of 156 peace agreements)",
+   "date": "2016",
+   "url": "https://www.unwomen.org/en/news/in-focus/women-peace-security/2016"
+  },
+  "wag-bn": {
+   "org": "Sudan Women Advisory Group",
+   "title": "Statement to the Humanitarian Country Team on the escalation of hostilities in Blue Nile State",
+   "date": "",
+   "url": "https://reliefweb.int/report/sudan/statement-sudan-women-advisory-group-humanitarian-country-team-hct-escalation-hostilities-blue-nile-state-enar"
   }
  },
  "headline": [
@@ -216,50 +246,6 @@
    }
   ]
  },
- "invest": [
-  {
-   "value": "20M",
-   "title": "Women-led organisations reach the people others cannot",
-   "text": "The 85 women-led organisations behind UN Women's 2026 gender alert reach nearly 20 million people in need. They run community kitchens, safe spaces and survivor support, and negotiate access where formal systems have collapsed.",
-   "src": "unw-alert",
-   "icon": "leadership"
-  },
-  {
-   "value": "1 in 3",
-   "title": "Women lead a large share of the local response",
-   "text": "By the end of 2025 the Sudan Humanitarian Fund had supported more than 1,000 mutual aid groups, and over one third of them were women-led. US$25 million went to mutual aid groups in 2025.",
-   "src": "hnrp-reset",
-   "icon": "partnership"
-  },
-  {
-   "value": "110",
-   "title": "Small grants open the door",
-   "text": "Since 2020 the Women's Peace and Humanitarian Fund has supported 110 women's organisations in Sudan. Close to half received UN funding for the first time.",
-   "src": "wphf",
-   "icon": "protection"
-  },
-  {
-   "value": "87%",
-   "title": "Women keep farms running",
-   "text": "In CARE's 2025 survey of 492 farmers in Darfur and South Kordofan, 87% were women, as men migrated or joined armed groups. Access to finance and inputs is their main barrier. CARE calls for funding women's farming groups directly.",
-   "src": "care",
-   "icon": "agriculture"
-  },
-  {
-   "value": "30%",
-   "title": "Room to grow the economy",
-   "text": "Women make up about 30% of Sudan's labour force. Recovery that brings more women into paid work, farming value chains and enterprise adds income for whole households.",
-   "src": "wb-labour",
-   "icon": "trending"
-  },
-  {
-   "value": "No seat",
-   "title": "Missing from the peace table",
-   "text": "Women mediate local conflicts and negotiate humanitarian access, yet they have had no meaningful role as negotiators in the official peace talks of the past three years.",
-   "src": "unw-alert",
-   "icon": "advocacy"
-  }
- ],
  "needs": [
   {
    "key": "protection",
@@ -412,6 +398,17 @@
    "src": "hnrp-reset"
   },
   {
+   "name": "Sudan Women's Advisory Group (WAG)",
+   "what": "22 Sudanese and refugee women humanitarian leaders who advise the Humanitarian Country Team and speak for women and girls in crises, such as the fighting in Blue Nile.",
+   "figures": [
+    "Calls for sustained funding for women-led organisations and Women's Emergency Rooms, women-only shelters, and women leaders in all ceasefire talks"
+   ],
+   "src": [
+    "hnrp-reset",
+    "wag-bn"
+   ]
+  },
+  {
    "name": "Women-led organisations and women's emergency response rooms",
    "what": "Community kitchens, sanitary products, medical and psychosocial support for survivors, help for displaced women, local mediation.",
    "figures": [
@@ -434,7 +431,8 @@
  "hero": {
   "kicker": "Women and girls in Sudan",
   "title": "War hits women and girls hardest. The services that protect them are closing for lack of funds.",
-  "sub": "The evidence in five minutes: what women and girls face, what is missing, and why investing in women pays off for recovery."
+  "sub": "Investing in women pays back many times over: every US$1 spent on ending maternal deaths and the unmet need for family planning returns US$8.40.",
+  "subSrc": "unfpa-roi"
  },
  "top": [
   {
@@ -549,9 +547,130 @@
    "src": "child-marriage"
   }
  ],
- "investTop": [
-  "20M",
-  "1 in 3",
-  "87%"
- ]
+ "roi": {
+  "title": "Every dollar invested in women and girls comes back many times over",
+  "lead": "Global estimates from UNFPA, the World Bank, FAO and UN Women. The line under each shows why it matters in Sudan.",
+  "items": [
+   {
+    "icon": "pregnant",
+    "value": "US$8.40",
+    "label": "back for every US$1 spent on ending maternal deaths and the unmet need for family planning",
+    "src": "unfpa-roi",
+    "sudan": "805,000 pregnant women need aid.",
+    "sudanSrc": "unfpa-sitrep"
+   },
+   {
+    "icon": "child-protection",
+    "value": "US$33.60",
+    "label": "back for every US$1 spent on ending child marriage",
+    "src": "unfpa-roi",
+    "sudan": "1 in 3 women were married before 18 (2014).",
+    "sudanSrc": "child-marriage"
+   },
+   {
+    "icon": "education",
+    "value": "2×",
+    "label": "what women with secondary education earn, compared with women with no education",
+    "src": "wb-girls",
+    "sudan": "4.1 million girls are out of school.",
+    "sudanSrc": "unicef-edu"
+   },
+   {
+    "icon": "agriculture",
+    "value": "45M",
+    "label": "fewer people facing hunger worldwide if women farmers had the same productivity and pay as men",
+    "src": "fao-roi",
+    "sudan": "87% of farmers surveyed in 2025 were women.",
+    "sudanSrc": "care"
+   },
+   {
+    "icon": "meeting",
+    "value": "35%",
+    "label": "more likely that a peace agreement lasts 15 years when women help make it",
+    "src": "unw-peace",
+    "sudan": "Women have had no seat as negotiators in the official talks.",
+    "sudanSrc": "unw-alert"
+   }
+  ]
+ },
+ "works": {
+  "title": "In Sudan, women are already part of the solution",
+  "items": [
+   {
+    "icon": "leadership",
+    "value": "20M",
+    "title": "Women-led organisations reach the people others cannot",
+    "text": "The 85 women-led organisations behind UN Women's 2026 gender alert reach nearly 20 million people in need, with community kitchens, safe spaces and survivor support.",
+    "src": "unw-alert"
+   },
+   {
+    "icon": "partnership",
+    "value": "1 in 3",
+    "title": "Women lead a large share of the local response",
+    "text": "Over one third of the more than 1,000 mutual aid groups funded by the Sudan Humanitarian Fund by the end of 2025 were led by women.",
+    "src": "hnrp-reset"
+   },
+   {
+    "icon": "agriculture",
+    "value": "87%",
+    "title": "Women keep farms running",
+    "text": "In CARE's 2025 survey of 492 farmers in Darfur and South Kordofan, 87% were women. CARE calls for funding women's farming groups directly.",
+    "src": "care"
+   },
+   {
+    "icon": "meeting",
+    "value": "22",
+    "title": "Women leaders advise the humanitarian response",
+    "text": "The Sudan Women's Advisory Group (WAG), 22 Sudanese and refugee women humanitarian leaders, now informs senior humanitarian decisions.",
+    "src": [
+     "hnrp-reset",
+     "wag-bn"
+    ]
+   },
+   {
+    "icon": "protection",
+    "value": "110",
+    "title": "Small grants open the door",
+    "text": "Since 2020 the Women's Peace and Humanitarian Fund has supported 110 women's organisations in Sudan. Close to half received UN funding for the first time.",
+    "src": "wphf"
+   },
+   {
+    "icon": "trending",
+    "value": "30%",
+    "title": "Room to grow the economy",
+    "text": "Women make up about 30% of Sudan's labour force. Recovery that brings more women into paid work, farming and enterprise adds income for whole households.",
+    "src": "wb-labour"
+   }
+  ]
+ },
+ "agencies": {
+  "title": "Contributing agencies",
+  "lead": "The agencies and funds whose work for women and girls in Sudan appears on this page. UNFPA leads the response on gender-based violence and reproductive health.",
+  "items": [
+   {
+    "key": "UNFPA",
+    "name": "United Nations Population Fund"
+   },
+   {
+    "key": "UN Women",
+    "name": "UN Women"
+   },
+   {
+    "key": "WPHF",
+    "name": "Women's Peace and Humanitarian Fund"
+   },
+   {
+    "key": "SHF",
+    "name": "Sudan Humanitarian Fund (OCHA)"
+   },
+   {
+    "key": "CARE",
+    "name": "CARE"
+   },
+   {
+    "key": "UNDP",
+    "name": "United Nations Development Programme"
+   }
+  ]
+ }
 }
