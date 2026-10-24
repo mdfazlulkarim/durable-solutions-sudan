@@ -183,8 +183,8 @@
     const a = D.agencies;
     $("w2-agencies-h").textContent = a.title;
     $("w2-agencies").innerHTML = `<p class="w2-lead">${esc(a.lead)}</p>
-      <ul class="w2-logos">${a.items.map((i) => { const l = SF.LOGOS[i.key];
-        return `<li title="${esc(i.name)}">${l ? `<img src="${esc(l.full)}" alt="${esc(i.name)}" loading="lazy">` : `<span class="w2-logo-t">${esc(i.key)}<small>${esc(i.name !== i.key ? i.name : "")}</small></span>`}</li>`; }).join("")}</ul>`;
+      <ul class="w2-logos">${a.items.map((i) => { const src = i.logo || (SF.LOGOS[i.key] && SF.LOGOS[i.key].full);
+        return `<li title="${esc(i.name)}">${src ? `<img src="${esc(src)}" alt="${esc(i.name)}" loading="lazy">` : `<span class="w2-logo-t">${esc(i.key)}<small>${esc(i.name !== i.key ? i.name : "")}</small></span>`}</li>`; }).join("")}</ul>`;
   }
 
   async function drawNews() {

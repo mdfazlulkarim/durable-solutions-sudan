@@ -653,19 +653,23 @@
    },
    {
     "key": "UN Women",
-    "name": "UN Women"
+    "name": "UN Women",
+    "logo": "assets/img/agencies/UN-Women.png"
    },
    {
     "key": "WPHF",
-    "name": "Women's Peace and Humanitarian Fund"
+    "name": "Women's Peace and Humanitarian Fund",
+    "logo": "assets/img/agencies/WPHF.png"
    },
    {
     "key": "SHF",
-    "name": "Sudan Humanitarian Fund (OCHA)"
+    "name": "Sudan Humanitarian Fund (OCHA)",
+    "logo": "assets/img/agencies/SHF.png"
    },
    {
     "key": "CARE",
-    "name": "CARE"
+    "name": "CARE",
+    "logo": "assets/img/agencies/CARE.png"
    },
    {
     "key": "UNDP",
