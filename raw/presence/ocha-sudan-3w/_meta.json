@@ -1,0 +1,332 @@
+{
+ "name": "sudan-operational-presence",
+ "title": "Sudan: Operational Presence",
+ "org": "OCHA Sudan",
+ "dataset_date": "[2014-12-31T00:00:00 TO 2026-07-31T23:59:59]",
+ "last_modified": "2026-08-31T06:54:03.130631",
+ "url": "https://data.humdata.org/dataset/sudan-operational-presence",
+ "resources": [
+  {
+   "name": "2026-consolidated-3w-data-january-to-july.xlsx",
+   "format": "XLSX",
+   "size": 339441,
+   "last_modified": "2026-08-31T06:54:03.130631",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/2db829b4-19e4-436f-80c6-f3ebe39d2766/download/2026-consolidated-3w-data-january-to-july.xlsx"
+  },
+  {
+   "name": "2026-consolidated-3w-data-january-to-June.xlsx",
+   "format": "XLSX",
+   "size": 357209,
+   "last_modified": "2026-07-31T14:53:15.829795",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/2e652578-b336-4913-b44c-653a86237396/download/2026-consolidated-3w-data-january-to-june.xlsx"
+  },
+  {
+   "name": "2026-consolidated-3w-data-january-to-may.xlsx",
+   "format": "XLSX",
+   "size": 271751,
+   "last_modified": "2026-06-25T08:53:13.789178",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/11f22bd8-4bb8-4bcd-b62a-b45bd8ec93e0/download/2026-consolidated-3w-data-january-to-may.xlsx"
+  },
+  {
+   "name": "2026-consolidated-3w-data-January-to-April.xlsx",
+   "format": "XLSX",
+   "size": 251400,
+   "last_modified": "2026-05-31T08:10:17.433063",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/be1c279f-44fd-4d00-8f20-20543abc8d80/download/2026-consolidated-3w-data-january-to-april.xlsx"
+  },
+  {
+   "name": "2026-consolidated-3w-data-January-to-March.xlsx",
+   "format": "XLSX",
+   "size": 194806,
+   "last_modified": "2026-05-31T08:09:06.107720",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/1b7caf55-54ba-42ea-924f-f352058d23f1/download/2026-consolidated-3w-data-january-to-march.xlsx"
+  },
+  {
+   "name": "2026-consolidated-3w-data-january-to-february.xlsx",
+   "format": "XLSX",
+   "size": 102532,
+   "last_modified": "2026-03-28T11:23:41.199525",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/05c3b539-104e-4d78-b564-c49c36ac0020/download/2026-consolidated-3w-data-january-to-february.xlsx"
+  },
+  {
+   "name": "2026-consolidated-3w-data-january.xlsx",
+   "format": "XLSX",
+   "size": 61111,
+   "last_modified": "2026-03-28T11:21:31.148073",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/b222b062-91fc-4f05-9472-8f89dade1705/download/2026-consolidated-3w-data-january.xlsx"
+  },
+  {
+   "name": "2025-consolidated-3w-data-january-to-december.xlsx",
+   "format": "XLSX",
+   "size": 559719,
+   "last_modified": "2026-02-09T08:12:16.556331",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/13bd8a3b-3748-4f48-9bea-5b376c08fab5/download/2025-consolidated-3w-data-january-to-december.xlsx"
+  },
+  {
+   "name": "2025-consolidated-3w-data-january-to-november.xlsx",
+   "format": "XLSX",
+   "size": 514243,
+   "last_modified": "2026-02-09T08:12:19.840326",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/9b991e30-0eeb-4c04-a422-3a075e19ac9c/download/2025-consolidated-3w-data-january-to-november.xlsx"
+  },
+  {
+   "name": "2025-consolidated-3w-data-january-to-october.xlsx",
+   "format": "XLSX",
+   "size": 457809,
+   "last_modified": "2025-12-02T14:34:35.367341",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/d3b1d64e-fb06-4c49-802a-f243f5f85b50/download/2025-consolidated-3w-data-january-to-october.xlsx"
+  },
+  {
+   "name": "2025-consolidated-3w-data-january-to-september.xlsx",
+   "format": "XLSX",
+   "size": 411804,
+   "last_modified": "2025-12-02T14:34:39.233362",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/4b38f33d-d9eb-4179-baf6-f2b2e330c28d/download/2025-consolidated-3w-data-january-to-september.xlsx"
+  },
+  {
+   "name": "2025-consolidated-3w-data-january-to-august.xlsx",
+   "format": "XLSX",
+   "size": 368721,
+   "last_modified": "2025-10-06T08:16:11.350423",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/165b3a98-1945-4076-a326-6fdfd2eba562/download/2025-consolidated-3w-data-january-to-august.xlsx"
+  },
+  {
+   "name": "2025-consolidated-3w-data-january-to-july.xlsx",
+   "format": "XLSX",
+   "size": 316096,
+   "last_modified": "2025-09-01T13:32:43.082506",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/e2b29488-c3f3-47e3-ac37-dcd83cd65f52/download/2025-consolidated-3w-data-january-to-july.xlsx"
+  },
+  {
+   "name": "2025-consolidated-3w-data-january-to-june.xlsx",
+   "format": "XLSX",
+   "size": 268748,
+   "last_modified": "2025-09-01T13:32:45.611690",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/9d2583b6-d5a3-4535-b424-b0525d4661c0/download/2025-consolidated-3w-data-january-to-june.xlsx"
+  },
+  {
+   "name": "2025-consolidated-3w-data-january-to-may.xlsx",
+   "format": "XLSX",
+   "size": 209291,
+   "last_modified": "2025-06-24T09:38:03.099930",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/04baa7f0-13de-4eeb-aa8a-b6e0abd238e8/download/2025-consolidated-3w-data-january-to-may.xlsx"
+  },
+  {
+   "name": "2025-consolidated-3w-data-january-to-april.xlsx",
+   "format": "XLSX",
+   "size": 167490,
+   "last_modified": "2025-06-24T09:38:05.904447",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/3b11256b-a723-4994-887b-360d3a1a48d3/download/2025-consolidated-3w-data-january-to-april.xlsx"
+  },
+  {
+   "name": "2025-consolidated-3w-data-january-to-march.xlsx",
+   "format": "XLSX",
+   "size": 124886,
+   "last_modified": "2025-05-08T11:53:18.865269",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/c56de5ee-7753-438c-a8a6-e559035441c6/download/2025-consolidated-3w-data-january-to-march.xlsx"
+  },
+  {
+   "name": "2025-consolidated-3w-data-jan-to-feb.xlsx",
+   "format": "XLSX",
+   "size": 77985,
+   "last_modified": "2025-04-14T09:12:42.229296",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/42f54d17-4fc1-42ff-9a2e-2917b7078ad7/download/2025-consolidated-3w-data-jan-to-feb.xlsx"
+  },
+  {
+   "name": "2025-consolidated-3w-data-jan.xlsx",
+   "format": "XLSX",
+   "size": 40961,
+   "last_modified": "2025-03-03T09:35:14.738559",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/4d03e92c-d30d-4f64-99cb-5647ae3ee697/download/2025-consolidated-3w-data-jan.xlsx"
+  },
+  {
+   "name": "2024-consolidated-3w-data-jan-to-dec.xlsx",
+   "format": "XLSX",
+   "size": 307408,
+   "last_modified": "2025-02-25T12:07:21.374903",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/02924c81-0b6d-406f-a0f1-2c9cf591294b/download/2024-consolidated-3w-data-jan-to-dec.xlsx"
+  },
+  {
+   "name": "2024-consolidated-3w-data-jan-to-nov.xlsx",
+   "format": "XLSX",
+   "size": 278551,
+   "last_modified": "2024-12-20T06:27:22.017763",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/2e8fd30e-8b67-475f-aade-66b35018e96c/download/2024-consolidated-3w-data-jan-to-nov.xlsx"
+  },
+  {
+   "name": "2024-consolidated-3w-data-jan-to-oct.xlsx",
+   "format": "XLSX",
+   "size": 272513,
+   "last_modified": "2024-12-03T07:37:07.386312",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/60ec5a02-ddef-4d9c-8e8c-8fc700cf26b0/download/2024-consolidated-3w-data-jan-to-oct.xlsx"
+  },
+  {
+   "name": "2024-consolidated-3w-data-jan-to-30-aug.xlsx",
+   "format": "XLSX",
+   "size": 234107,
+   "last_modified": "2024-10-04T08:32:15.999405",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/659a338c-682b-4864-a008-672c33476177/download/2024-consolidated-3w-data-jan-to-30-aug.xlsx"
+  },
+  {
+   "name": "2024-consolidated-3w-data-jan-to-30-july.xlsx",
+   "format": "XLSX",
+   "size": 199034,
+   "last_modified": "2024-10-04T07:41:34.714342",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/5443a5b0-befb-4885-aba7-d345e452d9c9/download/2024-consolidated-3w-data-jan-to-30-july.xlsx"
+  },
+  {
+   "name": "2024-consolidated-3w-data-jan-to-30-june.xlsx",
+   "format": "XLSX",
+   "size": 181432,
+   "last_modified": "2024-07-18T12:10:32.769524",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/c7cf52a4-1411-43be-bf7a-552f88d9a432/download/2024-consolidated-3w-data-jan-to-30-june.xlsx"
+  },
+  {
+   "name": "2024-consolidated-3w-data-jan-to-31-may.xlsx",
+   "format": "XLSX",
+   "size": 1008091,
+   "last_modified": "2024-07-02T08:13:41.627911",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/7f4b6d55-328d-44ad-b2e9-47d5fc0028df/download/2024-consolidated-3w-data-jan-to-31-may.xlsx"
+  },
+  {
+   "name": "2024-consolidated-3w-data-jan-to-31-march.xlsx",
+   "format": "XLSX",
+   "size": 1108980,
+   "last_modified": "2024-04-24T08:19:42.347646",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/74fc563c-0738-49e3-b651-2d1b4d72a132/download/2024-consolidated-3w-data-jan-to-31-march.xlsx"
+  },
+  {
+   "name": "2023 Consolidated 3W data April to 31 Dec_hxl",
+   "format": "XLSX",
+   "size": 795347,
+   "last_modified": "2024-02-12T09:01:31.656754",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/d7c53285-fc22-4468-82fa-da7f087b60ca/download/2023-consolidated-3w-data-april-to-31-dec_hxl.xlsx"
+  },
+  {
+   "name": "2023 Consolidated 3W data April to 31 Oct_hxl",
+   "format": "XLSX",
+   "size": 189897,
+   "last_modified": "2023-12-11T07:44:22.816883",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/0ec5cded-fdb5-4bef-8105-3a81b36c162b/download/2023-consolidated-3w-data-april-to-31-oct_hxl.xlsx"
+  },
+  {
+   "name": "2023 Consolidated 3W data April to 31 Aug_hxl",
+   "format": "XLSX",
+   "size": 112499,
+   "last_modified": "2023-10-19T07:57:59.677649",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/b781f9c9-a8f7-4e5f-a3ec-48bb3af01367/download/2023-consolidated-3w-data-april-to-31-aug_hxl.xlsx"
+  },
+  {
+   "name": "2023 Consolidated 3W data April to 31 July",
+   "format": "XLSX",
+   "size": 71759,
+   "last_modified": "2023-10-19T07:58:02.326125",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/017a824b-af3e-4278-a755-a9c695fe7764/download/2023-consolidated-3w-data-april-to-31-july.xlsx"
+  },
+  {
+   "name": "Sudan 3w 18062023",
+   "format": "XLSX",
+   "size": 975971,
+   "last_modified": "2023-07-26T07:22:55.149353",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/d51e61e3-64f9-41a6-8ea1-c174e0360332/download/2023-consolidated-3w-data-18062023.xlsx"
+  },
+  {
+   "name": "Sudan 3w 01072022",
+   "format": "XLSX",
+   "size": 148064,
+   "last_modified": "2022-12-02T07:11:37.555698",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/4e211bfe-5abf-4a3a-a194-7c2c645325ca/download/sdn-2022-3ws-jul-2022-2.xlsx"
+  },
+  {
+   "name": "Sudan 3w 31122021",
+   "format": "XLSX",
+   "size": 44056,
+   "last_modified": "2022-07-19T14:57:21.514825",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/86415cdc-4dc3-43c3-955a-b7b266cb0163/download/sudan-3w-31122021.xlsx"
+  },
+  {
+   "name": "Sudan 3w 2021",
+   "format": "XLSX",
+   "size": 85696,
+   "last_modified": "2021-03-10T13:51:13.582942",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/ffc3ce0d-2987-4836-a818-f60a28a9c7f1/download/ceaned-2020_compiled_as-of-march_2021_3ws_ocha-sudan.xlsx"
+  },
+  {
+   "name": "Sudan 3w 2020",
+   "format": "XLSX",
+   "size": 70720,
+   "last_modified": "2020-11-20T13:32:42.436651",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/ea81af77-3f70-4cec-9d28-b9c1d02e4737/download/cleaned_compiled_aug_3ws.xlsx"
+  },
+  {
+   "name": "Sudan 4w 2020 - COVID",
+   "format": "Web App",
+   "size": 0,
+   "last_modified": "2020-05-19T12:52:15.815018",
+   "url": "https://data.humdata.org/dataset/sudan-covid-19-preparedness-and-response-4w"
+  },
+  {
+   "name": "Sudan 3ws Combined (2014-2019).xlsx",
+   "format": "XLSX",
+   "size": null,
+   "last_modified": "2020-02-06T08:16:45.551084",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/1921d795-dbd3-4e86-a080-242de5a689ed/download/all-sudan-3ws-data-combined.xlsx"
+  },
+  {
+   "name": "Sudan 3w 2019.xlsx",
+   "format": "XLSX",
+   "size": null,
+   "last_modified": "2020-02-06T11:07:19.861900",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/88f2e8c4-fe6d-40b5-9edf-cb4ae018cf42/download/sudan-3w-data-2019.xlsx"
+  },
+  {
+   "name": "Sudan 3w 2018.xlsx",
+   "format": "XLSX",
+   "size": 113891,
+   "last_modified": "2019-05-02T08:41:30.885453",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/2939830a-5029-47ef-b802-a0f7bc1799de/download/sudan-3w-2019-april.xlsx"
+  },
+  {
+   "name": "Sudan 3w 2017.xlsx",
+   "format": "XLSX",
+   "size": 86086,
+   "last_modified": "2019-05-20T13:05:53.118365",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/0850931e-ab37-4925-aa8c-5afac5fea7e3/download/sudan-3w-2017.xlsx"
+  },
+  {
+   "name": "Sudan 3w 2016.xlsx",
+   "format": "XLSX",
+   "size": 107511,
+   "last_modified": "2019-05-20T13:05:55.752186",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/3d783062-bc2e-45d5-9512-18fdd363539f/download/sudan-3w-2016.xlsx"
+  },
+  {
+   "name": "Sudan 3w 2015.xlsx",
+   "format": "XLSX",
+   "size": 172542,
+   "last_modified": "2019-05-20T13:05:57.919833",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/d5e350dc-37a7-4872-896e-820f57c76227/download/sudan-3w-2015.xlsx"
+  },
+  {
+   "name": "Sudan 3w 2014.xlsx",
+   "format": "XLSX",
+   "size": 68086,
+   "last_modified": "2019-05-20T13:05:59.887106",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/e948f437-d4b1-40a5-836e-26110b7b0d03/download/sudan-3w-2014.xlsx"
+  },
+  {
+   "name": "2025-consolidated-3w-data-january-to-december.xlsx",
+   "format": "XLSX",
+   "size": 559719,
+   "last_modified": "2026-02-09T08:04:46.327668",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/f3385582-593a-4832-a10f-3da969a95fa4/download/2025-consolidated-3w-data-january-to-december.xlsx"
+  },
+  {
+   "name": "2026-consolidated-3w-data-january-to-march.xlsx",
+   "format": "XLSX",
+   "size": 150055,
+   "last_modified": "2026-04-26T07:53:46.905824",
+   "url": "https://data.humdata.org/dataset/bdccda24-2122-416c-aed1-6bdebcfea76c/resource/daf46c0a-a7a3-4e05-b057-72d78fa4226f/download/2026-consolidated-3w-data-january-to-march.xlsx"
+  }
+ ]
+}

@@ -1,0 +1,52 @@
+{
+ "name": "sudan-acute-food-insecurity-classification-september-2026-january-2027",
+ "title": "Sudan: Acute Food Insecurity Classification (September 2026 - January 2027)",
+ "org": "FEWS NET",
+ "dataset_date": "[2026-09-01T00:00:00 TO 2027-01-31T23:59:59]",
+ "last_modified": "2026-10-28T10:56:31.594420",
+ "url": "https://data.humdata.org/dataset/sudan-acute-food-insecurity-classification-september-2026-january-2027",
+ "resources": [
+  {
+   "name": "Sudan Acute Food Insecurity Classification Shapefile September 2026 (.zip)",
+   "format": "zip",
+   "size": null,
+   "last_modified": "2026-10-28T10:56:31.594420",
+   "url": "https://fdw.fews.net/api/ipcpackage/country/SD/2026-09-01/"
+  },
+  {
+   "name": "Sudan Acute Food Insecurity Classification September 2026 (.geojson)",
+   "format": "GeoJSON",
+   "size": null,
+   "last_modified": "2026-10-28T10:56:30.453659",
+   "url": "https://fdw.fews.net/api/ipcphasemap/country/SD/2026-09-01.geojson"
+  },
+  {
+   "name": "Near Term Projection: September 2026 (.png)",
+   "format": "PNG",
+   "size": 659841,
+   "last_modified": "2026-10-28T10:56:30.453827",
+   "url": "https://fdw.fews.net/en/viz/viz_visualizations_ipc_ipccountryregionstaticmap.png_attachment?show_logos=True&data_center_image=True&datacollection__collection_date=2026-09-01&dataseries__geographic_unit__country=SD&dataseries__ipcclassification__scenario=ML1"
+  },
+  {
+   "name": "Medium Term Projection: October 2026 - January 2027 (.png)",
+   "format": "PNG",
+   "size": 648452,
+   "last_modified": "2026-10-28T10:56:30.453978",
+   "url": "https://fdw.fews.net/en/viz/viz_visualizations_ipc_ipccountryregionstaticmap.png_attachment?show_logos=True&data_center_image=True&datacollection__collection_date=2026-09-01&dataseries__geographic_unit__country=SD&dataseries__ipcclassification__scenario=ML2"
+  },
+  {
+   "name": "Near Term Projection: September 2026 (.kml)",
+   "format": "KML",
+   "size": null,
+   "last_modified": "2026-10-28T10:56:30.454144",
+   "url": "https://fdw.fews.net/api/ipcphasemap/country/SD/ML1/2026-09-01.kml"
+  },
+  {
+   "name": "Medium Term Projection: October 2026 - January 2027 (.kml)",
+   "format": "KML",
+   "size": null,
+   "last_modified": "2026-10-28T10:56:30.454303",
+   "url": "https://fdw.fews.net/api/ipcphasemap/country/SD/ML2/2026-09-01.kml"
+  }
+ ]
+}
