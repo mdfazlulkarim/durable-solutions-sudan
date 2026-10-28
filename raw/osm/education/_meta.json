@@ -1,0 +1,66 @@
+{
+ "name": "hotosm_sdn_education_facilities",
+ "title": "Education Facilities of Sudan",
+ "org": "Humanitarian OpenStreetMap Team (HOT)",
+ "dataset_date": "[2026-10-06T00:00:00 TO 2026-10-06T23:59:59]",
+ "last_modified": "2026-10-06T11:25:44.515464",
+ "url": "https://data.humdata.org/dataset/hotosm_sdn_education_facilities",
+ "resources": [
+  {
+   "name": "Education Facilities (OSM), GeoJSON",
+   "format": "GeoJSON",
+   "size": 465194,
+   "last_modified": "2026-10-06T11:25:36.525942",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/education_facilities/hotosm_sdn_education_facilities_osm_geojson.zip"
+  },
+  {
+   "name": "Education Facilities (OSM), GeoPackage",
+   "format": "Geopackage",
+   "size": 747495,
+   "last_modified": "2026-10-06T11:25:36.526036",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/education_facilities/hotosm_sdn_education_facilities_osm_gpkg.zip"
+  },
+  {
+   "name": "Education Facilities (OSM), GeoParquet",
+   "format": "GeoParquet",
+   "size": 813024,
+   "last_modified": "2026-10-06T11:25:36.874575",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/_layers/osm/education_facilities.parquet"
+  },
+  {
+   "name": "Education Facilities (OSM), KML",
+   "format": "KML",
+   "size": 477254,
+   "last_modified": "2026-10-06T11:25:36.526083",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/education_facilities/hotosm_sdn_education_facilities_osm_kml.zip"
+  },
+  {
+   "name": "Education Facilities (OSM), Shapefile",
+   "format": "SHP",
+   "size": 703315,
+   "last_modified": "2026-10-06T11:25:36.526119",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/education_facilities/hotosm_sdn_education_facilities_osm_shp.zip"
+  },
+  {
+   "name": "Education Facilities (OSM), STAC Collection",
+   "format": "JSON",
+   "size": 6239,
+   "last_modified": "2026-10-06T11:25:36.526172",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/education_facilities/hotosm_sdn_education_facilities_osm_metadata.json"
+  },
+  {
+   "name": "Education Facilities (OSM), Vector Tiles (PMTiles)",
+   "format": "PMTiles",
+   "size": 938681,
+   "last_modified": "2026-10-06T11:25:36.874694",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/education_facilities/hotosm_sdn_education_facilities_osm.pmtiles"
+  },
+  {
+   "name": "Education Facilities, Data Quality Report",
+   "format": "HTML",
+   "size": 30258,
+   "last_modified": "2026-10-06T11:25:44.515464",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/education_facilities/hotosm_sdn_education_facilities_report.html"
+  }
+ ]
+}
