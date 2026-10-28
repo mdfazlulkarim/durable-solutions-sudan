@@ -12,6 +12,7 @@ import csv
 import io
 import json
 import os
+import re
 import sys
 import time
 import urllib.parse
@@ -105,7 +106,7 @@ def osm_points(pkg, folder):
     """HOT OpenStreetMap exports: keep a light CSV of points (lon, lat, a few tags)."""
     for r in pkg.get("resources", []):
         url = r.get("download_url") or r.get("url") or ""
-        if "geojson" not in url.lower() or "point" not in url.lower():
+        if not url.lower().endswith("geojson.zip"):
             continue
         try:
             z = zipfile.ZipFile(io.BytesIO(get(url)))
@@ -119,10 +120,15 @@ def osm_points(pkg, folder):
             gj = json.loads(z.read(nm))
             for f in gj.get("features", []):
                 g = f.get("geometry") or {}
-                if g.get("type") != "Point":
+                if g.get("type") == "Point":
+                    lon, lat = g["coordinates"][:2]
+                elif g.get("type") in ("Polygon", "MultiPolygon"):
+                    ring = g["coordinates"][0] if g["type"] == "Polygon" else g["coordinates"][0][0]
+                    lon = sum(p[0] for p in ring) / len(ring)
+                    lat = sum(p[1] for p in ring) / len(ring)
+                else:
                     continue
                 p = f.get("properties") or {}
-                lon, lat = g["coordinates"][:2]
                 rows.append([round(lon, 5), round(lat, 5), p.get("amenity") or "", p.get("healthcare") or "", p.get("building") or "",
                              p.get("isced:level") or "", p.get("operator:type") or "", (p.get("name:en") or p.get("name") or "")[:80]])
         buf = io.StringIO()
@@ -140,8 +146,8 @@ def iati_cbpf(years):
     for y in years:
         pid = f"unocha-cbpf-sudan-allocation-{y}"
         try:
-            meta = json.loads(get("https://iatiregistry.org/api/3/action/package_show?id=" + pid))["result"]
-            url = meta["resources"][0]["url"]
+            # 15 is the Sudan Humanitarian Fund in the CBPF system
+            url = f"https://cbpfapi.unocha.org/iati/iati/15/{y}/GetAllocation.xml"
             log(f"IATI {pid}: {url}")
             xml = get(url)
         except Exception as e:  # noqa: BLE001
@@ -222,35 +228,44 @@ def main():
             log(f"package {name}: {p.get('title')} | {p.get('dataset_date')} | {p.get('last_modified')}")
             download_tabular(p, folder, max_files=8)
 
-    # Operational presence (3W): newest OCHA Sudan dataset that looks like a 3W
-    for p in catalog.get("presence", []):
-        if any(t in p["name"] for t in ("3w", "operational-presence", "who-does-what", "5w", "4w")):
-            full = show(p["name"])
-            if full:
-                log(f"3W: {p['name']} | {p['dataset_date']}")
-                download_tabular(full, "presence/" + p["name"], max_files=3)
-            break
-
-    # IOM DTM: newest baseline / mobility datasets with locality data
-    n = 0
-    for p in catalog.get("dtm", []):
-        if "dtm" in p["name"] or "iom" in (p["org"] or "").lower():
-            full = show(p["name"])
-            if full:
-                log(f"DTM: {p['name']} | {p['dataset_date']}")
-                download_tabular(full, "dtm/" + p["name"], max_files=3)
-                n += 1
-            if n >= 2:
+    def pick(name, match, folder, n=1):
+        """Download the first n resources of a dataset whose name matches (resources are listed newest first)."""
+        p = show(name)
+        if not p:
+            return
+        log(f"package {name}: {p.get('title')} | {p.get('dataset_date')} | {p.get('last_modified')}")
+        save(os.path.join(folder, "_meta.json"), json.dumps(slim(p), indent=1).encode("utf-8"))
+        k = 0
+        for r in p.get("resources", []):
+            nm = (r.get("name") or "").strip()
+            if not match(nm.lower()):
+                continue
+            url = r.get("download_url") or r.get("url")
+            try:
+                data = get(url)
+            except Exception as e:  # noqa: BLE001
+                log(f"  could not download {nm}: {e}")
+                continue
+            if len(data) > MAX_FILE:
+                log(f"  skip (too big) {nm}")
+                continue
+            ext = os.path.splitext(url.split("?")[0])[1].lower() or ".bin"
+            safe = re.sub(r"[^A-Za-z0-9._-]+", "_", nm)[:90]
+            save(os.path.join(folder, safe if safe.lower().endswith(ext) else safe + ext), data)
+            k += 1
+            if k >= n:
                 break
 
-    # IPC
-    for p in catalog.get("ipc", []):
-        if "ipc" in p["name"] or "food-insecurity" in p["name"]:
-            full = show(p["name"])
-            if full:
-                log(f"IPC: {p['name']} | {p['dataset_date']}")
-                download_tabular(full, "ipc/" + p["name"], max_files=2)
-            break
+    # OCHA Sudan 3W (who does what where), latest consolidated file
+    pick("sudan-operational-presence", lambda n: n.startswith("2026-consolidated"), "presence/ocha-sudan-3w", 1)
+    # IOM DTM, latest Displacement and Return Snapshot (IDPs and returnees by locality)
+    pick("sudan-displacement-situation-countrywide-idps-iom-dtm", lambda n: "snapshot" in n or "mobility" in n, "dtm/snapshot", 1)
+    # HDX HAPI for Sudan: humanitarian needs, returnees, IDPs, operational presence, population
+    pick("hdx-hapi-sdn", lambda n: any(k in n for k in ("humanitarian needs", "returnees", "internally-displaced", "operational presence", "baseline population")), "hapi", 6)
+    # HeiGIT risk assessment inputs by locality: facilities and access to services
+    pick("sudan---risk-assessment-indicators", lambda n: n.endswith(".csv"), "heigit", 10)
+    # FEWS NET acute food insecurity, September 2026 projection
+    pick("sudan-acute-food-insecurity-classification-september-2026-january-2027", lambda n: "geojson" in n, "ipc", 1)
 
     # Basic services from OpenStreetMap (HOT exports)
     for name, folder in [("hotosm_sdn_health_facilities", "osm/health"), ("hotosm_sdn_education_facilities", "osm/education")]:
