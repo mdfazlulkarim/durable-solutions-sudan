@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Area-based coordination | Solutions Footprint | Durable Solutions Hub | Sudan</title>
+  <meta name="description" content="Area-based coordination in Sudan: population, people in need, IDPs, returnees, basic services, partners and projects by locality, with a planner to find where to invest and what to build on.">
+  <script>try{var t=localStorage.getItem("sf-theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261029">
+  <link rel="stylesheet" href="assets/css/abc.css?v=20261029">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="abc" id="main">
+    <!-- 1. The idea, in thirty seconds -->
+    <section class="abc-top" aria-labelledby="abc-title">
+      <p class="abc-kicker">Area-based coordination · Durable Solutions Hub | Sudan</p>
+      <h1 id="abc-title">Start with the place, then plan together</h1>
+      <p class="abc-sub" id="abc-sub"></p>
+      <div class="abc-big" id="abc-big"></div>
+      <nav class="abc-jump" aria-label="On this page">
+        <a href="#explore">Explore the areas</a>
+        <a href="#invest">Where to invest first</a>
+        <a href="#plan">Plan your project</a>
+        <a href="#sources">Sources</a>
+      </nav>
+    </section>
+
+    <!-- 2. What area-based coordination is, and how it works -->
+    <section class="abc-sec" aria-labelledby="h-what">
+      <h2 id="h-what">What area-based coordination is</h2>
+      <div class="abc-why" id="abc-why"></div>
+      <h3 class="abc-h3">How it works, in six steps</h3>
+      <ol class="abc-steps" id="abc-steps"></ol>
+    </section>
+
+    <!-- 3. The map -->
+    <section class="abc-sec" id="explore" aria-labelledby="h-explore">
+      <div class="abc-sec-head">
+        <h2 id="h-explore">Explore the areas</h2>
+        <p class="abc-lead">Choose what to colour the map by and which projects to show. Select a state to see its localities, then a locality for its full profile.</p>
+      </div>
+      <div class="abc-explore">
+        <aside class="card abc-layers" aria-label="Map layers">
+          <div class="abc-layers-h"><h3>Colour the map by</h3></div>
+          <div id="abc-layer-list" role="radiogroup" aria-label="Colour the map by"></div>
+          <div class="abc-layers-h"><h3>Show on the map</h3></div>
+          <div id="abc-overlay-list"></div>
+          <div class="abc-layers-h"><h3>Level</h3></div>
+          <div class="seg" role="group" aria-label="Level" id="abc-level">
+            <button type="button" data-v="states" aria-pressed="true">States</button>
+            <button type="button" data-v="localities" aria-pressed="false">Localities</button>
+          </div>
+        </aside>
+
+        <section class="card abc-map-card" aria-label="Map">
+          <div class="abc-map-top">
+            <div><span class="abc-map-kicker" id="abc-map-kicker">Sudan</span><h3 id="abc-map-title"></h3></div>
+            <button type="button" class="btn btn-sm" id="abc-back" hidden>Back to Sudan</button>
+          </div>
+          <div class="map-wrap abc-map-wrap" id="abc-map-wrap">
+            <svg class="map-svg abc-map" id="abc-map" role="group" aria-label="Map of Sudan"></svg>
+            <div class="map-tip" id="abc-tip" hidden></div>
+          </div>
+          <div class="abc-legend" id="abc-legend"></div>
+          <p class="abc-disclaimer">The boundaries and names shown and the designations used on this map do not imply official endorsement or acceptance by the United Nations. Final boundary between the Republic of Sudan and the Republic of South Sudan has not yet been determined. Final status of the Abyei area is not yet determined.</p>
+        </section>
+
+        <aside class="card abc-panel" id="abc-panel" aria-live="polite" aria-label="Selected area"></aside>
+      </div>
+    </section>
+
+    <!-- 4. Where to invest -->
+    <section class="abc-sec" id="invest" aria-labelledby="h-invest">
+      <div class="abc-sec-head">
+        <h2 id="h-invest">Where to invest first</h2>
+        <p class="abc-lead">Rank localities by what matters to you. Each factor compares localities with each other, and the weights decide how much each one counts. Treat the result as a shortlist for a conversation with the area working group, not a final answer.</p>
+      </div>
+      <div class="card abc-rank">
+        <div class="abc-rank-ctl">
+          <div class="abc-presets" role="group" aria-label="Quick choices" id="abc-presets"></div>
+          <div class="abc-weights" id="abc-weights"></div>
+          <label class="abc-field abc-rank-where"><span>Where</span><select class="input" id="abc-rank-where"></select></label>
+        </div>
+        <div class="abc-rank-table-wrap"><table class="abc-table" id="abc-rank-table"></table></div>
+        <p class="abc-small" id="abc-rank-note"></p>
+      </div>
+    </section>
+
+    <!-- 5. Plan a project -->
+    <section class="abc-sec" id="plan" aria-labelledby="h-plan">
+      <div class="abc-sec-head">
+        <h2 id="h-plan">Plan your project</h2>
+        <p class="abc-lead">Sketch a project and see it against the area: the people, the services, who is already there and the projects you can build on. Save up to 20 plans and share a link to any of them.</p>
+      </div>
+      <div class="abc-plan">
+        <form class="card abc-form" id="abc-form" autocomplete="off" novalidate>
+          <div class="abc-plan-bar">
+            <span class="abc-plan-state" id="abc-plan-state">New plan</span>
+            <div class="abc-plan-actions">
+              <button type="button" class="btn btn-sm" id="abc-new">New</button>
+              <button type="button" class="btn btn-sm" id="abc-share">Copy share link</button>
+              <button type="button" class="btn btn-sm" id="abc-print">Print</button>
+              <button type="submit" class="btn btn-sm btn-primary" id="abc-save">Save plan</button>
+            </div>
+          </div>
+          <label class="abc-field"><span>Project name</span><input class="input" id="pf-name" maxlength="140" placeholder="For example: Solar boreholes for return villages"></label>
+          <label class="abc-field"><span>Lead organisation</span><input class="input" id="pf-org" maxlength="120" placeholder="Your organisation"></label>
+          <div class="abc-two">
+            <label class="abc-field"><span>State</span><select class="input" id="pf-state"></select></label>
+            <div class="abc-field"><span>Localities</span><div class="abc-loc-picks" id="pf-locs"><p class="abc-small" style="margin:0">Choose a state first.</p></div></div>
+          </div>
+          <fieldset class="abc-field abc-fs"><legend>What it will do</legend><div class="abc-chips" id="pf-types"></div></fieldset>
+          <fieldset class="abc-field abc-fs"><legend>IASC criteria it contributes to</legend><div class="abc-chips" id="pf-crit"></div></fieldset>
+          <div class="abc-four">
+            <label class="abc-field"><span>People to reach</span><input class="input" id="pf-people" type="number" min="0" step="100" inputmode="numeric"></label>
+            <label class="abc-field"><span>Budget (US$)</span><input class="input" id="pf-budget" type="number" min="0" step="1000" inputmode="numeric"></label>
+            <label class="abc-field"><span>Start</span><input class="input" id="pf-start" type="month"></label>
+            <label class="abc-field"><span>End</span><input class="input" id="pf-end" type="month"></label>
+          </div>
+          <label class="abc-field"><span>Notes</span><textarea class="input" id="pf-notes" rows="3" maxlength="1200" placeholder="Who you will work with, how communities and the local authorities take part, what happens when the project ends"></textarea></label>
+          <div class="abc-mine">
+            <div class="abc-mine-h"><b>My plans</b> <span id="abc-mine-count"></span></div>
+            <div id="abc-mine-list"></div>
+            <p class="abc-small" style="margin:6px 0 0">Plans are kept in this browser for now. Anyone with a share link sees a copy of the plan, not your saved list.</p>
+          </div>
+        </form>
+        <aside class="card abc-context" id="abc-context" aria-live="polite" aria-label="Your project in context"></aside>
+      </div>
+    </section>
+
+    <!-- 6. Notes and sources -->
+    <section class="abc-sec" id="sources" aria-labelledby="h-src">
+      <h2 id="h-src">About the data and sources</h2>
+      <ul class="abc-notes" id="abc-notes"></ul>
+      <ol class="abc-src" id="abc-src"></ol>
+    </section>
+  </main>
+
+  <dialog class="modal" id="detail" aria-labelledby="detail-title"></dialog>
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/common.js?v=20261029"></script>
+  <script src="assets/js/icons.js?v=20261029"></script>
+  <script src="assets/js/icons-theme.js?v=20261029"></script>
+  <script src="assets/js/render.js?v=20261029"></script>
+  <script src="assets/js/abc.js?v=20261029"></script>
+</body>
+</html>

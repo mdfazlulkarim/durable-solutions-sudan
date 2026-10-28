@@ -1,0 +1,4443 @@
+{
+"updated": "2026-10-29",
+"source": {
+"title": "Sudan Humanitarian Fund allocations (IATI)",
+"org": "OCHA, Country-Based Pooled Funds",
+"url": "https://cbpf.data.unocha.org/"
+},
+"note": "States and localities are found by reading each project's title and description, so a few may be missed or misread.",
+"projects": [
+{
+"id": "SUD-26-S-UN-40967",
+"name": "Enabling safe humanitarian access: security services for front-line actors in hotspot locations",
+"summary": "This project builds on the progress achieved under the ongoing SHF-funded initiative \"Scaling up security support to enable essential UN programme delivery and protection activities in North Darfur and the Kordofans\" (April-September 2026) by the United Nations Department of Safety and Security (UNDSS. It aims to sustain and expand critical security services enabling humanitarian access and operational continuity in …",
+"sectors": [
+"Coordination"
+],
+"orgType": "UN Agency",
+"start": "2026-10-15",
+"end": "2027-10-14",
+"budget": 1000000,
+"states": [
+"Khartoum",
+"North Darfur"
+],
+"localities": [
+{
+"s": "Khartoum",
+"n": "Um Durman"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-NSFT-40988",
+"name": "Emergency Pipeline Support in Sudan II",
+"summary": "This project will reduce crisis-related morbidity and mortality by sustaining uninterrupted food assistance in severity 4 and 5, underserved areas of North Darfur, including Dar Es Salaam, Melit and Tawila. In parallel, CRS will support Primary Health Care (PHC) medical supply pipelines serving OCHA-prioritized localities across all Darfur states and West Kordofan. Aligned with the Sudan Humanitarian Fund (SHF) Envel…",
+"sectors": [
+"Food Security",
+"Health"
+],
+"orgType": "International NGO",
+"start": "2026-10-02",
+"end": "2027-08-30",
+"budget": 14000000,
+"states": [
+"Central Darfur",
+"North Darfur",
+"West Kordofan"
+],
+"localities": [
+{
+"s": "Central Darfur",
+"n": "Zalingi"
+},
+{
+"s": "North Darfur",
+"n": "Melit"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-NSFT-40984",
+"name": "Strengthening the WASH Core Pipeline to rapidly provide WASH services and supplies to crisis affected populations across Darfur and West Kordofan",
+"summary": "Solidarités International (SI) will expand the existing WASH Core Pipeline in Darfur and West Kordofan by providing specialized WASH supplies (2nd line essential WASH supplies) to humanitarian actors across Darfur and West Kordofans, strengthening warehousing and stock management, and supporting last-mile delivery. This will ensure actors have timely and equitable access to quality-assured essential WASH supplies for…",
+"sectors": [
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-10-01",
+"end": "2027-08-30",
+"budget": 6000000,
+"states": [
+"West Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-UN-NSFT-41037",
+"name": "ILSS — Integrated Life-Saving Supplies: Cholera Prevention and WASH Response in Sudan",
+"summary": "Sudan remains one of the world’s most severe and complex humanitarian crises, with conflict, displacement, disease outbreaks and disruption of basic services driving critical Health and WASH needs. Reliable core supply pipelines are essential to sustaining life-saving services and enabling rapid response to acute needs, including cholera and other public health emergencies, particularly in areas facing high humanitar…",
+"sectors": [
+"Health",
+"WASH"
+],
+"orgType": "UN Agency",
+"start": "2026-10-01",
+"end": "2027-08-30",
+"budget": 21000000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-26-S-UN-41008",
+"name": "Comprehensive Humanitarian Mine Action to Enable Humanitarian Operations, Safe Mobility, and Future Recovery",
+"summary": "Sudan’s ongoing conflict has generated extensive explosive ordnance (EO) contamination, particularly in urban areas affected by intense fighting and the use of explosive weapons. As displaced populations return to areas previously inaccessible due to conflict, civilians and humanitarian personnel face increasing risks from mines, unexploded ordnance (UXO), and other explosive hazards. EO contamination restricts safe …",
+"sectors": [
+"Protection"
+],
+"orgType": "UN Agency",
+"start": "2026-10-01",
+"end": "2027-09-30",
+"budget": 2999998,
+"states": [
+"Khartoum"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-UN-41067",
+"name": "Sustaining common enabling logistics and emergency telecommunications services",
+"summary": "Logistics and Telecommunications Cluster (LTC) Since the outbreak of conflict in April 2023, conflict and insecurity have devastated logistics and telecommunications infrastructure and disrupted transport and communications networks across large parts of the country. Evolving conflict dynamics impact critical supply routes, while communications networks face disruptions, power outages, and connectivity blackouts, fur…",
+"sectors": [
+"Coordination",
+"Logistics"
+],
+"orgType": "UN Agency",
+"start": "2026-10-01",
+"end": "2027-09-30",
+"budget": 2250000,
+"states": [
+"Gedaref",
+"Kassala",
+"Khartoum",
+"North Darfur",
+"Northern",
+"Red Sea",
+"West Darfur",
+"White Nile"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Tawila"
+},
+{
+"s": "Northern",
+"n": "Ad Dabbah"
+},
+{
+"s": "Red Sea",
+"n": "Port Sudan"
+},
+{
+"s": "West Darfur",
+"n": "Ag Geneina"
+},
+{
+"s": "White Nile",
+"n": "Kosti"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-UN-NSFT-40996",
+"name": "Emergency Food Assistance for Highly Food-Insecure Communities in Hyper-Prioritized Inter-Cluster Priority Localities - Tranche 2",
+"summary": "This project will deliver life‑saving General Food Assistance (GFA) to severely food‑insecure populations in hyper‑prioritized inter-cluster localities, in line with inter‑agency severity analysis and the 2026 Strategy and Prioritization Framework of WFP Sudan. WFP targets 1,636,193 people. The intervention is designed to maintain continuity of assistance during a period of anticipated pipeline constraints by combini…",
+"sectors": [
+"Food Security"
+],
+"orgType": "UN Agency",
+"start": "2026-09-17",
+"end": "2027-08-30",
+"budget": 55000000,
+"states": [
+"South Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-UN-40958",
+"name": "Strengthening Evidence-Based Humanitarian Response through the Displacement Tracking Matrix in Sudan",
+"summary": "The Displacement Tracking Matrix (DTM) is the sole component and system providing comprehensive, nation-wide data on displacement and mobility in Sudan at the location level. It supports all sectors and clusters in implementing evidence-based, life-saving programs across the country. Specifically, DTM provides vital data on the sex and age demographics and humanitarian vulnerabilities of affected populations (both re…",
+"sectors": [
+"Coordination"
+],
+"orgType": "UN Agency",
+"start": "2026-09-15",
+"end": "2027-09-14",
+"budget": 3000000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-26-R-UN-NSFT-40982",
+"name": "Saving Lives and Protecting Livelihoods through Livestock Vaccinations in Sudan",
+"summary": "The project intends to provide critical life saving support to vulnerable households in 70 locations within Darfur and Kordofan and four localities in Khartoum through the provision of livestock vaccination. Livestock products are critical in enabling the maintenance of a diversified diet in rural communities in target locations and in supporting both household transport and agricultural production. Objective: To sav…",
+"sectors": [
+"Food Security"
+],
+"orgType": "UN Agency",
+"start": "2026-09-10",
+"end": "2027-08-30",
+"budget": 4000000,
+"states": [
+"Gedaref",
+"Khartoum",
+"Red Sea",
+"West Darfur"
+],
+"localities": [
+{
+"s": "Gedaref",
+"n": "Al Fao"
+},
+{
+"s": "Red Sea",
+"n": "Port Sudan"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39820",
+"name": "Strengthening Integrated Primary and Secondary Paediatric Health and Nutrition Services in South Darfur",
+"summary": "The project aims to reduce preventable morbidity and mortality among conflict-affected and vulnerable children in Nyala Shimal, South Darfur, by sustaining access to free, high-quality, life-saving paediatric healthcare and nutrition services. The paediatric focus responds to the demographic and epidemiological profile of the crisis and constitutes a targeted contribution to essential PHC. Children account for more t…",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2026-09-01",
+"end": "2027-08-31",
+"budget": 920000,
+"states": [
+"South Darfur"
+],
+"localities": [
+{
+"s": "South Darfur",
+"n": "Nyala Janoub"
+},
+{
+"s": "South Darfur",
+"n": "Nyala Shimal"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39844",
+"name": "Provision of medical logistics support to health responders and equitable physical and functional rehabilitation services to conflict-affected populations in Sudan",
+"summary": "Sudan's conflict has significantly increased rehabilitation needs while severely disrupting access to health services and humanitarian supply chains. Persons with disabilities, victims of explosive ordnance, and people with conflict-related injuries face reduced access to rehabilitation care following the suspension of services at the National Authority of Prosthetics and Orthotics (NAPO) Physical Rehabilitation Cent…",
+"sectors": [
+"Health"
+],
+"orgType": "International NGO",
+"start": "2026-08-23",
+"end": "2027-08-22",
+"budget": 1000000,
+"states": [
+"Khartoum",
+"South Darfur"
+],
+"localities": [
+{
+"s": "South Darfur",
+"n": "Nyala Janoub"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39860",
+"name": "Integrated Lifesaving Health, Nutrition, and WASH Services with a Protection-Centered Approach in North Darfur, Blue Nile, South Kordofan, and North Kordofan",
+"summary": "Save the Children, in partnership with SORR, AMVO, PANCARE, Saeker, and LMI, will deliver integrated life-saving interventions to vulnerable communities by providing health, nutrition, and WASH services for 166,728 people (42,704 women, 44,603 girls, 36,289 men and 43,132 boys) across North Darfur (El Fasher Tawila), South Kordofan (Kadugli, Dilling, and Abu Jubeiha), North Kordofan (Sheikan and Um Rawaba), and Blue …",
+"sectors": [
+"Health",
+"Nutrition",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-08-17",
+"end": "2027-08-16",
+"budget": 4100000,
+"states": [
+"Blue Nile",
+"North Darfur",
+"North Kordofan",
+"South Kordofan"
+],
+"localities": [
+{
+"s": "Blue Nile",
+"n": "Al Kurmuk"
+},
+{
+"s": "Blue Nile",
+"n": "Ar Rusayris"
+},
+{
+"s": "Blue Nile",
+"n": "Ed Damazine"
+},
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+},
+{
+"s": "North Kordofan",
+"n": "Ar Rahad"
+},
+{
+"s": "North Kordofan",
+"n": "Sheikan"
+},
+{
+"s": "North Kordofan",
+"n": "Um Rawaba"
+},
+{
+"s": "South Kordofan",
+"n": "Dilling"
+},
+{
+"s": "South Kordofan",
+"n": "Kadugli"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39964",
+"name": "Integrated Primary Health Care, Nutrition, GBV, WASH, and Cholera Response in South and North Darfur",
+"summary": "The overall goal of this proposed intervention is to reduce preventable morbidity and mortality while enhancing the health, safety, and resilience of conflict-affected and vulnerable populations through the delivery of integrated lifesaving services. In Biliel and As Salam localities of South Darfur, the project will provide integrated Primary Health Care (PHC), nutrition, MHPSS, and gender-based violence (GBV) respo…",
+"sectors": [
+"Health",
+"Nutrition",
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-08-16",
+"end": "2027-08-15",
+"budget": 1000000,
+"states": [
+"North Darfur",
+"South Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Dar As Salam"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39818",
+"name": "Relief International Reducing Preventable Morbidity and Mortality through Integrated Life-Saving Health and Nutrition Services  Localized Humanitarian Action in North Darfur and Northern state, Sudan",
+"summary": "The project aims to reduce preventable morbidity and mortality among conflict‑affected populations, internally displaced persons (IDPs), and vulnerable host communities in high‑ and very high‑severity localities across North Darfur and Northern State through an integrated Health and Nutrition response. The project is firmly anchored in the SHF localization agenda and will be delivered through a consortium comprising …",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2026-08-15",
+"end": "2027-08-14",
+"budget": 5234000,
+"states": [
+"North Darfur",
+"Northern"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39840",
+"name": "Enhancing Health Outcomes through an Integrated Lifesaving WASH and Protection-Centered Response in White Nile and South Kordofan States, Sudan",
+"summary": "Sudan faces a severe humanitarian crisis: over 17M people lack safe water, 24M lack adequate sanitation, over 70% of health facilities do not have a reliable water supply, and more than 10M are displaced. The collapse of WASH services is fueling deadly outbreaks of cholera, hepatitis E, and other epidemics—especially in White Nile and South Kordofan—putting millions of lives at immediate risk. This project is strateg…",
+"sectors": [
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-08-15",
+"end": "2027-08-14",
+"budget": 1000000,
+"states": [
+"South Kordofan",
+"White Nile"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39847",
+"name": "Integrated Health and WASH support for Crisis-effected population to reduce Morbidity and Mortality in East Darfur, South Darfur and South Kordofan.",
+"summary": "CARE, in partnership with RDO, HOPE, and GPBC, will implement an integrated Health and WASH intervention targeting 319,531 crisis-affected people ( Girls, 57,516 Boys 54,319, Women 121,423, Men 86,273)in 13 priority localities across SD (Kas, Nyala Janoub, Nyala Shamal, As Salam, Mershing), ED (Abu Karinka, Al Firdous, Ad Du'ayn, Abu Jabra), and SK (Abassiya, Abu Jubayhah, Al Leri, Talawdi). The project aims to reduc…",
+"sectors": [
+"Health",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-08-15",
+"end": "2027-08-14",
+"budget": 2200000,
+"states": [
+"East Darfur",
+"South Darfur",
+"South Kordofan"
+],
+"localities": [
+{
+"s": "East Darfur",
+"n": "Abu Karinka"
+},
+{
+"s": "East Darfur",
+"n": "Ad Du'ayn"
+},
+{
+"s": "East Darfur",
+"n": "Al Firdous"
+},
+{
+"s": "South Darfur",
+"n": "Mershing"
+},
+{
+"s": "South Darfur",
+"n": "Nyala Janoub"
+},
+{
+"s": "South Kordofan",
+"n": "Abassiya"
+},
+{
+"s": "South Kordofan",
+"n": "Abu Jubayhah"
+},
+{
+"s": "South Kordofan",
+"n": "Al Leri"
+},
+{
+"s": "South Kordofan",
+"n": "Talawdi"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39874",
+"name": "Integrated life saving intervention in priority areas in Kordofan",
+"summary": "The proposed project aims to deliver an integrated, multi-sectoral, life-saving response to crisis-affected populations in North and South Kordofan, Sudan, where protracted conflict, displacement, and the collapse of basic services have generated critical humanitarian needs. Across targeted localities, households face severe barriers to accessing essential healthcare, high levels of acute malnutrition, and poor water…",
+"sectors": [
+"Health",
+"Nutrition",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-08-15",
+"end": "2027-08-14",
+"budget": 1999297,
+"states": [
+"South Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39913",
+"name": "Lifesaving Health and WASH Support for Vulnerable Conflict‑Affected People in North Kordofan",
+"summary": "The project “Lifesaving Health and WASH Support for Vulnerable Conflict Affected People in North Kordofan” aims to reduce preventable morbidity and mortality among crisis affected populations in Sheikan, Um Rawaba, and Ar Rahad. Years of conflict, displacement, and service collapse have left communities without functional PHC, safe water, sanitation, or disease prevention systems. Joint IRW–JASMAR assessments confirm…",
+"sectors": [
+"Health",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-08-15",
+"end": "2027-08-14",
+"budget": 724968,
+"states": [
+"North Kordofan"
+],
+"localities": [
+{
+"s": "North Kordofan",
+"n": "Ar Rahad"
+},
+{
+"s": "North Kordofan",
+"n": "Sheikan"
+},
+{
+"s": "North Kordofan",
+"n": "Um Rawaba"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39993",
+"name": "Integrated, life-saving Health, Nutrition and WASH services for conflict-affected populations in Lagawa and Alodyia localities in West Kordofan",
+"summary": "This 12-month intervention will provide integrated, life-saving Health, Nutrition, and WASH services, for 87,038 conflict-affected people across Lagawa and Alodyia localities in West Kordofan State, Sudan. It addresses a critical funding gap threatening the continuity of life-saving services in seven health facilities, including 2 rural hospitals and 5 Primary Health Care Centres. nbsp The project responds to critica…",
+"sectors": [
+"Health",
+"Nutrition",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-08-15",
+"end": "2027-08-14",
+"budget": 965000,
+"states": [
+"West Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-UN-39852",
+"name": "Provision of Integrated Life-Saving Reproductive Health Supplies in Sudan's highest severity localities",
+"summary": "Sudan continues to experience one of the world's most severe humanitarian crises, with widespread displacement, recurrent disease outbreaks, and extensive disruption of health services severely limiting access to life-saving sexual and reproductive health (SRH) care. Conflict, insecurity, damaged infrastructure, and supply chain disruptions have resulted in persistent shortages of essential reproductive health commod…",
+"sectors": [
+"Health"
+],
+"orgType": "UN Agency",
+"start": "2026-08-15",
+"end": "2027-08-14",
+"budget": 1799997,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-26-S-INGO-39837",
+"name": "Reducing Preventable Morbidity  Mortality through Integrated, Life-Saving Services Nutrition and Protection-Response in North Kordofan (Sheikan,Um Dam Haj) and South Kordofan(Dilling)",
+"summary": "The proposed project, “Reducing Preventable Morbidity Mortality through Integrated Nutrition and Protection Services,” aims to address critical, life-threatening needs in conflict-affected areas of North Kordofan (Sheikan and Um Dam Haj Ahmed) and South Kordofan (Dilling), Sudan. Implemented over a 10-month period, the intervention responds to the severe deterioration of humanitarian conditions driven by ongoing conf…",
+"sectors": [
+"Nutrition",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2026-08-10",
+"end": "2027-06-09",
+"budget": 750000,
+"states": [
+"North Kordofan",
+"South Kordofan"
+],
+"localities": [
+{
+"s": "North Kordofan",
+"n": "Sheikan"
+},
+{
+"s": "North Kordofan",
+"n": "Um Dam Haj Ahmed"
+},
+{
+"s": "South Kordofan",
+"n": "Dilling"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39893",
+"name": "LIFELINE-Sudan: Life-Saving Integrated Health, Nutrition and WASH Emergency Response in North Darfur, Blue Nile and Khartoum",
+"summary": "World Relief Sudan (WRS), Medair, Sudan Social Development Organization (SUDO), and Child Development Foundation (CDF) will deliver an integrated Health, WASH, Nutrition and protection-centred response in high severity areas of North Darfur, Blue Nile, and Khartoum. The project will reduce preventable morbidity and mortality among IDPs, returnees, and host communities by sustaining essential services, responding to o…",
+"sectors": [
+"Health",
+"Nutrition",
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-08-10",
+"end": "2027-08-09",
+"budget": 2900000,
+"states": [
+"Blue Nile",
+"Khartoum",
+"North Darfur"
+],
+"localities": [
+{
+"s": "Blue Nile",
+"n": "Ed Damazine"
+},
+{
+"s": "Khartoum",
+"n": "Jebel Awlia"
+},
+{
+"s": "Khartoum",
+"n": "Karrari"
+},
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39901",
+"name": "Provision of Integrated Life-Saving Health Services Continuity, Nutrition, WASH, and Cholera Response Services with Embedded Protection Mainstreaming in South, East Darfur and West Kordofan",
+"summary": "The Sudan humanitarian crisis continues to drive unprecedented levels of displacement, disease outbreaks, food insecurity, and the collapse of essential services across Darfur and Kordofan. Conflict, recurrent population movements, deteriorating health infrastructure, and limited access to safe water and nutrition services have left millions of people vulnerable to preventable illness, malnutrition, and death. In res…",
+"sectors": [
+"Health",
+"Nutrition",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-08-10",
+"end": "2027-08-09",
+"budget": 5124500,
+"states": [
+"East Darfur",
+"West Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39994",
+"name": "Provision of Integrated Lifesaving Health, Nutrition and WASH Services for Internally Displaced Persons and Vulnerable Host Communities in Sudan",
+"summary": "This one-year project will deliver integrated primary health care (PHC), nutrition services, and water, sanitation and hygiene (WASH) interventions to provide a comprehensive, lifesaving response for the most vulnerable populations. The project will deliver lifesaving PHC services to internally displaced persons (IDPs) and vulnerable host communities in Blue Nile State (BNS) and South Kordofan State (SKS) through sta…",
+"sectors": [
+"Health",
+"Nutrition",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-08-10",
+"end": "2027-08-09",
+"budget": 1500000,
+"states": [
+"Blue Nile",
+"South Kordofan"
+],
+"localities": [
+{
+"s": "Blue Nile",
+"n": "Al Kurmuk"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-NGO-39962",
+"name": "Sustaining Life-Saving Health Services and Controlling Disease Outbreaks for the Affected Communities in Al Managil and Um Alqura  Localities in Al Jazira State.",
+"summary": "This integrated intervention aims to reduce preventable morbidity and mortality among IDPs, host communities, and returnees in the highest-severity conflict-affected localities of Aljazeera State. Building on CDF’s strong operational presence in Aljazeera since 2018, the project directly addresses the systemic collapse of basic infrastructure and escalating disease outbreaks (such as cholera and AWD) driven by active…",
+"sectors": [
+"Health",
+"WASH"
+],
+"orgType": "National NGO",
+"start": "2026-08-10",
+"end": "2027-08-09",
+"budget": 700100,
+"states": [
+"Aj Jazirah"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-NGO-39987",
+"name": "Provision of Lifesaving Integrated Health and WASH Response for Vulnerable Populations in South and East Darfur States.",
+"summary": "The project aims to deliver lifesaving, integrated Health and WASH services to 355,621 crisis‑affected people, representing 30% of the total catchment population of 1,185,403 across Kass, Mershing, Beleil, Al Radoum, Ad Du’ayn, Abu Karinka, and Al Firdous localities in South and East Darfur. Of the total target population, 67.16% will be reached through Health interventions and 32.84% through WASH interventions. Thes…",
+"sectors": [
+"Health",
+"WASH"
+],
+"orgType": "National NGO",
+"start": "2026-08-10",
+"end": "2027-08-09",
+"budget": 669614,
+"states": [
+"East Darfur",
+"South Darfur"
+],
+"localities": [
+{
+"s": "East Darfur",
+"n": "Abu Karinka"
+},
+{
+"s": "East Darfur",
+"n": "Al Firdous"
+},
+{
+"s": "South Darfur",
+"n": "Al Radoum"
+},
+{
+"s": "South Darfur",
+"n": "Mershing"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39986",
+"name": "Life-saving integrated health, nutrition and community-based protection response for conflict-affected, displaced and at-risk populations in Jebel Awlia and Karari localities, Khartoum State",
+"summary": "After three years of conflict, Sudan continues to face one of the world’s largest humanitarian crises, marked by mass displacement, severe service disruptions, and a health system on the verge of collapse. In Khartoum State, where an estimated 75% of hospitals have been damaged or rendered inoperable, access to essential health and nutrition services remains critically limited. At the same time, recurrent disease out…",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2026-08-09",
+"end": "2027-08-08",
+"budget": 1000000,
+"states": [
+"Khartoum"
+],
+"localities": [
+{
+"s": "Khartoum",
+"n": "Jebel Awlia"
+},
+{
+"s": "Khartoum",
+"n": "Karrari"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-NGO-39945",
+"name": "Reducing morbidity and mortality among IDPs and host communities in Ad Dabah locality by providing lifesaving health services and preventing and controlling epidemics.",
+"summary": "This project aims to reduce morbidity and mortality among internally displaced persons (IDPs) and host communities in Ad Dabbah locality, Northern State, Sudan. Over a 12-month period, the project will deliver an integrated package of primary care, secondary referrals, and epidemic control measures. Through supporting 2nbspprimary healthcare facilities including Alafad IDPs camp clinic, the project covers the health …",
+"sectors": [
+"Health"
+],
+"orgType": "National NGO",
+"start": "2026-08-09",
+"end": "2027-08-08",
+"budget": 880000,
+"states": [
+"Northern"
+],
+"localities": [
+{
+"s": "Northern",
+"n": "Ad Dabbah"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39817",
+"name": "Integrated WASH in Health Response to Reduce Morbidity and Mortality in Khartoum and North Darfur States",
+"summary": "Khartoum State remains at high risk of cholera, acute watery diarrhoea (AWD), hepatitis E and vector-borne disease outbreaks due to conflict-related damage to water and sanitation infrastructure, inadequate waste management, electricity disruptions, and the return of displaced populations to heavily damaged urban areas. In Jebel Awlia, Karrari and Omdurman localities, health facilities and surrounding communities fac…",
+"sectors": [
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-08-06",
+"end": "2027-08-05",
+"budget": 1500000,
+"states": [
+"Khartoum",
+"North Darfur"
+],
+"localities": [
+{
+"s": "Khartoum",
+"n": "Jebel Awlia"
+},
+{
+"s": "Khartoum",
+"n": "Karrari"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39819",
+"name": "Integrated Health, Nutrition, and Protection-Centered  Response to Reduce Preventable Morbidity and Mortality among Crisis-Affected Populations",
+"summary": "Sudan's humanitarian crisis continues to drive large-scale displacement, disease outbreaks, acute malnutrition and disruption of essential health services. North Darfur remains among the worst-affected states following the destruction of Zamzam Camp and the escalation of conflict in El Fasher, resulting in repeated displacement of vulnerable populations to Tawila and surrounding areas. The continued influx of interna…",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2026-08-06",
+"end": "2027-08-05",
+"budget": 1250000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-INGO-39884",
+"name": "Emergency Nutrition response in North Darfur, Sudan",
+"summary": "The proposed project is a 12-month emergency nutrition intervention with a total budget of USD 911,082, to be implemented by Welthungerhilfe (WHH) in partnership with Alrayan for Social Development (RSD) in North Darfur State. The project will deliver integrated, lifesaving humanitarian assistance to approximately 65,577 vulnerable people, including internally displaced people (IDPs), host communities, and returnees …",
+"sectors": [
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2026-08-06",
+"end": "2027-08-05",
+"budget": 911081,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Kernoi"
+},
+{
+"s": "North Darfur",
+"n": "Kutum"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-NGO-39892",
+"name": "Integrated Life-Saving Health and WASH Response for Conflict-Affected and Displaced Populations in Tawila Locality, North Darfur",
+"summary": "SAPA will deliver an integrated, life-saving Health and WASH-in-health-care-facility (WASH-in-HCF) response in Tawila locality, North Darfur — Sudan’s largest IDP-hosting locality (~707,235 IDPs IOM DTM, 31 March 2026) and a Very High priority Health locality under the SHF 2026 First Standard Allocation. Over 12 months, SAPA will sustain and scale services across five facilities it operates or is positioned to reacti…",
+"sectors": [
+"Health",
+"WASH"
+],
+"orgType": "National NGO",
+"start": "2026-08-05",
+"end": "2027-08-04",
+"budget": 1000000,
+"states": [
+"North Darfur",
+"Sennar"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Tawila"
+},
+{
+"s": "Sennar",
+"n": "Ad Dali"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-NGO-39856",
+"name": "Emergency WASH and Cholera Response for Conflict-Affected Populations in Kass (incl. Kalo Kitting) and As Salam localities, South Darfur",
+"summary": "This integrated project delivers a coordinated, life-saving emergency WASH and Protection intervention in South Darfur’s Kass, Al Salam, and Sharg El Jabal localities, led jointly by HOPE and Acted. Fully aligned with the strategic objectives of the Humanitarian Response Plan (HRP), this initiative addresses a critical humanitarian crisis characterized by acute clean water shortages, widespread open defecation due to…",
+"sectors": [
+"WASH"
+],
+"orgType": "National NGO",
+"start": "2026-08-01",
+"end": "2027-07-31",
+"budget": 1500000,
+"states": [
+"South Darfur"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-NGO-39941",
+"name": "Provision of Integrated Life-Saving Primary Health Care and Nutrition Services to Conflict-Affected and Vulnerable Populations in Khartoum State.",
+"summary": "The project aims to improve access to integrated, life-saving health and nutrition services for conflict-affected and vulnerable populations in Jebel Awlia and Kararri localities, Khartoum State. Through this project, AMVO will deliver: * Jabel Awlia: Health services in 5 PHCs (the Nutrition component is currently funded by UNICEF at these 5 HFs and service is running) by strengthening the health system components ne…",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "National NGO",
+"start": "2026-08-01",
+"end": "2027-07-31",
+"budget": 1000000,
+"states": [
+"Khartoum"
+],
+"localities": [
+{
+"s": "Khartoum",
+"n": "Jebel Awlia"
+},
+{
+"s": "Khartoum",
+"n": "Karrari"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-S-NGO-39984",
+"name": "Provide comprehensive Life-Saving WASH Intervention for affected people by conflict and Cholera in Localities of Jabel Awlia （Khartoum stat, Kosti, and Rabak (White Nile state）",
+"summary": "2026– Emergency WASH Response for 325,000 conflict and Cholera affected people in Localities of Jabel Awlia in Khartoum state, Kosti and Rabak in White Nile state is aimed to addressing the most critical humanitarian gaps for cholera and conflict affected people in Khartoum and White Nile states localities of Jebel Awlia, Rabak and Kosti respectively. Due to the recent conflict in greater Kordofan WNS received more t…",
+"sectors": [
+"WASH"
+],
+"orgType": "National NGO",
+"start": "2026-08-01",
+"end": "2027-07-31",
+"budget": 998694,
+"states": [
+"Khartoum",
+"White Nile"
+],
+"localities": [
+{
+"s": "Khartoum",
+"n": "Jebel Awlia"
+},
+{
+"s": "White Nile",
+"n": "Kosti"
+},
+{
+"s": "White Nile",
+"n": "Rabak"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-39785",
+"name": "UK-Med Medical Emergency Response Unit (MERU) for UN staff, Tawila (Proposal 1/2)",
+"summary": "The Sudan IASC System Wide Scale Up (January-June 2026) and UN Medical Director’s Report (March 2026) jointly outline the critical, unmet need for strengthened emergency medical and medevac services in Darfur. The lack of these operational enablers are essential to sustaining and expanding the humanitarian response in Sudan. Both documents (seenbspAnnexes) represent the principle rationale for UK-Med's intervention. …",
+"sectors": [
+"Health"
+],
+"orgType": "International NGO",
+"start": "2026-07-01",
+"end": "2027-06-30",
+"budget": 1500000,
+"states": [
+"North Darfur",
+"South Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Tawila"
+},
+{
+"s": "South Darfur",
+"n": "Nyala Janoub"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-39790",
+"name": "UK-Med Medical Emergency Response Unit (MERU) for UN staff, Tawila (Proposal  2/2)",
+"summary": "The Sudan IASC System Wide Scale Up (January-June 2026) and UN Medical Director’s Report (March 2026) jointly outline the critical, unmet need for strengthened emergency medical and medevac services in Darfur. The lack of these operational enablers are essential to sustaining and expanding the humanitarian response in Sudan. Both documents (see Annexes) represent the principle rationale for UK-Med's intervention. In …",
+"sectors": [
+"Health"
+],
+"orgType": "International NGO",
+"start": "2026-07-01",
+"end": "2027-03-31",
+"budget": 499997,
+"states": [
+"North Darfur",
+"South Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Tawila"
+},
+{
+"s": "South Darfur",
+"n": "Nyala Janoub"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-39791",
+"name": "48-Hour Rapid Response WASH, Shelter/NFI and Protection Interventions to mitigate morbidity and mortality among children and families in response to sudden-onset emergencies and new access scenarios.",
+"summary": "Sudan has become one of the world’s largest and most complex humanitarian crises, with more than 33 million people projected to require humanitarian assistance in 2026. Vulnerable families bear the brunt through loss of shelters and livelihoods, many displaced and returnees, often finding homes looted or damaged, now live in unsafe, overcrowded, or open areas exposed to elements of harsh weather, insecurity and prote…",
+"sectors": [
+"Protection",
+"Shelter and NFIs",
+"Site management",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-06-15",
+"end": "2027-06-14",
+"budget": 5000000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-26-R-INGO-39784",
+"name": "48-hour response Consortium - Provision of Immediate and Lifesaving Health and Nutrition Services in Hotspot Areas with emerging needs in Sudan.",
+"summary": "This project is a rapid response mechanism and will provide lifesaving health and nutrition interventions in response to the Sudan crisis post-April 15, 2023, to the hotspot locations with emerging needs in Sudan. Conflicts and violence have resulted in a high number of civilian casualties, extensive damage to infrastructure and facilities, including health and nutrition facilities, and mass displacements. With food …",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2026-06-10",
+"end": "2027-06-09",
+"budget": 3000000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-25-S-INGO-39073",
+"name": "Multisector FSL, Nutrition and ESNFI Respoinse in Sharg Al Jazirah -Sudan",
+"summary": "Relief International (RI), Patient Help Fund (PHF), and CAFA will deliver an integrated Food Security and Livelihoods (FSL), Nutrition and Emergency Shelter and Non‑Food Items (ESNFI) response in Sharg Al Jazirah, an underfunded locality facing rising malnutrition, weakened services, and increasing protection risks. RI will reach 16,020 individuals (3,925 women, 4,245 girls, 3,765 men, 4,085 boys) through FSL compone…",
+"sectors": [
+"Food Security",
+"Nutrition",
+"Shelter and NFIs"
+],
+"orgType": "International NGO",
+"start": "2026-05-01",
+"end": "2027-04-30",
+"budget": 1700000,
+"states": [
+"Aj Jazirah"
+],
+"localities": [
+{
+"s": "Aj Jazirah",
+"n": "Sharg Al Jazirah"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-NGO-39536",
+"name": "Strengthening the Centrality of Protection in an integrated and complementarity approach in Tawila locality, North Darfur state.",
+"summary": "The project aims to reduce the risks of Gender-Based Violence (GBV), Child Protection (CP), and General Protection (GP) concerns in Tawila locality, North Darfur State. It will provide lifesaving, survivor-centered, and community-based services to vulnerable women, girls, men, and boys, ensuring safety and dignity. Tawila locality continues to face significant protection gaps due to ongoing displacement, limited acce…",
+"sectors": [
+"Protection"
+],
+"orgType": "National NGO",
+"start": "2026-05-01",
+"end": "2027-01-31",
+"budget": 399947,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-39098",
+"name": "Integrated Health, Nutrition, WASH, FSL, and protection interventions for populations affected by Conflict in Sheikan locality, North Kordofan State.",
+"summary": "The humanitarian situation in North Kordofan remains critical due to the prevailing conflict-induced displacement, and severe food insecurity. In Sheikan Locality, a rapid mid-upper arm circumference (MUAC) screening in November 2025 among IDPs and newly arrived children aged 6–59 months from Bara Locality found a GAM (MUAC) prevalence of 28%. With shortages of nutrition supplies expected by February 2026, the situat…",
+"sectors": [
+"Food Security",
+"Health",
+"Nutrition",
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-04-01",
+"end": "2027-03-31",
+"budget": 2400000,
+"states": [
+"North Kordofan"
+],
+"localities": [
+{
+"s": "North Kordofan",
+"n": "Ar Rahad"
+},
+{
+"s": "North Kordofan",
+"n": "Sheikan"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-NGO-39084",
+"name": "Strengthening the Centrality of Protection in an integrated  and complementarity approach in Jabal Awilaa ,Khartoum state",
+"summary": "The project aims to reduce the risks of Gender-Based Violence (GBV), Child Protection (CP), and General Protection (GP) concerns integrated with WASH interventions in Jabal Awlia locality, Khartoum State. It will provide lifesaving, survivor-centered and community-based services to 33,423nbspvulnerable women, girls, men, and boys, ensuring safety and dignity. The project will deliver comprehensive GBV case management…",
+"sectors": [
+"Protection",
+"WASH"
+],
+"orgType": "National NGO",
+"start": "2026-04-01",
+"end": "2027-03-31",
+"budget": 1500000,
+"states": [
+"Khartoum"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-O-39074",
+"name": "Lifesaving Integrated Agricultural and Livestock Support in As Sunut",
+"summary": "This project aims to deliver life-saving, principled, and gender-responsive FSL assistance to highly vulnerable populations in As Sunut, West Kordofan, where ongoing conflict, displacement, market disruption, and livelihood collapse have led to critical food insecurity. The intervention seeks to reduce mortality and morbidity risks while restoring essential livelihood capacities and strengthening community resilience…",
+"sectors": [
+"Food Security"
+],
+"orgType": "Others",
+"start": "2026-04-01",
+"end": "2027-03-31",
+"budget": 800000,
+"states": [
+"West Kordofan"
+],
+"localities": [
+{
+"s": "West Kordofan",
+"n": "As Sunut"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-NSFT-39204",
+"name": "Scale-Up of Multi-Purpose Cash Assistance and Group Cash Transfers to Address Acute Multisectoral Needs in Hyper-Prioritized Locations of Sudan",
+"summary": "Sudan remains one of the world's largest humanitarian crises, with over 33 million people projected to need assistance in 2026. The IPC analysis (Sept 2025-May 2026) shows conflict-affected states facing Crisis (Phase 3), Emergency (Phase 4), and localized Catastrophe (Phase 5) conditions, driven by protracted conflict, repeated displacement, economic collapse, infrastructure destruction, and restricted humanitarian …",
+"sectors": [
+"Multi-purpose cash"
+],
+"orgType": "International NGO",
+"start": "2026-04-01",
+"end": "2026-09-30",
+"budget": 3000000,
+"states": [
+"Aj Jazirah",
+"Khartoum",
+"North Darfur",
+"South Kordofan"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "South Kordofan",
+"n": "Delami"
+},
+{
+"s": "South Kordofan",
+"n": "Heiban"
+},
+{
+"s": "South Kordofan",
+"n": "Kadugli"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-NSFT-39210",
+"name": "Safe and Dignified Cash-Based Assistance to Crisis-Affected Populations in Sudan's Darfur and Kordofan",
+"summary": "The primary objective of this project is to deliver principled, multipurpose cash assistance to vulnerable populations in three Sudanese states—West and South Kordofan and Central Darfur—while maintaining strong community engagement, transparency, and protection mainstreaming approach. This initiative addresses urgent, life-saving needs in specific localities, as determined by the hyper-prioritization exercise led by…",
+"sectors": [
+"Multi-purpose cash"
+],
+"orgType": "International NGO",
+"start": "2026-04-01",
+"end": "2026-09-30",
+"budget": 3000000,
+"states": [
+"Central Darfur",
+"Khartoum",
+"South Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-NSFT-39215",
+"name": "Multi-sectoral cash Assistance for conflict affected Populations in Khartoum and Blue Nile (MAP)",
+"summary": "The proposed project will provide life-saving Multi-Purpose Cash Assistance to conflict-affected and newly displaced populations in Khartoum and Blue Nile States, addressing acute food insecurity and immediate basic needs resulting from ongoing conflict, displacement, and economic collapse. The humanitarian situation across both states remains critical, with food security indicators reflecting severe deterioration of…",
+"sectors": [
+"Multi-purpose cash"
+],
+"orgType": "International NGO",
+"start": "2026-04-01",
+"end": "2026-09-30",
+"budget": 3000000,
+"states": [
+"Blue Nile",
+"Khartoum"
+],
+"localities": [
+{
+"s": "Blue Nile",
+"n": "Al Kurmuk"
+},
+{
+"s": "Blue Nile",
+"n": "Ed Damazine"
+},
+{
+"s": "Khartoum",
+"n": "Jebel Awlia"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-NSFT-39216",
+"name": "Emergency Pipeline Support in Sudan",
+"summary": "This project aims to reduce crisis related morbidity and mortality by ensuring timely and accountable access to food, health and nutrition assistance in prioritized high severity localities in Darfur. CRS will leverage its supply chain capacity and pre-positioned commodities and relationships with suppliers to procure, store, transport, and dispatch of food, health, and nutrition commodities to meet multi-sectoral ne…",
+"sectors": [
+"Food Security",
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2026-04-01",
+"end": "2026-12-31",
+"budget": 25000000,
+"states": [
+"Central Darfur",
+"East Darfur",
+"North Darfur",
+"West Kordofan"
+],
+"localities": [
+{
+"s": "Central Darfur",
+"n": "Shamal Jabal Marrah"
+},
+{
+"s": "Central Darfur",
+"n": "Zalingi"
+},
+{
+"s": "North Darfur",
+"n": "Dar As Salam"
+},
+{
+"s": "North Darfur",
+"n": "Melit"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+},
+{
+"s": "North Darfur",
+"n": "Um Baru"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-NSFT-39219",
+"name": "Multisectoral cash-based assistance response in Darfurs and Kordofans",
+"summary": "With humanitarian needs escalating rapidly and IPC projections indicating catastrophic food insecurity conditions in early 2026, rapid multi-purpose cash assistance from Multi-Purpose Cash (MPC) and Group Cash Transfers (GCT), is required to enable displaced households across Darfurs and Kordofans to meet immediate life-saving needs. Mercy Corps proposes to provide rapid MPC and GCT to 97,788 individuals across the f…",
+"sectors": [
+"Multi-purpose cash"
+],
+"orgType": "International NGO",
+"start": "2026-04-01",
+"end": "2026-09-30",
+"budget": 6000000,
+"states": [
+"Central Darfur",
+"North Kordofan",
+"South Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-NSFT-39234",
+"name": "Scaling Up Multisectoral Cash and Protection Assistance in Hyper-Prioritised Locations of Sudan",
+"summary": "With the support of MOD, SZWO and HOPE, Acted will implement a locally led, protection-centered emergency, direct life-saving humanitarian response reaching 51,869 Individuals across 10 hyper-prioritised localities in seven states: Al Jazirah: Medani Al Kubra, Sharg Al Jazirah Blue Nile: At Tadamon, Baw, Ed Damazine Gedaref: Basundah South Darfur: Buram West Darfur: Habila East Darfur: Ad Duayn White Nile: Al Jabalei…",
+"sectors": [
+"Multi-purpose cash",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2026-04-01",
+"end": "2026-09-30",
+"budget": 5500000,
+"states": [
+"Aj Jazirah",
+"Blue Nile",
+"East Darfur",
+"Gedaref",
+"South Darfur",
+"South Kordofan",
+"West Darfur",
+"White Nile"
+],
+"localities": [
+{
+"s": "Aj Jazirah",
+"n": "Medani Al Kubra"
+},
+{
+"s": "Aj Jazirah",
+"n": "Sharg Al Jazirah"
+},
+{
+"s": "Blue Nile",
+"n": "Ed Damazine"
+},
+{
+"s": "Gedaref",
+"n": "Basundah"
+},
+{
+"s": "South Darfur",
+"n": "Buram"
+},
+{
+"s": "South Kordofan",
+"n": "Al Buram"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-NSFT-39280",
+"name": "Multi-sectoral Lifesaving Assistance for the Most Vulnerable People in South Kordofan, North Darfur, West Darfur, Central Darfur and South Darfur, Sud",
+"summary": "This proposed project addresses the urgent humanitarian needs of approximately 90,746nbspof the most vulnerable individuals – including 50,643nbspwomen and 40,103nbspmen – across South Kordofan, North Darfur, West Darfur, Central Darfur, and South Darfur, Sudan. The primary focus is on populations in areas classified as inter-sectoral severity 4 and 5, with internally displaced persons (IDPs) comprising 75% of benefi…",
+"sectors": [
+"Multi-purpose cash",
+"Protection",
+"Shelter and NFIs"
+],
+"orgType": "International NGO",
+"start": "2026-04-01",
+"end": "2026-09-30",
+"budget": 8000000,
+"states": [
+"Central Darfur",
+"North Darfur",
+"South Darfur",
+"South Kordofan",
+"West Darfur"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-UN-NSFT-39213",
+"name": "Procurement and distribution of health, nutrition and WASH supplies to reach the most vulnerable children and families in 84 hyper-prioritized localities in Sudan with lifesaving assistance.",
+"summary": "Sudan is facing one of the world’s most severe humanitarian crises - escalating violence, mass displacement, food insecurity, disease outbreaks and the collapse of essential services have pushed millions to the brink, including 17.3 million children who are in urgent need of humanitarian assistance. The health system is at near total collapse, with 70 per cent of facilities nonfunctional, leaving 3.4 million children…",
+"sectors": [
+"Health",
+"Nutrition",
+"WASH"
+],
+"orgType": "UN Agency",
+"start": "2026-04-01",
+"end": "2026-09-30",
+"budget": 30000000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-26-R-UN-NSFT-39225",
+"name": "Scaling up security support to enable essential UN programme delivery and protection activities in North Darfur and the Kordofans",
+"summary": "This project will be implemented by the United Nations Department of Safety and Security to support humanitarian operations across Darfur and the Kordofans in Sudan, with a particular focus on North Darfur—especially Tawila locality—and other high-priority areas in the Kordofan regions. Recognizing security as a critical enabling function across all clusters, the project aims to facilitate humanitarian access, protec…",
+"sectors": [
+"Coordination"
+],
+"orgType": "UN Agency",
+"start": "2026-04-01",
+"end": "2026-09-30",
+"budget": 500000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-UN-NSFT-39284",
+"name": "Emergency Food Assistance and Common Logistics Services for Highly Food-Insecure Communities in Hyper-Prioritized Inter-Cluster Priority Localities",
+"summary": "General Food Assistance This project will deliver life-saving General Food Assistance (GFA) to severely food-insecure populations in hyper-prioritized inter-cluster localities, in line with inter-agency severity analysis and the 2026 Strategy and Prioritization Framework of WFP Sudan. The intervention is designed to maintain continuity of assistance during a period of anticipated pipeline constraints by combining cas…",
+"sectors": [
+"Food Security",
+"Logistics"
+],
+"orgType": "UN Agency",
+"start": "2026-04-01",
+"end": "2026-09-30",
+"budget": 51500000,
+"states": [
+"Gedaref",
+"Kassala",
+"Khartoum",
+"North Darfur",
+"Northern",
+"Red Sea",
+"White Nile"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Tawila"
+},
+{
+"s": "Northern",
+"n": "Ad Dabbah"
+},
+{
+"s": "Red Sea",
+"n": "Port Sudan"
+},
+{
+"s": "White Nile",
+"n": "Kosti"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-UN-NSFT-39218",
+"name": "Emergency Multisectoral Assistance for Newly Displaced and Vulnerable Populations in Hyper-Prioritized High-Risk Conflict Areas",
+"summary": "The project provides rapid, life-saving assistance to crisis-affected populations in the 84 hyper-prioritized severity 4–5 localities identified by the UN and SHF across Sudan, where conflict has generated acute unmet needs and severely reduced coping capacities as well as areas that could fall within the same classification during the timeline of the project. Through the IOM Common Pipeline, the intervention will pr…",
+"sectors": [
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "UN Agency",
+"start": "2026-03-31",
+"end": "2026-12-30",
+"budget": 17000000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-26-R-INGO-NSFT-39206",
+"name": "MPCA assistance in hyper-prioritised localities  inter-sectoral severity localities in North Darfur, Northern State, and AJ Jazirah in Sudan.",
+"summary": "This project aims to deliver rapid, life-saving, and protection-centered MPC to highly vulnerable households in hyper-prioritized inter-sectoral severity localities in North Darfur (Tawila, Melit), Northern State (Ad Dabbah), and AJ Jazirah (Medani Al Kubra, Sharg Al Jazirah). Since April 2023, ongoing conflict, repeated displacement, economic collapse, and severe market disruption have significantly reduced househol…",
+"sectors": [
+"Multi-purpose cash"
+],
+"orgType": "International NGO",
+"start": "2026-03-30",
+"end": "2026-09-29",
+"budget": 7000000,
+"states": [
+"Aj Jazirah",
+"North Darfur",
+"Northern"
+],
+"localities": [
+{
+"s": "Aj Jazirah",
+"n": "Medani Al Kubra"
+},
+{
+"s": "Aj Jazirah",
+"n": "Sharg Al Jazirah"
+},
+{
+"s": "North Darfur",
+"n": "Melit"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+},
+{
+"s": "Northern",
+"n": "Ad Dabbah"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-NSFT-39209",
+"name": "Scaleup   expansion of Multi sectoral life saving assistance in hyper-prioritized locations of Sudan",
+"summary": "CARE Sudan proposes the scale‑up and expansion of multi‑sectoral, life‑saving assistance in hyper‑prioritized locations across Sudan, addressing the rapidly worsening humanitarian crisis driven by protracted armed conflict, mass displacement, market disruption, and the continued erosion of household coping capacities. In alignment with the 2026 CBPF Reserve Allocation, the project positions Multi‑Purpose Cash Assista…",
+"sectors": [
+"Multi-purpose cash"
+],
+"orgType": "International NGO",
+"start": "2026-03-29",
+"end": "2026-09-28",
+"budget": 6000000,
+"states": [
+"East Darfur",
+"Kassala",
+"South Darfur"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-NSFT-39211",
+"name": "SHF Scale up  - DRC: Integrated Mine Action Response in Hyper-Prioritized Conflict-Affected Areas 2026",
+"summary": "Explosive ordnance contamination remains a major barrier to humanitarian access, safe movement, and the restoration of basic services across conflict-affected areas of Sudan. Since the outbreak of war, large parts of Khartoum and other affected states have experienced widespread explosive contamination, while several priority states have received little or no mine action response. As returns and humanitarian operatio…",
+"sectors": [
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2026-03-29",
+"end": "2026-09-28",
+"budget": 2500000,
+"states": [
+"Blue Nile",
+"Khartoum",
+"North Kordofan",
+"White Nile"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-NSFT-39202",
+"name": "Integrated Multi-Sectoral Emergency Response for IDPs and Host Communities in Tawila, Al Twisha, and Al Lait, North Darfur",
+"summary": "The Integrated Multi-Sectoral Emergency Response Project is a six-month emergency intervention with a total budget of $2,500,000. It will be managed by Deutsche Welthungerhilfe (WHH) in collaboration with local partner SAHARI, the project provides rapid, lifesaving assistance to approximately 30,000 vulnerable individuals (IDPs and Host Communities) in Tawila, Al Twisha, and Al Lait, North Darfur. By leveraging an in…",
+"sectors": [
+"Multi-purpose cash",
+"Nutrition",
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-03-22",
+"end": "2026-09-21",
+"budget": 2500000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Lait"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-NSFT-39201",
+"name": "Life-saving multi-purpose cash assistance in 9 hyper-prioritized IPC 4/5 localities in North Darfur, White Nile, North Kordofan and South Kordofan",
+"summary": "Sudan continues to face a severe and rapidly deteriorating humanitarian crisis, with large populations in IPC Phase 4 and 5 across multiple states. Escalating conflict, displacement, market disruption and inflation have significantly reduced household purchasing power, leaving crisis-affected populations unable to meet basic food and non-food needs. In hyper-prioritized localities of North Kordofan, South Kordofan, W…",
+"sectors": [
+"Multi-purpose cash"
+],
+"orgType": "International NGO",
+"start": "2026-03-20",
+"end": "2026-09-19",
+"budget": 5000000,
+"states": [
+"North Darfur",
+"North Kordofan",
+"South Kordofan",
+"White Nile"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-39063",
+"name": "Provision of Integrated Lifesaving Food Security and Livelihood Services for the Most Vulnerable IDPs and Host Communities in Tawila locality, North Darfur",
+"summary": "As Sudan is currently facing the world’s largest humanitarian crisis, it is deeply impacting the access of the population to food and livelihood, with more than 19 million individuals of the Sudanese population identified with high acute malnutrition. More precisely, in North Darfur, 75% of the internally displaced people (IDPs) living in Tawila locality are classified with an IPC of 3 or higher, with more than 25,00…",
+"sectors": [
+"Food Security"
+],
+"orgType": "International NGO",
+"start": "2026-03-18",
+"end": "2027-03-17",
+"budget": 650000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-NSFT-39222",
+"name": "Integrated lifesaving multipurpose cash assistance to save lives and promote resilience in vulnerable populations in crisis- affected communities in South Darfur, East Darfur and Blue Nile",
+"summary": "This project aims to respond to the urgent humanitarian needs of the vulnerable communities including IDPs, returnees and host communities in South Darfur (Rehaid Albirdi Nitega localities) East Darfur (Ad Du'ayn,nbsp Adila Yassin localities) and Blue Nile (Baw At Tadamon localities focusing on those facing food insecurity, impacted by the conflict and requiring basic services especially communities affected by compl…",
+"sectors": [
+"Multi-purpose cash"
+],
+"orgType": "International NGO",
+"start": "2026-03-18",
+"end": "2026-09-17",
+"budget": 4000000,
+"states": [
+"Blue Nile",
+"East Darfur",
+"South Darfur"
+],
+"localities": [
+{
+"s": "East Darfur",
+"n": "Ad Du'ayn"
+},
+{
+"s": "East Darfur",
+"n": "Adila"
+},
+{
+"s": "East Darfur",
+"n": "Yassin"
+},
+{
+"s": "South Darfur",
+"n": "Nitega"
+},
+{
+"s": "South Darfur",
+"n": "Rehaid Albirdi"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-UN-NSFT-39208",
+"name": "Rapid Life-Saving Shelter/NFI, Cash and Protection Assistance in Sudan",
+"summary": "Since April 2023, Sudan has faced one of the largest and most complex humanitarian crises globally. Armed conflict, mass displacement, the collapse of essential services and severe access constraints have pushed millions into acute need, with hyper-prioritized inter-sector severity 4 and 5 localities experiencing catastrophic humanitarian conditions. In line with the US Fast-Track Reserve Allocation Strategy, UNHCR w…",
+"sectors": [
+"Multi-purpose cash",
+"Protection",
+"Shelter and NFIs"
+],
+"orgType": "UN Agency",
+"start": "2026-03-16",
+"end": "2026-09-15",
+"budget": 15000000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-25-S-INGO-39050",
+"name": "Integrated Food Security and WASH Assistance for Conflict-Affected Communities in Sharq Al Jazirah",
+"summary": "The project proposes an integrated Food Security and Livelihoods (FSL) and WASH response for conflict-affected communities in Sharq Al Jazirah, delivering life-saving food assistance, safe water, sanitation and hygiene services, and support to health facilities. Al Jazirah State faces severe humanitarian pressure following conflict and displacement, hosting over 52,000 IDPs, including 2,475 in Sharq Al Jazirah. Betwe…",
+"sectors": [
+"Food Security",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-03-15",
+"end": "2027-03-14",
+"budget": 1300000,
+"states": [
+"Aj Jazirah"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-39075",
+"name": "Integrated Lifesaving Health and Nutrition Support for Crisis-Affected Vulnerable Populations in Jebel Awlia Locality",
+"summary": "The project aims to provide essential support to conflict-affected and vulnerable households in Mayo area, Jebel Awliya locality through the provision of life-saving integrated Health and Nutrition services. CARE and Almanar will prioritize the most vulnerable communities, particularly those currently underserved by existing partner agencies. In addition to providing direct assistance, CARE and Almanar will strengthe…",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2026-03-15",
+"end": "2027-03-14",
+"budget": 1500000,
+"states": [
+"Khartoum"
+],
+"localities": [
+{
+"s": "Khartoum",
+"n": "Jebel Awlia"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-39093",
+"name": "Integrated Nutrition services for the most underserved area in Dar Alsalam, North Darfur",
+"summary": "The project will be implemented as part of a larger multisector consortium in North Darfur lead by Anhar for Peace, Development and Humanitarian Work (APDHWO).The project aims to deliver an integrated nutrition response to address the acute needs of 20,190 people, including 15,601 children under five, in Dar Alsalam, Donkey Shatta, and Gorni localities, with a particular focus on populations recently displaced. Save …",
+"sectors": [
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2026-03-15",
+"end": "2027-03-14",
+"budget": 2000000,
+"states": [
+"North Darfur"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-NGO-39082",
+"name": "Provision of WASH Services for IDPs, Returnees, and Host Communities in Jebal Awlia Locality, Khartoum State",
+"summary": "The intervention focuses on restoring safe water access through the rehabilitation of five water sources, reinstating regular chlorination, promoting household water treatment, and conducting routine water quality monitoring. To ensure sustainability, five gender‑balanced Water Management Committees will be established and trained. Water Supply Improvements, the project will rehabilitate five water sources to restore…",
+"sectors": [
+"WASH"
+],
+"orgType": "National NGO",
+"start": "2026-03-15",
+"end": "2027-03-14",
+"budget": 1300000,
+"states": [
+"Khartoum"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-39094",
+"name": "Provision of Integrated lifesaving WASH and FSL Services for the Conflict-Affected IDPs and Host Communities in Mellit, North Darfur",
+"summary": "This project delivers an integrated, life-saving WASH and Food Security Livelihoods (FSL) response for conflict-affected IDPs and vulnerable host communities in Mellit, North Darfur, where protracted displacement, collapsed services, and IPC Phase 5 conditions have driven extreme food insecurity, unsafe water access, and heightened public health risks. It directly targets 13,050 people (57% female 55% children 653 pe…",
+"sectors": [
+"Food Security",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-03-09",
+"end": "2027-03-08",
+"budget": 550000,
+"states": [
+"North Darfur"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-39109",
+"name": "Provision of Life Saving Nutrition services for the Conflict-Affected IDPs and Host Communities in Mellit, North Darfur",
+"summary": "Mellit has a population of 25,782 Households (HH) (154,692 people). Due to the ongoing conflict including the last attack of RSF forces who took control ofnbsp El Fasher townnbspon thenbsp26th of October 2026, this population had increased with an influx of IDPs who had fled the El Fasher attack.nbspMellit is reported as the 2nd safer area for displaced persons, after Tawila,nbspwith a total of IDP 7,409 HH IDPs (44,…",
+"sectors": [
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2026-03-09",
+"end": "2027-03-08",
+"budget": 600000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Melit"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-39057",
+"name": "Provision of Integrated lifesaving ES/NFI Services for Conflict-Affected IDPs in Tawila, North Darfur",
+"summary": "In response to the catastrophic situation in Tawila following the significant wave of displacements that occurred throughout 2025, GOAL and AlJuzur (JPRD) will work in consortium in order to implement an integrated project providing urgent and life-saving ES/NFI to conflict affected IDPs and host communities in Tawila. The project will be part of a broader area-based programme targeting Food Production, Nutrition, Pr…",
+"sectors": [
+"Shelter and NFIs"
+],
+"orgType": "International NGO",
+"start": "2026-03-07",
+"end": "2026-12-06",
+"budget": 800000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-NGO-39052",
+"name": "Provision of Integrated Emergency Shelter, Non-Food Items, and Food Security and Livelihood Support to Crisis-Affected Households in Jebel Awlia Locality, Khartoum State",
+"summary": "This project aims to provide integrated, life-saving Emergency Shelter and Non-Food Items (ES/NFI) and Food Security and Livelihoods (FSL) assistance to crisis-affected populations in Al-Kalakla and Al-Dikhina within Jebel Awlia locality, Khartoum State. The intervention targets internally displaced persons and highly vulnerable non-displaced households residing in severity level 3 areas, in alignment with the 2026 H…",
+"sectors": [
+"Food Security",
+"Shelter and NFIs"
+],
+"orgType": "National NGO",
+"start": "2026-03-05",
+"end": "2027-03-04",
+"budget": 1250000,
+"states": [
+"Khartoum"
+],
+"localities": [
+{
+"s": "Khartoum",
+"n": "Jebel Awlia"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-NGO-39127",
+"name": "Provision of Integrated Lifesaving Protection and Nutrition Services for the Conflict-Affected IDPs and Host Communities in El Fasher Locality, North Darfur",
+"summary": "The proposed project will deliver integrated lifesaving nutrition and protection interventions targeting 63,346 vulnerable individuals in Korma Administrative Unit, Rural El Fasher locality, North Darfur, in response to escalating humanitarian needs driven by conflict, displacement, food insecurity, protection risks, and disruption of essential services. The nutrition component will target approximately 46,420 indivi…",
+"sectors": [
+"Nutrition",
+"Protection"
+],
+"orgType": "National NGO",
+"start": "2026-03-05",
+"end": "2027-03-04",
+"budget": 550000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-38436",
+"name": "Integrated Health, Nutrition, Protection and WASH Interventions for IDPs and Host Communities in hard-to-reach areas in South of Sudan (Western Kadugli and Dellami, South Kordofan)",
+"summary": "The humanitarian situation in South Kordofan—particularly in Western Kadugli and Dellami—remains critical due to protracted conflict, repeated displacement, and severe food insecurity. IPC analysis and inter-cluster assessments indicate persistently high rates of acute malnutrition, recurrent cholera outbreaks, and the near collapse of health and WASH services. Vulnerable populations, including IDPs and host communit…",
+"sectors": [
+"Health",
+"Nutrition",
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-03-01",
+"end": "2027-02-28",
+"budget": 1300000,
+"states": [
+"South Kordofan"
+],
+"localities": [
+{
+"s": "South Kordofan",
+"n": "Kadugli"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-38742",
+"name": "Life-saving Health and Nutrition Response for Conflict-Affected Populations in Hard-to-reach areas of South Sudan - Blue Nile State (BNS)",
+"summary": "Samaritan’s Purse, in coordination with the Secretariat of Health (SoH), will continue equipping and upgradingnbsp Belatuma Health Center by improving its water, sanitation and hygiene (WASH) facilities.nbsp This will include construction of an incinerator and ventilated improved pit (VIP) latrine blocks, as well as reticulation of water supply to the various health center departments, all aimed at enhancing the refe…",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2026-03-01",
+"end": "2027-02-28",
+"budget": 1000000,
+"states": [
+"Blue Nile"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-38812",
+"name": "Life-saving Health, Nutrition and WASH Response for Conflict-Affected Populations in Hard-to-reach areas of South Sudan - South Kordofan State",
+"summary": "Samaritan’s Purse, in coordination with the SoH and SoWE, will implement a robust health, nutritionnbspand water, sanitation and hygiene (WASH) program designed to improve access to clean, safe water and hygiene services, and reduce preventable morbidity and mortality among internally displaced persons (IDPs) and vulnerable host communities in South Kordofan State (SKS). The project will strengthen the continuity of …",
+"sectors": [
+"Health",
+"Nutrition",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-03-01",
+"end": "2026-10-31",
+"budget": 500000,
+"states": [
+"South Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-NGO-39072",
+"name": "Community Food Security Enhancement Project in Tawila Locality- North Darfur",
+"summary": "The ongoing conflict in Sudan has severely disrupted agricultural production, market access, and community livelihoods in Tawila locality, North Darfur. Large-scale displacement, insecurity, and rising food prices have increased household vulnerability and deepened food insecurity, particularly among smallholder farmers, female-headed households, and conflict-affected communities. Limited access to agricultural input…",
+"sectors": [
+"Food Security"
+],
+"orgType": "National NGO",
+"start": "2026-03-01",
+"end": "2026-09-30",
+"budget": 150000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-38741",
+"name": "Integrated Emergency Livelihoods, Cash, and Protection Response for Conflict Affected Communities in Hard to Reach Areas in the South of Sudan - South Kordofan and Blue Nile States",
+"summary": "The conflict in Sudan continues to drive widespread displacement and food insecurity, undermining livelihoods and pushing millions of households into crisis and emergency levels of hunger. The food security situation in South Kordofan has deteriorated sharply with Kadugli town classified in Famine (IPC 5) conditions. Acute food insecurity is projected to deteriorate further during the post-harvest and pre-lean season…",
+"sectors": [
+"Food Security",
+"Multi-purpose cash",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2026-02-17",
+"end": "2027-02-16",
+"budget": 1350000,
+"states": [
+"Blue Nile",
+"South Kordofan"
+],
+"localities": [
+{
+"s": "Blue Nile",
+"n": "Al Kurmuk"
+},
+{
+"s": "South Kordofan",
+"n": "Kadugli"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-38950",
+"name": "Humanitarian response to internally displaced persons in hard to reach areas in the south of Sudan, South Kordofan State",
+"summary": "The conflict in Sudan continues to drive widespread displacement and food insecurity, undermining livelihoods and pushing millions of households into crisis and emergency levels of hunger. The food security situation in South Kordofan has deteriorated sharply with Kadugli town classified in Famine (IPC 5) conditions and similar conditions experienced in the besieged town of Dilling (South Kordofan). Acute food insecu…",
+"sectors": [
+"Food Security",
+"Multi-purpose cash"
+],
+"orgType": "International NGO",
+"start": "2026-02-17",
+"end": "2027-02-16",
+"budget": 650800,
+"states": [
+"South Kordofan"
+],
+"localities": [
+{
+"s": "South Kordofan",
+"n": "Dilling"
+},
+{
+"s": "South Kordofan",
+"n": "Kadugli"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-38855",
+"name": "South Tawila Lifesaving Secondary Care",
+"summary": "This project delivers a lifesaving secondary healthcare package for conflict-affected communities in South Tawila, centered on establishing and functioning secondary care facility in the Daba Naira catchment. During the start-up phase, the consortium will establish fit-for-purpose temporary infrastructure for secondary health care facility to provide pediatric inpatient care (including isolation), newborn resuscitati…",
+"sectors": [
+"Health"
+],
+"orgType": "International NGO",
+"start": "2026-02-16",
+"end": "2027-02-15",
+"budget": 2800000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-38747",
+"name": "Emergency Health, WASH and GBV Response for IDPs and Host Communities in Hard-to-Reach Areas in the South of Sudan (R1)",
+"summary": "IRC proposes a 11-month intervention in Region 1 (R1) to support an integrated emergency health, WASH and GBV response project in support of IDPs and host communities in Al Buram and Um Durein, and integrated WASH and health programming in West Kadugli. This project aims to reduce morbidity, mortality, and protection risks among vulnerable populations through the delivery of coordinated, life-saving services. Health …",
+"sectors": [
+"Health",
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-02-15",
+"end": "2027-01-14",
+"budget": 1300000,
+"states": [
+"South Darfur",
+"South Kordofan"
+],
+"localities": [
+{
+"s": "South Darfur",
+"n": "Buram"
+},
+{
+"s": "South Kordofan",
+"n": "Al Buram"
+},
+{
+"s": "South Kordofan",
+"n": "Kadugli"
+},
+{
+"s": "South Kordofan",
+"n": "Um Durein"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-38821",
+"name": "Emergency WASH support in Tawila and El Fasher",
+"summary": "The renewed and protracted conflict in North Darfur, particularly in and around El Fasher, has triggered one of the largest waves of secondary displacement in Sudan. Following the RSF takeover of El Fasher in late October 2025, large-scale population movements overwhelmed neighboring localities. UNICEF reports over 600,000 displaced from El Fasher, with 260,000 civilians, including 130,000 children, trapped under act…",
+"sectors": [
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-02-15",
+"end": "2027-02-14",
+"budget": 1500000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-38826",
+"name": "Lifesaving Assistance through Multipurpose Cash and WASH for Conflict- Affected Population in hard-to-reach areas in Kadugli, Western Kadugli, Delami and Ar Reif Ash Shargi Localities, South Kordofan.",
+"summary": "The Norwegian Refugee Council (NRC) will partner with Skills for Nuba Mountains (SNM) and Alsalam Organization for Rehabilitation and Development (AORD) to deliver lifesaving support to displaced and conflict-affected populations in Kadugli, Western Kadugli, Delami and Ar Reif Ash Shargi localities in South Kordofan. The intervention will provide multi-purpose cash assistance (MPCA) and WASH services to 2,261 vulnera…",
+"sectors": [
+"Multi-purpose cash",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-02-15",
+"end": "2027-02-14",
+"budget": 1400000,
+"states": [
+"South Kordofan"
+],
+"localities": [
+{
+"s": "South Kordofan",
+"n": "Ar Reif Ash Shargi"
+},
+{
+"s": "South Kordofan",
+"n": "Delami"
+},
+{
+"s": "South Kordofan",
+"n": "Kadugli"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-38862",
+"name": "Scaling up interventions to increase access to life-saving humanitarian services for the people affected by the Sudan crisis in areas South of Sudan.",
+"summary": "The areas south of Sudan, particularly those in the central regions ofnbspSouth Kordofan state (R1),nbspand the southern areas of Blue Nile State (R2) are experiencing unprecedented humanitarian emergencies due to escalating conflict between the coalitions forces and the Sudan Army. Since December 2025, violence in Kadugli and Dilling in R1, and areas south of Kurmuk county in R2nbsphas triggered massive displacement…",
+"sectors": [
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2026-02-15",
+"end": "2027-02-14",
+"budget": 547055,
+"states": [
+"Blue Nile",
+"South Darfur",
+"South Kordofan"
+],
+"localities": [
+{
+"s": "Blue Nile",
+"n": "Al Kurmuk"
+},
+{
+"s": "South Darfur",
+"n": "Buram"
+},
+{
+"s": "South Kordofan",
+"n": "Al Buram"
+},
+{
+"s": "South Kordofan",
+"n": "Dilling"
+},
+{
+"s": "South Kordofan",
+"n": "Kadugli"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-39065",
+"name": "48-hour response WASH and ES/NFI interventions to mitigate morbidity and mortality among children and families affected by crises in Sudan",
+"summary": "Sudan is experiencing a severe humanitarian crisis, with 11.6 million people requiring shelter and non-food item (NFI) assistance in 2025, and this is expected to continue in 2026. Families have lost shelters and livelihoods, many displaced and returnees, often finding homes looted or damaged, now live in unsafe, overcrowded, or open areas exposed to harsh weather conditions, insecurity and protection risks. Nationwi…",
+"sectors": [
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-02-15",
+"end": "2027-02-14",
+"budget": 6000000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-26-R-INGO-39067",
+"name": "2026 48hrs Response Consortium]: 48-hour response - Provision of Immediate and Lifesaving Health and Nutrition Services in Hotspot Areas with Emerging Needs in Sudan.",
+"summary": "This project is a rapid response mechanism and will provide lifesaving health and nutrition interventions in response to the Sudan crisis post-April 15, 2023, to the hotspot locations with emerging needs in Sudan. Conflicts and violence have resulted in a high number of civilian casualties, extensive damage to infrastructure and facilities, including health and nutrition facilities, and mass displacements. With food …",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2026-02-15",
+"end": "2027-02-14",
+"budget": 6000000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-25-S-INGO-38814",
+"name": "Enhancing equitable access to safe drinking water and WASH emergency preparedness in Tawila and El Fasher",
+"summary": "The project aims to increase equitable access to safe drinking water for internally displaced persons (IDPs)nbsp in Tawila, while strengthening preparedness for a rapid humanitarian response in El Fasher, subject to access, through a WASH contingency plan. TGH ongoing water trucking intervention in Tawila, funded under SHF cholera response (CBPF-SUD-25-S-INGO-37003) is scheduled to conclude in February 2026. As durab…",
+"sectors": [
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-02-11",
+"end": "2027-02-10",
+"budget": 1500000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-38940",
+"name": "Provision of life-saving WASH response to the IDPs and host communities in Dilling County- South Kordufan",
+"summary": "This project seeks to address the urgent humanitarian needs of internally displaced persons (IDPs) and vulnerable communities in Salara and Wali Payams of Dilling County, South Kordofan, where most of the IDPs of Dilling town are displaced. aiming tonbspreachnbsp13,000 individuals in Salara and Walinbspthrough comprehensive WASH interventions. LMI, in collaboration with its local partner, will implement an 11-month r…",
+"sectors": [
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-02-02",
+"end": "2027-01-01",
+"budget": 200000,
+"states": [
+"South Kordofan"
+],
+"localities": [
+{
+"s": "South Kordofan",
+"n": "Dilling"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-38825",
+"name": "Emergency lifesaving water supply for conflict-affected populations in Tawila Locality, North Darfur",
+"summary": "This project is designed to complement the ongoing response addressing critical gaps in water supply in Tawila, while simultaneously supporting the transition toward more sustainable solutions. Through these activities, Solidarités International (SI) and Dar for Community Development (DCD) plan to reach an estimated 36,000 conflict-affected beneficiaries (disaggregated) in Tawila and surrounding areas. SI and DCD wil…",
+"sectors": [
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-02-01",
+"end": "2027-01-31",
+"budget": 1500000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-NGO-38406",
+"name": "Supporting locally led women initiatives and Mutual Aid groups - Contributing to lifesaving efforts in Central Darfur, North Darfur, White Nile, River Nile and Northern States in Sudan.",
+"summary": "Since the war erupted in mid-April 2023, NADA actively participated in humanitariannbsp operations in supporting of protection, advocacy for localization, disability inclusion and Women Led Organizations (WLOs) empowerment. NADA is the first national NGO which actively contributing to the coordination efforts in Sudan being the first and only NGO Co-Coordinating the GBV and Mine Action Sub-sectors. NADA maintained a …",
+"sectors": [
+"Food Security",
+"Health",
+"Protection",
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "National NGO",
+"start": "2026-01-20",
+"end": "2027-01-19",
+"budget": 1500000,
+"states": [
+"Aj Jazirah",
+"Central Darfur",
+"Kassala",
+"Khartoum",
+"North Darfur",
+"Red Sea",
+"River Nile",
+"White Nile"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-38317",
+"name": "Community driven humanitarian strengthening through Mutual Aid Groups (MAGs) in North Darfur",
+"summary": "To address identified humanitarian needs in severely constrained access and active conflict areas, Medair proposes to support community-driven Emergence Response Roomsnbsp(ERRs)nbspto provide multi-sectoral programming in UmnbspKeddadah, Tawisha and Tina localities, North Darfur. This will buildnbspon ERRs'nbspcurrent response,nbsppriorities, strengthen existing capacities andnbspexplorenbsppotential activities. A mi…",
+"sectors": [
+"Food Security",
+"Health",
+"Nutrition",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-01-18",
+"end": "2027-01-17",
+"budget": 1500000,
+"states": [
+"North Darfur"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-38313",
+"name": "Support to MAGs - SUDLIFT 3: Support, Uplifting, and Developing Local Responders in Sudan",
+"summary": "The proposed project aims to support 220 Local Responders (LRs) and strengthen their ability to deliver localized, needs-based humanitarian assistance across Central, East, South, and North Darfur, West Darfur, Khartoum, and North, South, and West Kordofan. Through a combination of capacity-building support and 470 Group Cash Transfers (GCTs), the project will enable LRs and Mutual Aid Groups (MAGs) to respond effect…",
+"sectors": [
+"Food Security",
+"Protection",
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-01-15",
+"end": "2027-01-14",
+"budget": 4000000,
+"states": [
+"Khartoum",
+"North Darfur",
+"West Darfur",
+"West Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-38318",
+"name": "SHF Mutual Aid Groups",
+"summary": "The International Rescue Committee (IRC) is implementing a $1.5 million project under the November 2025 SHF Reserve Allocation to strengthen and expand the life-saving work of Mutual Aid Groups (MAGs) across crisis-affected communities in Sudan. Over a 12-month implementation period, the IRC will support locally led humanitarian action through direct engagement, funding, capacity support, and technical oversight of M…",
+"sectors": [
+"Food Security",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2026-01-11",
+"end": "2027-01-10",
+"budget": 1500000,
+"states": [
+"Khartoum",
+"North Darfur",
+"North Kordofan",
+"South Kordofan"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-38311",
+"name": "Supporting Mutual Aid Groups and Women-led Local Responders through Group Cash Transfers in North, South, and West Kordofan, and in Central, South, East and North Darfur, Sudan.",
+"summary": "Building on its experience implementing Group Cash Transfers (GCTs) with SHF and other donors since December 2023, Acted proposes a multi-sectoral response to continue supporting the emergency response led by Mutual Aid Groups (MAGs) in conflict-affected and hard-to-reach areas of Sudan, more specifically in North, South, and West Kordofan, and in Central, South, East and North Darfur. This project will support commu…",
+"sectors": [
+"Food Security",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2026-01-01",
+"end": "2026-12-31",
+"budget": 1500000,
+"states": [
+"North Darfur",
+"West Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-38312",
+"name": "Supporting MAGs in West and North Kordofan, North Darfur, White Nile and Gazira to provide life-saving humanitarian assistance to affected population",
+"summary": "The situation in Sudan remains unfathomable, the world’s largest humanitarian crisis, with 30.4 million people requiring assistance and 11.7 million displaced. The project targets five states: West Kordofan, North Kordofan, North Darfur, White Nile and Gazira. Following the fall of El Fasher, West and North Kordofan are now categorized as high-risk due to intensified clashes between RSF and SAF, driving new displacem…",
+"sectors": [
+"Multi-purpose cash",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2026-01-01",
+"end": "2026-12-31",
+"budget": 1500000,
+"states": [
+"Aj Jazirah",
+"North Darfur",
+"North Kordofan",
+"West Kordofan",
+"White Nile"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-NGO-38325",
+"name": "MAGs' assistance in providing multi-sectoral emergency response to vulnerable communities in Northern and River Nile States",
+"summary": "Over 106,000 people have fled El Fashir and surrounding villages since late October 2025 following RSF have taken full control over the city. A large number of the displaced have reached Northern and River Nile States. The displacement has strained the limited resources, exacerbating vulnerabilities among IDPs and host communities who have received displaced people from Khartoum and Gezira since the start of the conf…",
+"sectors": [
+"Multi-purpose cash"
+],
+"orgType": "National NGO",
+"start": "2026-01-01",
+"end": "2026-12-31",
+"budget": 500000,
+"states": [
+"Aj Jazirah",
+"Khartoum",
+"North Kordofan",
+"Northern",
+"River Nile",
+"Sennar",
+"White Nile"
+],
+"localities": [
+{
+"s": "River Nile",
+"n": "Atbara"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-UN-38346",
+"name": "Lifesaving NFI, WASH, and Logistics Support in Response to Displacement in and from conflict-affected zones in Sudan",
+"summary": "The USD 2,000,000 allocation to IOM will enable swift transport of existing stocks and in-kind support from other funding sources through cross-line and cross-border deliveries to Common Pipeline partners in the Darfur and Kordofan regions, as well as any other emerging conflict-affected displacement locations. This ensures that lifesaving items reach those in need in the shortest possible time, while also allowing I…",
+"sectors": [
+"Shelter and NFIs"
+],
+"orgType": "UN Agency",
+"start": "2025-12-28",
+"end": "2026-06-27",
+"budget": 2000000,
+"states": [
+"North Darfur",
+"North Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37570",
+"name": "Integrated Health and WASH Emergency Response for Crisis-Affected Populations in Northern Sudan",
+"summary": "Northern State hosts over half a million displaced people, mostly from Khartoum and North Darfur, with 73 percent settling in rural areas and more than 80 percent staying with host communities (IOM DTM). This host-based pattern places significant strain on already limited rural health and WASH systems. Within Northern State, flooding, which accounts for 88 percent of displacement incidents, has repeatedly damaged hom…",
+"sectors": [
+"Health",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-11-17",
+"end": "2026-11-16",
+"budget": 574999,
+"states": [
+"Khartoum",
+"North Darfur",
+"Northern"
+],
+"localities": [
+{
+"s": "Northern",
+"n": "Ad Dabbah"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37568",
+"name": "Lifesaving integrated multi-sectoral protection, nutrition, WASH, MPCA  and ES/NFI response to vulnerable, conflict-affected populations in Al Dabbah and Wadi Halfa, Northern State",
+"summary": "Relief International (RI) and its partners Auttash Organization for Peace and Development (APD) and NADA Elazhar For Disaster Prevention and Sustainable Development (NADA) aim to address urgent Water, Sanitation and Hygiene (WASH), Emergency Shelter and Multi-purpose Cash Assistance (MPCA), Non-Food Items (ESNFI), Nutrition, and Protection (General Protection (GP), Gender-Based Violence (GBV), Child Protection (CP)) …",
+"sectors": [
+"Multi-purpose cash",
+"Nutrition",
+"Protection",
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-11-15",
+"end": "2026-11-14",
+"budget": 3424713,
+"states": [
+"Northern"
+],
+"localities": [
+{
+"s": "Northern",
+"n": "Ad Dabbah"
+},
+{
+"s": "Northern",
+"n": "Halfa"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37579",
+"name": "Protection-focused multi-cluster response to  Atbara, River Nile State - 2025",
+"summary": "The ongoing conflict in Sudan has led to one of the world's largest humanitarian and displacement crises. The River Nile State (Atbara locality), while historically more stable than other regions, has become a key destination for internally displaced persons (IDPs) and returnees seeking refuge from violence, leading to increased strain on resources and heightened protection risks. This project, funded by the Sudan Hu…",
+"sectors": [
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-11-10",
+"end": "2026-11-09",
+"budget": 750000,
+"states": [
+"River Nile"
+],
+"localities": [
+{
+"s": "River Nile",
+"n": "Atbara"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37621",
+"name": "Integrated GBV, Child Protection and General Protection Response for Populations Affected by Displacement in Ad Damar, River Nile State.",
+"summary": "This intervention aims to strengthen centrality of protection through provision of integrated, survivor-centered and child-focused protection response that prioritizes GBV, child protection, and general protection services for 28,890 people (12,940 women, 9,000 girls, 2,050 men and 4,900 boys) affected by displacement in Ad Damar locality, River Nile State. The project will not only address immediate protection threa…",
+"sectors": [
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-11-04",
+"end": "2026-11-03",
+"budget": 750000,
+"states": [
+"River Nile"
+],
+"localities": [
+{
+"s": "River Nile",
+"n": "Ad Damar"
+},
+{
+"s": "River Nile",
+"n": "Atbara"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37496",
+"name": "Integrated Protection, Health and Nutrition Response for Populations Affected by Conflict in Greater Kadugli, South Kordofan State.",
+"summary": "Save the Children International (SCI) in partnership with Child Development Foundation (CDF) and Sudanese Organization for Relief and Recovery (SORR) will coordinate closely with OCHA and the clusters at sub and national level to implement an integrated protection health and nutrition response to address the pressing needs of communities affected by displacement in Greater Kadugli, South Kordofan. The project will be…",
+"sectors": [
+"Health",
+"Nutrition",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-11-03",
+"end": "2026-11-02",
+"budget": 1000000,
+"states": [
+"South Kordofan"
+],
+"localities": [
+{
+"s": "South Kordofan",
+"n": "Kadugli"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37627",
+"name": "Lifesaving Protection Intervention for People Affected by Conflict and Displacement in Bahri and Um Bada Localities, Khartoum State.",
+"summary": "This project aims to strengthen centrality of protection by providing Child Protection CP and General Protection GP services to 13,625 people (5,546 children) affected by conflict and displacement in Bahri and Um Badda in Khartoum state. The activities will include psychosocial support, case management, and safe spaces—especially in high-risk underserved and hard-to-reach locations. Activities are designed to strengt…",
+"sectors": [
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-11-03",
+"end": "2026-11-02",
+"budget": 760000,
+"states": [
+"Khartoum"
+],
+"localities": [
+{
+"s": "Khartoum",
+"n": "Bahri"
+},
+{
+"s": "Khartoum",
+"n": "Um Bada"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-36901",
+"name": "Emergency Mine Action in Conflict-Affected areas In Sudan",
+"summary": "Over the course of the 12-month intervention, DRC and NUMAD will deploy four multi-task survey and clearance teams to remove and destroy explosive hazards in Sudan’s most densely populated conflict-affected districts. The approach proposed is flexible, allowing the teams to deploy together or individually, and prioritizes Khartoum State, where the number of UXO incidents has risen sharply, as internally displaced per…",
+"sectors": [
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-11-01",
+"end": "2027-01-31",
+"budget": 1500000,
+"states": [
+"Khartoum",
+"North Kordofan",
+"Sennar",
+"White Nile"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-NGO-36922",
+"name": "Lifesaving through Emergency Mine Action in Conflict-Affected areas in Khartoum, North Kordofan ,Al Gazira , White Nile , and Sinnar   through provision of Victim Assistance  in Khartoum State",
+"summary": "Explosive Ordnance, including Landmines (LM) and Explosive Ordnance (EO), resulting from the ongoing conflict in Sudan, continue to threaten the safety and security of internally displaced persons (IDPs), returnees, vulnerable populations, and humanitarian actors. The most affected states include Khartoum, Gazira, Sinnar, White Nile, and North Kordofan. Women and children remain the most at-risk groups due to their r…",
+"sectors": [
+"Protection"
+],
+"orgType": "National NGO",
+"start": "2025-11-01",
+"end": "2026-09-30",
+"budget": 2199845,
+"states": [
+"Aj Jazirah",
+"Khartoum",
+"North Kordofan",
+"Sennar",
+"White Nile"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-NGO-36937",
+"name": "EORE Emergency Mine Action in Conflict-Affected areas",
+"summary": "This (EORE) project in Sudan aimed at reducing risks from explosive ordnance among crisis-affected communities. Rooted in inclusive humanitarian principles, the project ensures equitable access to life-saving information and victim assistance, focusing on vulnerable groups such as women, girls, persons with disabilities, sexual and gender minorities, and those facing literacy or social barriers. The project’s overall…",
+"sectors": [
+"Protection"
+],
+"orgType": "National NGO",
+"start": "2025-11-01",
+"end": "2026-07-31",
+"budget": 299872,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-25-S-INGO-37475",
+"name": "Protection-Focused Multi-Cluster Nutrition and WASH Response for Conflict-Affected Communities in Kass Locality, South Darfur",
+"summary": "The project aims to deliver protection-focused, life-saving support to conflict-affected and vulnerable households in Kass locality, South Darfur, through integrated child protection, gender based violence, general protection , nutrition, and WASH assistance. CARE and NAHA will prioritize the most vulnerable and underserved communities, delivering child protection services, responding to and mitigating GBV risks, and…",
+"sectors": [
+"Nutrition",
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-11-01",
+"end": "2026-10-31",
+"budget": 1416236,
+"states": [
+"South Darfur"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37477",
+"name": "Protection-focused Multi-cluster Response in Alwihda, South Darfur- 2025",
+"summary": "The project is designed to address the urgent and interconnected challenges of waterborne disease outbreaks, health system strain, and protection risks faced by conflict-affected communities in Al Wihda locality, South Darfur. Recognizing the high incidence of cholera and the severe disruption of basic services, the initiative adopts a multi-sectoral approach that brings together WASH, health, and protection interven…",
+"sectors": [
+"Health",
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-11-01",
+"end": "2026-10-31",
+"budget": 1029000,
+"states": [
+"South Darfur"
+],
+"localities": [
+{
+"s": "South Darfur",
+"n": "Al Wihda"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37580",
+"name": "Integrated GBV and WASH Support for Conflict-Affected Communities in Um Badda locality in Khartoum",
+"summary": "The project aims to deliver protection-focused, life-saving support to conflict-affected and vulnerable households in Um Badda locality in Khartoum, through integrated Gender-Based Violence (GBV) and WASH interventions. CARE and Almanar will prioritize the most underserved communities, ensuring access to essential GBV services, responding to and mitigating risks, and promoting safer environments for women, girls, and…",
+"sectors": [
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-11-01",
+"end": "2026-10-31",
+"budget": 732000,
+"states": [
+"Khartoum"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37628",
+"name": "Integrated Health and Nutrition Response – Aldamar, River Nile State",
+"summary": "The project has been designed to respond to the worsening humanitarian situation in River Nile State, where conflict-related displacement has placed heavy pressure on limited services. Thousands of displaced people have settled in Ed Damer and nearby areas, overwhelming already weak health and nutrition systems. Facilities face shortages of staff, medicines, and equipment, while overcrowded shelters and poor WASH con…",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2025-11-01",
+"end": "2026-11-30",
+"budget": 500000,
+"states": [
+"River Nile"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37694",
+"name": "Protection-focused lifesaving WASH response for conflict-affected communities in Jebel Awlia and Um Bada, Khartoum",
+"summary": "In response to the severe disruption of WASH services in Jebel Awlia locality, Khartoum, which has left tens of thousands of conflict-affected individuals without reliable access to safe water and sanitation, Solidarités International (SI) and its local partner Sudan Zero Waste Organization (SZWO) are implementing protection-focused urgent WASH interventions, addressing immediate lifesaving needs while rehabilitating…",
+"sectors": [
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-11-01",
+"end": "2026-10-31",
+"budget": 600000,
+"states": [
+"Khartoum"
+],
+"localities": [
+{
+"s": "Khartoum",
+"n": "Jebel Awlia"
+},
+{
+"s": "Khartoum",
+"n": "Um Bada"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37434",
+"name": "Integrated Protection (GBV, Child Protection, General Protection), Health and Nutrition Responses  to Vulnerable Populations in Geneina, Sirba, Habila, Krenik, and Jabel Moon localities in West Darfur",
+"summary": "The humanitarian catastrophe ravaging Sudan in the midst of the ongoing conflict continues unabated. According to a recent OCHA report, the war between the SAF and RSF, which erupted in April 2023, has claimed the lives of approximately 150,000 civilians, including women and children. Since the outbreak of the conflict, 12.7 million people have been forcibly displaced 8.6 million as internally displaced persons (IDPs…",
+"sectors": [
+"Health",
+"Nutrition",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-10-26",
+"end": "2026-10-25",
+"budget": 4100000,
+"states": [
+"West Darfur"
+],
+"localities": [
+{
+"s": "West Darfur",
+"n": "Sirba"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37436",
+"name": "Integrated Humanitarian Response in Health, Nutrition, Protection, GBV, and Child Protection in Um Dukhun and Central Jebel Marra, in Central Darfur.",
+"summary": "The overall goal of this proposed intervention is to reduce morbidity and mortality while enhancing the survival, safety, and well-being of vulnerable populations particularly women, children, and GBV survivors through the delivery of integrated, life-saving health, nutrition, MHPSS, and GBV services. The project will address both immediate humanitarian needs and underlying vulnerabilities through a coordinated, holi…",
+"sectors": [
+"Health",
+"Nutrition",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-10-26",
+"end": "2026-10-25",
+"budget": 3000000,
+"states": [
+"Central Darfur",
+"North Darfur"
+],
+"localities": [
+{
+"s": "Central Darfur",
+"n": "Um Dukhun"
+},
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-NGO-37696",
+"name": "Provision of comprehensive, quality life - saving services for GBV survivors and prevention of GBV among the most vulnerable Communities in Bahri Locality - Khartoum State",
+"summary": "This project aims to prevent the risks of Gender-based Violence (GBV) and mitigate the consequences of GBV among the most vulnerable women ,girls, men and boys in Bahri locality , Khartoum state, through provision of lifesaving GBV response and services applying survivor-centered and community based approaches, ensuring safety and dignity. The project will target a total number of 13,540 beneficiaries among most vuln…",
+"sectors": [
+"Protection"
+],
+"orgType": "National NGO",
+"start": "2025-10-20",
+"end": "2026-10-19",
+"budget": 607920,
+"states": [
+"Khartoum"
+],
+"localities": [
+{
+"s": "Khartoum",
+"n": "Bahri"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37599",
+"name": "Protection-focused Integrated WASH Response in Um Baddah Locality- Khartoum State",
+"summary": "LM International will implement a 10-month Protection-focused Integrated WASH intervention in Um Badda locality, Khartoum State, targeting at least 15,000 vulnerable individuals, including 4,500 returnees, 1,500 IDPs, and 9,000 host communities' people are affected by conflict, displacement, and deteriorating services. Through this intervention, more than 15,000 vulnerable individuals in Um Badda locality will improv…",
+"sectors": [
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-10-19",
+"end": "2026-07-18",
+"budget": 300000,
+"states": [
+"Khartoum"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37490",
+"name": "Protection-focused multi-cluster response to the affected population of Mershing locality through integrated protection, WASH, and Health intervention.",
+"summary": "In partnership with LM International and Rural Development Organization (RDO), we will implement a 12-month integrated humanitarian response in Mershing locality, South Darfur, targeting 37,000 vulnerable individuals, including 14,800 IDPs and 22,200 host community members affected by conflict and displacement. The project aims to deliver life-saving, multi-sectoral assistance while strengthening local systems and co…",
+"sectors": [
+"Health",
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-10-16",
+"end": "2026-10-15",
+"budget": 1254763,
+"states": [
+"South Darfur"
+],
+"localities": [
+{
+"s": "South Darfur",
+"n": "Mershing"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-37057",
+"name": "48-hour response WASH and ES/NFI interventions to mitigate morbidity and mortality among children and their families in response to crises in Sudan.",
+"summary": "Over two years of conflict in Sudan have created one of the world’s largest displacement crises, with over 11.5M displaced since April 2023. Families have lost shelters and livelihoods many displaced and returnees, often finding homes looted or damaged, now live in unsafe, overcrowded, or open areas exposed to harsh weather, insecurity, and protection risks. Nationwide, the crisis in WASH and shelter is worsening due…",
+"sectors": [
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-10-15",
+"end": "2026-10-14",
+"budget": 2500000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Kebkabiya"
+},
+{
+"s": "North Darfur",
+"n": "Kutum"
+},
+{
+"s": "North Darfur",
+"n": "Melit"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-37114",
+"name": "[2025 48hrs Response Consortium]: 48-hour response - Provision of Immediate and Lifesaving Health and Nutrition Services in Hotspot Areas with emerging needs in Sudan.",
+"summary": "This 48-hour rapid response project will deliver immediate, lifesaving health and nutrition services to populations in Sudan’s conflict-affected hotspot areas. Since April 2023, the crisis has displaced more than 14 million people, left only one in four health facilities operational, and triggered repeated disease outbreaks including cholera, malaria, meningitis, and dengue. At the same time, nearly 25 million people…",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2025-10-15",
+"end": "2026-12-31",
+"budget": 2500000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-25-S-INGO-37433",
+"name": "Strengthening Protection services through Integrated protection, Health, Nutrition, and WASH services in Conflict Affected areas of West Kordorfan state in Sudan",
+"summary": "The proposed project aims to strengthen protection in West Kordofan by placing the safety, dignity, and wellbeing of vulnerable populations at the center of a multi-sector humanitarian response. Through an integrated hub approach in As Salam and En Nuhud localities, the consortium partners Alight, Concern Worldwide, LM International, SOS Sahel, CAFA, and AORD will deliver coordinated services across protection, child…",
+"sectors": [
+"Health",
+"Nutrition",
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-10-15",
+"end": "2026-12-31",
+"budget": 4000000,
+"states": [
+"West Kordofan"
+],
+"localities": [
+{
+"s": "West Kordofan",
+"n": "An Nuhud"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37435",
+"name": "Strengthening Protection services through Integrated protection, Health, Nutrition, and WASH services in Conflict Affected areas of East Darfur",
+"summary": "This integrated multi-sectoral project, led by ALIGHT with AAO, ARCO, and World Vision International (WVI), targets urgent needs in Ad Du’ayn, Al Firdous, and Yassin localities of East Darfur. Funded through the 2025 Sudan Humanitarian Fund (SHF) Standard Allocation, the 12-month project supports IDPs and host communities affected by conflict, displacement, food insecurity, and disease outbreaks. It contributes to HR…",
+"sectors": [
+"Nutrition",
+"Protection",
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-10-15",
+"end": "2026-12-14",
+"budget": 3200000,
+"states": [
+"East Darfur"
+],
+"localities": [
+{
+"s": "East Darfur",
+"n": "Al Firdous"
+},
+{
+"s": "East Darfur",
+"n": "Yassin"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37481",
+"name": "Life-saving integrated Health, Nutrition, and Child Protection response in Delling and Kadugli Locality of South Kordofan",
+"summary": "The ongoing conflict in South Kordofan has triggered large-scale displacement and worsening humanitarian needs in Greater Delling, where IDPs and host communities face severe shortages of food, health, nutrition, and protection services. IPC analysis shows South Kordofan has one of the highest proportions of people in IPC Phase 3 or above, with thousands at risk of catastrophic conditions if timely assistance is not …",
+"sectors": [
+"Health",
+"Nutrition",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-10-15",
+"end": "2026-07-14",
+"budget": 450000,
+"states": [
+"South Kordofan"
+],
+"localities": [
+{
+"s": "South Kordofan",
+"n": "Kadugli"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37479",
+"name": "Provision of integrated WASH and Protection response to the affected population of Dilling Locality- South Kordufan (Consortium with AMVO)",
+"summary": "This project aims to address urgent humanitarian needs in Dilling locality, South Kordofan, targeting 64,541 vulnerable individuals through integrated WASH and Protection interventions. LM International, in consortium with Save the Children and Plan International, and A MVO will implement a 12-month response (September 2025 – September 2026). In Dilling locality, LMI and AMOV will focus on both IDPs and HC, targeting…",
+"sectors": [
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-10-09",
+"end": "2027-01-08",
+"budget": 544179,
+"states": [
+"South Kordofan"
+],
+"localities": [
+{
+"s": "South Kordofan",
+"n": "Dilling"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37003",
+"name": "Emergency WASH assistance for cholera response through the provision of WASH services in four IDP camps affected by cholera outbreak in Tawila locality in North Darfur",
+"summary": "This project aims to contribute to contain the spread of cholera through WASH interventions in IDPs sites in Tawila locality. A Cholera outbreak was declared in Tawila locality in North Darfur in July 2025. The overcrowded living conditions and limited access to WASH and Health services, faced by the IDPs in Tawila, coming mostly from El Fasher, increase the propagation of this already rapid epidemic and make its con…",
+"sectors": [
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-09-28",
+"end": "2026-03-27",
+"budget": 999999,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37072",
+"name": "Sustaining Conflict Response by Strengthening the Centrality of Protection focusing on GBV prevention in Tawila, North Darfur",
+"summary": "This intervention aims to strengthen the Centrality of Protection focusing on GBV prevention among 39,908 vulnerable children and families affected by displacement and the effects of the ongoing Cholera outbreak in Tawila, North Darfur. The project will not only address immediate protection threats but lay the foundation for safer and more resilient communities by strengthening access to quality, integrated GP, GBV a…",
+"sectors": [
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-09-24",
+"end": "2026-11-23",
+"budget": 2000000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37074",
+"name": "Reduce Cholera-related Morbidity and Mortality through Integrated Health, Nutrition and WASH Response in Tawila, North Darfur",
+"summary": "The escalation of hostilities in El Fasher and catchment areas in mid-April 2025 forced people to flee to Tawila for safety. The locality has become a key refuge for displaced people fleeing the intensifying conflict between the Sudanese Armed Forces (SAF) and the Rapid Support Forces (RSF). According to the latest DTM update of 9 July 2025, approximately 327,000 individuals have been newly displaced to Tawila locali…",
+"sectors": [
+"Health",
+"Nutrition",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-09-24",
+"end": "2026-09-23",
+"budget": 1400000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37271",
+"name": "Area-based response: WASH against cholera in Tawila, North Darfur",
+"summary": "In response to the rapidly escalating cholera outbreak in Tawila locality—which resulted in more than 7,000 suspected cases—Solidarités International (SI) and its local partner, Dar for Community Development (DCD), acted swiftly to launch water, sanitation, and hygiene (WASH) interventions. As the outbreak later declined, with no new daily cases reported in North Darfur by the end of October 2025, SI and DCD adjusted…",
+"sectors": [
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-09-24",
+"end": "2026-09-23",
+"budget": 1500000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37193",
+"name": "Multipurpose Cash Assistance(MPCA) and Site Management for Cholera and Conflict Affected Population in Tawila.",
+"summary": "The humanitarian situation in Tawila, North Darfur, has reached critical levels following the displacement of more than 300,000 people between April and August 2025, bringing the total displaced population to approximately 560,000 individuals, the majority of whom are women and children. The influx has overwhelmed existing humanitarian capacity, with families facing extreme overcrowding, widespread trauma, and alarmi…",
+"sectors": [
+"Multi-purpose cash",
+"Site management"
+],
+"orgType": "International NGO",
+"start": "2025-09-22",
+"end": "2026-06-21",
+"budget": 1000000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37010",
+"name": "Integrated Cholera Response through Case Management and Community-Led Action with provison of lifesaving health and nutrition  services among conflict affected people in Tawila, North Darfur",
+"summary": "This project was originally designed in response to the cholera outbreak triggered by the April 2025 attacks on Zamzam IDP camp, which displaced nearly 500,000 people, with over 327,000 arriving in Tawila locality. The sudden population influx overwhelmed public services and widened critical WASH gaps, causing a rapidly escalating outbreak. ALIMA responded by scaling up Cholera Treatment Units and Centres, establishi…",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2025-09-14",
+"end": "2026-11-13",
+"budget": 1300000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37108",
+"name": "Emergency Health Cholera Response in Tawila Locality, North Darfur State",
+"summary": "Sudan faces one of the world’s gravest humanitarian crises, with 11.5 million displaced and 25.6 million food insecure, including 755,000 in IPC Phase 5. Tawila locality, 50 km from besieged El Fasher, has been severely impacted since June 2025 when over 560,000 IDPs—many from Zamzam camp—arrived into the locality. Camps are overwhelmed, water availability is below 3L/person/day, latrine coverage only 41%, and contam…",
+"sectors": [
+"Health"
+],
+"orgType": "International NGO",
+"start": "2025-09-07",
+"end": "2026-03-06",
+"budget": 300000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-37001",
+"name": "Emergency WASH response to Cholera Outbreak in Tawila, North Darfur",
+"summary": "The Tawila locality is currently hosting over 560,000 internally displaced persons (IDPs) who fled escalating conflict in El Fasher since April 2025. This sudden influx has overwhelmed local infrastructure and services, particularly water, sanitation, and hygiene (WASH), increasing vulnerability among women, children, unaccompanied minors, and persons with disabilities. The congested living conditions, combined with …",
+"sectors": [
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-09-04",
+"end": "2026-03-03",
+"budget": 500000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-36779",
+"name": "Multipurpose Cash Assistance(MPCA) and WASH for Conflict Affected Population in the hard to reach areas of South Sudan.",
+"summary": "NRC, in partnership with Skills for Nuba Mountains (SNM), proposes an integrated Multipurpose Cash Assistance (MPCA) and WASH intervention targeting 1,879 vulnerable households in Heiban County, South Kordofan, with 80% of the beneficiaries being newly displaced IDPs and 20% vulnerable host community members. The intervention will prioritize Kyan IDP Camp and nearby displacement sites, particularly areas affected by …",
+"sectors": [
+"Multi-purpose cash"
+],
+"orgType": "International NGO",
+"start": "2025-09-01",
+"end": "2026-05-31",
+"budget": 900000,
+"states": [
+"South Kordofan"
+],
+"localities": [
+{
+"s": "South Kordofan",
+"n": "Heiban"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-36781",
+"name": "Health, cholera and GBV response",
+"summary": "IRC proposes a 12-month intervention in R1 to support four health facilities (two primary health care centres (PHCCs) and two primary healthcare units (PHCUs)) in Umdurein County for IDPs and the host population. This project was designed in coordination with SHF in June 2025 and activities selected to respond to the unprecedented humanitarian emergency in this remote and isolated area which has absorbed 1,049,826 ID…",
+"sectors": [
+"Health",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-09-01",
+"end": "2026-08-31",
+"budget": 951000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-25-R-INGO-36783",
+"name": "Sustaining Conflict Response and Stabilizing Cholera through Improving Health and WASH in hard to reach areas.",
+"summary": "Samaritan’s Purse, in coordination with SoH, will implement this robust health program, reaching a total of 37,736 people by supporting the Belatuma HF for an upgrade from a PHCC to a referral hospital the provision of Interagency emergency health kits to supplement support to all HFs in Wadaka Payam (four PHCUs and one PHCC) the purchase of quad bikes and support for an existing Ambulance service and the carrying ou…",
+"sectors": [
+"Health",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-09-01",
+"end": "2026-11-30",
+"budget": 1100000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-25-R-INGO-36840",
+"name": "Sustaining Conflict Response and Stabilizing Cholera through Improving Health in hard-to-reach areas",
+"summary": "Samaritan’s Purse, in coordination with the Secretariat of Health (SoH), will implement a robust health program aimed at reducing morbidity and mortality rates among internally displaced persons (IDPs) and host communities in Area 1). The intervention will ensure the provision of essential pharmaceutical and quality medical supplies to health facilities (HFs) and mobile medical units in the region, benefiting vulnera…",
+"sectors": [
+"Health"
+],
+"orgType": "International NGO",
+"start": "2025-09-01",
+"end": "2026-05-31",
+"budget": 500000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-25-R-INGO-36786",
+"name": "Sustaining Conflict Response and Stabilizing Cholera through Integrated Lifesaving Health and WASH Interventions in South Kordofan, Habila and Dilling Localities.",
+"summary": "The humanitarian situation in South Kordofan has sharply deteriorated since the outbreak of conflict in April 2023. The area had an original population of approximately 2.15 million prior to the conflict and has since witnessed an influx of over 1.88 million internally displaced persons (IDPs), placing immense pressure on already fragile services and resources. The proposed intervention will prioritize life-saving su…",
+"sectors": [
+"Health",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-08-24",
+"end": "2026-10-23",
+"budget": 995169,
+"states": [
+"South Kordofan"
+],
+"localities": [
+{
+"s": "South Kordofan",
+"n": "Dilling"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-36784",
+"name": "Sustaining Conflict Response in crisis affected populations in the South of Sudan",
+"summary": "The protracted conflict in Sudan continues to generate large scale displacement, exacerbate food insecurity, and expose civilians especially children and women to increasing protection risks. According to the Sudan Relief and Rehabilitation Agency (SRRA) update on Internally Displaced People as of 27th May 2025, 174,844HH (1,049,826 individuals) had been displaced into SPLM controlled areas of South Kordofan and Blue…",
+"sectors": [
+"Multi-purpose cash",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-08-15",
+"end": "2026-08-14",
+"budget": 1750000,
+"states": [
+"Blue Nile",
+"South Kordofan"
+],
+"localities": [
+{
+"s": "Blue Nile",
+"n": "Al Kurmuk"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-36788",
+"name": "Increased access to life-saving humanitarian services for the people affected by the Sudan crisis in the Hard to Reach Areas, South of Sudan.",
+"summary": "The protracted war in Sudan has disrupted livelihoods and placed about 25 million people – of whom over 14 million are children – in dire need of humanitarian assistance and support. More than 8 million people – about 15 percent of the country's population – have fled their homes since the conflict started on 15th April 2023. T he renewed armed conflict between Sudanese Armed Forces (SAF) and The Sudan People's Liber…",
+"sectors": [
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-08-15",
+"end": "2026-08-14",
+"budget": 798493,
+"states": [
+"South Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35060",
+"name": "Delivering critical healthcare services to vulnerable and conflict-affected communities in Khartoum amid Sudan’s humanitarian crisis",
+"summary": "The primary goal of this project is to ensure that the Salam Centre can continue providing essential healthcare services to the Khartoum State. Since the conflict erupted in April 2023, the violence has had a devastating impact on the Khartoum State, severely disrupting daily life and access to vital services. Between January and February 2025, the situation worsened, with the intensity of clashes escalating in the S…",
+"sectors": [
+"Health"
+],
+"orgType": "International NGO",
+"start": "2025-07-16",
+"end": "2026-07-15",
+"budget": 4000000,
+"states": [
+"Khartoum"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35577",
+"name": "Health, Nutrition and Protection Response in West Kordofan",
+"summary": "Islamic Relief Worldwide (IRW) will contribute to the provision of integrated health, nutrition, and protection services to war-affected IDPs and vulnerable host communities in West Kordofan State, who were specifically impacted by the current crisis that started on April 15th as a result of conflict between SAF and RSF. The proposed intervention will target El Nuhud and Locality, which is the biggest Locality out of…",
+"sectors": [
+"Health",
+"Nutrition",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-07-15",
+"end": "2026-10-14",
+"budget": 649745,
+"states": [
+"West Kordofan"
+],
+"localities": [
+{
+"s": "West Kordofan",
+"n": "An Nuhud"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35693",
+"name": "Rapid Response through MAGs to Support the Humanitarian Crisis in Sudan, Phase IV",
+"summary": "Since the outbreak of the conflict in Sudan, Saferworld has been working with NNGOs, emergency response rooms (ERRs), women, and youth groups (referred to collectively in this proposal as Mutual Aid Groups, or MAGs) to support humanitarian and conflict prevention activities – including with funding from Sudan Humanitarian Fund (SHF). With funding from SHF, Saferworld has worked with 20 Sudanese NNGOs in Phase I (July…",
+"sectors": [
+"Food Security",
+"Health",
+"Protection",
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-07-01",
+"end": "2026-08-31",
+"budget": 5000000,
+"states": [
+"Blue Nile",
+"Khartoum",
+"Sennar",
+"South Kordofan",
+"West Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35259",
+"name": "(Consortium):Strengthening Food Security and Resilience through Integrated FSL, Health, Nutrition, WASH, and Protection Services in Conflict-Affected Areas of Nyala Shimal  Nyala Janoub, South Darfur",
+"summary": "This integrated multi-sectoral project, led by ALIGHT with JMCO, NIDO, and World Vision International (WVI), targets critical humanitarian needs in Nyala Shimal and Nyala Janoub localities, South Darfur. Funded by the 2025 Sudan Humanitarian Fund (SHF) Standard Allocation, the 12-month project supports vulnerable IDPs and host communities affected by conflict, displacement, food insecurity, disease outbreaks, and col…",
+"sectors": [
+"Food Security",
+"Health",
+"Nutrition",
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-07-01",
+"end": "2026-07-31",
+"budget": 3500000,
+"states": [
+"South Darfur"
+],
+"localities": [
+{
+"s": "South Darfur",
+"n": "Nyala Janoub"
+},
+{
+"s": "South Darfur",
+"n": "Nyala Shimal"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35295",
+"name": "Enhancing Livelihoods and Food Security for Conflict-Affected IDPs, Returnees, and Host Communities in Sheikan Locality in or at Risk of Famine, in North Kordofan.",
+"summary": "The ‘FSL Response in Sheikan locality of North Kordofan State’ project aims to improve food security and restore livelihoods among conflict-affected internally displaced persons (IDPs) and vulnerable host communities. The project will support a total of 2,500 farming households (10,000 individuals) across Sheikan locality through agriculture and livestock interventions. The project will support IDP farmers and vulner…",
+"sectors": [
+"Food Security"
+],
+"orgType": "International NGO",
+"start": "2025-07-01",
+"end": "2026-02-28",
+"budget": 499642,
+"states": [
+"North Kordofan"
+],
+"localities": [
+{
+"s": "North Kordofan",
+"n": "Sheikan"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35532",
+"name": "Multi-sector lifesaving assistance to IDPs, returnees and host communities in localities in or at risk of famine (Medani Al Kubra and Sharg Al Jazirah) in Al Jazirah State.",
+"summary": "TGH, in consortium with Relief International and Première Urgence Internationale and two local partners SUDO and CAFA, aims to reduce the impact of famine-associated needs including WASH, as well as protection needs by providing lifesaving assistance to IDPs, returnees and host communities in Medani Al Kubra and Sharg Al Jazirah localities in Al Jazirah state. This project will provide intervention in three sectors i…",
+"sectors": [
+"Food Security",
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-07-01",
+"end": "2026-07-31",
+"budget": 750000,
+"states": [
+"Aj Jazirah"
+],
+"localities": [
+{
+"s": "Aj Jazirah",
+"n": "Medani Al Kubra"
+},
+{
+"s": "Aj Jazirah",
+"n": "Sharg Al Jazirah"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35298",
+"name": "Integrated Multisectoral Lifesaving Assistance in conflict-affected communities in and at Risk of Famine in Sennar",
+"summary": "Humanitarian needs in Sennar statenbspare critically dire due to the ongoing displacement caused bynbspconflict and limited access to humanitarian aid. Vulnerable children and families face barriers to accessing healthcare, WASH, protectionnbspand basicnbspservices due to the disruption of supplies, infrastructure damages, displacements, and imposed restrictions.nbspAccording to the latest IPC and FRC analysis, 1,689…",
+"sectors": [
+"Health",
+"Nutrition",
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-06-22",
+"end": "2026-06-21",
+"budget": 1000000,
+"states": [
+"Sennar"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35524",
+"name": "Integrated Health and Nutrition Services for Conflict-Affected Communities in and at Risk of Famine in Sheikan, North Kordofan",
+"summary": "Save the Children International (SCI), in partnership with Gender and Peace Building Center (GPBC) will implement a comprehensive response to address the health and nutrition needs of conflict affected communities at risk of famine in Sheikan locality of North Kordofan. Our integrated Health and Nutrition intervention will target vulnerable children under 5 and pregnant and breastfeeding women and girls (PBWG). A tot…",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2025-06-22",
+"end": "2026-06-21",
+"budget": 400000,
+"states": [
+"North Kordofan"
+],
+"localities": [
+{
+"s": "North Kordofan",
+"n": "Sheikan"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35546",
+"name": "Support to life-saving services to vulnerable populations in localities at risk of famine of Al-Jazirah state, Sudan",
+"summary": "Following the Sudanese Armed Forces' (SAF) recapture of Wad Madani, Al-Jazirah’s capital, on January 11th, 2025, the main access roads leading to the city from Al Manaqil, Gedaref, and Sennar reopened to public transport (OCHA, January 23, 2025). This breakthrough enabled the voluntary return of internally displaced persons (IDPs) beginning in February, with over 48,000 people returning to the city to date. Despite n…",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2025-06-22",
+"end": "2026-03-21",
+"budget": 300000,
+"states": [
+"Aj Jazirah",
+"Gedaref",
+"Sennar"
+],
+"localities": [
+{
+"s": "Aj Jazirah",
+"n": "Al Manaqil"
+},
+{
+"s": "Aj Jazirah",
+"n": "Medani Al Kubra"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35269",
+"name": "Integrated Food Crisis Response in Um Dukhun Locality at risk of famine, in Central Darfur State, Sudan",
+"summary": "According to the latest Sudan IPC Famine Review Committee (FRC), famine conditions are projected between December 2024 and May 2025 in several states, with only minor improvements in acute food insecurity compared to the lean season. Currently, 24.6 million people face high levels of acute food insecurity, including 1,074,329 individuals categorized as IPC 3+ in Central Darfur. The ongoing conflict has triggered a se…",
+"sectors": [
+"Food Security",
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2025-06-16",
+"end": "2026-06-15",
+"budget": 2000000,
+"states": [
+"Central Darfur",
+"Khartoum",
+"North Darfur",
+"South Darfur"
+],
+"localities": [
+{
+"s": "Central Darfur",
+"n": "Um Dukhun"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35616",
+"name": "Support to MAGs in hard-to-reach areas in Sudan",
+"summary": "The proposed intervention is a continuation to support the Mutual Aid Groups in Sudan those implementing lifesaving activities, under this allocation, implemented by DRC and Sudan Zero Waste Organization (SZWO), the project expands coverage to MAGs in Central Darfur and South Kordofan and continues to carry out sustained interventions in Khartoum. MAGs will lead in shared kitchen service delivery, protection assistan…",
+"sectors": [
+"Food Security",
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-06-15",
+"end": "2026-06-14",
+"budget": 1500000,
+"states": [
+"Central Darfur",
+"Khartoum",
+"South Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35257",
+"name": "Integrated Multisectoral Food Crisis Response for At-Risk Communities in Sharg El Nile and Bahri, Khartoum State",
+"summary": "Save the Children in partnership with COOPI and SOS Sahel aims to address the food insecurity crisis in Khartoum State by delivering integrated multisectoral lifesaving assistance to the most vulnerable populations in Sharg El Nile and Bahri localities. This response seeks to reduce morbidity and mortality, while strengthening the resilience of targeted communities and preventing the adoption of harmful coping mechan…",
+"sectors": [
+"Food Security",
+"Health",
+"Nutrition",
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-06-15",
+"end": "2026-08-14",
+"budget": 2400000,
+"states": [
+"Khartoum"
+],
+"localities": [
+{
+"s": "Khartoum",
+"n": "Bahri"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35284",
+"name": "At Risk of Famine: Multi-Sectoral Humanitarian Response in Al-Jazirah State Addressing WASH, EsNFI, Health, Nutrition, and Food Security Needs",
+"summary": "Relief International and its partner CAFA aim to address the health, nutrition, WASH,nbspEsNFI, and FSL needs of individuals in Sharg Al Jazira and Medani Al Kubra. The project seeks to reach individuals by improving access to healthcare, nutrition, WASH, ESNFI, and FSL, and by mainstreaming protection services. The project will strengthen primary healthcare, including emergency trauma response and outbreak managemen…",
+"sectors": [
+"Food Security",
+"Health",
+"Nutrition",
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-06-15",
+"end": "2026-09-14",
+"budget": 1450000,
+"states": [
+"Aj Jazirah"
+],
+"localities": [
+{
+"s": "Aj Jazirah",
+"n": "Medani Al Kubra"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35523",
+"name": "Integrated Lifesaving FSL, Health, and Nutrition Support the localities that are at or in risk of  Famine Among Vulnerable Crisis-Affected Populations in Jebel Awliya, Khartoum State",
+"summary": "The project aims to provide essential support to conflict-affected and vulnerable households in Jebel Awliya through the provision of Food Security and Livelihoods (FSL) assistance, along with Health and Nutrition services. CARE and Almanar will prioritize the most vulnerable communities, particularly those currently underserved by existing partner agencies. In addition to providing direct assistance, CARE and Almana…",
+"sectors": [
+"Food Security",
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2025-06-15",
+"end": "2026-06-14",
+"budget": 970000,
+"states": [
+"Khartoum"
+],
+"localities": [
+{
+"s": "Khartoum",
+"n": "Jebel Awlia"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35526",
+"name": "Integrated Health, Nutrition, and Protection Services for Conflict-Affected Communities in and at Risk of Famine in Dilling and Habila, South Kordofan",
+"summary": "In coordination with OCHA and the clusters, Save the Children International (SCI) in partnership with Child Development Foundation (CDF) will implement an integrated health, nutrition and protection response to address the needs of conflict affected communities at risk of famine in Dilling and Habila South Kordofan. The project will be implemented in coordination with other actors who are implementing OCHA funded pro…",
+"sectors": [
+"Health",
+"Nutrition",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-06-15",
+"end": "2026-06-14",
+"budget": 600000,
+"states": [
+"South Kordofan"
+],
+"localities": [
+{
+"s": "South Kordofan",
+"n": "Dilling"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35613",
+"name": "2025/26 GCT Support for Mutual Aid Group-led Humanitarian Response in North Kordofan and Khartoum",
+"summary": "The project will enable primarily women-led mutual aid groups (MAGs) in North Kordofan and Khartoum to implement lifesaving interventions in vulnerable, war-affected communities via group cash transfers (GCTs). CORE will distribute $645,500 in GCT to 43 MAGs in North Kordofan (86%) and Khartoum (14%) via a mix of direct and partner implementation. CORE will directly distribute GCT in Khartoum, leveraging its existing…",
+"sectors": [
+"Food Security",
+"Health",
+"Protection",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-06-13",
+"end": "2026-06-12",
+"budget": 1000000,
+"states": [
+"Khartoum",
+"North Kordofan"
+],
+"localities": [
+{
+"s": "Khartoum",
+"n": "Sharg An Neel"
+},
+{
+"s": "North Kordofan",
+"n": "Ar Rahad"
+},
+{
+"s": "North Kordofan",
+"n": "Sheikan"
+},
+{
+"s": "North Kordofan",
+"n": "Um Rawaba"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35230",
+"name": "Integrated Food Crisis Response in FSL (40%), ES/NFI (10%), Protection (10%), Health (20%) and Nutrition (20%) to the affected communities in Habila locality at risk of famine in West Darfur",
+"summary": "The humanitarian catastrophe ravaging Sudan in the thick of the ongoing conflict continues unabated. There are now 12.7 million people forcefully displaced including 8.6 million internally (IDP’s) and 3.9 million refugees in neighboring countries since the conflict begun in April 2023. The latest IPC analysis indicates that 24.6 million people in Sudan face acute food insecurity, with 756,340 people in IPC Phase 3+ i…",
+"sectors": [
+"Food Security",
+"Health",
+"Nutrition",
+"Protection",
+"Shelter and NFIs"
+],
+"orgType": "International NGO",
+"start": "2025-06-13",
+"end": "2026-06-12",
+"budget": 1100000,
+"states": [
+"West Darfur"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35528",
+"name": "Life-Saving WASH and S/NFI support for conflict-affected households in Tawila, North Darfur",
+"summary": "Following the large-scale ground offensive by the Rapid Support Forces (RSF) on Zamzam IDP camp in early April 2025, an estimated 406,265 individuals (81,252 households) were newly displaced within North Darfur, fleeing escalating violence. The majority—over 60,000 households—have sought refuge in Tawila locality, while others are dispersed across El Fasher, Dar As Salam, Kutum, Mellit, and Kebkabiya (IOM DTM 28.04.2…",
+"sectors": [
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-06-11",
+"end": "2026-06-10",
+"budget": 1464000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Dar As Salam"
+},
+{
+"s": "North Darfur",
+"n": "Kebkabiya"
+},
+{
+"s": "North Darfur",
+"n": "Kutum"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35645",
+"name": "Cholera Prevention Through Emergency WASH Interventions in Vulnerable Areas of White Nile State: Kosti, Rabak, Ed Dueim, Aj Jabalain, and Algetaina",
+"summary": "The proposed preventative cholera response project is informed by data from the General Directorate of Health Emergencies Epidemic Control's national surveillance dashboard (20 April 2025) in White Nile State. According to line ministries, including the Ministry of Health and the Water and Environmental Sanitation (WES) Corporation, the region faces a high risk of cholera due to ongoing vulnerabilities. These include…",
+"sectors": [
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-06-10",
+"end": "2026-06-09",
+"budget": 850000,
+"states": [
+"White Nile"
+],
+"localities": [
+{
+"s": "White Nile",
+"n": "Aj Jabalain"
+},
+{
+"s": "White Nile",
+"n": "Kosti"
+},
+{
+"s": "White Nile",
+"n": "Rabak"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35294",
+"name": "Integrated Health, Nutrition, and Protection Services for Conflict-Affected and Displaced Communities at risk of famine in Tawila, North Darfur",
+"summary": "SC, in partnership with APDHWO, aims to deliver integrated health, nutrition, and protection services to displaced and conflict-affected children and families in Tawila locality, North Darfur. The intervention focuses on providing equitable, inclusive, and life-saving curative and preventive healthcare to over 177449 individuals, including IDPs. The project will support the expansion of existing facilities and establ…",
+"sectors": [
+"Health",
+"Nutrition",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-06-09",
+"end": "2026-09-08",
+"budget": 2599593,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-O-35262",
+"name": "Responding to Humanitarian Needs in Al Lagowa and As Sunut at Risk of Famine",
+"summary": "This project aims to deliver life-saving, principled, and gender-responsive humanitarian assistance to highly vulnerable populations in the localities of Al Lagowa and As Sunut in West Kordofan, where communities are experiencing critical levels of food insecurity due to ongoing conflict, displacement, and the collapse of livelihood systems. With famine-like conditions looming in some areas, the project seeks to redu…",
+"sectors": [
+"Food Security"
+],
+"orgType": "Others",
+"start": "2025-06-09",
+"end": "2026-07-08",
+"budget": 600000,
+"states": [
+"West Kordofan"
+],
+"localities": [
+{
+"s": "West Kordofan",
+"n": "Al Lagowa"
+},
+{
+"s": "West Kordofan",
+"n": "As Sunut"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35271",
+"name": "Strengthening Food Security and Livelihoods for Localities in or at Risk of Famine in  Dilling, Habila and Abu Jabiya South Kordofan",
+"summary": "This project aims to strengthen food security, enhance household resilience and improve livelihoods for vulnerable populations in Dilling, Habilla and Abu Jabiya localities of South Kordofan targeting 3,869 households (23,208 participants). It focuses on improving food consumption and reducing hunger through increased access to agricultural inputs, livestock restocking and postharvest handling support. Unconditional …",
+"sectors": [
+"Food Security"
+],
+"orgType": "International NGO",
+"start": "2025-06-05",
+"end": "2026-06-04",
+"budget": 650000,
+"states": [
+"South Kordofan"
+],
+"localities": [
+{
+"s": "South Kordofan",
+"n": "Dilling"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35527",
+"name": "Integrated Health, Nutrition, Protection, WASH and ESNFI Services for IDPs in Localities at Risk of Famine – Mellit, North Darfur",
+"summary": "This proposal aims to deliver coordinated, life-saving assistance to conflict-affected populations, particularly newly displaced persons in Mellit locality, North Darfur. The consortium COOPI- SAHARI, aims to deliver integrated, life-saving response with an Area based Approach. The intervention targets newly displaced populations—estimated at over 33,000 individuals—now sheltering in overcrowded and underserved gathe…",
+"sectors": [
+"Health",
+"Nutrition",
+"Protection",
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-06-02",
+"end": "2026-08-31",
+"budget": 1455000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35591",
+"name": "Provision of Emergency WASH and Health Services for Cholera Outbreak Response in Gedaref state, Sudan",
+"summary": "The integrated Health and WASH interventions to respond to the ongoing cholera outbreak in Gedaref aims at responding to gaps in response on different pillars and are aligned with Sudan acute watery diarrhoea/cholera response plan March 2025 to February 2026. Proposed duration is one year starting from June 1. The health-related interventions include supporting cholera treatment centers and oral rehydration points, s…",
+"sectors": [
+"Health",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-06-01",
+"end": "2026-05-31",
+"budget": 1120000,
+"states": [
+"Gedaref"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35607",
+"name": "Improve Access to Shelter and NFI Needs for IDPs in Localities at Risk of Famine – Jebel Marra",
+"summary": "This project implemented by DRC under the 2025 SHF Reserve Allocation, aims to provide partial emergency shelter and non-food items (NFIs) to newly displaced populations at risk of famine in Jebel Marra, Central Darfur. Following the April 2025 attack on Zamzam camp by RSF forces, over 400,000 people were displaced, with tens of thousands arriving in Tawila and Jebel Marra. Many of these internally displaced persons …",
+"sectors": [
+"Shelter and NFIs"
+],
+"orgType": "International NGO",
+"start": "2025-06-01",
+"end": "2025-11-30",
+"budget": 1000000,
+"states": [
+"Central Darfur",
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35609",
+"name": "2025 - SHF Reserve Allocation (Anticipatory cholera response in high-risk states ahead of the 2025 rainy season)",
+"summary": "The cholera response was initially planned for Kosti and Rabak localities due to anticipated outbreaks during the rainy season, based on trends from 2024. However, cases remained low in those areas while surging in Aljabalin and Tendelty. In consultation with the Ministry of Health (MoH), WHO, UNICEF, and other partners, the IRC proposes shifting its response to these two affected localities. Working with CAFA Develo…",
+"sectors": [
+"Health"
+],
+"orgType": "International NGO",
+"start": "2025-06-01",
+"end": "2026-05-31",
+"budget": 850000,
+"states": [
+"Gedaref",
+"River Nile",
+"White Nile"
+],
+"localities": [
+{
+"s": "White Nile",
+"n": "Kosti"
+},
+{
+"s": "White Nile",
+"n": "Rabak"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35610",
+"name": "Supporting MAGs in West Kordofan, North Kordofan, White Nile, Gazira and Sennar to provide life-saving humanitarian assistance to affected population",
+"summary": "The situation in Sudan continues to be unfathomable, the world's largest humanitarian crisis with 30 million people in need of humanitarian assistance and 12.7 million displaced. The project targets five central states of Sudan West Kordofan, North Kordofan, White Nile, Gazira, and Sennar. West Kordofan and North Kordofan are categorized high risk due to insecurity caused by clashes between RSF and SAF, resulting in …",
+"sectors": [
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-06-01",
+"end": "2026-05-31",
+"budget": 1500000,
+"states": [
+"Aj Jazirah",
+"North Kordofan",
+"Sennar",
+"West Kordofan",
+"White Nile"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35621",
+"name": "Support to humanitarian responses led by Mutual Aid Groups (MAGs) in North and East Darfur, North and South Kordofan, Khartoum, and Al Jazeera states.",
+"summary": "Building on its experience implementing Group Cash Transfers (GCTs) with SHF and other donors since December 2023, Acted proposes a multi-sectoral response to continue supporting the emergency response led by Mutual Aid Groups (MAGs) in conflict-affected and hard-to-reach areas of Sudan. This project will support community-led initiatives in Food Security and Livelihoods (FSL) and Protection sectors and includes a de…",
+"sectors": [
+"Food Security",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-06-01",
+"end": "2026-05-31",
+"budget": 1500000,
+"states": [
+"East Darfur",
+"Khartoum",
+"South Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35636",
+"name": "[2025 48hrs Response Consortium]: 48-hour response - Provision of Immediate and Lifesaving Health and Nutrition Services in Hotspot Areas with Emerging Needs in Sudan.",
+"summary": "This project is a rapid response mechanism and will provide lifesaving health and nutrition interventions in response to the Sudan crisis post-April 15, 2023, to the hotspot locations with emerging needs in Sudan. Conflicts and violence have resulted in a high number of civilian casualties, extensive damage to infrastructure and facilities, including health and nutrition facilities, and mass displacements. With food …",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2025-06-01",
+"end": "2026-05-31",
+"budget": 6000000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-25-R-INGO-35641",
+"name": "Cholera Outbreak Response and Prevention in Al Jazira State",
+"summary": "The MoHnbspof Sudannbspdeclared a cholera outbreak on 12 August 2024 after confirmation of samples from Kassala State, which had been reporting suspected cases since 22 July 2024.nbspThe outbreak is occurring at a time when the health system is severely weakened by the conflict that has been raging in the country for 21 months, causing severe access constraints and security risks that limit the ability of emergency h…",
+"sectors": [
+"Health",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-06-01",
+"end": "2026-03-31",
+"budget": 1120430,
+"states": [
+"Aj Jazirah",
+"Kassala"
+],
+"localities": [
+{
+"s": "Aj Jazirah",
+"n": "Al Hasahisa"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35642",
+"name": "48-hour response WASH and ES/NFI interventions to mitigate morbidity and mortality among children and their families in response to the Sudan crises.",
+"summary": "Save the Children International (SCI), in collaboration with UNOCHA and 17 vetted NGO partners (7 INGOs and 10 NNGOs), is implementing a 12-month rapid response project funded by the Sudan Humanitarian Fund (SHF). The initiative aims to address urgent humanitarian needs caused by escalating conflict and displacement across Sudan. The project leverages a 48-hour response mechanism to deliver lifesaving Water, Sanitati…",
+"sectors": [
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-06-01",
+"end": "2026-05-31",
+"budget": 6000000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-25-R-INGO-35658",
+"name": "Support to MAGs - SUDLIFT 2: Support, Uplifting, and Developing Local Responders in Sudan",
+"summary": "The proposed project aims to support 121 Local Responders (LRs) and Mutual Aid Groups (MAGs) through the provision of 281 Group Cash Transfers (GCTs) and complementary training across the states of Khartoum, South Darfur, Central Darfur, West Darfur, and North Darfur. Over the 12-month project duration, LRs and MAGs will be empowered to address the basic needs of conflict-affected populations, including internally di…",
+"sectors": [
+"Food Security",
+"Shelter and NFIs",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-06-01",
+"end": "2026-05-31",
+"budget": 2500000,
+"states": [
+"Central Darfur",
+"Khartoum",
+"North Darfur",
+"South Darfur",
+"West Darfur"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35640",
+"name": "Cholera Outbreak Response and Prevention in Khartoum",
+"summary": "The MoH of Sudan declared a cholera outbreak on 12 August 2024 after confirmation of samples from Kassala State, which had been reporting suspected cases since 22 July 2024. The outbreak is occurring at a time when the health system is severely weakened by the conflict that has been raging in the country for the last two years, causing severe access constraints and security risks that limit the ability of emergency h…",
+"sectors": [
+"Health",
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-05-28",
+"end": "2026-03-31",
+"budget": 920000,
+"states": [
+"Kassala",
+"Khartoum"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35608",
+"name": "Emergency shelter and NFI kit provision to IDPs in North Darfur",
+"summary": "Since mid-2023, ongoing violence and armed clashes in North Darfur, particularly in El Fasher, have forced thousands of civilians to flee their homes in search of safety. As formal displacement camps like Zamzam and Abu Shouk become unsafe or overcrowded, many displaced families have sought refuge in rural areas such as Tawila, a locality that was already severely under-resourced and home to communities displaced by …",
+"sectors": [
+"Shelter and NFIs"
+],
+"orgType": "International NGO",
+"start": "2025-05-27",
+"end": "2025-11-26",
+"budget": 500000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-INGO-35589",
+"name": "Provision of Emergency Shelter NFI to crisis-affected people in North Darfur",
+"summary": "Since May 2024, El Fasher, the capital of North Darfur, has been under siege amid escalating conflict, resulting in the displacement of approximately 700,000 people—the vast majority of the locality’s population of 900,000. The offensive on Zamzam camp between April 11–13, 2025, has killed hundreds and triggered mass displacement towards Tawila and the Jebel Marra region, with up to 450,000 people fleeing, in highly …",
+"sectors": [
+"Shelter and NFIs"
+],
+"orgType": "International NGO",
+"start": "2025-05-22",
+"end": "2026-05-21",
+"budget": 1500000,
+"states": [
+"North Darfur"
+],
+"localities": [
+{
+"s": "North Darfur",
+"n": "Al Fasher"
+},
+{
+"s": "North Darfur",
+"n": "Tawila"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-R-UN-35339",
+"name": "Supporting Evidence-Based Programming for IDPs, Returnee Communities, and Other Vulnerable Groups in Sudan",
+"summary": "DTM is the sole actor providing comprehensive, nation-wide data on displacement and mobility of different population groups in Sudan at the location level. It supports all sectors and clusters in implementing evidence-based, life-saving programs across the country. Specifically, DTM provides vital data on the sex and age demographics and humanitarian vulnerabilities of affected populations (both returnees and IDPs), …",
+"sectors": [
+"Coordination"
+],
+"orgType": "UN Agency",
+"start": "2025-05-01",
+"end": "2026-04-30",
+"budget": 2000001,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-25-S-INGO-35138",
+"name": "Improving Health  Nutrition in Area 2",
+"summary": "The 2025 health and nutrition project in area 2 seeks to provide timely, effective, and sustainable health and nutrition interventions to vulnerable populations in BNS, ensuring the prevention of malnutrition through a BSFP, the provision of essential healthcare services through HF support, and the promotion of overall community wellbeing over a period of one year. Most HFs in BNS are ill-equipped to handle complex m…",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2025-04-21",
+"end": "2026-07-31",
+"budget": 800000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-25-S-INGO-35059",
+"name": "Increased access to life-saving and nexus-based GBV services for the people affected by the Sudan crises in central regions of South Kordofan State.",
+"summary": "Legacy wars and climate crises, the current SAF vs. RSF war, and the current SAF vs. SPLM/A-N war have exposed the 3.6 million people (Host) in the central regions of South Kordofan to armed conflict, displacements, hunger, malnutrition, disease outbreaks, and climate crises. The current crises (conflict, war, and climate crises) have further displaced over 999,870 people (Internally displaced persons (IDPs) and retu…",
+"sectors": [
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-04-15",
+"end": "2025-10-14",
+"budget": 213940,
+"states": [
+"South Kordofan"
+],
+"localities": [],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35071",
+"name": "Emergency health response to IDPs and the host communities in R1",
+"summary": "IRC proposes a 12-month intervention in Region 1 (R1) to support two health clinics in Thobo County (Reka and Kordofan health centres) with a package of primary healthcare services. The project was designed in coordination with the Sudan Humanitarian Fund (SHF) in February – March 2025 and the activities have been selected to respond to the unprecedented humanitarian emergency ongoing in these remote, isolated areas …",
+"sectors": [
+"Health"
+],
+"orgType": "International NGO",
+"start": "2025-04-15",
+"end": "2026-04-14",
+"budget": 1230000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-25-S-INGO-35141",
+"name": "Improving WASH in Area 1",
+"summary": "The project seeks to ensure the availability of safe clean water and adopt improved hygiene practices, to effectively mitigate the spread of WASH-related diseases in conflict-affected IDP camps and host communities identified to have acute water scarcity, poor environmental condition/ at risk of WASH related diseases in Thobo and Umdorein Counties in SKS. Overall, in both host and IDP camp HH, improved water sources …",
+"sectors": [
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-04-14",
+"end": "2025-10-13",
+"budget": 300000,
+"states": [],
+"localities": [],
+"nationwide": true
+},
+{
+"id": "SUD-25-S-INGO-35054",
+"name": "Food crisis response in conflict affected areas",
+"summary": "The humanitarian needs in Sudan are escalating as the dry season exacerbates vulnerabilities and the potential for further conflict intensifies. Since the outbreak of conflict between SAF and RSF on April 15, 2023, over 28,700 fatalities have been reported, according to ACLED (December 2024). The influx of IDPs into SPLM-N-controlled areas of Region 1 has placed immense pressure on limited resources. By September 202…",
+"sectors": [
+"Multi-purpose cash",
+"Protection"
+],
+"orgType": "International NGO",
+"start": "2025-04-09",
+"end": "2026-04-08",
+"budget": 1177000,
+"states": [
+"Blue Nile",
+"South Kordofan"
+],
+"localities": [
+{
+"s": "Blue Nile",
+"n": "Al Kurmuk"
+},
+{
+"s": "South Kordofan",
+"n": "Dilling"
+},
+{
+"s": "South Kordofan",
+"n": "Kadugli"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35098",
+"name": "Lifesaving health and nutrition support to famine-affected communities in Habila and Dilling, South Kordofan.",
+"summary": "Primary humanitarian needs in South Kordofan include severe food shortages, high rates of acute malnutrition, limited access to primary healthcare, and protection from ongoing violence. The ongoing conflict, regular clashes, and movement restrictions remain the major driver of humanitarian needs, with particularly high needs identified in the localities of Dilling and Habila. The IPC analysis of December 2024 indicat…",
+"sectors": [
+"Health",
+"Nutrition"
+],
+"orgType": "International NGO",
+"start": "2025-04-07",
+"end": "2026-04-06",
+"budget": 549214,
+"states": [
+"South Kordofan"
+],
+"localities": [
+{
+"s": "South Kordofan",
+"n": "Dilling"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35057",
+"name": "Provision of Life-Saving WASH Interventions to the Food Crises Affected Population in the SPLM-N-Controlled Areas of Yabus and Chali in Blue Nile",
+"summary": "The project will be implemented by LM International and the National Christian Development Organization (NCDO). This initiative aligns strategically with the objectives outlined in the Sudan Humanitarian Response Plan (HRP) for 2024, particularly focusing on objectives one and three. These objectives aim to alleviate the urgent needs of conflict-affected populations approximatelynbsp20,000 individuals, including 4,60…",
+"sectors": [
+"WASH"
+],
+"orgType": "International NGO",
+"start": "2025-04-01",
+"end": "2025-12-31",
+"budget": 319409,
+"states": [
+"Blue Nile"
+],
+"localities": [
+{
+"s": "Blue Nile",
+"n": "Al Kurmuk"
+}
+],
+"nationwide": false
+},
+{
+"id": "SUD-25-S-INGO-35068",
+"name": "Multipurpose Cash Assistance for Crises Affected population in the Two areas.",
+"summary": "The proposed project, Multipurpose Cash Assistance (MPCA) for IDP and Famine Response, Sudan, will support 3,690 vulnerable households (HHs) of internally displaced persons (IDPs) and host community members in Heiban County, South Kordofan. These households, averaging five members each, will benefit an estimated 18,450 individuals (11,070F 9,225M). Implementation will focus on one of three IDP camps (Kyian, Timbere, …",
+"sectors": [
+"Multi-purpose cash"
+],
+"orgType": "International NGO",
+"start": "2025-04-01",
+"end": "2025-09-30",
+"budget": 650000,
+"states": [
+"South Kordofan"
+],
+"localities": [
+{
+"s": "South Kordofan",
+"n": "Heiban"
+}
+],
+"nationwide": false
+}
+]
+}
