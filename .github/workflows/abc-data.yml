@@ -1,0 +1,31 @@
+name: Area-based coordination data
+
+# Downloads the public data for the Area-based coordination page (abc.html) into raw/.
+# Run it by hand from the Actions tab (Run workflow) when new data is published.
+on:
+  workflow_dispatch:
+  push:
+    branches: [abc-data]
+    paths: ["scripts/abc_fetch.py", ".github/workflows/abc-data.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download data
+        run: python scripts/abc_fetch.py
+      - name: Save the download in this branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add raw
+          git commit -m "Area-based coordination: data download $(date -u +%Y-%m-%d)" || echo "Nothing new"
+          git push
