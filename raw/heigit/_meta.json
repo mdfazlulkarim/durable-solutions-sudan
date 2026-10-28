@@ -1,0 +1,73 @@
+{
+ "name": "sudan---risk-assessment-indicators",
+ "title": "Sudan - Risk Assessment Indicators",
+ "org": "HeiGIT (Heidelberg Institute for Geoinformation Technology)",
+ "dataset_date": "[2026-02-26T00:00:00 TO 2026-08-27T23:59:59]",
+ "last_modified": "2026-10-12T11:34:43",
+ "url": "https://data.humdata.org/dataset/sudan---risk-assessment-indicators",
+ "resources": [
+  {
+   "name": "SDN_ADM2_demographics.csv",
+   "format": "CSV",
+   "size": 13382,
+   "last_modified": "2026-08-26T14:43:55",
+   "url": "https://hot.storage.heigit.org/heigit-hdx-public/risk_assessment_inputs/sdn/SDN_ADM2_demographics.csv"
+  },
+  {
+   "name": "SDN_ADM2_vulnerability.csv",
+   "format": "CSV",
+   "size": 24368,
+   "last_modified": "2026-08-26T15:22:25",
+   "url": "https://hot.storage.heigit.org/heigit-hdx-public/risk_assessment_inputs/sdn/SDN_ADM2_vulnerability.csv"
+  },
+  {
+   "name": "SDN_ADM2_rural_population.csv",
+   "format": "CSV",
+   "size": 14031,
+   "last_modified": "2026-08-26T15:16:00",
+   "url": "https://hot.storage.heigit.org/heigit-hdx-public/risk_assessment_inputs/sdn/SDN_ADM2_rural_population.csv"
+  },
+  {
+   "name": "SDN_ADM2_coping.csv",
+   "format": "CSV",
+   "size": 40409,
+   "last_modified": "2026-10-12T11:34:43",
+   "url": "https://hot.storage.heigit.org/heigit-hdx-public/risk_assessment_inputs/sdn/SDN_ADM2_coping.csv"
+  },
+  {
+   "name": "SDN_ADM2_access.csv",
+   "format": "CSV",
+   "size": 10911,
+   "last_modified": "2026-10-12T11:27:24",
+   "url": "https://hot.storage.heigit.org/heigit-hdx-public/risk_assessment_inputs/sdn/SDN_ADM2_access.csv"
+  },
+  {
+   "name": "SDN_ADM2_flood_exposure.csv",
+   "format": "CSV",
+   "size": 49658,
+   "last_modified": "2026-08-26T14:56:41",
+   "url": "https://hot.storage.heigit.org/heigit-hdx-public/risk_assessment_inputs/sdn/SDN_ADM2_flood_exposure.csv"
+  },
+  {
+   "name": "SDN_ADM2_facilities.csv",
+   "format": "CSV",
+   "size": 4346,
+   "last_modified": "2026-08-26T15:03:06",
+   "url": "https://hot.storage.heigit.org/heigit-hdx-public/risk_assessment_inputs/sdn/SDN_ADM2_facilities.csv"
+  },
+  {
+   "name": "SDN_ADM2_evacuability.csv",
+   "format": "CSV",
+   "size": 14258,
+   "last_modified": "2026-08-27T07:40:48.632305",
+   "url": "https://hot.storage.heigit.org/heigit-hdx-public/risk_assessment_inputs/sdn/SDN_ADM2_evacuability.csv"
+  },
+  {
+   "name": "SDN_ADM2_rai.csv",
+   "format": "CSV",
+   "size": 16985,
+   "last_modified": "2026-08-27T07:40:48.632538",
+   "url": "https://hot.storage.heigit.org/heigit-hdx-public/risk_assessment_inputs/sdn/SDN_ADM2_rai.csv"
+  }
+ ]
+}

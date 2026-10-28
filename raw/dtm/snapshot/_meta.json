@@ -1,0 +1,255 @@
+{
+ "name": "sudan-displacement-situation-countrywide-idps-iom-dtm",
+ "title": "Sudan: Displacement Situation - IDPs [IOM DTM]",
+ "org": "International Organization for Migration (IOM)",
+ "dataset_date": "[2023-01-29T00:00:00 TO 2026-07-31T23:59:59]",
+ "last_modified": "2026-08-24T12:53:43.170089",
+ "url": "https://data.humdata.org/dataset/sudan-displacement-situation-countrywide-idps-iom-dtm",
+ "resources": [
+  {
+   "name": "DTM Sudan Displacement and Return Snapshot (8).xlsx",
+   "format": "XLSX",
+   "size": 238546,
+   "last_modified": "2026-08-24T12:53:43.170089",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/dfeac4ff-47a0-454c-92c1-501d34ec0fff/download/2026_dtm_sdn_idps_returnees_snapshot_008_28072026_public_hdx_vf.xlsx"
+  },
+  {
+   "name": "DTM Sudan Displacement and Return Snapshot (7).xlsx",
+   "format": "XLSX",
+   "size": 240866,
+   "last_modified": "2026-08-04T09:52:19.951795",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/6e581848-fe19-4a68-a288-aba26d06bf20/download/2026_dtm_sdn_idps_returnees_snapshot_007_30062026_public.xlsx"
+  },
+  {
+   "name": "DTM Sudan Displacement and Return Snapshot (6).xlsx",
+   "format": "XLSX",
+   "size": 239455,
+   "last_modified": "2026-06-18T14:03:31.865444",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/a96c10db-c597-4f73-8289-76830c3ee42c/download/2026_24_05_dtm_sdn_idps_returnees_snapshot_006_public_hdx_v1.xlsx"
+  },
+  {
+   "name": "DTM Sudan Displacement and Return Snapshot (5).xlsx",
+   "format": "XLSX",
+   "size": 241140,
+   "last_modified": "2026-06-01T15:38:59.792399",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/009e1ec8-0eba-47a4-a15d-5c67b252942b/download/dtm_sdn_idps_returnees_snapshot_005_20260428_public.xlsx"
+  },
+  {
+   "name": "DTM Sudan Displacement and Return Snapshot (4).xlsx",
+   "format": "XLSX",
+   "size": 239617,
+   "last_modified": "2026-06-01T09:28:26.530291",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/18d5308b-61b5-4b68-8291-44c855b24ebd/download/dtm_sdn_idps_returnees_snapshot_004_31032026_public.xlsx"
+  },
+  {
+   "name": "DTM Sudan Displacement and Return Snapshot (3).xlsx",
+   "format": "XLSX",
+   "size": 240863,
+   "last_modified": "2026-06-01T09:28:31.706093",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/73467e29-c5eb-4fab-bfe2-96eb5dcaee2a/download/dtm_sdn_idps_returnees_snapshot_003_27022026_public.xlsx"
+  },
+  {
+   "name": "DTM Sudan Displacement and Return Snapshot (2).xlsx",
+   "format": "XLSX",
+   "size": 238196,
+   "last_modified": "2026-02-12T10:45:39.325618",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/6ff7b53f-2f56-4c44-92fb-ce8df2013131/download/dtm_sdn_idps_returnees_snapshot_002_30122025_public_hdx.xlsx"
+  },
+  {
+   "name": "DTM Sudan Displacement and Return Snapshot (1)",
+   "format": "XLSX",
+   "size": 237057,
+   "last_modified": "2026-02-12T12:12:03.782798",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/118eb395-a968-4833-9d1d-d50ba94d7573/download/dtm_sdn_idps_returnees_snapshot_001_26112025_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 23 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 227419,
+   "last_modified": "2026-01-19T16:36:29.003447",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/3fd46b26-2612-4e85-8c40-fe5240390b7d/download/dtm_sdn_idps_28102025-update-001_public.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 22 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 223188,
+   "last_modified": "2025-10-22T14:10:02.648388",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/9b890887-6ed0-4aea-9148-ba1dd3a02747/download/dtm_sdn_smu-22-_-30092025_v02_public.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 21 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 1009944,
+   "last_modified": "2025-09-23T12:38:53.632160",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/5f76e2a3-dce7-4806-85b8-f21cc6159665/download/dtm_sdn_smu-21-_-26082025_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 20 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 380581,
+   "last_modified": "2025-09-03T09:13:08.888795",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/93cc8ee1-4069-46c8-b5d9-9a74b80249f8/download/dtm_sdn_smu-20-_-29072025_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 19 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 223161,
+   "last_modified": "2025-07-10T14:46:29.650037",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/fa36e2cf-ef9a-4891-9645-7aadd28c09d8/download/dtm_sdn_smu-bi-weekly-19_-25062025_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 18 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 981257,
+   "last_modified": "2025-06-11T09:57:26.355256",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/36cbc51e-9b67-4548-9574-1ddf77efea7d/download/dtm_sdn_smu-bi-weekly_18_public.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 17 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 1012834,
+   "last_modified": "2025-05-08T12:38:54.527161",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/af0ec6a3-c486-4ae6-9b91-2a6096358f4a/download/dtm_sdn_smu-bi-weekly-17-_-29042025_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 16 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 1012319,
+   "last_modified": "2025-03-25T09:30:01.746668",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/d440ff00-e8b4-49d7-a062-4e882bd25122/download/dtm_sdn_smu-bi-weekly-16-_-11032025_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 15 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 222606,
+   "last_modified": "2025-02-07T11:04:41.418582",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/ae6b0934-ecd7-49cd-b9c5-f6218b762094/download/dtm_sdn_smu-bi-weekly-15-_-29012025_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 14 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 222581,
+   "last_modified": "2025-01-22T15:38:46.791292",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/0c8d1751-9cc3-464b-ab16-1bb09df88cbe/download/dtm_sdn_smu-bi-weekly-14-_-15012025_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Overview 4 (Bi-Monthly)",
+   "format": "XLSX",
+   "size": 222077,
+   "last_modified": "2025-01-13T10:53:54.509532",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/9042f1af-19aa-48e1-8d4a-2458ce477f47/download/dtm_sdn_smu-bi-monthly-004-_031122024_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 13 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 222427,
+   "last_modified": "2024-12-31T13:35:13.964869",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/d641cae6-ba35-416d-9a4f-731d886315d6/download/dtm_sdn_smu-bi-weekly-13-_-17122024_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 12 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 222474,
+   "last_modified": "2024-12-12T10:55:34.417010",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/4ea6ae19-4080-405b-bf8a-3003e8ed5341/download/dtm_sdn_smu-bi-weekly-12-_-03122024_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 11 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 1013410,
+   "last_modified": "2024-11-27T14:49:04.236180",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/2a0a6ab7-722a-4aea-bd31-dd0d949ea7dd/download/dtm_sdn_smu-bi-weekly-11-_-20112024_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Overview 3 (Bi-Monthly)",
+   "format": "XLSX",
+   "size": 1011766,
+   "last_modified": "2024-11-15T14:25:21.251255",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/7a7d1e2f-6411-4e0a-b51c-f1a05a1ed5ca/download/dtm_sdn_smo-bi-monthly-003-_06112024_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 10 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 222437,
+   "last_modified": "2024-10-31T10:26:59.354315",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/95a52eff-66f5-4ed5-99b4-117d37dd0b7b/download/dtm_sdn_smu-bi-weekly-10-_-23102024_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 9 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 1011996,
+   "last_modified": "2024-10-16T14:42:55.333009",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/7f9549c2-8fe0-4e42-b5f8-7632e4dbd1a8/download/dtm_sdn_sudan-mobility-update-bi-weekly-9-_-08102024_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 8 (Bi-Weekly)",
+   "format": "XLS",
+   "size": 1014807,
+   "last_modified": "2024-10-03T08:16:04.931644",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/2068d7f6-bcf0-451d-8d0d-3cadf57949d9/download/dtm_sd3.xls"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 7 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 222130,
+   "last_modified": "2024-09-18T14:35:24.940771",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/098afdb4-3c1b-4d39-a932-e7c1ed6080df/download/dtm_sdn_sudan-mobility-update-bi-weekly-7-_-11092024_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Overview 2 (Bi-Monthly)",
+   "format": "XLSX",
+   "size": 221720,
+   "last_modified": "2024-09-12T15:26:12.060015",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/fd5d12ca-612d-4485-99ec-dbfe325e4d9c/download/dtm_sdn_smo-bi-monthly-002-_29082024_v02_public_hdx.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 6 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 859477,
+   "last_modified": "2024-08-22T12:28:45.278005",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/a847d28a-5d93-4fd9-90a0-ae988c9ca95a/download/dtm_sdn_sudan-mobility-update-bi-weekly-6-_-18082024_v02_public.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 5 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 1010626,
+   "last_modified": "2024-08-08T14:27:46.202738",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/3d399605-3801-4451-bc36-23b00b25b5b8/download/dtm_sdn_sudan-mobility-bi-weekly-update-5_31072024_v02_public.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 4 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 220968,
+   "last_modified": "2024-07-26T13:34:46.823257",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/d1250ea8-3b37-4bca-aeae-4fd85236f57a/download/dtm_sdn_sudan-mobility-bi-weekly-update-4_17072024_v02_public.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Overview 1 (Bi-Monthly)",
+   "format": "XLSX",
+   "size": 220896,
+   "last_modified": "2024-07-19T07:52:37.591458",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/bb32b0bc-3229-4986-b02e-d1d29daea711/download/dtm_sdn_smu-bi-monthly-001-_03072024_v02_public.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 3 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 849748,
+   "last_modified": "2024-06-26T14:15:11.233311",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/f1d30862-04ca-45dd-a60d-fd929d6b872c/download/dtm_sudan_mobility_update_003.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 2 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 167907,
+   "last_modified": "2024-06-18T07:31:57.693529",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/1000746b-05c5-4156-98b4-4a6b31b1bf6e/download/dtm_sdn_sudan-mobility-update-2_2552024_v02_public.xlsx"
+  },
+  {
+   "name": "Sudan - Countrywide Mobility Update 1 (Bi-Weekly)",
+   "format": "XLSX",
+   "size": 957250,
+   "last_modified": "2024-05-30T12:36:59.383961",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/f5fbf970-d07b-4c68-99f3-c3061905435b/download/dtm_sdn_bi-weekly01_20240502_v02_public.xlsx"
+  }
+ ]
+}

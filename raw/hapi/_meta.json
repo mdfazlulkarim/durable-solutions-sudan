@@ -1,0 +1,108 @@
+{
+ "name": "hdx-hapi-sdn",
+ "title": "HDX HAPI Data for Sudan",
+ "org": "HDX Humanitarian API Data",
+ "dataset_date": "[1997-01-01T00:00:00 TO 2029-12-31T23:59:59]",
+ "last_modified": "2026-10-28T08:52:45.797702",
+ "url": "https://data.humdata.org/dataset/hdx-hapi-sdn",
+ "resources": [
+  {
+   "name": "Affected People: Internally-Displaced Persons for Sudan",
+   "format": "CSV",
+   "size": 2657581,
+   "last_modified": "2026-10-20T21:37:49.583872",
+   "url": "https://data.humdata.org/dataset/8c08e457-c0c7-404b-ab5a-201539a7fbc1/resource/17760c0d-ed8c-4fbc-a95f-53f104a5f3d2/download/hdx_hapi_idps_sdn.csv"
+  },
+  {
+   "name": "Affected People: Refugees & Persons of Concern for Sudan",
+   "format": "CSV",
+   "size": 3923752,
+   "last_modified": "2026-06-13T09:52:00.449055",
+   "url": "https://data.humdata.org/dataset/8c08e457-c0c7-404b-ab5a-201539a7fbc1/resource/b3398d52-1ab2-426b-b2d4-148aec70f986/download/hdx_hapi_refugees_sdn.csv"
+  },
+  {
+   "name": "Affected People: Returnees for Sudan",
+   "format": "CSV",
+   "size": 34710,
+   "last_modified": "2026-06-13T09:52:00.449369",
+   "url": "https://data.humdata.org/dataset/8c08e457-c0c7-404b-ab5a-201539a7fbc1/resource/4abc1480-48bd-4551-a15f-0e6ae4896844/download/hdx_hapi_returnees_sdn.csv"
+  },
+  {
+   "name": "Affected People: Humanitarian Needs for Sudan",
+   "format": "CSV",
+   "size": 10715725,
+   "last_modified": "2026-02-11T08:58:08.266968",
+   "url": "https://data.humdata.org/dataset/8c08e457-c0c7-404b-ab5a-201539a7fbc1/resource/b028496e-c210-4515-b24b-cb32ab76a8d7/download/hdx_hapi_humanitarian_needs_sdn.csv"
+  },
+  {
+   "name": "Coordination & Context: Operational Presence for Sudan",
+   "format": "CSV",
+   "size": 562865,
+   "last_modified": "2026-10-21T08:56:36.123110",
+   "url": "https://data.humdata.org/dataset/8c08e457-c0c7-404b-ab5a-201539a7fbc1/resource/b3f1aa9d-df49-4f77-ba3e-a01c07fac924/download/hdx_hapi_operational_presence_sdn.csv"
+  },
+  {
+   "name": "Coordination & Context: Funding for Sudan",
+   "format": "CSV",
+   "size": 6571,
+   "last_modified": "2026-10-28T08:52:45.796649",
+   "url": "https://data.humdata.org/dataset/8c08e457-c0c7-404b-ab5a-201539a7fbc1/resource/d74f57dd-2a9a-469c-b05a-d6595698b205/download/hdx_hapi_funding_sdn.csv"
+  },
+  {
+   "name": "Coordination & Context: Conflict Events for Sudan",
+   "format": "CSV",
+   "size": 24706685,
+   "last_modified": "2026-10-24T08:55:01.449461",
+   "url": "https://data.humdata.org/dataset/8c08e457-c0c7-404b-ab5a-201539a7fbc1/resource/d6c17883-6ff8-455b-acbb-91011ac8c161/download/hdx_hapi_conflict_event_sdn.csv"
+  },
+  {
+   "name": "Coordination & Context: National Risk for Sudan",
+   "format": "CSV",
+   "size": 290,
+   "last_modified": "2026-05-28T22:15:13.238679",
+   "url": "https://data.humdata.org/dataset/8c08e457-c0c7-404b-ab5a-201539a7fbc1/resource/62640929-8799-4265-b522-485fd928024a/download/hdx_hapi_national_risk_sdn.csv"
+  },
+  {
+   "name": "Food Security, Nutrition & Poverty: Food Security for Sudan",
+   "format": "CSV",
+   "size": 3215840,
+   "last_modified": "2026-10-16T08:55:47.190499",
+   "url": "https://data.humdata.org/dataset/8c08e457-c0c7-404b-ab5a-201539a7fbc1/resource/ea185f40-494e-4209-9cf0-caf436172da6/download/hdx_hapi_food_security_sdn.csv"
+  },
+  {
+   "name": "Food Security, Nutrition & Poverty: Food Prices & Market Monitor for Sudan",
+   "format": "CSV",
+   "size": 2721954,
+   "last_modified": "2026-10-20T21:37:49.585429",
+   "url": "https://data.humdata.org/dataset/8c08e457-c0c7-404b-ab5a-201539a7fbc1/resource/0b521abd-3b80-49d7-a73b-9c31d368644b/download/hdx_hapi_food_price_sdn.csv"
+  },
+  {
+   "name": "Food Security, Nutrition & Poverty: Poverty Rate for Sudan",
+   "format": "CSV",
+   "size": 2248,
+   "last_modified": "2025-10-20T23:22:03.261757",
+   "url": "https://data.humdata.org/dataset/8c08e457-c0c7-404b-ab5a-201539a7fbc1/resource/a4c2befa-f463-49b9-a1b4-eaf9a1a1320d/download/hdx_hapi_poverty_rate_sdn.csv"
+  },
+  {
+   "name": "Geography & Infrastructure: Baseline Population for Sudan",
+   "format": "CSV",
+   "size": 1265491,
+   "last_modified": "2026-10-23T09:00:53.003480",
+   "url": "https://data.humdata.org/dataset/8c08e457-c0c7-404b-ab5a-201539a7fbc1/resource/fb308229-79fc-4997-b637-ec0ffa05046b/download/hdx_hapi_population_sdn.csv"
+  },
+  {
+   "name": "Climate: Rainfall for Sudan",
+   "format": "CSV",
+   "size": 3889809,
+   "last_modified": "2026-10-28T08:52:45.797201",
+   "url": "https://data.humdata.org/dataset/8c08e457-c0c7-404b-ab5a-201539a7fbc1/resource/10bd241c-2b38-4734-adc1-efc5a495a429/download/hdx_hapi_rainfall_sdn.csv"
+  },
+  {
+   "name": "Metadata: Data Availability for Sudan",
+   "format": "CSV",
+   "size": 125712,
+   "last_modified": "2026-10-28T08:52:45.797702",
+   "url": "https://data.humdata.org/dataset/8c08e457-c0c7-404b-ab5a-201539a7fbc1/resource/4df70743-6eac-4501-af31-e1208c7710b7/download/hdx_hapi_data_availability_sdn.csv"
+  }
+ ]
+}
