@@ -1,0 +1,66 @@
+{
+ "name": "hotosm_sdn_health_facilities",
+ "title": "Health Facilities of Sudan",
+ "org": "Humanitarian OpenStreetMap Team (HOT)",
+ "dataset_date": "[2026-10-06T00:00:00 TO 2026-10-06T23:59:59]",
+ "last_modified": "2026-10-06T11:26:10.267066",
+ "url": "https://data.humdata.org/dataset/hotosm_sdn_health_facilities",
+ "resources": [
+  {
+   "name": "Health Facilities (OSM), GeoJSON",
+   "format": "GeoJSON",
+   "size": 118709,
+   "last_modified": "2026-10-06T11:26:01.917157",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/health_facilities/hotosm_sdn_health_facilities_osm_geojson.zip"
+  },
+  {
+   "name": "Health Facilities (OSM), GeoPackage",
+   "format": "Geopackage",
+   "size": 167117,
+   "last_modified": "2026-10-06T11:26:01.917265",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/health_facilities/hotosm_sdn_health_facilities_osm_gpkg.zip"
+  },
+  {
+   "name": "Health Facilities (OSM), GeoParquet",
+   "format": "GeoParquet",
+   "size": 170031,
+   "last_modified": "2026-10-06T11:26:02.462770",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/_layers/osm/health_facilities.parquet"
+  },
+  {
+   "name": "Health Facilities (OSM), KML",
+   "format": "KML",
+   "size": 123786,
+   "last_modified": "2026-10-06T11:26:01.917322",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/health_facilities/hotosm_sdn_health_facilities_osm_kml.zip"
+  },
+  {
+   "name": "Health Facilities (OSM), Shapefile",
+   "format": "SHP",
+   "size": 156105,
+   "last_modified": "2026-10-06T11:26:01.917384",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/health_facilities/hotosm_sdn_health_facilities_osm_shp.zip"
+  },
+  {
+   "name": "Health Facilities (OSM), STAC Collection",
+   "format": "JSON",
+   "size": 6229,
+   "last_modified": "2026-10-06T11:26:01.917471",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/health_facilities/hotosm_sdn_health_facilities_osm_metadata.json"
+  },
+  {
+   "name": "Health Facilities (OSM), Vector Tiles (PMTiles)",
+   "format": "PMTiles",
+   "size": 317675,
+   "last_modified": "2026-10-06T11:26:02.462899",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/health_facilities/hotosm_sdn_health_facilities_osm.pmtiles"
+  },
+  {
+   "name": "Health Facilities, Data Quality Report",
+   "format": "HTML",
+   "size": 30378,
+   "last_modified": "2026-10-06T11:26:10.267066",
+   "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/SDN/health_facilities/hotosm_sdn_health_facilities_report.html"
+  }
+ ]
+}

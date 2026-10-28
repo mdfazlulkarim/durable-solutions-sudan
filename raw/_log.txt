@@ -1,0 +1,50 @@
+search population: 15 of 35
+search needs: 15 of 95
+search presence: 13 of 13
+search dtm: 15 of 18
+search health: 15 of 112
+search education: 15 of 21
+search water: 15 of 142
+search ipc: 15 of 115
+  saved _catalog.json (395,365 bytes)
+package cod-ps-sdn: Sudan - Subnational Population Statistics | [2024-07-01T00:00:00 TO 2025-08-01T23:59:59] | 2025-12-29T15:24:05.830727
+  retry 1 https://data.humdata.org/dataset/f4d30e65-a162-437a-a35d-d81b99723bd6/resource/dfddbc15-77c4-4875-a640-d50e37ef7b6d/download/sdn_admpop_2025.xlsx: HTTP Error 404: Not Found
+  retry 2 https://data.humdata.org/dataset/f4d30e65-a162-437a-a35d-d81b99723bd6/resource/dfddbc15-77c4-4875-a640-d50e37ef7b6d/download/sdn_admpop_2025.xlsx: HTTP Error 404: Not Found
+  retry 3 https://data.humdata.org/dataset/f4d30e65-a162-437a-a35d-d81b99723bd6/resource/dfddbc15-77c4-4875-a640-d50e37ef7b6d/download/sdn_admpop_2025.xlsx: HTTP Error 404: Not Found
+  could not download sdn_admpop_2025.xlsx: failed: https://data.humdata.org/dataset/f4d30e65-a162-437a-a35d-d81b99723bd6/resource/dfddbc15-77c4-4875-a640-d50e37ef7b6d/download/sdn_admpop_2025.xlsx
+  saved population/sdn_admpop_adm2_2025.csv (73,898 bytes)
+  saved population/sdn_admpop_adm1_2025.csv (7,987 bytes)
+  saved population/sdn_admpop_adm0_2025.csv (919 bytes)
+  saved population/sdn_admpop_2024.xlsx (91,624 bytes)
+  saved population/sdn_admgz_2020.xlsx (25,499 bytes)
+  saved population/sdn_admpop_adm0_2024.csv (923 bytes)
+  saved population/sdn_admpop_adm1_2024.csv (8,988 bytes)
+  saved population/sdn_admpop_adm2_2024.csv (74,082 bytes)
+package sudan-humanitarian-needs: Sudan: Humanitarian Needs | [2015-01-01T00:00:00 TO 2026-12-31T23:59:59] | 2026-02-13T10:31:40.333199
+  saved needs/sdn_hpc_needs_api_2026.csv (122 bytes)
+  saved needs/sdn_hpc_needs_api_2025.csv (1,623,892 bytes)
+  saved needs/sdn_hpc_needs_api_2024.csv (1,382,487 bytes)
+  saved needs/sdn_hpc_needs_2024.xlsx (116,870 bytes)
+  saved needs/sdn_hpc_needs_2023.xlsx (120,721 bytes)
+  saved needs/sdn_hpc_needs_2022.xlsx (3,886,607 bytes)
+  saved needs/sdn_hpc_needs_2021.xlsx (296,987 bytes)
+  saved needs/sdn_hpc_needs_2020.xlsx (59,213 bytes)
+3W: hdx-hapi-operational-presence | [2025-01-01T00:00:00 TO 2026-09-30T23:59:59]
+  saved presence/hdx-hapi-operational-presence/Global Coordination & Context: Operational Presence.csv (8,982,144 bytes)
+DTM: sdn-iom-dtm-from-api | [2010-06-30T00:00:00 TO 2026-08-31T23:59:59]
+  saved dtm/sdn-iom-dtm-from-api/Sudan IOM DTM data for admin levels 0-2.csv (10,287,615 bytes)
+DTM: global-iom-dtm-from-api | [2010-06-30T00:00:00 TO 2026-10-03T23:59:59]
+  skip (too big) Global IOM DTM data for admin levels 0-2
+IPC: sudan-acute-food-insecurity-classification-december-2021-may-2022 | [2021-12-01T00:00:00 TO 2022-05-31T23:59:59]
+package hotosm_sdn_health_facilities: 2026-10-06T11:26:10.267066
+  saved osm/health/_meta.json (2,573 bytes)
+package hotosm_sdn_education_facilities: 2026-10-06T11:25:44.515464
+  saved osm/education/_meta.json (2,651 bytes)
+IATI unocha-cbpf-sudan-allocation-2025: https://cbpfapi.unocha.org/iati/iati/15/2025/GetAllocation.xml
+  saved iati/unocha-cbpf-sudan-allocation-2025.xml (938,037 bytes)
+  retry 1 https://iatiregistry.org/api/3/action/package_show?id=unocha-cbpf-sudan-allocation-2026: HTTP Error 404: Not Found
+  retry 2 https://iatiregistry.org/api/3/action/package_show?id=unocha-cbpf-sudan-allocation-2026: HTTP Error 404: Not Found
+  retry 3 https://iatiregistry.org/api/3/action/package_show?id=unocha-cbpf-sudan-allocation-2026: HTTP Error 404: Not Found
+IATI unocha-cbpf-sudan-allocation-2026: not available (failed: https://iatiregistry.org/api/3/action/package_show?id=unocha-cbpf-sudan-allocation-2026)
+  saved iati/cbpf-sudan-activities.json (129,789 bytes)
+IATI: 121 activities
