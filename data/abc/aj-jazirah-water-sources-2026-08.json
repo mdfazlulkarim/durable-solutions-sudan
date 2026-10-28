@@ -1,0 +1,32 @@
+{
+ "title": "Water sources in Aj Jazirah State, August 2026",
+ "titleAr": "مصادر المياه بولاية الجزيرة اغسطس 2026",
+ "level": "Locality (admin 2)",
+ "state": "Aj Jazirah",
+ "source": "Table of water sources by locality, Aj Jazirah State, August 2026 (Arabic), shared with the Durable Solutions Unit. Digitised and translated by the Durable Solutions Unit.",
+ "types": [
+  { "key": "borehole", "en": "Boreholes", "ar": "بئر جوفي" },
+  { "key": "treatment", "en": "Water treatment plants", "ar": "محطة تنقية" },
+  { "key": "compact", "en": "Compact water stations", "ar": "محطات مدمجة" },
+  { "key": "hafirFilter", "en": "Hafirs with a filter", "ar": "حفير بمرشح" },
+  { "key": "hafir", "en": "Hafirs without a filter", "ar": "حفير فقط" },
+  { "key": "filter", "en": "Filters only", "ar": "مرشحات فقط" },
+  { "key": "handPump", "en": "Hand pumps", "ar": "طلمبة يدوية" }
+ ],
+ "localities": [
+  { "locality": "Medani Al Kubra", "ar": "مدني الكبرى", "borehole": 257, "treatment": 1, "compact": 0, "hafirFilter": 0, "hafir": 0, "filter": 0, "handPump": 0, "reportedTotal": 258 },
+  { "locality": "Sharg Al Jazirah", "ar": "شرق الجزيرة", "borehole": 747, "treatment": 0, "compact": 0, "hafirFilter": 0, "hafir": 55, "filter": 0, "handPump": 0, "reportedTotal": 794 },
+  { "locality": "Al Hasahisa", "ar": "الحصاحيصا", "borehole": 620, "treatment": 0, "compact": 3, "hafirFilter": 0, "hafir": 6, "filter": 0, "handPump": 0, "reportedTotal": 629 },
+  { "locality": "Janub Al Jazirah", "ar": "جنوب الجزيرة", "borehole": 712, "treatment": 0, "compact": 0, "hafirFilter": 0, "hafir": 0, "filter": 0, "handPump": 0, "reportedTotal": 712 },
+  { "locality": "Al Manaqil", "ar": "المناقل", "borehole": 450, "treatment": 1, "compact": 0, "hafirFilter": 32, "hafir": 13, "filter": 8, "handPump": 0, "reportedTotal": 504 },
+  { "locality": "Al Kamlin", "ar": "الكاملين", "borehole": 295, "treatment": 0, "compact": 0, "hafirFilter": 0, "hafir": 0, "filter": 0, "handPump": 0, "reportedTotal": 295 },
+  { "locality": "Al Qurashi", "ar": "24 القرشي", "borehole": 72, "treatment": 1, "compact": 4, "hafirFilter": 52, "hafir": 23, "filter": 23, "handPump": 0, "reportedTotal": 175 },
+  { "locality": "Um Algura", "ar": "ام القرى", "borehole": 150, "treatment": 1, "compact": 4, "hafirFilter": 19, "hafir": 4, "filter": 0, "handPump": 0, "reportedTotal": 178 }
+ ],
+ "reportedStateTotal": 3545,
+ "notes": [
+  "In the source table, Sharg Al Jazirah shows a total of 794, while its water sources by type add up to 802 (747 boreholes and 55 hafirs). The page uses the sum by type, so the state total is 3,553 rather than the 3,545 shown in the source. The column totals in the source match the sum by type.",
+  "Dashes in the source are read as zero. No hand pumps are reported in any locality.",
+  "The table counts water sources. It does not say how many are working, their capacity or the people they serve."
+ ]
+}
