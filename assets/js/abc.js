@@ -38,12 +38,16 @@
 
   function registerSources() {
     const s = D.sources;
+    addSrc("parker", { title: "Humanitarian response to urban crises: a review of area-based approaches (Working Paper)", org: "Elizabeth Parker and Victoria Maynard, International Institute for Environment and Development (IIED)", date: "2015-07", url: "https://www.iied.org/sites/default/files/pdfs/migrate/10742IIED.pdf" });
     addSrc("uswg", { title: "Area-based approaches in urban settings: compendium of case studies, May 2019 edition", org: "Urban Settlements Working Group, Global Shelter Cluster", date: "2019-05", url: "https://reliefweb.int/report/world/area-based-approaches-urban-settings-compendium-case-studies-may-2019-edition" });
     addSrc("fsc", { title: "Handbook 10.4.2: Other models of decentralised coordination, area-based coordination", org: "Global Food Security Cluster", date: "2023-12", url: "https://handbook.fscluster.org/docs/1042-other-models-of-decentralised-coordination-area-based-coordination" });
+    addSrc("alnap", { title: "Area-based programming and coordination approaches in urban response (Urban Webinar 11, transcript)", org: "ALNAP", date: "2015-07-27", url: "https://library.alnap.org/system/files/content/resource/files/main/area-based-programming-and-coordination-approaches-in-urban-response-transcript.pdf" });
     addSrc("reset", { title: "The Humanitarian Reset: Cluster Simplification, final proposal to the IASC Principals", org: "IASC Operational Policy and Advocacy Group", date: "2025-06-09", url: "https://www.nutritioncluster.net/sites/nutritioncluster.com/files/2025-07/Humanitarian%20Reset%20-%20Cluster%20Simplification%20final%20proposal.pdf" });
     addSrc("pulse", { title: "The Pulse of Humanitarian Coordination 2024: Overview of IASC Structures at the Country Level", org: "OCHA", date: "2025-12", url: "https://reliefweb.int/report/world/pulse-humanitarian-coordination-2024-overview-iasc-structures-country-level-december-2025" });
     addSrc("err", { title: "Key considerations: Mutual aid lessons and experiences from Emergency Response Rooms in Sudan", org: "Social Science in Humanitarian Action Platform (SSHAP)", date: "2024", url: "https://reliefweb.int/report/sudan/key-considerations-mutual-aid-lessons-and-experiences-emergency-response-rooms-sudan" });
     addSrc("iasc", { title: SF.IASC_SOURCE.label, org: "Inter-Agency Standing Committee", date: "2010", url: SF.IASC_SOURCE.url });
+    addSrc("unhabitat", { title: "UN-Habitat Global Institutional Plan on Solutions to Internal Displacement", org: "UN-Habitat", date: "2023-06", url: "https://un.org/sites/un2.un.org/files/230601_unh_institutional_plan_solutions_internal_displacement.pdf" });
+    addSrc("k4d", { title: "Area-based Programming in Fragile- and Conflict-affected Contexts (K4D Helpdesk Report 1066)", org: "Huma Haider, Institute of Development Studies", date: "2021-11-19", url: "https://k4d.ids.ac.uk/resource/area-based-programming-in-fragile-and-conflict-affected-contexts/" });
     addSrc("needs", { title: `${s.needs.title}: ${D.needsYear} locality figures and ${Object.keys(D.national).slice(-1)[0]} national figures`, org: "OCHA, Humanitarian Needs and Response Plans, on HDX", date: s.needs.updated, url: s.needs.url });
     addSrc("hnrp", { title: "Sudan Humanitarian Needs and Response Plan 2026", org: "OCHA", date: "2026-02-26", url: "https://humanitarianaction.info/plan/1514/document/sudan-humanitarian-needs-and-response-plan-2026" });
     addSrc("dtm", { title: `${s.dtm.title}: Displacement and Return Snapshot (IDPs ${when(D.dtmDates.idps)}, returnees ${when(D.dtmDates.ret)})`, org: "IOM Displacement Tracking Matrix, on HDX", date: s.dtm.updated, url: s.dtm.url });
@@ -149,7 +153,7 @@
     const yr = Object.keys(D.national).slice(-1)[0];
     const all = [...LOC.values()];
     const idps = all.reduce((t, a) => t + (a.idps || 0), 0), ret = all.reduce((t, a) => t + (a.ret || 0), 0);
-    $("abc-sub").innerHTML = `Area-based coordination brings everyone working in one place around the same picture: who lives there, what they need, which services exist and who is already working${cite("uswg", "fsc")}. This page puts that picture on one map of Sudan, so you can find where to invest, see what you can build on, and plan a project that fills a gap.`;
+    $("abc-sub").innerHTML = `An area-based approach plans the response around one place and everyone who lives there${cite("parker", "uswg")}. Area-based coordination brings everyone working in that place around the same picture and one plan${cite("fsc")}. This page puts that picture on one map of Sudan, so you can find where to invest, see what you can build on, and plan a project that fills a gap.`;
     const tiles = [
       { ic: "people-in-need", v: big(n26.pin), l: `people in need in ${yr}`, n: `of ${big(n26.population)} people`, src: ["needs", "hnrp"] },
       { ic: "internally-displaced", v: big(idps), l: "internally displaced people", n: `as of ${when(D.dtmDates.idps)}`, src: ["dtm"] },
@@ -160,22 +164,53 @@
   }
 
   function drawWhat() {
+    $("abc-what-lead").innerHTML = `Two sides of one way of working. The approach shapes what is done in an area; coordination makes sure everyone working there does it together. Programmes that work across sectors in one place do not fit neatly into sector clusters, which is why practitioners called for coordination by area alongside the clusters${cite("alnap")}.`;
+    // the comparison: one row per question, approach on the left, coordination on the right
+    const list = (items) => `<ul class="abc-vs-list">${items.map((i) => `<li>${i}</li>`).join("")}</ul>`;
+    const go = (href, label) => `<a class="abc-vs-go" href="${href}">${esc(label)}</a>`;
+    const rows = [
+      ["Starting point",
+        `The area, not a sector or a group of people, is the entry point. Assistance considers everyone affected who lives there${cite("uswg")}.`,
+        `The area, not the sector, is where actors meet. The response is organised by place, below the national clusters${cite("fsc")}.`],
+      ["Key features",
+        `${list(["One defined area", "Several sectors at once", "Residents and local stakeholders take part", "IDPs, returnees and host communities together"])}All three of area, sectors and participation need to be present${cite("parker")}.`,
+        `${list(["A shared picture of needs, services and gaps", "One area plan with joint priorities", "Co-led with local actors where possible", "Linked to the clusters and national coordination"])}Drawn from the cluster handbook and the Humanitarian Reset proposal${cite("fsc", "reset")}.`],
+      ["The question it answers",
+        "What should we do here, and with whom, to meet several needs at once?",
+        "Who is already doing what here, and how do we fit together?"],
+      ["What it produces",
+        `Integrated projects that build on the services, markets and local structures already there${cite("fsc")}.`,
+        `One area plan and shared data, reviewed together, with the local authorities in the lead where feasible${cite("fsc", "reset")}.`],
+      ["On this page",
+        `${go("#invest", "Where to invest first")} ${go("#plan", "Plan your project")}`,
+        `${go("#explore", "Explore the areas")} with partners present and projects on the map`],
+    ];
+    $("abc-vs").innerHTML = `
+      <table class="abc-vs-table">
+        <caption class="sr-only">Area-based approach and area-based coordination compared</caption>
+        <thead><tr>
+          <td></td>
+          <th scope="col"><span class="abc-vs-tag">ABA</span><span class="abc-vs-kick">Area-based approach</span><span class="abc-vs-h">How we work in a place</span></th>
+          <th scope="col"><span class="abc-vs-tag c">ABC</span><span class="abc-vs-kick">Area-based coordination</span><span class="abc-vs-h">How we work together in a place</span></th>
+        </tr></thead>
+        <tbody>${rows.map(([k, a, c]) => `<tr><th scope="row">${esc(k)}</th><td data-k="Area-based approach (ABA)">${a}</td><td data-k="Area-based coordination (ABC)">${c}</td></tr>`).join("")}</tbody>
+      </table>`;
     const cards = [
-      { ic: "location", h: "The area is the entry point", t: `Area-based approaches start from a defined place rather than one sector or one group of people. They consider everyone living there and bring several sectors and actors together${cite("uswg")}. Assistance is planned with the people and leaders of the area, and builds on the services, markets and local structures that already exist${cite("fsc")}.` },
-      { ic: "meeting", h: "Why it matters now", t: `Under the Humanitarian Reset, the June 2025 proposal to the IASC Principals on simplifying clusters calls for scaling up area-based coordination at local level (admin 2 to 4, which in Sudan means localities and below), alongside the clusters rather than instead of them, with local actors co-leading and community action plans setting priorities${cite("reset")}. In 2024, area-based coordination was reported in 52 per cent of coordinated operations, across 216 locations${cite("pulse")}.` },
-      { ic: "partnership", h: "In Sudan, and for durable solutions", t: `Locally led groups such as the Emergency Response Rooms already coordinate in their neighbourhoods, and international actors are encouraged to work through these local mechanisms${cite("err")}. Durable solutions are also reached place by place: safety, services, livelihoods, housing and documents where people live${cite("iasc")}. That makes the locality the natural unit for planning solutions with the authorities, communities and partners.` },
+      { ic: "meeting", h: "Why it matters now", t: `Under the Humanitarian Reset, the June 2025 proposal to the IASC Principals on simplifying clusters calls for scaling up area-based models at local level (admin 2 to 4, which in Sudan means localities and below), alongside the clusters rather than instead of them, with integrated planning by area, local actors co-leading, and community action plans setting priorities${cite("reset")}. In 2024, area-based coordination was reported in 52 per cent of coordinated operations, across 216 locations${cite("pulse")}.` },
+      { ic: "partnership", h: "For durable solutions in Sudan", t: `Durable solutions are reached place by place: safety, services, livelihoods, housing and documents where people live${cite("iasc")}. Local authorities are at the front line of integrating IDPs, and area-based approaches are a way to scale up integrated solutions in towns and cities${cite("unhabitat")}. Locally led groups such as the Emergency Response Rooms already coordinate in their neighbourhoods, and international actors are encouraged to work through these local mechanisms${cite("err")}.` },
+      { ic: "chart", h: "What the evidence says", t: `Area-based programming suits places where needs are complex and linked across sectors, and evaluations suggest it can work at sub-national level in conflict settings. The evidence is still thinner than for sector programmes${cite("k4d")}, so joint monitoring of results by area matters as much as the plan itself.` },
     ];
     $("abc-why").innerHTML = cards.map((c) => `<div class="card abc-why-c"><span class="abc-ico sm">${icon(c.ic)}</span><h3>${esc(c.h)}</h3><p>${c.t}</p></div>`).join("");
     const steps = [
-      ["Define the area", "Usually a locality, or a town or group of villages that people see as one place."],
-      ["Know the people", "Population, people in need, IDPs and returnees, with women, children, older persons and persons with disabilities in view."],
-      ["Map the services", "Health facilities, schools and water sources, and how many people can reach them."],
-      ["See who is there", "Humanitarian, development and local actors, and the projects already running."],
-      ["Find the gaps", "Places with high need, poor access to services and few partners."],
-      ["Plan and act together", "One area plan with the local authorities and communities, shared targets and regular joint reviews."],
+      ["Define the area", "Usually a locality, or a town or group of villages that people see as one place.", null],
+      ["Know the people", "Population, people in need, IDPs and returnees, with women, children, older persons and persons with disabilities in view.", ["#explore", "Map layers"]],
+      ["Map the services", "Health facilities, schools and water sources, and how many people can reach them.", ["#explore", "Map layers"]],
+      ["See who is there", "Humanitarian, development and local actors, and the projects already running.", ["#explore", "Partners and projects"]],
+      ["Find the gaps", "Places with high need, poor access to services and few partners.", ["#invest", "Where to invest first"]],
+      ["Plan and act together", "One area plan with the local authorities and communities, shared targets and regular joint reviews.", ["#plan", "Plan your project"]],
     ];
-    $("abc-steps").innerHTML = steps.map(([h, t], i) => `<li><span class="abc-n">${i + 1}</span><b>${esc(h)}</b><span>${esc(t)}</span></li>`).join("")
-      + `<li class="abc-steps-src">Drawn from${cite("uswg", "fsc", "reset")}</li>`;
+    $("abc-steps").innerHTML = steps.map(([h, t, l], i) => `<li><span class="abc-n">${i + 1}</span><b>${esc(h)}</b><span>${esc(t)}</span>${l ? `<a class="abc-step-go" href="${l[0]}">${esc(l[1])}</a>` : ""}</li>`).join("")
+      + `<li class="abc-steps-src">Drawn from${cite("parker", "uswg", "fsc", "reset")}</li>`;
   }
 
   /* ---------- map ---------- */
