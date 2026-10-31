@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Area by area | Solutions Footprint | Durable Solutions Hub | Sudan</title>
+  <meta name="description" content="Area-based approaches and coordination in Sudan, in plain words: pick a place, see the gaps, plan together.">
+  <script>try{var t=localStorage.getItem("sf-theme")}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261031">
+  <link rel="stylesheet" href="assets/css/abc.css?v=20261031">
+  <link rel="stylesheet" href="assets/css/area.css?v=20261031">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="abc ar" id="main">
+    <section class="abc-top ar-top" aria-labelledby="ar-title">
+      <p class="abc-kicker">Area-based approaches and coordination</p>
+      <h1 id="ar-title">Fix one place at a time, together</h1>
+      <p class="abc-sub" id="ar-sub"></p>
+      <ol class="ar-how" aria-label="How it works">
+        <li><a href="#pick"><span class="ar-how-n">1</span><b>Pick a place</b><span>See who lives there and what they need</span></a></li>
+        <li><a href="#start"><span class="ar-how-n">2</span><b>Find where to start</b><span>The places with the biggest gaps</span></a></li>
+        <li><a href="#plan"><span class="ar-how-n">3</span><b>Plan together</b><span>See what your project adds</span></a></li>
+      </ol>
+      <p class="ar-alt">Want more detail? <a href="abc.html">See the full version</a></p>
+    </section>
+
+    <section class="abc-sec" aria-labelledby="h-words">
+      <h2 id="h-words">In plain words</h2>
+      <div class="ar-two" id="ar-two"></div>
+    </section>
+
+    <section class="abc-sec" id="pick" aria-labelledby="h-pick">
+      <div class="abc-sec-head">
+        <h2 id="h-pick"><span class="ar-step">1</span>Pick a place</h2>
+        <p class="abc-lead">Select a state, then a locality.</p>
+      </div>
+      <div class="ar-map-row">
+        <section class="card abc-map-card" aria-label="Map">
+          <div class="ar-layers" role="group" aria-label="Colour the map by" id="ar-layers"></div>
+          <div class="abc-map-top">
+            <div><span class="abc-map-kicker" id="ar-map-kicker">Sudan</span><h3 id="ar-map-title"></h3></div>
+            <button type="button" class="btn btn-sm" id="ar-back" hidden>Back to Sudan</button>
+          </div>
+          <div class="map-wrap abc-map-wrap" id="ar-map-wrap">
+            <svg class="map-svg abc-map" id="ar-map" role="group" aria-label="Map of Sudan"></svg>
+            <div class="map-tip" id="ar-tip" hidden></div>
+          </div>
+          <div class="abc-legend" id="ar-legend"></div>
+          <p class="abc-disclaimer">The boundaries and names shown and the designations used on this map do not imply official endorsement or acceptance by the United Nations. Final boundary between the Republic of Sudan and the Republic of South Sudan has not yet been determined. Final status of the Abyei area is not yet determined.</p>
+        </section>
+        <aside class="card abc-panel ar-panel" id="ar-panel" aria-live="polite" aria-label="Selected place"></aside>
+      </div>
+    </section>
+
+    <section class="abc-sec" id="start" aria-labelledby="h-start">
+      <div class="abc-sec-head">
+        <h2 id="h-start"><span class="ar-step">2</span>Find where to start</h2>
+        <p class="abc-lead">Five localities in the five ADSWG states with the biggest gaps, by what matters most to you.</p>
+      </div>
+      <div class="abc-presets ar-presets" role="group" aria-label="What matters most" id="ar-presets"></div>
+      <ol class="ar-top5" id="ar-top5"></ol>
+      <p class="abc-small" id="ar-top5-note"></p>
+    </section>
+
+    <section class="abc-sec" id="plan" aria-labelledby="h-plan">
+      <div class="abc-sec-head">
+        <h2 id="h-plan"><span class="ar-step">3</span>Plan together</h2>
+        <p class="abc-lead">Tell us where and what. We show what is already there and what your project adds.</p>
+      </div>
+      <div class="ar-plan">
+        <form class="card ar-form" id="ar-form" autocomplete="off" novalidate>
+          <label class="abc-field"><span>Project name</span><input class="input" id="ap-name" maxlength="140" placeholder="For example: Solar boreholes for return villages"></label>
+          <div class="ar-where">
+            <label class="abc-field"><span>State</span><select class="input" id="ap-state"></select></label>
+            <label class="abc-field"><span>Locality</span><select class="input" id="ap-loc" disabled><option value="">Choose a state first</option></select></label>
+          </div>
+          <fieldset class="abc-field abc-fs"><legend>What it will do</legend><div class="abc-chips" id="ap-types"></div></fieldset>
+          <div class="ar-actions">
+            <button type="submit" class="btn btn-primary btn-sm" id="ap-save">Save plan</button>
+            <button type="button" class="btn btn-sm" id="ap-share">Copy share link</button>
+            <button type="button" class="btn btn-sm" id="ap-new">Start again</button>
+          </div>
+          <details class="ar-mine" id="ar-mine"><summary>My plans <span id="ar-mine-count"></span></summary><div id="ar-mine-list"></div><p class="abc-small">Kept in this browser, up to 20. A share link sends a copy of one plan.</p></details>
+        </form>
+        <aside class="card ar-result" id="ar-result" aria-live="polite" aria-label="What your project adds"></aside>
+      </div>
+    </section>
+
+    <section class="abc-sec" id="sources" aria-labelledby="h-src">
+      <h2 id="h-src">Sources</h2>
+      <p class="abc-small" id="ar-note"></p>
+      <ol class="abc-src" id="ar-src"></ol>
+    </section>
+  </main>
+
+  <dialog class="modal" id="detail" aria-labelledby="detail-title"></dialog>
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/common.js?v=20261031"></script>
+  <script src="assets/js/icons.js?v=20261031"></script>
+  <script src="assets/js/icons-theme.js?v=20261031"></script>
+  <script src="assets/js/render.js?v=20261031"></script>
+  <script src="assets/js/area.js?v=20261031"></script>
+</body>
+</html>
