@@ -992,6 +992,7 @@
         <div class="hero" id="hero">${hero}</div>
         ${SF.render.body(p, GEO, { titleId: "detail-title" })}
         <div class="pop-actions">
+          ${SF.auth.canEdit(p.lead) ? `<a class="btn btn-primary" href="manage.html#/project/${encodeURIComponent(p.id)}">${SF.icons.edit || ""}Edit</a>` : ""}
           <button type="button" class="btn" id="pop-show">${SF.icons.pin}Show on map</button>
           <button type="button" class="btn" id="pop-link">${SF.icons.link}Copy link</button>
           <span class="spacer"></span>
