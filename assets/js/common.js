@@ -391,7 +391,7 @@ SF.auth = {
     }
     const admin = s.role === "admin", viewer = s.role === "viewer";
     host.innerHTML = `
-      <button type="button" class="avatar-btn" id="acct-btn" aria-haspopup="true" aria-expanded="false" aria-controls="acct-menu" title="Signed in as ${SF.esc(s.name || s.email)}">${SF.esc(SF.auth.initials(s))}</button>
+      <button type="button" class="acct-chip" id="acct-btn" aria-haspopup="true" aria-expanded="false" aria-controls="acct-menu" title="Signed in as ${SF.esc(s.name || s.email)}"><span class="avatar-btn" aria-hidden="true">${SF.esc(SF.auth.initials(s))}</span><span class="acct-name">${SF.esc(s.name || s.email)}</span>${SF.icons.chevron}</button>
       <div class="dropdown-menu acct-menu" id="acct-menu" role="menu" hidden>
         <div class="acct-who"><b>${SF.esc(s.name || s.email)}</b>${s.name ? `${SF.esc(s.email)}<br>` : "Signed in<br>"}<span class="acct-role">${SF.esc(SF.auth.roleLabel(s))}</span></div>
         ${viewer ? (SF.themePages ? '<a class="menu-item" role="menuitem" href="women.html">Women and girls</a>' : "") : admin ? `<a class="menu-item" role="menuitem" href="manage.html#/projects">Manage all projects</a>
