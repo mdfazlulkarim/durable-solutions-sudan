@@ -7,7 +7,8 @@
     const app = document.getElementById("app");
     const esc = SF.esc;
     const PEOPLE = [{ key: "total", label: "Total" }, ...SF.TARGET_GROUPS];
-    let GEO = null, ORGS = [], LOCALITIES = {}, ME = null, AGENCY = null;
+    let GEO = null, ORGS = [], LOCALITIES = {}, ME = null, AGENCY = null, ORG = false, REVIEWER = false;
+    const orgEntry = (name) => ORGS.find((o) => SF.auth.leadMatches(name, o.acronym) || SF.auth.leadMatches(name, o.name));
 
     /* ---------- helpers ---------- */
     async function api(path, opts = {}) {
@@ -36,6 +37,26 @@
     const ICON_WARN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 7v6"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>';
     function setNav(k) { document.querySelectorAll("#nav a[data-k]").forEach((a) => { if (a.dataset.k === k) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); }); }
     const fail = (e) => { app.innerHTML = `<div class="note-box warn">${esc(e.message || e)}</div>`; };
+    // A small window with one text box: the reason for not publishing, or a comment to the sender
+    function askText(o) {
+      let d = document.getElementById("ask-dlg");
+      if (!d) { d = document.createElement("dialog"); d.id = "ask-dlg"; d.className = "modal ask-modal"; document.body.appendChild(d); d.addEventListener("click", (e) => { if (e.target === d) d.close(); }); }
+      d.innerHTML = `<button type="button" class="modal-close" aria-label="Close" data-x>&times;</button><form class="ask-box" novalidate>
+        <h2>${esc(o.title)}</h2><p>${esc(o.intro)}</p>
+        <label class="field-label" for="ask-t">${esc(o.label)}</label><textarea class="input" id="ask-t" rows="5" maxlength="2000"></textarea>
+        <div class="err-line" id="ask-err" role="alert"></div>
+        <div class="row" style="gap:10px;margin-top:12px"><button type="submit" class="btn ${o.danger ? "btn-danger-solid" : "btn-primary"}" id="ask-go">${esc(o.go)}</button><button type="button" class="btn" data-x>Cancel</button></div></form>`;
+      d.querySelectorAll("[data-x]").forEach((b) => b.addEventListener("click", () => d.close()));
+      d.querySelector("form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const t = d.querySelector("#ask-t").value.trim(), err = d.querySelector("#ask-err"), go = d.querySelector("#ask-go");
+        if (!t) { err.textContent = o.required; d.querySelector("#ask-t").focus(); return; }
+        busy(go, true, "Sending");
+        try { await o.send(t); d.close(); } catch (x) { err.textContent = x.message; busy(go, false); }
+      });
+      d.showModal();
+      setTimeout(() => d.querySelector("#ask-t").focus(), 30);
+    }
 
     function checkChip(checks) {
       const e = checks.find((c) => c.level === "error"), w = checks.find((c) => c.level === "warn");
@@ -52,7 +73,7 @@
         return;
       }
       app.innerHTML = `<div class="card gate"><h1>Manage projects</h1>
-        <p>${esc(msg || "For the Durable Solutions Unit. Sign in with your work email to see and edit all projects.")}</p>
+        <p>${esc(msg || "Sign in at the top right with your work email. Staff of DSWG member organisations see and update the projects their organisation leads.")}</p>
         <button type="button" class="btn btn-primary" id="gate-signin">${SF.icons.user} Sign in</button></div>`;
       document.getElementById("gate-signin").addEventListener("click", () => SF.auth.open());
     }
@@ -71,12 +92,15 @@
       ME = await api("/me");
       // keep the name, role and agency in this browser up to date
       const m = ME.me || {};
-      if (m.email && (m.role !== s.role || (m.name || "") !== (s.name || "") || (m.agency || null) !== (s.agency || null))) {
-        SF.auth.save({ ...s, name: m.name || "", role: m.role, agency: m.agency || null }); SF.auth.drawButton();
+      if (m.email && (m.role !== s.role || (m.name || "") !== (s.name || "") || (m.agency || null) !== (s.agency || null) || JSON.stringify(m.orgs || []) !== JSON.stringify(s.orgs || []))) {
+        SF.auth.save({ ...s, name: m.name || "", role: m.role, agency: m.agency || null, orgs: m.orgs || [] }); SF.auth.drawButton();
       }
-      AGENCY = m.role === "agency" ? m.agency : null;
-      document.querySelectorAll("#nav [data-role]").forEach((a) => (a.hidden = a.dataset.role !== (AGENCY ? "agency" : "admin")));
-      document.getElementById("nav-projects").textContent = AGENCY ? `${AGENCY} projects` : "All projects";
+      ORG = m.role === "agency" || m.role === "org";
+      REVIEWER = m.role === "reviewer";
+      AGENCY = ORG ? (m.agency || "") : null;
+      // reviewers: Review queue and All projects only
+      document.querySelectorAll("#nav [data-role]").forEach((a) => (a.hidden = a.dataset.role !== (ORG ? "agency" : "admin") || (REVIEWER && a.dataset.k !== "queue")));
+      document.getElementById("nav-projects").textContent = ORG ? (AGENCY ? "Your organisation's projects" : "Your projects") : "All projects";
       document.getElementById("nav").hidden = false;
       route();
     }
@@ -96,11 +120,13 @@
       const h = location.hash.replace(/^#\/?/, "").split("/");
       window.scrollTo(0, 0);
       try {
-        if (AGENCY) {
+        if (ORG) {
+          if (h[0] === "revise" && h[1]) { setNav("projects"); return await viewRevise(h[1]); }
           if (h[0] === "project" && h[1]) { setNav("projects"); return await viewProject(decodeURIComponent(h[1])); }
           if (h[0] === "changes") { setNav("changes"); return await viewChanges(); }
           setNav("projects"); return await viewProjects();
         }
+        if (h[0] === "revise" && h[1]) { setNav("queue"); return await viewReview(h[1]); }
         if (h[0] === "review" && h[1]) { setNav("queue"); return await viewReview(h[1]); }
         if (h[0] === "project" && h[1]) { setNav("projects"); return await viewProject(decodeURIComponent(h[1])); }
         if (h[0] === "projects") { setNav("projects"); return await viewProjects(); }
@@ -127,7 +153,7 @@
         ${!ME.imported ? `<div class="note-box"><b>First step:</b> copy the projects already on the map into the admin database, so you can edit them here.
           <div style="margin-top:10px"><button class="btn btn-primary" id="seed">Import the current map data</button></div></div>` : ""}
         <div class="row between">
-          <div><h1>Review queue</h1><p class="lede2">New projects from the form and Excel uploads. Nothing appears on the map until you publish it.</p></div>
+          <div><h1>Review queue</h1><p class="lede2">${REVIEWER ? "Projects and changes waiting for review." : "New projects from the form and Excel uploads. Nothing appears on the map until you publish it."}</p></div>
           <a class="btn" href="#/project/new">Add a project yourself</a>
         </div>
         <div class="stats">
@@ -151,7 +177,7 @@
             <td class="ref">${esc(i.ref || "")}</td>
             <td>${i.kind === "correction" ? "<span class='pill2 info'>Correction</span> " : ""}${esc(i.name)}</td>
             <td>${esc(i.lead)}</td>
-            <td>${i.source === "agency" ? `${esc(i.byName || i.by || "")} (${esc(i.lead)} admin)` : i.source === "excel" ? `Excel upload${i.row ? `, row ${i.row}` : ""}` : i.kind === "correction" ? "Suggest a correction" : "Form"}${i.photos ? `, ${i.photos} photo${i.photos === 1 ? "" : "s"}` : ""}</td>
+            <td>${i.source === "agency" ? `${esc(i.byName || i.by || "")} (${esc(i.lead)})` : i.source === "excel" ? `Excel upload${i.row ? `, row ${i.row}` : ""}` : i.kind === "correction" ? "Suggest a correction" : "Form"}${i.photos ? `, ${i.photos} photo${i.photos === 1 ? "" : "s"}` : ""}</td>
             <td>${status === "pending" ? checkChip(i.checks) : ""}</td>
             <td><a class="btn btn-sm ${status === "pending" ? "btn-primary" : ""}" href="#/review/${i.id}">${status === "pending" ? "Review" : "Open"}</a></td>
           </tr>`).join("")}</tbody></table>` : `<div class="empty">${status === "pending" ? "Nothing waiting for review." : "Nothing here yet."}</div>`}</div>
@@ -373,7 +399,7 @@
       let asUpdateOf = null;
       const dup = s.checks.find((c) => c.kind === "duplicate");
       // A short summary at the top: what the sender changed, or what the new project is
-      const from = s.source === "agency" ? `${s.byName || s.by || ""} (${s.data.lead} admin)` : s.source === "excel" ? `an Excel upload${s.row ? `, row ${s.row}` : ""}` : "the online form";
+      const from = s.source === "agency" ? `${s.byName || s.by || ""} (${s.data.lead})` : s.source === "excel" ? `an Excel upload${s.row ? `, row ${s.row}` : ""}` : "the online form";
       let summary;
       if (isCorr) {
         const ch = diff(s.data, s.current.data);
@@ -397,7 +423,7 @@
       app.innerHTML = `
         <a href="#/queue">Back to the queue</a>
         <div class="row between">
-          <div><div class="muted" style="font-size:13px">${esc(s.ref || "")} · received ${fmtWhen(s.receivedAt)} from ${s.source === "agency" ? `${esc(s.byName || s.by || "")} (${esc(s.data.lead)} admin)` : s.source === "excel" ? `an Excel upload${s.row ? ` (row ${s.row})` : ""}` : isCorr ? "Suggest a correction" : "the form"}</div>
+          <div><div class="muted" style="font-size:13px">${esc(s.ref || "")} · received ${fmtWhen(s.receivedAt)} from ${s.source === "agency" ? `${esc(s.byName || s.by || "")} (${esc(s.data.lead)})` : s.source === "excel" ? `an Excel upload${s.row ? ` (row ${s.row})` : ""}` : isCorr ? "Suggest a correction" : "the form"}</div>
           <h1 id="rv-title">${esc(s.data.name || "")}</h1></div>
           <span class="pill2 ${pending ? "info" : s.status === "published" ? "ok" : "mute"}">${pending ? (isCorr ? "Correction awaiting review" : "Awaiting review") : s.status === "published" ? `Published ${fmtDay(s.reviewedAt)}` : `Not published ${fmtDay(s.reviewedAt)}`}</span>
         </div>
@@ -416,12 +442,14 @@
         </div>
         ${pending ? `<div class="card bar-actions">
           <button type="button" class="btn btn-danger" id="b-reject">Do not publish</button>
-          <a class="btn" id="b-reply" href="#">Reply to the submitter</a>
+          ${REVIEWER ? "" : '<button type="button" class="btn btn-danger" id="b-del-sub">Delete</button>'}
+          <button type="button" class="btn" id="b-comment"${s.sentTo ? "" : " disabled title=\"No email for this submission\""}>Send a comment</button>
           <button type="button" class="btn" id="b-save">Save changes</button>
           <span class="grow"></span>
           <span class="muted" style="font-size:13px">The map updates about 2 minutes after publishing</span>
           <button type="button" class="btn btn-primary" id="b-publish">Publish to the map</button>
-        </div>` : `<div class="card bar-actions"><span class="muted grow" style="font-size:14px">${s.note ? `Note: ${esc(s.note)}` : "This submission has been reviewed."}</span>${s.status === "rejected" ? `<button type="button" class="btn" id="b-reopen">Move back to the queue</button>` : ""}</div>`}`;
+        </div>` : `<div class="card bar-actions"><span class="muted grow" style="font-size:14px">${s.note ? `Note: ${esc(s.note)}` : "This submission has been reviewed."}</span>${s.status === "rejected" ? `<button type="button" class="btn" id="b-reopen">Move back to the queue</button>${REVIEWER ? "" : ' <button type="button" class="btn btn-danger" id="b-del-sub">Delete</button>'}` : ""}</div>`}
+        ${(s.messages || []).length ? `<section class="card ed"><h2>Comments sent to ${esc(s.sentTo)}</h2>${s.messages.map((x) => `<p style="margin:0 0 10px;font-size:14px"><span class="muted" style="font-size:13px">${fmtWhen(x.at)}, ${esc(x.name || x.by)}</span><br>${esc(x.text)}</p>`).join("")}</section>` : ""}`;
 
       function drawChecks(v) {
         const items = [];
@@ -474,24 +502,31 @@
           location.hash = "#/queue";
         } catch (err) { alert(err.message); busy(e.target, false); btns.forEach((b) => (b.disabled = false)); }
       });
-      document.getElementById("b-reject")?.addEventListener("click", async (e) => {
-        const note = prompt("Not publishing this project. Add a short internal note (optional):", "");
-        if (note === null) return;
-        busy(e.target, true, "Saving");
-        try { await api(`/submission/${s.id}/reject`, { method: "POST", body: { note } }); SF.toast("Moved to Not published"); location.hash = "#/queue"; }
+      // Do not publish: the reason is emailed to the sender, who can sign in, revise and send it again
+      document.getElementById("b-reject")?.addEventListener("click", () => askText({
+        title: `Do not publish ${s.ref || "this project"}?`, danger: true, go: "Do not publish and send",
+        intro: s.sentTo ? `${s.data.fpName || s.private.fpName || "The sender"} (${s.sentTo}) gets an email with your reason, and can sign in to revise the project and send it again.` : "There is no email for this submission, so the reason is only kept here.",
+        label: "Reason (sent to them)", required: "Please give the reason.",
+        send: async (note) => { await api(`/submission/${s.id}/reject`, { method: "POST", body: { note } }); SF.toast(s.sentTo ? `Not published. The reason was emailed to ${s.sentTo}` : "Moved to Not published"); location.hash = "#/queue"; },
+      }));
+      document.getElementById("b-comment")?.addEventListener("click", () => askText({
+        title: "Send a comment", go: "Send comment",
+        intro: `Goes by email to ${s.private.fpName ? `${s.private.fpName} ` : ""}(${s.sentTo}). The project stays in review.`,
+        label: "Your message", required: "Please write your message.",
+        send: async (message) => { await api(`/submission/${s.id}/comment`, { method: "POST", body: { message } }); SF.toast(`Comment emailed to ${s.sentTo}`); route(); },
+      }));
+      document.getElementById("b-del-sub")?.addEventListener("click", async (e) => {
+        if (!confirm(`Delete ${s.ref || "this submission"}${s.data.name ? ` "${s.data.name}"` : ""} for good?\n\nIt is removed from the database with its photos, and cannot be brought back. The change log keeps a line saying it was deleted. Its number is not reused.\n\nTo keep a record instead, use "Do not publish".`)) return;
+        busy(e.target, true, "Deleting");
+        try { await api(`/submission/${s.id}`, { method: "DELETE" }); SF.toast("Submission deleted"); location.hash = s.status === "rejected" ? "#/queue/rejected" : "#/queue"; }
         catch (err) { alert(err.message); busy(e.target, false); }
       });
       document.getElementById("b-reopen")?.addEventListener("click", async () => { await api(`/submission/${s.id}/reopen`, { method: "POST", body: {} }); route(); });
-      const reply = document.getElementById("b-reply");
-      if (reply) {
-        const upd = () => { const v = ed.values(), p = ed.priv(); reply.href = `mailto:${encodeURIComponent(s.by || p.fpEmail || "")}?cc=${SF.config.contactEmail}&subject=${encodeURIComponent(`Your project ${s.ref} for the Solutions Footprint: ${v.name}`)}&body=${encodeURIComponent(`Dear ${p.fpName || "colleague"},\r\n\r\nThank you for submitting "${v.name}" (${s.ref}) to the Solutions Footprint.\r\n\r\n\r\n\r\nKind regards,\r\nDurable Solutions Unit, RCO Sudan`)}`; };
-        upd(); document.querySelector(".split").addEventListener("input", upd);
-      }
     }
 
     /* ---------- all projects ---------- */
     async function viewProjects() {
-      if (AGENCY) return viewAgencyProjects();
+      if (ORG) return viewAgencyProjects();
       const { items } = await api("/projects");
       app.innerHTML = `
         <div class="row between">
@@ -528,7 +563,7 @@
 
     /* ---------- edit one published project (or add one) ---------- */
     async function viewProject(id) {
-      if (AGENCY) return viewAgencyProject(id);
+      if (ORG) return viewAgencyProject(id);
       const isNew = id === "new";
       const item = isNew ? { id: "new", ref: "", published: true, data: { people: {}, states: [], criteria: [], interventionTypes: [], leadership: [], partners: [], localities: [] }, private: {}, photos: [] } : (await api(`/project/${encodeURIComponent(id)}`)).item;
       const state = { peopleSex: item.data.peopleSex || null, owner: `project:${isNew ? "new" : item.id}`, photos: item.photos.map((p) => ({ ...p, label: p.path ? "On the map" : "New" })), deleteFileNow: true };
@@ -550,7 +585,7 @@
           </aside>
         </div>
         <div class="card bar-actions">
-          ${isNew ? "" : `<button type="button" class="btn btn-danger" id="b-delete">Delete</button>
+          ${isNew ? "" : `${REVIEWER ? "" : '<button type="button" class="btn btn-danger" id="b-delete">Delete</button>'}
           <button type="button" class="btn" id="b-hide">${item.published ? "Hide from the map" : "Keep hidden, save changes"}</button>`}
           <span class="grow"></span>
           <span class="muted" style="font-size:13px">The map updates about 2 minutes after saving</span>
@@ -644,7 +679,7 @@
       });
       const blob = new Blob(["\ufeff" + rows.map((r) => r.map(q).join(",")).join("\r\n")], { type: "text/csv;charset=utf-8" });
       const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob); a.download = `solutions-footprint-change-log-${new Date().toISOString().slice(0, 10)}.csv`;
+      a.href = URL.createObjectURL(blob); a.download = `solutions-mapping-change-log-${new Date().toISOString().slice(0, 10)}.csv`;
       document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
     }
     // The GitHub column stays closed until someone opens it
@@ -686,28 +721,81 @@
 
     /* ---------- agency admins: their own agency's projects ---------- */
     async function viewAgencyProjects() {
-      const { items } = await api("/projects");
+      const { items, returned = [], waiting = [] } = await api("/projects");
+      const canAdd = !!AGENCY;
+      // projects that were not published come first, with the reason and a Revise button
+      const back = returned.map((x) => ({ ...x, row: "returned" }));
+      const backFor = Object.fromEntries(back.filter((x) => x.targetId).map((x) => [x.targetId, x]));
+      const rows = [
+        ...back.filter((x) => !x.targetId).map((x) => `<tr class="click" data-go="#/revise/${esc(x.id)}" data-q="${esc(`${x.name} ${x.lead}`.toLowerCase())}">
+          <td><b>${esc(x.name)}</b><br><span class="reason">Reason: ${esc(x.reason)}</span></td><td></td><td></td><td></td><td></td>
+          <td><span class="pill2 err">Not published</span></td><td><a class="btn btn-primary btn-sm" href="#/revise/${esc(x.id)}">Revise</a></td></tr>`),
+        ...waiting.map((x) => `<tr data-q="${esc(`${x.name} ${x.lead}`.toLowerCase())}"><td>${esc(x.name)}</td><td></td><td></td><td></td><td></td>
+          <td><span class="pill2 info">New, waiting for review</span></td><td></td></tr>`),
+        ...items.map((i) => { const b = backFor[i.id]; return `<tr class="click" data-go="${b ? `#/revise/${esc(b.id)}` : `#/project/${encodeURIComponent(i.id)}`}" data-q="${esc(`${i.ref} ${i.name} ${i.states.join(" ")}`.toLowerCase())}">
+          <td>${esc(i.name)}${b ? `<br><span class="reason">Change not published. Reason: ${esc(b.reason)}</span>` : ""}</td><td>${esc(i.states.join(", "))}</td>
+          <td style="white-space:nowrap">${fmtDates(i.start, i.end)}</td><td>${SF.fmtMoney(i.budget)}</td><td>${i.people == null ? '<span class="pill2 warn">Empty</span>' : SF.fmtInt(i.people)}</td>
+          <td>${b ? '<span class="pill2 err">Change not published</span>' : i.pending ? '<span class="pill2 warn">Change waiting for review</span>' : i.published ? '<span class="pill2 ok">On the map</span>' : '<span class="pill2 mute">Hidden</span>'}</td>
+          <td>${b ? `<a class="btn btn-primary btn-sm" href="#/revise/${esc(b.id)}">Revise</a>` : `<a class="btn btn-sm" href="#/project/${encodeURIComponent(i.id)}">Edit</a>`}</td></tr>`; }),
+      ];
       app.innerHTML = `
         <div class="row between">
-          <div><h1>${esc(AGENCY)} projects</h1><p class="lede2">Projects led by ${esc(AGENCY)}. Edit one and press <b>Send to DSU for review</b>. The map changes once the Durable Solutions Unit publishes it.</p></div>
-          <a class="btn btn-primary" href="#/project/new">Add a new ${esc(AGENCY)} project</a>
+          <div><h1>${AGENCY ? "Your organisation's projects" : "Your projects"}</h1><p class="lede2">${AGENCY ? `Projects where ${esc(AGENCY)} is the lead organisation. Your changes go to the Durable Solutions Unit for review before they appear on the map.` : "Projects you sent. Those that were not published can be revised and sent again."}</p></div>
+          ${canAdd ? '<a class="btn btn-primary" href="#/project/new">+ Add a project</a>' : '<a class="btn btn-primary" href="add.html">+ Add a project</a>'}
         </div>
         <div class="card tbl-card">
-          <div class="tbl-tools"><span class="muted" style="font-size:14px">${items.length} project${items.length === 1 ? "" : "s"}</span><span class="grow"></span>
-            <label class="row" style="gap:8px;font-size:14px;color:var(--muted)">Search <input class="input" type="search" id="q" placeholder="Name, number or state" style="width:240px"></label></div>
-          <div class="tbl-wrap">${items.length ? `<table class="adm"><thead><tr><th>Number</th><th>Project</th><th>States</th><th>Dates</th><th>Budget</th><th>People</th><th>Status</th></tr></thead>
-          <tbody>${items.map((i) => `<tr class="click" data-id="${esc(i.id)}" data-q="${esc(`${i.ref} ${i.name} ${i.states.join(" ")}`.toLowerCase())}">
-            <td class="ref">${esc(i.ref || "")}</td><td>${esc(i.name)}</td><td>${esc(i.states.join(", "))}</td>
-            <td style="white-space:nowrap">${fmtDates(i.start, i.end)}</td><td>${SF.fmtMoney(i.budget)}</td><td>${i.people == null ? '<span class="pill2 warn">Empty</span>' : SF.fmtInt(i.people)}</td>
-            <td>${i.pending ? '<span class="pill2 info">Sent for review</span>' : i.published ? '<span class="pill2 ok">On the map</span>' : '<span class="pill2 mute">Hidden</span>'}</td></tr>`).join("")}</tbody></table>` : `<div class="empty">No ${esc(AGENCY)} projects on the map yet. Use "Add a new ${esc(AGENCY)} project".</div>`}</div>
-        </div>`;
-      app.querySelectorAll("tr.click").forEach((tr) => tr.addEventListener("click", () => (location.hash = `#/project/${encodeURIComponent(tr.dataset.id)}`)));
+          <div class="tbl-tools"><span class="muted" style="font-size:14px">${items.length + back.filter((x) => !x.targetId).length + waiting.length} project${items.length + back.length + waiting.length === 1 ? "" : "s"}</span><span class="grow"></span>
+            <label class="row" style="gap:8px;font-size:14px;color:var(--muted)">Search <input class="input" type="search" id="q" placeholder="Name or state" style="width:240px"></label></div>
+          <div class="tbl-wrap">${rows.length ? `<table class="adm"><thead><tr><th>Project</th><th>States</th><th>Dates</th><th>Budget</th><th>People</th><th>Status</th><th><span class="sr-only">Action</span></th></tr></thead>
+          <tbody>${rows.join("")}</tbody></table>` : `<div class="empty">${AGENCY ? `No ${esc(AGENCY)} projects on the map yet. Use "Add a project".` : "Nothing here yet."}</div>`}</div>
+        </div>
+        ${AGENCY ? `<p class="muted" style="font-size:13px">Projects that ${esc(AGENCY)} implements for another lead organisation are edited by that organisation. A project that was not published can be revised and sent again by ${esc(AGENCY)} staff or by the person who added it.</p>` : ""}`;
+      app.querySelectorAll("tr.click").forEach((tr) => tr.addEventListener("click", (e) => { if (!e.target.closest("a")) location.hash = tr.dataset.go; }));
       const q = document.getElementById("q");
       q.addEventListener("input", () => app.querySelectorAll("tr[data-q]").forEach((tr) => (tr.hidden = !tr.dataset.q.includes(q.value.toLowerCase().trim()))));
     }
+    // A project that was not published: revise it and send it again
+    async function viewRevise(id) {
+      const { item } = await api(`/revise/${id}`);
+      const state = { peopleSex: item.data.peopleSex || null, owner: "agency", deleteFileNow: true, photos: item.photos.map((p) => ({ ...p, label: "Sent" })) };
+      const open = item.status === "rejected";
+      app.innerHTML = `
+        <a href="#/projects">Back to ${AGENCY ? "your organisation's projects" : "your projects"}</a>
+        <div class="row between">
+          <div><div class="muted" style="font-size:13px">${item.kind === "correction" ? "Change to a project on the map" : "New project"}</div><h1 id="rv-title">${esc(item.data.name || "Project")}</h1></div>
+          <span class="pill2 ${open ? "err" : item.status === "pending" ? "info" : "ok"}">${open ? "Not published" : item.status === "pending" ? "Waiting for review" : "Published"}</span>
+        </div>
+        ${open ? `<div class="note-box warn"><b>Reason it was not published${item.reviewedAt ? ` (${fmtDay(item.reviewedAt)})` : ""}:</b> ${esc(item.reason)}<br>Change the details below and send it again. It goes back to review.</div>` : `<div class="note-box">${item.status === "pending" ? "This project is waiting for review. You will get an email once it is published." : "This project is published."}</div>`}
+        <div class="split">
+          <div class="main">${editorHTML(item.data, item.private || {})}</div>
+          <aside class="side">
+            <section class="card" style="overflow:hidden">
+              <div style="padding:14px 18px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line)">How it will look on the map</div>
+              <div style="padding:14px" id="pv-card"></div>
+            </section>
+          </aside>
+        </div>
+        ${open ? `<div class="card bar-actions"><span class="grow"></span><span class="muted" style="font-size:13px">Nothing changes on the map until it is published</span>
+          <button type="button" class="btn btn-primary" id="b-send">Send again for review</button></div>` : ""}`;
+      const privH = [...app.querySelectorAll(".ed h2")].find((h) => /Private to DSU/.test(h.textContent));
+      if (privH) privH.innerHTML = "Focal point <small>Never published on the map</small>";
+      const ed = bindEditor(state, (v) => {
+        document.getElementById("pv-card").innerHTML = previewCard(v, state.photos);
+        document.getElementById("rv-title").textContent = v.name || "Project";
+      });
+      document.getElementById("b-send")?.addEventListener("click", async (e) => {
+        busy(e.target, true, "Sending");
+        try {
+          await api(`/revise/${id}`, { method: "PUT", body: { data: ed.values(), private: ed.priv(), photos: state.photos.map((p) => (p.path ? { path: p.path } : { file: p.file })) } });
+          SF.toast("Sent again for review. You will get an email once it is published.");
+          location.hash = "#/projects";
+        } catch (err) { alert(err.message); busy(e.target, false); }
+      });
+    }
     async function viewAgencyProject(id) {
       const isNew = id === "new";
-      const blank = { lead: AGENCY, people: {}, states: [], criteria: [], interventionTypes: [], leadership: [], partners: [], localities: [] };
+      const entry = orgEntry(AGENCY);
+      const blank = { lead: entry ? entry.acronym : AGENCY, orgType: entry ? entry.type : null, people: {}, states: [], criteria: [], interventionTypes: [], leadership: [], partners: [], localities: [] };
       const item = isNew ? { id: "new", ref: "", data: blank, private: {}, photos: [], pending: null } : (await api(`/project/${encodeURIComponent(id)}`)).item;
       // continue from the version already sent, if it is still waiting for review
       const start = item.pending ? item.pending : item;
@@ -715,9 +803,9 @@
       const state = { peopleSex: start.data.peopleSex || null, owner: "agency", deleteFileNow: true,
         photos: [...keep.map((p) => ({ path: p, url: SITE + p, label: "On the map" })), ...(item.pending ? item.pending.photos.map((p) => ({ ...p, label: "New" })) : [])] };
       app.innerHTML = `
-        <a href="#/projects">Back to ${esc(AGENCY)} projects</a>
+        <a href="#/projects">Back to ${AGENCY ? "your organisation's projects" : "your projects"}</a>
         <div class="row between">
-          <div><div class="muted" style="font-size:13px">${isNew ? `New ${esc(AGENCY)} project` : `${esc(item.ref || "")} · on the map since ${fmtDay(item.updatedAt)}`}</div><h1 id="rv-title">${esc(start.data.name || "New project")}</h1></div>
+          <div><div class="muted" style="font-size:13px">${isNew ? `New ${esc(AGENCY)} project` : `On the map since ${fmtDay(item.updatedAt)}`}</div><h1 id="rv-title">${esc(start.data.name || "New project")}</h1></div>
           ${item.pending ? '<span class="pill2 info">Sent for review</span>' : isNew ? "" : '<span class="pill2 ok">On the map</span>'}
         </div>
         ${item.pending ? `<div class="note-box">You sent changes on ${fmtWhen(item.pending.at)}. They are waiting for review by the Durable Solutions Unit. You can still change them: sending again replaces your earlier version.</div>` : ""}
@@ -739,7 +827,7 @@
         </div>`;
       // the lead organisation stays the agency; the private section is the agency's own focal point
       const lead = document.getElementById("e-lead");
-      lead.value = item.data.lead || AGENCY; lead.readOnly = true; lead.title = "Projects stay under your agency";
+      lead.value = item.data.lead || blank.lead; lead.readOnly = true; lead.title = "Projects stay under your organisation";
       const privH = [...app.querySelectorAll(".ed h2")].find((h) => /Private to DSU/.test(h.textContent));
       if (privH) privH.innerHTML = "Focal point <small>Never published on the map</small>";
       const ed = bindEditor(state, (v) => {
@@ -751,20 +839,20 @@
         busy(e.target, true, "Sending");
         try {
           const r = await api(`/project/${encodeURIComponent(isNew ? "new" : item.id)}`, { method: "PUT", body: { data: { ...ed.values(), lead: lead.value }, private: ed.priv(), photos: state.photos.map((p) => (p.path ? { path: p.path } : { file: p.file })) } });
-          SF.toast(`${r.ref} sent to DSU for review`);
+          SF.toast("Sent to the Durable Solutions Unit for review");
           location.hash = "#/changes";
         } catch (err) { alert(err.message); busy(e.target, false); }
       });
     }
     async function viewChanges() {
       const { items } = await api("/changes");
-      const st = (i) => i.status === "pending" ? '<span class="pill2 info">Waiting for review</span>' : i.status === "published" ? '<span class="pill2 ok">Published</span>' : '<span class="pill2 mute">Not published</span>';
+      const st = (i) => i.status === "pending" ? '<span class="pill2 info">Waiting for review</span>' : i.status === "published" ? '<span class="pill2 ok">Published</span>' : `<span class="pill2 err">Not published</span> <a class="btn btn-sm btn-primary" href="#/revise/${esc(i.id)}">Revise</a>${i.reason ? `<br><span class="reason">Reason: ${esc(i.reason)}</span>` : ""}`;
       app.innerHTML = `
         <div><h1>Sent for review</h1><p class="lede2">Changes and new projects you sent to the Durable Solutions Unit, and what happened to them.</p></div>
-        <div class="card tbl-card"><div class="tbl-wrap">${items.length ? `<table class="adm"><thead><tr><th>Sent</th><th>Number</th><th>Project</th><th>Type</th><th>Status</th></tr></thead><tbody>
-          ${items.map((i) => `<tr${i.status === "pending" && i.targetId ? ` class="click" data-id="${esc(i.targetId)}"` : ""}><td style="white-space:nowrap">${fmtWhen(i.receivedAt)}</td><td class="ref">${esc(i.ref || "")}</td><td>${esc(i.name)}</td>
+        <div class="card tbl-card"><div class="tbl-wrap">${items.length ? `<table class="adm"><thead><tr><th>Sent</th><th>Project</th><th>Type</th><th>Status</th></tr></thead><tbody>
+          ${items.map((i) => `<tr${i.status === "pending" && i.targetId ? ` class="click" data-id="${esc(i.targetId)}"` : ""}><td style="white-space:nowrap">${fmtWhen(i.receivedAt)}</td><td>${esc(i.name)}</td>
             <td>${i.kind === "new" ? "New project" : "Changes"}</td><td>${st(i)}${i.reviewedAt ? `<br><span class="muted" style="font-size:13px">${fmtDay(i.reviewedAt)}</span>` : ""}</td></tr>`).join("")}
-        </tbody></table>` : `<div class="empty">Nothing sent yet. Open one of your <a href="#/projects">${esc(AGENCY)} projects</a> to suggest changes.</div>`}</div></div>`;
+        </tbody></table>` : `<div class="empty">Nothing sent yet. Open one of <a href="#/projects">${AGENCY ? "your organisation's projects" : "your projects"}</a> to suggest changes.</div>`}</div></div>`;
       app.querySelectorAll("tr.click").forEach((tr) => tr.addEventListener("click", () => (location.hash = `#/project/${encodeURIComponent(tr.dataset.id)}`)));
     }
 

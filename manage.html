@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261029">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261101f">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <style>
 
@@ -41,6 +41,7 @@
     .pill2.warn { background: var(--warn-bg); color: var(--warn-ink); }
     .pill2.err { background: var(--err-bg); color: var(--err); }
     .pill2.info { background: var(--brand-tint); color: var(--brand); }
+    .adm .reason { display: inline-block; margin-top: 3px; color: var(--err); font-size: 13px; }
     .pill2.mute { background: var(--track); color: var(--muted); }
     :root[data-theme="dark"] .pill2.ok { background: #183b2a; color: #7fd6a6; }
     .note-box { border-radius: 10px; padding: 14px 16px; font-size: 14px; line-height: 1.5; background: var(--brand-tint); color: var(--brand-dark); }
@@ -80,6 +81,12 @@
     button.linkish { background: none; border: 0; padding: 0; font: inherit; text-decoration: underline; cursor: pointer; color: var(--brand); }
     .bar-actions { padding: 14px 18px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; position: sticky; bottom: 10px; z-index: 5; }
     .btn-danger { border-color: var(--err-line); background: var(--err-bg); color: var(--err); }
+    .btn-danger-solid { border-color: var(--err); background: var(--err); color: #fff; }
+    .ask-modal { width: min(460px, calc(100vw - 32px)); }
+    .ask-box { padding: 26px 24px 22px; }
+    .ask-box h2 { margin: 0 0 6px; font-size: 20px; }
+    .ask-box p { margin: 0 0 14px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+    .ask-box textarea { width: 100%; resize: vertical; }
     .btn[disabled] { opacity: .6; cursor: progress; }
     .err-line { color: var(--err); font-size: 14px; min-height: 20px; }
     .diff { font-size: 13px; display: flex; flex-direction: column; gap: 6px; }
@@ -137,9 +144,9 @@
   <dialog class="modal" id="detail" aria-label="Project preview"></dialog>
   <footer id="site-footer"></footer>
 
-  <script src="assets/js/common.js?v=20261029"></script>
+  <script src="assets/js/common.js?v=20261101f"></script>
   <script src="assets/js/icons.js?v=20261029"></script>
   <script src="assets/js/render.js?v=20261029"></script>
-  <script src="assets/js/manage.js?v=20261029"></script>
+  <script src="assets/js/manage.js?v=20261101f"></script>
 </body>
 </html>

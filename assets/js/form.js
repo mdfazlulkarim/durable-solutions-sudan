@@ -539,7 +539,8 @@
         website: $("website").value,
         turnstile: tsWidget !== null && window.turnstile ? window.turnstile.getResponse(tsWidget) : "",
       };
-      const r = await fetch(`${API}/api/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      const ses = SF.auth && SF.auth.get();
+      const r = await fetch(`${API}/api/submit`, { method: "POST", headers: { "Content-Type": "application/json", ...(ses ? { Authorization: `Bearer ${ses.token}` } : {}) }, body: JSON.stringify(body) });
       const j = await r.json().catch(() => ({}));
       if (!r.ok || !j.ok) throw new Error(j.error || `the server answered ${r.status}`);
       assignedRef = j.ref;
@@ -752,6 +753,16 @@
 
   /* ---------- start ---------- */
   SF.renderHeader("add");
+  // Signed in: the organisation and the focal point are filled in from the sign-in (they can still be changed)
+  function fillFromSignIn() {
+    const s = SF.auth && SF.auth.get();
+    if (!s) return;
+    const org = s.role === "agency" ? s.agency : (s.orgs || [])[0];
+    const o = org && ORGS.find((x) => SF.auth.leadMatches(org, x.acronym) || SF.auth.leadMatches(org, x.name));
+    if (o && !$("lead").value) { $("orgType").value = o.type; fillLead(o.type, o.acronym); }
+    if (!$("fpName").value && s.name) $("fpName").value = s.name;
+    if (!$("fpEmail").value) $("fpEmail").value = s.email;
+  }
   Promise.all([SF.loadJSON(SF.config.orgsUrl), SF.loadJSON(SF.config.localitiesUrl), SF.loadJSON(SF.config.dataUrl).catch(() => null), SF.loadJSON(SF.config.geoUrl).catch(() => null), SF.loadJSON(SF.config.refsUrl).catch(() => ({})), SF.loadLogos()])
     .then(([orgs, locs, data, geo, refs]) => {
       REFS = refs || {};
@@ -764,6 +775,7 @@
       const id = new URLSearchParams(location.search).get("correct");
       const p = id && data && data.projects.find((x) => x.id === id);
       if (p) prefill(p);
+      else fillFromSignIn();
       updateLive();
     })
     .catch(() => SF.renderFooter());

@@ -357,8 +357,12 @@ SF.renderHeader = (active) => {
 };
 
 /* ---------- sign in with an emailed 6-digit code ----------
-   For DSU admins now, and for approved agency editors later. Only emails on the approved list get a code.
-   The session key is kept in this browser for 24 hours, or until Sign out. */
+   One sign-in for the whole site (Solutions Mapping and the working group membership pages): DSU, reviewers,
+   agency admins and staff of DSWG member organisations (work email on their organisation's domain).
+   The session key is kept in this browser for one year, or until Sign out. */
+// Links to Solutions Mapping work from the membership pages too
+SF.mapBase = /\/membership\//.test(location.pathname) ? "../mapping/" : "";
+SF.membersUrl = "https://durablesolutionshub.org/sudan/membership/";
 SF.auth = {
   KEY: "sf-session",
   get() {
@@ -379,7 +383,26 @@ SF.auth = {
     const parts = (s.name ? String(s.name).split(/\s+/) : String(s.email || "").split("@")[0].split(/[._-]+/)).filter(Boolean);
     return ((parts[0] || "?")[0] + (parts.length > 1 ? parts[parts.length - 1][0] : "")).toUpperCase();
   },
-  roleLabel: (s) => (s.role === "admin" ? "DSU admin" : s.role === "viewer" ? "Early access" : s.role === "members" ? "DSWG secretariat" : `${s.agency || "Agency"} admin`),
+  roleLabel: (s) => (s.role === "admin" ? "DSU admin" : s.role === "reviewer" ? "DSU reviewer" : s.role === "viewer" ? "Early access" : s.role === "members" ? "DSWG secretariat"
+    : s.role === "org" ? (s.agency ? `${s.agency} staff` : "Signed in") : `${s.agency || "Agency"} admin`),
+  // Same loose comparison as the back end: "ADRA Sudan" leads "ADRA", "International Rescue Committee (IRC)" leads "IRC"
+  leadMatches(org, lead) {
+    const key = (t) => String(t || "").toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9()]+/g, " ").trim();
+    const a = key(org), b = key(lead);
+    if (!a || !b) return false;
+    const plain = (x) => x.replace(/[()]/g, " ").replace(/\s+/g, " ").trim(), acr = (x) => ((x.match(/\(([a-z0-9 ]+)\)/) || [])[1] || "").trim();
+    const A = plain(a), B = plain(b);
+    return A === B || (!!acr(a) && (acr(a) === B || acr(a) === acr(b))) || (!!acr(b) && acr(b) === A) || A.startsWith(B + " ") || B.startsWith(A + " ");
+  },
+  // Can the person signed in edit a project with this lead? DSU and reviewers: all; others: their organisation's
+  canEdit(lead) {
+    const s = SF.auth.get();
+    if (!s) return false;
+    if (s.role === "admin" || s.role === "reviewer") return true;
+    if (s.role === "agency") return SF.auth.leadMatches(s.agency, lead);
+    if (s.role === "org") return (s.orgs || []).some((o) => SF.auth.leadMatches(o, lead));
+    return false;
+  },
   drawButton() {
     const host = document.getElementById("acct");
     if (!host) return;
@@ -394,9 +417,9 @@ SF.auth = {
       <button type="button" class="acct-chip" id="acct-btn" aria-haspopup="true" aria-expanded="false" aria-controls="acct-menu" title="Signed in as ${SF.esc(s.name || s.email)}"><span class="avatar-btn" aria-hidden="true">${SF.esc(SF.auth.initials(s))}</span><span class="acct-name">${SF.esc(s.name || s.email)}</span>${SF.icons.chevron}</button>
       <div class="dropdown-menu acct-menu" id="acct-menu" role="menu" hidden>
         <div class="acct-who"><b>${SF.esc(s.name || s.email)}</b>${s.name ? `${SF.esc(s.email)}<br>` : "Signed in<br>"}<span class="acct-role">${SF.esc(SF.auth.roleLabel(s))}</span></div>
-        ${s.role === "members" ? '<a class="menu-item" role="menuitem" href="https://durablesolutionshub.org/sudan/membership/manage.html">Manage members</a>' : viewer ? (SF.themePages ? '<a class="menu-item" role="menuitem" href="women.html">Women and girls</a>' : "") : admin ? `<a class="menu-item" role="menuitem" href="manage.html#/queue">Manage all projects</a>
-        <a class="menu-item" role="menuitem" href="https://durablesolutionshub.org/sudan/membership/manage.html">Manage members</a>` : `<a class="menu-item" role="menuitem" href="manage.html#/projects">${SF.esc(s.agency || "My agency")} projects</a>
-        <a class="menu-item" role="menuitem" href="manage.html#/changes">Sent for review</a>`}
+        ${s.role === "members" ? `<a class="menu-item" role="menuitem" href="${SF.membersUrl}manage.html">Manage members</a>` : viewer ? (SF.themePages ? `<a class="menu-item" role="menuitem" href="${SF.mapBase}women.html">Women and girls</a>` : "") : admin || s.role === "reviewer" ? `<a class="menu-item" role="menuitem" href="${SF.mapBase}manage.html#/queue">Manage all projects</a>
+        <a class="menu-item" role="menuitem" href="${SF.membersUrl}manage.html">Manage members</a>` : `<a class="menu-item" role="menuitem" href="${SF.mapBase}manage.html#/projects">${s.agency ? "Your organisation's projects" : "Your projects"}</a>
+        ${(s.orgs || []).length ? `<a class="menu-item" role="menuitem" href="${SF.membersUrl}#update">Your organisation's member list</a>` : ""}`}
         <button type="button" class="menu-item" role="menuitem" id="signout-btn">Sign out</button>
       </div>`;
     SF.bindDropdown("acct");
@@ -428,7 +451,7 @@ SF.auth = {
     const stepEmail = (msg) => {
       d.innerHTML = `${close}<form class="signin-box" id="si-form" novalidate>
         <h2 id="signin-title">Sign in</h2>
-        <p>${o.intro ? SF.esc(o.intro) : `${note ? SF.esc(note) + " " : ""}For DSU and approved agency editors. We will email you a 6-digit code. No password needed.`}</p>
+        <p>${o.intro ? SF.esc(o.intro) : `${note ? SF.esc(note) + " " : ""}Use your work email. Staff of DSWG member organisations can update their organisation's projects and member list. We will email you a 6-digit code. No password needed.`}</p>
         <label class="field-label" for="si-email">Work email</label>
         <input class="input" id="si-email" type="email" autocomplete="email" inputmode="email" required value="${SF.esc(email)}">
         <div class="signin-err" id="si-err" role="alert">${msg ? SF.esc(msg) : ""}</div>
@@ -456,7 +479,7 @@ SF.auth = {
     const stepRefused = (msg) => {
       d.innerHTML = `${close}<div class="signin-box">
         <h2 id="signin-title">Sign in</h2>
-        <div class="signin-stop" role="alert"><b>${SF.esc(email)} is not on the approved list.</b><br>${o.refused || SF.esc(msg.replace(/^This email is not on the approved list\.\s*/, ""))}</div>
+        <div class="signin-stop" role="alert"><b>${SF.esc(email)} cannot sign in.</b><br>${o.refused || SF.esc(msg.replace(/^This email is not on the approved list\.\s*/, ""))}</div>
         ${o.refused ? "" : '<p class="signin-small">Partners can still add projects with "Add your project", no sign-in needed.</p>'}
         <button type="button" class="btn signin-go" id="si-back">Use a different email</button>
       </div>`;
@@ -492,17 +515,51 @@ SF.auth = {
         err.textContent = ""; busy(go, true, "Checking");
         try {
           const s = await SF.auth.post("/api/auth/verify", { email, code });
-          SF.auth.save({ token: s.token, expires: s.expires, email: s.email, name: s.name || "", role: s.role, agency: s.agency || null, pages: s.pages || [] });
-          d.close();
-          SF.auth.drawButton();
-          SF.toast("Signed in");
-          document.dispatchEvent(new CustomEvent("sf-signed-in"));
+          SF.auth.save(SF.auth.keep(s));
+          if (s.needsName) return stepName(s);
+          done();
         } catch (x) { busy(go, false); err.textContent = x.message; input.select(); }
+      });
+    };
+    const done = () => {
+      d.close();
+      SF.auth.drawButton();
+      SF.toast("Signed in");
+      document.dispatchEvent(new CustomEvent("sf-signed-in"));
+    };
+    // First sign-in: ask the name (shown with the changes the person sends), and offer the DSWG member list
+    const stepName = (s) => {
+      d.innerHTML = `${close}<form class="signin-box" id="si-form" novalidate>
+        <h2 id="signin-title">Welcome</h2>
+        <p>This is the first time you sign in with <b>${SF.esc(s.email)}</b>${s.agency ? ` (${SF.esc(s.agency)})` : ""}. Please tell us your name. It is shown with the changes you send.</p>
+        <label class="field-label" for="si-name">Your full name</label>
+        <input class="input" id="si-name" autocomplete="name" maxlength="120" required>
+        ${s.canJoin ? `<label class="signin-join"><input type="checkbox" id="si-join" checked><span><b>Also add me to the DSWG member list</b><small>You will receive the National DSWG invitations. The secretariat confirms it first.</small></span></label>` : ""}
+        <div class="signin-err" id="si-err" role="alert"></div>
+        <button type="submit" class="btn btn-primary signin-go" id="si-go">Continue</button>
+      </form>`;
+      wire();
+      const input = d.querySelector("#si-name");
+      setTimeout(() => input.focus(), 30);
+      d.querySelector("#si-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const err = d.querySelector("#si-err"), go = d.querySelector("#si-go"), name = input.value.trim();
+        if (name.length < 2) { err.textContent = "Please enter your full name."; input.focus(); return; }
+        busy(go, true, "Saving");
+        try {
+          const r = await fetch(SF.config.authUrl + "/api/auth/profile", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${s.token}` }, body: JSON.stringify({ name, join: !!d.querySelector("#si-join")?.checked }) }).then((x) => x.json());
+          if (!r.ok) throw new Error(r.error || "Your name could not be saved. Please try again.");
+          SF.auth.save(SF.auth.keep({ ...r, token: s.token, expires: s.expires }));
+          done();
+          if (r.joined) SF.toast("Signed in. Your request to join the National DSWG was sent to the secretariat.");
+        } catch (x) { busy(go, false); err.textContent = x.message; }
       });
     };
     stepEmail();
     if (!d.open) d.showModal();
   },
+  // What this browser keeps about the person signed in
+  keep: (s) => ({ token: s.token, expires: s.expires, email: s.email, name: s.name || "", role: s.role, agency: s.agency || null, orgs: s.orgs || [], pages: s.pages || [] }),
 };
 
 SF.renderFooter = (lastUpdated) => {

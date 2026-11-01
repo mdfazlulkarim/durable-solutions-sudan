@@ -936,6 +936,9 @@ dialog.signin-modal { width: min(420px, calc(100vw - 24px)); overflow: visible; 
 .signin-go { margin-top: 6px; width: 100%; justify-content: center; padding: 11px; }
 .signin-box .signin-small { margin: 12px 0 0; font-size: 12.5px; color: var(--muted); }
 .signin-box .signin-small .link-btn { font-size: 12.5px; }
+.signin-join { display: flex; gap: 10px; align-items: flex-start; margin: 14px 0 4px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; font-size: 14px; }
+.signin-join input { margin-top: 3px; width: 17px; height: 17px; flex: none; }
+.signin-join small { display: block; color: var(--muted); font-size: 12.5px; margin-top: 2px; line-height: 1.4; }
 .signin-stop { background: var(--err-bg); border: 1px solid var(--err-line); border-radius: 8px; padding: 12px 14px; color: var(--err); font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
 dialog.signin-modal .modal-close { background: transparent; box-shadow: none; color: var(--muted); }
 @media (max-width: 640px) { .signin-btn span { display: none; } .signin-btn { width: 40px; height: 40px; padding: 0; justify-content: center; } }
