@@ -467,7 +467,8 @@ SF.auth = {
     const stepCode = (r) => {
       d.innerHTML = `${close}<form class="signin-box" id="si-form" novalidate>
         <h2 id="signin-title">Check your email</h2>
-        <p>We sent a 6-digit code to <b>${SF.esc(email)}</b>. It works for ${r.minutes || 10} minutes.</p>
+        <p>We sent a 6-digit code to <b>${SF.esc(email)}</b>. It works for ${r.minutes || 30} minutes.</p>
+        <p class="signin-small">Please allow up to 5 minutes for it to arrive: your organisation&#39;s email system may check it first. Also look in your junk folder. If you ask for a new code, only the newest one works.</p>
         <label class="field-label" for="si-code">Code</label>
         <input class="input signin-code" id="si-code" inputmode="numeric" autocomplete="one-time-code" maxlength="7" placeholder="000000" required>
         ${r.devCode ? `<p class="signin-small">Local test only, code: <b>${SF.esc(r.devCode)}</b></p>` : ""}
