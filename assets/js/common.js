@@ -394,9 +394,7 @@ SF.auth = {
       <button type="button" class="acct-chip" id="acct-btn" aria-haspopup="true" aria-expanded="false" aria-controls="acct-menu" title="Signed in as ${SF.esc(s.name || s.email)}"><span class="avatar-btn" aria-hidden="true">${SF.esc(SF.auth.initials(s))}</span><span class="acct-name">${SF.esc(s.name || s.email)}</span>${SF.icons.chevron}</button>
       <div class="dropdown-menu acct-menu" id="acct-menu" role="menu" hidden>
         <div class="acct-who"><b>${SF.esc(s.name || s.email)}</b>${s.name ? `${SF.esc(s.email)}<br>` : "Signed in<br>"}<span class="acct-role">${SF.esc(SF.auth.roleLabel(s))}</span></div>
-        ${s.role === "members" ? '<a class="menu-item" role="menuitem" href="https://durablesolutionshub.org/sudan/membership/manage.html">Manage members</a>' : viewer ? (SF.themePages ? '<a class="menu-item" role="menuitem" href="women.html">Women and girls</a>' : "") : admin ? `<a class="menu-item" role="menuitem" href="manage.html#/projects">Manage all projects</a>
-        <a class="menu-item" role="menuitem" href="manage.html#/queue">Review queue</a>
-        <a class="menu-item" role="menuitem" href="manage.html#/editors">Approved editors</a>
+        ${s.role === "members" ? '<a class="menu-item" role="menuitem" href="https://durablesolutionshub.org/sudan/membership/manage.html">Manage members</a>' : viewer ? (SF.themePages ? '<a class="menu-item" role="menuitem" href="women.html">Women and girls</a>' : "") : admin ? `<a class="menu-item" role="menuitem" href="manage.html#/queue">Manage all projects</a>
         <a class="menu-item" role="menuitem" href="https://durablesolutionshub.org/sudan/membership/manage.html">Manage members</a>` : `<a class="menu-item" role="menuitem" href="manage.html#/projects">${SF.esc(s.agency || "My agency")} projects</a>
         <a class="menu-item" role="menuitem" href="manage.html#/changes">Sent for review</a>`}
         <button type="button" class="menu-item" role="menuitem" id="signout-btn">Sign out</button>
