@@ -1,5 +1,5 @@
 {
- "lastUpdated": "2026-10-29",
+ "lastUpdated": "2026-11-04",
  "projects": [
   {
    "id": "adra-female-literacy-and-opportunities-for-work-flow",
@@ -1546,6 +1546,122 @@
    "remarks": "Budget converted from CHF 5,000,000 at the UN operational rate of 15 October 2026. Includes a top-up that added Blue Nile and Central Darfur.",
    "photos": [],
    "ref": "SD-017-UNDP-25-27"
+  },
+  {
+   "id": "undp-sudan-covid-19-response-mechanism",
+   "name": "Sudan COVID-19 RESPONSE Mechanism",
+   "description": "The C19RM grant strengthens Sudan’s health system resilience by expanding access to oxygen, primary health care, reliable energy, safe waste management, and emergency preparedness, while sustaining essential services for over 5 million people.",
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
+   "lead": "UNDP",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [
+    "UNDP"
+   ],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Aj Jazirah",
+    "Blue Nile",
+    "Gedaref",
+    "Kassala",
+    "Khartoum",
+    "Northern",
+    "Red Sea",
+    "River Nile",
+    "Sennar",
+    "White Nile"
+   ],
+   "localities": [
+    "Al Manaqil",
+    "Ed Damazine",
+    "Al Fao",
+    "Al Galabat Al Gharbyah - Kassab",
+    "Al Mafaza",
+    "Al Qureisha",
+    "Ar Rahad",
+    "Basundah",
+    "Gala'a Al Nahal",
+    "Galabat Ash-Shargiah",
+    "Madeinat Al Gedaref",
+    "Wasat Al Gedaref",
+    "Al Fashaga",
+    "Halfa Aj Jadeedah",
+    "Madeinat Kassala",
+    "Reifi Aroma",
+    "Reifi Gharb Kassala",
+    "Reifi Hamashkureib",
+    "Reifi Kassla",
+    "Reifi Khashm Elgirba",
+    "Reifi Nahr Atbara",
+    "Reifi Shamal Ad Delta",
+    "Reifi Telkok",
+    "Reifi Wad Elhilaiw",
+    "Khartoum",
+    "Ad Dabbah",
+    "Al Burgaig",
+    "Delgo",
+    "Dongola",
+    "Halfa",
+    "Port Sudan",
+    "Sawakin",
+    "Abu Hamad",
+    "Ad Damar",
+    "Al Buhaira",
+    "Al Matama",
+    "Atbara",
+    "Barbar",
+    "Shendi",
+    "Sennar",
+    "Ad Diwaim",
+    "Aj Jabalain",
+    "As Salam / Ar Rawat",
+    "Guli",
+    "Kosti",
+    "Rabak",
+    "Tendalti",
+    "Um Rimta"
+   ],
+   "criteria": [
+    2,
+    3
+   ],
+   "coordination": null,
+   "start": "2022-04-01",
+   "end": "2026-06-30",
+   "reportedStatus": "Ended",
+   "budget": 52363713,
+   "share": 0.35,
+   "dsFunding": 18327299.55,
+   "donor": "The Global Fund",
+   "donors": [
+    {
+     "name": "The Global Fund",
+     "amount": 52363713
+    }
+   ],
+   "people": {
+    "total": 4577330,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": 4577330
+   },
+   "femaleShare": 0.45,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "photos": [
+    "assets/photos/SD-053-1.jpg",
+    "assets/photos/SD-053-2.jpg",
+    "assets/photos/SD-053-3.jpg"
+   ],
+   "leadName": "UNDP, United Nations Development Programme",
+   "ref": "SD-053-UNDP-22-26"
   },
   {
    "id": "undp-supporting-durable-solutions-in-sudan-multi-year-capacity-to-oper",
