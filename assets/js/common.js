@@ -259,8 +259,8 @@ SF.addMenuHTML = (id = "add") => `
   <div class="dropdown">
     <button class="btn btn-primary" id="${id}-btn" aria-haspopup="true" aria-expanded="false" aria-controls="${id}-menu">${SF.icons.plus}Add your project${SF.icons.chevron}</button>
     <div class="dropdown-menu" id="${id}-menu" role="menu" hidden>
-      <a class="menu-item" role="menuitem" href="add.html"><span class="mi-ico">${SF.icons.form}</span><span><b>Add one project</b><small>Fill in a short online form.</small></span></a>
-      <a class="menu-item" role="menuitem" href="add-multiple.html"><span class="mi-ico">${SF.icons.sheet}</span><span><b>Add multiple projects</b><small>Fill in the Excel template, one row per project, and send them all at once.</small></span></a>
+      <a class="menu-item" role="menuitem" href="https://durablesolutionshub.org/sudan/mapping/add.html"><span class="mi-ico">${SF.icons.form}</span><span><b>Add one project</b><small>Fill in a short online form.</small></span></a>
+      <a class="menu-item" role="menuitem" href="https://durablesolutionshub.org/sudan/mapping/add-multiple.html"><span class="mi-ico">${SF.icons.sheet}</span><span><b>Add multiple projects</b><small>Fill in the Excel template, one row per project, and send them all at once.</small></span></a>
     </div>
   </div>`;
 SF.bindDropdown = (id) => {
@@ -311,15 +311,15 @@ SF.renderHeader = (active) => {
     // Phase 2 and 3 views stay hidden until they are released:
     // { key: "projects", href: "projects.html", label: "Projects" },
     // { key: "gaps", href: "gaps.html", label: "Gaps" },
-    { key: "about", href: "about.html", label: "About the data" },
+    { key: "about", href: "https://durablesolutionshub.org/sudan/mapping/about.html", label: "About the data" },
     // Theme pages live on the git page only (mdfazlulkarim.github.io)
     ...(SF.themePages ? [{ key: "women", href: "women.html", label: "Women and girls" }] : []),
-    { key: "mine", href: "my-submissions.html", label: "My submissions" },
+    { key: "mine", href: "https://durablesolutionshub.org/sudan/mapping/my-submissions.html", label: "My submissions" },
   ];
   const action = active === "add" ? `<a class="btn" href="./">Back to the map</a>` : SF.addMenuHTML("add");
   el.className = "site-header";
   if (SF.testMode && !document.getElementById("test-bar")) {
-    el.insertAdjacentHTML("beforebegin", `<div class="test-bar" id="test-bar"><b>Test mode, in this browser only.</b> Projects you send go to the new review queue, not by email. <a href="test.html">Test page</a> · <button type="button" id="test-off">Leave test mode</button></div>`);
+    el.insertAdjacentHTML("beforebegin", `<div class="test-bar" id="test-bar"><b>Test mode, in this browser only.</b> Projects you send go to the new review queue, not by email. <a href="https://durablesolutionshub.org/sudan/mapping/test.html">Test page</a> · <button type="button" id="test-off">Leave test mode</button></div>`);
     document.getElementById("test-off").addEventListener("click", () => { try { localStorage.removeItem("sf-test-mode"); } catch (e) {} location.reload(); });
   }
   el.innerHTML = `

@@ -933,7 +933,7 @@
         </div>
         ${action ? `<div class="list-action"><button type="button" class="btn${action.done ? "" : " btn-primary"}" data-action${action.done ? " disabled" : ""}>${esc(action.label)}</button></div>` : ""}
         <div class="agency-modal-body">${sorted.map(projectCard).join("")}</div>
-        <div class="pop-nudge">${nudge || 'Is your organisation working on durable solutions here? <a href="add.html">Add your project</a>.'}</div>
+        <div class="pop-nudge">${nudge || 'Is your organisation working on durable solutions here? <a href="https://durablesolutionshub.org/sudan/mapping/add.html">Add your project</a>.'}</div>
       </div>`;
     d.querySelector("[data-action]")?.addEventListener("click", () => { d.close(); action.fn(); });
     const logoBox = d.querySelector(".logo-box svg");
@@ -973,7 +973,7 @@
       title: "Nationwide projects",
       subtitle: `${list.length} project${list.length === 1 ? "" : "s"} not tied to one state, with the current filters`,
       projects: list, backLabel: "Back to nationwide projects",
-      nudge: 'Working on durable solutions across Sudan? <a href="add.html">Add your project</a>.',
+      nudge: 'Working on durable solutions across Sudan? <a href="https://durablesolutionshub.org/sudan/mapping/add.html">Add your project</a>.',
     });
   }
 
@@ -992,13 +992,13 @@
         <div class="hero" id="hero">${hero}</div>
         ${SF.render.body(p, GEO, { titleId: "detail-title" })}
         <div class="pop-actions">
-          ${SF.auth.canEdit(p.lead) ? `<a class="btn btn-primary" href="manage.html#/project/${encodeURIComponent(p.id)}">${SF.icons.edit || ""}Edit</a>` : ""}
+          ${SF.auth.canEdit(p.lead) ? `<a class="btn btn-primary" href="https://durablesolutionshub.org/sudan/mapping/manage.html#/project/${encodeURIComponent(p.id)}">${SF.icons.edit || ""}Edit</a>` : ""}
           <button type="button" class="btn" id="pop-show">${SF.icons.pin}Show on map</button>
           <button type="button" class="btn" id="pop-link">${SF.icons.link}Copy link</button>
           <span class="spacer"></span>
-          <a class="btn" href="add.html?correct=${encodeURIComponent(p.id)}">Suggest a correction</a>
+          <a class="btn" href="https://durablesolutionshub.org/sudan/mapping/add.html?correct=${encodeURIComponent(p.id)}">Suggest a correction</a>
         </div>
-        <div class="pop-nudge">Is your organisation working on durable solutions in Sudan? <a href="add.html">Add your project</a> so others can see it.</div>
+        <div class="pop-nudge">Is your organisation working on durable solutions in Sudan? <a href="https://durablesolutionshub.org/sudan/mapping/add.html">Add your project</a> so others can see it.</div>
       </div>`;
     if (photos.length > 1) {
       let i = 0;
@@ -1129,7 +1129,7 @@
       return;
     }
     SF.renderFooter(LAST_UPDATED);
-    document.getElementById("not-exhaustive").innerHTML = `${SF.icons.info}<span>${NOT_EXHAUSTIVE} To add yours, use <a href="add.html">Add your project</a>.</span>`;
+    document.getElementById("not-exhaustive").innerHTML = `${SF.icons.info}<span>${NOT_EXHAUSTIVE} To add yours, use <a href="https://durablesolutionshub.org/sudan/mapping/add.html">Add your project</a>.</span>`;
     buildFilterPanel();
     buildMap();
     buildTime();

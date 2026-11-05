@@ -554,7 +554,7 @@
         ? "The Durable Solutions Unit will review your correction and update the map. There is nothing else you need to do."
         : "The Durable Solutions Unit will review your project and publish it on the map. There is nothing else you need to do.";
       $("sent-saved").innerHTML = saved
-        ? `The status updates under <a href="my-submissions.html">My submissions</a> on this device. Keep the project code if you need to contact us about it.`
+        ? `The status updates under <a href="https://durablesolutionshub.org/sudan/mapping/my-submissions.html">My submissions</a> on this device. Keep the project code if you need to contact us about it.`
         : "Keep the project code if you need to contact us about it.";
       $("preview").hidden = true;
       $("main").classList.remove("previewing");
@@ -658,7 +658,7 @@
     });
     $("done-ref").textContent = assignedRef ? `Your project code: ${assignedRef}. Keep it for any follow-up with the Durable Solutions Unit.` : "";
     $("saved-note").innerHTML = saved
-      ? `A copy is saved in this browser. See it any time under <a href="my-submissions.html">My submissions</a>.`
+      ? `A copy is saved in this browser. See it any time under <a href="https://durablesolutionshub.org/sudan/mapping/my-submissions.html">My submissions</a>.`
       : "This browser does not allow saving, so the copy will not appear under My submissions. Your submission is not affected.";
     $("preview").hidden = true;
     $("main").classList.remove("previewing");

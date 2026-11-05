@@ -729,7 +729,7 @@
       ${shf.length ? `<p class="abc-small">Sudan Humanitarian Fund projects here work on ${esc(shfSectors.join(", ").toLowerCase() || "several sectors")}. Linking to them helps people move from aid towards solutions, for example from water trucking to repaired water points.</p>${projList(shf, "shf", 2)}` : `<p class="abc-small">No Sudan Humanitarian Fund project found for this area.</p>`}
       <div class="abc-ps">Partners already present${cite("w3")}</div>
       ${Object.keys(w3c).length ? `<p class="abc-small">${Object.entries(w3c).sort((x, y) => y[1] - x[1]).map(([c, v]) => `${esc(c)} (${v})`).join(", ")}. Most in one locality, by sector.</p>` : `<p class="abc-small">No organisations reported to OCHA here in the last three months.</p>`}
-      <div class="abc-next"><b>Next step:</b> bring this plan to the ${ADSWG.includes(p.state) ? `${esc(p.state)} Area Durable Solutions Working Group` : "Durable Solutions Working Group"}, and when it starts, <a href="add.html">add it to the Solutions Footprint</a>.</div>`;
+      <div class="abc-next"><b>Next step:</b> bring this plan to the ${ADSWG.includes(p.state) ? `${esc(p.state)} Area Durable Solutions Working Group` : "Durable Solutions Working Group"}, and when it starts, <a href="https://durablesolutionshub.org/sudan/mapping/add.html">add it to the Solutions Footprint</a>.</div>`;
     C.querySelectorAll("[data-hub]").forEach((b) => b.addEventListener("click", () => openHub(b.dataset.hub)));
   }
   function drawMine() {
