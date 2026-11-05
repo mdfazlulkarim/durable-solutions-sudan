@@ -359,7 +359,7 @@
           : "Others already work on this here, so join up rather than start alone."}</li>
       </ol>
       ${join.length ? `<div class="abc-ps">Projects to join up with</div>${join.map((h) => `<button type="button" class="proj-card abc-pc" data-hub="${esc(h.id)}"><span class="t">${esc(h.name)}</span><span class="o">${esc(h.lead)}</span><span class="d">${SF.render.statusChip(h)}${h.criteria.length ? SF.render.critIcons(h) : ""}</span></button>`).join("")}` : ""}
-      <div class="abc-next"><b>Next step:</b> take it to the ${ADSWG.includes(p.state) ? `${esc(p.state)} Area Durable Solutions Working Group` : "Durable Solutions Working Group"}, and when it starts, <a href="add.html">add it to the Solutions Footprint</a>.</div>`;
+      <div class="abc-next"><b>Next step:</b> take it to the ${ADSWG.includes(p.state) ? `${esc(p.state)} Area Durable Solutions Working Group` : "Durable Solutions Working Group"}, and when it starts, <a href="https://durablesolutionshub.org/sudan/mapping/add.html">add it to the Solutions Footprint</a>.</div>`;
     R.querySelectorAll("[data-hub]").forEach((b) => b.addEventListener("click", () => openHub(b.dataset.hub)));
   }
   function openHub(id) {

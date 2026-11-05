@@ -191,7 +191,7 @@
     const states = new Set(focus.flatMap((p) => p.states || []));
     const reporting = projects.filter((p) => p.femaleShare != null && p.people && p.people.total);
     $("w2-proj-sum").innerHTML = `<b>${focus.length} of ${projects.length}</b> projects on the map focus on women and girls${budget ? `: <b>${usd(budget)}</b>` : ""} in ${states.size} state${states.size === 1 ? "" : "s"}.
-      <span class="w2-gapnote">${icon("report")}<span>${reporting.length ? `Only ${reporting.length} of ${projects.length} projects report` : `None of the ${projects.length} projects reports yet`} how many women and girls they reach. Partners can add it through <a href="add.html">Add your project</a>.</span></span>`;
+      <span class="w2-gapnote">${icon("report")}<span>${reporting.length ? `Only ${reporting.length} of ${projects.length} projects report` : `None of the ${projects.length} projects reports yet`} how many women and girls they reach. Partners can add it through <a href="https://durablesolutionshub.org/sudan/mapping/add.html">Add your project</a>.</span></span>`;
     $("w2-proj").innerHTML = focus.map((p) => {
       const st = p.nationwide ? ["Nationwide"] : p.states || [];
       return `

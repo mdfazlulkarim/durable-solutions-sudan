@@ -741,7 +741,7 @@
       app.innerHTML = `
         <div class="row between">
           <div><h1>${AGENCY ? "Your organisation's projects" : "Your projects"}</h1><p class="lede2">${AGENCY ? `Projects where ${esc(AGENCY)} is the lead organisation. Your changes go to the Durable Solutions Unit for review before they appear on the map.` : "Projects you sent. Those that were not published can be revised and sent again."}</p></div>
-          ${canAdd ? '<a class="btn btn-primary" href="#/project/new">+ Add a project</a>' : '<a class="btn btn-primary" href="add.html">+ Add a project</a>'}
+          ${canAdd ? '<a class="btn btn-primary" href="#/project/new">+ Add a project</a>' : '<a class="btn btn-primary" href="https://durablesolutionshub.org/sudan/mapping/add.html">+ Add a project</a>'}
         </div>
         <div class="card tbl-card">
           <div class="tbl-tools"><span class="muted" style="font-size:14px">${items.length + back.filter((x) => !x.targetId).length + waiting.length} project${items.length + back.length + waiting.length === 1 ? "" : "s"}</span><span class="grow"></span>

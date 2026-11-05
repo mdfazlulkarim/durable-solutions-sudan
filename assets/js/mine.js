@@ -64,7 +64,7 @@
       return;
     }
     if (!list.length) {
-      host.innerHTML = `<div class="card" style="padding:24px;text-align:center"><p style="margin:0 0 12px">You have not sent any projects from this browser yet.</p><a class="btn btn-primary" href="add.html">${SF.icons.plus}Add your project</a></div>`;
+      host.innerHTML = `<div class="card" style="padding:24px;text-align:center"><p style="margin:0 0 12px">You have not sent any projects from this browser yet.</p><a class="btn btn-primary" href="https://durablesolutionshub.org/sudan/mapping/add.html">${SF.icons.plus}Add your project</a></div>`;
       return;
     }
     host.innerHTML = list.map((e, i) => {
