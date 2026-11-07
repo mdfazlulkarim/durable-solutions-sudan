@@ -278,7 +278,7 @@ function makeVehicle(kind){
   if(kind==='tuk'){const T=K.makeTuk('#d9a521');T.pass.g.visible=false;return{g:T.g,pass:T.pass,driver:T.driver}}
   const D=K.makeDonkey();const man=figure(3301,{woman:false,parent:D.g,scale:.87});man.g.position.set(0,.33,.14);K.sitPose(man,true);man.armL.rotation.x=man.armR.rotation.x=-.9;return{g:D.g,legs:D.legs,barrel:D.barrel,man}}
 function startJob(kind){if(G.on)return;if(VI>=0)endVisit();
-  Object.assign(G,{on:true,kind,state:'intro',time:180,money:0,fuel:0,fares:0,trips:0,spd:0,auto:null,pass:[],ride:null,barrel:0,sold:0,energy:100,act:0,sinceSpawn:0,nino:S().season>=4,tank:50,zoom:G.zoom||2,arrow:G.arrow!==false,qWait:0,qDone:false});
+  Object.assign(G,{on:true,kind,state:'intro',time:180,money:0,fuel:0,fares:0,trips:0,spd:0,auto:null,pass:[],ride:null,barrel:0,sold:0,energy:100,act:0,sinceSpawn:0,nino:S().season>=4,tank:100,zoom:G.zoom||2,arrow:G.arrow!==false,qWait:0,qDone:false});
   enterMode('gmode');controls.enabled=false;K.keyGrab=true;
   const start=kind==='tuk'?free(K.LIFE.stand.x,K.LIFE.stand.z+.6):free(FILLS[0].x+1,FILLS[0].z-1.2);
   veh=makeVehicle(kind);G.x=start.x;G.z=start.z;G.yaw=kind==='tuk'?Math.PI/2:Math.PI;placeVeh();
@@ -293,7 +293,7 @@ function startJob(kind){if(G.on)return;if(VI>=0)endVisit();
   drawHud();
   const bh=K.safeWater('idp');
   const intro=kind==='tuk'?
-   '<h2>Tuk-tuk driver</h2><div class="sub">3 minutes. Goal: take home 25,000 SDG after fuel.</div><ul><li>Drive to a passenger waving at a stop, then slow down to let them in.</li><li>Take them to the stop shown on the map. Short trips pay 2,000 SDG, middle ones 3,000 SDG, long ones 5,000 SDG.</li><li>You start with half a tank. When it runs low, the arrow takes you to the petrol station: join the back of the queue, wait your turn, and pay to fill up'+(G.nino?'. In this El Niño year the queue is longer and fuel costs a third more':'')+'. If the tank runs dry, you push the tuk-tuk at walking pace.</li><li>Follow the blue arrow. It points to the next passenger, then to their stop.</li><li>Passengers using a wheelchair or going to the health centre need you to stop right at the door.</li></ul><p>Fares are based on recent shared rides in Khartoum, where a short trip cost about 2,000 to 3,000 SDG.</p>'
+   '<h2>Tuk-tuk driver</h2><div class="sub">3 minutes. Goal: take home 25,000 SDG after fuel.</div><ul><li>Drive to a passenger waving at a stop, then slow down to let them in.</li><li>Take them to the stop shown on the map. Short trips pay 2,000 SDG, middle ones 3,000 SDG, long ones 5,000 SDG.</li><li>You start with a full tank. When it runs low, the arrow takes you to the petrol station to join the queue'+(G.nino?', which is even longer in this El Niño year':'')+'. If the tank runs dry, you push the tuk-tuk at walking pace.</li><li>Follow the blue arrow. It points to the next passenger, then to their stop.</li><li>Passengers using a wheelchair or going to the health centre need you to stop right at the door.</li></ul><p>Fares are based on recent shared rides in Khartoum, where a short trip cost about 2,000 to 3,000 SDG.</p>'
    :'<h2>Donkey water seller</h2><div class="sub">3 minutes. Goal: sell 4 barrels of water, about 20,000 SDG.</div><ul><li>Ride to the river and stop at a fill point to fill your barrel (11 jerrycans).</li><li>Sell by the jerrycan at the IDP site, the refugee camp, the host town and the returnee village, for 450 SDG each.</li><li>Your donkey gets tired. Stop at a water trough to rest it, or it slows down.</li><li>Follow the arrow: to the river when the barrel is empty, then to the places where families are waiting to buy.</li></ul><p>'+(bh?'The solar borehole now gives free clean water at the IDP site, so fewer families there buy from carts.':'With no safe water nearby, many families depend on carts like yours.')+' A barrel sells for about 5,000 SDG, as in recent reports from Khartoum.</p>';
   card(intro+'<div class="foot"><button class="btn" data-g="leave">Not now</button><button class="btn btn-primary" data-g="go">Start</button></div>',{go:()=>{G.state='play'},leave:quitJob})}
 function spawnPassenger(){const used=new Set(G.pass.map(p=>p.from).concat(G.ride?[G.ride.from]:[]));const opts=STOPS.map((s,i)=>i).filter(i=>!used.has(i));if(!opts.length)return;
@@ -307,13 +307,13 @@ function spawnPassenger(){const used=new Set(G.pass.map(p=>p.from).concat(G.ride
 function placeVeh(){veh.g.position.set(G.x,h(G.x,G.z),G.z);veh.g.rotation.y=G.yaw}
 function drawHud(){if(!hud)return;const t=Math.max(0,G.time),mm=Math.floor(t/60),ss=String(Math.floor(t%60)).padStart(2,'0');
   const T=G.tgt,dist=distTxt(T);let task,cards='';
-  if(G.kind==='tuk'){const net=G.fares-G.fuel;
+  if(G.kind==='tuk'){const net=G.fares-Math.round((100-G.tank)*50*(G.nino?1.35:1)/10)*10;
     if(G.state==='queue')task='Waiting in the fuel queue: '+Math.ceil(G.qWait)+' s';
     else if(G.tank<=0)task='Out of fuel. Push the tuk-tuk to the petrol station'+(dist&&!G.ride?', '+dist:'');
     else if(G.tank<=18&&!G.ride)task='Fuel is low. Go to the petrol station, '+dist;
     else if(G.ride)task='Take your passenger to '+esc(STOPS[G.ride.to].n)+', '+dist+(G.ride.kind?'. Stop right at the door':'');
     else task=T?'Pick up the passenger waiting at '+esc(T.n.replace('Passenger at ',''))+', '+dist:'Wait for a passenger';
-    cards='<div class="gc goal"><small>Take-home</small><b>'+fmt(net)+' SDG</b><span class="bar"><i style="width:'+Math.max(0,Math.min(100,net/250))+'%"></i></span></div><div class="gc"><small>Fares</small><b>'+fmt(G.fares)+'</b></div><div class="gc fuel'+(G.tank<=18?' low':'')+'"><small>Tank</small><b>'+Math.round(G.tank)+'%</b><span class="bar"><i style="width:'+G.tank+'%"></i></span></div><div class="gc"><small>Fuel bought</small><b>−'+fmt(G.fuel)+'</b></div>'}
+    cards='<div class="gc goal"><small>Take-home</small><b>'+fmt(net)+' SDG</b><span class="bar"><i style="width:'+Math.max(0,Math.min(100,net/250))+'%"></i></span></div><div class="gc"><small>Fares</small><b>'+fmt(G.fares)+'</b></div><div class="gc fuel'+(G.tank<=18?' low':'')+'"><small>Tank</small><b>'+Math.round(G.tank)+'%</b><span class="bar"><i style="width:'+G.tank+'%"></i></span></div>'}
   else{const brl=G.sold/11;
     if(G.energy<30)task='Your donkey is tired. Rest it at the water trough, '+dist;
     else if(G.barrel<=0)task='Your barrel is empty. Fill it at the river, '+dist;
@@ -326,9 +326,10 @@ function drawHud(){if(!hud)return;const t=Math.max(0,G.time),mm=Math.floor(t/60)
 function quitJob(){if(!G.on)return;cleanup();exitMode()}
 function cleanup(){G.on=false;G.state='off';if(veh){veh.g.parent&&veh.g.parent.remove(veh.g);veh=null}for(const p of G.pass||[])p.f.g.parent&&p.f.g.parent.remove(p.f.g);G.pass=[];G.ride=null;
   gpins.forEach(p=>p.el.remove());gpins=[];hud&&hud.remove();hud=null;toastEl&&toastEl.remove();toastEl=null;G.kb&&G.kb.remove();TRG.visible=QG.visible=false;AR.visible=RG.visible=false;EA.style.display='none';document.querySelectorAll('.gcard').forEach(c=>c.remove());for(const k in keys)keys[k]=false}
-function finish(){G.state='done';const kind=G.kind;let html;
-  if(kind==='tuk'){const net=G.fares-G.fuel,ok=net>=25000;
-    html='<h2>'+(ok?'A good day on the road':'A hard day on the road')+'</h2><div class="sub">Tuk-tuk driver, 3 minutes</div><div class="big">'+fmt(net)+' SDG</div><div class="res"><span>Trips</span><span>'+G.trips+'</span><span>Fares</span><span>'+fmt(G.fares)+'</span><span>Fuel bought'+(G.nino?' (El Niño prices)':'')+'</span><span>−'+fmt(G.fuel)+'</span><span>Goal: 25,000 SDG</span><span class="'+(ok?'ok':'no')+'">'+(ok?'Met':'Not met')+'</span></div>'}
+function finish(why){G.state='done';const kind=G.kind;let html;
+  if(kind==='tuk'){G.fuel=Math.round((100-G.tank)*50*(G.nino?1.35:1)/10)*10;const net=G.fares-G.fuel,ok=net>=25000;
+    if(why==='fuel'){const n=K.FUEL.n||4;html='<h2>Stuck in the fuel queue</h2><div class="sub">Tuk-tuk driver, after '+(()=>{const e=Math.round(180-G.time);return e<60?e+' seconds':Math.floor(e/60)+' min '+String(e%60).padStart(2,'0')+' s'})()+' on the road</div><p>You joined the back of a queue of '+n+' vehicles. The pumps run dry often, and the line barely moves. Drivers can wait for hours, sometimes overnight, and every hour in the queue is an hour without fares'+(G.nino?'. In this El Niño year the queue is even longer and fuel costs more':'')+'.</p><p>For most drivers the hardest part of the day is not finding passengers. It is finding fuel.</p><div class="big">'+fmt(net)+' SDG</div><div class="res"><span>Trips</span><span>'+G.trips+'</span><span>Fares</span><span>'+fmt(G.fares)+'</span><span>Fuel used, paid at the pump</span><span>\u2212'+fmt(G.fuel)+'</span><span>Goal: 25,000 SDG</span><span class="'+(ok?'ok':'no')+'">'+(ok?'Met':'Not met')+'</span></div>'}else
+    html='<h2>'+(ok?'A good day on the road':'A hard day on the road')+'</h2><div class="sub">Tuk-tuk driver, 3 minutes</div><div class="big">'+fmt(net)+' SDG</div><div class="res"><span>Trips</span><span>'+G.trips+'</span><span>Fares</span><span>'+fmt(G.fares)+'</span><span>Fuel used'+(G.nino?' (El Niño prices)':'')+'</span><span>−'+fmt(G.fuel)+'</span><span>Goal: 25,000 SDG</span><span class="'+(ok?'ok':'no')+'">'+(ok?'Met':'Not met')+'</span></div>'}
   else{const brl=G.sold/11,ok=brl>=4;
     html='<h2>'+(ok?'Four barrels sold':'Not enough water sold')+'</h2><div class="sub">Donkey water seller, 3 minutes</div><div class="big">'+fmt(G.money)+' SDG</div><div class="res"><span>Jerrycans sold</span><span>'+G.sold+'</span><span>Barrels</span><span>'+brl.toFixed(1)+'</span><span>Goal: 4 barrels</span><span class="'+(ok?'ok':'no')+'">'+(ok?'Met':'Not met')+'</span></div>'+
       (K.safeWater('idp')?'<p>Families at the IDP site now get free clean water from the borehole, so fewer bought from you. Cleaner water for everyone means less income for water sellers, unless they find other work.</p>':'<p>With no safe water at the IDP site, families there had to buy from carts like yours, often untreated river water.</p>')}
@@ -357,8 +358,8 @@ function stepGame(dt){
   if(veh.legs){veh.phase=(veh.phase||0)+moved*7;veh.legs.forEach((lg,j)=>lg.rotation.x=moved>1e-4?Math.sin(veh.phase+(j%2?Math.PI:0)+(j>1?Math.PI/2:0))*.5:0)}
   else veh.g.rotation.z=moved>1e-4?Math.sin(performance.now()/60)*.01:0;
   const slow=Math.abs(G.spd)<.7;
-  if(G.kind==='tuk'){G.tank=Math.max(0,G.tank-moved*.34);
-    {const e=K.FUEL.end,de=Math.hypot(e.x-G.x,e.z-G.z);if(de>3)G.qDone=false;if(!G.qDone&&de<2&&slow&&G.tank<70){G.state='queue';G.qWait=G.nino?16:10;toast('You join the back of the fuel queue.')}}
+  if(G.kind==='tuk'){G.tank=Math.max(0,G.tank-moved*.2);
+    {const e=K.FUEL.end,de=Math.hypot(e.x-G.x,e.z-G.z);if(de>3)G.qDone=false;if(de<2.2&&slow&&G.tank<70){finish('fuel');return}}
     for(const p of G.pass){p.wave+=dt*6;p.f.armR.rotation.x=-2.6+Math.sin(p.wave)*.4;p.f.g.rotation.y=Math.atan2(G.x-p.f.g.position.x,G.z-p.f.g.position.z)}
     if(!G.ride){const p=G.pass.find(p=>Math.hypot(STOPS[p.from].x-G.x,STOPS[p.from].z-G.z)<1.9);if(p&&slow){G.ride=p;G.pass=G.pass.filter(q=>q!==p);p.f.g.parent.remove(p.f.g);p.pin.show=false;p.pin.el.remove();gpins=gpins.filter(q=>q!==p.pin);veh.pass.g.visible=true;
         toast((p.kind==='chair'?'A passenger who uses a wheelchair':(p.kind==='sick'?'A sick passenger':'A passenger'))+' gets in. To '+STOPS[p.to].n+'.');G.sinceSpawn=0}}
