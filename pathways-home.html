@@ -640,7 +640,7 @@ body.immersive .site-header{position:fixed}
 </div></div>
 <script>
 (function(){
-  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 305034},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
+  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 314687},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
   var t0=performance.now(),got={},raw=0,xfer=0,first=null,last=null,done=false;
   var nc=navigator.connection||{},guess=nc.downlink?nc.downlink:null;
   function fileOf(n){for(var f in FILES)if(n.split('?')[0].slice(-f.length)===f)return f;return null}
@@ -1240,6 +1240,30 @@ function buildWorld(){
   W3.power=makePower();
   buildLabels();buildLife();
 }
+const SITES=[];
+function hardHat(b){const hm=new THREE.Mesh(new THREE.SphereGeometry(.085,8,5,0,Math.PI*2,0,Math.PI/2),mat('#f2c94c'));hm.position.set(0,.78,0);b.body.add(hm);mesh(new THREE.CylinderGeometry(.11,.11,.012,10),mat('#f2c94c'),0,.785,0,b.body)}
+function makeSite(parent,o){
+  const g=new THREE.Group();parent.add(g);const w=o.w,d=o.d,pole=mat('#a4741c'),S0={g,w,d,workers:[],slab:null,walls:null,poles:null};
+  if(o.slab)S0.slab=mesh(new THREE.BoxGeometry(w+.3,.12,d+.3),mat('#bdb6aa'),0,.06,0,g);
+  if(o.walls){S0.walls=new THREE.Group();g.add(S0.walls);const wm=mat(o.walls);
+    mesh(new THREE.BoxGeometry(w,.55,.12),wm,0,.4,d/2-.06,S0.walls);mesh(new THREE.BoxGeometry(w,.4,.12),wm,0,.32,-d/2+.06,S0.walls);mesh(new THREE.BoxGeometry(.12,.5,d),wm,-w/2+.06,.37,0,S0.walls);mesh(new THREE.BoxGeometry(.12,.3,d),wm,w/2-.06,.27,0,S0.walls);
+    for(let i=0;i<5;i++)mesh(new THREE.BoxGeometry(.22,.1,.12),mat('#b8433a'),-w/2+.3+i*.25,.72,d/2-.06,S0.walls)}
+  if(o.poles!==false){S0.poles=new THREE.Group();g.add(S0.poles);const px=w/2+.25,pz=d/2+.25,hh=o.ph||1.6;
+    for(const x of [-px,0,px])for(const z of [-pz,pz])mesh(new THREE.BoxGeometry(.06,hh,.06),pole,x,hh/2,z,S0.poles);
+    for(const z of [-pz,pz]){mesh(new THREE.BoxGeometry(w+.6,.05,.05),pole,0,hh*.55,z,S0.poles);mesh(new THREE.BoxGeometry(w+.6,.05,.22),mat('#8a6a48'),0,hh*.55+.03,z,S0.poles)}}
+  if(o.props!==false){const pr=new THREE.Group();g.add(pr);
+    for(let i=0;i<6;i++)mesh(new THREE.BoxGeometry(.2,.09,.11),mat('#b8433a'),w/2+.75+(i%3)*.21,.05+Math.floor(i/3)*.1,d/2+.55,pr);
+    const wb=new THREE.Group();wb.position.set(-w/2-.75,0,d/2+.7);wb.rotation.y=.6;pr.add(wb);mesh(new THREE.BoxGeometry(.32,.14,.5),mat('#6c6f75'),0,.24,0,wb);const wh=mesh(new THREE.CylinderGeometry(.09,.09,.05,10),mat('#333'),0,.1,.28,wb);wh.rotation.z=Math.PI/2;
+    const mx=new THREE.Group();mx.position.set(-w/2-.85,0,-d/2-.35);pr.add(mx);const dr=mesh(new THREE.CylinderGeometry(.2,.26,.42,10),mat('#e07a3a'),0,.48,0,mx);dr.rotation.z=.6;S0.drum=dr;for(const sx of [-1,1])mesh(new THREE.BoxGeometry(.04,.32,.04),mat('#555'),sx*.15,.16,0,mx)}
+  (o.workers||[]).forEach(([x,z,ry,role,y],k)=>{const b=makeBody(1500+SITES.length*7+k,{woman:false,cloth:k%2?'#e07a3a':'#3f6fb0',parent:g,scale:1.05});hardHat(b);b.g.position.set(x,y||0,z);b.g.rotation.y=ry;
+    let tool=null;if(role==='hammer'){tool=new THREE.Group();b.armR.add(tool);tool.position.set(0,-.25,0);mesh(new THREE.CylinderGeometry(.012,.012,.22,4),mat('#7a5a3c'),0,-.06,.05,tool).rotation.x=1.3;mesh(new THREE.BoxGeometry(.06,.05,.05),mat('#555'),0,-.08,.15,tool)}
+    if(role==='dig'){const hoe=makeHoe(b.armR);hoe.visible=true}
+    let load=null;if(role==='carry'){load=mesh(new THREE.BoxGeometry(.24,.1,.14),mat('#b8433a'),0,.92,0,b.body)}
+    const W0={...b,role,x0:x,z0:z,ry,load,ph:R(k+SITES.length)*6};S0.workers.push(W0);
+    TIPS.push({o:b.g,dy:.95,vis:()=>g.visible&&b.g.visible,tip:()=>'<b>Builder at work</b>'+({hammer:'Fixing the walls and frames.',carry:'Carrying bricks from the pile.',mix:'Mixing concrete.',dig:'Digging out silt by hand.'})[role]+'<small>Local workers hired for the build earn a wage too.</small>'})});
+  SITES.push(S0);return S0}
+function stageOf(id){const q=S.pending.find(q=>q.id===id);if(!q)return S.sel.includes(id)?0:null;const el=S.season-q.from,lag=CARD[id].lag;return lag<=1?2:(el>=lag?2:1)}
+function showSite(site,st,obj,opt={}){site.g.visible=st!==null;if(st===null)return;if(site.slab)site.slab.visible=st<2;if(site.walls)site.walls.visible=st===1;if(obj&&opt.full!==false)obj.full.visible=st===2;}
 function makeBorehole(){
   const g=new THREE.Group();scene.add(g);const full=new THREE.Group(),scaf=new THREE.Group();g.add(full,scaf);
   const steel=mat('#5d6168',{roughness:.6}),tankM=mat('#3e7fc2',{roughness:.55,unique:true});
@@ -1253,7 +1277,8 @@ function makeBorehole(){
   // drilling rig scaffold
   const pole=mat('#a4741c');[[-.6,-.6],[.6,-.6],[0,.6]].forEach(([a,b])=>{const m=mesh(new THREE.BoxGeometry(.08,2.6,.08),pole,a*.5,1.25,b*.5,scaf);m.rotation.z=-a*.18;m.rotation.x=b*.18});
   mesh(new THREE.CylinderGeometry(.06,.06,.6,6),mat('#555'),0,.3,0,scaf);mesh(new THREE.BoxGeometry(1.6,.5,.9),mat('#d9a521'),1.1,.25,.3,scaf);
-  return{g,full,scaf,tankM}}
+  const site=makeSite(g,{w:2.2,d:1.6,slab:true,walls:null,poles:false,workers:[[-.2,1.15,Math.PI,'hammer'],[1.6,1.2,-Math.PI/2,'carry'],[-1.5,-.4,Math.PI/2,'mix']]});
+  return{g,full,scaf,tankM,site}}
 function makeSchool(){
   const g=new THREE.Group();scene.add(g);const full=new THREE.Group(),scaf=new THREE.Group();g.add(full,scaf);
   const wm=mat('#f0e2c4',{unique:true}),roofM=mat('#c25a1c',{unique:true});
@@ -1263,8 +1288,9 @@ function makeSchool(){
   mesh(new THREE.BoxGeometry(.05,1.5,.05),mat('#777'),-1.6,.75,.9,full);mesh(new THREE.BoxGeometry(.5,.3,.03),mat('#c25a1c'),-1.33,1.35,.9,full);
   const half=mesh(new THREE.BoxGeometry(2.8,.4,1.3),mat('#d9c3a0'),0,.2,0,scaf);
   const pole=mat('#a4741c');for(const a of [-1.5,-.5,.5,1.5])for(const b of [-.75,.75])mesh(new THREE.BoxGeometry(.06,1.4,.06),pole,a,.7,b,scaf);
-  for(const b of [-.75,.75])mesh(new THREE.BoxGeometry(3.1,.06,.06),pole,0,1.2,b,scaf);
-  return{g,full,scaf,wm,roofM,r1,r2}}
+  for(const b of [-.75,.75])mesh(new THREE.BoxGeometry(3.1,.06,.06),pole,0,1.2,b,scaf);scaf.visible=false;
+  const site=makeSite(g,{w:2.8,d:1.3,slab:true,walls:'#e8dcc4',workers:[[.3,1.05,Math.PI,'hammer'],[2.2,1.1,-Math.PI/2,'carry'],[-2,-.3,Math.PI/2,'mix'],[-.9,.98,Math.PI,'hammer',.0]]});
+  return{g,full,scaf,wm,roofM,r1,r2,site}}
 
 function makePrimary(){
   const g=grp(P.primary.x,P.primary.z,0);obB(P.primary.x,P.primary.z,1.65,.8,0);
@@ -1276,14 +1302,17 @@ function makePrimary(){
   const broken=mesh(new THREE.BoxGeometry(1.6,.06,.9),mat('#8a9aa6'),-.8,1.25,.38,closed);broken.rotation.x=.4;broken.rotation.z=.12;
   mesh(new THREE.BoxGeometry(.05,1.7,.05),mat('#777'),-1.9,.85,-1.2,full);W3.pflag=mesh(new THREE.BoxGeometry(.55,.32,.03),mat('#1d5fae'),-1.6,1.5,-1.2,full);
   const pole=mat('#a4741c');for(const a of [-1.6,0,1.6])for(const b of [-.85,.85])mesh(new THREE.BoxGeometry(.06,1.55,.06),pole,a,.78,b,scaf);for(const b of [-.85,.85])mesh(new THREE.BoxGeometry(3.4,.06,.06),pole,0,1.3,b,scaf);
-  return{g,full,closed,scaf}}
+  scaf.visible=false;const site=makeSite(g,{w:3.2,d:1.5,poles:true,ph:1.5,workers:[[-.6,1.2,Math.PI,'hammer'],[1.0,1.2,Math.PI,'hammer'],[2.6,1.0,-Math.PI/2,'carry'],[-2.4,-.2,Math.PI/2,'mix']]});
+  return{g,full,closed,scaf,site}}
 function makeDam(){
   const x=DAMX,zc=zr(x),g=new THREE.Group();g.position.set(x,0,zc);g.rotation.y=-Math.atan(.225*Math.cos(x*.15));scene.add(g);
   const full=new THREE.Group(),scaf=new THREE.Group(),broken=new THREE.Group();g.add(full,scaf,broken);const conc=mat('#b9b6ad'),dark=mat('#6f747a'),old=mat('#a39f94');
   // damaged dam: whole wall, cracks and a small leak
   mesh(new THREE.BoxGeometry(1.1,1.3,7.2),old,0,-.25,0,broken);mesh(new THREE.BoxGeometry(1.2,.07,7.3),dark,0,.42,0,broken);
   [[.3,.5,.1],[-1.1,.7,-.5],[1.6,.6,.45],[-2.4,.5,.3],[2.7,.45,-.4]].forEach(([z,l,r])=>{const c=mesh(new THREE.BoxGeometry(.02,l,.035),mat('#3d3a35'),.57,.05,z,broken);c.rotation.x=r;const c2=mesh(new THREE.BoxGeometry(.02,l*.5,.03),mat('#3d3a35'),.57,.05+l*.35,z+Math.sin(r)*l*.3,broken);c2.rotation.x=-r*1.6});
-  for(const sz of [-1,1])mesh(new THREE.BoxGeometry(.5,.55,.7),mat('#5d6168'),.62,-.05,sz*.95,broken);
+  for(const sz of [-1,1]){mesh(new THREE.BoxGeometry(.5,.55,.7),mat('#8a5a3a'),.62,-.05,sz*.95,broken);mesh(new THREE.BoxGeometry(.52,.06,.74),mat('#5d6168'),.62,.24,sz*.95,broken);mesh(new THREE.BoxGeometry(.52,.06,.74),mat('#5d6168'),.62,-.32,sz*.95,broken)}
+  [[.58,.2,-2.0,.3,.18],[.58,-.1,2.3,.22,.26],[.58,.28,1.1,.18,.14],[.58,-.3,-3.0,.26,.2]].forEach(([x,y,z,w,hh])=>mesh(new THREE.BoxGeometry(.03,hh,w),mat('#d8d4ca'),x,y,z,broken));
+  [[1.0,-.42,-1.6],[1.1,-.45,2.0],[.9,-.44,.9]].forEach(([x,y,z],i)=>{const r=mesh(new THREE.DodecahedronGeometry(.13+i*.03,0),mat('#a39f94'),x,y,z,broken);r.rotation.set(i,i*2,0)});
   const leak=mesh(new THREE.BoxGeometry(.05,.6,.22),mat('#6fa7d6',{transparent:true,opacity:.8}),.6,-.25,.3,broken);leak.castShadow=false;
   mesh(new THREE.CylinderGeometry(.22,.3,.04,10),mat('#8fb9dc',{transparent:true,opacity:.6}),.95,-.3,.3,broken);
   mesh(new THREE.BoxGeometry(1.1,1.3,7.2),conc,0,-.25,0,full);mesh(new THREE.BoxGeometry(1.3,.08,7.4),dark,0,.42,0,full);
@@ -1296,7 +1325,8 @@ function makeDam(){
   const rgeo=new THREE.PlaneGeometry(W/2+DAMX+.4,16,1,1);rgeo.rotateX(-Math.PI/2);const res=new THREE.Mesh(rgeo,mat('#4c8ec4',{transparent:true,opacity:.86,roughness:.2,unique:true}));
   res.position.set((-W/2+DAMX)/2-.2,-.08,zr(-34));res.receiveShadow=true;scene.add(res);res.visible=false;
   TIPS.push({o:g,dy:1,tip:()=>S.built.dam!==undefined?'<b>Repaired dam</b>The reservoir stores water for irrigation and holds back flood peaks.':'<b>Damaged dam</b><span class="ts acute">Needs repair</span>The wall broke years ago. The river runs straight through, so it gives no flood protection and stores no water.'});
-  return{g,full,scaf,broken,res}}
+  const site=makeSite(g,{w:1.0,d:6.4,poles:false,props:false,workers:[[0,-2.2,Math.PI/2,'hammer',.46],[0,.6,Math.PI/2,'hammer',.46],[0,2.6,-Math.PI/2,'carry',.46]]});
+  return{g,full,scaf,broken,res,site}}
 function makePower(){
   const g=new THREE.Group();scene.add(g);const full=new THREE.Group(),scaf=new THREE.Group();g.add(full,scaf);const steel=mat('#6c6f75'),panel=mat('#20406d',{roughness:.35});
   const fx=P.solar.x,fz=P.solar.z;
@@ -1313,7 +1343,10 @@ function makePower(){
   // drops to the clinic, office and market
   for(const q of [P.clinic,P.office,P.market]){const z=roadZ(q.x)+1.2;const near=tops.reduce((a,b)=>Math.abs(b.x-q.x)<Math.abs(a.x-q.x)?b:a,tops[0]);
     full.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([near,new THREE.Vector3(q.x,h(q.x,q.z)+1.2,q.z+(q.z<z?.9:-.6))]),new THREE.LineBasicMaterial({color:'#2b2b2b'})))}
-  return{g,full,scaf,bulbs}}
+  const site=makeSite(g,{w:5,d:3.6,poles:false,workers:[]});site.g.position.set(fx,h(fx,fz),fz);
+  [[-1.2,-.8,0,'hammer'],[1.0,.9,Math.PI,'carry'],[2.6,-.2,-Math.PI/2,'hammer']].forEach(([x,z,ry,role],k)=>{});
+  const site2=makeSite(scene,{w:4.8,d:3.4,poles:false,props:true,workers:[[-1.6,-1.6,.3,'hammer'],[0.8,1.6,Math.PI,'carry'],[2.8,-.4,-Math.PI/2,'hammer']]});site2.g.position.set(fx,h(fx,fz),fz);site.g.visible=false;
+  return{g,full,scaf,bulbs,site:site2}}
 function beam(a,b,r,m,parent){const d=new THREE.Vector3().subVectors(b,a),L=d.length();const o=mesh(new THREE.CylinderGeometry(r,r,L,5),m,(a.x+b.x)/2,(a.y+b.y)/2,(a.z+b.z)/2,parent);o.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());return o}
 function makeHafir(){
   const x=P.hafir.x,z=P.hafir.z,g=grp(x,z,.2);obB(x,z,3.2,2.2,.2);const earth=mat('#a07a50'),silt=mat('#8a6a48');
@@ -1327,7 +1360,8 @@ function makeHafir(){
   const goats=[];for(let k=0;k<4;k++){const gt=new THREE.Group();const a=k*1.4+.6;gt.position.set(Math.cos(a)*2.9,.05,Math.sin(a)*1.85);gt.rotation.y=-a+Math.PI/2;g.add(gt);const col=mat(k%2?'#f1ebe0':'#4a3a2e');
     mesh(new THREE.BoxGeometry(.18,.13,.32),col,0,.24,0,gt);mesh(new THREE.BoxGeometry(.1,.1,.14),col,0,.27,.2,gt).rotation.x=.6;for(const [lx,lz] of [[-.06,-.11],[.06,-.11],[-.06,.11],[.06,.11]])mesh(new THREE.CylinderGeometry(.018,.018,.18,4),col,lx,.09,lz,gt);goats.push(gt)}
   TIPS.push({o:g,dy:.8,tip:()=>S.built.hafir!==undefined?'<b>Hafir</b><span class="ts self">Holding water</span>A dug pond that catches rainwater. Herders and farmers use it for livestock and small gardens through the dry months.':'<b>Hafir</b><span class="ts acute">Silted up</span>A dug pond that should catch rainwater for livestock and gardens. Years of silt mean it now stays dry.'});
-  return{g,water,silt:siltM,scaf,goats}}
+  const site=makeSite(g,{w:4.4,d:2.6,poles:false,props:false,workers:[[-1.0,.2,.4,'dig'],[.6,-.4,-.6,'dig'],[1.6,.5,2.4,'dig'],[3.0,1.2,-2.2,'carry']]});
+  return{g,water,silt:siltM,scaf,goats,site}}
 function makeDonkey(){
   const g=new THREE.Group();scene.add(g);const fur=mat('#8c8279'),dark=mat('#4a4440'),wood=mat('#8a6a48');
   const d=new THREE.Group();d.position.z=.55;g.add(d);
@@ -1353,7 +1387,8 @@ function makeTower(){
   mesh(new THREE.CylinderGeometry(.03,.03,1,5),steel,0,H+.4,0,full);const lamp=mesh(new THREE.SphereGeometry(.1,8,6),mat('#ff3b30',{emissive:'#ff2010',emissiveIntensity:1,unique:true}),0,H+.95,0,full);
   mesh(new THREE.BoxGeometry(1,.75,.8),mat('#e4e1d8'),1.6,.38,.3,full);
   mesh(new THREE.BoxGeometry(.1,4.2,.1),mat('#d9a521'),1.4,2.1,-.9,scaf);mesh(new THREE.BoxGeometry(2.6,.1,.1),mat('#d9a521'),.4,4.2,-.9,scaf);
-  return{g,full,scaf,lamp}}
+  const site=makeSite(g,{w:1.9,d:1.9,poles:false,workers:[[1.4,1.3,-2.4,'carry'],[-1.3,.9,2.2,'hammer'],[0,-1.5,0,'mix']]});
+  return{g,full,scaf,lamp,site}}
 
 /* labels */
 const LB={};
@@ -1454,9 +1489,18 @@ function walk(p,dt,speed){
   if(p.vs>speed*.45&&mv>1e-4){const hx=p.pos.x-ox,hz=p.pos.y-oz;const want=Math.atan2(hx,hz);let da=want-p.g.rotation.y;da=Math.atan2(Math.sin(da),Math.cos(da));p.g.rotation.y+=da*Math.min(1,dt*7);p.phase+=dt*p.vs*9;return'moving'}return'still'}
 function animWalk(b,moving,t,armRFree=true){const sw=moving?Math.sin(b.phase):0;b.legL.rotation.x=sw*.55;b.legR.rotation.x=-sw*.55;b.armL.rotation.x=-sw*.45;if(armRFree)b.armR.rotation.x=sw*.45;
   b.body.position.y=moving?Math.abs(Math.cos(b.phase))*.02:Math.sin(t*1.3+b.i)*.004;b.body.rotation.y=moving?0:Math.sin(t*.35+b.i*1.7)*.28}
-function separate(){const n=PEOPLE.length,R2=.34;for(let a=0;a<n;a++){const A=PEOPLE[a].pos;for(let b=a+1;b<n;b++){const B=PEOPLE[b].pos,dx=B.x-A.x,dz=B.y-A.y;if(dx>R2||dx<-R2||dz>R2||dz<-R2)continue;const d=Math.hypot(dx,dz);if(d<R2){const k=(R2-Math.max(d,.01))/2,ux=d>1e-3?dx/d:1,uz=d>1e-3?dz/d:0;A.x-=ux*k;A.y-=uz*k;B.x+=ux*k;B.y+=uz*k}}}for(const p of PEOPLE)pushOut(p.pos)}
+const EXTRA=[];const WV=new THREE.Vector3();
+function collectExtras(){EXTRA.length=0;const addO=(o,r,who)=>{if(!o.visible)return;let pv=o.parent;while(pv){if(!pv.visible)return;pv=pv.parent}o.getWorldPosition(WV);EXTRA.push({x:WV.x,z:WV.z,r,who})};
+  for(const c of LIFE.carriers||[])addO(c.g,.24,c);for(const d of LIFE.donkeys||[]){if(!d.g.visible)continue;const f=d.g.rotation.y;addO(d.g,.45,d);EXTRA.push({x:d.g.position.x+Math.sin(f)*.65,z:d.g.position.z+Math.cos(f)*.65,r:.32,who:d});addO(d.man.g,.24,d)}
+  for(const c of LIFE.cross||[])addO(c.g,.24,c);for(const k of LIFE.kids||[])addO(k.g,.22,k);for(const q of LIFE.queue||[])addO(q.g,.22,q);for(const q of LIFE.prot||[])addO(q.g,.24,q);
+  for(const f of LIFE.farmers||[])addO(f.g,.24,f);for(const St of SITES)for(const w of St.workers)addO(w.g,.24,St)}
+function blockedAhead(x,z,dx,dz,self,rad=.55){const L=Math.hypot(dx,dz)||1,ux=dx/L,uz=dz/L;
+  const hit=(px,pz,r)=>{const vx=px-x,vz=pz-z,along=vx*ux+vz*uz;if(along<=.05||along>rad+r)return false;const side=Math.abs(vx*uz-vz*ux);return side<r+.18};
+  for(const p of PEOPLE)if(hit(p.pos.x,p.pos.y,.2))return true;for(const e of EXTRA)if(e.who!==self&&hit(e.x,e.z,e.r))return true;return false}
+function separate(){const n=PEOPLE.length,R2=.34;
+  for(const p of PEOPLE)for(const e of EXTRA){const dx=p.pos.x-e.x,dz=p.pos.y-e.z,rr=e.r+.17;if(dx>rr||dx<-rr||dz>rr||dz<-rr)continue;const d=Math.hypot(dx,dz);if(d<rr){const ux=d>1e-3?dx/d:1,uz=d>1e-3?dz/d:0;p.pos.x=e.x+ux*rr;p.pos.y=e.z+uz*rr}}for(let a=0;a<n;a++){const A=PEOPLE[a].pos;for(let b=a+1;b<n;b++){const B=PEOPLE[b].pos,dx=B.x-A.x,dz=B.y-A.y;if(dx>R2||dx<-R2||dz>R2||dz<-R2)continue;const d=Math.hypot(dx,dz);if(d<R2){const k=(R2-Math.max(d,.01))/2,ux=d>1e-3?dx/d:1,uz=d>1e-3?dz/d:0;A.x-=ux*k;A.y-=uz*k;B.x+=ux*k;B.y+=uz*k}}}for(const p of PEOPLE)pushOut(p.pos)}
 function updatePeople(dt,t){
-  if(dt>0)separate();
+  if(dt>0){collectExtras();separate()}
   for(const p of PEOPLE){let moving=false;
     if(p.wait>0)p.wait-=dt;else{if(!p.target)p.target=pickTarget(p);
       const r=walk(p,dt,SPEED[p.status]);
@@ -1523,12 +1567,12 @@ function buildLife(){
   // a steady line of women walking to the old well
   LIFE.carriers=[];const segL=[];let tot=0;for(let i=0;i<WPATH.length-1;i++){const l=Math.hypot(WPATH[i+1][0]-WPATH[i][0],WPATH[i+1][1]-WPATH[i][1]);segL.push(l);tot+=l}LIFE.pathL=tot;LIFE.segL=segL;
   for(let k=0;k<9;k++){const b=makeBody(1100+k,{woman:true});const can=mesh(geo.can,mat('#e2b632'),0,-.26,0,b.armR);const head=mesh(geo.can,mat('#e2b632'),0,.9,0,b.body);head.visible=false;
-    const Cw={...b,can,head,u:k/9,dir:k%2?1:-1,wait:0,lane:(R(k+70)-.5)*.3,speed:.42+R(k+71)*.1};LIFE.carriers.push(Cw);
+    const Cw={...b,can,head,u:k/9,dir:k%2?1:-1,wait:0,lane:.3,blockT:0,speed:.42+R(k+71)*.1};LIFE.carriers.push(Cw);
     TIPS.push({o:b.g,dy:.95,vis:()=>b.g.visible,tip:()=>Cw.dir>0?'<b>Woman fetching water</b><span class="ts acute">No safe water nearby</span>Walking about 5 km to the old well with an empty jerrycan. The trip takes hours, often twice a day.':'<b>Woman fetching water</b><span class="ts acute">No safe water nearby</span>Carrying 20 litres back from the old well on her head.'})}
   // donkey carts selling water
   const DP=[[[12.2,10.9],[12.2,-2.6],[0.5,-2.1]],[[12.2,10.9],[12.2,-2.6],[0.5,-2.1]],[[26.6,8.4],[26.6,-8.6],[23.6,-9.6]]];
   LIFE.donkeys=DP.map((path,k)=>{const D=makeDonkey();const lens=[];let L=0;for(let i=0;i<path.length-1;i++){const l=Math.hypot(path[i+1][0]-path[i][0],path[i+1][1]-path[i][1]);lens.push(l);L+=l}
-    const man=makeBody(1300+k,{woman:false});const Dn={...D,man,path,lens,L,u:k===1?.55:(k?.3:.1),dir:k===1?-1:1,wait:0,speed:.55,phase:k};
+    const man=makeBody(1300+k,{woman:false});const Dn={...D,man,path,lens,L,u:k===1?.55:(k?.3:.1),dir:k===1?-1:1,wait:0,speed:.55,phase:k,blockT:0};
     TIPS.push({o:D.g,dy:.9,vis:()=>D.g.visible,tip:()=>'<b>Water seller with a donkey cart</b><span class="ts aid">Costly water</span>'+(Dn.dir>0?'Taking a barrel of river water to sell by the jerrycan. Poor families pay more for water than anyone else.':'Heading back to the river to refill the barrel.')});
     TIPS.push({o:man.g,dy:.95,vis:()=>D.g.visible,tip:()=>'<b>Water seller</b>Leads the donkey cart between the river and the settlements.'});return Dn});
   // farmers on the far bank
@@ -1586,15 +1630,26 @@ function updateLife(dt,t){
   for(const Q of LIFE.queue){if(!Q.g.visible)continue;Q.body.rotation.y=Math.sin(t*.5+Q.k)*.15;Q.armL.rotation.x=Q.armR.rotation.x=-.15+Math.sin(t*.8+Q.k)*.05}
   // water carriers along the footpath
   for(const Cw of LIFE.carriers){if(!Cw.g.visible)continue;
-    if(Cw.wait>0){Cw.wait-=dt;animWalk(Cw,false,t,false)}else{Cw.u+=Cw.dir*Cw.speed*dt/LIFE.pathL;if(Cw.u>=1){Cw.u=1;Cw.dir=-1;Cw.wait=3+rand()*2}else if(Cw.u<=0){Cw.u=0;Cw.dir=1;Cw.wait=3+rand()*3}Cw.phase+=dt*Cw.speed*9;animWalk(Cw,true,t,false)}
+    let cblk=false;{const gx=Cw.g.position.x,gz=Cw.g.position.z,f=Cw.g.rotation.y;cblk=Cw.wait<=0&&Cw.blockT<4&&blockedAhead(gx,gz,Math.sin(f),Math.cos(f),Cw);Cw.blockT=cblk?Cw.blockT+dt:Math.max(0,Cw.blockT-dt*2)}
+    if(Cw.wait>0||cblk){if(Cw.wait>0)Cw.wait-=dt;animWalk(Cw,false,t,false)}else{Cw.u+=Cw.dir*Cw.speed*dt/LIFE.pathL;if(Cw.u>=1){Cw.u=1;Cw.dir=-1;Cw.wait=3+rand()*2}else if(Cw.u<=0){Cw.u=0;Cw.dir=1;Cw.wait=3+rand()*3}Cw.phase+=dt*Cw.speed*9;animWalk(Cw,true,t,false)}
     let d=Cw.u*LIFE.pathL,i=0;while(i<LIFE.segL.length-1&&d>LIFE.segL[i]){d-=LIFE.segL[i];i++}const a=WPATH[i],b=WPATH[i+1],f=Math.min(1,d/LIFE.segL[i]);const dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz);
     const ox=-dz/L*Cw.lane*Cw.dir,oz=dx/L*Cw.lane*Cw.dir,x=a[0]+dx*f+ox,z=a[1]+dz*f+oz;Cw.g.position.set(x,h(x,z),z);Cw.g.rotation.y=Math.atan2(dx*Cw.dir,dz*Cw.dir);
     const full=Cw.dir<0;Cw.head.visible=full;Cw.can.visible=!full;Cw.armR.rotation.x=0;if(full){Cw.armL.rotation.x=-2.9;Cw.armL.rotation.z=.25}else Cw.armL.rotation.z=0}
+  // builders
+  for(const St of SITES){if(!St.g.visible)continue;let pv=St.g.parent,ok=true;while(pv){if(!pv.visible){ok=false;break}pv=pv.parent}if(!ok)continue;
+    if(St.drum)St.drum.rotation.y+=dt*3;
+    for(const Wk of St.workers){const s1=Math.sin(t*6+Wk.ph);
+      if(Wk.role==='hammer'){Wk.armR.rotation.x=-1.5+s1*.6;Wk.armL.rotation.x=-.5;Wk.body.rotation.x=.12;animWalk(Wk,false,t,false)}
+      else if(Wk.role==='mix'){Wk.armR.rotation.x=Wk.armL.rotation.x=-.9+Math.sin(t*2.5+Wk.ph)*.4;animWalk(Wk,false,t,false)}
+      else if(Wk.role==='dig'){const sw=Math.sin(t*3+Wk.ph);Wk.body.rotation.x=.45;Wk.armR.rotation.x=Wk.armL.rotation.x=-1+sw*.55}
+      else if(Wk.role==='carry'){const u=(Math.sin(t*.5+Wk.ph)+1)/2,ax=Wk.x0,az=Wk.z0,bx=ax*.45,bz=az*.45;Wk.g.position.x=ax+(bx-ax)*u;Wk.g.position.z=az+(bz-az)*u;const dir=Math.cos(t*.5+Wk.ph);
+        Wk.g.rotation.y=Math.atan2((bx-ax)*Math.sign(dir||1),(bz-az)*Math.sign(dir||1));Wk.phase+=dt*5;animWalk(Wk,Math.abs(dir)>.15,t,false);Wk.armR.rotation.x=Wk.armL.rotation.x=-2.8;Wk.load.visible=dir>0}}}
   // donkey carts
   for(const Dn of LIFE.donkeys||[]){Dn.man.g.visible=Dn.g.visible;if(!Dn.g.visible)continue;let mov=false;
-    if(Dn.wait>0)Dn.wait-=dt;else{Dn.u+=Dn.dir*Dn.speed*dt/Dn.L;mov=true;if(Dn.u>=1){Dn.u=1;Dn.dir=-1;Dn.wait=4+rand()*3}else if(Dn.u<=0){Dn.u=0;Dn.dir=1;Dn.wait=5+rand()*3}}
+    const dblk=Dn.wait<=0&&Dn.blockT<4&&blockedAhead(Dn.g.position.x+Math.sin(Dn.g.rotation.y)*.6,Dn.g.position.z+Math.cos(Dn.g.rotation.y)*.6,Math.sin(Dn.g.rotation.y),Math.cos(Dn.g.rotation.y),Dn,.7);Dn.blockT=dblk?Dn.blockT+dt:Math.max(0,Dn.blockT-dt*2);
+    if(Dn.wait>0||dblk){if(Dn.wait>0)Dn.wait-=dt}else{Dn.u+=Dn.dir*Dn.speed*dt/Dn.L;mov=true;if(Dn.u>=1){Dn.u=1;Dn.dir=-1;Dn.wait=4+rand()*3}else if(Dn.u<=0){Dn.u=0;Dn.dir=1;Dn.wait=5+rand()*3}}
     let d=Dn.u*Dn.L,i=0;while(i<Dn.lens.length-1&&d>Dn.lens[i]){d-=Dn.lens[i];i++}const a=Dn.path[i],b=Dn.path[i+1],f=Math.min(1,d/Dn.lens[i]),dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz);
-    const x=a[0]+dx*f,z=a[1]+dz*f,yaw=Math.atan2(dx*Dn.dir,dz*Dn.dir);Dn.g.position.set(x,h(x,z),z);Dn.g.rotation.y=yaw;
+    const lx=-dz/L*.55*Dn.dir,lz=dx/L*.55*Dn.dir,x=a[0]+dx*f+lx,z=a[1]+dz*f+lz,yaw=Math.atan2(dx*Dn.dir,dz*Dn.dir);Dn.g.position.set(x,h(x,z),z);Dn.g.rotation.y=yaw;
     Dn.phase+=mov?dt*7:0;Dn.legs.forEach((lg,j)=>lg.rotation.x=mov?Math.sin(Dn.phase+(j%2?Math.PI:0)+(j>1?Math.PI/2:0))*.5:0);
     const sx=Math.cos(yaw)*.5,sz=-Math.sin(yaw)*.5,mx=x+sx+Math.sin(yaw)*.7,mz=z+sz+Math.cos(yaw)*.7;Dn.man.g.position.set(mx,h(mx,mz),mz);Dn.man.g.rotation.y=yaw;Dn.man.phase+=mov?dt*6:0;animWalk(Dn.man,mov,t);Dn.man.armL.rotation.x=-.6}
   // far-bank farmers
@@ -1602,7 +1657,8 @@ function updateLife(dt,t){
   // bridge crossings (hidden in a flood)
   const flood=state.level>.05,x=BRIDGE.x,zc=zr(x),za=zc-5.6,zb=zc+7.4;
   for(const C of LIFE.cross){C.g.visible=!flood;if(flood)continue;
-    if(C.wait>0){C.wait-=dt;animWalk(C,false,t)}else{C.u+=C.dir*C.speed*dt;if(C.u>1||C.u<0){C.u=Math.max(0,Math.min(1,C.u));C.dir*=-1;C.wait=3+rand()*5}C.phase+=dt*6;animWalk(C,true,t)}
+    const xblk=C.wait<=0&&(C.blockT||0)<4&&blockedAhead(C.g.position.x,C.g.position.z,0,C.dir,C,.5);C.blockT=xblk?(C.blockT||0)+dt:Math.max(0,(C.blockT||0)-dt*2);
+    if(C.wait>0||xblk){if(C.wait>0)C.wait-=dt;animWalk(C,false,t)}else{C.u+=C.dir*C.speed*dt;if(C.u>1||C.u<0){C.u=Math.max(0,Math.min(1,C.u));C.dir*=-1;C.wait=3+rand()*5}C.phase+=dt*6;animWalk(C,true,t)}
     const z=za+(zb-za)*C.u,xx=x+(C.dir>0?.22:-.22)+.225*Math.cos(x*.15)*(z-zc)*0;const onB=Math.abs(z-zc)<2.3;C.g.position.set(xx,onB?BRIDGE.y+.03:h(xx,z),z);C.g.rotation.y=C.dir>0?0:Math.PI}
   // canoes
   for(const Cn of LIFE.canoes){Cn.x+=Cn.dir*Cn.speed*dt;if(Cn.x>Cn.x1){Cn.x=Cn.x1;Cn.dir=-1}if(Cn.x<Cn.x0){Cn.x=Cn.x0;Cn.dir=1}
@@ -1649,23 +1705,23 @@ function sync(){
   syncPeople();syncLife();
   const act=id=>S.active.includes(id),ev=S.lastEvent;
   // builds
-  const b=placeBuild(W3.bore,'borehole','borehole');W3.bore.tankM.color.set(b.dmg?'#8b9099':'#3e7fc2');
+  const b=placeBuild(W3.bore,'borehole','borehole');{const st=b.built?null:stageOf('borehole');showSite(W3.bore.site,b.site?st:null,W3.bore);W3.bore.scaf.visible=!b.built&&st!==2;}W3.bore.tankM.color.set(b.dmg?'#8b9099':'#3e7fc2');
   setL(LB.bore,!!b.site,li('borehole')+(b.built?(b.dmg?'Borehole damaged by flood':'Solar borehole'):(b.site?(b.pend.plan?'Planned, ready in season ':'Drilling, ready in season ')+(b.pend.due+1):'')));LB.bore.el.className='lbl3d '+(b.dmg?'alert':(b.built?'':'build'));
-  const sc=placeBuild(W3.school,'school','school');W3.school.wm.color.set(sc.dmg?'#a8916c':'#f0e2c4');W3.school.r1.visible=W3.school.r2.visible=!sc.dmg;
+  const sc=placeBuild(W3.school,'school','school');{const st=sc.built?null:stageOf('school');showSite(W3.school.site,sc.site?st:null,W3.school);W3.school.scaf.visible=false;}W3.school.wm.color.set(sc.dmg?'#a8916c':'#f0e2c4');W3.school.r1.visible=W3.school.r2.visible=!sc.dmg;
   setL(LB.school,!!sc.site,li('school')+(sc.built?(sc.dmg?'Vocational centre flooded':'Vocational education centre'):(sc.site?(sc.pend.plan?'Planned, ready in season ':'Rebuilding, ready in season ')+(sc.pend.due+1):'')));LB.school.el.className='lbl3d '+(sc.dmg?'alert':(sc.built?'':'build'));
   for(const k of ['A','B','C']){const used=(b.site===k)||(sc.site===k);W3.plots[k].visible=!used;setL(LB['plot'+k],!used,'<b>'+k+'</b> Plot '+k+(k==='A'?', floods':''))}
   // new builds: primary school, dam, power, tower
   const st3=id=>S.built[id]!==undefined?'built':((S.pending.some(q=>q.id===id)||S.sel.includes(id))?'pend':'none');
   const dueOf=id=>{const q=S.pending.find(q=>q.id===id);return q?q.due+1:S.season+CARD[id].lag+1};const planW=id=>S.sel.includes(id)&&!S.pending.some(q=>q.id===id)?'Planned':'';
-  {const k=st3('primary');W3.primary.full.visible=k==='built';W3.primary.closed.visible=k!=='built';W3.primary.scaf.visible=k==='pend';
+  {const k=st3('primary');W3.primary.full.visible=k==='built';W3.primary.closed.visible=k!=='built';W3.primary.scaf.visible=false;showSite(W3.primary.site,k==='built'?null:stageOf('primary'),null,{full:false});
     setL(LB.primary,true,(k!=='none'?li('primary'):'')+'Primary school'+(k==='built'?'<small>classes running</small>':(k==='pend'?'<small>'+(planW('primary')?'planned, ':'')+'reopens in season '+dueOf('primary')+'</small>':'<small>closed</small>')));LB.primary.el.className='lbl3d '+(k==='built'?'':(k==='pend'?'build':''))}
-  {const k=st3('dam');W3.dam.full.visible=k==='built';W3.dam.broken.visible=k!=='built';W3.dam.scaf.visible=k==='pend';W3.dam.res.visible=k==='built';
+  {const k=st3('dam');W3.dam.full.visible=k==='built';W3.dam.broken.visible=k!=='built';W3.dam.scaf.visible=k==='pend';W3.dam.res.visible=k==='built';showSite(W3.dam.site,k==='built'?null:stageOf('dam'),null,{full:false});
     setL(LB.dam,true,(k!=='none'?li('dam'):'')+(k==='built'?'Dam repaired<small>reservoir filling</small>':(k==='pend'?(planW('dam')?'Dam repair planned':'Dam under repair')+'<small>ready in season '+dueOf('dam')+'</small>':'Damaged dam<small>needs repair</small>')));LB.dam.el.className='lbl3d '+(k==='pend'?'build':(k==='none'?'alert':''))}
-  {const k=st3('power');W3.power.g.visible=k!=='none';W3.power.full.visible=k==='built';W3.power.scaf.visible=k==='pend';
+  {const k=st3('power');W3.power.g.visible=k!=='none';W3.power.full.visible=k==='built';W3.power.scaf.visible=k==='pend';showSite(W3.power.site,k==='built'?null:stageOf('power'),null,{full:false});
     setL(LB.power,k!=='none',li('power')+(k==='built'?'Solar mini-grid':(planW('power')?'Mini-grid planned':'Mini-grid under construction')+'<small>ready in season '+dueOf('power')+'</small>'));LB.power.el.className='lbl3d '+(k==='pend'?'build':'')}
-  {const k=st3('tower');W3.tower.g.visible=k!=='none';W3.tower.full.visible=k==='built';W3.tower.scaf.visible=k==='pend';
+  {const k=st3('tower');W3.tower.g.visible=k!=='none';W3.tower.full.visible=k==='built';W3.tower.scaf.visible=k==='pend';showSite(W3.tower.site,k==='built'?null:stageOf('tower'),null,{full:false});
     setL(LB.tower,k!=='none',li('tower')+(k==='built'?'Mobile phone tower':(planW('tower')?'Tower planned':'Tower under construction')+'<small>ready in season '+dueOf('tower')+'</small>'));LB.tower.el.className='lbl3d '+(k==='pend'?'build':'')}
-  {const k=st3('hafir');W3.hafir.water.visible=k==='built';W3.hafir.silt.visible=k!=='built';W3.hafir.scaf.visible=k==='pend';W3.hafir.goats.forEach(g=>g.visible=k==='built');
+  {const k=st3('hafir');W3.hafir.water.visible=k==='built';W3.hafir.silt.visible=k!=='built';W3.hafir.scaf.visible=k==='pend';showSite(W3.hafir.site,k==='built'?null:stageOf('hafir'),null,{full:false});W3.hafir.goats.forEach(g=>g.visible=k==='built');
     setL(LB.hafir,true,(k!=='none'?li('hafir'):'')+(k==='built'?'Hafir<small>holding rainwater</small>':(k==='pend'?(planW('hafir')?'Hafir desilting planned':'Desilting the hafir')+'<small>ready in season '+dueOf('hafir')+'</small>':'Hafir<small>silted up, dry</small>')));LB.hafir.el.className='lbl3d '+(k==='pend'?'build':(k==='none'?'alert':''))}
   LIFE.donkeys&&LIFE.donkeys.forEach((d,i)=>d.g.visible=i<(safeWater('idp')?1:3));
   state.power=S.built.power!==undefined;
@@ -1717,8 +1773,9 @@ function update(dt,t){
   if(W3.food.visible)obC(P.food.x,P.food.z,.95,DYN);
   if(W3.desk.visible)obB(P.desk.x,P.desk.z,.78,.58,.4,DYN);
   if(W3.hlp.visible)obB(P.hlp.x,P.hlp.z,.72,.85,-.3,DYN);
-  if(W3.bore.g.visible)obB(W3.bore.g.position.x+.1,W3.bore.g.position.z,1.15,.82,0,DYN);
-  if(W3.school.g.visible)obB(W3.school.g.position.x,W3.school.g.position.z,1.5,.72,0,DYN);
+  if(W3.bore.g.visible){const on=W3.bore.site.g.visible;obB(W3.bore.g.position.x+.1,W3.bore.g.position.z,on?2.2:1.15,on?1.6:.82,0,DYN)}
+  if(W3.school.g.visible){const on=W3.school.site.g.visible;obB(W3.school.g.position.x,W3.school.g.position.z,on?2.6:1.5,on?1.5:.72,0,DYN)}
+  if(W3.primary.site.g.visible)obB(P.primary.x,P.primary.z,2.6,1.5,0,DYN);
   if(tr.visible&&state.truck>.3){const lg=tr.userData.long;obB(tr.position.x,tr.position.z,lg?.55:1.2,lg?1.2:.55,tr.rotation.y,DYN)}
   if(W3.tower.full.visible)W3.tower.lamp.material.emissiveIntensity=Math.sin(t*3)>0?1.6:.1;
   if(state.power){const glow=.9+Math.sin(t*1.3)*.1;W3.power.bulbs.forEach(b=>b.material.emissiveIntensity=glow)}
