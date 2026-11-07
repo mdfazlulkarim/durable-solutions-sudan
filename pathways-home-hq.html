@@ -641,7 +641,7 @@ body.immersive .site-header{position:fixed}
 </div></div>
 <script>
 (function(){
-  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 330646, "lib/people.js": 2365181, "lib/jsm/postprocessing/GTAOPass.js": 16466, "lib/jsm/shaders/GTAOShader.js": 13009, "lib/jsm/objects/Sky.js": 6819, "lib/jsm/utils/SkeletonUtils.js": 8007},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
+  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 330658, "lib/people.js": 2365181, "lib/jsm/postprocessing/GTAOPass.js": 16466, "lib/jsm/shaders/GTAOShader.js": 13009, "lib/jsm/objects/Sky.js": 6819, "lib/jsm/utils/SkeletonUtils.js": 8007},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
   var t0=performance.now(),got={},raw=0,xfer=0,first=null,last=null,done=false;
   var nc=navigator.connection||{},guess=nc.downlink?nc.downlink:null;
   function fileOf(n){for(var f in FILES)if(n.split('?')[0].slice(-f.length)===f)return f;return null}
@@ -1669,7 +1669,7 @@ function buildLife(){
     const b=makeBody(700+k,{woman:k%3===1});b.g.position.set(x,h(x,z),z);b.g.rotation.y=Math.PI+(R(k+3)-.5)*.5;b.g.visible=false;
     let sign=null;if(k%2===0){sign=new THREE.Group();b.armR.add(sign);sign.position.set(0,-.28,0);mesh(new THREE.CylinderGeometry(.012,.012,.5,4),mat('#7a5a3c'),0,-.18,0,sign);
       mesh(new THREE.BoxGeometry(.36,.24,.02),mat(['#f4f1ea','#e9c46a','#f4f1ea'][k%3]),0,-.46,0,sign);mesh(new THREE.BoxGeometry(.26,.03,.025),mat('#b3261e'),0,-.43,0,sign);mesh(new THREE.BoxGeometry(.2,.03,.025),mat('#1c2230'),0,-.5,0,sign)}
-    b.hqRole='cheer';LIFE.prot.push({...b,sign});TIPS.push({o:b.g,dy:.95,vis:()=>b.g.visible,tip:()=>'<b>Protest at the locality office</b><span class="ts acute">Social cohesion '+Math.round(S.coh)+'</span>Residents accuse other groups of taking land, water and aid. The crowd grows as cohesion falls.'})}
+    b.hqRole='cheer';LIFE.prot.push({...b,sign});TIPS.push({o:b.g,dy:.95,vis:()=>b.g.visible,tip:()=>'<b>Protest at the locality office</b><span class="ts acute">Social cohesion '+Math.round(S.coh)+'</span>Residents accuse other groups of taking land, water and aid. Protests break out when social cohesion falls below 45, and grow as it falls further.'})}
   LB.protest=label(at(P.office.x,-3.7,1.75),{cls:'alert'});
   // queue outside the health centre
   [['idp',-1.5,4.5,2.4],['ret',P.village.x,P.village.z,2.6],['host',17,-12.5,2.4]].forEach(([g,x,z,dy])=>{const o=new THREE.Object3D();o.position.set(x,h(x,z)+dy-.4,z);scene.add(o);
@@ -1744,7 +1744,7 @@ function schoolSpot(k){return freePoint(new THREE.Vector2(P.primary.x-2.1+(k%6)*
 function syncLife(){
   const sch=S.built.primary!==undefined;
   if(sch!==LIFE.school){LIFE.school=sch;LIFE.kids.forEach((K,k)=>{K.atSchool=sch;K.target=sch?schoolSpot(k):K.home.clone();sitPose(K,false)})}
-  const pn=S.coh<42?11:(S.coh<47?8:(S.coh<52?4:0));LIFE.prot.forEach((b,k)=>b.g.visible=k<pn);setL(LB.protest,pn>0,IC2('partnership')+(pn<6?'Small protest':'Protest')+' at the locality office<small>cohesion '+Math.round(S.coh)+'</small>');
+  const pn=S.coh<40?11:(S.coh<45?8:0);LIFE.prot.forEach((b,k)=>b.g.visible=k<pn);setL(LB.protest,pn>0,IC2('partnership')+'Protest at the locality office<small>cohesion '+Math.round(S.coh)+'</small>');
   LIFE.queueN=S.built.clinic!==undefined?3:10;LIFE.queue.forEach((b,k)=>b.g.visible=k<LIFE.queueN);
   const wl=!safeWater('idp');LIFE.carriers.forEach(c=>c.g.visible=wl);
   setL(LB.well,!safeWater('idp')||!safeWater('ret'),IC2('location')+'Old well<small>5 km from the IDP site</small>');
