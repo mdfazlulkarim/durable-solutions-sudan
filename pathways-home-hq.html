@@ -225,7 +225,7 @@ svg.ico{width:1em;height:1em;display:inline-block;vertical-align:-.15em;flex:non
 .lbl3d.soft{background:rgba(255,255,255,.7);font-weight:500}
 .lbl3d.plot{background:#fff;border-color:var(--brand);color:var(--brand)}
 .lbl3d.plot b{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--brand);color:#fff;font-size:10.5px;margin-left:-6px;margin-right:2px}
-.lbl3d.alert{background:var(--warn-bg);border-color:#f3cdb9;color:var(--warn-ink)}
+.lbl3d.alert,.lbl3d.warn{background:var(--warn-bg);border-color:#f3cdb9;color:var(--warn-ink)}
 .lbl3d.good{background:#eef7f1;border-color:#cfe7d8;color:#1f6b42}
 .lbl3d.build{background:#fff8e6;border-color:#f0dca8;color:#8a5a00}
 .hint3d{position:absolute;right:12px;top:12px;font-size:12px;background:rgba(255,255,255,.85);border-radius:8px;padding:4px 10px;color:var(--ink-2)}
@@ -613,6 +613,8 @@ body.immersive .site-header{position:fixed}
 #boot{align-items:end;padding:24px}
 #boot .bprev{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 #boot .bootcard{position:relative;z-index:1;width:min(460px,100%);margin-bottom:4vh;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.step{line-height:1.15;padding:3px 8px}
+.step small{display:block;font-size:10px;opacity:.85;font-weight:500}
 
 .hqtag{font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:#1d5fae;color:#fff;border-radius:999px;padding:2px 8px;align-self:center}
 /* footer */
@@ -641,7 +643,7 @@ body.immersive .site-header{position:fixed}
 </div></div>
 <script>
 (function(){
-  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 330658, "lib/people.js": 2365181, "lib/jsm/postprocessing/GTAOPass.js": 16466, "lib/jsm/shaders/GTAOShader.js": 13009, "lib/jsm/objects/Sky.js": 6819, "lib/jsm/utils/SkeletonUtils.js": 8007},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
+  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 333907, "lib/people.js": 2365181, "lib/jsm/postprocessing/GTAOPass.js": 16466, "lib/jsm/shaders/GTAOShader.js": 13009, "lib/jsm/objects/Sky.js": 6819, "lib/jsm/utils/SkeletonUtils.js": 8007},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
   var t0=performance.now(),got={},raw=0,xfer=0,first=null,last=null,done=false;
   var nc=navigator.connection||{},guess=nc.downlink?nc.downlink:null;
   function fileOf(n){for(var f in FILES)if(n.split('?')[0].slice(-f.length)===f)return f;return null}
@@ -707,12 +709,12 @@ const GLABEL={idp:'IDP site',ret:'Returnee village',host:'Host town'};
 const CRIT=[['safety','Safety and security'],['living','Adequate standard of living'],['liveli','Access to livelihoods'],['hlp','Housing, land and property'],['docs','Documentation'],['family','Family reunification'],['partic','Participation in public affairs'],['remedy','Remedies and justice']];
 const WEIGHT={safety:.12,living:.25,liveli:.25,hlp:.12,docs:.08,family:.06,partic:.06,remedy:.06};
 const SEASONS=[
-  {name:'Dry season',yr:1,months:'Jan to Mar'},
-  {name:'Lean season',yr:1,months:'Apr to Jun, before the rains'},
-  {name:'Rainy season',yr:1,months:'Jul to Sep'},
-  {name:'Harvest',yr:1,months:'Oct to Dec'},
-  {name:'Dry season',yr:2,months:'Jan to Mar'},
-  {name:'Lean season',yr:2,months:'Apr to Jun, before the rains'}];
+  {name:'Dry season',yr:1,months:'Jan to Mar',short:'Jan to Mar',ctx:'After the October to December harvest, food stocks are at their highest and markets are well supplied. In Sudan this is the usual time to build before the rains.'},
+  {name:'Lean season',yr:1,months:'Apr to Jun, before the rains',short:'Apr to Jun',ctx:'The hottest months. Household stocks run down and sorghum prices climb. In a typical year the lean season peaks from June to September, until the new harvest.'},
+  {name:'Rainy season',yr:1,months:'Jul to Sep',short:'Jul to Sep',ctx:'The main rains fall from June to September and peak in August and September. From 2017 to 2021 floods affected about 390,000 people a year in Sudan; in 2020 about 875,000, and in 2024 close to half a million.'},
+  {name:'Harvest',yr:1,months:'Oct to Dec',short:'Oct to Dec',ctx:'Sorghum and millet are harvested from October and prices usually fall. A late or weak rainy season delays the harvest and stretches the lean season.'},
+  {name:'Dry season',yr:2,months:'Jan to Mar, El Niño year',short:'Jan to Mar',ctx:'El Niño usually brings below-average June to September rains to Sudan. In 2026, July to September rainfall was the lowest in more than three decades, and farmers lost much of the harvest.'},
+  {name:'Lean season',yr:2,months:'Apr to Jun, before the rains',short:'Apr to Jun',ctx:'With El Niño, the first rains are likely to come late and be weak. Water stored in hafirs and reservoirs, and savings from better livelihoods, help families get through.'}];
 const WIN={H:'Humanitarian',D:'Self-reliance',P:'Peace'};
 const SITES={
   A:{name:'Plot A, floodplain beside the IDP site',risk:5,riskTxt:'Flood risk: high'},
@@ -918,13 +920,16 @@ function shock(st,s,sel){
     if(avgSR(st)-st.history[0].avg>=6){st.bonusD=20;L.push('A development donor sees results on the ground and adds USD 1 million to your budget from next season.')}
   }else if(s===4){
     kind='cut';title='Donor funding is cut';
-    text='A major donor reduces its contribution: next season the budget drops by USD 2.25 million. A dispute over farmland near the returnee village escalates at the same time.';
+    text='A major donor reduces its contribution: next season the budget drops by USD 2.25 million. A dispute over farmland near the returnee village escalates at the same time. Forecasters also declare El Niño: below-average rains are likely this year.';
     st.cutH=true;
     if(st.coh<45){for(const g of GROUPS){add(st,g,'safety',-10);add(st,g,'remedy',-3)}L.push('With low social cohesion, the land dispute turns violent. Safety falls in all three settlements.')}
     else{for(const g of GROUPS)add(st,g,'safety',-3);L.push('Community structures you supported settle the dispute before it spreads.')}
   }else{
-    kind='review';title='Year-end review with the authorities';
-    text='Locality authorities review the two years and decide what goes into next year’s locality development plan.';
+    kind='review';title='El Niño delays the rains, and the authorities review the year';
+    text='The first rains of June come late and weak, as El Niño years often bring. Locality authorities review the two years and decide what goes into next year’s locality development plan.';
+    const store=st.built.hafir!==undefined||st.built.dam!==undefined;
+    if(store){add(st,'ret','liveli',-1);add(st,'host','liveli',-1);L.push('Water stored in the '+(st.built.dam!==undefined?'reservoir':'hafir')+' keeps livestock and gardens alive through the dry spell.')}
+    else{add(st,'ret','liveli',-4);add(st,'host','liveli',-3);add(st,'idp','living',-2);L.push('With no stored water, livestock weaken and early planting fails. Returnee and host incomes fall.')}
     if(st.cap>=50){add(st,'idp','partic',8);add(st,'idp','remedy',5);L.push('Planners now have the skills and data to include the IDP site in the locality plan.')}
     else L.push('The locality planning unit cannot yet include the IDP site. Its future depends on outside agencies.');
   }
@@ -1137,10 +1142,18 @@ function freePoint(v){for(let k=0;k<4;k++)pushOut(v);return v}
 const LBL=[];const v3=new THREE.Vector3();
 function label(getPos,opt={}){const el=document.createElement('div');el.className='lbl3d '+(opt.cls||'');labelsEl.appendChild(el);const L={el,getPos,show:true,html:''};LBL.push(L);return L}
 function setL(L,show,html){L.show=show;if(html!==undefined&&html!==L.html){L.el.innerHTML=html;L.html=html}}
-function updateLabels(){const w=view.clientWidth,hh=view.clientHeight;
+let ALL_LABELS=false;const MOUSE={x:-1e4,y:-1e4,t:0};
+const isKey=L=>L.key||/\b(alert|build|good)\b/.test(L.el.className);
+function updateLabels(){const w=view.clientWidth,hh=view.clientHeight,now=performance.now();const near=MOUSE.t>now;
   for(const L of LBL){if(!L.show){L.el.style.display='none';continue}v3.copy(L.getPos()).project(camera);
     if(v3.z>1||Math.abs(v3.x)>1.05||Math.abs(v3.y)>1.05){L.el.style.display='none';continue}
-    L.el.style.display='';L.el.style.left=((v3.x+1)/2*w)+'px';L.el.style.top=((1-v3.y)/2*hh)+'px'}}
+    const sx=(v3.x+1)/2*w,sy=(1-v3.y)/2*hh;
+    if(!ALL_LABELS&&!isKey(L)&&!(near&&Math.abs(sx-MOUSE.x)<90&&Math.abs(sy-MOUSE.y)<70)){L.el.style.display='none';continue}
+    L.el.style.display='';L.el.style.left=sx+'px';L.el.style.top=sy+'px'}}
+view.addEventListener('pointermove',e=>{const r=view.getBoundingClientRect();MOUSE.x=e.clientX-r.left;MOUSE.y=e.clientY-r.top;MOUSE.t=performance.now()+(e.pointerType==='mouse'?1e9:4000)});
+view.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse')MOUSE.t=0});
+view.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'){const r=view.getBoundingClientRect();MOUSE.x=e.clientX-r.left;MOUSE.y=e.clientY-r.top;MOUSE.t=performance.now()+4000}});
+function setLabels(v){ALL_LABELS=v}
 const at=(x,z,dy)=>()=>v3.set(x,h(x,z)+dy,z);
 
 /* key places */
@@ -1421,7 +1434,7 @@ function makeTower(){
 const LB={};
 const li=id=>'<span class="li '+CARD[id].win+'">'+ICON(id)+'</span>';
 function buildLabels(){
-  LB.idp=label(at(-1.5,4.5,2.4));LB.ret=label(at(P.village.x,P.village.z,2.6));LB.host=label(at(17,-12.5,2.4));
+  LB.idp=label(at(-1.5,4.5,2.4));LB.ret=label(at(P.village.x,P.village.z,2.6));LB.host=label(at(17,-12.5,2.4));LB.idp.key=LB.ret.key=LB.host.key=true;
   LB.river=label(()=>v3.set(4,.3,zr(4)));LB.river.el.innerHTML='River';LB.river.el.classList.add('soft');
   LB.tree=label(at(P.tree.x,P.tree.z,4.9));LB.market=label(at(P.market.x,P.market.z,1.6));LB.clinic=label(at(P.clinic.x,P.clinic.z,2.1));
   LB.office=label(at(P.office.x,P.office.z,2.9));LB.tap=label(at(P.tap.x,P.tap.z,2.3));LB.food=label(at(P.food.x,P.food.z,1.6));LB.desk=label(at(P.desk.x,P.desk.z,1.6));LB.hlp=label(at(P.hlp.x,P.hlp.z,1.4));
@@ -1642,11 +1655,11 @@ function buildLife(){
     mesh(new THREE.CylinderGeometry(.34,.34,.02,12),mat('#3b4a52'),0,.12,0,g);
     for(const sx of [-1,1])mesh(new THREE.BoxGeometry(.06,1.05,.06),mat('#7a5a3c'),sx*.42,.52,0,g);mesh(new THREE.BoxGeometry(.95,.06,.06),mat('#7a5a3c'),0,1.05,0,g);
     mesh(new THREE.CylinderGeometry(.08,.06,.12,8),mat('#6c6f75'),.1,.72,0,g);for(let i=0;i<3;i++)mesh(geo.can,mat('#e2b632'),.75+i*.17,.08,.35,g);
-    LB.well=label(at(WELL.x,WELL.z,1.5),{cls:'alert'});setL(LB.well,true,IC2('location')+'Old well<small>5 km from the IDP site</small>');
+    LB.well=label(at(WELL.x,WELL.z,1.5),{cls:'warn'});setL(LB.well,true,IC2('location')+'Old well<small>5 km from the IDP site</small>');
     TIPS.push({o:g,dy:.6,tip:()=>'<b>Old well</b>About 5 km from the IDP site. When there is no safe water nearby, women and girls walk here and back with jerrycans, often twice a day.'})}
   // wheelchair users stuck in sand
   const wcSpots=[[-5.6,1.75,Math.PI],[-1.2,1.8,Math.PI-.3],[4.1,1.9,Math.PI+.3]];
-  LB.wc=label(at(-5.6,1.6,1.5),{cls:'alert'});setL(LB.wc,true,IC2('protection')+'Persons with disabilities<small>no accessible path</small>');
+  LB.wc=label(at(-5.6,1.6,1.5),{cls:'warn'});setL(LB.wc,true,IC2('protection')+'Persons with disabilities<small>no accessible path</small>');
   wcSpots.forEach(([x,z,ry],k)=>{const v=freePoint(new THREE.Vector2(x,z));const g=grp(v.x,v.y,ry);const chair=new THREE.Group();g.add(chair);
     const metal=mat('#596270'),seat=mat('#2f3d52');
     mesh(new THREE.BoxGeometry(.3,.04,.28),seat,0,.3,0,chair);mesh(new THREE.BoxGeometry(.3,.32,.04),seat,0,.48,-.15,chair);
@@ -1699,9 +1712,9 @@ function buildLife(){
   {const sx=10.5,sz=roadZ(10.5)+2.0;const sh=grp(sx,sz,Math.atan2(76,-3.5)-Math.PI/2);obB(sx,sz,.75,.35,0);
     mesh(new THREE.BoxGeometry(1.5,.05,.6),mat('#8a9aa6'),0,1.05,0,sh);for(const x of [-.65,.65])mesh(new THREE.BoxGeometry(.05,1.05,.05),mat('#5d6168'),x,.52,-.2,sh);mesh(new THREE.BoxGeometry(1.3,.06,.25),mat('#7a5a3c'),0,.32,-.15,sh);
     mesh(new THREE.BoxGeometry(.05,1.5,.05),mat('#5d6168'),.9,.75,.15,sh);mesh(new THREE.BoxGeometry(.35,.35,.03),mat('#1d5fae'),.9,1.4,.17,sh);
-    LIFE.stop={x:sx,z:sz};LB.bus=label(at(sx,sz,1.9));setL(LB.bus,true,'Bus stop<small>bus to the city</small>');
+    LIFE.stop={x:sx,z:sz};
     TIPS.push({o:sh,dy:1.2,tip:()=>'<b>Bus stop</b>A bus to the city calls here. With few jobs in the locality, many people travel far for day labour, trade and casual work, and come back days later.'})}
-  {const tx=5.6,tz=roadZ(5.6)+1.1;LIFE.stand={x:tx,z:tz};LB.tuk=label(at(tx,tz,1.2));setL(LB.tuk,true,'Tuk-tuk stand<small>raksha</small>')}
+  {const tx=5.6,tz=roadZ(5.6)+1.1;LIFE.stand={x:tx,z:tz};const o=new THREE.Object3D();o.position.set(tx,h(tx,tz)+.4,tz);scene.add(o);TIPS.push({o,dy:0,tip:()=>'<b>Tuk-tuk stand (raksha)</b>Shared tuk-tuks wait here to take people to the main road, the market and work outside the locality.'})}
   LIFE.bus={...makeBus(),state:'away',st:14,x:-W/2-3};LIFE.bus.g.visible=false;
   TIPS.push({o:LIFE.bus.g,dy:1.6,vis:()=>LIFE.bus.g.visible,tip:()=>'<b>Bus to the city</b><span class="ts aid">Work far away</span>'+(LIFE.bus.state==='stopped'?'Workers coming back from the city get off, and others board to look for work.':'Carries people to jobs, markets and relatives far from the locality.')});
   LIFE.tuks=['#2f8f8a','#d9a521','#3f6fb0'].map((c,k)=>{const T=makeTuk(c);const T2={...T,state:'away',st:4+k*9,x:-W/2-2,dir:1};T.g.visible=false;
@@ -1967,13 +1980,13 @@ function sync(){
   {const k=st3('primary');W3.primary.full.visible=k==='built';W3.primary.closed.visible=k!=='built';W3.primary.scaf.visible=false;showSite(W3.primary.site,k==='built'?null:stageOf('primary'),null,{full:false});
     setL(LB.primary,true,(k!=='none'?li('primary'):'')+'Primary school'+(k==='built'?'<small>classes running</small>':(k==='pend'?'<small>'+(planW('primary')?'planned, ':'')+'reopens in season '+dueOf('primary')+'</small>':'<small>closed</small>')));LB.primary.el.className='lbl3d '+(k==='built'?'':(k==='pend'?'build':''))}
   {const k=st3('dam');W3.dam.full.visible=k==='built';W3.dam.broken.visible=k!=='built';W3.dam.scaf.visible=k==='pend';W3.dam.res.visible=k==='built';showSite(W3.dam.site,k==='built'?null:stageOf('dam'),null,{full:false});
-    setL(LB.dam,true,(k!=='none'?li('dam'):'')+(k==='built'?'Dam repaired<small>reservoir filling</small>':(k==='pend'?(planW('dam')?'Dam repair planned':'Dam under repair')+'<small>ready in season '+dueOf('dam')+'</small>':'Damaged dam<small>needs repair</small>')));LB.dam.el.className='lbl3d '+(k==='pend'?'build':(k==='none'?'alert':''))}
+    setL(LB.dam,true,(k!=='none'?li('dam'):'')+(k==='built'?'Dam repaired<small>reservoir filling</small>':(k==='pend'?(planW('dam')?'Dam repair planned':'Dam under repair')+'<small>ready in season '+dueOf('dam')+'</small>':'Damaged dam<small>needs repair</small>')));LB.dam.el.className='lbl3d '+(k==='pend'?'build':(k==='none'?'warn':''))}
   {const k=st3('power');W3.power.g.visible=k!=='none';W3.power.full.visible=k==='built';W3.power.scaf.visible=k==='pend';showSite(W3.power.site,k==='built'?null:stageOf('power'),null,{full:false});
     setL(LB.power,k!=='none',li('power')+(k==='built'?'Solar mini-grid':(planW('power')?'Mini-grid planned':'Mini-grid under construction')+'<small>ready in season '+dueOf('power')+'</small>'));LB.power.el.className='lbl3d '+(k==='pend'?'build':'')}
   {const k=st3('tower');W3.tower.g.visible=k!=='none';W3.tower.full.visible=k==='built';W3.tower.scaf.visible=k==='pend';showSite(W3.tower.site,k==='built'?null:stageOf('tower'),null,{full:false});
     setL(LB.tower,k!=='none',li('tower')+(k==='built'?'Mobile phone tower':(planW('tower')?'Tower planned':'Tower under construction')+'<small>ready in season '+dueOf('tower')+'</small>'));LB.tower.el.className='lbl3d '+(k==='pend'?'build':'')}
   {const k=st3('hafir');W3.hafir.water.visible=k==='built';W3.hafir.silt.visible=k!=='built';W3.hafir.scaf.visible=k==='pend';showSite(W3.hafir.site,k==='built'?null:stageOf('hafir'),null,{full:false});W3.hafir.goats.forEach(g=>g.visible=k==='built');
-    setL(LB.hafir,true,(k!=='none'?li('hafir'):'')+(k==='built'?'Hafir<small>holding rainwater</small>':(k==='pend'?(planW('hafir')?'Hafir desilting planned':'Desilting the hafir')+'<small>ready in season '+dueOf('hafir')+'</small>':'Hafir<small>silted up, dry</small>')));LB.hafir.el.className='lbl3d '+(k==='pend'?'build':(k==='none'?'alert':''))}
+    setL(LB.hafir,true,(k!=='none'?li('hafir'):'')+(k==='built'?'Hafir<small>holding rainwater</small>':(k==='pend'?(planW('hafir')?'Hafir desilting planned':'Desilting the hafir')+'<small>ready in season '+dueOf('hafir')+'</small>':'Hafir<small>silted up, dry</small>')));LB.hafir.el.className='lbl3d '+(k==='pend'?'build':(k==='none'?'warn':''))}
   LIFE.donkeys&&LIFE.donkeys.forEach((d,i)=>d.g.visible=i<(safeWater('idp')?1:3));
   state.power=S.built.power!==undefined;
   // services
@@ -2060,7 +2073,7 @@ function portrait(){
 function look(x,z,d=9){controls.target.set(x,0,z);camera.position.set(x+d*.45,d*.75,z+d*.75);controls.update()}
 function tipAt(x,y){const b=nearestTip(x,y);return b?b.T.tip():''}
 function advance(sec){const c=Math.round(sec/.05);for(let k=0;k<c;k++)update(.05,clock.elapsedTime+k*.05)}
-return{el:view,sync,event,snapshot,portrait,advance,setRings,overlaps,setInsets,look,tipAt,life:()=>LIFE,isReady:()=>state.ready};
+return{el:view,sync,event,snapshot,portrait,advance,setLabels,setRings,overlaps,setInsets,look,tipAt,life:()=>LIFE,isReady:()=>state.ready};
 })();
 
 /* ---------- UI ---------- */
@@ -2074,7 +2087,7 @@ function delta(now,prev,goodUp=true,suffix=''){
 }
 function header(){
   let h='<div class="brand"><span class="brand-title">Pathways Home</span><span class="hqtag">High quality</span><span class="brand-kicker">Durable Solutions Hub | Sudan</span></div><div class="stepper">';
-  SEASONS.forEach((x,i)=>{h+='<div class="step '+(!S.over&&i===S.season?'now':(i<S.season||S.over?'done':''))+'" title="Year '+x.yr+', '+x.name+'"><b>Year '+x.yr+'</b> '+x.name.replace(' season','')+'</div>'});
+  SEASONS.forEach((x,i)=>{h+='<div class="step '+(!S.over&&i===S.season?'now':(i<S.season||S.over?'done':''))+'" title="Year '+x.yr+', '+x.name+', '+x.months+'"><b>Year '+x.yr+'</b> '+x.name.replace(' season','')+'<small>'+x.short+'</small></div>'});
   h+='</div><div class="score"><small>Score</small><span>'+score(S).toLocaleString('en-US')+'</span><small class="of">of 10,000</small></div>';
   h+='<button class="btn btn-sm ibtn" id="fs" title="Full screen" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'+(isFull()?'<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>':'<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>')+'</svg></button><a class="btn btn-sm qlink" href="pathways-home.html" title="Switch to the standard version (lighter and faster)">Standard version</a><button class="btn btn-sm" id="restart">Restart</button>';
   $('#hdr').innerHTML=h;$('#restart').onclick=confirmRestart;$('#fs').onclick=toggleFull;
@@ -2090,7 +2103,7 @@ function toggleFull(){
 }
 function afterFull(){header();const hd=document.querySelector('.site-header');if(hd)document.documentElement.style.setProperty('--hdr',hd.offsetHeight+'px');setTimeout(()=>{applyInsets();dispatchEvent(new Event('resize'))},60)}
 document.addEventListener('fullscreenchange',()=>{document.body.classList.toggle('fsmode',!!document.fullscreenElement);afterFull()});
-const IC=k=>ICONS2[k]||'';let LP=true,RP=true,CAT=null,CRITV=true;const OPEN=new Set();
+const IC=k=>ICONS2[k]||'';let LP=true,RP=true,CAT=null,CRITV=true,ALLLAB=false;const OPEN=new Set();
 const CRIT_ICON={safety:'1',living:'2',liveli:'3',hlp:'4',docs:'5',family:'6',partic:'7',remedy:'8'};
 const CRIT_COL={safety:'#2A78D6',living:'#EB6834',liveli:'#1BAF7A',hlp:'#EDA100',docs:'#E87BA4',family:'#008300',partic:'#7B4FB0',remedy:'#4A5A6A'};
 const GROUP_ICON={idp:'internally-displaced',ret:'return',host:'4'};
@@ -2199,7 +2212,7 @@ function render(){
   h+='</div>';
 
   const tot={self:0,coping:0,aid:0,acute:0};for(const g of GROUPS){const c=statusCounts(S,g);for(const k in tot)tot[k]+=c[k]}
-  h+='<div class="hud bl"><div class="hud-card legend"><span class="lg-note">Each figure is about 1,000 people. Hover or tap figures to see what they are doing.</span><span><i class="dot" style="background:var(--s-self)"></i>Getting by ('+tot.self+')</span><span><i class="dot" style="background:var(--s-coping)"></i>Coping ('+tot.coping+')</span><span><i class="dot" style="background:var(--s-aid)"></i>Relying on aid ('+tot.aid+')</span><span><i class="dot" style="background:var(--s-acute)"></i>Acute need ('+tot.acute+')</span><button class="btn btn-sm" id="rings">'+(RINGS?'Hide':'Show')+' rings</button></div></div></section>';
+  h+='<div class="hud bl"><div class="hud-card legend"><span class="lg-note">Each figure is about 1,000 people. Hover or tap the map to see names and what people are doing.</span><span><i class="dot" style="background:var(--s-self)"></i>Getting by ('+tot.self+')</span><span><i class="dot" style="background:var(--s-coping)"></i>Coping ('+tot.coping+')</span><span><i class="dot" style="background:var(--s-aid)"></i>Relying on aid ('+tot.aid+')</span><span><i class="dot" style="background:var(--s-acute)"></i>Acute need ('+tot.acute+')</span><button class="btn btn-sm" id="rings">'+(RINGS?'Hide':'Show')+' rings</button><button class="btn btn-sm" id="labels" aria-pressed="'+ALLLAB+'">'+(ALLLAB?'Fewer labels':'All labels')+'</button></div></div></section>';
   h+='<button class="opener lo" id="lp-show">\u203a Indicators and missions</button><button class="opener ro" id="rp-show">Options \u2039</button>';
   const spentNow={H:0,D:0,P:0};S.sel.forEach(id=>spentNow[CARD[id].win]+=CARD[id].cost);
   h+='<aside class="panel side"><button class="collapse" id="rp-hide" aria-label="Hide options">Hide \u203a</button><div class="budget1"><div class="bt"><span class="k">Budget for season '+(S.season+1)+'</span><span class="v">'+usdS(rem)+' <small>left of '+usdS(S.budget)+'</small></span></div>';
@@ -2256,6 +2269,7 @@ function render(){
   const ct=$('#crit-t');if(ct)ct.onclick=()=>{CRITV=!CRITV;render()};
   const hd=document.querySelector('.site-header');if(hd)document.documentElement.style.setProperty('--hdr',hd.offsetHeight+'px');
   $('#rings').onclick=()=>{RINGS=!RINGS;ENGINE.setRings(RINGS);render()};
+  $('#labels').onclick=()=>{ALLLAB=!ALLLAB;ENGINE.setLabels(ALLLAB);render()};
   if(ADVISOR&&!$('#layer').innerHTML)setTimeout(showAdvisor,30);
 }
 function lastEventTitle(){const t={returns:'more families came home',prices:'food prices spiked',flood:'floods reached the IDP site',harvest:'harvest',cut:'donor funding cut',review:'year-end review'};return t[S.lastEvent]||''}
@@ -2283,7 +2297,8 @@ function advisorTips(st){
   if(st.season<2){const n=2-st.season;tips.push(['time','The rains come in '+n+' season'+(n>1?'s':'')+'. Builds that take two seasons must start '+(n===2?'now':'soon')+' to be ready before the floods.'])}
   else if(st.season===2)tips.push(['time','Floods are likely this season. Plot A and the IDP site sit on low ground.']);
   const msg=advisorMsg(st);if(st.season>0)tips.push(['partnership',msg]);
-  return{head,tips:tips.slice(0,3)};
+  const T=tips.slice(0,2);T.push(['location',sn.ctx]);
+  return{head:st.season===4?'El Niño is coming':head,tips:T};
 }
 function amnaSVG(season){
   const k=season===2?'rain':(season===3?'harvest':(season===1||season===5?'lean':'dry'));
@@ -2309,7 +2324,7 @@ let PORTRAIT='';
 function showAdvisor(){if(!ADVISOR||!S||S.over||$('#layer').innerHTML)return;const sn=SEASONS[S.season];
   const A=advisorTips(S),ms=missions(S).filter(m=>!m.limit&&m.ok).length;
   modal('<div class="advpop"><div class="avbig">'+amnaSVG(S.season)+'</div><div class="advtx"><div class="who"><b>Amna</b>, locality coordinator</div><h2>'+esc(A.head)+'</h2><ul class="tips">'+A.tips.map(([i,t])=>'<li><span class="ti">'+IC(i)+'</span><span>'+esc(t)+'</span></li>').join('')+'</ul></div></div>'+
-    '<div class="advstrip"><span><b>Season '+(S.season+1)+' of 6</b> Year '+sn.yr+', '+sn.name.toLowerCase()+'</span><span><b>'+usdL(S.budget)+'</b> to spend</span><span><b>'+ms+' of 6</b> missions met</span></div>'+
+    '<div class="advstrip"><span><b>Season '+(S.season+1)+' of 6</b> Year '+sn.yr+', '+sn.name.toLowerCase()+', '+sn.short+'</span><span><b>'+usdL(S.budget)+'</b> to spend</span><span><b>'+ms+' of 6</b> missions met</span></div>'+
     '<div class="foot"><button class="btn btn-primary btn-lg" data-act="ok">Got it</button></div>',()=>{ADVISOR=false;render()})}
 function modal(html,onClose){
   const L=$('#layer');L.innerHTML='<div class="overlay" role="dialog" aria-modal="true"><div class="modal">'+html+'</div></div>';
