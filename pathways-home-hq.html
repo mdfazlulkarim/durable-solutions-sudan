@@ -615,6 +615,30 @@ body.immersive .site-header{position:fixed}
 #boot .bootcard{position:relative;z-index:1;width:min(460px,100%);margin-bottom:4vh;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .step{line-height:1.15;padding:3px 8px}
 .step small{display:block;font-size:10px;opacity:.85;font-weight:500}
+/* compact season timeline */
+.stepper{display:none}
+.tline{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px;padding:0 4px}
+.tl-row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
+.tl-s{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;cursor:help}
+.tl-ic{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line)}
+.tl-ic svg{width:13px;height:13px}
+.tl-s.dry .tl-ic{background:#faeeda;color:#854f0b}.tl-s.lean .tl-ic{background:#faece7;color:#993c1d}.tl-s.rain .tl-ic{background:#e6f1fb;color:#185fa5}.tl-s.harv .tl-ic{background:#eaf3de;color:#3b6d11}
+.tl-tx{display:flex;flex-direction:column;line-height:1.05;min-width:0;white-space:nowrap}
+.tl-tx b{font-size:11.5px;color:var(--ink-2);font-weight:700}.tl-tx small{font-size:10px;color:var(--muted)}
+.tl-s.now .tl-ic{outline:2px solid var(--brand);outline-offset:1px}.tl-s.now b{color:var(--brand)}
+.tl-s.done{opacity:.5}
+.tl-line{position:relative;height:13px}
+.tl-bar,.tl-prog{position:absolute;top:6px;left:0;height:2px;border-radius:2px}
+.tl-bar{right:0;background:var(--line-2)}.tl-prog{background:var(--brand)}
+.tl-dot{position:absolute;top:3px;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:#fff;border:1.5px solid var(--line-2)}
+.tl-dot.done{background:var(--brand);border-color:var(--brand)}.tl-dot.now{background:var(--brand);border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-tint)}
+.tl-yr{position:absolute;top:0;transform:translateX(-50%);font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--panel);padding:0 5px;line-height:13px}
+.tl-yr{white-space:nowrap}.tl-nino{display:inline-block;margin-left:3px;font-style:normal;font-size:9px;font-weight:700;letter-spacing:0;text-transform:none;color:#791f1f;background:#fcebeb;border:1px solid #f09595;border-radius:999px;padding:0 6px;line-height:11px;cursor:help;white-space:nowrap}
+@media (max-width:1250px){.tl-tx small{display:none}}
+@media (max-width:980px){.tl-tx{display:none}.tl-s{gap:0}}
+@media (max-width:760px){.tline{order:5;flex-basis:100%}.tl-tx{display:flex}.tl-tx b{font-size:10.5px}}
+@media (max-width:520px){.header-inner .btn{padding:4px 8px;font-size:12px}.header-inner{gap:6px 10px}}
+@media (max-width:520px){#fs{display:none}.score .lab{display:none}}
 
 .hqtag{font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:#1d5fae;color:#fff;border-radius:999px;padding:2px 8px;align-self:center}
 /* footer */
@@ -643,7 +667,7 @@ body.immersive .site-header{position:fixed}
 </div></div>
 <script>
 (function(){
-  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 333907, "lib/people.js": 2365181, "lib/jsm/postprocessing/GTAOPass.js": 16466, "lib/jsm/shaders/GTAOShader.js": 13009, "lib/jsm/objects/Sky.js": 6819, "lib/jsm/utils/SkeletonUtils.js": 8007},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
+  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 338130, "lib/people.js": 2365181, "lib/jsm/postprocessing/GTAOPass.js": 16466, "lib/jsm/shaders/GTAOShader.js": 13009, "lib/jsm/objects/Sky.js": 6819, "lib/jsm/utils/SkeletonUtils.js": 8007},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
   var t0=performance.now(),got={},raw=0,xfer=0,first=null,last=null,done=false;
   var nc=navigator.connection||{},guess=nc.downlink?nc.downlink:null;
   function fileOf(n){for(var f in FILES)if(n.split('?')[0].slice(-f.length)===f)return f;return null}
@@ -2086,8 +2110,17 @@ function delta(now,prev,goodUp=true,suffix=''){
   return'<span class="d '+((d>0)===goodUp?'up-good':'up-bad')+'">'+(d>0?'+':'−')+Math.round(Math.abs(d)).toLocaleString('en-US')+suffix+'</span>';
 }
 function header(){
-  let h='<div class="brand"><span class="brand-title">Pathways Home</span><span class="hqtag">High quality</span><span class="brand-kicker">Durable Solutions Hub | Sudan</span></div><div class="stepper">';
-  SEASONS.forEach((x,i)=>{h+='<div class="step '+(!S.over&&i===S.season?'now':(i<S.season||S.over?'done':''))+'" title="Year '+x.yr+', '+x.name+', '+x.months+'"><b>Year '+x.yr+'</b> '+x.name.replace(' season','')+'<small>'+x.short+'</small></div>'});
+  let h='<div class="brand"><span class="brand-title">Pathways Home</span><span class="hqtag">High quality</span><span class="brand-kicker">Durable Solutions Hub | Sudan</span></div><div class="tline" role="list" aria-label="Seasons">';
+  const SI={Dry:['dry','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>'],
+    Lean:['lean','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M9 7c0-1.5 1-2 1-3M14 7c0-1.5 1-2 1-3"/></svg>'],
+    Rainy:['rain','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15a4.5 4.5 0 0 1 .5-9 6 6 0 0 1 11.3 2.5A3.3 3.3 0 0 1 18 15z"/><path d="M8 18l-1 3M12 18l-1 3M16 18l-1 3"/></svg>'],
+    Harvest:['harv','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V10"/><path d="M12 10c0-3 2-5 5-6 0 3-2 5-5 6zM12 14c0-3-2-5-5-6 0 3 2 5 5 6zM12 18c0-2.5 1.8-4 4-4.5-.2 2.5-1.8 4-4 4.5z"/></svg>']};
+  const cur=S.over?6:S.season;
+  h+='<div class="tl-row">';
+  SEASONS.forEach((x,i)=>{const k=x.name.replace(' season','');const [cls,svg]=SI[k];h+='<div class="tl-s '+cls+(i===cur?' now':(i<cur?' done':''))+'" role="listitem" title="Year '+x.yr+', '+x.name+', '+x.short+'. '+esc(x.ctx)+'"><span class="tl-ic">'+svg+'</span><span class="tl-tx"><b>'+k+'</b><small>'+x.short+'</small></span></div>'});
+  h+='</div><div class="tl-line"><i class="tl-bar"></i><i class="tl-prog" style="width:'+Math.min(100,(cur+.5)/6*100)+'%"></i>';
+  for(let i=0;i<6;i++)h+='<i class="tl-dot'+(i===cur?' now':(i<cur?' done':''))+'" style="left:'+((i+.5)/6*100)+'%"></i>';
+  h+='<span class="tl-yr" style="left:'+(2/6*100)+'%">Year 1</span><span class="tl-yr" style="left:'+(5/6*100)+'%">Year 2 <em class="tl-nino" title="El Niño usually brings below-average June to September rains to Sudan. In 2026, July to September rainfall was the lowest in more than three decades.">El Niño</em></span></div></div>';
   h+='</div><div class="score"><small>Score</small><span>'+score(S).toLocaleString('en-US')+'</span><small class="of">of 10,000</small></div>';
   h+='<button class="btn btn-sm ibtn" id="fs" title="Full screen" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'+(isFull()?'<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>':'<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>')+'</svg></button><a class="btn btn-sm qlink" href="pathways-home.html" title="Switch to the standard version (lighter and faster)">Standard version</a><button class="btn btn-sm" id="restart">Restart</button>';
   $('#hdr').innerHTML=h;$('#restart').onclick=confirmRestart;$('#fs').onclick=toggleFull;
