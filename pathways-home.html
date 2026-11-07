@@ -640,7 +640,7 @@ body.immersive .site-header{position:fixed}
 </div></div>
 <script>
 (function(){
-  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 315445},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
+  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 320714},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
   var t0=performance.now(),got={},raw=0,xfer=0,first=null,last=null,done=false;
   var nc=navigator.connection||{},guess=nc.downlink?nc.downlink:null;
   function fileOf(n){for(var f in FILES)if(n.split('?')[0].slice(-f.length)===f)return f;return null}
@@ -1493,12 +1493,60 @@ function animWalk(b,moving,t,armRFree=true){const sw=moving?Math.sin(b.phase):0;
   b.body.position.y=moving?Math.abs(Math.cos(b.phase))*.02:Math.sin(t*1.3+b.i)*.004;b.body.rotation.y=moving?0:Math.sin(t*.35+b.i*1.7)*.28}
 const EXTRA=[];const WV=new THREE.Vector3();
 function collectExtras(){EXTRA.length=0;const addO=(o,r,who)=>{if(!o.visible)return;let pv=o.parent;while(pv){if(!pv.visible)return;pv=pv.parent}o.getWorldPosition(WV);EXTRA.push({x:WV.x,z:WV.z,r,who})};
-  for(const c of LIFE.carriers||[])addO(c.g,.24,c);for(const d of LIFE.donkeys||[]){if(!d.g.visible)continue;const f=d.g.rotation.y;addO(d.g,.45,d);EXTRA.push({x:d.g.position.x+Math.sin(f)*.65,z:d.g.position.z+Math.cos(f)*.65,r:.32,who:d});addO(d.man.g,.24,d)}
+  for(const c of LIFE.carriers||[])addO(c.g,.24,c);for(const d of LIFE.donkeys||[]){if(!d.g.visible)continue;for(const B of d.buyers)addO(B.g,.22,d);const f=d.g.rotation.y;addO(d.g,.45,d);EXTRA.push({x:d.g.position.x+Math.sin(f)*.65,z:d.g.position.z+Math.cos(f)*.65,r:.32,who:d});addO(d.man.g,.24,d)}
   for(const c of LIFE.cross||[])addO(c.g,.24,c);for(const k of LIFE.kids||[])addO(k.g,.22,k);for(const q of LIFE.queue||[])addO(q.g,.22,q);for(const q of LIFE.prot||[])addO(q.g,.24,q);
   for(const f of LIFE.farmers||[])addO(f.g,.24,f);for(const St of SITES)for(const w of St.workers)addO(w.g,.24,St)}
 function blockedAhead(x,z,dx,dz,self,rad=.55){const L=Math.hypot(dx,dz)||1,ux=dx/L,uz=dz/L;
   const hit=(px,pz,r)=>{const vx=px-x,vz=pz-z,along=vx*ux+vz*uz;if(along<=.05||along>rad+r)return false;const side=Math.abs(vx*uz-vz*ux);return side<r+.18};
   for(const p of PEOPLE)if(hit(p.pos.x,p.pos.y,.2))return true;for(const e of EXTRA)if(e.who!==self&&hit(e.x,e.z,e.r))return true;return false}
+const DV=new THREE.Vector3();
+function cartPoint(Dn,lx,lz){DV.set(lx,0,lz);Dn.g.localToWorld(DV);return new THREE.Vector2(DV.x,DV.z)}
+function stepTo(B,tx,tz,dt,sp){const dx=tx-B.pos.x,dz=tz-B.pos.y,d=Math.hypot(dx,dz);if(d<.06){animWalk(B,false,0);return true}const st=Math.min(d,sp*dt);B.pos.x+=dx/d*st;B.pos.y+=dz/d*st;
+  let da=Math.atan2(dx,dz)-B.g.rotation.y;da=Math.atan2(Math.sin(da),Math.cos(da));B.g.rotation.y+=da*Math.min(1,dt*8);B.phase+=dt*sp*9;animWalk(B,true,0,false);return false}
+function placeAt(B){B.g.position.set(B.pos.x,h(B.pos.x,B.pos.y),B.pos.y)}
+function updateDonkey(Dn,dt,t){
+  const M=Dn.man;M.g.visible=Dn.g.visible;if(!Dn.g.visible){Dn.buyers.forEach(b=>{b.g.visible=false;b.state='off'});return}
+  if(!M.pos)M.pos=new THREE.Vector2();
+  let mov=false;
+  if(Dn.state==='drive'){
+    const dblk=Dn.blockT<4&&blockedAhead(Dn.g.position.x+Math.sin(Dn.g.rotation.y)*.6,Dn.g.position.z+Math.cos(Dn.g.rotation.y)*.6,Math.sin(Dn.g.rotation.y),Math.cos(Dn.g.rotation.y),Dn,.7);Dn.blockT=dblk?Dn.blockT+dt:Math.max(0,Dn.blockT-dt*2);
+    if(!dblk){Dn.u+=Dn.dir*Dn.speed*dt/Dn.L;mov=true;if(Dn.u>=1){Dn.u=1;Dn.state='sell';Dn.st=0;Dn.sub='off';Dn.served=0}else if(Dn.u<=0){Dn.u=0;Dn.state='river';Dn.st=0;Dn.sub='off';Dn.trip=0}}}
+  // cart pose along the path
+  let d=Dn.u*Dn.L,i=0;while(i<Dn.lens.length-1&&d>Dn.lens[i]){d-=Dn.lens[i];i++}const a=Dn.path[i],b=Dn.path[i+1],f=Math.min(1,d/Dn.lens[i]),dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz);
+  const lx=-dz/L*.55*Dn.dir,lz=dx/L*.55*Dn.dir,x=a[0]+dx*f+lx,z=a[1]+dz*f+lz,yaw=Math.atan2(dx*Dn.dir,dz*Dn.dir);
+  if(Dn.state==='drive'){Dn.g.position.set(x,h(x,z),z);Dn.g.rotation.y=yaw}
+  Dn.phase+=mov?dt*7:0;Dn.legs.forEach((lg,j)=>lg.rotation.x=mov?Math.sin(Dn.phase+(j%2?Math.PI:0)+(j>1?Math.PI/2:0))*.5:0);
+  Dn.g.updateMatrixWorld();
+  const seat=()=>{const p=cartPoint(Dn,0,.18);M.pos.copy(p);M.g.position.set(p.x,h(p.x,p.y)+.4,p.y);M.g.rotation.y=Dn.g.rotation.y;sitPose(M,true);M.armL.rotation.x=M.armR.rotation.x=-.9;M.body.position.y=-.22};
+  const side=()=>cartPoint(Dn,.62,-.3),stand=()=>{sitPose(M,false);M.body.position.y=0};
+  M.mcan=Dn.mcan;
+  if(Dn.state==='drive'){seat();Dn.mcan.visible=false;return}
+  Dn.st+=dt;
+  if(Dn.state==='river'){
+    const bank=new THREE.Vector2(Dn.g.position.x+(Dn.trip%2?.5:-.3),zr(Dn.g.position.x)-1.7+(Dn.path===LIFE.donkeys[2].path?0:0));
+    if(Dn.sub==='off'){if(Dn.st<.6){seat();return}stand();const p=side();M.pos.copy(p);placeAt(M);Dn.sub='toRiver';Dn.st=0}
+    if(Dn.sub==='toRiver'){Dn.mcan.visible=true;if(stepTo(M,bank.x,bank.y,dt,.7)){Dn.sub='fill';Dn.st=0}placeAt(M);return}
+    if(Dn.sub==='fill'){M.body.rotation.x=.6;M.armR.rotation.x=M.armL.rotation.x=-.4;animWalk(M,false,t,false);M.armR.rotation.x=-.4;if(Dn.st>2.2){M.body.rotation.x=0;Dn.sub='back';Dn.st=0}placeAt(M);return}
+    if(Dn.sub==='back'){const p=side();if(stepTo(M,p.x,p.y,dt,.6)){Dn.sub='pour';Dn.st=0}M.armR.rotation.x=0;placeAt(M);return}
+    if(Dn.sub==='pour'){const p=cartPoint(Dn,0,-.25);M.g.rotation.y=Math.atan2(p.x-M.pos.x,p.y-M.pos.y);M.armR.rotation.x=M.armL.rotation.x=-2.2+Math.sin(t*3)*.15;placeAt(M);
+      if(Dn.st>1.6){Dn.trip++;Dn.mcan.visible=Dn.trip<3;Dn.sub=Dn.trip<3?'toRiver':'mount';Dn.st=0}return}
+    if(Dn.sub==='mount'){Dn.mcan.visible=false;if(Dn.st>.5){Dn.state='drive';Dn.dir=1;Dn.u=.0001}stand();placeAt(M);return}
+  }
+  if(Dn.state==='sell'){
+    const Bs=Dn.buyers;const slot=k=>cartPoint(Dn,.9+.0,-.95-k*.55);
+    if(Dn.sub==='off'){if(Dn.st<.6){seat();return}stand();const p=side();M.pos.copy(p);placeAt(M);Dn.sub='selling';Dn.st=0;Dn.serveT=0;
+      Bs.forEach((B,j)=>{B.state='queue';B.slot=j;B.g.visible=true;B.pos.copy(B.home);B.can.visible=true;B.head.visible=false;placeAt(B)})}
+    if(Dn.sub==='selling'){
+      const p=cartPoint(Dn,0,-.25);M.g.rotation.y=Math.atan2(p.x-M.pos.x,p.y-M.pos.y);animWalk(M,false,t,false);M.armR.rotation.x=-1.1+Math.sin(t*2)*.1;placeAt(M);
+      const front=Bs.find(B=>B.state==='queue'&&B.slot===0);let atFront=false;
+      for(const B of Bs){if(B.state==='queue'){const sp=slot(B.slot);const arrived=stepTo(B,sp.x,sp.y,dt,.65);if(arrived){const c=cartPoint(Dn,0,-.5);B.g.rotation.y=Math.atan2(c.x-B.pos.x,c.y-B.pos.y)}if(B===front&&arrived)atFront=true}
+        else if(B.state==='home'){if(stepTo(B,B.home.x,B.home.y,dt,.55)){B.state='gone';B.g.visible=false}B.armL.rotation.x=-2.9;B.armL.rotation.z=.25}
+        placeAt(B)}
+      if(atFront){Dn.serveT+=dt;M.armR.rotation.x=-1.8+Math.sin(t*5)*.2;if(Dn.serveT>2.4){Dn.serveT=0;front.state='home';front.can.visible=false;front.head.visible=true;Bs.forEach(B=>{if(B.state==='queue')B.slot--});Dn.served++}}
+      if(Bs.every(B=>B.state==='gone'||B.state==='off')){Dn.sub='mount';Dn.st=0}return}
+    if(Dn.sub==='mount'){if(Dn.st>.5){Dn.state='drive';Dn.dir=-1;Dn.u=.9999}stand();placeAt(M);return}
+  }
+}
 function separate(){const n=PEOPLE.length,R2=.34;
   for(const p of PEOPLE)for(const e of EXTRA){const dx=p.pos.x-e.x,dz=p.pos.y-e.z,rr=e.r+.17;if(dx>rr||dx<-rr||dz>rr||dz<-rr)continue;const d=Math.hypot(dx,dz);if(d<rr){const ux=d>1e-3?dx/d:1,uz=d>1e-3?dz/d:0;p.pos.x=e.x+ux*rr;p.pos.y=e.z+uz*rr}}for(let a=0;a<n;a++){const A=PEOPLE[a].pos;for(let b=a+1;b<n;b++){const B=PEOPLE[b].pos,dx=B.x-A.x,dz=B.y-A.y;if(dx>R2||dx<-R2||dz>R2||dz<-R2)continue;const d=Math.hypot(dx,dz);if(d<R2){const k=(R2-Math.max(d,.01))/2,ux=d>1e-3?dx/d:1,uz=d>1e-3?dz/d:0;A.x-=ux*k;A.y-=uz*k;B.x+=ux*k;B.y+=uz*k}}}for(const p of PEOPLE)pushOut(p.pos)}
 function updatePeople(dt,t){
@@ -1572,11 +1620,17 @@ function buildLife(){
     const Cw={...b,can,head,u:k/9,dir:k%2?1:-1,wait:0,lane:.3,blockT:0,speed:.42+R(k+71)*.1};LIFE.carriers.push(Cw);
     TIPS.push({o:b.g,dy:.95,vis:()=>b.g.visible,tip:()=>Cw.dir>0?'<b>Woman fetching water</b><span class="ts acute">No safe water nearby</span>Walking about 5 km to the old well with an empty jerrycan. The trip takes hours, often twice a day.':'<b>Woman fetching water</b><span class="ts acute">No safe water nearby</span>Carrying 20 litres back from the old well on her head.'})}
   // donkey carts selling water
-  const DP=[[[12.2,10.9],[12.2,-2.6],[0.5,-2.1]],[[12.2,10.9],[12.2,-2.6],[0.5,-2.1]],[[26.6,8.4],[26.6,-8.6],[23.6,-9.6]]];
+  const DP=[[[12.2,9.5],[12.2,-2.6],[0.5,-2.1]],[[12.2,9.5],[12.2,-2.6],[4.2,-2.4]],[[26.6,7.0],[26.6,-8.6],[23.6,-9.6]]];
+  const HOMES=[[[-1.6,3.0],[1.0,2.8],[3.3,3.3],[-3.4,2.7]],[[2.4,2.9],[4.4,2.8],[0.2,3.6],[-0.8,2.6]],[[20.4,-10.6],[22.4,-11.2],[18.6,-11.6],[24.6,-11.4]]];
   LIFE.donkeys=DP.map((path,k)=>{const D=makeDonkey();const lens=[];let L=0;for(let i=0;i<path.length-1;i++){const l=Math.hypot(path[i+1][0]-path[i][0],path[i+1][1]-path[i][1]);lens.push(l);L+=l}
-    const man=makeBody(1300+k,{woman:false});const Dn={...D,man,path,lens,L,u:k===1?.55:(k?.3:.1),dir:k===1?-1:1,wait:0,speed:.55,phase:k,blockT:0};
-    TIPS.push({o:D.g,dy:.9,vis:()=>D.g.visible,tip:()=>'<b>Water seller with a donkey cart</b><span class="ts aid">Costly water</span>'+(Dn.dir>0?'Taking a barrel of river water to sell by the jerrycan. Poor families pay more for water than anyone else.':'Heading back to the river to refill the barrel.')});
-    TIPS.push({o:man.g,dy:.95,vis:()=>D.g.visible,tip:()=>'<b>Water seller</b>Leads the donkey cart between the river and the settlements.'});return Dn});
+    const man=makeBody(1300+k,{woman:false});const mcan=mesh(geo.can,mat('#e2b632'),0,-.26,0,man.armR);mcan.visible=false;
+    const buyers=HOMES[k].map((hp,j)=>{const b=makeBody(1400+k*10+j,{woman:j!==2});const can=mesh(geo.can,mat(['#e2b632','#3f8fd0','#e8e2d0','#d9a521'][j]),0,-.26,0,b.armR);const head=mesh(geo.can,mat('#3f8fd0'),0,.9,0,b.body);head.visible=false;
+      const home=freePoint(new THREE.Vector2(hp[0],hp[1]));b.g.visible=false;const B={...b,can,head,home,pos:home.clone(),target:null,state:'off',side:1,stuck:0};
+      TIPS.push({o:b.g,dy:.95,vis:()=>b.g.visible,tip:()=>B.state==='home'?'<b>Carrying water home</b><span class="ts aid">Bought water</span>A jerrycan of untreated river water, bought from the cart. Poor families pay far more for water than piped water would cost.':'<b>Waiting to buy water</b><span class="ts aid">Queue at the cart</span>Families line up with empty jerrycans. Water from the cart costs several times more than piped water, and it is not treated.'});return B});
+    const Dn={...D,man,mcan,buyers,path,lens,L,u:[.12,.7,.35][k],dir:k===1?-1:1,state:'drive',st:0,trip:0,speed:.55,phase:k,blockT:0,served:0};
+    TIPS.push({o:D.g,dy:.9,vis:()=>D.g.visible,tip:()=>'<b>Water seller with a donkey cart</b><span class="ts aid">Costly water</span>'+(Dn.state==='river'?'Stopped at the river to fill the barrel.':(Dn.state==='sell'?'Selling river water by the jerrycan.':(Dn.dir>0?'Taking a full barrel to sell in the '+(k===2?'town':'camp')+'.':'Heading back to the river with an empty barrel.')))});
+    TIPS.push({o:man.g,dy:.95,vis:()=>D.g.visible,tip:()=>'<b>Water seller</b>'+(Dn.state==='river'?'Filling jerrycans at the river and pouring them into the barrel. The water is not treated.':(Dn.state==='sell'?'Selling water to families who queue with their jerrycans.':'Riding the donkey cart between the river and the '+(k===2?'town':'camp')+'.'))});
+    return Dn});
   // farmers on the far bank
   for(let k=0;k<5;k++){const x=-20+k*3.6+(R(k+80)-.5),z=17.6+R(k+81)*3.8;const b=makeBody(1200+k,{woman:k%2===0});b.g.position.set(x,h(x,z),z);b.g.rotation.y=R(k+82)*6;const hoe=makeHoe(b.armR);hoe.visible=true;b.hqRole='dig';
     LIFE.farmers=LIFE.farmers||[];LIFE.farmers.push({...b,hoe,x,z});TIPS.push({o:b.g,dy:.95,tip:()=>'<b>'+(b.woman?'Woman':'Man')+' farming on the far bank</b>Hoeing sorghum and groundnut fields across the footbridge.'})}
@@ -1646,14 +1700,8 @@ function updateLife(dt,t){
       else if(Wk.role==='dig'){const sw=Math.sin(t*3+Wk.ph);Wk.body.rotation.x=.45;Wk.armR.rotation.x=Wk.armL.rotation.x=-1+sw*.55}
       else if(Wk.role==='carry'){const u=(Math.sin(t*.5+Wk.ph)+1)/2,ax=Wk.x0,az=Wk.z0,bx=ax*.45,bz=az*.45;Wk.g.position.x=ax+(bx-ax)*u;Wk.g.position.z=az+(bz-az)*u;const dir=Math.cos(t*.5+Wk.ph);
         Wk.g.rotation.y=Math.atan2((bx-ax)*Math.sign(dir||1),(bz-az)*Math.sign(dir||1));Wk.phase+=dt*5;animWalk(Wk,Math.abs(dir)>.15,t,false);Wk.armR.rotation.x=Wk.armL.rotation.x=-2.8;Wk.load.visible=dir>0}}}
-  // donkey carts
-  for(const Dn of LIFE.donkeys||[]){Dn.man.g.visible=Dn.g.visible;if(!Dn.g.visible)continue;let mov=false;
-    const dblk=Dn.wait<=0&&Dn.blockT<4&&blockedAhead(Dn.g.position.x+Math.sin(Dn.g.rotation.y)*.6,Dn.g.position.z+Math.cos(Dn.g.rotation.y)*.6,Math.sin(Dn.g.rotation.y),Math.cos(Dn.g.rotation.y),Dn,.7);Dn.blockT=dblk?Dn.blockT+dt:Math.max(0,Dn.blockT-dt*2);
-    if(Dn.wait>0||dblk){if(Dn.wait>0)Dn.wait-=dt}else{Dn.u+=Dn.dir*Dn.speed*dt/Dn.L;mov=true;if(Dn.u>=1){Dn.u=1;Dn.dir=-1;Dn.wait=4+rand()*3}else if(Dn.u<=0){Dn.u=0;Dn.dir=1;Dn.wait=5+rand()*3}}
-    let d=Dn.u*Dn.L,i=0;while(i<Dn.lens.length-1&&d>Dn.lens[i]){d-=Dn.lens[i];i++}const a=Dn.path[i],b=Dn.path[i+1],f=Math.min(1,d/Dn.lens[i]),dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz);
-    const lx=-dz/L*.55*Dn.dir,lz=dx/L*.55*Dn.dir,x=a[0]+dx*f+lx,z=a[1]+dz*f+lz,yaw=Math.atan2(dx*Dn.dir,dz*Dn.dir);Dn.g.position.set(x,h(x,z),z);Dn.g.rotation.y=yaw;
-    Dn.phase+=mov?dt*7:0;Dn.legs.forEach((lg,j)=>lg.rotation.x=mov?Math.sin(Dn.phase+(j%2?Math.PI:0)+(j>1?Math.PI/2:0))*.5:0);
-    const sx=Math.cos(yaw)*.5,sz=-Math.sin(yaw)*.5,mx=x+sx+Math.sin(yaw)*.7,mz=z+sz+Math.cos(yaw)*.7;Dn.man.g.position.set(mx,h(mx,mz),mz);Dn.man.g.rotation.y=yaw;Dn.man.phase+=mov?dt*6:0;animWalk(Dn.man,mov,t);Dn.man.armL.rotation.x=-.6}
+  // donkey carts: ride, fill at the river, sell in the camp
+  for(const Dn of LIFE.donkeys||[])updateDonkey(Dn,dt,t);
   // far-bank farmers
   for(const F of (LIFE.farmers||[])){const sw=Math.sin(t*3+F.i);F.body.rotation.x=.42;F.armR.rotation.x=F.armL.rotation.x=-1+sw*.55}
   // bridge crossings (hidden in a flood)
@@ -1811,7 +1859,8 @@ function portrait(){
   const cam=new THREE.PerspectiveCamera(24,1,.1,20);cam.position.set(.12,.74,1.05);cam.lookAt(0,.62,0);r.render(sc,cam);const url=r.domElement.toDataURL('image/png');r.dispose();try{r.forceContextLoss()}catch(e){}return url}
 function look(x,z,d=9){controls.target.set(x,0,z);camera.position.set(x+d*.45,d*.75,z+d*.75);controls.update()}
 function tipAt(x,y){const b=nearestTip(x,y);return b?b.T.tip():''}
-return{el:view,sync,event,snapshot,portrait,setRings,overlaps,setInsets,look,tipAt,life:()=>LIFE,isReady:()=>state.ready};
+function advance(sec){const c=Math.round(sec/.05);for(let k=0;k<c;k++)update(.05,clock.elapsedTime+k*.05)}
+return{el:view,sync,event,snapshot,portrait,advance,setRings,overlaps,setInsets,look,tipAt,life:()=>LIFE,isReady:()=>state.ready};
 })();
 
 /* ---------- UI ---------- */
