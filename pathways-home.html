@@ -488,7 +488,7 @@ body.immersive .site-header{position:fixed}
 .tab3 .tn{font-size:12.5px;font-weight:700}.tab3 small{font-size:10.5px;color:var(--muted)}
 .tab3.H .tic{color:var(--hum)}.tab3.D .tic{color:var(--dev)}.tab3.P .tic{color:var(--peace)}
 .tab3.on.H{background:#fbeee6;border-color:var(--hum);color:var(--hum)}.tab3.on.D{background:var(--brand-tint);border-color:var(--dev);color:var(--dev)}.tab3.on.P{background:var(--pipe-bg);border-color:var(--peace);color:var(--peace)}
-.tab3.locked{opacity:.55;cursor:not-allowed}
+.tab3.locked{cursor:not-allowed;background:#f1eee8;color:#9a9fa8}.tab3.locked .tic{opacity:.5}.tab3.locked small{color:#a9adb5}
 .tab3:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
 @media (max-width:1380px){.cgrid{grid-template-columns:auto repeat(8,minmax(38px,62px))}.cgrid .ch small{font-size:9.5px}}
 @media (max-width:1180px){.hud.top{left:294px;right:364px}.cgrid .ch small{display:none}.cgrid .ch{min-height:0}}
@@ -553,7 +553,7 @@ body.immersive .site-header{position:fixed}
 @media (min-width:861px){
   .lpanel .box,.hud.top .crit,.hud .fstrip,.side{background:rgba(255,255,255,.68)!important;-webkit-backdrop-filter:blur(7px) saturate(1.1);backdrop-filter:blur(7px) saturate(1.1);transition:background-color .25s}
   .lpanel .box:hover,.hud.top .crit:hover,.hud .fstrip:hover,.side:hover,.side:focus-within{background:rgba(255,255,255,.96)!important}
-  .side .tabs3{background:transparent}
+  .side .tabs3{background:#f6f2ea;box-shadow:0 6px 8px -6px rgba(0,0,0,.18)}
   .side:hover .tabs3,.side:focus-within .tabs3{background:#fff}
   .lpanel .box .ind,.mt2{background-color:rgba(255,255,255,.35)}
 }
@@ -639,6 +639,69 @@ body.immersive .site-header{position:fixed}
 @media (max-width:760px){.tline{order:5;flex-basis:100%}.tl-tx{display:flex}.tl-tx b{font-size:10.5px}}
 @media (max-width:520px){.header-inner .btn{padding:4px 8px;font-size:12px}.header-inner{gap:6px 10px}}
 @media (max-width:520px){#fs{display:none}.score .lab{display:none}}
+/* v0.23: card price "from" */
+.card .cost small.from{font-size:10.5px;font-weight:600;color:var(--muted)}
+/* site picker in the right panel */
+.sitepick{display:flex;flex-direction:column;gap:7px;padding:2px 0 6px}
+.sp-h{display:flex;gap:9px;align-items:center;padding:2px 2px 4px}
+.sp-h .ic{flex:none;width:32px;height:32px;border-radius:8px;display:grid;place-items:center;background:var(--brand-tint);color:var(--dev)}.sp-h .ic svg{width:18px;height:18px}
+.sp-h b{display:block;font-size:14px;line-height:1.2}.sp-h small{font-size:11.5px;color:var(--muted)}
+.sp-row{display:grid;grid-template-columns:30px 1fr;gap:8px;text-align:left;width:100%;border:1px solid var(--line);border-radius:9px;background:#fff;padding:8px;cursor:pointer;font:inherit;color:inherit}
+.sp-row:hover,.sp-row:focus-visible{border-color:var(--brand);box-shadow:0 0 0 2px var(--brand-tint);outline:none}
+.sp-row.off{opacity:.6;cursor:not-allowed}
+.sp-row .letter{width:30px;height:30px;border-radius:7px;background:var(--brand-tint);color:var(--brand);display:grid;place-items:center;font-weight:900;font-size:15px}
+.sp-b{display:flex;flex-direction:column;gap:3px;min-width:0}
+.sp-t{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}.sp-t b{font-size:13.5px}.sp-t span{font-size:11.5px;color:var(--muted)}
+.sp-l{display:flex;gap:5px;font-size:12px;line-height:1.35;color:var(--ink-2)}
+.sp-l i{flex:none;width:14px;height:14px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:11px;line-height:1;margin-top:1px}
+.sp-l.pro i{background:#e3f2e8;color:#1f6b42}.sp-l.con i{background:#fdecea;color:#b3261e}
+.sp-m{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;font-size:11px;color:var(--muted);margin-top:2px}
+.sp-m span{display:inline-flex;align-items:center;gap:3px}.sp-m svg{width:11px;height:11px}
+.sp-c{font-weight:800;color:var(--ink)!important;font-size:12px}
+.sp-m .risk{font-size:10.5px;padding:1px 7px}
+.sp-no{color:#b3261e!important;font-weight:700}
+.sp-cancel{align-self:flex-start}
+/* end-of-season report */
+.evhead{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center;margin-bottom:8px}
+.evart{width:150px;height:auto;border-radius:10px;display:block}
+.evhead h2{margin:0 0 2px}.evhead .sub{margin-bottom:6px}.evtx{margin:0!important;font-size:14.5px;line-height:1.45}
+.evlines{list-style:none;padding:0!important;margin:0 0 4px!important;display:flex;flex-direction:column;gap:5px}
+.evlines li{background:#f6f4ef;border-left:3px solid #b9b09c;border-radius:0 6px 6px 0;padding:6px 10px;font-size:13.5px;margin:0}
+.prog{display:flex;flex-direction:column;gap:6px}
+.pg{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center}
+.pi{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:var(--panel-2)}.pi svg{width:17px;height:17px}
+.pi.H{color:var(--hum)}.pi.D{color:var(--dev)}.pi.P{color:var(--peace)}
+.pn{display:flex;flex-direction:column;gap:4px;min-width:0}.pn b{font-size:13.5px}.pn small{font-weight:600;color:var(--muted)}
+.pbar{display:flex;gap:3px}.pbar i{height:6px;flex:1;max-width:60px;border-radius:3px;background:var(--track)}.pbar i.on{background:var(--brand)}
+.pt{font-size:12px;color:var(--muted);white-space:nowrap}.pt.done{color:#1f6b42;font-weight:700}
+.rgrid2{display:flex;flex-direction:column;gap:5px}
+.rrow{display:grid;grid-template-columns:22px minmax(120px,1.3fr) 1fr auto 86px;gap:8px;align-items:center;font-size:13.5px;padding:3px 0;border-bottom:1px solid var(--track)}
+.rrow .ri{color:var(--muted)}.rrow .ri svg{width:16px;height:16px;display:block}
+.rbar{position:relative;height:8px;border-radius:4px;background:var(--track);overflow:hidden}
+.rbar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px}
+.rbar .rb{background:#c3c7ce}.rbar .ra{background:#8a909a;height:4px;top:2px}.rbar .ra.good{background:#2e8b57}.rbar .ra.bad{background:#c62f25}
+.rv{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--muted)}.rv b{color:var(--ink)}.rv em{font-style:normal;color:#aab}
+.rch{justify-self:end;font-size:11.5px;font-weight:800;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.rch.good{background:#e3f2e8;color:#1f6b42}.rch.bad{background:#fdecea;color:#b3261e}.rch.flat{background:var(--panel-2);color:var(--muted);font-weight:600}
+@media (max-width:620px){.evhead{grid-template-columns:90px 1fr;gap:10px}.evart{width:90px}.rrow{grid-template-columns:20px 1fr auto;}.rrow .rbar{grid-column:2/4;grid-row:2}.rrow .rv{display:none}}
+/* newspaper: photo fills its column */
+.paper .cols{grid-template-columns:minmax(200px,42%) 1fr;align-items:stretch}
+.paper .fig{margin:0;position:relative;overflow:hidden;min-height:220px;border-radius:2px}
+.paper .fig img.pimg,.paper .fig svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.paper .fig .cap{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.6));color:#fff;padding:18px 8px 6px}
+.paper h2{max-width:none}
+@media (max-width:600px){.paper .cols{grid-template-columns:1fr}.paper .fig{min-height:200px}}
+/* final report: how to reach 10,000, lesson tags */
+.reach{margin-bottom:14px}.reach .rsub{margin:0 0 10px;color:var(--ink-2)}
+.reachg{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.rc{border:1px solid var(--line);border-left:4px solid #e39a27;border-radius:8px;padding:10px 12px;background:#fffaf2}
+.rct{display:flex;justify-content:space-between;gap:8px;align-items:baseline}.rct b{font-size:14px}
+.lost{font-weight:800;color:#b3261e;font-variant-numeric:tabular-nums}
+.rc p{margin:4px 0 0;font-size:13.5px;line-height:1.45}
+.lessons li{position:relative}
+.lessons .lt{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:1px 8px;margin-bottom:4px}
+.lessons li.ok{border-left:4px solid #2e8b57}.lessons li.ok .lt{background:#e3f2e8;color:#1f6b42}
+.lessons li.miss{border-left:4px solid #e39a27}.lessons li.miss .lt{background:#fdf0dc;color:#8a5300}
 
 /* footer */
 .site-footer{border-top:1px solid var(--line);background:var(--panel)}
@@ -666,7 +729,7 @@ body.immersive .site-header{position:fixed}
 </div></div>
 <script>
 (function(){
-  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 338130},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
+  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 387681},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
   var t0=performance.now(),got={},raw=0,xfer=0,first=null,last=null,done=false;
   var nc=navigator.connection||{},guess=nc.downlink?nc.downlink:null;
   function fileOf(n){for(var f in FILES)if(n.split('?')[0].slice(-f.length)===f)return f;return null}
@@ -714,13 +777,19 @@ const CUSTOM={
   tower:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 9h2l4 14h-2.2l-.8-3h-4l-.8 3H7zm.4 9h1.2l-.6-2.3zM10.6 13.6h2.8l-.5-1.9h-1.8z"/><circle cx="12" cy="6.5" r="1.8"/><path d="M6.6 2.2a8 8 0 0 0 0 8.6l1.3-.9a6.4 6.4 0 0 1 0-6.8zM17.4 2.2l-1.3.9a6.4 6.4 0 0 1 0 6.8l1.3.9a8 8 0 0 0 0-8.6z"/></svg>',
   dam:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 4h4l3 16H2z"/><path d="M10 9c1.3 0 1.3 1 2.6 1s1.3-1 2.6-1 1.3 1 2.6 1 1.3-1 2.6-1 1.3 1 2.6 1v2c-1.3 0-1.3-1-2.6-1s-1.3 1-2.6 1-1.3-1-2.6-1-1.3 1-2.6 1-1.3-1-2.6-1zm0 5c1.3 0 1.3 1 2.6 1s1.3-1 2.6-1 1.3 1 2.6 1 1.3-1 2.6-1 1.3 1 2.6 1v2c-1.3 0-1.3-1-2.6-1s-1.3 1-2.6 1-1.3-1-2.6-1-1.3 1-2.6 1-1.3-1-2.6-1z"/></svg>',
   hafir:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1 9h22l-3 9H4z" opacity=".35"/><path d="M4 12c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1l-1.4 4.2H5.4z"/><path d="M12 2.5c1.6 2.2 3 4 3 5.3a3 3 0 0 1-6 0c0-1.3 1.4-3.1 3-5.3z"/></svg>',
+  hygiene:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 9h12l-1.4 12.2a1 1 0 0 1-1 .8H8.4a1 1 0 0 1-1-.8z"/><path d="M5 7h14v2H5z"/><path d="M9 7a3 3 0 0 1 6 0h-1.6a1.4 1.4 0 0 0-2.8 0z"/><circle cx="18.5" cy="3.5" r="1.5"/><circle cx="15.5" cy="2.5" r="1"/></svg>',
+  shelter:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 1 20h4.2L12 9.5 18.8 20H23z"/><path d="M12 13.2 8 20h8z"/></svg>',
+  livestock:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 9h11a3 3 0 0 1 3 3v3h-1.5v5H15v-5H7v5H5.5v-5H4z"/><path d="M17 9.5l2-3.5h2.5l1 2-1.5 2.5H19z"/><path d="M19 4.5l1.2 1.8M21.5 4.5l-.6 1.8" stroke="currentColor" stroke-width="1.2"/></svg>',
+  landrehab:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 20c2-4 6-6 10-6s8 2 10 6h-2.6c-1.7-2.6-4.4-4-7.4-4s-5.7 1.4-7.4 4z"/><path d="M12 13V7"/><path d="M11 13V8.5C8 8.5 6.5 6.5 6.5 4c3 0 4.5 2 4.5 4.5zM13 13V8c0-2.5 1.5-4.5 4.5-4.5 0 2.5-1.5 4.5-4.5 4.5z"/></svg>',
+  inclusion:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2h10l4 4v16H5z" opacity=".35"/><path d="M7 6h7v1.6H7zM7 9.5h10v1.6H7zM7 13h6v1.6H7z"/><path d="M12.5 19.5l2.2 2.2 4.8-4.8-1.2-1.2-3.6 3.6-1-1z"/></svg>',
   person:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="6.5" r="4"/><path d="M4 22c0-5 3.6-8.5 8-8.5s8 3.5 8 8.5z"/></svg>'
 };
-const ICON=id=>({water:CUSTOM.water,food:OCHA.food,cash:OCHA.cash,cfw:OCHA.cfw,seeds:OCHA.seeds,borehole:CUSTOM.borehole,school:OCHA.school,health:CUSTOM.health,lap:OCHA.lap,docs:OCHA.docs,hlp:OCHA.hlp,dialogue:OCHA.dialogue,primary:(typeof ICONS2!=='undefined'?ICONS2.education:''),power:CUSTOM.power,tower:CUSTOM.tower,dam:CUSTOM.dam,hafir:CUSTOM.hafir})[id]||'';
+const ICON=id=>({water:CUSTOM.water,food:OCHA.food,cash:OCHA.cash,cfw:OCHA.cfw,seeds:OCHA.seeds,borehole:CUSTOM.borehole,school:OCHA.school,health:CUSTOM.health,lap:OCHA.lap,docs:OCHA.docs,hlp:OCHA.hlp,dialogue:OCHA.dialogue,primary:(typeof ICONS2!=='undefined'?ICONS2.education:''),power:CUSTOM.power,tower:CUSTOM.tower,dam:CUSTOM.dam,hafir:CUSTOM.hafir,hygiene:CUSTOM.hygiene,shelter:CUSTOM.shelter,livestock:CUSTOM.livestock,landrehab:CUSTOM.landrehab,inclusion:CUSTOM.inclusion})[id]||'';
 
 /*MODEL START*/
-const GROUPS=['idp','ret','host'];
-const GLABEL={idp:'IDP site',ret:'Returnee village',host:'Host town'};
+const GROUPS=['idp','ret','host','ref'];
+const GLABEL={idp:'IDP site',ret:'Returnee village',host:'Host town',ref:'Refugee camp'};
+const Z4=()=>({idp:0,ret:0,host:0,ref:0});
 const CRIT=[['safety','Safety and security'],['living','Adequate standard of living'],['liveli','Access to livelihoods'],['hlp','Housing, land and property'],['docs','Documentation'],['family','Family reunification'],['partic','Participation in public affairs'],['remedy','Remedies and justice']];
 const WEIGHT={safety:.12,living:.25,liveli:.25,hlp:.12,docs:.08,family:.06,partic:.06,remedy:.06};
 const SEASONS=[
@@ -737,58 +806,78 @@ const SITES={
   C:{name:'Plot C, edge of the host town',risk:1,riskTxt:'Flood risk: very low'}};
 const SITE_FX={
   borehole:{
-    A:{idp:{living:16,safety:2},ret:{living:6},host:{living:4}},
-    B:{idp:{living:12,safety:2},ret:{living:14,safety:2},host:{living:10}},
-    C:{idp:{living:5},ret:{living:8},host:{living:15}}},
+    A:{idp:{living:16,safety:2},ret:{living:6},host:{living:4},ref:{living:3}},
+    B:{idp:{living:12,safety:2},ret:{living:14,safety:2},host:{living:10},ref:{living:8}},
+    C:{idp:{living:5},ret:{living:8},host:{living:15},ref:{living:13}}},
   school:{
-    A:{idp:{liveli:14,partic:3},ret:{liveli:5,partic:2},host:{liveli:4,partic:1}},
-    B:{idp:{liveli:12,partic:3},ret:{liveli:7,partic:3},host:{liveli:8,partic:3}},
-    C:{idp:{liveli:5,partic:1},ret:{liveli:5,partic:2},host:{liveli:13,partic:3}}}};
+    A:{idp:{liveli:14,partic:3},ret:{liveli:5,partic:2},host:{liveli:4,partic:1},ref:{liveli:3,partic:1}},
+    B:{idp:{liveli:12,partic:3},ret:{liveli:7,partic:3},host:{liveli:8,partic:3},ref:{liveli:7,partic:2}},
+    C:{idp:{liveli:5,partic:1},ret:{liveli:5,partic:2},host:{liveli:13,partic:3},ref:{liveli:9,partic:2}}}};
+/* each plot has a real advantage: A is cheaper to build, C is ready a season sooner on land the authorities already hold */
+const SITE_COST={A:-10,B:0,C:0},SITE_LAG={A:0,B:0,C:-1},SITE_CAP={A:0,B:0,C:3};
+const SITE_PRO={
+  borehole:{A:'Closest to the IDP site, the biggest gain for IDPs. Shallow water, so it costs USD 0.5 million less.',B:'Reaches all four groups and builds trust between them.',C:'The authorities already hold the land: ready a season sooner, and authority capacity rises. Close to the refugee camp.'},
+  school:{A:'Closest for IDP youth. Cheaper land, so it costs USD 0.5 million less.',B:'Mixed classes for all four groups, which builds trust.',C:'Built on public land: ready a season sooner, and the authorities take on trainers.'}};
+const SITE_CON={
+  borehole:{A:'On the floodplain. A flood can put it out of action.',B:'Full price, and ready in 2 seasons.',C:'IDPs walk 5 km, so smaller gains for them and a small drop in cohesion.'},
+  school:{A:'On the floodplain. A flood can close the classrooms.',B:'Full price, and ready in 2 seasons.',C:'Far for IDP youth, so few of them enrol.'}};
+function costOf(st,id,site){const c=CARD[id];site=site||(st.selSite&&st.selSite[id]);return c.cost+(c.site&&site?SITE_COST[site]:0)}
+function lagOf(st,id,site){const c=CARD[id];site=site||(st.selSite&&st.selSite[id]);return Math.max(0,c.lag+(c.site&&site?SITE_LAG[site]:0))}
 const SITE_COH={borehole:{A:-1,B:3,C:-2},school:{A:0,B:4,C:-1}};
 const SITE_NOTE={
-  borehole:{A:'Closest to the IDP site, but on land that floods.',B:'Reaches all three groups and stays dry.',C:'Safe and close for the town. IDPs walk 5 km for water.'},
-  school:{A:'Closest for IDP youth, but on land that floods.',B:'Mixed classes for all three groups.',C:'Easy for town youth. Few IDP students make the trip.'}};
+  borehole:{A:'Closest to the IDP site, but on land that floods.',B:'Reaches all four groups and stays dry.',C:'Safe and close for the town and the refugee camp. IDPs walk 5 km for water.'},
+  school:{A:'Closest for IDP youth, but on land that floods.',B:'Mixed classes for all four groups.',C:'Easy for town youth. Few IDP students make the trip.'}};
 const CARDS=[
-  {id:'water',win:'H',cost:25,lag:0,name:'Water trucking',desc:'Daily water deliveries to the IDP site and the returnee village.',tags:['Immediate','Stops when funding stops'],
-    fx:{relief:{idp:16,ret:12}}},
-  {id:'food',win:'H',cost:45,lag:0,name:'Food distribution',desc:'Monthly rations for displaced and returning households.',tags:['Immediate','Host community not covered'],
-    fx:{relief:{idp:20,ret:12},coh:-2}},
-  {id:'cash',win:'H',cost:35,lag:0,name:'Multipurpose cash',desc:'Cash through local traders for all three groups. Households choose what they need.',tags:['Immediate','Supports markets'],
-    fx:{relief:{idp:12,ret:12,host:8},c:{idp:{liveli:2},ret:{liveli:2},host:{liveli:2}},coh:1}},
+  {id:'water',win:'H',cost:25,lag:0,name:'Water trucking',desc:'Daily water deliveries to the IDP site, the refugee camp and the returnee village.',tags:['Immediate','Stops when funding stops'],
+    fx:{relief:{idp:16,ret:12,ref:14}}},
+  {id:'food',win:'H',cost:45,lag:0,name:'Food distribution',desc:'Monthly rations for displaced, refugee and returning households.',tags:['Immediate','Host community not covered'],
+    fx:{relief:{idp:20,ret:12,ref:16},coh:-2}},
+  {id:'cash',win:'H',cost:35,lag:0,name:'Multipurpose cash',desc:'Cash through local traders for all four groups. Households choose what they need.',tags:['Immediate','Supports markets'],
+    fx:{relief:{idp:12,ret:12,host:8,ref:10},c:{idp:{liveli:2},ret:{liveli:2},host:{liveli:2},ref:{liveli:2}},coh:1}},
+  {id:'hygiene',win:'H',cost:20,lag:0,name:'Hygiene kits and latrines',desc:'Soap, buckets and water treatment, and new latrines in the IDP site and the refugee camp. Cuts cholera risk.',tags:['Immediate','Best before the rains'],pair:'Prevents cholera in the floods',
+    fx:{relief:{idp:6,ret:3,ref:6},c:{idp:{living:3,safety:1},ret:{living:1},ref:{living:3,safety:1}}}},
+  {id:'shelter',win:'H',cost:30,lag:0,name:'Shelter and household kits',desc:'Plastic sheeting, poles, blankets and cooking sets for families in tents and damaged homes.',tags:['Immediate','Protects in the floods'],
+    fx:{relief:{idp:10,ret:8,ref:8},c:{idp:{living:3,safety:2},ret:{living:2,hlp:1},ref:{living:3,safety:1}}}},
+  {id:'livestock',win:'H',cost:15,lag:0,name:'Livestock vaccination and fodder',desc:'Vaccines, treatment and fodder for goats and cattle, so families keep their animals through hard months.',tags:['Immediate','Protects assets'],pair:'Softens drought losses',
+    fx:{relief:{idp:2,ret:4,host:3},c:{idp:{liveli:1},ret:{liveli:4},host:{liveli:3},ref:{liveli:1}}}},
   {id:'cfw',win:'H',cost:25,lag:0,name:'Cash for work: irrigation canals',desc:'Households earn cash clearing canals that farms will use for years.',tags:['Relief that builds assets'],pair:'Works with seeds and tools',
-    fx:{relief:{idp:8,ret:8,host:4},c:{idp:{liveli:3},ret:{liveli:4},host:{liveli:3}}}},
+    fx:{relief:{idp:8,ret:8,host:4,ref:6},c:{idp:{liveli:3},ret:{liveli:4},host:{liveli:3},ref:{liveli:3}}}},
   {id:'seeds',win:'D',cost:15,lag:0,name:'Seeds, tools and extension',desc:'Inputs and farming advice for returnee and host farmers.',tags:['Best before the rains'],pair:'Works with irrigation canals',
-    fx:{c:{idp:{liveli:2},ret:{liveli:5},host:{liveli:4}}}},
+    fx:{c:{idp:{liveli:2},ret:{liveli:5},host:{liveli:4},ref:{liveli:3}}}},
   {id:'borehole',win:'D',cost:45,lag:2,once:true,site:true,name:'Solar borehole and water committee',desc:'A permanent water point. You choose the plot.',tags:['Ready in 2 seasons','Choose a site'],pair:'Works with community dialogue',
     fx:{build:'borehole'}},
   {id:'school',win:'D',cost:55,lag:2,once:true,site:true,name:'Vocational education centre',desc:'Skills training and apprenticeships for young people. You choose the plot.',tags:['Ready in 2 seasons','Choose a site'],pair:'Stronger if the authorities can staff it',
     fx:{build:'school'}},
-  {id:'primary',win:'D',cost:40,lag:1,once:true,name:'Reopen the primary school',desc:'Classrooms, teachers and school meals for children from all three groups.',tags:['Ready next season','Children back in class'],pair:'Stronger with electricity',
-    fx:{build:'primary',c:{idp:{family:6,living:3,partic:2},ret:{family:5,living:3,partic:2},host:{family:3,living:2}},coh:2}},
+  {id:'primary',win:'D',cost:40,lag:1,once:true,name:'Reopen the primary school',desc:'Classrooms, teachers and school meals for children from all four groups.',tags:['Ready next season','Children back in class'],pair:'Stronger with electricity',
+    fx:{build:'primary',c:{idp:{family:6,living:3,partic:2},ret:{family:5,living:3,partic:2},host:{family:3,living:2},ref:{family:5,living:3,partic:2}},coh:2}},
   {id:'power',win:'D',cost:50,lag:1,once:true,name:'Solar mini-grid and electricity connection',desc:'Solar power and lines to the health centre, schools, market and locality office.',tags:['Ready next season','Boosts services'],pair:'Powers the clinic and schools',
-    fx:{build:'power',c:{idp:{living:2,liveli:2},ret:{living:2,liveli:3},host:{living:3,liveli:5}},cap:4}},
+    fx:{build:'power',c:{idp:{living:2,liveli:2},ret:{living:2,liveli:3},host:{living:3,liveli:5},ref:{living:1,liveli:1}},cap:4}},
   {id:'tower',win:'D',cost:30,lag:1,once:true,name:'Mobile phone tower',desc:'Network coverage for mobile money, flood warnings and calls to relatives.',tags:['Ready next season','Mobile money'],pair:'Makes cash transfers stronger',
-    fx:{build:'tower',c:{idp:{docs:3,family:4,partic:2},ret:{docs:2,family:3,partic:2},host:{partic:2,liveli:1}},cap:2}},
+    fx:{build:'tower',c:{idp:{docs:3,family:4,partic:2},ret:{docs:2,family:3,partic:2},host:{partic:2,liveli:1},ref:{family:6,docs:1}},cap:2}},
   {id:'dam',win:'D',cost:55,lag:2,once:true,name:'Repair the dam and reservoir',desc:'The old dam upstream is cracked and empty. Repaired, it holds back flood peaks and stores water for irrigation.',tags:['Ready in 2 seasons','Flood protection'],pair:'Works with seeds and canals',
-    fx:{build:'dam',c:{idp:{safety:3,liveli:1},ret:{liveli:5},host:{liveli:4}}}},
+    fx:{build:'dam',c:{idp:{safety:3,liveli:1},ret:{liveli:5},host:{liveli:4},ref:{liveli:2}}}},
   {id:'hafir',win:'D',cost:30,lag:1,once:true,name:'Desilt the hafir',desc:'Dig out the silted rainwater pond so it stores water for livestock and small gardens through the dry months.',tags:['Ready next season','Water for livestock'],pair:'Works with seeds and tools',
     fx:{build:'hafir',c:{idp:{living:2},ret:{liveli:5,living:3},host:{liveli:3,living:2}},coh:1}},
+  {id:'landrehab',win:'D',cost:30,lag:2,once:true,name:'Land rehabilitation for resilience',desc:'Water-harvesting bunds, terraces and tree planting bring degraded land back into use and hold water in dry years.',tags:['Ready in 2 seasons','Drought resilience'],pair:'Works with seeds and tools',
+    fx:{build:'landrehab',c:{idp:{liveli:2},ret:{liveli:6},host:{liveli:5},ref:{liveli:3}},coh:1}},
   {id:'health',win:'D',cost:35,lag:1,decay:true,name:'Primary health centre support',desc:'Staff, medicines and outreach for the town health centre.',tags:['Ready next season'],
-    fx:{c:{idp:{living:6},ret:{living:6},host:{living:5}},build:'clinic'}},
+    fx:{c:{idp:{living:6},ret:{living:6},host:{living:5},ref:{living:5}},build:'clinic'}},
   {id:'lap',win:'D',cost:20,lag:1,decay:true,name:'Local authority planning support',desc:'Train locality planners and set up a basic services database.',tags:['Ready next season','Boosts development and peace results'],
-    fx:{cap:15,c:{idp:{partic:4},ret:{partic:4},host:{partic:2}}}},
+    fx:{cap:15,c:{idp:{partic:4},ret:{partic:4},host:{partic:2},ref:{partic:2}}}},
   {id:'docs',win:'P',cost:20,lag:0,name:'Documentation',desc:'Civil documents in three levels, one level per season.',tags:['Immediate','Three levels'],pair:'Works with land registration',
     levels:[
-      {name:'Birth certificates and national ID cards',desc:'Mobile registration teams issue birth certificates and national ID cards to people who lost them.',fx:{c:{idp:{docs:20,remedy:3},ret:{docs:14,remedy:3},host:{docs:4}}}},
-      {name:'Civil records and family tracing',desc:'Marriage and school certificates, and tracing for families separated by displacement.',fx:{c:{idp:{docs:8,family:14},ret:{docs:6,family:10},host:{family:3}}}},
-      {name:'Documents for services and voting',desc:'Registration so families can use public services and take part in local decisions.',fx:{c:{idp:{docs:6,partic:8,remedy:5},ret:{docs:5,partic:7,remedy:5},host:{partic:3}},coh:2}}]},
+      {name:'Birth certificates and national ID cards',desc:'Mobile registration teams issue birth certificates and national ID cards to people who lost them.',fx:{c:{idp:{docs:20,remedy:3},ret:{docs:14,remedy:3},host:{docs:4},ref:{docs:14,remedy:2}}}},
+      {name:'Civil records and family tracing',desc:'Marriage and school certificates, and tracing for families separated by displacement.',fx:{c:{idp:{docs:8,family:14},ret:{docs:6,family:10},host:{family:3},ref:{docs:5,family:12}}}},
+      {name:'Documents for services and voting',desc:'Registration so families can use public services and take part in local decisions.',fx:{c:{idp:{docs:6,partic:8,remedy:5},ret:{docs:5,partic:7,remedy:5},host:{partic:3},ref:{docs:3,partic:5,remedy:3}},coh:2}}]},
   {id:'hlp',win:'P',cost:20,lag:0,name:'Land registration',desc:'Housing, land and property work in three levels, one level per season.',tags:['Immediate','Three levels'],pair:'Works with documentation',
     levels:[
       {name:'Land dispute committees',desc:'Mixed committees with traditional leaders resolve competing claims to houses and farmland.',fx:{c:{idp:{hlp:8,remedy:8,safety:2},ret:{hlp:12,remedy:8,safety:2},host:{hlp:2,remedy:5,safety:2}},coh:3}},
       {name:'Community mapping of plots and homes',desc:'Each plot is surveyed and recorded, with neighbours as witnesses.',fx:{c:{idp:{hlp:6},ret:{hlp:10,liveli:2},host:{hlp:3}},coh:2}},
       {name:'Land registration and certificates',desc:'Families receive registered papers for their homes and land.',fx:{c:{idp:{hlp:8,safety:2},ret:{hlp:12,liveli:3},host:{hlp:4,liveli:2}},coh:1}}]},
   {id:'dialogue',win:'P',cost:10,lag:0,decay:true,name:'Community dialogue',desc:'Meetings under the big tree between IDPs, returnees, host leaders and the authorities.',tags:['Immediate'],
-    fx:{coh:5,c:{idp:{partic:10},ret:{partic:10},host:{partic:5}}}}
+    fx:{coh:5,c:{idp:{partic:10},ret:{partic:10},host:{partic:5},ref:{partic:8}}}},
+  {id:'inclusion',win:'P',cost:15,lag:0,once:true,name:'Refugee inclusion: work permits and land access',desc:'The authorities issue work permits and lease farmland to refugees, so they can farm and work like their neighbours.',tags:['Immediate','Refugees can farm'],pair:'Works with community dialogue',
+    fx:{build:'inclusion',c:{ref:{liveli:12,docs:8,partic:5,hlp:6,remedy:3}},coh:1}}
 ];
 CARDS.forEach(c=>{if(c.levels)c.fx=c.levels[0].fx});
 const CARD=Object.fromEntries(CARDS.map(c=>[c.id,c]));
@@ -802,12 +891,13 @@ const usdL=p=>{const m=p*USD_PER_POINT/1e6;return'USD '+(Number.isInteger(m)?m:m
 
 function newState(){
   const st={season:0,over:false,
-    pop:{idp:18000,ret:12000,host:30000},
+    pop:{idp:18000,ret:12000,host:30000,ref:5000},
     g:{
       idp:{safety:45,living:25,liveli:15,hlp:10,docs:30,family:40,partic:15,remedy:20},
       ret:{safety:50,living:30,liveli:25,hlp:25,docs:45,family:60,partic:25,remedy:25},
-      host:{safety:60,living:45,liveli:40,hlp:70,docs:80,family:85,partic:45,remedy:40}},
-    relief:{idp:0,ret:0,host:0},coh:50,cap:25,
+      host:{safety:60,living:45,liveli:40,hlp:70,docs:80,family:85,partic:45,remedy:40},
+      ref:{safety:50,living:32,liveli:12,hlp:10,docs:35,family:35,partic:10,remedy:20}},
+    relief:Z4(),coh:50,cap:25,
     budget:BASE_BUDGET,bonusD:0,cutH:false,
     sel:[],selSite:{},sites:{},pending:[],count:{},level:{docs:0,hlp:0},built:{},damaged:{},played:[],active:[],
     lastEvent:null,lastNotes:[],
@@ -820,8 +910,8 @@ function shown(st,g){return Math.min(100,st.g[g].living+st.relief[g])}
 function avgSR(st){let t=0,p=0;for(const g of GROUPS){t+=sr(st,g)*st.pop[g];p+=st.pop[g]}return t/p}
 function acute(st){let n=0;for(const g of GROUPS)n+=st.pop[g]*clamp((45-shown(st,g))/45,0,1);return n}
 function dependency(st){let r=0,l=0;for(const g of GROUPS){r+=st.pop[g]*st.relief[g];l+=st.pop[g]*shown(st,g)}return l?100*Math.min(r,l)/l:0}
-function snapshotMetrics(st){return{sr:{idp:sr(st,'idp'),ret:sr(st,'ret'),host:sr(st,'host')},avg:avgSR(st),acute:acute(st),dep:dependency(st),coh:st.coh,cap:st.cap}}
-function remaining(st){let r=st.budget;for(const id of st.sel)r-=CARD[id].cost;return r}
+function snapshotMetrics(st){return{sr:Object.fromEntries(GROUPS.map(g=>[g,sr(st,g)])),avg:avgSR(st),acute:acute(st),dep:dependency(st),coh:st.coh,cap:st.cap}}
+function remaining(st){let r=st.budget;for(const id of st.sel)r-=costOf(st,id);return r}
 function cardStatus(st,id){
   const c=CARD[id];
   if(c.levels){if(lvl(st,id)>=c.levels.length)return'built';return'open'}
@@ -834,7 +924,8 @@ function applyCard(st,c,mult,site){
   const fx=c.fx;
   if(fx.relief)for(const g in fx.relief)st.relief[g]+=fx.relief[g];
   const eff=c.site?SITE_FX[c.id][site]:fx.c;
-  if(eff)for(const g in eff)for(const k in eff[g])add(st,g,k,eff[g][k]*mult*0.75);
+  if(eff)for(const g in eff)for(const k in eff[g]){let v=eff[g][k]*mult*0.75;if(g==='ref'&&k==='liveli'&&c.id!=='inclusion'&&st.built.inclusion===undefined)v*=.4;add(st,g,k,v)}
+  if(c.site&&SITE_CAP[site])st.cap=clamp(st.cap+SITE_CAP[site]);
   const coh=c.site?SITE_COH[c.id][site]:fx.coh;
   if(coh)st.coh=clamp(st.coh+(coh>0?coh*mult:coh));
   if(fx.cap)st.cap=clamp(st.cap+fx.cap*mult);
@@ -844,19 +935,20 @@ function resolve(st,noShock){
   const s=st.season,rep={season:s,done:[],started:[],combos:[],notes:[],event:null};
   const before=snapshotMetrics(st);
   const sel=[...st.sel];
-  st.relief={idp:0,ret:0,host:0};
+  st.relief=Z4();
   const left=noShock?0:Math.max(0,remaining(st));
   for(const id of sel){
     const c=CARD[id];
-    st.spent[c.win]+=c.cost;st.spentById[id]=(st.spentById[id]||0)+c.cost;
+    const cost=costOf(st,id);st.spent[c.win]+=cost;st.spentById[id]=(st.spentById[id]||0)+cost;
     let decay=c.decay?1/(1+0.6*(st.count[id]||0)):1;
     if(id==='seeds'&&!(s===1||s===5)){decay*=0.5;rep.notes.push('Seeds went out outside the planting window, so farmers got only half the benefit.')}
     const site=c.site?(st.selSite[id]||'B'):null;
     if(site)st.sites[c.fx.build]=site;
-    st.pending.push({id,due:s+c.lag,decay,from:s,site,lv:c.levels?lvl(st,id):undefined});
+    const lag=lagOf(st,id,site);
+    st.pending.push({id,due:s+lag,decay,from:s,site,lv:c.levels?lvl(st,id):undefined});
     st.count[id]=(st.count[id]||0)+1;
     st.played.push({id,season:s});
-    if(c.lag>0)rep.started.push(id);
+    if(lag>0)rep.started.push(id);
   }
   const due=st.pending.filter(p=>p.due===s);
   st.pending=st.pending.filter(p=>p.due!==s);
@@ -865,20 +957,23 @@ function resolve(st,noShock){
     const capMult=c.win==='H'?1:(0.8+st.cap/150);
     applyCard(st,c,p.decay*capMult,p.site);
     if(p.lv!==undefined){if(!st.level)st.level={};st.level[p.id]=p.lv+1}
-    if(c.lag>0)rep.done.push(p.id);
+    if(p.due>p.from)rep.done.push(p.id);
     if(p.id==='power'){if(st.built.clinic!==undefined){for(const g of GROUPS)add(st,g,'living',3);rep.combos.push('Power reaches the health centre: lights, a vaccine fridge and night deliveries.')}
       if(st.built.school!==undefined||st.built.primary!==undefined){for(const g of GROUPS)add(st,g,'liveli',2);rep.combos.push('Electricity lets the schools run evening classes and computer lessons.')}}
     if((p.id==='health'||p.id==='primary'||p.id==='school')&&st.built.power!==undefined&&st.built.power<s){for(const g of GROUPS)add(st,g,p.id==='health'?'living':'liveli',1.5);rep.combos.push('The mini-grid powers the new '+(p.id==='health'?'health services.':'classrooms.'))}
     if(p.id==='cash'&&st.built.tower!==undefined){for(const g of GROUPS)st.relief[g]+=(c.fx.relief[g]||0)*.25;rep.combos.push('Mobile money through the new tower gets cash to households faster and safer.')}
     if(p.id==='school'&&st.cap>=40){for(const g of GROUPS)add(st,g,'liveli',4);rep.combos.push('The authorities assigned trainers to the vocational centre, so graduates found work faster.')}
   }
-  if(left>0){const r=Math.min(12,left*.12);st.relief.idp+=r;st.relief.ret+=r*.8;st.relief.host+=r*.3;st.spent.H+=left;st.spentById.general=(st.spentById.general||0)+left;
+  if(left>0){const r=Math.min(12,left*.12);st.relief.idp+=r;st.relief.ret+=r*.8;st.relief.host+=r*.3;st.relief.ref+=r*.8;st.spent.H+=left;st.spentById.general=(st.spentById.general||0)+left;
     rep.notes.push(usdL(left)+' left unspent went to general humanitarian assistance: food, water and basic items for this season only.')}
   rep.left=left;
   const has=id=>sel.includes(id);
   if(has('seeds')&&has('cfw')){add(st,'ret','liveli',5);add(st,'host','liveli',5);add(st,'idp','liveli',3);rep.combos.push('Seeds went onto land served by the cleared canals. Farm output rose for returnees and hosts.')}
   if(has('docs')&&has('hlp')){add(st,'idp','hlp',6);add(st,'ret','hlp',6);rep.combos.push('New documents let families prove their land claims.')}
-  if(has('borehole')&&has('dialogue')){st.coh=clamp(st.coh+4);rep.combos.push('The dialogue agreed who sits on the water committee, so all three groups own the borehole.')}
+  if(has('borehole')&&has('dialogue')){st.coh=clamp(st.coh+4);rep.combos.push('The dialogue agreed who sits on the water committee, so all four groups own the borehole.')}
+  if(has('inclusion')&&has('dialogue')){st.coh=clamp(st.coh+2);rep.combos.push('Host farmers agreed the land leases for refugees in the dialogue, so the permits caused no friction.')}
+  if(has('landrehab')&&has('seeds')){add(st,'ret','liveli',2);add(st,'host','liveli',2);rep.combos.push('Seeds went onto rehabilitated land, where the bunds hold rainwater for longer.')}
+  if(has('inclusion')&&!has('dialogue')&&st.coh<50){st.coh=clamp(st.coh-2);rep.notes.push('Some host farmers worried about sharing land with refugees. Cohesion dipped.')}
   if(sel.length){
     const hostTouched=sel.some(id=>{const c=CARD[id],fx=c.fx;return c.site||(fx.relief&&fx.relief.host)||(fx.c&&fx.c.host)||fx.coh>0});
     if(!hostTouched){st.coh=clamp(st.coh-5);rep.notes.push('The host community saw support going only to newcomers. Social cohesion fell.')}
@@ -906,8 +1001,9 @@ function shock(st,s,sel){
     if(sel.includes('hlp')||sel.includes('dialogue'))L.push('Your dialogue and land work give people a place to raise disputes. Tensions stay manageable.');
     else{st.coh=clamp(st.coh-4);L.push('Arguments over houses and farmland break out. Social cohesion falls.')}
   }else if(s===1){
-    kind='prices';title='Food prices spike in the lean season';
-    text='Sorghum prices in the town market rise sharply before the new harvest.';
+    kind='prices';title='Food prices spike, and new refugees arrive';
+    text='Sorghum prices in the town market rise sharply before the new harvest. About 1,000 refugees from South Sudan, Eritrea and Ethiopia arrive at the camp.';
+    st.pop.ref+=1000;add(st,'ref','living',-3);L.push('Refugee standard of living falls as the camp fills up.');
     for(const g of GROUPS){const hit=st.g[g].liveli>=40?3:6;add(st,g,'living',-hit);L.push(GLABEL[g]+': standard of living down '+hit+(hit===3?' (income cushions the blow).':' (little income to absorb it).'))}
   }else if(s===2){
     kind='flood';title='Floods reach the IDP site';
@@ -920,8 +1016,11 @@ function shock(st,s,sel){
     else if(bore){add(st,'idp','living',-4);L.push('The borehole on dry ground keeps clean water flowing. Damage at the IDP site is limited.')}
     else{add(st,'idp','living',-10);add(st,'idp','safety',-3);L.push('Shallow wells at the IDP site are contaminated. Standard of living and safety fall sharply.')}
     if(!dam&&st.built.school!==undefined&&st.sites.school==='A'){st.damaged.school=true;add(st,'idp','liveli',-8);add(st,'ret','liveli',-3);add(st,'host','liveli',-3);L.push('Classrooms on Plot A flooded. The vocational centre closes.')}
+    const hyg=st.played.some(p=>p.id==='hygiene'&&p.season<=2),shel=st.played.some(p=>p.id==='shelter'&&p.season>=1&&p.season<=2);
+    if(shel){add(st,'idp','living',3);L.push('Shelter kits kept more families dry. Fewer tents collapsed.')}
     if(st.built.clinic!==undefined)L.push('The supported health centre catches early cholera cases. No outbreak.');
-    else{for(const g of GROUPS)add(st,g,'living',-4);L.push('Without a functioning health centre, waterborne disease spreads to all three settlements.')}
+    else if(hyg){for(const g of GROUPS)add(st,g,'living',-1);L.push('Hygiene kits and new latrines kept cholera from spreading. Only a few cases.')}
+    else{for(const g of GROUPS)add(st,g,'living',-4);L.push('Without a functioning health centre or latrines, cholera spreads to all four settlements.')}
   }else if(s===3){
     kind='harvest';title='Harvest time';
     text='Farmers bring in the sorghum and groundnut crop.';
@@ -932,19 +1031,25 @@ function shock(st,s,sel){
     if(st.built.dam!==undefined){add(st,'ret','liveli',3);add(st,'host','liveli',3);L.push('Water from the reservoir irrigates more fields.')}
     if(st.built.hafir!==undefined){add(st,'ret','liveli',2);add(st,'host','liveli',1);L.push('The hafir kept livestock watered through the dry months.')}
     if(st.played.some(p=>p.id==='cfw'&&p.season<=3)){add(st,'ret','liveli',4);add(st,'host','liveli',4);L.push('Cleared canals irrigate more land.')}
+    if(st.built.landrehab!==undefined){add(st,'ret','liveli',3);add(st,'host','liveli',2);add(st,'ref','liveli',1);L.push('Rehabilitated land is back in production.')}
+    if(st.built.inclusion!==undefined){add(st,'ref','liveli',3);L.push('Refugees with work permits harvest their first leased plots.')}
     if(avgSR(st)-st.history[0].avg>=6){st.bonusD=20;L.push('A development donor sees results on the ground and adds USD 1 million to your budget from next season.')}
   }else if(s===4){
     kind='cut';title='Donor funding is cut';
     text='A major donor reduces its contribution: next season the budget drops by USD 2.25 million. A dispute over farmland near the returnee village escalates at the same time. Forecasters also declare El Niño: below-average rains are likely this year.';
     st.cutH=true;
-    if(st.coh<45){for(const g of GROUPS){add(st,g,'safety',-10);add(st,g,'remedy',-3)}L.push('With low social cohesion, the land dispute turns violent. Safety falls in all three settlements.')}
+    if(st.coh<45){for(const g of GROUPS){add(st,g,'safety',-10);add(st,g,'remedy',-3)}L.push('With low social cohesion, the land dispute turns violent. Safety falls in all four settlements.')}
     else{for(const g of GROUPS)add(st,g,'safety',-3);L.push('Community structures you supported settle the dispute before it spreads.')}
   }else{
     kind='review';title='El Niño delays the rains, and the authorities review the year';
     text='The first rains of June come late and weak, as El Niño years often bring. Locality authorities review the two years and decide what goes into next year’s locality development plan.';
     const store=st.built.hafir!==undefined||st.built.dam!==undefined;
-    if(store){add(st,'ret','liveli',-1);add(st,'host','liveli',-1);L.push('Water stored in the '+(st.built.dam!==undefined?'reservoir':'hafir')+' keeps livestock and gardens alive through the dry spell.')}
-    else{add(st,'ret','liveli',-4);add(st,'host','liveli',-3);add(st,'idp','living',-2);L.push('With no stored water, livestock weaken and early planting fails. Returnee and host incomes fall.')}
+    let lr=store?1:4,lh=store?1:3;
+    if(st.built.landrehab!==undefined){lr=Math.max(0,lr-2);lh=Math.max(0,lh-1);L.push('Bunds and terraces on rehabilitated land hold the little rain that falls.')}
+    if(st.played.some(p=>p.id==='livestock'&&p.season>=3)){lr=Math.floor(lr/2);lh=Math.floor(lh/2);L.push('Vaccinated, well-fed herds survive the dry spell. Fewer animals are sold off cheaply.')}
+    add(st,'ret','liveli',-lr);add(st,'host','liveli',-lh);if(!store)add(st,'idp','living',-2);
+    if(store)L.push('Water stored in the '+(st.built.dam!==undefined?'reservoir':'hafir')+' keeps livestock and gardens alive through the dry spell.');
+    else L.push('With no stored water, livestock weaken and early planting fails. Returnee and host incomes fall.');
     if(st.cap>=50){add(st,'idp','partic',8);add(st,'idp','remedy',5);L.push('Planners now have the skills and data to include the IDP site in the locality plan.')}
     else L.push('The locality planning unit cannot yet include the IDP site. Its future depends on outside agencies.');
   }
@@ -965,7 +1070,7 @@ function missions(st){
 function scoreParts(st){
   const first=st.history[0],last=st.history[st.history.length-1];
   const ms=missions(st);const passed=ms.filter(m=>m.ok&&!m.limit).length;const limitBad=!ms.find(m=>m.limit).ok;
-  return[['Self-reliance gained',Math.round(400*clamp((last.avg-first.avg)/22,0,1))*10,4000],
+  return[['Self-reliance gained',Math.round(400*clamp((last.avg-first.avg)/20,0,1))*10,4000],
     ['Missions completed ('+passed+' of 6)',passed*600,3600],
     ['Less reliance on aid',Math.round(120*clamp((100-last.dep)/100,0,1))*10,1200],
     ['Acute need kept low',Math.round(120*clamp(1-st.acuteSum/50000,0,1))*10,1200],
@@ -976,26 +1081,43 @@ function rating(gain,peak){
   if(peak>15000&&gain>=12)return['Early recovery, at a cost','Long-term investments moved the locality forward, but too many people fell into acute need along the way.'];
   if(gain<4)return['Holding pattern','People survived, but few are closer to a durable solution.'];
   if(gain<12)return['Early recovery','Some households are recovering, but most still rely on assistance.'];
-  if(gain<22)return['Pathways opening','Many households are on a path to self-reliance, with the authorities starting to take the lead.'];
-  return['Solutions in reach','Self-reliance has risen across all three groups and local institutions are ready to lead.'];
+  if(gain<20)return['Pathways opening','Many households are on a path to self-reliance, with the authorities starting to take the lead.'];
+  return['Solutions in reach','Self-reliance has risen across all four groups and local institutions are ready to lead.'];
 }
 function lessons(st){
   const out=[];const tot=st.spent.H+st.spent.D+st.spent.P||1;
   const h=st.spent.H/tot;const last=st.history[st.history.length-1];
   const peakAcute=Math.max(...st.history.slice(1).map(x=>x.acute));
   const water=st.spentById.water||0;
-  if(h>0.6)out.push(['Relief kept people going, but did not move them forward','You put '+Math.round(h*100)+'% of all funding into humanitarian assistance. Aid dependency at the end is '+Math.round(last.dep)+'%.']);
-  if(peakAcute>9000)out.push(['Some seasons left too many people in acute need','At the worst point about '+fmtPeople(peakAcute)+' people were in acute need. Moving to solutions does not mean cutting life-saving support too early.']);
-  if(st.sites.borehole==='A')out.push(['Siting on the floodplain cost you','The borehole on Plot A served the IDP site best on paper, but the floods put it out of action.']);
-  if(st.sites.borehole==='C')out.push(['Safe siting is not the same as shared access','The borehole in town stayed dry, but IDPs still walked far for water.']);
-  if(water>=50&&st.built.borehole===undefined)out.push(['Water trucking cost more than a borehole','You spent '+usdL(water)+' on trucked water. A solar borehole costs USD 2.25 million once and keeps working.']);
-  if(st.built.borehole!==undefined&&st.built.borehole<=2&&!st.damaged.borehole)out.push(['Investing early paid off in the floods','The borehole was ready before the rains and protected the IDP site from contaminated water.']);
-  if(st.played.some(p=>p.id==='seeds'&&p.season!==1&&p.season!==5))out.push(['Timing matters for agriculture','Seeds distributed outside the lean season, before the rains, gave only half the benefit.']);
-  if(last.coh<45)out.push(['Social cohesion was the weak link','Cohesion ended at '+Math.round(last.coh)+'. Include the host community and fund peace work alongside services.']);
-  else out.push(['You protected social cohesion','Cohesion ended at '+Math.round(last.coh)+'. Including the host community kept tensions manageable when shocks hit.']);
-  if(last.cap>=50)out.push(['The authorities can now lead','Planning capacity reached '+Math.round(last.cap)+'. Investments delivered more because local institutions could absorb them.']);
-  else out.push(['The authorities are not yet ready to lead','Planning capacity ended at '+Math.round(last.cap)+'. Without local ownership, gains depend on outside funding.']);
-  return out.slice(0,5);
+  if(h>0.6)out.push(['Relief kept people going, but did not move them forward','You put '+Math.round(h*100)+'% of all funding into humanitarian assistance. Aid dependency at the end is '+Math.round(last.dep)+'%.',false]);
+  if(peakAcute>9000)out.push(['Some seasons left too many people in acute need','At the worst point about '+fmtPeople(peakAcute)+' people were in acute need. Moving to solutions does not mean cutting life-saving support too early.',false]);
+  if(st.sites.borehole==='A')out.push(['Siting on the floodplain cost you','The borehole on Plot A was cheaper and served the IDP site best on paper, but '+(st.damaged.borehole?'the floods put it out of action.':'it stayed at risk from every flood.'),!st.damaged.borehole]);
+  if(st.sites.borehole==='C')out.push(['Safe siting is not the same as shared access','The borehole in town was ready sooner and stayed dry, but IDPs still walked far for water.',false]);
+  if(water>=50&&st.built.borehole===undefined)out.push(['Water trucking cost more than a borehole','You spent '+usdL(water)+' on trucked water. A solar borehole costs USD 2.25 million once and keeps working.',false]);
+  if(st.built.borehole!==undefined&&st.built.borehole<=2&&!st.damaged.borehole)out.push(['Investing early paid off in the floods','The borehole was ready before the rains and protected the IDP site from contaminated water.',true]);
+  if(st.played.some(p=>p.id==='seeds'&&p.season!==1&&p.season!==5))out.push(['Timing matters for agriculture','Seeds distributed outside the lean season, before the rains, gave only half the benefit.',false]);
+  if(st.built.inclusion!==undefined)out.push(['Including refugees paid off','With work permits and land, refugees farmed and traded instead of waiting for aid.',true]);
+  else out.push(['Refugees stayed on the margins','Without work permits and land access, refugees could only find casual work, so their self-reliance stayed low.',false]);
+  if(last.coh<45)out.push(['Social cohesion was the weak link','Cohesion ended at '+Math.round(last.coh)+'. Include the host community and fund peace work alongside services.',false]);
+  else out.push(['You protected social cohesion','Cohesion ended at '+Math.round(last.coh)+'. Including the host community kept tensions manageable when shocks hit.',true]);
+  if(last.cap>=50)out.push(['The authorities can now lead','Planning capacity reached '+Math.round(last.cap)+'. Investments delivered more because local institutions could absorb them.',true]);
+  else out.push(['The authorities are not yet ready to lead','Planning capacity ended at '+Math.round(last.cap)+'. Without local ownership, gains depend on outside funding.',false]);
+  const ok=out.filter(x=>x[2]),miss=out.filter(x=>!x[2]);
+  return miss.slice(0,3).concat(ok).slice(0,5);
+}
+const MISSION_TIP={acute:'Keep enough relief going in the last two seasons, or fund shelter and hygiene before the rains.',water:'Build the borehole on Plot B before the rains, in season 1 or 2.',school:'Start the vocational centre early, away from the floodplain or with the dam repaired.',primary:'Reopen the primary school; it is ready one season after you fund it.',cap:'Fund local authority planning support more than once, or site a build on Plot C.',coh:'Fund community dialogue, include the host town, and pair refugee inclusion with dialogue.',limit:'Never let acute need pass 15,000: cover critical needs every season.'};
+function improve(st){
+  const parts=scoreParts(st),out=[];const last=st.history[st.history.length-1],first=st.history[0];
+  const [srP,msP,depP,acP,limP]=parts;
+  if(srP[1]<srP[2]){const need=Math.ceil(first.avg+20-last.avg);const groups=GROUPS.slice().sort((a,b)=>last.sr[a]-last.sr[b]);
+    out.push(['Self-reliance gained',srP[2]-srP[1],'Average self-reliance rose '+Math.round(last.avg-first.avg)+' points; full marks need about '+need+' more. The '+GLABEL[groups[0]].toLowerCase()+' ended lowest at '+Math.round(last.sr[groups[0]])+'. '+(st.built.inclusion===undefined&&groups[0]==='ref'?'Refugee inclusion would have let them farm and work. ':'')+'Start two-season builds in seasons 1 and 2, and put seeds in before the rains.'])}
+  if(msP[1]<msP[2]){const ms=missions(st).filter(m=>!m.ok&&!m.limit);out.push(['Missions completed',msP[2]-msP[1],ms.map(m=>m.short+': '+MISSION_TIP[m.id]).join(' ')])}
+  if(depP[1]<depP[2]){const late=[...new Set(st.played.filter(p=>p.season>=4&&CARD[p.id].win==='H'&&CARD[p.id].fx.relief&&p.id!=='cfw'&&p.id!=='livestock').map(p=>CARD[p.id].name.split(':')[0].toLowerCase()))];
+    out.push(['Less reliance on aid',depP[2]-depP[1],'Aid dependency ended at '+Math.round(last.dep)+'%. '+(late.length?'In year 2 you still funded '+late.join(', ')+'. ':'')+'Once services and farms are working, move that money to cash for work, livestock and livelihoods.'])}
+  if(acP[1]<acP[2]){let wi=1;st.history.forEach((x,i)=>{if(i>0&&x.acute>st.history[wi].acute)wi=i});
+    out.push(['Acute need kept low',acP[2]-acP[1],'The worst point was about '+fmtPeople(st.history[wi].acute)+' people in acute need at the end of season '+wi+' ('+SEASONS[wi-1].name.toLowerCase()+', year '+SEASONS[wi-1].yr+'). More water, food or shelter in that season would have kept it lower.'])}
+  if(limP[1]<0)out.push(['Limit broken',-limP[1],'Acute need passed 15,000 people at some point. Cover critical needs first, every season.']);
+  return out;
 }
 function statusCounts(st,g){
   const n=Math.max(1,Math.round(st.pop[g]/1000));
@@ -1036,9 +1158,9 @@ renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.
 view.prepend(renderer.domElement);
 const scene=new THREE.Scene();
 const SKY={dry:new THREE.Color('#ead9b8'),lean:new THREE.Color('#e6cfa6'),rain:new THREE.Color('#a9b1b6'),harvest:new THREE.Color('#ecd2a2')};
-scene.background=SKY.dry.clone();scene.fog=new THREE.Fog(scene.background,85,170);
+scene.background=SKY.dry.clone();scene.fog=new THREE.Fog(scene.background,100,200);
 const camera=new THREE.PerspectiveCamera(30,1,0.5,320);
-const CAM0=new THREE.Vector3(33,45,55),TGT0=new THREE.Vector3(-2.5,0,-2);
+const CAM0=new THREE.Vector3(37,50,60),TGT0=new THREE.Vector3(.5,0,-5);
 camera.position.copy(CAM0);
 const controls=new OrbitControls(camera,renderer.domElement);
 controls.target.copy(TGT0);controls.enableDamping=true;controls.minDistance=7;controls.maxDistance=125;
@@ -1046,7 +1168,7 @@ controls.minPolarAngle=0.42;controls.maxPolarAngle=1.2;controls.enablePan=true;c
 controls.mouseButtons={LEFT:THREE.MOUSE.PAN,MIDDLE:THREE.MOUSE.DOLLY,RIGHT:THREE.MOUSE.ROTATE};controls.touches={ONE:THREE.TOUCH.PAN,TWO:THREE.TOUCH.DOLLY_ROTATE};
 const INS={l:0,r:0,t:0};
 let BASE=80,zoomAnim=null,ZLEV=1;const ZL=[1,.74,.55,.41,.3];
-function fitCam(){const w=view.clientWidth||1,hh=view.clientHeight||1,ea=Math.max(.4,(w-INS.l-INS.r)/Math.max(200,hh-INS.t*.8));const k=Math.max(.85,Math.pow(1.55/ea,.6));BASE=CAM0.clone().sub(TGT0).length()*k;controls.maxDistance=BASE*1.15;zoomAnim=null;camera.position.copy(TGT0).add(CAM0.clone().sub(TGT0).multiplyScalar(k*ZL[1]));controls.target.copy(TGT0);markZoom(2)}
+function fitCam(){const w=view.clientWidth||1,hh=view.clientHeight||1,ea=Math.max(.4,(w-INS.l-INS.r)/Math.max(200,hh-INS.t*.8));const k=Math.max(.85,Math.pow(1.55/ea,.6));BASE=CAM0.clone().sub(TGT0).length()*k;controls.maxDistance=BASE*1.3;zoomAnim=null;camera.position.copy(TGT0).add(CAM0.clone().sub(TGT0).multiplyScalar(k*ZL[1]));controls.target.copy(TGT0);markZoom(2)}
 const zoomEl=view.querySelector('.zoom3d');
 function markZoom(l){ZLEV=l;zoomEl.querySelectorAll('i').forEach(e=>e.classList.toggle('on',+e.dataset.l===l))}
 function curZoom(){const d=camera.position.distanceTo(controls.target)/BASE;let best=1,bd=9;ZL.forEach((f,i)=>{if(Math.abs(f-d)<bd){bd=Math.abs(f-d);best=i+1}});return best}
@@ -1065,13 +1187,13 @@ let fitted=false;
 view.querySelector('.reset3d').onclick=fitCam;
 const hemi=new THREE.HemisphereLight('#fff3dc','#b49a72',1.25);scene.add(hemi);
 const sun=new THREE.DirectionalLight('#ffe6bf',2.6);sun.position.set(-22,34,16);sun.castShadow=true;
-sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-42,right:42,top:34,bottom:-34,near:5,far:130});sun.shadow.mapSize.set(3072,3072);sun.shadow.bias=-0.0006;sun.shadow.normalBias=0.03;
+sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-54,right:54,top:44,bottom:-44,near:5,far:150});sun.shadow.mapSize.set(4096,4096);sun.shadow.bias=-0.0006;sun.shadow.normalBias=0.03;
 scene.add(sun);
 
 /* terrain */
-const W=76,D=54,DAMX=-30;
+const W=95,D=68,DAMX=-30;
 const zr=x=>11.6+Math.sin(x*0.15)*1.5;
-const ROADS=[[[-38,-0.6462],[38,-4.1538]],[[3,-20],[3,-2.4]]];
+const RSL=0.046154;const ROADS=[[[-W/2,-2.4+RSL*W/2],[W/2,-2.4-RSL*W/2]],[[3,-20],[3,-2.4]]];
 function segDist(x,z,[a,b]){const dx=b[0]-a[0],dz=b[1]-a[1];const t=Math.max(0,Math.min(1,((x-a[0])*dx+(z-a[1])*dz)/(dx*dx+dz*dz)));return Math.hypot(x-a[0]-t*dx,z-a[1]-t*dz)}
 const roadD=(x,z)=>Math.min(segDist(x,z,ROADS[0]),segDist(x,z,ROADS[1]));
 const roadZ=x=>ROADS[0][0][1]+(x-ROADS[0][0][0])/(ROADS[0][1][0]-ROADS[0][0][0])*(ROADS[0][1][1]-ROADS[0][0][1]);
@@ -1174,7 +1296,9 @@ const at=(x,z,dy)=>()=>v3.set(x,h(x,z)+dy,z);
 /* key places */
 const P={tap:{x:-3,z:1.2},food:{x:1.6,z:1.3},desk:{x:-7.6,z:1.1},hlp:{x:-10.2,z:-4.6},tree:{x:-4,z:-7.5},fire:{x:-1.4,z:5.3},
   market:{x:8.6,z:0.7},clinic:{x:13.6,z:-5.6},office:{x:19.6,z:-5.6},pump:{x:16.6,z:-12.6},village:{x:-15.5,z:-10.5},
-  A:{x:8.6,z:7.7},B:{x:6.8,z:-6.6},C:{x:7.1,z:-12.8},primary:{x:-0.5,z:-5.4},hafir:{x:-12.5,z:-19.6},solar:{x:29,z:-14.5},tower:{x:30.5,z:-21.5}};
+  A:{x:8.6,z:7.7},B:{x:6.8,z:-6.6},C:{x:7.1,z:-12.8},primary:{x:-0.5,z:-5.4},hafir:{x:-12.5,z:-19.6},solar:{x:29,z:-14.5},tower:{x:30.5,z:-21.5},
+  camp:{x:18,z:-26},permit:{x:16.0,z:-20.9},refTap:{x:21.4,z:-21.4},latr:{x:-9.7,z:5.2},campLatr:{x:24.6,z:-27.6},shelter:{x:6.3,z:3.5},pen:{x:-29,z:-5},rehab:{x:-31,z:-27},agent:{x:12.4,z:1.3},board:{x:21.9,z:-3.4},ftruck:{x:0.3,z:-0.4}};
+const CAMP={x0:11,x1:25.5,z0:-31,z1:-21.8};
 const W3={};
 
 function buildWorld(){
@@ -1200,10 +1324,10 @@ function buildWorld(){
     const m=mesh(new THREE.BoxGeometry(f.x1-f.x0-2.6,.06,.22),cm,(f.x0+f.x1)/2,h((f.x0+f.x1)/2,f.z1)+.03,f.z1+.1,W3.canals);m.castShadow=false}
   W3.canals.visible=false;
   // trees, bushes, rocks
-  [[-24,-15],[-20,-3],[-8,-12],[-1,-15],[1,-9],[-6,-3.5],[11,-21],[24,-4],[24,2],[-24,6],[-17,8],[16,7.6],[-10,-1.8],[22,-19],[-3,-19],[-23,-9],[9,14],[-12,15],[18,15],[4,-17],[-34,-21],[-31,-7],[-29,3],[-35,-13],[33,-8],[35,3],[29,9],[-27,23],[-1,23],[12,22],[24,20],[34,18],[-33,22],[-17,-23],[7,-24],[19,-25],[-8,-25],[36,-24],[31,24]].forEach(([x,z],i)=>{place(i%3?'tree_plateau':'tree_default',x,z,{size:2.3+R(i)*1,axis:'h',ry:R(i+2)*6});obC(x,z,.22)});
+  [[-24,-15],[-20,-3],[-8,-12],[-1,-15],[1,-9],[-6,-3.5],[11,-21],[24,-4],[24,2],[-24,6],[-17,8],[16,7.6],[-10,-1.8],[22,-19],[-3,-19],[-23,-9],[9,14],[-12,15],[18,15],[4,-17],[-34,-21],[-31,-7],[-29,3],[-35,-13],[33,-8],[35,3],[29,9],[-27,23],[-1,23],[12,22],[24,20],[34,18],[-33,22],[-17,-23],[7,-24],[19,-25],[-8,-25],[36,-24],[31,24],[-44,-28],[-41,-16],[-45,-4],[-43,8],[-40,20],[-44,30],[-30,31],[-14,30],[2,31],[16,30],[30,31],[44,28],[45,14],[42,2],[45,-10],[41,-20],[44,-30],[30,-31],[2,-31],[-10,-30],[-20,-31],[38,-14],[-38,-31]].filter(([x,z])=>!(x>CAMP.x0-1.5&&x<CAMP.x1+1.5&&z>CAMP.z0-1&&z<CAMP.z1+1.2)&&Math.hypot(x-P.rehab.x,z-P.rehab.z)>6&&Math.hypot(x-P.pen.x,z-P.pen.z)>2.5).forEach(([x,z],i)=>{place(i%3?'tree_plateau':'tree_default',x,z,{size:2.3+R(i)*1,axis:'h',ry:R(i+2)*6});obC(x,z,.22)});
   W3.tree=place('tree_plateau',P.tree.x,P.tree.z,{size:4.6,axis:'h',ry:.8});obC(P.tree.x,P.tree.z,.4);
   for(let i=0;i<5;i++){const a=i/5*Math.PI*2;mesh(new THREE.BoxGeometry(.9,.03,.5),mat(['#b8433a','#2f8f8a','#d9a521','#7a4fa0','#3f6fb0'][i]),P.tree.x+Math.cos(a)*2,h(P.tree.x,P.tree.z)+.02,P.tree.z+Math.sin(a)*1.6).rotation.y=-a}
-  for(let i=0;i<130;i++){const x=(R(i+100)-.5)*W*.94,z=(R(i+200)-.5)*D*.92;if(Math.abs(z-zr(x))<2+basinW(x)||inF(FIELDS.ret,x,z)||inF(FIELDS.host,x,z)||inF(FIELDS.far,x,z)||pathD(x,z)<.8||(x>25&&x<33&&z<-10&&z>-24)||roadD(x,z)<1.2||(x>-9&&x<6&&z>1&&z<9)||(x>9.5&&z<-7.5&&z>-18.5)||Math.hypot(x-P.village.x,z-P.village.z)<6.5)continue;
+  for(let i=0;i<220;i++){const x=(R(i+100)-.5)*W*.94,z=(R(i+200)-.5)*D*.92;if((x>CAMP.x0-1&&x<CAMP.x1+1&&z>CAMP.z0-1&&z<CAMP.z1+1)||Math.hypot(x-P.rehab.x,z-P.rehab.z)<6||Math.abs(z-zr(x))<2+basinW(x)||inF(FIELDS.ret,x,z)||inF(FIELDS.host,x,z)||inF(FIELDS.far,x,z)||pathD(x,z)<.8||(x>25&&x<33&&z<-10&&z>-24)||roadD(x,z)<1.2||(x>-9&&x<6&&z>1&&z<9)||(x>9.5&&z<-7.5&&z>-18.5)||Math.hypot(x-P.village.x,z-P.village.z)<6.5)continue;
     place(i%3?'grass':'plant_bush',x,z,{size:.35+R(i)*.3,ry:R(i+1)*6})}
   [[-9,-9],[23,-1],[-20,-17],[0,-12],[5,15]].forEach(([x,z],i)=>{place(i%2?'rock_largeA':'rock_smallA',x,z,{size:i%2?.9:.45,ry:R(i)*6});obC(x,z,i%2?.45:.22)});
   // returnee village tukuls
@@ -1229,6 +1353,15 @@ function buildWorld(){
       let [cx,cz]=obLocal(g,0,-d/2-.55);obB(cx,cz,w/2,.05,g.rotation.y);[cx,cz]=obLocal(g,-w/2+.04,-d/2-.27);obB(cx,cz,.05,.28,g.rotation.y)}}
   // town hand pump
   {const g=grp(P.pump.x,P.pump.z);obC(P.pump.x,P.pump.z,.45);mesh(new THREE.CylinderGeometry(.45,.5,.12,10),mat('#bdb6aa'),0,.06,0,g);mesh(new THREE.CylinderGeometry(.07,.07,.7,6),mat('#3e7fc2'),0,.45,0,g);mesh(new THREE.BoxGeometry(.5,.05,.06),mat('#3e7fc2'),.2,.78,0,g).rotation.z=.25}
+  // refugee camp: tidy rows of tents beside the host town
+  W3.campTents=[];{let n=0;for(let z=CAMP.z0+1;z<=CAMP.z1-1;z+=1.75)for(let x=CAMP.x0+.9;x<=CAMP.x1-.8;x+=1.6){n++;if(Math.abs(x-P.camp.x)<1.1)continue;if(Math.hypot(x-P.campLatr.x,z-P.campLatr.z)<1.5)continue;
+      const o=place(n%3?'tent_smallClosed':'tent_detailedClosed',x,z,{size:1.15,ry:0});obC(x,z,.5);W3.campTents.push(o)}
+    // reception point at the gate
+    const g=grp(P.camp.x,CAMP.z1+.2,0);mesh(new THREE.BoxGeometry(1.8,.05,1.1),mat('#e9e4da'),0,1.15,0,g);for(const [a,b] of [[-.85,-.5],[.85,-.5],[-.85,.5],[.85,.5]])mesh(new THREE.BoxGeometry(.05,1.15,.05),mat('#5d6168'),a,.57,b,g);
+    mesh(new THREE.BoxGeometry(1.1,.06,.5),mat('#9a7450'),0,.5,0,g);mesh(new THREE.BoxGeometry(.05,1.8,.05),mat('#777'),1.2,.9,.5,g);mesh(new THREE.BoxGeometry(.55,.32,.03),mat('#5b92e5'),1.48,1.6,.5,g);obB(P.camp.x,CAMP.z1+.2,.95,.6,0);
+    TIPS.push({o:g,dy:1.3,tip:()=>'<b>Refugee camp reception</b>New arrivals from South Sudan, Eritrea and Ethiopia are registered here and given a tent, a ration card and basic items.'});
+    // camp water tank (trucked water)
+    const t=grp(P.refTap.x,P.refTap.z,0);W3.refTank=t;mesh(new THREE.CylinderGeometry(.5,.5,.7,14),mat('#2e3238',{roughness:.6}),0,.55,0,t);mesh(new THREE.BoxGeometry(1.1,.2,.5),mat('#b9b3a8'),0,.1,.6,t);for(let i=0;i<4;i++)mesh(new THREE.BoxGeometry(.16,.22,.11),mat(i%2?'#e2b632':'#3f8fd0'),-.4+i*.27,.31,.75,t);obC(P.refTap.x,P.refTap.z,.6)}
   // market
   {const g=grp(P.market.x,P.market.z,-.05);obB(P.market.x,P.market.z,2.55,.52,-.05);const aw=['#b8433a','#d9a521','#2f8f8a','#3f6fb0'];
     for(let i=0;i<4;i++){const x=(i-1.5)*1.25;[[-.5,-.4],[.5,-.4],[-.5,.4],[.5,.4]].forEach(([a,b])=>mesh(new THREE.BoxGeometry(.05,.85,.05),mat('#7a5a3c'),x+a,.42,b,g));
@@ -1263,6 +1396,7 @@ function buildWorld(){
     for(const [a,b] of [[-s,-s],[s,-s],[s,s],[-s,s],[-s,-s]])pts.push(new THREE.Vector3(p.x+a,h(p.x+a,p.z+b)+.04,p.z+b));
     const ln=new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineDashedMaterial({color:'#5d5240',dashSize:.3,gapSize:.2}));ln.computeLineDistances();g.add(ln);
     for(const [a,b] of [[-s,-s],[s,-s],[s,s],[-s,s]])mesh(new THREE.BoxGeometry(.07,.4,.07),mat('#7a5a3c'),p.x+a,h(p.x+a,p.z+b)+.2,p.z+b,g);
+    const hi=new THREE.Mesh(new THREE.PlaneGeometry(s*2.2,s*2.2),new THREE.MeshBasicMaterial({color:'#2f7fd6',transparent:true,opacity:.35,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-4,polygonOffsetUnits:-4}));hi.rotation.x=-Math.PI/2;hi.position.set(p.x,h(p.x,p.z)+.06,p.z);hi.visible=false;hi.renderOrder=3;scene.add(hi);W3['plotHi'+k]=hi;
     W3.plots[k]=g}
   // borehole and school (positioned on sync)
   W3.bore=makeBorehole();W3.school=makeSchool();W3.primary=makePrimary();W3.dam=makeDam();W3.tower=makeTower();W3.hafir=makeHafir();
@@ -1300,7 +1434,7 @@ function makeSite(parent,o){
     b.hqRole=({hammer:'hammer',mix:'work',dig:'dig',carry:'carry'})[role];const W0={...b,role,x0:x,z0:z,ry,load,ph:R(k+SITES.length)*6};S0.workers.push(W0);
     TIPS.push({o:b.g,dy:.95,vis:()=>g.visible&&b.g.visible,tip:()=>'<b>Builder at work</b>'+({hammer:'Fixing the walls and frames.',carry:'Carrying bricks from the pile.',mix:'Mixing concrete.',dig:'Digging out silt by hand.'})[role]+'<small>Local workers hired for the build earn a wage too.</small>'})});
   SITES.push(S0);return S0}
-function stageOf(id){const q=S.pending.find(q=>q.id===id);if(!q)return S.sel.includes(id)?0:null;const el=S.season-q.from,lag=CARD[id].lag;return lag<=1?2:(el>=lag?2:1)}
+function stageOf(id){const q=S.pending.find(q=>q.id===id);if(!q)return S.sel.includes(id)?0:null;const el=S.season-q.from,lag=q.due-q.from;return lag<=1?2:(el>=lag?2:1)}
 function showSite(site,st,obj,opt={}){site.g.visible=st!==null;if(st===null)return;if(site.slab)site.slab.visible=st<2;if(site.walls)site.walls.visible=st===1;if(obj&&opt.full!==false)obj.full.visible=st===2;}
 function makeBorehole(){
   const g=new THREE.Group();scene.add(g);const full=new THREE.Group(),scaf=new THREE.Group();g.add(full,scaf);
@@ -1449,7 +1583,8 @@ function makeTower(){
 const LB={};
 const li=id=>'<span class="li '+CARD[id].win+'">'+ICON(id)+'</span>';
 function buildLabels(){
-  LB.idp=label(at(-1.5,4.5,2.4));LB.ret=label(at(P.village.x,P.village.z,2.6));LB.host=label(at(17,-12.5,2.4));LB.idp.key=LB.ret.key=LB.host.key=true;
+  LB.idp=label(at(-1.5,4.5,2.4));LB.ret=label(at(P.village.x,P.village.z,2.6));LB.host=label(at(17,-12.5,2.4));LB.ref=label(at(P.camp.x,P.camp.z,2.2));LB.idp.key=LB.ret.key=LB.host.key=LB.ref.key=true;
+  LB.latr=label(at(P.latr.x,P.latr.z,1.6));LB.shelter=label(at(P.shelter.x,P.shelter.z,1.2));LB.pen=label(at(P.pen.x,P.pen.z,1.2));LB.rehab=label(at(P.rehab.x,P.rehab.z,1.2));LB.permit=label(at(P.permit.x,P.permit.z,1.4));LB.agent=label(at(P.agent.x,P.agent.z,2));LB.board=label(at(P.board.x,P.board.z,1.7));
   LB.river=label(()=>v3.set(4,.3,zr(4)));LB.river.el.innerHTML='River';LB.river.el.classList.add('soft');
   LB.tree=label(at(P.tree.x,P.tree.z,4.9));LB.market=label(at(P.market.x,P.market.z,1.6));LB.clinic=label(at(P.clinic.x,P.clinic.z,2.1));
   LB.office=label(at(P.office.x,P.office.z,2.9));LB.tap=label(at(P.tap.x,P.tap.z,2.3));LB.food=label(at(P.food.x,P.food.z,1.6));LB.desk=label(at(P.desk.x,P.desk.z,1.6));LB.hlp=label(at(P.hlp.x,P.hlp.z,1.4));
@@ -1475,7 +1610,7 @@ const geo={leg:new THREE.CylinderGeometry(.028,.026,.26,5),robeW:new THREE.Cylin
   arm:new THREE.CylinderGeometry(.025,.022,.26,5),head:new THREE.IcosahedronGeometry(.075,1),scarf:new THREE.SphereGeometry(.088,8,6,0,Math.PI*2,0,Math.PI*.62),drape:new THREE.ConeGeometry(.12,.22,8,1,true),
   turban:new THREE.TorusGeometry(.06,.03,6,10),cap:new THREE.SphereGeometry(.058,8,5,0,Math.PI*2,0,Math.PI/2),can:new THREE.BoxGeometry(.11,.15,.08),basket:new THREE.CylinderGeometry(.13,.09,.09,10)};
 const PEOPLE=[],TIPS=[];let pid=0;
-const AREAS={idp:{x0:-8,x1:5,z0:2.2,z1:8.4},ret:{x0:-20.5,x1:-10.5,z0:-13.5,z1:-7.5},host:{x0:10.5,x1:23,z0:-17,z1:-8.6}};
+const AREAS={idp:{x0:-8,x1:5,z0:2.2,z1:8.4},ret:{x0:-20.5,x1:-10.5,z0:-13.5,z1:-7.5},host:{x0:10.5,x1:23,z0:-17,z1:-8.6},ref:{x0:12,x1:24.5,z0:-30,z1:-22.5}};
 function homeFor(g,i){const a=AREAS[g];const v=freePoint(new THREE.Vector2(a.x0+R(i*17+3)*(a.x1-a.x0),a.z0+R(i*19+5)*(a.z1-a.z0)));return[v.x,v.y]}
 function makeBody(i,o={}){
   if(typeof HQ!=='undefined'&&HQ.man)return HQ.makeBody(i,o);
@@ -1497,10 +1632,11 @@ function makePerson(group,arrive){
   const headCan=mesh(geo.can,mat('#e2b632'),0,.9,0,b.body);headCan.visible=false;const hoe=makeHoe(b.armR);
   const ringMat=new THREE.MeshBasicMaterial({color:'#a7adb6',transparent:true,opacity:.95,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-4,polygonOffsetUnits:-4});const ring=new THREE.Mesh(ringGeo,ringMat);ring.position.y=.06;ring.renderOrder=2;ring.castShadow=false;ring.receiveShadow=false;b.g.add(ring);
   const home=homeFor(group,i);const p={...b,group,ring,ringMat,carry,headCan,hoe,home,pos:new THREE.Vector2(home[0],home[1]),target:null,wait:R(i)*1.5,speed:.6,phase:R(i)*6,status:'coping',dialogue:false,side:R(i*11)<.5?1:-1,stuck:0,task:'Going home',mode:null};
-  if(arrive){p.pos.set(-37,roadZ(-37));p.wait=R(i)*3;p.target=new THREE.Vector2(home[0],home[1]);p.task='Arriving after a long journey'}
+  if(arrive){const ax=p.group==='ref'?W/2-1.5:-W/2+1.5;p.pos.set(ax,roadZ(ax));p.wait=R(i)*3;p.target=new THREE.Vector2(home[0],home[1]);p.task='Arriving after a long journey'}
   PEOPLE.push(p);TIPS.push({o:b.g,dy:.95,tip:()=>personTip(p)});return p}
-const GWORD={idp:'IDP',ret:'Returnee',host:'Host community'},SWORD={self:'Getting by',coping:'Coping',aid:'Relying on aid',acute:'In acute need'};
-function personTip(p){return'<b>'+GWORD[p.group]+' '+(p.woman?'woman':'man')+'</b><span class="ts '+p.status+'">'+SWORD[p.status]+'</span>'+p.task+'<small>Each figure stands for about 1,000 people.</small>'}
+const GWORD={idp:'IDP',ret:'Returnee',host:'Host community',ref:'Refugee'},SWORD={self:'Getting by',coping:'Coping',aid:'Relying on aid',acute:'In acute need'};
+const ORIG=['South Sudan','Eritrea','Ethiopia'];
+function personTip(p){return'<b>'+GWORD[p.group]+' '+(p.woman?'woman':'man')+(p.group==='ref'?' from '+ORIG[Math.floor(R(p.i*5.3)*3)]:'')+'</b><span class="ts '+p.status+'">'+SWORD[p.status]+'</span>'+p.task+'<small>Each figure stands for about 1,000 people.</small>'}
 const rand=()=>Math.random();
 function jit(pt,r=1){return freePoint(new THREE.Vector2(pt.x+(rand()-.5)*r*2,pt.z+(rand()-.5)*r*2))}
 const WELL={x:-22.6,z:-16.6};
@@ -1508,6 +1644,7 @@ function safeWater(g){return(S.built.borehole!==undefined&&!S.damaged.borehole)|
 function waterSource(p){
   if(S.built.borehole!==undefined&&!S.damaged.borehole){const b=P[S.sites.borehole];return[{x:b.x+(S.sites.school===S.sites.borehole?-.9:0)+.4,z:b.z+1.3},'Collecting clean water at the solar borehole']}
   if(p.group==='host')return[{x:P.pump.x,z:P.pump.z+.9},'Fetching water at the town hand pump'];
+  if(p.group==='ref')return S.active.includes('water')?[{x:P.refTap.x,z:P.refTap.z+1.1},'Fetching trucked water at the camp tank']:[{x:P.pump.x,z:P.pump.z+.9},'Queuing at the town hand pump, behind host families'];
   if(S.active.includes('water'))return[{x:P.tap.x,z:P.tap.z+1},'Fetching trucked water at the tap stand'];
   if(p.woman)return[{x:WELL.x+.9,z:WELL.z+.5},p.group==='idp'?'Walking about 5 km to the old well to fetch water':'Walking to the old well to fetch water','well'];
   const x=p.group==='idp'?p.home[0]:p.home[0]+6;return[{x,z:zr(x)-1.9},'Collecting river water that is not safe to drink']}
@@ -1524,10 +1661,16 @@ function pickTarget(p){
   if(st==='self'||st==='coping'){add(2,P.market,1.2,st==='self'?'Selling produce at the market':'Looking for day labour at the market');
     if(p.group==='ret')add(st==='self'?4:2,{x:(FIELDS.ret.x0+FIELDS.ret.x1)/2,z:(FIELDS.ret.z0+FIELDS.ret.z1)/2},4,'Working the family plot','farm');
     if(p.group==='host')add(st==='self'?4:2,{x:(FIELDS.host.x0+FIELDS.host.x1)/2,z:(FIELDS.host.z0+FIELDS.host.z1)/2},4,'Working the family plot','farm');
+    if(p.group==='ref'){if(S.built.inclusion!==undefined)add(st==='self'?4:2.5,{x:FIELDS.host.x1-2.5,z:(FIELDS.host.z0+FIELDS.host.z1)/2},2,'Farming a leased plot with a work permit','farm');else add(2,P.market,1.2,'Looking for casual work. Without a permit, farm and formal jobs are closed')}
     if(S.built.school!==undefined&&!S.damaged.school){const s=P[S.sites.school];add(3,{x:s.x,z:s.z+1.4},.8,'Attending vocational classes')}}
   if(S.built.clinic!==undefined)add(.8,{x:P.clinic.x,z:P.clinic.z+1.4},.7,'Visiting the health centre');
   if(act('docs')&&p.group!=='host')add(1.5,{x:P.desk.x,z:P.desk.z+1},.6,['Registering for a birth certificate and ID card','Getting civil records and tracing family','Registering for services and voting'][Math.max(0,((S.level&&S.level.docs)||1)-1)]);
   if((act('hlp')||S.pending.some(q=>q.id==='hlp'))&&p.group==='ret')add(1.5,{x:P.hlp.x,z:P.hlp.z+1},.6,['Bringing a land claim to the committee','Walking the plot boundaries with the surveyors','Collecting land papers'][Math.max(0,((S.level&&S.level.hlp)||1)-1)]);
+  if(act('inclusion')&&p.group==='ref')add(3,{x:P.permit.x,z:P.permit.z+1.1},.6,'Applying for a work permit and a land lease');
+  if(act('shelter')&&(p.group==='idp'||p.group==='ref'||(p.group==='ret'&&st!=='self')))add(2,{x:P.shelter.x,z:P.shelter.z+1.1},.6,'Collecting plastic sheeting, blankets and cooking pots');
+  if(act('hygiene')&&(p.group==='idp'||p.group==='ref'))add(1.6,p.group==='ref'?{x:P.campLatr.x-1.4,z:P.campLatr.z+1.2}:{x:P.latr.x+.4,z:P.latr.z+1.3},.6,'Collecting a hygiene kit: soap, a bucket and water treatment tablets');
+  if(act('livestock')&&(p.group==='ret'||p.group==='host')&&st!=='acute')add(1.6,{x:P.pen.x+1.9,z:P.pen.z+.6},.6,'Bringing goats to the vaccination pen');
+  if(act('lap')&&p.group!=='host'&&R(p.i*3.3)<.3)add(.8,{x:P.board.x,z:P.board.z+1.1},.6,'Telling the planners what the settlement needs');
   if(act('water')&&p.group!=='host'&&state.truck>.9)add(1,{x:W3.truck.position.x,z:W3.truck.position.z+1.2},.7,'Collecting water from the truck');
   let tot=opts.reduce((a,o)=>a+o[0],0),r=rand()*tot,ch=opts[0];for(const o of opts){r-=o[0];if(r<=0){ch=o;break}}
   p.task=ch[3];p.mode=ch[4]||null;return jit(ch[1],ch[2])}
@@ -1566,12 +1709,12 @@ function walkC(C,tx,tz,dt,sp){if(!C.target||C.target.x!==tx||C.target.y!==tz)C.t
 function updateTransport(dt,t){
   const B=LIFE.bus,stop=LIFE.stop;if(!B)return;B.st-=dt;
   const busLane=.55;
-  if(B.state==='away'){B.g.visible=false;if(B.st<=0){B.state='arrive';B.x=-W/2-3;B.g.visible=true}}
+  if(B.state==='away'){B.g.visible=false;if(B.st<=0){B.state='arrive';B.x=-W/2+.5;B.g.visible=true}}
   else{const tgt=stop.x-1.7;let blocked=(B.blockT||0)<3&&blockedAhead(B.g.position.x+RDIR.x*2,B.g.position.z+RDIR.z*2,RDIR.x,RDIR.z,B,.9);B.blockT=blocked?(B.blockT||0)+dt:Math.max(0,(B.blockT||0)-dt*2);
     if(B.state==='arrive'){if(!blocked){B.x+=Math.min(1.6*dt,Math.max(.25*dt,(tgt-B.x)*.6*dt))}if(B.x>=tgt-.02){B.state='stopped';B.st=12}}
     else if(B.state==='stopped'){if(B.st<=0&&!LIFE.commuters.some(c=>c.state==='board')){B.state='leave'}}
-    else if(B.state==='leave'){if(!blocked)B.x+=Math.min(1.8,(B.x-tgt)*.5+.3)*dt;if(B.x>W/2+3){B.state='away';B.st=22;B.g.visible=false}}
-    const[x,z]=roadPos(B.x,busLane);B.g.position.set(x,h(x,z),z);B.g.rotation.y=Math.atan2(RDIR.x,RDIR.z)}
+    else if(B.state==='leave'){if(!blocked)B.x+=Math.min(1.8,(B.x-tgt)*.5+.3)*dt;if(B.x>W/2-1.9){B.state='away';B.st=22;B.g.visible=false}}
+    if(B.state!=='away'){B.g.visible=Math.abs(B.x)<W/2-1.9;const[x,z]=roadPos(B.x,busLane);B.g.position.set(x,h(x,z),z);B.g.rotation.y=Math.atan2(RDIR.x,RDIR.z)}}
   const door=B.g.visible?(()=>{const v=new THREE.Vector3(-.95,0,.7);B.g.localToWorld(v);return v})():null;
   for(const C of LIFE.commuters){C.st-=dt;
     if(C.state==='home'){C.g.visible=false;if(!C.away&&C.st<=0&&(B.state==='away'||B.state==='arrive')){C.state='toStop';C.g.visible=true;C.pos.copy(C.home);C.bag.visible=true}}
@@ -1585,14 +1728,15 @@ function updateTransport(dt,t){
   // tuk-tuks
   const stand=LIFE.stand;
   for(const T of LIFE.tuks){T.st-=dt;
-    if(T.state==='away'){T.g.visible=false;if(T.st<=0&&!LIFE.tuks.some(o=>o!==T&&(o.state==='stopped'||(o.state==='arrive'&&o.dir===T.dir)))){T.state='arrive';T.dir=R(T.st*3+t)<.5?1:-1;T.x=T.dir>0?-W/2-2:W/2+2;T.g.visible=true;T.pass.g.visible=true}}
+    if(T.state==='away'){T.g.visible=false;if(T.st<=0&&!LIFE.tuks.some(o=>o!==T&&(o.state==='stopped'||(o.state==='arrive'&&o.dir===T.dir)))){T.state='arrive';T.dir=R(T.st*3+t)<.5?1:-1;T.x=T.dir>0?-W/2+.2:W/2-.2;T.g.visible=false;T.pass.g.visible=true}}
     else{const tgt=stand.x+(T.dir>0?-.2:.2),lane=T.dir>0?.5:-.55;const fx=RDIR.x*T.dir,fz=RDIR.z*T.dir;let blocked=(T.blockT||0)<3&&blockedAhead(T.g.position.x+fx*.9,T.g.position.z+fz*.9,fx,fz,T,.7);T.blockT=blocked?(T.blockT||0)+dt:Math.max(0,(T.blockT||0)-dt*2);
       if(T.state==='arrive'){if(!blocked)T.x+=T.dir*Math.min(2.4,Math.abs(tgt-T.x)*.7+.25)*dt;if((T.dir>0&&T.x>=tgt)||(T.dir<0&&T.x<=tgt)){T.state='stopped';T.st=5;
           const r=LIFE.riders.find(q=>q.state==='off');if(r){r.state='walk';r.g.visible=true;const v=new THREE.Vector3(T.dir>0?-.75:.75,0,-.2);T.g.localToWorld(v);r.pos.set(v.x,v.z);placeAt(r)}T.pass.g.visible=false;
           const w=LIFE.riders.find(q=>q.state==='off');if(w){w.state='wait';w.g.visible=true;w.pos.copy(w.dest);placeAt(w);w.tuk=T}}}
       else if(T.state==='stopped'){const w=LIFE.riders.find(q=>q.state==='wait'&&q.tuk===T);if(w){const v=new THREE.Vector3(T.dir>0?-.75:.75,0,-.2);T.g.localToWorld(v);w.bt=(w.bt||0)+dt;if(walkC(w,v.x,v.z,dt,.75)||Math.hypot(w.pos.x-v.x,w.pos.y-v.z)<.45||w.bt>8){w.bt=0;w.state='off';w.g.visible=false;T.pass.g.visible=true;T.st=Math.min(T.st,1)}}
         else if(T.st<=0){T.state='leave'}}
-      else if(T.state==='leave'){if(!blocked)T.x+=T.dir*2.2*dt;if(T.x>W/2+2||T.x<-W/2-2){T.state='away';T.st=6+R(t)*10;T.g.visible=false}}
+      else if(T.state==='leave'){if(!blocked)T.x+=T.dir*2.2*dt;if(T.x>W/2-.7||T.x<-W/2+.7){T.state='away';T.st=6+R(t)*10;T.g.visible=false}}
+      if(T.state!=='away')T.g.visible=Math.abs(T.x)<W/2-.7;
       const[x,z]=roadPos(T.x,lane);T.g.position.set(x,h(x,z),z);T.g.rotation.y=Math.atan2(fx,fz);T.g.rotation.z=T.state==='stopped'?0:Math.sin(t*14)*.01}}
   for(const r of LIFE.riders){if(r.state==='walk'){if(walkC(r,r.dest.x,r.dest.y,dt,.7)){r.state='off';r.g.visible=false}}else if(r.state==='wait'&&!(r.tuk&&r.tuk.state==='stopped')){animWalk(r,false,t);placeAt(r)}}
 }
@@ -1673,9 +1817,10 @@ function buildLife(){
     LB.well=label(at(WELL.x,WELL.z,1.5),{cls:'warn'});setL(LB.well,true,IC2('location')+'Old well<small>5 km from the IDP site</small>');
     TIPS.push({o:g,dy:.6,tip:()=>'<b>Old well</b>About 5 km from the IDP site. When there is no safe water nearby, women and girls walk here and back with jerrycans, often twice a day.'})}
   // wheelchair users stuck in sand
-  const wcSpots=[[-5.6,1.75,Math.PI],[-1.2,1.8,Math.PI-.3],[4.1,1.9,Math.PI+.3]];
-  LB.wc=label(at(-5.6,1.6,1.5),{cls:'warn'});setL(LB.wc,true,IC2('protection')+'Persons with disabilities<small>no accessible path</small>');
-  wcSpots.forEach(([x,z,ry],k)=>{const v=freePoint(new THREE.Vector2(x,z));const g=grp(v.x,v.y,ry);const chair=new THREE.Group();g.add(chair);
+  const wcSpots=[[5.75,7.9,-Math.PI/2-.4,'idp'],[6.5,9.0,-Math.PI/2+.2,'idp'],[5.7,10.0,-Math.PI/2-.1,'idp'],[-13.8,-12.4,.6,'ret']];
+  LB.wc=label(at(6,8.9,1.5),{cls:'warn'});setL(LB.wc,true,IC2('protection')+'Persons with disabilities<small>no accessible path</small>');
+  LB.wc2=label(at(-13.8,-12.4,1.5),{cls:'warn'});setL(LB.wc2,true,IC2('protection')+'Person with a disability<small>rough paths</small>');
+  wcSpots.forEach(([x,z,ry,grpK],k)=>{const v=freePoint(new THREE.Vector2(x,z));const g=grp(v.x,v.y,ry);const chair=new THREE.Group();g.add(chair);
     const metal=mat('#596270'),seat=mat('#2f3d52');
     mesh(new THREE.BoxGeometry(.3,.04,.28),seat,0,.3,0,chair);mesh(new THREE.BoxGeometry(.3,.32,.04),seat,0,.48,-.15,chair);
     const wheels=[];for(const sx of [-1,1]){const w=mesh(new THREE.TorusGeometry(.2,.022,6,16),metal,sx*.19,.22,-.04,chair);w.rotation.y=Math.PI/2;wheels.push(w);mesh(new THREE.CylinderGeometry(.04,.04,.03,8),metal,sx*.12,.05,.17,chair).rotation.z=Math.PI/2}
@@ -1684,7 +1829,8 @@ function buildLife(){
     const sand=mesh(new THREE.ConeGeometry(.16,.1,8),mat('#d6bd8b'),.19,.04,.02,g);mesh(new THREE.ConeGeometry(.16,.1,8),mat('#d6bd8b'),-.19,.04,.02,g);
     g.scale.setScalar(1.15);obC(v.x,v.y,.4);
     b.hqRole='sitChair';const W={g,chair,wheels,b,k};LIFE.wc.push(W);
-    TIPS.push({o:g,dy:.8,tip:()=>'<b>Person with a disability</b><span class="ts acute">Stuck</span>The wheelchair has sunk into deep sand. There is no accessible path to '+(S&&S.active.includes('food')?'the food distribution, ':'')+'the tap stand or the health centre, so they depend on others to bring everything.'})});
+    TIPS.push({o:g,dy:.8,tip:()=>grpK==='ret'?'<b>Returnee with a disability</b><span class="ts acute">Hard to get around</span>Back home, but the house is not rebuilt yet and the paths are rough, so getting to the well and the market is hard.':'<b>Person with a disability</b><span class="ts acute">Stuck</span>The wheelchair has sunk into deep sand. There is no accessible path to '+(S&&S.active.includes('food')?'the food distribution, ':'')+'the tap stand or the health centre, so they depend on others to bring everything.'})});
+  buildActivities();
   // children
   const kidHome=[[-2.3,-3.5],[-1.7,-3.2],[-0.9,-3.4],[0.6,-3.6],[1.6,-4.3],[2.0,-5.2],[-2.8,-4.6],[-2.9,-6.1],[1.9,-6.3],[-1.2,-6.9],[-0.7,-7.2],[0.8,-7.4]];
   kidHome.forEach(([x,z],k)=>{const v=freePoint(new THREE.Vector2(x,z));const b=makeBody(600+k,{child:true,scale:.8,woman:k%3===0,cloth:['#e07a3a','#3f6fb0','#2f8f8a','#d9a521','#c2477a','#7a4fa0','#b8433a','#2f8f8a','#e07a3a','#d9a521','#3f6fb0','#c2477a'][k]});
@@ -1700,8 +1846,8 @@ function buildLife(){
     b.hqRole='cheer';LIFE.prot.push({...b,sign});TIPS.push({o:b.g,dy:.95,vis:()=>b.g.visible,tip:()=>'<b>Protest at the locality office</b><span class="ts acute">Social cohesion '+Math.round(S.coh)+'</span>Residents accuse other groups of taking land, water and aid. Protests break out when social cohesion falls below 45, and grow as it falls further.'})}
   LB.protest=label(at(P.office.x,-3.7,1.75),{cls:'alert'});
   // queue outside the health centre
-  [['idp',-1.5,4.5,2.4],['ret',P.village.x,P.village.z,2.6],['host',17,-12.5,2.4]].forEach(([g,x,z,dy])=>{const o=new THREE.Object3D();o.position.set(x,h(x,z)+dy-.4,z);scene.add(o);
-    TIPS.push({o,dy:0,tip:()=>{const v=Math.round(sr(S,g));return'<b>'+GLABEL[g]+', self-reliance '+v+' out of 100</b>How far '+({idp:'IDPs',ret:'returnees',host:'host residents'})[g]+' can meet their own needs without aid. It blends the eight IASC criteria, with most weight on living standard and livelihoods. Red is below 30, amber 30 to 49, green 50 and above.'}})});
+  [['idp',-1.5,4.5,2.4],['ret',P.village.x,P.village.z,2.6],['host',17,-12.5,2.4],['ref',P.camp.x,P.camp.z,2.2]].forEach(([g,x,z,dy])=>{const o=new THREE.Object3D();o.position.set(x,h(x,z)+dy-.4,z);scene.add(o);
+    TIPS.push({o,dy:0,tip:()=>{const v=Math.round(sr(S,g));return'<b>'+GLABEL[g]+', self-reliance '+v+' out of 100</b>How far '+({idp:'IDPs',ret:'returnees',host:'host residents',ref:'refugees'})[g]+' can meet their own needs without aid. It blends the eight IASC criteria, with most weight on living standard and livelihoods. Red is below 30, amber 30 to 49, green 50 and above.'}})});
   LIFE.queue=[];LIFE.queueN=10;
   for(let k=0;k<10;k++){const x=k===0?14.2:14.0-k*.5,z=k===0?-4.25:-4.0+(R(k+40)-.5)*.12;const b=makeBody(1000+k,{woman:k%3!==2});b.g.position.set(x,h(x,z),z);b.g.rotation.y=k===0?Math.PI:-Math.PI/2+(R(k)-.5)*.6;
     if(k%4===3){sitPose(b,true)}if(b.woman&&k%3===0)mesh(new THREE.SphereGeometry(.08,8,6),mat('#e8e2d0'),0,.5,.1,b.body);
@@ -1767,6 +1913,106 @@ function buildLife(){
     const line=mesh(new THREE.CylinderGeometry(.003,.003,1,3),mat('#e8e8e8'),0,0,0,scene);line.castShadow=false;obC(x,z,.3);
     b.hqRole=k===1?'sit':'fish';LIFE.fishers.push({...b,rod,tip,line,x,z});TIPS.push({o:b.g,dy:.95,tip:()=>'<b>Fishing from the bank</b>Catching fish to feed the family while there is little other work.'})});
 }
+/* activities shown on the map while an option is funded, with a soft green glow */
+const CREWS={},GLOWS={},KITS={};
+const glowGeo=new THREE.CircleGeometry(1,40);glowGeo.rotateX(-Math.PI/2);const glowRing=new THREE.RingGeometry(.92,1,48);glowRing.rotateX(-Math.PI/2);
+function glow(key,x,z,r){const m=new THREE.Mesh(glowGeo,new THREE.MeshBasicMaterial({color:'#8fe36a',transparent:true,opacity:.34,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-3,polygonOffsetUnits:-3}));
+  m.scale.set(r,1,r);m.position.set(x,h(x,z)+.09,z);m.renderOrder=1;m.visible=false;m.castShadow=false;scene.add(m);
+  const rg=new THREE.Mesh(glowRing,new THREE.MeshBasicMaterial({color:'#4fbf2e',transparent:true,opacity:.8,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-4,polygonOffsetUnits:-4}));rg.position.y=.01;rg.renderOrder=2;m.add(rg);m.userData.ring=rg;(GLOWS[key]=GLOWS[key]||[]).push(m);return m}
+let crewN=0;
+function crew(key,members){const g=new THREE.Group();scene.add(g);g.visible=false;const C={g,w:[]};
+  members.forEach(([x,z,ry,role,o={}],k)=>{const b=makeBody(2100+(crewN++)*3,{woman:o.woman,cloth:o.cloth,parent:g,scale:o.scale});b.g.position.set(x,h(x,z),z);b.g.rotation.y=ry;
+    let load=o.load?o.load(b):null;if(role==='dig')makeHoe(b.armR).visible=true;if(role==='sit'){sitPose(b,true)}
+    b.hqRole=({dig:'dig',carry:'carry',work:'work',talk:'cheer',sit:'sit'})[role]||'idle';
+    const Wk={...b,role,x0:x,z0:z,x1:o.to?o.to[0]:x,z1:o.to?o.to[1]:z,ry,load,ph:R(k+crewN)*6,spd:o.spd||.45};C.w.push(Wk);
+    if(o.tip)TIPS.push({o:b.g,dy:.95,vis:()=>g.visible,tip:typeof o.tip==='function'?o.tip:()=>o.tip})});
+  CREWS[key]=C;return C}
+const sack=b=>mesh(new THREE.CapsuleGeometry(.08,.16,2,6),mat('#e3d5b3'),0,.9,0,b.body);
+const roll=b=>{const m=mesh(new THREE.CylinderGeometry(.07,.07,.42,8),mat('#3f7fd0'),0,.9,0,b.body);m.rotation.z=Math.PI/2;return m};
+const bucket=b=>mesh(new THREE.CylinderGeometry(.07,.055,.12,8),mat('#3f8fd0'),0,-.27,0,b.armR);
+function makeGoat(col,big){const gt=new THREE.Group();const c=mat(col),k=big?1.8:1;
+  mesh(new THREE.BoxGeometry(.18*k,.13*k,.32*k),c,0,.24*k,0,gt);mesh(new THREE.BoxGeometry(.1*k,.1*k,.14*k),c,0,.27*k,.2*k,gt).rotation.x=.6;
+  for(const [lx,lz] of [[-.06,-.11],[.06,-.11],[-.06,.11],[.06,.11]])mesh(new THREE.CylinderGeometry(.018*k,.018*k,.18*k,4),c,lx*k,.09*k,lz*k,gt);
+  if(big)for(const sx of [-1,1])mesh(new THREE.ConeGeometry(.03,.14,4),mat('#e8e2d0'),sx*.08,.62,.42,gt).rotation.z=-sx*.8;return gt}
+function buildActivities(){
+  const tip=(t,b)=>'<b>'+t+'</b>'+b;
+  // food: truck unloading sacks, porters, host residents watching
+  {const kit=new THREE.Group();scene.add(kit);kit.visible=false;KITS.food=kit;const src=MODELS.deliveryFlat,tb=new THREE.Box3().setFromObject(src),ts=new THREE.Vector3();tb.getSize(ts);const tk=2.3/Math.max(ts.x,ts.z);
+    const tr=src.clone(true);tr.scale.setScalar(tk);tr.position.set(P.ftruck.x,h(P.ftruck.x,P.ftruck.z)-tb.min.y*tk,P.ftruck.z);tr.rotation.y=Math.atan2(RDIR.x,RDIR.z)+(ts.z>ts.x?Math.PI:Math.PI/2);kit.add(tr);
+    for(let i=0;i<6;i++){const m=mesh(new THREE.CapsuleGeometry(.15,.3,2,6),mat('#e3d5b3'),P.ftruck.x-.5+(i%3)*.38,h(P.ftruck.x,P.ftruck.z)+.62+Math.floor(i/3)*.24,P.ftruck.z,kit);m.rotation.z=Math.PI/2}
+    TIPS.push({o:tr,dy:1.2,vis:()=>kit.visible,tip:()=>tip('Food truck','Sorghum, pulses and oil for the monthly rations, unloaded at the distribution point.')});
+    crew('food',[[P.ftruck.x+.9,P.ftruck.z+.9,0,'carry',{to:[P.food.x-.6,P.food.z-.5],load:sack,tip:tip('Porter','Carrying sacks from the truck to the distribution point.')}],
+      [P.ftruck.x+1.3,P.ftruck.z+.5,0,'carry',{to:[P.food.x+.3,P.food.z-.6],load:sack,tip:tip('Porter','Carrying sacks from the truck to the distribution point.')}],
+      [3.7,1.0,-1.9,'stand',{tip:tip('Host residents watching','Food goes to IDPs, refugees and returnees, not to the host town. Some host families are struggling too, which strains relations.')}],
+      [4.1,.4,-2.1,'stand',{woman:true,tip:tip('Host residents watching','Food goes to IDPs, refugees and returnees, not to the host town. Some host families are struggling too, which strains relations.')}]]);
+    glow('food',P.food.x,P.food.z+.4,2.3)}
+  // water trucking
+  glow('water',P.tap.x,P.tap.z+.4,1.9);glow('water',P.refTap.x,P.refTap.z+.4,1.6);
+  // cash: a mobile money agent beside the market
+  {const g=grp(P.agent.x,P.agent.z,-.1);const kit=g;kit.visible=false;KITS.cash=kit;mesh(new THREE.BoxGeometry(.9,.05,.55),mat('#2f8f8a'),0,.62,0,g);for(const [a,b] of [[-.4,-.22],[.4,-.22],[-.4,.22],[.4,.22]])mesh(new THREE.BoxGeometry(.04,.62,.04),mat('#555'),a,.31,b,g);
+    mesh(new THREE.CylinderGeometry(.02,.02,1.6,5),mat('#555'),0,.8,-.1,g);const um=mesh(new THREE.ConeGeometry(.75,.3,10),mat('#d9a521'),0,1.62,-.1,g);mesh(new THREE.BoxGeometry(.3,.02,.2),mat('#fff'),.15,.66,0,g);
+    crew('cash',[[P.agent.x,P.agent.z-.6,0,'work',{tip:tip('Cash agent','Paying out cash transfers. Families spend it at the market on what they need most.')}],[P.agent.x,P.agent.z+.8,Math.PI,'stand',{woman:true,tip:tip('Collecting a cash transfer','Each household receives the same amount and decides how to spend it.')}],[P.agent.x+.1,P.agent.z+1.35,Math.PI,'stand',{woman:true}],[P.agent.x-.05,P.agent.z+1.85,Math.PI,'stand']]);
+    glow('cash',P.market.x+1.2,P.market.z+.2,3.4)}
+  // cash for work on the canals
+  {const m=[];for(const key of ['ret','host']){const f=FIELDS[key];for(const [dx,k] of [[1.5,0],[(f.x1-f.x0)/2,1],[f.x1-f.x0-1.5,2]]){const x=f.x0+dx+.35,z=f.z1+.9+k*.3;m.push([x,z,R(x)*6,'dig',{woman:k===1,tip:tip('Cash for work','Clearing silt from the irrigation canal. Workers are paid daily, and the canal will water these fields for years.')}])}
+    glow('cfw',(f.x0+f.x1)/2,f.z1+1.1,3.2)}crew('cfw',m)}
+  // seeds: inputs at the field gates
+  for(const key of ['ret','host']){const f=FIELDS[key];glow('seeds',(f.x0+f.x1)/2,(f.z0+f.z1)/2,3.6)}
+  {const m=[];for(const key of ['ret','host']){const f=FIELDS[key],gx=(f.x0+f.x1)/2;m.push([gx-.6,f.z0-.9,0,'stand',{tip:tip('Extension worker','Handing out seed and tools, and showing farmers when and how deep to sow.')}],[gx+.5,f.z0-.8,-.4,'carry',{to:[gx+2.4,f.z0+1.6],load:sack,woman:true,tip:tip('Farmer with seed','Carrying a bag of sorghum seed to the family plot.')}])}crew('seeds',m)}
+  // hygiene kits and latrines (latrines stay once built)
+  {const kit=new THREE.Group();scene.add(kit);kit.visible=false;KITS.latr=kit;
+    for(const L of [P.latr,P.campLatr])for(let i=0;i<3;i++){const x=L.x+(i-1)*.62,z=L.z-.5;const c=grp(x,z,0);kit.add(c);c.position.set(x,h(x,z),z);mesh(new THREE.BoxGeometry(.56,1.05,.6),mat('#e9e4da'),0,.52,0,c);mesh(new THREE.BoxGeometry(.6,.05,.66),mat('#8a9aa6'),0,1.07,0,c);mesh(new THREE.BoxGeometry(.3,.75,.03),mat(['#3f6fb0','#2f8f8a','#3f6fb0'][i]),0,.4,.31,c);obB(x,z,.3,.32,0)}
+    TIPS.push({o:kit.children[1],dy:1.3,vis:()=>kit.visible,tip:()=>tip('Latrines','Separate, lockable latrines with hand-washing points. Safer for women and girls at night, and they stop cholera spreading.')});
+    TIPS.push({o:kit.children[4],dy:1.3,vis:()=>kit.visible,tip:()=>tip('Latrines in the refugee camp','New latrines and hand-washing points. With hygiene kits, they cut the risk of cholera in the rains.')});
+    crew('hygiene',[[P.latr.x+.6,P.latr.z+.6,Math.PI,'talk',{woman:true,load:bucket,tip:tip('Hygiene promoter','Showing families how to treat water and wash hands, and handing out soap and buckets.')}],[P.campLatr.x-1.2,P.campLatr.z+.6,Math.PI,'talk',{woman:true,load:bucket,tip:tip('Hygiene promoter','Handing out hygiene kits in the refugee camp.')}]]);
+    glow('hygiene',P.latr.x,P.latr.z,1.8);glow('hygiene',P.campLatr.x,P.campLatr.z,1.8)}
+  // shelter kits
+  {const g=grp(P.shelter.x,P.shelter.z,.2);g.visible=false;KITS.shelter=g;for(let i=0;i<7;i++){const m=mesh(new THREE.CylinderGeometry(.12,.12,.9,10),mat(i%2?'#3f7fd0':'#2f63ad'),(i%4-1.5)*.26,.12+Math.floor(i/4)*.22,0,g);m.rotation.z=Math.PI/2}
+    for(let i=0;i<3;i++)mesh(new THREE.BoxGeometry(.4,.28,.32),mat('#c9a77a'),-.3+i*.42,.14,.6,g);obB(P.shelter.x,P.shelter.z+.3,.7,.5,.2);
+    TIPS.push({o:g,dy:.6,vis:()=>g.visible,tip:()=>tip('Shelter kits','Plastic sheeting, poles, ropes, blankets and cooking sets. Families patch tents and damaged homes before the rains.')});
+    crew('shelter',[[P.shelter.x+.9,P.shelter.z+.4,0,'carry',{to:[1.5,6.6],load:roll,tip:tip('Carrying a shelter kit','Taking plastic sheeting home to re-cover the tent before the rains.')}],[P.shelter.x+.6,P.shelter.z+.9,0,'carry',{to:[-2.4,7.4],load:roll,woman:true,tip:tip('Carrying a shelter kit','Taking plastic sheeting home to re-cover the tent before the rains.')}],[P.shelter.x-.9,P.shelter.z-.2,.6,'work',{tip:tip('Distribution worker','Checking names against the list and handing out kits.')}]]);
+    glow('shelter',P.shelter.x,P.shelter.z+.3,1.9);glow('shelter',-1.5,5.4,4.6)}
+  // livestock vaccination pen
+  {const g=grp(P.pen.x,P.pen.z,0);g.visible=false;KITS.pen=g;for(let a=0;a<Math.PI*2;a+=Math.PI/9){if(Math.abs(a)<.2)continue;mesh(new THREE.BoxGeometry(.06,.5,.06),mat('#7a5a3c'),Math.cos(a)*1.5,.25,Math.sin(a)*1.1,g)}
+    for(let a=0;a<Math.PI*2;a+=Math.PI/18)if(Math.abs(a)>.25)mesh(new THREE.BoxGeometry(.3,.04,.04),mat('#8a6a48'),Math.cos(a)*1.5,.38,Math.sin(a)*1.1,g).rotation.y=-a+Math.PI/2;
+    for(let k=0;k<6;k++){const gt=makeGoat(['#f1ebe0','#4a3a2e','#8a5a3a','#f1ebe0','#6b4a33','#d9cbb2'][k],k>=4);gt.position.set(Math.cos(k*1.1)*.8,0,Math.sin(k*1.1)*.55);gt.rotation.y=k*1.3;g.add(gt)}obC(P.pen.x,P.pen.z,1.5);
+    TIPS.push({o:g,dy:.7,vis:()=>g.visible,tip:()=>tip('Livestock vaccination','Goats and cattle are vaccinated and treated, and families get fodder for the dry months. Herds are savings: keeping them alive protects incomes.')});
+    crew('livestock',[[P.pen.x+1.9,P.pen.z-.2,-Math.PI/2,'work',{cloth:'#e8eef2',tip:tip('Animal health worker','Vaccinating goats against disease and checking the herd.')}]]);
+    glow('livestock',P.pen.x,P.pen.z,2.3)}
+  // land rehabilitation: half-moon bunds that turn green
+  {const g=new THREE.Group();scene.add(g);g.visible=false;KITS.rehab=g;const earth=mat('#9a7650'),green=mat('#7f9a44',{unique:true});KITS.rehabGreen=[];
+    const bg=new THREE.TorusGeometry(.75,.11,5,12,Math.PI);
+    for(let r=0;r<4;r++)for(let c=0;c<5;c++){const x=P.rehab.x-4.4+c*2.2+(r%2)*1.1,z=P.rehab.z-3.4+r*2.1;const b=new THREE.Mesh(bg,earth);b.rotation.x=-Math.PI/2;b.rotation.z=Math.PI;b.position.set(x,h(x,z)+.04,z);b.castShadow=true;b.receiveShadow=true;g.add(b);
+      const pl=mesh(new THREE.ConeGeometry(.22,.45,6),green,x,h(x,z)+.22,z-.25,g);pl.visible=false;KITS.rehabGreen.push(pl)}
+    TIPS.push({o:g.children[7],dy:.6,vis:()=>g.visible,tip:()=>S.built.landrehab!==undefined?tip('Rehabilitated land','Half-moon bunds catch rainwater, so grass and young trees grow back and the land can be farmed again.'):tip('Land rehabilitation','Workers dig half-moon bunds that catch rainwater on bare, degraded land. In two seasons it will grow crops and fodder again.')});
+    crew('landrehab',[[P.rehab.x-2,P.rehab.z-1,.4,'dig',{tip:tip('Cash for work: land rehabilitation','Digging half-moon bunds to catch rainwater on degraded land.')}],[P.rehab.x+1.2,P.rehab.z+.8,-.8,'dig',{woman:true,tip:tip('Cash for work: land rehabilitation','Digging half-moon bunds to catch rainwater on degraded land.')}],[P.rehab.x+.1,P.rehab.z-2.3,2.5,'dig'],[P.rehab.x-3.2,P.rehab.z+1.6,1.2,'carry',{to:[P.rehab.x-.6,P.rehab.z+2.4],load:b=>mesh(new THREE.ConeGeometry(.12,.2,5),mat('#5f7a34'),0,.92,0,b.body),tip:tip('Planting seedlings','Carrying acacia and grass seedlings to plant inside the bunds.')}]]);
+    glow('landrehab',P.rehab.x,P.rehab.z,5.6)}
+  // documentation desk staff
+  crew('docs',[[P.desk.x-.2,P.desk.z-.9,.4,'sit',{cloth:'#5541b5',tip:tip('Registration officer','Mobile civil registry team issuing birth certificates and ID cards.')}],[P.desk.x+.5,P.desk.z-.85,.4,'sit',{woman:true,cloth:'#5541b5',tip:tip('Registration officer','Taking photos and fingerprints for new ID cards.')}]]);
+  glow('docs',P.desk.x,P.desk.z+.5,1.9);
+  // land registration: surveyors with poles, flags on plots
+  {const g=new THREE.Group();scene.add(g);g.visible=false;KITS.hlp=g;const f=FIELDS.ret;
+    for(const [x,z] of [[f.x0,f.z0-.7],[f.x1,f.z0-.7],[-20.4,-13.8],[-11.2,-13.6],[-20.6,-7.2],[-10.8,-7.0]]){mesh(new THREE.BoxGeometry(.04,.5,.04),mat('#7a5a3c'),x,h(x,z)+.25,z,g);mesh(new THREE.BoxGeometry(.2,.13,.01),mat('#d62f2f'),x+.1,h(x,z)+.44,z,g)}
+    const pole=b=>{const m=mesh(new THREE.CylinderGeometry(.015,.015,1.4,5),mat('#f2c94c'),0,-.2,.05,b.armR);return m};
+    crew('hlp',[[f.x0+.8,f.z0-.9,0,'carry',{to:[f.x1-.8,f.z0-.9],load:pole,tip:tip('Land surveyor','Walking the plot boundaries with neighbours as witnesses, so each claim can be recorded.')}],[-19.6,-7.4,0,'carry',{to:[-12,-7.3],load:pole,woman:true,tip:tip('Community mapper','Marking homes and plots with flags for the land register.')}]]);
+    glow('hlp',P.hlp.x,P.hlp.z+.3,1.8)}
+  // dialogue: facilitator and a flip chart under the tree
+  {const g=grp(P.tree.x+2.4,P.tree.z-.7,-.9);g.visible=false;KITS.dialogue=g;for(const [a,b] of [[-.25,0],[.25,0],[0,-.3]])mesh(new THREE.BoxGeometry(.03,1.1,.03),mat('#7a5a3c'),a,.55,b,g).rotation.x=b?.3:-.1;mesh(new THREE.BoxGeometry(.6,.75,.02),mat('#fbfaf6'),0,.95,.04,g);for(let i=0;i<3;i++)mesh(new THREE.BoxGeometry(.4,.03,.025),mat(['#b3261e','#1d5fae','#2e8b57'][i]),0,1.12-i*.14,.05,g);
+    crew('dialogue',[[P.tree.x+2.0,P.tree.z-.1,-1.6,'talk',{cloth:'#3f6fb0',tip:tip('Facilitator','Leading a meeting between IDP, refugee, returnee and host leaders, with the locality authorities.')}]]);
+    glow('dialogue',P.tree.x,P.tree.z,3.2)}
+  // local authority planning: map board at the office
+  {const g=grp(P.board.x,P.board.z,.2);g.visible=false;KITS.lap=g;for(const a of [-.45,.45])mesh(new THREE.BoxGeometry(.05,1.3,.05),mat('#555'),a,.65,0,g);mesh(new THREE.BoxGeometry(1.1,.8,.04),mat('#fbfaf6'),0,1.05,.03,g);
+    mesh(new THREE.BoxGeometry(.5,.3,.045),mat('#cfe0b4'),-.2,1.15,.03,g);mesh(new THREE.BoxGeometry(.25,.25,.045),mat('#f4d58d'),.3,.9,.03,g);mesh(new THREE.BoxGeometry(.9,.04,.05),mat('#4c8ec4'),0,.85,.035,g);
+    crew('lap',[[P.board.x-.6,P.board.z+.9,Math.PI-.4,'talk',{cloth:'#e8eef2',tip:tip('Locality planner','Mapping services and gaps for each settlement, to plan where schools, water and clinics are needed.')}],[P.board.x+.5,P.board.z+1.0,Math.PI+.3,'stand',{woman:true,cloth:'#1d5fae',tip:tip('Trainee planner','Learning to keep a basic services database for the locality.')}]]);
+    glow('lap',P.office.x+1,P.office.z+1.2,2.6)}
+  // refugee inclusion: permits desk at the camp gate
+  {const g=grp(P.permit.x,P.permit.z,0);g.visible=false;KITS.inclusion=g;mesh(new THREE.BoxGeometry(1.1,.06,.55),mat('#2e8b57'),0,.62,0,g);for(const [a,b] of [[-.5,-.22],[.5,-.22],[-.5,.22],[.5,.22]])mesh(new THREE.BoxGeometry(.04,.62,.04),mat('#555'),a,.31,b,g);mesh(new THREE.BoxGeometry(.3,.02,.22),mat('#fff'),.2,.66,0,g);
+    crew('inclusion',[[P.permit.x,P.permit.z-.6,0,'sit',{cloth:'#2e8b57',tip:tip('Labour office official','Issuing work permits and registering land leases for refugee families.')}]]);
+    glow('inclusion',P.permit.x,P.permit.z+.6,1.8)}
+  // health support and builds
+  glow('health',P.clinic.x,P.clinic.z+.4,2.6);glow('primary',P.primary.x,P.primary.z,2.8);glow('power',P.solar.x,P.solar.z,4.4);glow('tower',P.tower.x,P.tower.z,2.4);glow('hafir',P.hafir.x,P.hafir.z,3.6);glow('dam',DAMX,zr(DAMX),4.2);
+  W3.gBore=glow('borehole',0,0,2.2);W3.gSchool=glow('school',0,0,2.4);
+}
 function IC2(k){return'<span class="li">'+(typeof ICONS2!=='undefined'&&ICONS2[k]?ICONS2[k]:'')+'</span>'}
 function schoolSpot(k){return freePoint(new THREE.Vector2(P.primary.x-2.1+(k%6)*.8,P.primary.z-1.9-Math.floor(k/6)*.6))}
 function syncLife(){
@@ -1778,6 +2024,15 @@ function syncLife(){
   setL(LB.well,!safeWater('idp')||!safeWater('ret'),IC2('location')+'Old well<small>5 km from the IDP site</small>');
 }
 const KTMP=new THREE.Vector3();
+function updateCrews(dt,t){for(const k in CREWS){const C=CREWS[k];if(!C.g.visible)continue;for(const Wk of C.w){const s1=Math.sin(t*6+Wk.ph);
+  if(Wk.role==='work'){Wk.armR.rotation.x=-1.1+s1*.35;Wk.armL.rotation.x=-.7+Math.sin(t*3.5+Wk.ph)*.3;Wk.legL.rotation.x=Wk.legR.rotation.x=0}
+  else if(Wk.role==='dig'){const sw=Math.sin(t*3+Wk.ph);Wk.body.rotation.x=.45;Wk.armR.rotation.x=Wk.armL.rotation.x=-1+sw*.55}
+  else if(Wk.role==='talk'){Wk.armR.rotation.x=-.7+Math.sin(t*2.4+Wk.ph)*.5;Wk.armL.rotation.x=-.3;Wk.body.rotation.y=Math.sin(t*.6+Wk.ph)*.35}
+  else if(Wk.role==='sit'){Wk.armR.rotation.x=Wk.armL.rotation.x=-.9+Math.sin(t*2+Wk.ph)*.12}
+  else if(Wk.role==='stand'){animWalk(Wk,false,t)}
+  else if(Wk.role==='carry'){const c=Math.cos(t*Wk.spd*.5+Wk.ph),u=(1-c)/2,x=Wk.x0+(Wk.x1-Wk.x0)*u,z=Wk.z0+(Wk.z1-Wk.z0)*u,dir=Math.sin(t*Wk.spd*.5+Wk.ph);
+    Wk.g.position.set(x,h(x,z),z);const go=dir>=0;Wk.g.rotation.y=Math.atan2((Wk.x1-Wk.x0)*(go?1:-1),(Wk.z1-Wk.z0)*(go?1:-1));const mv=Math.abs(dir)>.12;Wk.phase+=dt*(mv?4.5:0);animWalk(Wk,mv,t,false);
+    if(Wk.load){Wk.load.visible=go;if(Wk.load.parent===Wk.body){Wk.armR.rotation.x=Wk.armL.rotation.x=go?-2.8:Math.sin(Wk.phase)*.4}}}}}}
 function updateLife(dt,t){
   // wheelchairs rock but cannot move
   for(const W of LIFE.wc){const s=Math.sin(t*2.2+W.k*2);W.chair.position.z=s*.035;W.wheels.forEach(w=>w.rotation.x=s*.5);W.b.armL.rotation.x=W.b.armR.rotation.x=-.5+s*.35}
@@ -1810,6 +2065,7 @@ function updateLife(dt,t){
       else if(Wk.role==='dig'){const sw=Math.sin(t*3+Wk.ph);Wk.body.rotation.x=.45;Wk.armR.rotation.x=Wk.armL.rotation.x=-1+sw*.55}
       else if(Wk.role==='carry'){const u=(Math.sin(t*.5+Wk.ph)+1)/2,ax=Wk.x0,az=Wk.z0,bx=ax*.45,bz=az*.45;Wk.g.position.x=ax+(bx-ax)*u;Wk.g.position.z=az+(bz-az)*u;const dir=Math.cos(t*.5+Wk.ph);
         Wk.g.rotation.y=Math.atan2((bx-ax)*Math.sign(dir||1),(bz-az)*Math.sign(dir||1));Wk.phase+=dt*5;animWalk(Wk,Math.abs(dir)>.15,t,false);Wk.armR.rotation.x=Wk.armL.rotation.x=-2.8;Wk.load.visible=dir>0}}}
+  updateCrews(dt,t);
   // donkey carts: ride, fill at the river, sell in the camp
   for(const Dn of LIFE.donkeys||[])updateDonkey(Dn,dt,t);
   updateTransport(dt,t);
@@ -1856,7 +2112,7 @@ function syncPeople(){
   const dlg=S.active.includes('dialogue');PEOPLE.forEach((p,k)=>{const want=dlg&&R(p.i*9.7)<.22;if(want!==p.dialogue){p.dialogue=want;p.target=null;p.wait=rand()}});
 }
 function placeBuild(obj,id,key){
-  let pend=S.pending.find(q=>q.id===id);const built=S.built[key]!==undefined,site=S.sites[key]||(S.selSite[id]),plan=!pend&&!built&&S.sel.includes(id);if(plan)pend={due:S.season+CARD[id].lag,plan:true};
+  let pend=S.pending.find(q=>q.id===id);const built=S.built[key]!==undefined,site=S.sites[key]||(S.selSite[id]),plan=!pend&&!built&&S.sel.includes(id);if(plan)pend={due:S.season+lagOf(S,id),plan:true};
   obj.g.visible=!!(site&&(pend||built));if(!obj.g.visible)return{site:null};
   const shared=S.sites.borehole&&S.sites.school&&S.sites.borehole===S.sites.school&&(S.built.borehole!==undefined||S.pending.some(q=>q.id==='borehole'))&&(S.built.school!==undefined||S.pending.some(q=>q.id==='school'));
   const p=P[site],dx=shared?(id==='borehole'?-.9:.9):0;obj.g.position.set(p.x+dx,h(p.x+dx,p.z),p.z);
@@ -1874,7 +2130,7 @@ function sync(){
   for(const k of ['A','B','C']){const used=(b.site===k)||(sc.site===k);W3.plots[k].visible=!used;setL(LB['plot'+k],!used,'<b>'+k+'</b> Plot '+k+(k==='A'?', floods':''))}
   // new builds: primary school, dam, power, tower
   const st3=id=>S.built[id]!==undefined?'built':((S.pending.some(q=>q.id===id)||S.sel.includes(id))?'pend':'none');
-  const dueOf=id=>{const q=S.pending.find(q=>q.id===id);return q?q.due+1:S.season+CARD[id].lag+1};const planW=id=>S.sel.includes(id)&&!S.pending.some(q=>q.id===id)?'Planned':'';
+  const dueOf=id=>{const q=S.pending.find(q=>q.id===id);return q?q.due+1:S.season+lagOf(S,id)+1};const planW=id=>S.sel.includes(id)&&!S.pending.some(q=>q.id===id)?'Planned':'';
   {const k=st3('primary');W3.primary.full.visible=k==='built';W3.primary.closed.visible=k!=='built';W3.primary.scaf.visible=false;showSite(W3.primary.site,k==='built'?null:stageOf('primary'),null,{full:false});
     setL(LB.primary,true,(k!=='none'?li('primary'):'')+'Primary school'+(k==='built'?'<small>classes running</small>':(k==='pend'?'<small>'+(planW('primary')?'planned, ':'')+'reopens in season '+dueOf('primary')+'</small>':'<small>closed</small>')));LB.primary.el.className='lbl3d '+(k==='built'?'':(k==='pend'?'build':''))}
   {const k=st3('dam');W3.dam.full.visible=k==='built';W3.dam.broken.visible=k!=='built';W3.dam.scaf.visible=k==='pend';W3.dam.res.visible=k==='built';showSite(W3.dam.site,k==='built'?null:stageOf('dam'),null,{full:false});
@@ -1886,6 +2142,7 @@ function sync(){
   {const k=st3('hafir');W3.hafir.water.visible=k==='built';W3.hafir.silt.visible=k!=='built';W3.hafir.scaf.visible=k==='pend';showSite(W3.hafir.site,k==='built'?null:stageOf('hafir'),null,{full:false});W3.hafir.goats.forEach(g=>g.visible=k==='built');
     setL(LB.hafir,true,(k!=='none'?li('hafir'):'')+(k==='built'?'Hafir<small>holding rainwater</small>':(k==='pend'?(planW('hafir')?'Hafir desilting planned':'Desilting the hafir')+'<small>ready in season '+dueOf('hafir')+'</small>':'Hafir<small>silted up, dry</small>')));LB.hafir.el.className='lbl3d '+(k==='pend'?'build':(k==='none'?'warn':''))}
   LIFE.donkeys&&LIFE.donkeys.forEach((d,i)=>d.g.visible=i<(safeWater('idp')?1:3));
+  if(W3.refTank)W3.refTank.visible=act('water')||S.sel.includes('water');
   state.power=S.built.power!==undefined;
   // services
   const clinic=S.built.clinic!==undefined;W3.clinicFlag.visible=clinic;
@@ -1910,7 +2167,23 @@ function sync(){
   W3.tukuls.forEach((t,k)=>{const ok=k<rebuilt;t.wall.visible=t.roof.visible=t.tip.visible=t.dr.visible=ok;t.ruin.visible=!ok});
   // settlement labels
   const lab=(g,name)=>{const v=Math.round(sr(S,g));return name+'<small>'+S.pop[g].toLocaleString('en-US')+'</small><span class="sr '+(v<30?'lo':(v<50?'mid':'hi'))+'">'+IC2('trending')+'Self-reliance '+v+'/100</span>'};
-  setL(LB.idp,true,lab('idp','IDP site'));setL(LB.ret,true,lab('ret','Returnee village'));setL(LB.host,true,lab('host','Host town'));
+  setL(LB.idp,true,lab('idp','IDP site'));setL(LB.ret,true,lab('ret','Returnee village'));setL(LB.host,true,lab('host','Host town'));setL(LB.ref,true,lab('ref','Refugee camp'));
+  // activities and their glow
+  const on=id=>act(id)||S.sel.includes(id),pendB=id=>S.pending.some(q=>q.id===id)||(S.sel.includes(id)&&!S.pending.some(q=>q.id===id)&&S.built[(CARD[id].fx||{}).build]===undefined&&CARD[id].lag>0);
+  const GON={};for(const id of ['food','water','cash','cfw','seeds','hygiene','shelter','livestock','docs','hlp','dialogue','lap','inclusion'])GON[id]=on(id);
+  GON.hlp=GON.hlp||S.pending.some(q=>q.id==='hlp');GON.health=on('health')||S.pending.some(q=>q.id==='health');
+  for(const id of ['primary','power','tower','hafir','dam','landrehab','borehole','school'])GON[id]=pendB(id);
+  if(W3.bore.g.visible)W3.gBore.position.set(W3.bore.g.position.x,W3.bore.g.position.y+.09,W3.bore.g.position.z);else GON.borehole=false;
+  if(W3.school.g.visible)W3.gSchool.position.set(W3.school.g.position.x,W3.school.g.position.y+.09,W3.school.g.position.z);else GON.school=false;
+  state.glowOn=GON;for(const k in GLOWS)GLOWS[k].forEach(m=>m.visible=!!GON[k]);
+  for(const k in CREWS)CREWS[k].g.visible=k==='landrehab'?pendB('landrehab'):(k==='hlp'?GON.hlp:!!GON[k]);
+  KITS.food.visible=GON.food;KITS.cash.visible=GON.cash;KITS.shelter.visible=GON.shelter;KITS.pen.visible=GON.livestock;KITS.dialogue.visible=GON.dialogue;KITS.lap.visible=GON.lap;KITS.hlp.visible=GON.hlp;
+  KITS.inclusion.visible=GON.inclusion&&S.built.inclusion===undefined||(S.sel.includes('inclusion'));
+  KITS.latr.visible=S.played.some(q=>q.id==='hygiene')||S.sel.includes('hygiene');
+  const rb=S.built.landrehab!==undefined;KITS.rehab.visible=rb||pendB('landrehab');KITS.rehabGreen.forEach(m=>m.visible=rb);
+  setL(LB.latr,GON.hygiene,li('hygiene')+'Hygiene kits and latrines');setL(LB.shelter,GON.shelter,li('shelter')+'Shelter kits');setL(LB.pen,GON.livestock,li('livestock')+'Livestock vaccination');
+  setL(LB.rehab,KITS.rehab.visible,li('landrehab')+(rb?'Rehabilitated land<small>bunds holding water</small>':'Land rehabilitation<small>ready in season '+dueOf('landrehab')+'</small>'));LB.rehab.el.className='lbl3d '+(rb?'':'build');
+  setL(LB.permit,KITS.inclusion.visible,li('inclusion')+'Work permits and land leases');setL(LB.agent,GON.cash,li('cash')+'Cash agent');setL(LB.board,GON.lap,li('lap')+'Planning team');
   // events
   setL(LB.returns,ev==='returns');setL(LB.prices,ev==='prices');setL(LB.dispute,ev==='cut'&&S.coh<45);setL(LB.harvest,gold);
   state.sky=S.over?'harvest':(S.season===2?'rain':(S.season===1||S.season===5?'lean':(S.season===4&&ev==='harvest'?'harvest':'dry')));
@@ -1929,8 +2202,8 @@ function update(dt,t){
   sun.color.lerp(C(state.sky==='harvest'?'#ffd79a':state.sky==='lean'?'#ffe0b0':'#ffe6bf'),Math.min(1,dt));
   // truck
   const want=S&&S.active.includes('water')?1:0;state.truck+=(want-state.truck)*Math.min(1,dt*.6);
-  const park=P.tap.x,start=W/2+1,x=start+(park-start)*state.truck,z=roadZ(x);const tr=W3.truck;
-  tr.position.set(x,h(x,z)+tr.userData.base,z);tr.rotation.y=Math.atan2(ROADS[0][1][0]-ROADS[0][0][0],ROADS[0][1][1]-ROADS[0][0][1])+(tr.userData.long?Math.PI:Math.PI/2);tr.visible=x<W/2+1;
+  const park=P.tap.x,start=W/2-1,x=start+(park-start)*state.truck,z=roadZ(x);const tr=W3.truck;
+  tr.position.set(x,h(x,z)+tr.userData.base,z);tr.rotation.y=Math.atan2(ROADS[0][1][0]-ROADS[0][0][0],ROADS[0][1][1]-ROADS[0][0][1])+(tr.userData.long?Math.PI:Math.PI/2);tr.visible=x<W/2-1.3;
   DYN=[];
   if(W3.food.visible)obC(P.food.x,P.food.z,.95,DYN);
   if(W3.desk.visible)obB(P.desk.x,P.desk.z,.78,.58,.4,DYN);
@@ -1941,7 +2214,10 @@ function update(dt,t){
   if(tr.visible&&state.truck>.3){const lg=tr.userData.long;obB(tr.position.x,tr.position.z,lg?.55:1.2,lg?1.2:.55,tr.rotation.y,DYN)}
   if(W3.tower.full.visible)W3.tower.lamp.material.emissiveIntensity=Math.sin(t*3)>0?1.6:.1;
   if(state.power){const glow=.9+Math.sin(t*1.3)*.1;W3.power.bulbs.forEach(b=>b.material.emissiveIntensity=glow)}
+  {const pulse=.32+Math.sin(t*2.2)*.08;for(const k in GLOWS)for(const m of GLOWS[k])if(m.visible){const o=k===state.focus?.55+Math.sin(t*5)*.1:pulse;m.material.opacity=o;m.userData.ring.material.opacity=Math.min(1,o*2.4)}
+    for(const k of ['A','B','C']){const hi=W3['plotHi'+k];if(hi.visible)hi.material.opacity=.32+Math.sin(t*5)*.12}}
   W3.flame.scale.y=1+Math.sin(t*11)*.15;W3.flame.visible=state.rain<.6;W3.flag.rotation.y=Math.sin(t*2)*.12;
+  if(KITS.food&&KITS.food.visible)obB(P.ftruck.x,P.ftruck.z,1.25,.6,Math.atan2(RDIR.x,RDIR.z)-Math.PI/2,DYN);if(KITS.cash&&KITS.cash.visible)obB(P.agent.x,P.agent.z,.5,.3,0,DYN);if(KITS.lap&&KITS.lap.visible)obB(P.board.x,P.board.z,.6,.15,.2,DYN);if(KITS.inclusion&&KITS.inclusion.visible)obB(P.permit.x,P.permit.z,.6,.3,0,DYN);if(KITS.dialogue&&KITS.dialogue.visible)obC(P.tree.x+2.4,P.tree.z-.7,.35,DYN);
   if(LIFE.prot[0]&&LIFE.prot[0].g.visible)obB(P.office.x,-3.75,2.1,.65,0,DYN);
   if(LIFE.queueN>3)obB(11.9,-4.05,2.5,.32,0,DYN);
   updateLife(reduceMotion?0:dt,t);
@@ -1969,13 +2245,15 @@ function portrait(){
   const badge=new THREE.Mesh(new THREE.BoxGeometry(.06,.08,.01),new THREE.MeshStandardMaterial({color:'#ffffff'}));badge.position.set(-.04,.6,.09);b.body.add(badge);
   const cam=new THREE.PerspectiveCamera(24,1,.1,20);cam.position.set(.12,.74,1.05);cam.lookAt(0,.62,0);r.render(sc,cam);const url=r.domElement.toDataURL('image/png');r.dispose();try{r.forceContextLoss()}catch(e){}return url}
 function look(x,z,d=9){controls.target.set(x,0,z);camera.position.set(x+d*.45,d*.75,z+d*.75);controls.update()}
+function highlightPlot(k){for(const q of ['A','B','C'])W3['plotHi'+q].visible=q===k}
+function focusAct(id){state.focus=id}
 function tipAt(x,y){const b=nearestTip(x,y);return b?b.T.tip():''}
 function advance(sec){const c=Math.round(sec/.05);for(let k=0;k<c;k++)update(.05,clock.elapsedTime+k*.05)}
-return{el:view,sync,event,snapshot,portrait,advance,setLabels,setRings,overlaps,setInsets,look,tipAt,life:()=>LIFE,isReady:()=>state.ready};
+return{el:view,sync,event,snapshot,portrait,advance,setLabels,setRings,overlaps,setInsets,look,tipAt,highlightPlot,focusAct,life:()=>LIFE,isReady:()=>state.ready};
 })();
 
 /* ---------- UI ---------- */
-let S=null,TAB='cards',ADVISOR=true,RINGS=true;
+let S=null,TAB='cards',ADVISOR=true,SITEPICK=null,RINGS=true;
 const $=q=>document.querySelector(q);
 const esc=t=>String(t).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 const m1=v=>Math.round(v).toLocaleString('en-US');
@@ -2013,16 +2291,17 @@ document.addEventListener('fullscreenchange',()=>{document.body.classList.toggle
 const IC=k=>ICONS2[k]||'';let LP=true,RP=true,CAT=null,CRITV=true,ALLLAB=false;const OPEN=new Set();
 const CRIT_ICON={safety:'1',living:'2',liveli:'3',hlp:'4',docs:'5',family:'6',partic:'7',remedy:'8'};
 const CRIT_COL={safety:'#2A78D6',living:'#EB6834',liveli:'#1BAF7A',hlp:'#EDA100',docs:'#E87BA4',family:'#008300',partic:'#7B4FB0',remedy:'#4A5A6A'};
-const GROUP_ICON={idp:'internally-displaced',ret:'return',host:'4'};
+ICONS2.refugee='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M1 21 9 7l8 14h-3.2L9 12.6 4.2 21z"/><circle cx="18.5" cy="7" r="2.3"/><path d="M15.6 21v-6.4c0-2 1.3-3.4 2.9-3.4s2.9 1.4 2.9 3.4V21z"/></svg>';
+const GROUP_ICON={idp:'internally-displaced',ret:'return',host:'4',ref:'refugee'};
 const MISSION_ICON={acute:'people-in-need',water:'2',school:'3',primary:'education',cap:'country',coh:'partnership',limit:'protection'};
 const cloneSt=o=>JSON.parse(JSON.stringify(o));
 function project(st){const c=cloneSt(st);const r=resolve(c,true);return{m:r.after,st:c}}
 function potential(st,id){
-  const c=cardAt(st,id),base=cloneSt(st);base.relief={idp:0,ret:0,host:0};const b=snapshotMetrics(base);
+  const c=cardAt(st,id),base=cloneSt(st);base.relief=Z4();const b=snapshotMetrics(base);
   const w=cloneSt(base);let mult=(c.decay?1/(1+0.6*(st.count[id]||0)):1)*(c.win==='H'?1:(0.8+st.cap/150));
   if(id==='seeds'&&!(st.season===1||st.season===5))mult*=0.5;
   applyCard(w,c,mult,st.selSite[id]||'B');const a=snapshotMetrics(w);
-  return{sr:a.avg-b.avg,acute:a.acute-b.acute,dep:a.dep-b.dep,coh:a.coh-b.coh,cap:a.cap-b.cap,grp:{idp:a.sr.idp-b.sr.idp,ret:a.sr.ret-b.sr.ret,host:a.sr.host-b.sr.host}};
+  return{sr:a.avg-b.avg,acute:a.acute-b.acute,dep:a.dep-b.dep,coh:a.coh-b.coh,cap:a.cap-b.cap,grp:Object.fromEntries(GROUPS.map(g=>[g,a.sr[g]-b.sr[g]]))};
 }
 const sgn=v=>(v>0?'+':'−')+Math.abs(Math.round(v)).toLocaleString('en-US');
 function effectChips(id){
@@ -2035,7 +2314,7 @@ function effectChips(id){
   if(Math.abs(p.dep)>=1)chip('food-security','Aid dependency '+sgn(p.dep)+'%',p.dep<0);
   if(Math.abs(p.coh)>=1)chip('partnership','Cohesion '+sgn(p.coh),p.coh>0);
   if(Math.abs(p.cap)>=1)chip('country','Capacity '+sgn(p.cap),p.cap>0);
-  let when=c.lag>0?'<span class="fx when">'+IC('time')+'From season '+(S.season+1+c.lag)+'</span>':'';
+  const lg=lagOf(S,id);let when=lg>0?'<span class="fx when">'+IC('time')+'From season '+(S.season+1+lg)+'</span>':'';
   if(c.site)when+='<span class="fx when">'+IC('location')+'Shown for Plot '+(S.selSite[id]||'B')+'</span>';
   return out.slice(0,4).join('')+when;
 }
@@ -2048,7 +2327,7 @@ function chips3(id){
   if(Math.abs(p.dep)>=1)chip('food-security',ar(p.dep)+Math.abs(Math.round(p.dep))+'%',p.dep<0,'Aid dependency '+sgn(p.dep)+'%');
   if(Math.abs(p.coh)>=1)chip('partnership',ar(p.coh)+Math.abs(Math.round(p.coh)),p.coh>0,'Cohesion '+sgn(p.coh));
   if(Math.abs(p.cap)>=1)chip('country',ar(p.cap)+Math.abs(Math.round(p.cap)),p.cap>0,'Authority capacity '+sgn(p.cap));
-  const when=c.lag===0?'Now':(c.lag===1?'Next season':c.lag+' seasons');
+  const lg=lagOf(S,c.id);const when=lg===0?'Now':(lg===1?'Next season':lg+' seasons');
   return out.slice(0,3).join('')+'<span class="fx when s" title="When it starts to work"><span class="fi">'+IC('time')+'</span>'+when+'</span>';
 }
 function indRow(icon,label,now,prevV,projV,fmt,goodUp,suffix=''){
@@ -2084,7 +2363,7 @@ function gate(){
 const CRIT_HELP={safety:'Can people move, work and sleep without fear of violence or harassment?',living:'Do people have enough food, water, shelter, health care and schooling?',liveli:'Can people earn a living through work, farming or trade?',hlp:'Can people live on and use their home and land without fear of losing it?',docs:'Do people have the birth certificates, ID cards and other papers they need?',family:'Have families separated by displacement found each other again?',partic:'Can people take part in local decisions and public life on equal terms?',remedy:'Can people get justice or compensation for what they lost?'};
 const CRIT_SHORT={safety:'Safety',living:'Living standard',liveli:'Livelihoods',hlp:'Housing and land',docs:'Documents',family:'Family',partic:'Participation',remedy:'Justice'};
 function critGrid(proj){
-  const G={idp:'IDPs',ret:'Returnees',host:'Hosts'};const ps=proj?proj.st:null;
+  const G={idp:'IDPs',ret:'Returnees',host:'Hosts',ref:'Refugees'};const ps=proj?proj.st:null;
   let h='<div class="cgrid"><span></span>'+CRIT.map(([k,lab])=>'<span class="ch" tabindex="0" data-tip="'+esc(lab+': '+CRIT_HELP[k])+'"><span class="ci2" style="color:'+CRIT_COL[k]+'">'+IC(CRIT_ICON[k])+'</span><small>'+CRIT_SHORT[k]+'</small></span>').join('');
   for(const g of GROUPS){h+='<span class="rg"><span class="gi">'+IC(GROUP_ICON[g])+'</span>'+G[g]+'</span>';
     for(const [k,lab] of CRIT){const b=S.g[g][k];const r=k==='living'?Math.min(S.relief[g],100-b):0;const now=b+r;
@@ -2114,14 +2393,14 @@ function render(){
   let h='<main class="page'+(LP?'':' nol')+(RP?'':' nor')+'">'+leftPanel(cur,prev,proj);
   h+='<section class="mapcol"><div id="slot3d"></div>';
   h+='<div class="hud top">'+critCard(proj);
-  if(S.history.length>1||S.sel.length){const tot=S.sel.reduce((a,id)=>a+CARD[id].cost,0);
+  if(S.history.length>1||S.sel.length){const tot=S.sel.reduce((a,id)=>a+costOf(S,id),0);
     h+='<div class="hud-card fstrip">'+(S.history.length>1?'<span class="event-chip">Last season: '+esc(lastEventTitle())+'</span>':'')+(S.sel.length?'<b>Funded</b><div class="chips">'+S.sel.map(id=>{const c=cardAt(S,id);let nm=(c.lvName||c.name).split(':')[0].split(',')[0].replace('Solar borehole and water committee','Borehole').replace('Vocational education centre','Vocational centre').replace('Solar mini-grid and electricity connection','Mini-grid').replace('Repair the dam and reservoir','Dam repair');return'<span class="chip '+c.win+'"><span class="ci">'+ICON(id)+'</span>'+esc(nm)+(c.site?' (Plot '+S.selSite[id]+')':'')+'</span>'}).join('')+'</div><span class="ftot">'+usdS(tot)+'</span>':'<span class="fnone">Nothing funded yet this season</span>')+'</div>'}
   h+='</div>';
 
   const tot={self:0,coping:0,aid:0,acute:0};for(const g of GROUPS){const c=statusCounts(S,g);for(const k in tot)tot[k]+=c[k]}
   h+='<div class="hud bl"><div class="hud-card legend"><span class="lg-note">Each figure is about 1,000 people. Hover or tap the map to see names and what people are doing.</span><span><i class="dot" style="background:var(--s-self)"></i>Getting by ('+tot.self+')</span><span><i class="dot" style="background:var(--s-coping)"></i>Coping ('+tot.coping+')</span><span><i class="dot" style="background:var(--s-aid)"></i>Relying on aid ('+tot.aid+')</span><span><i class="dot" style="background:var(--s-acute)"></i>Acute need ('+tot.acute+')</span><button class="btn btn-sm" id="rings">'+(RINGS?'Hide':'Show')+' rings</button><button class="btn btn-sm" id="labels" aria-pressed="'+ALLLAB+'">'+(ALLLAB?'Fewer labels':'All labels')+'</button></div></div></section>';
   h+='<button class="opener lo" id="lp-show">\u203a Indicators and missions</button><button class="opener ro" id="rp-show">Options \u2039</button>';
-  const spentNow={H:0,D:0,P:0};S.sel.forEach(id=>spentNow[CARD[id].win]+=CARD[id].cost);
+  const spentNow={H:0,D:0,P:0};S.sel.forEach(id=>spentNow[CARD[id].win]+=costOf(S,id));
   h+='<aside class="panel side"><button class="collapse" id="rp-hide" aria-label="Hide options">Hide \u203a</button><div class="budget1"><div class="bt"><span class="k">Budget for season '+(S.season+1)+'</span><span class="v">'+usdS(rem)+' <small>left of '+usdS(S.budget)+'</small></span></div>';
   h+='<div class="stack">'+['H','D','P'].map(w=>'<i class="'+w+'" style="width:'+(100*spentNow[w]/S.budget)+'%"></i>').join('')+'</div><div class="split">'+['H','D','P'].map(w=>'<span class="'+w+'"><i></i>'+WIN[w]+' <b>'+usdS(spentNow[w])+'</b></span>').join('')+'</div></div>';
   const G=gate();
@@ -2131,7 +2410,8 @@ function render(){
       :'With your choices, about '+fmtPeople(G.acute)+' people would be in acute need next season. Fund humanitarian options until this is under 5,000 to unlock self-reliance and peace.')+'</span></div>';
   h+='<div class="tabbody">';
   const TYPE={H:{ic:'people-in-need',d:'Water, food and cash that keep people alive this season.'},D:{ic:'trending',d:'Farming, water systems, skills, health and local planning.'},P:{ic:'partnership',d:'Documents, land disputes and dialogue between communities.'}};
-  if(!CAT){
+  if(SITEPICK){h+=sitePanel()}
+  else if(!CAT){
     h+='<div class="types"><div class="th">Choose a type of intervention</div>';
     for(const w of ['H','D','P']){const lock=w!=='H'&&!G.ok;const n=CARDS.filter(c=>c.win===w).length,ns=S.sel.filter(id=>CARD[id].win===w).length;
       h+='<button class="type '+w+(lock?' locked':'')+'" data-cat="'+w+'"'+(lock?' aria-disabled="true"':'')+'><span class="tic">'+IC(TYPE[w].ic)+'</span><span class="tt"><b>'+WIN[w]+'</b><span>'+TYPE[w].d+'</span><small>'+(lock?'Locked until critical needs are met':(ns?ns+' chosen, '+usdS(spentNow[w]):n+' options'))+'</small></span><span class="tgo">'+(lock?'&#128274;':'›')+'</span></button>'}
@@ -2143,7 +2423,7 @@ function render(){
     h+='<div class="cards">';
     for(const c0 of CARDS){if(c0.win!==CAT)continue;const c=cardAt(S,c0.id);
       const st=cardStatus(S,c.id),sel=S.sel.includes(c.id);
-      const afford=sel||rem+1e-9>=c.cost;const dis=st!=='open'||!afford||(lock&&!sel);
+      const minCost=c.site?c.cost+Math.min(...Object.values(SITE_COST)):c.cost;const afford=sel||rem+1e-9>=minCost;const dis=st!=='open'||!afford||(lock&&!sel);
       const nm=c.levels?(st==='built'?c.name:c.lvName):c.name,ds=c.levels?(st==='built'?'All three levels are done.':c.lvDesc):c.desc;
       let badge='';if(c.levels)badge='<span class="lvb">'+(st==='built'?'All 3 levels done':'Level '+(c.lvK+1)+' of 3, '+c.name.toLowerCase())+'</span>';
       let state='';
@@ -2157,7 +2437,7 @@ function render(){
       if(c.decay&&S.count[c.id])tags+='<span class="tag">Funded '+S.count[c.id]+'x, smaller gains now</span>';
       const det='<p>'+esc(ds)+'</p>'+(st==='open'?'<div class="fxrow">'+effectChips(c.id)+'</div>':'')+'<div class="tags">'+tags+'</div>';
       const row=st==='open'?chips3(c.id):'';
-      h+='<div class="card2 '+c.win+(sel?' sel':'')+(OPEN.has(c.id)?' open':'')+(dis?' off':'')+'" data-id="'+c.id+'"><button class="card '+c.win+(sel?' sel':'')+'" data-id="'+c.id+'" '+(dis?'disabled':'')+' aria-pressed="'+sel+'"><span class="ic">'+ICON(c.id)+'</span><span class="cn"><b>'+esc(nm)+'</b>'+badge+'</span><span class="cost">'+usdS(c.cost)+'</span><span class="fx2">'+(state?'<span class="stt">'+state+'</span>':'')+row+'</span></button><button class="cinfo" data-info="'+c.id+'" aria-label="Details for '+esc(nm)+'" aria-expanded="'+(OPEN.has(c.id)||sel)+'">i</button><div class="cdet">'+det+'</div></div>';
+      h+='<div class="card2 '+c.win+(sel?' sel':'')+(OPEN.has(c.id)?' open':'')+(dis?' off':'')+'" data-id="'+c.id+'"><button class="card '+c.win+(sel?' sel':'')+'" data-id="'+c.id+'" '+(dis?'disabled':'')+' aria-pressed="'+sel+'"><span class="ic">'+ICON(c.id)+'</span><span class="cn"><b>'+esc(nm)+'</b>'+badge+'</span><span class="cost">'+(c.site&&!sel&&st==='open'?'<small class="from">from</small> '+usdS(minCost):usdS(sel?costOf(S,c.id):c.cost))+'</span><span class="fx2">'+(state?'<span class="stt">'+state+'</span>':'')+row+'</span></button><button class="cinfo" data-info="'+c.id+'" aria-label="Details for '+esc(nm)+'" aria-expanded="'+(OPEN.has(c.id)||sel)+'">i</button><div class="cdet">'+det+'</div></div>';
     }
     h+='</div><p class="potnote">Chips show what an option can do on its own, before any shock. Hover over an option, or tap i, for details.</p>';
   }
@@ -2168,9 +2448,11 @@ function render(){
   $('#lp-hide').onclick=()=>{LP=false;render()};$('#rp-hide').onclick=()=>{RP=false;render()};$('#lp-show').onclick=()=>{LP=true;render()};$('#rp-show').onclick=()=>{RP=true;render()};
   if($('.lpanel'))$('.lpanel').scrollTop=keep.l;if($('.side .tabbody'))$('.side .tabbody').scrollTop=keep.r;
   document.querySelectorAll('.card2').forEach(cd=>cd.onclick=e=>{if(e.target.closest('.cinfo'))return;const id=cd.dataset.id;if(cd.classList.contains('off')&&!S.sel.includes(id))return;toggleCard(id)});
+  document.querySelectorAll('.card2').forEach(cd=>{cd.addEventListener('mouseenter',()=>ENGINE.focusAct(cd.dataset.id));cd.addEventListener('mouseleave',()=>ENGINE.focusAct(null))});
   document.querySelectorAll('.cinfo').forEach(b=>b.onclick=e=>{e.stopPropagation();const id=b.dataset.info;OPEN.has(id)?OPEN.delete(id):OPEN.add(id);render()});
   bindCardTips();
   $('#end').onclick=endSeason;
+  bindSitePanel();
   document.querySelectorAll('.type').forEach(b=>b.onclick=()=>{if(b.classList.contains('locked'))return;CAT=b.dataset.cat;render();const t=$('.side .tabbody');if(t)t.scrollTop=0});
   document.querySelectorAll('.tab3').forEach(b=>b.onclick=()=>{if(b.classList.contains('locked'))return;CAT=b.dataset.cat;render();const t=$('.side .tabbody');if(t)t.scrollTop=0});
   const ct=$('#crit-t');if(ct)ct.onclick=()=>{CRITV=!CRITV;render()};
@@ -2179,22 +2461,33 @@ function render(){
   $('#labels').onclick=()=>{ALLLAB=!ALLLAB;ENGINE.setLabels(ALLLAB);render()};
   if(ADVISOR&&!$('#layer').innerHTML)setTimeout(showAdvisor,30);
 }
-function lastEventTitle(){const t={returns:'more families came home',prices:'food prices spiked',flood:'floods reached the IDP site',harvest:'harvest',cut:'donor funding cut',review:'year-end review'};return t[S.lastEvent]||''}
+function lastEventTitle(){const t={returns:'more families came home',prices:'food prices spiked and refugees arrived',flood:'floods reached the IDP site',harvest:'harvest',cut:'donor funding cut',review:'year-end review'};return t[S.lastEvent]||''}
 function toggleCard(id){
-  const i=S.sel.indexOf(id);
+  SITEPICK=null;const i=S.sel.indexOf(id);
   if(i>=0){S.sel.splice(i,1);delete S.selSite[id];render();focusCard(id);return}
   const c=CARD[id];
   if(c.site){pickSite(id);return}
   S.sel.push(id);render();focusCard(id);
 }
 function focusCard(id){const b=document.querySelector('.card[data-id="'+id+'"]');if(b)b.focus()}
-function pickSite(id){
-  const c=CARD[id];
-  let h='<h2>Where should the '+(id==='borehole'?'borehole':'school')+' go?</h2><div class="sub">The plots are marked A, B and C on the map. The site decides who benefits and what the floods can reach.</div><div class="sites">';
-  for(const k of ['A','B','C']){const taken=Object.keys(S.selSite).some(o=>o!==id&&S.selSite[o]===k)||(Object.entries(S.sites).some(([b,v])=>v===k&&b!==CARD[id].fx.build));
-    h+='<button class="site" data-act="'+k+'"><span class="letter">'+k+'</span><span><b>'+esc(SITES[k].name)+'</b><span>'+esc(SITE_NOTE[id][k])+(taken?' Shares the plot with another build.':'')+'</span></span><span class="risk r'+SITES[k].risk+'">'+SITES[k].riskTxt+'</span></button>'}
-  h+='</div><div class="foot"><button class="btn" data-act="cancel">Cancel</button></div>';
-  modal(h,a=>{if(a==='cancel')return;S.sel.push(id);S.selSite[id]=a;render();focusCard(id)});
+function pickSite(id){SITEPICK=id;RP=true;render();const t=$('.side .tabbody');if(t)t.scrollTop=0}
+function sitePanel(){
+  const id=SITEPICK,rem=remaining(S);
+  let h='<div class="sitepick"><div class="sp-h"><span class="ic">'+ICON(id)+'</span><div><b>Where should the '+(id==='borehole'?'borehole':'vocational centre')+' go?</b><small>Hover a plot to see it on the map. Each plot has a trade-off.</small></div></div>';
+  for(const k of ['A','B','C']){const cost=costOf(S,id,k),lag=lagOf(S,id,k),ok=rem+1e-9>=cost;
+    const taken=Object.keys(S.selSite).some(o=>o!==id&&S.selSite[o]===k)||(Object.entries(S.sites).some(([b,v])=>v===k&&b!==CARD[id].fx.build));
+    h+='<button class="sp-row'+(ok?'':' off')+'" data-plot="'+k+'"'+(ok?'':' disabled')+'><span class="letter">'+k+'</span><span class="sp-b"><span class="sp-t"><b>Plot '+k+'</b><span>'+esc(SITES[k].name.split(', ')[1])+'</span></span>'+
+      '<span class="sp-l pro"><i>+</i>'+esc(SITE_PRO[id][k])+'</span><span class="sp-l con"><i>−</i>'+esc(SITE_CON[id][k])+(taken?' Shares the plot with another build.':'')+'</span>'+
+      '<span class="sp-m"><span class="sp-c">'+usdS(cost)+'</span><span>'+IC('time')+(lag===1?'Ready next season':'Ready in '+lag+' seasons')+'</span><span class="risk r'+SITES[k].risk+'">'+SITES[k].riskTxt.replace('Flood risk: ','Flood: ')+'</span>'+(ok?'':'<span class="sp-no">Not enough money</span>')+'</span></span></button>'}
+  h+='<button class="btn btn-sm sp-cancel" id="sp-cancel">Cancel</button></div>';
+  return h}
+function bindSitePanel(){
+  if(!SITEPICK)return;const id=SITEPICK;
+  document.querySelectorAll('.sp-row').forEach(b=>{const k=b.dataset.plot;
+    b.onmouseenter=b.onfocus=()=>ENGINE.highlightPlot(k);b.onmouseleave=b.onblur=()=>ENGINE.highlightPlot(null);
+    b.onclick=()=>{if(b.disabled)return;S.sel.push(id);S.selSite[id]=k;SITEPICK=null;ENGINE.highlightPlot(null);render();focusCard(id)}});
+  $('#sp-cancel').onclick=()=>{SITEPICK=null;ENGINE.highlightPlot(null);render();focusCard(id)};
+  const f=document.querySelector('.sp-row:not(.off)');if(f)f.focus({preventScroll:true});
 }
 function advisorTips(st){
   const sn=SEASONS[st.season],tips=[];const pa=project(st).m.acute;
@@ -2240,28 +2533,56 @@ function modal(html,onClose){
   if(btns.length)btns[0].focus();
 }
 function endSeason(){
+  if(SITEPICK){SITEPICK=null;ENGINE.highlightPlot(null)}
   if(!S.sel.length){modal('<h2>Fund nothing this season?</h2><p>You have not chosen any interventions. Relief will stop and nothing new will start.</p><div class="foot"><button class="btn" data-act="back">Go back</button><button class="btn btn-primary" data-act="go">End season anyway</button></div>',a=>{if(a==='go')doEnd()});return}
   doEnd();
 }
+function eventArt(kind){
+  const sky={flood:'#c9d3d9',harvest:'#f6e2b8',review:'#f4e3c2',cut:'#ebe6dc'}[kind]||'#f4ecd9',gr={flood:'#b9ab7a',harvest:'#d9b45a'}[kind]||'#dcc493';
+  let s='<svg viewBox="0 0 160 110" class="evart" aria-hidden="true"><rect width="160" height="110" fill="'+sky+'"/><rect y="78" width="160" height="32" fill="'+gr+'"/>';
+  const fig=(x,c,load)=>'<g transform="translate('+x+' 0)"><circle cx="0" cy="52" r="4.2" fill="#6e4630"/><path d="M-5 80 L-4 58 Q0 55 4 58 L5 80 Z" fill="'+c+'"/>'+(load?'<rect x="-6" y="40" width="12" height="7" rx="2" fill="'+load+'"/>':'')+'</g>';
+  if(kind==='returns'){s+='<path d="M0 86 L160 80 L160 90 L0 98 Z" fill="#bf9f6e"/>';s+=fig(40,'#e07a3a','#3f6fb0')+fig(58,'#2f8f8a','#d9a521')+fig(76,'#7a4fa0')+fig(95,'#b8433a','#e8e2d0');
+    s+='<g transform="translate(118 50)"><rect x="0" y="12" width="26" height="18" fill="#b77b4e"/><path d="M-4 13 L13 0 L30 13 Z" fill="#c9a35a"/><rect x="10" y="20" width="6" height="10" fill="#5a3b26"/></g>'}
+  else if(kind==='prices'){s+='<rect x="22" y="44" width="58" height="34" fill="#c9a77a"/><path d="M18 46 L84 46 L78 34 L24 34 Z" fill="#b8433a"/><ellipse cx="40" cy="70" rx="11" ry="9" fill="#e3d5b3"/><ellipse cx="62" cy="70" rx="11" ry="9" fill="#e3d5b3"/>';
+    s+='<path d="M110 74 L110 34" stroke="#c62f25" stroke-width="6" stroke-linecap="round"/><path d="M98 46 L110 30 L122 46" fill="none" stroke="#c62f25" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>'+fig(140,'#2e8b57','#e8e2d0')}
+  else if(kind==='flood'){s+='<path d="M28 76 L44 52 L60 76 Z" fill="#efe7d6"/><path d="M92 76 L108 54 L124 76 Z" fill="#efe7d6"/>';for(let i=0;i<14;i++)s+='<path d="M'+(6+i*11)+' 20 l-3 8" stroke="#7f98aa" stroke-width="1.6" stroke-linecap="round"/>';
+    s+='<path d="M0 72 C20 66 40 78 60 72 C80 66 100 78 120 72 C140 66 150 74 160 70 V110 H0 Z" fill="#4c8ec4" opacity=".9"/><ellipse cx="40" cy="14" rx="26" ry="10" fill="#9aa6ae"/><ellipse cx="118" cy="16" rx="30" ry="11" fill="#a9b4bb"/>'}
+  else if(kind==='harvest'){s+='<circle cx="134" cy="22" r="11" fill="#f3a93b"/>';for(let i=0;i<9;i++){const x=10+i*17;s+='<path d="M'+x+' 82 v-26 M'+(x-5)+' 64 l5 -7 l5 7 M'+(x-5)+' 72 l5 -6 l5 6" stroke="#b07d22" stroke-width="2.2" fill="none" stroke-linecap="round"/>'}s+=fig(78,'#e07a3a','#b98a4c')}
+  else if(kind==='cut'){s+='<circle cx="134" cy="22" r="10" fill="#f3d27a"/>';for(let i=0;i<4;i++)s+='<ellipse cx="48" cy="'+(74-i*7)+'" rx="18" ry="5" fill="#d9a521" stroke="#a87c12"/>';
+    s+='<path d="M92 34 L92 70" stroke="#c62f25" stroke-width="6" stroke-linecap="round"/><path d="M80 58 L92 74 L104 58" fill="none" stroke="#c62f25" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>'+fig(130,'#7a4fa0')}
+  else{s+='<circle cx="132" cy="24" r="13" fill="#f3b24a"/><path d="M0 82 L160 78" stroke="#a98a62" stroke-width="2"/>';for(let i=0;i<6;i++)s+='<path d="M'+(14+i*14)+' 84 l4 -8 l4 8" stroke="#a98a62" stroke-width="1.5" fill="none"/>';
+    s+='<rect x="76" y="34" width="34" height="42" rx="3" fill="#fff" stroke="#8a8f99"/><rect x="86" y="30" width="14" height="7" rx="2" fill="#646c7a"/>';for(let i=0;i<4;i++)s+='<path d="M82 '+(46+i*8)+' h22" stroke="#9aa0a9" stroke-width="2"/>'}
+  return s+'</svg>'}
+function resRow(icon,label,b,a,max,fmt,goodUp,round){
+  const rb=round(b),ra=round(a),d=ra-rb;const good=d===0?null:((d>0)===goodUp);
+  const pb=Math.max(0,Math.min(100,100*b/max)),pa=Math.max(0,Math.min(100,100*a/max));
+  const tag=d===0?'<span class="rch flat">no change</span>':'<span class="rch '+(good?'good':'bad')+'">'+(d>0?'↑ +':'↓ −')+fmt(Math.abs(d))+'</span>';
+  return'<div class="rrow"><span class="ri">'+IC(icon)+'</span><span class="rl">'+label+'</span><span class="rbar"><i class="rb" style="width:'+pb+'%"></i><i class="ra '+(good===null?'':(good?'good':'bad'))+'" style="width:'+pa+'%"></i></span><span class="rv">'+fmt(rb)+' <em>→</em> <b>'+fmt(ra)+'</b></span>'+tag+'</div>'}
 function doEnd(){
   const rep=resolve(S);ADVISOR=true;ENGINE.event(rep);CAT=null;
   const sn=SEASONS[rep.season];
-  let h='<h2>'+esc(rep.event.title)+'</h2><div class="sub">End of season '+(rep.season+1)+': Year '+sn.yr+', '+sn.name+'</div>';
-  h+='<div class="event"><p>'+esc(rep.event.text)+'</p><ul>'+rep.event.lines.map(l=>'<li>'+esc(l)+'</li>').join('')+'</ul></div>';
-  if(rep.done.length)h+='<h3>Completed this season</h3><ul>'+rep.done.map(id=>'<li>'+esc(CARD[id].name)+'</li>').join('')+'</ul>';
-  if(rep.started.length)h+='<h3>Started, not yet delivering</h3><ul>'+rep.started.map(id=>'<li>'+esc(CARD[id].name)+(CARD[id].site?' on Plot '+S.sites[CARD[id].fx.build]:'')+' (ready in '+CARD[id].lag+' season'+(CARD[id].lag>1?'s':'')+')</li>').join('')+'</ul>';
+  let h='<div class="evhead">'+eventArt(rep.event.kind)+'<div><h2>'+esc(rep.event.title)+'</h2><div class="sub">End of season '+(rep.season+1)+': Year '+sn.yr+', '+sn.name+'</div><p class="evtx">'+esc(rep.event.text)+'</p></div></div>';
+  h+='<ul class="evlines">'+rep.event.lines.map(l=>'<li>'+esc(l)+'</li>').join('')+'</ul>';
+  const prog=[];
+  rep.done.forEach(id=>prog.push([id,1,1,'Completed this season']));
+  S.pending.forEach(q=>{const tot=q.due-q.from;if(tot<1)return;const el=Math.min(tot,S.season-q.from);prog.push([q.id,el,tot,(el>=tot?'Working from season ':'Ready in season ')+(q.due+1)])});
+  if(prog.length){h+='<h3>Builds and programmes</h3><div class="prog">';
+    for(const [id,el,tot,txt] of prog){const c=CARD[id];h+='<div class="pg"><span class="pi '+c.win+'">'+ICON(id)+'</span><span class="pn"><b>'+esc((c.name.split(':')[0]))+(c.site&&S.sites[c.fx.build]?' <small>Plot '+S.sites[c.fx.build]+'</small>':'')+'</b><span class="pbar">'+Array.from({length:tot},(_,i)=>'<i class="'+(i<el?'on':'')+'"></i>').join('')+'</span></span><span class="pt'+(el>=tot?' done':'')+'">'+(el>=tot?'✓ ':'')+txt+'</span></div>'}
+    h+='</div>'}
   if(rep.combos.length)h+='<h3>Combined effects</h3>'+rep.combos.map(c=>'<div class="combo">'+esc(c)+'</div>').join('');
   if(rep.notes.length)h+='<h3>Also this season</h3><ul>'+rep.notes.map(n=>'<li>'+esc(n)+'</li>').join('')+'</ul>';
-  const b=rep.before,a=rep.after;
-  h+='<h3>Results</h3><table class="res"><thead><tr><th>Measure</th><th>Before</th><th>After</th><th>Change</th></tr></thead><tbody>';
-  for(const g of GROUPS)h+='<tr><td>Self-reliance: '+GLABEL[g]+'</td><td class="num">'+Math.round(b.sr[g])+'</td><td class="num">'+Math.round(a.sr[g])+'</td><td>'+delta(a.sr[g],b.sr[g],true)+'</td></tr>';
-  h+='<tr><td>People in acute need</td><td class="num">'+fmtPeople(b.acute)+'</td><td class="num">'+fmtPeople(a.acute)+'</td><td>'+delta(a.acute,b.acute,false)+'</td></tr>';
-  h+='<tr><td>Aid dependency</td><td class="num">'+Math.round(b.dep)+'%</td><td class="num">'+Math.round(a.dep)+'%</td><td>'+delta(a.dep,b.dep,false,'%')+'</td></tr>';
-  h+='<tr><td>Social cohesion</td><td class="num">'+Math.round(b.coh)+'</td><td class="num">'+Math.round(a.coh)+'</td><td>'+delta(a.coh,b.coh,true)+'</td></tr></tbody></table>';
-  h+='<div class="foot"><button class="btn btn-primary" data-act="next">'+(S.over?'Read the local paper':'Plan season '+(S.season+1))+'</button></div>';
+  const b=rep.before,a=rep.after,r1=v=>Math.round(v),r100=v=>Math.round(v/100)*100,n1=v=>String(v),np=v=>v.toLocaleString('en-US'),pc=v=>v+'%';
+  h+='<h3>Results</h3><div class="rgrid2">';
+  for(const g of GROUPS)h+=resRow(GROUP_ICON[g],'Self-reliance: '+GLABEL[g],b.sr[g],a.sr[g],100,n1,true,r1);
+  h+=resRow('people-in-need','People in acute need',b.acute,a.acute,20000,np,false,r100);
+  h+=resRow('food-security','Aid dependency',b.dep,a.dep,100,pc,false,r1);
+  h+=resRow('partnership','Social cohesion',b.coh,a.coh,100,n1,true,r1);
+  h+=resRow('country','Authority capacity',b.cap,a.cap,100,n1,true,r1);
+  h+='</div><div class="foot"><button class="btn btn-primary" data-act="next">'+(S.over?'Read the local paper':'Plan season '+(S.season+1))+'</button></div>';
   if(S.over){header();modal(h,()=>newspaper());return}
   render();modal(h,()=>{window.scrollTo(0,0)});
 }
+const PAPER_FALLBACK='<svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice"><rect width="300" height="300" fill="#e6d3a8"/><path d="M0 210 C80 190 160 230 300 200 V240 C160 270 80 230 0 250Z" fill="#4c8ec4"/><g fill="#efe7d6"><path d="M40 160 l18 -24 l18 24z"/><path d="M84 170 l18 -24 l18 24z"/><path d="M60 190 l18 -24 l18 24z"/></g><g fill="#e4d3b4"><rect x="190" y="90" width="30" height="22"/><rect x="230" y="100" width="30" height="22"/><rect x="205" y="128" width="30" height="22"/></g><g fill="#7f9a44"><circle cx="150" cy="80" r="16"/><circle cx="260" cy="60" r="12"/><circle cx="40" cy="80" r="12"/></g></svg>';
 function newspaper(){
   const first=S.history[0],last=S.history[S.history.length-1];
   const gain=last.avg-first.avg,peak=Math.max(...S.history.slice(1).map(x=>x.acute));
@@ -2272,10 +2593,10 @@ function newspaper(){
   if(S.damaged.borehole)body+='<p>Residents still talk about the floods that put the new borehole on the low plot out of action. "We were told it would last for years," said one woman at the IDP site.</p>';
   else if(S.built.borehole!==undefined)body+='<p>The solar borehole on Plot '+S.sites.borehole+' is now the busiest place in the locality. "'+(S.sites.borehole==='B'?'Everyone queues together here now, from the camp, the village and the town':'It is a long walk, but the water is clean')+'," said a member of the water committee.</p>';
   else body+='<p>Water trucks remain a daily sight. "When the truck does not come, we wait," said a mother at the IDP site.</p>';
-  body+=(last.coh>=50?'<p>Leaders from the three communities still meet under the big tree each month, which kept last year’s farmland dispute from turning violent.</p>':'<p>Tensions between the town and the newcomers remain high after last year’s farmland dispute.</p>');
+  body+=(last.coh>=50?'<p>Leaders from the four communities still meet under the big tree each month, which kept last year’s farmland dispute from turning violent.</p>':'<p>Tensions between the town and the newcomers remain high after last year’s farmland dispute.</p>');
   body+=(last.cap>=50?'<p>The locality office has included the IDP site in next year’s development plan for the first time.</p>':'<p>Locality planners say they still lack the staff and data to plan for the IDP site.</p>');
-  const shot=ENGINE.snapshot();const fig=shot?'<img src="'+shot+'" alt="The locality at the end of the two years" style="display:block;width:100%;height:auto">':'';
-  const h='<div class="paper"><div class="mast"><b>The Nahr Al-Amal Weekly</b><span>Year 2, end of the lean season</span></div><h2>'+esc(heads[rt])+'</h2><div class="cols"><div class="fig">'+fig+'<div class="cap">The locality today.</div></div><div>'+body+'</div></div><div class="tag-fic">A fictional newspaper in a simulation. The people quoted are invented.</div><div class="foot"><button class="btn btn-primary" data-act="rep">View the report</button></div></div>';
+  const shot=ENGINE.snapshot();const fig=shot?'<img src="'+shot+'" alt="The locality at the end of the two years" class="pimg">':'';
+  const h='<div class="paper"><div class="mast"><b>The Nahr Al-Amal Weekly</b><span>Year 2, end of the lean season</span></div><h2>'+esc(heads[rt])+'</h2><div class="cols"><figure class="fig">'+(fig||PAPER_FALLBACK)+'<figcaption class="cap">The locality today.</figcaption></figure><div class="pbody">'+body+'</div></div><div class="tag-fic">A fictional newspaper in a simulation. The people quoted are invented.</div><div class="foot"><button class="btn btn-primary" data-act="rep">View the report</button></div></div>';
   const L=$('#layer');L.innerHTML='<div class="overlay" role="dialog" aria-modal="true">'+h+'</div>';
   L.querySelector('[data-act]').onclick=()=>{L.innerHTML='';render();window.scrollTo(0,0)};
   L.querySelector('[data-act]').focus();
@@ -2285,20 +2606,22 @@ function reportHTML(){
   const gain=last.avg-first.avg,peak=Math.max(...st.history.slice(1).map(x=>x.acute));
   const [rt,rs]=rating(gain,peak);const tot=st.spent.H+st.spent.D+st.spent.P||1;const ms=missions(st);
   let h='<div class="report"><div class="hero"><div><div class="k">Report &middot; Nahr Al-Amal after two years</div><h2>'+rt+'</h2><p>'+rs+' Average self-reliance moved from '+Math.round(first.avg)+' to '+Math.round(last.avg)+'.</p></div><div class="final"><small>Final score</small><span>'+score(st).toLocaleString('en-US')+'</span><em>out of 10,000</em></div></div>';
+  const imp=improve(st),sc=score(st);
+  h+='<div class="panel rpanel reach"><h3>How to reach 10,000</h3>'+(imp.length?'<p class="rsub">You scored '+sc.toLocaleString('en-US')+'. Here is where the other '+(10000-sc).toLocaleString('en-US')+' points went, and what would have helped.</p><div class="reachg">'+imp.map(([t,lost,d])=>'<div class="rc"><div class="rct"><b>'+esc(t)+'</b><span class="lost">−'+Math.round(lost).toLocaleString('en-US')+'</span></div><p>'+esc(d)+'</p></div>').join('')+'</div>':'<p class="rsub">A perfect score. Nothing was missed: you balanced relief, self-reliance and peace in every season.</p>')+'</div>';
   h+='<div class="rgrid"><div class="panel rpanel"><h3>Outcomes</h3><table class="sheet">';
   const rows=[['Average self-reliance',Math.round(first.avg)+' to '+Math.round(last.avg)],['People in acute need now',fmtPeople(last.acute)],['Worst season for acute need',fmtPeople(peak)],['Aid dependency',Math.round(last.dep)+'%'],['Social cohesion',Math.round(last.coh)],['Authority capacity',Math.round(last.cap)]];
   rows.forEach(([a,b])=>h+='<tr><td>'+a+'</td><td>'+b+'</td></tr>');
   h+='</table><h3 style="margin-top:16px">How the score adds up</h3><table class="sheet">'+scoreParts(st).filter(p=>p[2]||p[1]).map(p=>'<tr><td>'+p[0]+'</td><td>'+p[1].toLocaleString('en-US')+(p[2]?' of '+p[2].toLocaleString('en-US'):'')+'</td></tr>').join('')+'</table><h3 style="margin-top:16px">Missions</h3><table class="sheet">'+ms.map(m=>'<tr><td>'+esc(m.text)+'</td><td class="'+(m.ok?'pass':'fail')+'">'+(m.ok?'Pass':'Fail')+'</td></tr>').join('')+'</table>';
   h+='<h3 style="margin-top:16px">Where the money went</h3><div class="spend">'+['H','D','P'].map(w=>'<i style="width:'+(100*st.spent[w]/tot)+'%;background:var(--'+({H:'hum',D:'dev',P:'peace'})[w]+')"></i>').join('')+'</div><div class="small-legend">'+['H','D','P'].map(w=>'<span><em style="background:var(--'+({H:'hum',D:'dev',P:'peace'})[w]+')"></em>'+WIN[w]+' '+usdS(st.spent[w])+' ('+Math.round(100*st.spent[w]/tot)+'%)</span>').join('')+'</div></div>';
-  h+='<div class="col"><div class="panel rpanel chart"><h3>Self-reliance by group</h3>'+chartSVG()+'</div><div class="panel rpanel"><h3>Lessons from your strategy</h3><ul class="lessons">'+lessons(st).map(([t,d])=>'<li><b>'+esc(t)+'</b>'+esc(d)+'</li>').join('')+'</ul></div></div></div>';
-  h+='<div class="panel rpanel"><h3>For the facilitator</h3><p style="margin:0;max-width:80ch">Ask each team: which shock hurt most, and what would have prevented it? Where did you site the borehole and the school, and who did that leave out? When did you start long-term investments, and why then?</p></div>';
+  h+='<div class="col"><div class="panel rpanel chart"><h3>Self-reliance by group</h3>'+chartSVG()+'</div><div class="panel rpanel"><h3>Lessons from your strategy</h3><ul class="lessons">'+lessons(st).map(([t,d,ok])=>'<li class="'+(ok?'ok':'miss')+'"><span class="lt">'+(ok?'✓ Worked':'! Missed')+'</span><b>'+esc(t)+'</b>'+esc(d)+'</li>').join('')+'</ul></div></div></div>';
+  h+='<div class="panel rpanel"><h3>For the facilitator</h3><p style="margin:0;max-width:80ch">Ask each team: which shock hurt most, and what would have prevented it? Where did you site the borehole and the school, and who did that leave out? Did refugees get the same chances as everyone else? When did you start long-term investments, and why then?</p></div>';
   h+='<div style="display:flex;justify-content:center"><button class="btn btn-primary btn-lg" id="again">Play again</button></div></div>';
   return h;
 }
 function chartSVG(){
   const W=560,H=240,L=34,R=12,T=12,B=30,n=S.history.length;
   const x=i=>L+(W-L-R)*i/(n-1),y=v=>T+(H-T-B)*(1-v/100);
-  const col={idp:'#1d5fae',ret:'#c25a1c',host:'#646c7a'};
+  const col={idp:'#1d5fae',ret:'#c25a1c',host:'#646c7a',ref:'#2e8b57'};
   let s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Line chart of self-reliance by group over the six seasons">';
   for(const v of [0,25,50,75,100])s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(v)+'" y2="'+y(v)+'" stroke="#eeede8"/><text x="'+(L-6)+'" y="'+(y(v)+4)+'" text-anchor="end" font-size="11" fill="#646c7a">'+v+'</text>';
   ['Start','S1','S2','S3','S4','S5','S6'].slice(0,n).forEach((l,i)=>s+='<text x="'+x(i)+'" y="'+(H-10)+'" text-anchor="middle" font-size="11" fill="#646c7a">'+l+'</text>');
@@ -2308,10 +2631,10 @@ function chartSVG(){
 function confirmRestart(){modal('<h2>Start again?</h2><p>Your progress in this game will be lost.</p><div class="foot"><button class="btn" data-act="no">Keep playing</button><button class="btn btn-primary" data-act="yes">Restart</button></div>',a=>{if(a==='yes'){S=newState();ADVISOR=true;TAB='cards';render();intro()}})}
 function intro(){
   modal('<h2>You coordinate durable solutions in Nahr Al-Amal</h2><div class="sub">A fictional locality in Sudan. Two years, six seasons.</div>'+
-  '<p>Three groups share the locality: 18,000 internally displaced people on a floodplain site, 12,000 returnees rebuilding their village, and 30,000 residents of the host town. Each figure on the map is about 1,000 people, coloured by how they are doing.</p>'+
+  '<p>Four groups share the locality: 18,000 internally displaced people on a floodplain site, 12,000 returnees rebuilding their village, 30,000 residents of the host town, and 5,000 refugees from South Sudan, Eritrea and Ethiopia in a camp beside the town. Each figure on the map is about 1,000 people, coloured by how they are doing.</p>'+
   '<p>Each season you receive one budget of USD 10 million. Choose a type of intervention (humanitarian, self-reliance or peace), fund options, choose sites for new buildings, then end the season. A shock follows every season.</p><p><b>Critical needs come first.</b> Self-reliance and peace options unlock once your choices bring acute need below 5,000 people for the next season.</p>'+
   '<h3>Your missions</h3><ul><li>Fewer than 5,000 people in acute need at the end, and never more than 15,000 along the way.</li><li>A shared water point the floods cannot reach.</li><li>The vocational education centre open, and children back in primary school.</li><li>Authority capacity and social cohesion at 50 or above.</li></ul>'+
-  '<h3>Watch for</h3><ul><li>Relief lifts people for one season only.</li><li>Builds take one or two seasons. Plot A floods.</li><li>Some interventions are stronger together, and timing matters.</li></ul>'+
+  '<h3>Watch for</h3><ul><li>Relief lifts people for one season only.</li><li>Builds take one or two seasons. Plot A floods, but it is cheaper; Plot C is ready sooner.</li><li>Refugees share the health centre and schools, but can only farm once they have work permits and land.</li><li>Some interventions are stronger together, and timing matters.</li></ul>'+
   '<div class="foot"><button class="btn btn-primary btn-lg" data-act="go">Start season 1</button></div>');
 }
 function start(data){
