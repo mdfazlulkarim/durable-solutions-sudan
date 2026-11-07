@@ -594,6 +594,7 @@ body.immersive .site-header{position:fixed}
 .modal:has(.advpop) .foot{padding:12px 24px 20px;margin:0;border:0}
 @media (max-width:560px){.advpop{flex-direction:column;align-items:center;text-align:left}.advpop .avbig{width:96px;height:96px}}
 .fstrip .chip{font-size:12px;padding:2px 9px 2px 4px}
+.nol .hud.top{left:206px}.nor .hud.top{right:112px}@media (max-width:860px){.nol .hud.top{left:12px}.nor .hud.top{right:12px}}
 
 /* footer */
 .site-footer{border-top:1px solid var(--line);background:var(--panel)}
@@ -621,7 +622,7 @@ body.immersive .site-header{position:fixed}
 </div></div>
 <script>
 (function(){
-  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 222392},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
+  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 224077},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
   var t0=performance.now(),got={},raw=0,xfer=0,first=null,last=null,done=false;
   var nc=navigator.connection||{},guess=nc.downlink?nc.downlink:null;
   function fileOf(n){for(var f in FILES)if(n.split('?')[0].slice(-f.length)===f)return f;return null}
@@ -723,7 +724,7 @@ const CARDS=[
     fx:{build:'power',c:{idp:{living:2,liveli:2},ret:{living:2,liveli:3},host:{living:3,liveli:5}},cap:4}},
   {id:'tower',win:'D',cost:30,lag:1,once:true,name:'Mobile phone tower',desc:'Network coverage for mobile money, flood warnings and calls to relatives.',tags:['Ready next season','Mobile money'],pair:'Makes cash transfers stronger',
     fx:{build:'tower',c:{idp:{docs:3,family:4,partic:2},ret:{docs:2,family:3,partic:2},host:{partic:2,liveli:1}},cap:2}},
-  {id:'dam',win:'D',cost:70,lag:2,once:true,name:'Small dam and reservoir upstream',desc:'Holds back flood peaks and stores water for irrigation.',tags:['Ready in 2 seasons','Flood protection'],pair:'Works with seeds and canals',
+  {id:'dam',win:'D',cost:55,lag:2,once:true,name:'Repair the dam and reservoir',desc:'The old dam upstream is cracked and empty. Repaired, it holds back flood peaks and stores water for irrigation.',tags:['Ready in 2 seasons','Flood protection'],pair:'Works with seeds and canals',
     fx:{build:'dam',c:{idp:{safety:3,liveli:1},ret:{liveli:5},host:{liveli:4}}}},
   {id:'health',win:'D',cost:35,lag:1,decay:true,name:'Primary health centre support',desc:'Staff, medicines and outreach for the town health centre.',tags:['Ready next season'],
     fx:{c:{idp:{living:6},ret:{living:6},host:{living:5}},build:'clinic'}},
@@ -858,7 +859,7 @@ function shock(st,s,sel){
     kind='flood';title='Floods reach the IDP site';
     text='Heavy rains push the river over its banks. The IDP site and Plot A sit on low ground.';
     const bore=st.built.borehole!==undefined,dam=st.built.dam!==undefined;
-    if(dam)L.push('The new dam holds back the flood peak. Water spreads less far.');
+    if(dam)L.push('The repaired dam holds back the flood peak. Water spreads less far.');
     if(dam&&bore){add(st,'idp','living',-2);L.push('The borehole keeps working.')}
     else if(dam){add(st,'idp','living',-5);add(st,'idp','safety',-1);L.push('Some shallow wells are still contaminated, but the damage is smaller.')}
     else if(bore&&st.sites.borehole==='A'){st.damaged.borehole=true;add(st,'idp','living',-14);add(st,'idp','safety',-3);add(st,'ret','living',-4);add(st,'host','living',-3);L.push('Floodwater broke into the borehole on Plot A. It is out of action and its gains are lost.')}
@@ -1244,16 +1245,22 @@ function makePrimary(){
   return{g,full,closed,scaf}}
 function makeDam(){
   const x=DAMX,zc=zr(x),g=new THREE.Group();g.position.set(x,0,zc);g.rotation.y=-Math.atan(.225*Math.cos(x*.15));scene.add(g);
-  const full=new THREE.Group(),scaf=new THREE.Group();g.add(full,scaf);const conc=mat('#b9b6ad'),dark=mat('#6f747a');
+  const full=new THREE.Group(),scaf=new THREE.Group(),broken=new THREE.Group();g.add(full,scaf,broken);const conc=mat('#b9b6ad'),dark=mat('#6f747a'),old=mat('#a39f94');
+  // damaged dam: two wall sections with a breach in the middle, rubble, cracks
+  for(const sz of [-1,1]){mesh(new THREE.BoxGeometry(1.1,1.3,2.5),old,0,-.25,sz*2.35,broken);mesh(new THREE.BoxGeometry(1.2,.07,2.5),dark,0,.42,sz*2.35,broken)}
+  for(let i=0;i<7;i++){const r=mesh(new THREE.DodecahedronGeometry(.16+R(i+300)*.14,0),old,(R(i+301)-.5)*1.6,-.42+R(i+302)*.12,(R(i+303)-.5)*2.0,broken);r.rotation.set(R(i)*3,R(i+1)*3,0)}
+  for(const sz of [-1.15,1.2,-3.1])mesh(new THREE.BoxGeometry(.02,.9,.05),mat('#3d3a35'),.56,-.05,sz,broken).rotation.x=.4;
   mesh(new THREE.BoxGeometry(1.1,1.3,7.2),conc,0,-.25,0,full);mesh(new THREE.BoxGeometry(1.3,.08,7.4),dark,0,.42,0,full);
   for(let i=-1;i<=1;i++){mesh(new THREE.BoxGeometry(.5,.55,.7),dark,.62,-.05,i*.95,full);mesh(new THREE.BoxGeometry(.06,.5,.6),mat('#4c8ec4',{transparent:true,opacity:.75}),.92,-.1,i*.95,full)}
   for(const sz of [-1,1])mesh(new THREE.BoxGeometry(1.2,.3,.05),dark,0,.6,sz*3.6,full);
   for(const sz of [-3.6,3.6])for(let i=-1;i<=1;i+=2)mesh(new THREE.BoxGeometry(.05,.3,.05),dark,i*.55,.6,sz,full);
-  for(let i=-3;i<=3;i++)mesh(new THREE.CylinderGeometry(.08,.08,1.5,6),mat('#a4741c'),0,-.15,i*1.05,scaf);mesh(new THREE.BoxGeometry(.9,.7,3.6),conc,0,-.4,0,scaf);
+  for(let i=-2;i<=2;i++)for(const sx of [-.6,.6])mesh(new THREE.CylinderGeometry(.06,.06,1.9,6),mat('#a4741c'),sx,.05,i*.55,scaf);for(const y of [.3,.85])for(const sx of [-.6,.6])mesh(new THREE.BoxGeometry(.06,.06,2.4),mat('#a4741c'),sx,y,0,scaf);mesh(new THREE.BoxGeometry(.9,.6,2.0),conc,0,-.45,0,scaf);
+  {const cr=new THREE.Group();cr.position.set(-1.6,0,2.6);scaf.add(cr);mesh(new THREE.BoxGeometry(.14,3.2,.14),mat('#d9a521'),0,1.5,0,cr);const arm=mesh(new THREE.BoxGeometry(.12,.12,3.2),mat('#d9a521'),0,3.05,-1.1,cr);mesh(new THREE.CylinderGeometry(.012,.012,1.6,4),mat('#333'),0,2.2,-2.5,cr);mesh(new THREE.BoxGeometry(.3,.25,.3),mat('#555'),0,1.35,-2.5,cr)}
   mesh(new THREE.BoxGeometry(.8,.6,1.4),mat('#d9a521'),1.4,.25,-4.4,scaf);
   const rgeo=new THREE.PlaneGeometry(W/2+DAMX+.4,16,1,1);rgeo.rotateX(-Math.PI/2);const res=new THREE.Mesh(rgeo,mat('#4c8ec4',{transparent:true,opacity:.86,roughness:.2,unique:true}));
   res.position.set((-W/2+DAMX)/2-.2,-.08,zr(-34));res.receiveShadow=true;scene.add(res);res.visible=false;
-  return{g,full,scaf,res}}
+  TIPS.push({o:g,dy:1,tip:()=>S.built.dam!==undefined?'<b>Repaired dam</b>The reservoir stores water for irrigation and holds back flood peaks.':'<b>Damaged dam</b><span class="ts acute">Needs repair</span>The wall broke years ago. The river runs straight through, so it gives no flood protection and stores no water.'});
+  return{g,full,scaf,broken,res}}
 function makePower(){
   const g=new THREE.Group();scene.add(g);const full=new THREE.Group(),scaf=new THREE.Group();g.add(full,scaf);const steel=mat('#6c6f75'),panel=mat('#20406d',{roughness:.35});
   const fx=P.solar.x,fz=P.solar.z;
@@ -1574,8 +1581,8 @@ function sync(){
   const st3=id=>S.built[id]!==undefined?'built':(S.pending.some(q=>q.id===id)?'pend':'none');
   {const k=st3('primary');W3.primary.full.visible=k==='built';W3.primary.closed.visible=k!=='built';W3.primary.scaf.visible=k==='pend';
     setL(LB.primary,true,(k!=='none'?li('primary'):'')+'Primary school'+(k==='built'?'<small>classes running</small>':(k==='pend'?'<small>reopening next season</small>':'<small>closed</small>')));LB.primary.el.className='lbl3d '+(k==='built'?'':(k==='pend'?'build':''))}
-  {const k=st3('dam');W3.dam.full.visible=k==='built';W3.dam.scaf.visible=k==='pend';W3.dam.res.visible=k==='built';
-    setL(LB.dam,true,(k!=='none'?li('dam'):'')+(k==='built'?'Dam and reservoir':(k==='pend'?'Dam under construction<small>ready in season '+(S.pending.find(q=>q.id==='dam').due+1)+'</small>':'Dam site<small>not funded</small>')));LB.dam.el.className='lbl3d '+(k==='pend'?'build':(k==='none'?'soft':''))}
+  {const k=st3('dam');W3.dam.full.visible=k==='built';W3.dam.broken.visible=k!=='built';W3.dam.scaf.visible=k==='pend';W3.dam.res.visible=k==='built';
+    setL(LB.dam,true,(k!=='none'?li('dam'):'')+(k==='built'?'Dam repaired<small>reservoir filling</small>':(k==='pend'?'Dam under repair<small>ready in season '+(S.pending.find(q=>q.id==='dam').due+1)+'</small>':'Damaged dam<small>needs repair</small>')));LB.dam.el.className='lbl3d '+(k==='pend'?'build':(k==='none'?'alert':''))}
   {const k=st3('power');W3.power.g.visible=k!=='none';W3.power.full.visible=k==='built';W3.power.scaf.visible=k==='pend';
     setL(LB.power,k!=='none',li('power')+(k==='built'?'Solar mini-grid':'Mini-grid under construction'));LB.power.el.className='lbl3d '+(k==='pend'?'build':'')}
   {const k=st3('tower');W3.tower.g.visible=k!=='none';W3.tower.full.visible=k==='built';W3.tower.scaf.visible=k==='pend';
@@ -1798,7 +1805,7 @@ function render(){
   h+='<section class="mapcol"><div id="slot3d"></div>';
   h+='<div class="hud top">'+critCard(proj);
   if(S.history.length>1||S.sel.length){const tot=S.sel.reduce((a,id)=>a+CARD[id].cost,0);
-    h+='<div class="hud-card fstrip">'+(S.history.length>1?'<span class="event-chip">Last season: '+esc(lastEventTitle())+'</span>':'')+(S.sel.length?'<b>Funded</b><div class="chips">'+S.sel.map(id=>{const c=cardAt(S,id);let nm=(c.lvName||c.name).split(':')[0].split(',')[0].replace('Solar borehole and water committee','Borehole').replace('Vocational education centre','Vocational centre').replace('Solar mini-grid and electricity connection','Mini-grid').replace('Small dam and reservoir upstream','Dam');return'<span class="chip '+c.win+'"><span class="ci">'+ICON(id)+'</span>'+esc(nm)+(c.site?' (Plot '+S.selSite[id]+')':'')+'</span>'}).join('')+'</div><span class="ftot">'+m1(tot)+' points</span>':'<span class="fnone">Nothing funded yet this season</span>')+'</div>'}
+    h+='<div class="hud-card fstrip">'+(S.history.length>1?'<span class="event-chip">Last season: '+esc(lastEventTitle())+'</span>':'')+(S.sel.length?'<b>Funded</b><div class="chips">'+S.sel.map(id=>{const c=cardAt(S,id);let nm=(c.lvName||c.name).split(':')[0].split(',')[0].replace('Solar borehole and water committee','Borehole').replace('Vocational education centre','Vocational centre').replace('Solar mini-grid and electricity connection','Mini-grid').replace('Repair the dam and reservoir','Dam repair');return'<span class="chip '+c.win+'"><span class="ci">'+ICON(id)+'</span>'+esc(nm)+(c.site?' (Plot '+S.selSite[id]+')':'')+'</span>'}).join('')+'</div><span class="ftot">'+m1(tot)+' points</span>':'<span class="fnone">Nothing funded yet this season</span>')+'</div>'}
   h+='</div>';
 
   const tot={self:0,coping:0,aid:0,acute:0};for(const g of GROUPS){const c=statusCounts(S,g);for(const k in tot)tot[k]+=c[k]}
