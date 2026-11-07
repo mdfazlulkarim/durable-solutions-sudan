@@ -640,7 +640,7 @@ body.immersive .site-header{position:fixed}
 </div></div>
 <script>
 (function(){
-  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 314687},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
+  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 315109},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
   var t0=performance.now(),got={},raw=0,xfer=0,first=null,last=null,done=false;
   var nc=navigator.connection||{},guess=nc.downlink?nc.downlink:null;
   function fileOf(n){for(var f in FILES)if(n.split('?')[0].slice(-f.length)===f)return f;return null}
@@ -1096,6 +1096,7 @@ const RECOLOR={colorRed:'#efe7d6',colorRedDark:'#d9ccb2',wood:'#9a7450',woodDark
   leafsGreen:'#76904a',grass:'#8f9a4c',stone:'#b9ad98',dirt:'#a98a62',corn:'#d6a64a',paintRed:'#3e78b8',plastic:'#3b3f45'};
 function recolor(o){o.traverse(m=>{if(m.isMesh){m.castShadow=true;m.receiveShadow=true;(Array.isArray(m.material)?m.material:[m.material]).forEach(mt=>{const c=RECOLOR[mt.name];if(c)mt.color.set(c);mt.roughness=Math.max(mt.roughness??1,.8);mt.metalness=0})}})}
 function place(name,x,z,{size=1,axis='w',ry=0,parent=scene}={}){
+  if(typeof HQ!=='undefined'&&(name==='tree_plateau'||name==='tree_default'))return HQ.acacia(x,z,size,ry,parent);
   const src=MODELS[name],o=src.clone(true),box=new THREE.Box3().setFromObject(src),s=new THREE.Vector3();box.getSize(s);
   const k=size/(axis==='h'?s.y:Math.max(s.x,s.z));o.scale.setScalar(k);o.position.set(x,(parent===scene?h(x,z):0)-box.min.y*k,z);o.rotation.y=ry;parent.add(o);return o}
 const R=n=>{const x=Math.sin(n*12.9898+78.233)*43758.5453;return x-Math.floor(x)};
@@ -1237,7 +1238,7 @@ function buildWorld(){
   // rain
   {const N=1800,rp=new Float32Array(N*6);for(let i=0;i<N;i++){const x=(R(i)-.5)*W,z=(R(i+N)-.5)*D,y=R(i+2*N)*18;rp.set([x,y,z,x-.05,y-.5,z],i*6)}
     const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(rp,3));W3.rain=new THREE.LineSegments(g,new THREE.LineBasicMaterial({color:'#dfe9f2',transparent:true,opacity:0}));scene.add(W3.rain)}
-  W3.power=makePower();
+  W3.power=makePower();if(typeof HQ!=='undefined'){HQ.ground();HQ.fx()}
   buildLabels();buildLife();
 }
 const SITES=[];
@@ -1684,6 +1685,7 @@ view.addEventListener('pointerdown',e=>{downXY=[e.clientX,e.clientY]});
 view.addEventListener('pointerup',e=>{if(e.pointerType==='mouse'||!downXY||!state.ready)return;if(Math.hypot(e.clientX-downXY[0],e.clientY-downXY[1])>8)return;
   const r=view.getBoundingClientRect();const b=nearestTip(e.clientX-r.left,e.clientY-r.top);showTip(b);clearTimeout(tipHold);if(b)tipHold=setTimeout(()=>showTip(null),5000)});
 
+/*HQ*/
 /* state of the view */
 const state={level:WATER_BASE,levelTarget:WATER_BASE,rain:0,rainTarget:0,truck:0,floodTimer:0,rings:true,sky:'dry',ready:false,pending:false,lastSeason:-1};
 function syncPeople(){
@@ -1762,8 +1764,8 @@ function update(dt,t){
   state.rain+=(state.rainTarget-state.rain)*Math.min(1,dt*.8);W3.rain.material.opacity=state.rain*.55;
   if(state.rain>.01){const rp=W3.rain.geometry.attributes.position;for(let i=0;i<rp.count;i+=2){let y=rp.getY(i)-dt*14;if(y<0)y+=18;rp.setY(i,y);rp.setY(i+1,y-.5)}rp.needsUpdate=true}
   setL(LB.flood,state.level>.1);
-  const sk=SKY[state.sky];scene.background.lerp(sk,Math.min(1,dt*1.5));scene.fog.color.copy(scene.background);
-  const overcast=state.sky==='rain'?1:0;sun.intensity+=((2.6-1.5*overcast-state.rain*.5)-sun.intensity)*Math.min(1,dt*1.5);hemi.intensity+=((1.25-.25*overcast)-hemi.intensity)*Math.min(1,dt*1.5);
+  if(typeof HQ!=='undefined')HQ.update(dt,t);else{const sk=SKY[state.sky];scene.background.lerp(sk,Math.min(1,dt*1.5));scene.fog.color.copy(scene.background)}
+  const overcast=state.sky==='rain'?1:0;sun.intensity+=((2.6-1.5*overcast-state.rain*.5)-sun.intensity)*Math.min(1,dt*1.5);hemi.intensity+=(((typeof HQ!=='undefined'?.55:1.25)-.25*overcast)-hemi.intensity)*Math.min(1,dt*1.5);
   sun.color.lerp(C(state.sky==='harvest'?'#ffd79a':state.sky==='lean'?'#ffe0b0':'#ffe6bf'),Math.min(1,dt));
   // truck
   const want=S&&S.active.includes('water')?1:0;state.truck+=(want-state.truck)*Math.min(1,dt*.6);
@@ -1784,13 +1786,13 @@ function update(dt,t){
   if(LIFE.queueN>3)obB(11.9,-4.05,2.5,.32,0,DYN);
   updateLife(reduceMotion?0:dt,t);
   updatePeople(reduceMotion?0:dt,t)}
-function resize(){const w=view.clientWidth,hh=view.clientHeight;if(!w||!hh)return;renderer.setSize(w,hh,false);camera.aspect=w/hh;camera.fov=(w-INS.l-INS.r)/hh<1?46:30;
+function resize(){const w=view.clientWidth,hh=view.clientHeight;if(!w||!hh)return;renderer.setSize(w,hh,false);if(typeof HQ!=='undefined')HQ.resize(w,hh);camera.aspect=w/hh;camera.fov=(w-INS.l-INS.r)/hh<1?46:30;
   if(INS.l||INS.r||INS.t)camera.setViewOffset(w,hh,(INS.r-INS.l)/2,-INS.t*.4,w,hh);else camera.clearViewOffset();camera.updateProjectionMatrix();if(!fitted&&state.ready){fitCam();fitted=true}}
 function setInsets(l,r,t=0){const side=Math.abs(l-INS.l)>=2||Math.abs(r-INS.r)>=2;if(!side&&Math.abs(t-INS.t)<2)return;INS.l=l;INS.r=r;INS.t=t;if(side)fitted=false;resize()}
 new ResizeObserver(resize).observe(view);
 const clock=new THREE.Clock();
 function loop(){const dt=Math.min(.05,clock.getDelta()),t=clock.elapsedTime;if(view.isConnected&&state.ready){update(dt,t);if(zoomAnim){zoomAnim.t=Math.min(1,zoomAnim.t+dt*3);const e=1-Math.pow(1-zoomAnim.t,3);camera.position.lerpVectors(zoomAnim.from,zoomAnim.to,e);if(zoomAnim.t>=1)zoomAnim=null}
-  controls.target.x=Math.max(-W/2+5,Math.min(W/2-5,controls.target.x));controls.target.z=Math.max(-D/2+4,Math.min(D/2-4,controls.target.z));controls.target.y=0;controls.update();renderer.render(scene,camera);updateLabels()}requestAnimationFrame(loop)}
+  controls.target.x=Math.max(-W/2+5,Math.min(W/2-5,controls.target.x));controls.target.z=Math.max(-D/2+4,Math.min(D/2-4,controls.target.z));controls.target.y=0;controls.update();if(typeof HQ!=='undefined')HQ.render();else renderer.render(scene,camera);updateLabels()}requestAnimationFrame(loop)}
 function snapshot(){if(!state.ready)return'';sync();renderer.render(scene,camera);try{return renderer.domElement.toDataURL('image/jpeg',.85)}catch(e){return''}}
 function setRings(v){state.rings=v}
 const b64=s=>{const bin=atob(s),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return u.buffer};
@@ -1824,7 +1826,7 @@ function header(){
   let h='<div class="brand"><span class="brand-title">Pathways Home</span><span class="brand-kicker">Durable Solutions Hub | Sudan</span></div><div class="stepper">';
   SEASONS.forEach((x,i)=>{h+='<div class="step '+(!S.over&&i===S.season?'now':(i<S.season||S.over?'done':''))+'" title="Year '+x.yr+', '+x.name+'"><b>Year '+x.yr+'</b> '+x.name.replace(' season','')+'</div>'});
   h+='</div><div class="score"><small>Score</small><span>'+score(S).toLocaleString('en-US')+'</span><small class="of">of 10,000</small></div>';
-  h+='<button class="btn btn-sm ibtn" id="fs" title="Full screen" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'+(isFull()?'<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>':'<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>')+'</svg></button><button class="btn btn-sm" id="restart">Restart</button>';
+  h+='<button class="btn btn-sm ibtn" id="fs" title="Full screen" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'+(isFull()?'<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>':'<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>')+'</svg></button><a class="btn btn-sm qlink" href="pathways-home-hq.html" title="Switch to the high-quality graphics version (needs a stronger computer)">High quality</a><button class="btn btn-sm" id="restart">Restart</button>';
   $('#hdr').innerHTML=h;$('#restart').onclick=confirmRestart;$('#fs').onclick=toggleFull;
 }
 function isFull(){return!!document.fullscreenElement||document.body.classList.contains('immersive')}
