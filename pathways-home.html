@@ -509,6 +509,46 @@ body.immersive .site-header{position:fixed}
 .mobcrit .cgrid .rg{font-size:11px}
 .mobcrit .cgrid .vv{flex-direction:column;align-items:center;gap:0}
 .mobcrit .cgrid .cv b{font-size:11.5px}.mobcrit .cgrid .cv em{font-size:9.5px}
+/* v0.10: compact option cards */
+.cards{gap:6px}
+.card2{position:relative}
+.card2 .card{grid-template-columns:32px 1fr auto;gap:2px 9px;padding:7px 34px 7px 9px;align-items:center}
+.card2 .card .ic{width:32px;height:32px;grid-row:1 / 3;align-self:center}
+.card2 .card .ic svg{width:20px;height:20px}
+.card2 .cn{display:flex;flex-direction:column;min-width:0}
+.card2 .cn b{font-size:13.5px;line-height:1.25;font-weight:700}
+.card2 .lvb{font-size:10.5px;color:var(--peace);font-weight:600;line-height:1.2}
+.card2 .cost{font-size:14px;align-self:start}
+.card2 .fx2{grid-column:2 / 4;display:flex;flex-wrap:wrap;gap:3px;align-items:center}
+.fx.s{font-size:11px;padding:0 6px 0 2px;gap:2px}.fx.s .fi{width:15px;height:15px}.fx.s svg{width:11px;height:11px}
+.fx.when.s{padding:0 6px 0 2px}
+.card2 .stt{font-size:11px;font-weight:600;color:var(--warn-ink);background:var(--warn-bg);border-radius:999px;padding:0 7px}
+.card2 .cinfo{position:absolute;top:7px;right:7px;width:20px;height:20px;border-radius:50%;border:1px solid var(--line-2);background:#fff;font:inherit;font-size:11px;font-weight:700;font-style:italic;color:var(--muted);cursor:pointer;display:grid;place-items:center;padding:0}
+.card2 .cinfo:hover{color:var(--ink);border-color:var(--muted)}
+.card2 .cost{margin-right:2px}
+.card2 .cdet{display:none;padding:2px 10px 9px 50px;margin-top:-4px;font-size:12px;color:var(--ink-2)}
+.card2.sel .cdet,.card2.open .cdet{display:block}
+.card2.sel .cdet{background:var(--brand-tint-2);border:1px solid var(--brand);border-top:0;border-radius:0 0 8px 8px;margin-top:-6px;padding-top:6px}
+.card2.sel .card{border-bottom-left-radius:0;border-bottom-right-radius:0}
+.card2 .cdet p{margin:0 0 5px;color:var(--muted);line-height:1.35}
+.card2 .cdet .fxrow{margin:0 0 5px}.card2 .cdet .tags{display:flex;flex-wrap:wrap;gap:4px}
+.card2.off .cinfo{opacity:.6}
+#ctip{position:fixed;z-index:60;display:none;width:270px;background:#fff;border:1px solid var(--line-2);border-radius:10px;padding:10px 12px;box-shadow:0 10px 30px rgba(20,30,50,.18);font-size:12px;color:var(--ink-2);pointer-events:none}
+#ctip b{display:block;font-size:13.5px;color:var(--ink);margin-bottom:3px}
+#ctip p{margin:0 0 6px;color:var(--muted);line-height:1.4}
+#ctip .fxrow{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 6px}#ctip .tags{display:flex;flex-wrap:wrap;gap:4px}
+/* full-width criteria */
+.hud.top .crit{align-self:stretch}
+.cgrid{grid-template-columns:auto repeat(8,minmax(40px,1fr))}
+.cgrid .ch small{font-size:11px}
+/* advisor pop-up */
+.modal:has(.advpop){max-width:460px}
+.advpop{display:flex;gap:14px;align-items:flex-start}
+.advpop .av{flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--brand-tint);color:var(--brand)}
+.advpop .av svg{width:26px;height:26px}
+.advpop .k{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--brand)}
+.advpop p{margin:6px 0 0;font-size:15.5px;line-height:1.45;color:var(--ink)}
+.overlay:has(.advpop){align-items:center}
 
 /* footer */
 .site-footer{border-top:1px solid var(--line);background:var(--panel)}
@@ -536,7 +576,7 @@ body.immersive .site-header{position:fixed}
 </div></div>
 <script>
 (function(){
-  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 204083},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
+  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 213033},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
   var t0=performance.now(),got={},raw=0,xfer=0,first=null,last=null,done=false;
   var nc=navigator.connection||{},guess=nc.downlink?nc.downlink:null;
   function fileOf(n){for(var f in FILES)if(n.split('?')[0].slice(-f.length)===f)return f;return null}
@@ -644,14 +684,23 @@ const CARDS=[
     fx:{c:{idp:{living:6},ret:{living:6},host:{living:5}},build:'clinic'}},
   {id:'lap',win:'D',cost:20,lag:1,decay:true,name:'Local authority planning support',desc:'Train locality planners and set up a basic services database.',tags:['Ready next season','Boosts development and peace results'],
     fx:{cap:15,c:{idp:{partic:4},ret:{partic:4},host:{partic:2}}}},
-  {id:'docs',win:'P',cost:20,lag:0,decay:true,name:'Documentation, legal aid and family tracing',desc:'Mobile teams replace lost IDs and help separated families find each other.',tags:['Immediate'],pair:'Works with land dispute committees',
-    fx:{c:{idp:{docs:18,family:12,remedy:5},ret:{docs:12,family:8,remedy:5},host:{docs:3}}}},
-  {id:'hlp',win:'P',cost:20,lag:1,decay:true,name:'Land dispute committees',desc:'Mixed committees with traditional leaders resolve housing and farmland claims.',tags:['Ready next season'],pair:'Works with documentation',
-    fx:{c:{idp:{hlp:10,remedy:8,safety:2},ret:{hlp:16,remedy:8,safety:2},host:{hlp:3,remedy:6,safety:2}},coh:3}},
+  {id:'docs',win:'P',cost:20,lag:0,name:'Documentation',desc:'Civil documents in three levels, one level per season.',tags:['Immediate','Three levels'],pair:'Works with land registration',
+    levels:[
+      {name:'Birth certificates and national ID cards',desc:'Mobile registration teams issue birth certificates and national ID cards to people who lost them.',fx:{c:{idp:{docs:20,remedy:3},ret:{docs:14,remedy:3},host:{docs:4}}}},
+      {name:'Civil records and family tracing',desc:'Marriage and school certificates, and tracing for families separated by displacement.',fx:{c:{idp:{docs:8,family:14},ret:{docs:6,family:10},host:{family:3}}}},
+      {name:'Documents for services and voting',desc:'Registration so families can use public services and take part in local decisions.',fx:{c:{idp:{docs:6,partic:8,remedy:5},ret:{docs:5,partic:7,remedy:5},host:{partic:3}},coh:2}}]},
+  {id:'hlp',win:'P',cost:20,lag:0,name:'Land registration',desc:'Housing, land and property work in three levels, one level per season.',tags:['Immediate','Three levels'],pair:'Works with documentation',
+    levels:[
+      {name:'Land dispute committees',desc:'Mixed committees with traditional leaders resolve competing claims to houses and farmland.',fx:{c:{idp:{hlp:8,remedy:8,safety:2},ret:{hlp:12,remedy:8,safety:2},host:{hlp:2,remedy:5,safety:2}},coh:3}},
+      {name:'Community mapping of plots and homes',desc:'Each plot is surveyed and recorded, with neighbours as witnesses.',fx:{c:{idp:{hlp:6},ret:{hlp:10,liveli:2},host:{hlp:3}},coh:2}},
+      {name:'Land registration and certificates',desc:'Families receive registered papers for their homes and land.',fx:{c:{idp:{hlp:8,safety:2},ret:{hlp:12,liveli:3},host:{hlp:4,liveli:2}},coh:1}}]},
   {id:'dialogue',win:'P',cost:10,lag:0,decay:true,name:'Community dialogue',desc:'Meetings under the big tree between IDPs, returnees, host leaders and the authorities.',tags:['Immediate'],
     fx:{coh:5,c:{idp:{partic:10},ret:{partic:10},host:{partic:5}}}}
 ];
+CARDS.forEach(c=>{if(c.levels)c.fx=c.levels[0].fx});
 const CARD=Object.fromEntries(CARDS.map(c=>[c.id,c]));
+const lvl=(st,id)=>(st.level&&st.level[id])||0;
+function cardAt(st,id){const c=CARD[id];if(!c.levels)return c;const k=Math.min(lvl(st,id),c.levels.length-1),L=c.levels[k];return{...c,fx:L.fx,lvName:L.name,lvDesc:L.desc,lvK:k}}
 const BASE_BUDGET=200;
 const clamp=(v,a=0,b=100)=>Math.max(a,Math.min(b,v));
 
@@ -664,7 +713,7 @@ function newState(){
       host:{safety:60,living:45,liveli:40,hlp:70,docs:80,family:85,partic:45,remedy:40}},
     relief:{idp:0,ret:0,host:0},coh:50,cap:25,
     budget:BASE_BUDGET,bonusD:0,cutH:false,
-    sel:[],selSite:{},sites:{},pending:[],count:{},built:{},damaged:{},played:[],active:[],
+    sel:[],selSite:{},sites:{},pending:[],count:{},level:{docs:0,hlp:0},built:{},damaged:{},played:[],active:[],
     lastEvent:null,lastNotes:[],
     spent:{H:0,D:0,P:0},spentById:{},acuteSum:0,history:[],advisorSeen:-1};
   st.history.push(snapshotMetrics(st));
@@ -679,6 +728,7 @@ function snapshotMetrics(st){return{sr:{idp:sr(st,'idp'),ret:sr(st,'ret'),host:s
 function remaining(st){let r=st.budget;for(const id of st.sel)r-=CARD[id].cost;return r}
 function cardStatus(st,id){
   const c=CARD[id];
+  if(c.levels){if(lvl(st,id)>=c.levels.length)return'built';return'open'}
   if(c.once&&st.built[c.fx.build]!==undefined)return'built';
   if(c.once&&st.pending.some(p=>p.id===id))return'building';
   return'open';
@@ -706,7 +756,7 @@ function resolve(st,noShock){
     if(id==='seeds'&&!(s===1||s===5)){decay*=0.5;rep.notes.push('Seeds went out outside the planting window, so farmers got only half the benefit.')}
     const site=c.site?(st.selSite[id]||'B'):null;
     if(site)st.sites[c.fx.build]=site;
-    st.pending.push({id,due:s+c.lag,decay,from:s,site});
+    st.pending.push({id,due:s+c.lag,decay,from:s,site,lv:c.levels?lvl(st,id):undefined});
     st.count[id]=(st.count[id]||0)+1;
     st.played.push({id,season:s});
     if(c.lag>0)rep.started.push(id);
@@ -714,9 +764,10 @@ function resolve(st,noShock){
   const due=st.pending.filter(p=>p.due===s);
   st.pending=st.pending.filter(p=>p.due!==s);
   for(const p of due){
-    const c=CARD[p.id];
+    const c=p.lv!==undefined?{...CARD[p.id],fx:CARD[p.id].levels[p.lv].fx}:CARD[p.id];
     const capMult=c.win==='H'?1:(0.8+st.cap/150);
     applyCard(st,c,p.decay*capMult,p.site);
+    if(p.lv!==undefined){if(!st.level)st.level={};st.level[p.id]=p.lv+1}
     if(c.lag>0)rep.done.push(p.id);
     if(p.id==='power'){if(st.built.clinic!==undefined){for(const g of GROUPS)add(st,g,'living',3);rep.combos.push('Power reaches the health centre: lights, a vaccine fridge and night deliveries.')}
       if(st.built.school!==undefined||st.built.primary!==undefined){for(const g of GROUPS)add(st,g,'liveli',2);rep.combos.push('Electricity lets the schools run evening classes and computer lessons.')}}
@@ -726,7 +777,7 @@ function resolve(st,noShock){
   }
   const has=id=>sel.includes(id);
   if(has('seeds')&&has('cfw')){add(st,'ret','liveli',5);add(st,'host','liveli',5);add(st,'idp','liveli',3);rep.combos.push('Seeds went onto land served by the cleared canals. Farm output rose for returnees and hosts.')}
-  if(has('docs')&&has('hlp')){add(st,'idp','hlp',6);add(st,'ret','hlp',6);rep.combos.push('New ID papers let families prove their land claims before the committees.')}
+  if(has('docs')&&has('hlp')){add(st,'idp','hlp',6);add(st,'ret','hlp',6);rep.combos.push('New documents let families prove their land claims.')}
   if(has('borehole')&&has('dialogue')){st.coh=clamp(st.coh+4);rep.combos.push('The dialogue agreed who sits on the water committee, so all three groups own the borehole.')}
   if(sel.length){
     const hostTouched=sel.some(id=>{const c=CARD[id],fx=c.fx;return c.site||(fx.relief&&fx.relief.host)||(fx.c&&fx.c.host)||fx.coh>0});
@@ -897,6 +948,10 @@ function curZoom(){const d=camera.position.distanceTo(controls.target)/BASE;let 
 function setZoom(l){l=Math.max(1,Math.min(5,l));const dir=camera.position.clone().sub(controls.target).normalize();zoomAnim={from:camera.position.clone(),to:controls.target.clone().add(dir.multiplyScalar(BASE*ZL[l-1])),t:0};markZoom(l)}
 zoomEl.addEventListener('click',e=>{const b=e.target.closest('[data-z]'),d=e.target.closest('[data-l]');if(b)setZoom(ZLEV+(b.dataset.z==='in'?1:-1));else if(d)setZoom(+d.dataset.l)});
 controls.addEventListener('change',()=>{if(!zoomAnim)markZoom(curZoom())});
+let wheelAcc=0,wheelT=0;
+view.addEventListener('wheel',e=>{if(!e.target.closest||!e.target.closest('canvas'))return;e.preventDefault();e.stopImmediatePropagation();
+  const now=performance.now();if(now-wheelT>400)wheelAcc=0;wheelAcc+=e.deltaMode===1?e.deltaY*30:e.deltaY;
+  if(Math.abs(wheelAcc)>=50&&now-wheelT>220){setZoom(ZLEV+(wheelAcc<0?1:-1));wheelAcc=0;wheelT=now}},{capture:true,passive:false});
 let fitted=false;
 view.querySelector('.reset3d').onclick=fitCam;
 const hemi=new THREE.HemisphereLight('#fff3dc','#b49a72',1.25);scene.add(hemi);
@@ -1266,8 +1321,8 @@ function pickTarget(p){
     if(p.group==='host')add(st==='self'?4:2,{x:(FIELDS.host.x0+FIELDS.host.x1)/2,z:(FIELDS.host.z0+FIELDS.host.z1)/2},4,'Working the family plot','farm');
     if(S.built.school!==undefined&&!S.damaged.school){const s=P[S.sites.school];add(3,{x:s.x,z:s.z+1.4},.8,'Attending vocational classes')}}
   if(S.built.clinic!==undefined)add(.8,{x:P.clinic.x,z:P.clinic.z+1.4},.7,'Visiting the health centre');
-  if(act('docs')&&p.group!=='host')add(1.5,{x:P.desk.x,z:P.desk.z+1},.6,'Replacing lost ID papers at the legal aid desk');
-  if((act('hlp')||S.pending.some(q=>q.id==='hlp'))&&p.group==='ret')add(1.5,{x:P.hlp.x,z:P.hlp.z+1},.6,'Bringing a land claim to the committee');
+  if(act('docs')&&p.group!=='host')add(1.5,{x:P.desk.x,z:P.desk.z+1},.6,['Registering for a birth certificate and ID card','Getting civil records and tracing family','Registering for services and voting'][Math.max(0,((S.level&&S.level.docs)||1)-1)]);
+  if((act('hlp')||S.pending.some(q=>q.id==='hlp'))&&p.group==='ret')add(1.5,{x:P.hlp.x,z:P.hlp.z+1},.6,['Bringing a land claim to the committee','Walking the plot boundaries with the surveyors','Collecting land papers'][Math.max(0,((S.level&&S.level.hlp)||1)-1)]);
   if(act('water')&&p.group!=='host'&&state.truck>.9)add(1,{x:W3.truck.position.x,z:W3.truck.position.z+1.2},.7,'Collecting water from the truck');
   let tot=opts.reduce((a,o)=>a+o[0],0),r=rand()*tot,ch=opts[0];for(const o of opts){r-=o[0];if(r<=0){ch=o;break}}
   p.task=ch[3];p.mode=ch[4]||null;return jit(ch[1],ch[2])}
@@ -1278,10 +1333,10 @@ function walk(p,dt,speed){
   p.pos.x+=ux*step;p.pos.y+=uz*step;pushOut(p.pos);let mv=Math.hypot(p.pos.x-ox,p.pos.y-oz);
   if(step>1e-5&&mv<step*.4){for(const sg of [p.side,-p.side])for(const a of [.9,1.5]){const an=sg*a,rx=ux*Math.cos(an)-uz*Math.sin(an),rz=ux*Math.sin(an)+uz*Math.cos(an);
       TMP.set(ox+rx*step,oz+rz*step);pushOut(TMP);const m2=Math.hypot(TMP.x-ox,TMP.y-oz);if(m2>mv+step*.2){p.pos.copy(TMP);mv=m2;p.side=sg}}}
-  p.stuck=mv<step*.3?p.stuck+dt:Math.max(0,p.stuck-dt*.5);if(p.stuck>2.2){p.stuck=0;return'stuck'}
-  if(mv>1e-5){const hx=p.pos.x-ox,hz=p.pos.y-oz;p.g.rotation.y=Math.atan2(hx,hz);p.phase+=dt*speed*9;return'moving'}return'still'}
+  p.stuck=mv<step*.5?p.stuck+dt:Math.max(0,p.stuck-dt*.5);if(p.stuck>1){p.stuck=0;return'stuck'}
+  if(mv>step*.5&&mv>1e-4){const hx=p.pos.x-ox,hz=p.pos.y-oz;p.g.rotation.y=Math.atan2(hx,hz);p.phase+=dt*speed*9*(mv/step);return'moving'}return'still'}
 function animWalk(b,moving,t,armRFree=true){const sw=moving?Math.sin(b.phase):0;b.legL.rotation.x=sw*.55;b.legR.rotation.x=-sw*.55;b.armL.rotation.x=-sw*.45;if(armRFree)b.armR.rotation.x=sw*.45;
-  b.body.position.y=moving?Math.abs(Math.cos(b.phase))*.02:Math.sin(t*1.3+b.i)*.004}
+  b.body.position.y=moving?Math.abs(Math.cos(b.phase))*.02:Math.sin(t*1.3+b.i)*.004;b.body.rotation.y=moving?0:Math.sin(t*.35+b.i*1.7)*.28}
 function updatePeople(dt,t){
   for(const p of PEOPLE){let moving=false;
     if(p.wait>0)p.wait-=dt;else{if(!p.target)p.target=pickTarget(p);
@@ -1482,8 +1537,9 @@ function sync(){
   setL(LB.market,true,(act('cash')?li('cash'):'')+'Market'+(act('cash')?'<small>cash day</small>':''));
   setL(LB.tap,true,'Tap stand<small>'+(act('water')?'trucked water':'dry')+'</small>');
   W3.food.visible=act('food');setL(LB.food,act('food'),li('food')+'Food distribution');
-  W3.desk.visible=act('docs');setL(LB.desk,act('docs'),li('docs')+'ID and legal aid desk');
-  const hl=act('hlp')||S.pending.some(q=>q.id==='hlp');W3.hlp.visible=hl;setL(LB.hlp,hl,li('hlp')+'Land committee');
+  const dl=Math.max(0,((S.level&&S.level.docs)||1)-1),hl2=Math.max(0,((S.level&&S.level.hlp)||1)-1);
+  W3.desk.visible=act('docs');setL(LB.desk,act('docs'),li('docs')+['Birth and ID registration','Civil records desk','Registration for services'][dl]);
+  const hl=act('hlp')||S.pending.some(q=>q.id==='hlp');W3.hlp.visible=hl;setL(LB.hlp,hl,li('hlp')+['Land dispute committee','Mapping plots and homes','Land registration'][hl2]);
   setL(LB.tree,true,act('dialogue')?li('dialogue')+'Community dialogue':'Meeting tree');
   setL(LB.truck,act('water'),li('water')+'Water truck');
   setL(LB.seeds,act('seeds'),li('seeds')+'Seeds and tools');setL(LB.cfw,act('cfw'),li('cfw')+'Cash for work: canals');
@@ -1579,7 +1635,7 @@ function toggleFull(){
 }
 function afterFull(){header();const hd=document.querySelector('.site-header');if(hd)document.documentElement.style.setProperty('--hdr',hd.offsetHeight+'px');setTimeout(()=>{applyInsets();dispatchEvent(new Event('resize'))},60)}
 document.addEventListener('fullscreenchange',()=>{document.body.classList.toggle('fsmode',!!document.fullscreenElement);afterFull()});
-const IC=k=>ICONS2[k]||'';let LP=true,RP=true,CAT=null,CRITV=true;
+const IC=k=>ICONS2[k]||'';let LP=true,RP=true,CAT=null,CRITV=true;const OPEN=new Set();
 const CRIT_ICON={safety:'1',living:'2',liveli:'3',hlp:'4',docs:'5',family:'6',partic:'7',remedy:'8'};
 const CRIT_COL={safety:'#2A78D6',living:'#EB6834',liveli:'#1BAF7A',hlp:'#EDA100',docs:'#E87BA4',family:'#008300',partic:'#7B4FB0',remedy:'#4A5A6A'};
 const GROUP_ICON={idp:'internally-displaced',ret:'return',host:'4'};
@@ -1587,7 +1643,7 @@ const MISSION_ICON={acute:'people-in-need',water:'2',school:'3',primary:'educati
 const cloneSt=o=>JSON.parse(JSON.stringify(o));
 function project(st){const c=cloneSt(st);const r=resolve(c,true);return{m:r.after,st:c}}
 function potential(st,id){
-  const c=CARD[id],base=cloneSt(st);base.relief={idp:0,ret:0,host:0};const b=snapshotMetrics(base);
+  const c=cardAt(st,id),base=cloneSt(st);base.relief={idp:0,ret:0,host:0};const b=snapshotMetrics(base);
   const w=cloneSt(base);let mult=(c.decay?1/(1+0.6*(st.count[id]||0)):1)*(c.win==='H'?1:(0.8+st.cap/150));
   if(id==='seeds'&&!(st.season===1||st.season===5))mult*=0.5;
   applyCard(w,c,mult,st.selSite[id]||'B');const a=snapshotMetrics(w);
@@ -1607,6 +1663,18 @@ function effectChips(id){
   let when=c.lag>0?'<span class="fx when">'+IC('time')+'From season '+(S.season+1+c.lag)+'</span>':'';
   if(c.site)when+='<span class="fx when">'+IC('location')+'Shown for Plot '+(S.selSite[id]||'B')+'</span>';
   return out.slice(0,4).join('')+when;
+}
+function chips3(id){
+  const c=cardAt(S,id),p=potential(S,id),out=[];const ar=v=>v>0?'\u2191':'\u2193';
+  const chip=(icon,txt,good,full)=>out.push('<span class="fx s '+(good?'good':'bad')+'" title="'+full+'"><span class="fi">'+IC(icon)+'</span>'+txt+'</span>');
+  if(Math.abs(p.acute)>=100){const v=Math.round(Math.abs(p.acute)/100)*100;chip('people-in-need',ar(p.acute)+v.toLocaleString('en-US'),p.acute<0,'Acute need '+sgn(Math.round(p.acute/100)*100))}
+  if(Math.abs(p.sr)>=0.5)chip('trending',ar(p.sr)+Math.abs(Math.round(p.sr)),p.sr>0,'Self-reliance '+sgn(p.sr));
+  else{const best=GROUPS.reduce((a,g)=>p.grp[g]>p.grp[a]?g:a,'idp');if(p.grp[best]>=1.5)chip(GROUP_ICON[best],'\u2191'+Math.round(p.grp[best]),true,GLABEL[best]+' '+sgn(p.grp[best]))}
+  if(Math.abs(p.dep)>=1)chip('food-security',ar(p.dep)+Math.abs(Math.round(p.dep))+'%',p.dep<0,'Aid dependency '+sgn(p.dep)+'%');
+  if(Math.abs(p.coh)>=1)chip('partnership',ar(p.coh)+Math.abs(Math.round(p.coh)),p.coh>0,'Cohesion '+sgn(p.coh));
+  if(Math.abs(p.cap)>=1)chip('country',ar(p.cap)+Math.abs(Math.round(p.cap)),p.cap>0,'Authority capacity '+sgn(p.cap));
+  const when=c.lag===0?'Now':(c.lag===1?'Next season':c.lag+' seasons');
+  return out.slice(0,3).join('')+'<span class="fx when s" title="When it starts to work"><span class="fi">'+IC('time')+'</span>'+when+'</span>';
 }
 function indRow(icon,label,now,prevV,projV,fmt,goodUp,suffix=''){
   const d=now-prevV;const dl=Math.abs(d)<0.5?'':'<span class="d '+((d>0)===goodUp?'up-good':'up-bad')+'">'+sgn(d)+suffix+'</span>';
@@ -1651,6 +1719,14 @@ function critGrid(proj){
 function critCard(proj){
   return'<div class="hud-card crit'+(CRITV?'':' min')+'"><div class="crh"><span class="ci2">'+IC('protection')+'</span><b>IASC criteria</b><span class="pl">'+(proj?'arrows show next season with your choices':'0 to 100, by group')+'</span><button class="btn btn-sm" id="crit-t" aria-expanded="'+CRITV+'">'+(CRITV?'Hide':'Show')+'</button></div>'+(CRITV?critGrid(proj):'')+'</div>';
 }
+function bindCardTips(){
+  let tip=document.getElementById('ctip');if(!tip){tip=document.createElement('div');tip.id='ctip';tip.setAttribute('role','tooltip');document.body.appendChild(tip)}tip.style.display='none';
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches||innerWidth<=860)return;
+  document.querySelectorAll('.card2').forEach(cd=>{
+    cd.onmouseenter=()=>{if(cd.classList.contains('sel')||cd.classList.contains('open'))return;const r=cd.getBoundingClientRect();tip.innerHTML='<b>'+cd.querySelector('.cn b').textContent+'</b>'+cd.querySelector('.cdet').innerHTML;tip.style.display='block';
+      const th=tip.offsetHeight;tip.style.left=Math.max(8,r.left-tip.offsetWidth-10)+'px';tip.style.top=Math.max(8,Math.min(innerHeight-th-8,r.top))+'px'};
+    cd.onmouseleave=()=>{tip.style.display='none'}});
+}
 function applyInsets(){if(!$('.lpanel'))return;const wide=innerWidth>860;const cr=$('.hud.top .crit'),sl=$('#slot3d');let t=0;if(wide&&cr&&sl){t=Math.max(0,cr.getBoundingClientRect().bottom-sl.getBoundingClientRect().top)}ENGINE.setInsets(wide&&LP?$('.lpanel').offsetWidth+12:0,wide&&RP?$('.side').offsetWidth+12:0,t)}
 let rzT;addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTimeout(applyInsets,150)});
 function render(){
@@ -1662,8 +1738,7 @@ function render(){
   let h='<main class="page'+(LP?'':' nol')+(RP?'':' nor')+'">'+leftPanel(cur,prev,proj);
   h+='<section class="mapcol"><div id="slot3d"></div>';
   h+='<div class="hud top">'+critCard(proj)+'<div class="tlrow">';
-  if(ADVISOR)h+='<div class="advisor hud-card" role="status"><div class="av">'+CUSTOM.person+'</div><div class="grow"><b>Advisor</b><p>'+esc(advisorMsg(S))+'</p></div><button class="btn btn-sm" id="adv-ok">Got it</button></div>';
-  else if(S.history.length>1)h+='<div class="hud-card evc"><span class="event-chip">Last season: '+esc(lastEventTitle())+'</span></div>';
+  if(S.history.length>1)h+='<div class="hud-card evc"><span class="event-chip">Last season: '+esc(lastEventTitle())+'</span></div>';
   if(S.sel.length)h+='<div class="hud-card funded"><b>Funded this season</b><div class="chips">'+S.sel.map(id=>'<span class="chip '+CARD[id].win+'"><span class="ci">'+ICON(id)+'</span>'+esc(CARD[id].name.split(':')[0].split(',')[0])+(CARD[id].site?' (Plot '+S.selSite[id]+')':'')+'</span>').join('')+'</div></div>';
   h+='</div></div>';
   const tot={self:0,coping:0,aid:0,acute:0};for(const g of GROUPS){const c=statusCounts(S,g);for(const k in tot)tot[k]+=c[k]}
@@ -1689,20 +1764,25 @@ function render(){
     h+='<div class="tabs3" role="tablist">'+['H','D','P'].map(w=>{const lk=w!=='H'&&!G.ok;return'<button class="tab3 '+w+(CAT===w?' on':'')+(lk?' locked':'')+'" data-cat="'+w+'" role="tab" aria-selected="'+(CAT===w)+'"'+(lk?' title="Locked until critical needs are met"':'')+'><span class="tic">'+IC(TYPE[w].ic)+'</span><span class="tn">'+WIN[w]+(lk?' &#128274;':'')+'</span><small>'+m1(spentNow[w])+' pts</small></button>'}).join('')+'</div>';
     if(lock)h+='<p class="locknote">Locked until critical needs are met. You can still remove options you chose earlier.</p>';
     h+='<div class="cards">';
-    for(const c of CARDS){if(c.win!==CAT)continue;
+    for(const c0 of CARDS){if(c0.win!==CAT)continue;const c=cardAt(S,c0.id);
       const st=cardStatus(S,c.id),sel=S.sel.includes(c.id);
       const afford=sel||rem+1e-9>=c.cost;const dis=st!=='open'||!afford||(lock&&!sel);
+      const nm=c.levels?(st==='built'?c.name:c.lvName):c.name,ds=c.levels?(st==='built'?'All three levels are done.':c.lvDesc):c.desc;
+      let badge='';if(c.levels)badge='<span class="lvb">'+(st==='built'?'All 3 levels done':'Level '+(c.lvK+1)+' of 3, '+c.name.toLowerCase())+'</span>';
+      let state='';
+      if(st==='built')state=c.levels?'Completed':(S.damaged[c.fx.build]?'Damaged':'Built'+(S.sites[c.fx.build]?' on Plot '+S.sites[c.fx.build]:''));
+      else if(st==='building')state='Under construction';
+      else if(!afford)state='Not enough points left';
+      else if(lock&&!sel)state='Locked';
       let tags=c.tags.map(t=>'<span class="tag">'+esc(t)+'</span>').join('');
       if(c.pair)tags+='<span class="tag pair">'+esc(c.pair)+'</span>';
       if(sel&&c.site)tags+='<span class="tag on">Plot '+S.selSite[c.id]+'</span>';
-      if(st==='built')tags+='<span class="tag state">'+(S.damaged[c.fx.build]?'Damaged':'Built on Plot '+S.sites[c.fx.build])+'</span>';
-      else if(st==='building')tags+='<span class="tag state">Under construction</span>';
-      else if(!afford)tags+='<span class="tag state">Not enough left</span>';
       if(c.decay&&S.count[c.id])tags+='<span class="tag">Funded '+S.count[c.id]+'x, smaller gains now</span>';
-      const fx=st==='open'?'<span class="fxrow">'+effectChips(c.id)+'</span>':'';
-      h+='<button class="card '+c.win+(sel?' sel':'')+'" data-id="'+c.id+'" '+(dis?'disabled':'')+' aria-pressed="'+sel+'"><span class="ic">'+ICON(c.id)+'</span><span><h3>'+esc(c.name)+'</h3><p>'+esc(c.desc)+'</p></span><span class="cost">'+m1(c.cost)+'</span>'+fx+'<span class="tags">'+tags+'</span></button>';
+      const det='<p>'+esc(ds)+'</p>'+(st==='open'?'<div class="fxrow">'+effectChips(c.id)+'</div>':'')+'<div class="tags">'+tags+'</div>';
+      const row=st==='open'?chips3(c.id):'';
+      h+='<div class="card2 '+c.win+(sel?' sel':'')+(OPEN.has(c.id)?' open':'')+(dis?' off':'')+'" data-id="'+c.id+'"><button class="card '+c.win+(sel?' sel':'')+'" data-id="'+c.id+'" '+(dis?'disabled':'')+' aria-pressed="'+sel+'"><span class="ic">'+ICON(c.id)+'</span><span class="cn"><b>'+esc(nm)+'</b>'+badge+'</span><span class="cost">'+m1(c.cost)+'</span><span class="fx2">'+(state?'<span class="stt">'+state+'</span>':'')+row+'</span></button><button class="cinfo" data-info="'+c.id+'" aria-label="Details for '+esc(nm)+'" aria-expanded="'+(OPEN.has(c.id)||sel)+'">i</button><div class="cdet">'+det+'</div></div>';
     }
-    h+='</div><p class="potnote">Green and red chips show what an option can do on its own, before any shock.</p>';
+    h+='</div><p class="potnote">Chips show what an option can do on its own, before any shock. Hover over an option, or tap i, for details.</p>';
   }
   h+='</div><div class="endbar"><span class="hint">'+(!G.ok?'Cover critical needs before you end the season.':(S.sel.length?S.sel.length+' intervention'+(S.sel.length>1?'s':'')+' funded. Arrows in Indicators show next season.':'Choose interventions, then end the season. A shock follows.'))+'</span><button class="btn btn-primary btn-lg" id="end"'+(G.ok?'':' disabled')+'>'+(S.season===5?'End final season':'End season '+(S.season+1))+'</button></div></aside></section></main>';
   $('#app').innerHTML=h;
@@ -1711,13 +1791,15 @@ function render(){
   $('#lp-hide').onclick=()=>{LP=false;render()};$('#rp-hide').onclick=()=>{RP=false;render()};$('#lp-show').onclick=()=>{LP=true;render()};$('#rp-show').onclick=()=>{RP=true;render()};
   if($('.lpanel'))$('.lpanel').scrollTop=keep.l;if($('.side .tabbody'))$('.side .tabbody').scrollTop=keep.r;
   document.querySelectorAll('.card').forEach(b=>b.onclick=()=>toggleCard(b.dataset.id));
+  document.querySelectorAll('.cinfo').forEach(b=>b.onclick=e=>{e.stopPropagation();const id=b.dataset.info;OPEN.has(id)?OPEN.delete(id):OPEN.add(id);render()});
+  bindCardTips();
   $('#end').onclick=endSeason;
   document.querySelectorAll('.type').forEach(b=>b.onclick=()=>{if(b.classList.contains('locked'))return;CAT=b.dataset.cat;render();const t=$('.side .tabbody');if(t)t.scrollTop=0});
   document.querySelectorAll('.tab3').forEach(b=>b.onclick=()=>{if(b.classList.contains('locked'))return;CAT=b.dataset.cat;render();const t=$('.side .tabbody');if(t)t.scrollTop=0});
   const ct=$('#crit-t');if(ct)ct.onclick=()=>{CRITV=!CRITV;render()};
   const hd=document.querySelector('.site-header');if(hd)document.documentElement.style.setProperty('--hdr',hd.offsetHeight+'px');
   $('#rings').onclick=()=>{RINGS=!RINGS;ENGINE.setRings(RINGS);render()};
-  const ao=$('#adv-ok');if(ao)ao.onclick=()=>{ADVISOR=false;render()};
+  if(ADVISOR&&!$('#layer').innerHTML)setTimeout(showAdvisor,30);
 }
 function lastEventTitle(){const t={returns:'more families came home',prices:'food prices spiked',flood:'floods reached the IDP site',harvest:'harvest',cut:'donor funding cut',review:'year-end review'};return t[S.lastEvent]||''}
 function toggleCard(id){
@@ -1736,10 +1818,12 @@ function pickSite(id){
   h+='</div><div class="foot"><button class="btn" data-act="cancel">Cancel</button></div>';
   modal(h,a=>{if(a==='cancel')return;S.sel.push(id);S.selSite[id]=a;render();focusCard(id)});
 }
+function showAdvisor(){if(!ADVISOR||!S||S.over||$('#layer').innerHTML)return;const sn=SEASONS[S.season];
+  modal('<div class="advpop"><div class="av">'+CUSTOM.person+'</div><div><div class="k">Advisor &middot; Season '+(S.season+1)+', Year '+sn.yr+' '+sn.name.toLowerCase()+'</div><p>'+esc(advisorMsg(S))+'</p></div></div><div class="foot"><button class="btn btn-primary" data-act="ok">Got it</button></div>',()=>{ADVISOR=false;render()})}
 function modal(html,onClose){
   const L=$('#layer');L.innerHTML='<div class="overlay" role="dialog" aria-modal="true"><div class="modal">'+html+'</div></div>';
   const btns=L.querySelectorAll('[data-act]');
-  btns.forEach(b=>b.addEventListener('click',()=>{L.innerHTML='';onClose&&onClose(b.dataset.act)}));
+  btns.forEach(b=>b.addEventListener('click',()=>{L.innerHTML='';onClose&&onClose(b.dataset.act);if(ADVISOR&&S&&!S.over&&!L.innerHTML)setTimeout(showAdvisor,30)}));
   if(btns.length)btns[0].focus();
 }
 function endSeason(){
