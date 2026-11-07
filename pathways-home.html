@@ -601,6 +601,13 @@ body.immersive .site-header{position:fixed}
 .amna .eyes{animation:blink 4.5s infinite;transform-origin:100px 90px}
 @keyframes blink{0%,94%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
 @media (max-width:560px){.advpop .avbig,.advpop .avbig svg.amna{width:120px;height:132px}}
+.card2.sel .cdet{display:none}
+.card2.open .cdet{display:block}
+.card2.sel.open .cdet{display:block;background:var(--brand-tint-2);border:1px solid var(--brand);border-top:0;border-radius:0 0 8px 8px;margin-top:-6px;padding-top:6px}
+.card2.sel .card{border-bottom-left-radius:8px;border-bottom-right-radius:8px}
+.card2.sel.open .card{border-bottom-left-radius:0;border-bottom-right-radius:0}
+.card2{cursor:pointer}.card2.off{cursor:not-allowed}
+.card2 .cdet{cursor:pointer}
 
 /* footer */
 .site-footer{border-top:1px solid var(--line);background:var(--panel)}
@@ -628,7 +635,7 @@ body.immersive .site-header{position:fixed}
 </div></div>
 <script>
 (function(){
-  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 227386},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
+  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 238624},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
   var t0=performance.now(),got={},raw=0,xfer=0,first=null,last=null,done=false;
   var nc=navigator.connection||{},guess=nc.downlink?nc.downlink:null;
   function fileOf(n){for(var f in FILES)if(n.split('?')[0].slice(-f.length)===f)return f;return null}
@@ -675,9 +682,10 @@ const CUSTOM={
   power:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 1 4 13.5h6.5L9 23l10-13h-6.6z"/></svg>',
   tower:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 9h2l4 14h-2.2l-.8-3h-4l-.8 3H7zm.4 9h1.2l-.6-2.3zM10.6 13.6h2.8l-.5-1.9h-1.8z"/><circle cx="12" cy="6.5" r="1.8"/><path d="M6.6 2.2a8 8 0 0 0 0 8.6l1.3-.9a6.4 6.4 0 0 1 0-6.8zM17.4 2.2l-1.3.9a6.4 6.4 0 0 1 0 6.8l1.3.9a8 8 0 0 0 0-8.6z"/></svg>',
   dam:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 4h4l3 16H2z"/><path d="M10 9c1.3 0 1.3 1 2.6 1s1.3-1 2.6-1 1.3 1 2.6 1 1.3-1 2.6-1 1.3 1 2.6 1v2c-1.3 0-1.3-1-2.6-1s-1.3 1-2.6 1-1.3-1-2.6-1-1.3 1-2.6 1-1.3-1-2.6-1zm0 5c1.3 0 1.3 1 2.6 1s1.3-1 2.6-1 1.3 1 2.6 1 1.3-1 2.6-1 1.3 1 2.6 1v2c-1.3 0-1.3-1-2.6-1s-1.3 1-2.6 1-1.3-1-2.6-1-1.3 1-2.6 1-1.3-1-2.6-1z"/></svg>',
+  hafir:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1 9h22l-3 9H4z" opacity=".35"/><path d="M4 12c1.5 0 1.5 1 3 1s1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1l-1.4 4.2H5.4z"/><path d="M12 2.5c1.6 2.2 3 4 3 5.3a3 3 0 0 1-6 0c0-1.3 1.4-3.1 3-5.3z"/></svg>',
   person:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="6.5" r="4"/><path d="M4 22c0-5 3.6-8.5 8-8.5s8 3.5 8 8.5z"/></svg>'
 };
-const ICON=id=>({water:CUSTOM.water,food:OCHA.food,cash:OCHA.cash,cfw:OCHA.cfw,seeds:OCHA.seeds,borehole:CUSTOM.borehole,school:OCHA.school,health:CUSTOM.health,lap:OCHA.lap,docs:OCHA.docs,hlp:OCHA.hlp,dialogue:OCHA.dialogue,primary:(typeof ICONS2!=='undefined'?ICONS2.education:''),power:CUSTOM.power,tower:CUSTOM.tower,dam:CUSTOM.dam})[id]||'';
+const ICON=id=>({water:CUSTOM.water,food:OCHA.food,cash:OCHA.cash,cfw:OCHA.cfw,seeds:OCHA.seeds,borehole:CUSTOM.borehole,school:OCHA.school,health:CUSTOM.health,lap:OCHA.lap,docs:OCHA.docs,hlp:OCHA.hlp,dialogue:OCHA.dialogue,primary:(typeof ICONS2!=='undefined'?ICONS2.education:''),power:CUSTOM.power,tower:CUSTOM.tower,dam:CUSTOM.dam,hafir:CUSTOM.hafir})[id]||'';
 
 /*MODEL START*/
 const GROUPS=['idp','ret','host'];
@@ -732,6 +740,8 @@ const CARDS=[
     fx:{build:'tower',c:{idp:{docs:3,family:4,partic:2},ret:{docs:2,family:3,partic:2},host:{partic:2,liveli:1}},cap:2}},
   {id:'dam',win:'D',cost:55,lag:2,once:true,name:'Repair the dam and reservoir',desc:'The old dam upstream is cracked and empty. Repaired, it holds back flood peaks and stores water for irrigation.',tags:['Ready in 2 seasons','Flood protection'],pair:'Works with seeds and canals',
     fx:{build:'dam',c:{idp:{safety:3,liveli:1},ret:{liveli:5},host:{liveli:4}}}},
+  {id:'hafir',win:'D',cost:30,lag:1,once:true,name:'Desilt the hafir',desc:'Dig out the silted rainwater pond so it stores water for livestock and small gardens through the dry months.',tags:['Ready next season','Water for livestock'],pair:'Works with seeds and tools',
+    fx:{build:'hafir',c:{idp:{living:2},ret:{liveli:5,living:3},host:{liveli:3,living:2}},coh:1}},
   {id:'health',win:'D',cost:35,lag:1,decay:true,name:'Primary health centre support',desc:'Staff, medicines and outreach for the town health centre.',tags:['Ready next season'],
     fx:{c:{idp:{living:6},ret:{living:6},host:{living:5}},build:'clinic'}},
   {id:'lap',win:'D',cost:20,lag:1,decay:true,name:'Local authority planning support',desc:'Train locality planners and set up a basic services database.',tags:['Ready next season','Boosts development and peace results'],
@@ -755,6 +765,9 @@ const lvl=(st,id)=>(st.level&&st.level[id])||0;
 function cardAt(st,id){const c=CARD[id];if(!c.levels)return c;const k=Math.min(lvl(st,id),c.levels.length-1),L=c.levels[k];return{...c,fx:L.fx,lvName:L.name,lvDesc:L.desc,lvK:k}}
 const BASE_BUDGET=200;
 const clamp=(v,a=0,b=100)=>Math.max(a,Math.min(b,v));
+const USD_PER_POINT=50000;
+const usdS=p=>{const m=p*USD_PER_POINT/1e6;return'$'+(m>=10||Number.isInteger(m)?Math.round(m*100)/100:m.toFixed(2).replace(/0$/,''))+'M'};
+const usdL=p=>{const m=p*USD_PER_POINT/1e6;return'USD '+(Number.isInteger(m)?m:m.toFixed(2).replace(/0$/,''))+' million'};
 
 function newState(){
   const st={season:0,over:false,
@@ -801,6 +814,7 @@ function resolve(st,noShock){
   const before=snapshotMetrics(st);
   const sel=[...st.sel];
   st.relief={idp:0,ret:0,host:0};
+  const left=noShock?0:Math.max(0,remaining(st));
   for(const id of sel){
     const c=CARD[id];
     st.spent[c.win]+=c.cost;st.spentById[id]=(st.spentById[id]||0)+c.cost;
@@ -827,6 +841,9 @@ function resolve(st,noShock){
     if(p.id==='cash'&&st.built.tower!==undefined){for(const g of GROUPS)st.relief[g]+=(c.fx.relief[g]||0)*.25;rep.combos.push('Mobile money through the new tower gets cash to households faster and safer.')}
     if(p.id==='school'&&st.cap>=40){for(const g of GROUPS)add(st,g,'liveli',4);rep.combos.push('The authorities assigned trainers to the vocational centre, so graduates found work faster.')}
   }
+  if(left>0){const r=Math.min(12,left*.12);st.relief.idp+=r;st.relief.ret+=r*.8;st.relief.host+=r*.3;st.spent.H+=left;st.spentById.general=(st.spentById.general||0)+left;
+    rep.notes.push(usdL(left)+' left unspent went to general humanitarian assistance: food, water and basic items for this season only.')}
+  rep.left=left;
   const has=id=>sel.includes(id);
   if(has('seeds')&&has('cfw')){add(st,'ret','liveli',5);add(st,'host','liveli',5);add(st,'idp','liveli',3);rep.combos.push('Seeds went onto land served by the cleared canals. Farm output rose for returnees and hosts.')}
   if(has('docs')&&has('hlp')){add(st,'idp','hlp',6);add(st,'ret','hlp',6);rep.combos.push('New documents let families prove their land claims.')}
@@ -882,11 +899,12 @@ function shock(st,s,sel){
     else if(sp.length){add(st,'ret','liveli',3);add(st,'host','liveli',2);L.push('Seeds arrived late in the cycle. The harvest is modest.')}
     else L.push('Few returnee or host farmers had inputs this year. The harvest is poor.');
     if(st.built.dam!==undefined){add(st,'ret','liveli',3);add(st,'host','liveli',3);L.push('Water from the reservoir irrigates more fields.')}
+    if(st.built.hafir!==undefined){add(st,'ret','liveli',2);add(st,'host','liveli',1);L.push('The hafir kept livestock watered through the dry months.')}
     if(st.played.some(p=>p.id==='cfw'&&p.season<=3)){add(st,'ret','liveli',4);add(st,'host','liveli',4);L.push('Cleared canals irrigate more land.')}
-    if(avgSR(st)-st.history[0].avg>=6){st.bonusD=20;L.push('A development donor sees results on the ground and adds 20 points to your budget from next season.')}
+    if(avgSR(st)-st.history[0].avg>=6){st.bonusD=20;L.push('A development donor sees results on the ground and adds USD 1 million to your budget from next season.')}
   }else if(s===4){
     kind='cut';title='Donor funding is cut';
-    text='A major donor reduces its contribution: next season the budget drops by 45 points. A dispute over farmland near the returnee village escalates at the same time.';
+    text='A major donor reduces its contribution: next season the budget drops by USD 2.25 million. A dispute over farmland near the returnee village escalates at the same time.';
     st.cutH=true;
     if(st.coh<45){for(const g of GROUPS){add(st,g,'safety',-10);add(st,g,'remedy',-3)}L.push('With low social cohesion, the land dispute turns violent. Safety falls in all three settlements.')}
     else{for(const g of GROUPS)add(st,g,'safety',-3);L.push('Community structures you supported settle the dispute before it spreads.')}
@@ -936,7 +954,7 @@ function lessons(st){
   if(peakAcute>9000)out.push(['Some seasons left too many people in acute need','At the worst point about '+fmtPeople(peakAcute)+' people were in acute need. Moving to solutions does not mean cutting life-saving support too early.']);
   if(st.sites.borehole==='A')out.push(['Siting on the floodplain cost you','The borehole on Plot A served the IDP site best on paper, but the floods put it out of action.']);
   if(st.sites.borehole==='C')out.push(['Safe siting is not the same as shared access','The borehole in town stayed dry, but IDPs still walked far for water.']);
-  if(water>=50&&st.built.borehole===undefined)out.push(['Water trucking cost more than a borehole','You spent '+Math.round(water).toLocaleString('en-US')+' points on trucked water. A solar borehole costs 45 points once and keeps working.']);
+  if(water>=50&&st.built.borehole===undefined)out.push(['Water trucking cost more than a borehole','You spent '+usdL(water)+' on trucked water. A solar borehole costs USD 2.25 million once and keeps working.']);
   if(st.built.borehole!==undefined&&st.built.borehole<=2&&!st.damaged.borehole)out.push(['Investing early paid off in the floods','The borehole was ready before the rains and protected the IDP site from contaminated water.']);
   if(st.played.some(p=>p.id==='seeds'&&p.season!==1&&p.season!==5))out.push(['Timing matters for agriculture','Seeds distributed outside the lean season, before the rains, gave only half the benefit.']);
   if(last.coh<45)out.push(['Social cohesion was the weak link','Cohesion ended at '+Math.round(last.coh)+'. Include the host community and fund peace work alongside services.']);
@@ -974,7 +992,7 @@ function advisorMsg(st){
 /* ---------- 3D engine ---------- */
 const ENGINE=(()=>{
 const view=document.createElement('div');view.className='view3d';
-view.innerHTML='<div class="labels3d"></div><span class="hint3d">Drag to rotate. Scroll or pinch to zoom.</span><button class="reset3d" type="button">Reset view</button><div class="zoom3d" role="group" aria-label="Zoom"><button type="button" data-z="in" aria-label="Zoom in" title="Zoom in">+</button><span class="zl"><i data-l="5"></i><i data-l="4"></i><i data-l="3"></i><i data-l="2"></i><i data-l="1"></i></span><button type="button" data-z="out" aria-label="Zoom out" title="Zoom out">\u2212</button></div><div class="loading3d">Loading the locality</div>';
+view.innerHTML='<div class="labels3d"></div><span class="hint3d">Drag to rotate. Scroll or pinch to zoom.</span><button class="reset3d" type="button">Reset view</button><div class="zoom3d" role="group" aria-label="Zoom"><button type="button" data-r="-1" aria-label="Rotate left" title="Rotate left">\u21ba</button><button type="button" data-r="1" aria-label="Rotate right" title="Rotate right">\u21bb</button><button type="button" data-z="in" aria-label="Zoom in" title="Zoom in">+</button><span class="zl"><i data-l="5"></i><i data-l="4"></i><i data-l="3"></i><i data-l="2"></i><i data-l="1"></i></span><button type="button" data-z="out" aria-label="Zoom out" title="Zoom out">\u2212</button></div><div class="loading3d">Loading the locality</div>';
 const labelsEl=view.querySelector('.labels3d');
 const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const renderer=new THREE.WebGLRenderer({antialias:true});
@@ -990,7 +1008,8 @@ const CAM0=new THREE.Vector3(33,45,55),TGT0=new THREE.Vector3(-2.5,0,-2);
 camera.position.copy(CAM0);
 const controls=new OrbitControls(camera,renderer.domElement);
 controls.target.copy(TGT0);controls.enableDamping=true;controls.minDistance=7;controls.maxDistance=125;
-controls.minPolarAngle=0.42;controls.maxPolarAngle=1.2;controls.enablePan=true;controls.screenSpacePanning=false;controls.panSpeed=.8;
+controls.minPolarAngle=0.42;controls.maxPolarAngle=1.2;controls.enablePan=true;controls.screenSpacePanning=false;controls.panSpeed=1;
+controls.mouseButtons={LEFT:THREE.MOUSE.PAN,MIDDLE:THREE.MOUSE.DOLLY,RIGHT:THREE.MOUSE.ROTATE};controls.touches={ONE:THREE.TOUCH.PAN,TWO:THREE.TOUCH.DOLLY_ROTATE};
 const INS={l:0,r:0,t:0};
 let BASE=80,zoomAnim=null,ZLEV=1;const ZL=[1,.74,.55,.41,.3];
 function fitCam(){const w=view.clientWidth||1,hh=view.clientHeight||1,ea=Math.max(.4,(w-INS.l-INS.r)/Math.max(200,hh-INS.t*.8));const k=Math.max(.85,Math.pow(1.55/ea,.6));BASE=CAM0.clone().sub(TGT0).length()*k;controls.maxDistance=BASE*1.15;zoomAnim=null;camera.position.copy(TGT0).add(CAM0.clone().sub(TGT0).multiplyScalar(k*ZL[1]));controls.target.copy(TGT0);markZoom(2)}
@@ -998,7 +1017,11 @@ const zoomEl=view.querySelector('.zoom3d');
 function markZoom(l){ZLEV=l;zoomEl.querySelectorAll('i').forEach(e=>e.classList.toggle('on',+e.dataset.l===l))}
 function curZoom(){const d=camera.position.distanceTo(controls.target)/BASE;let best=1,bd=9;ZL.forEach((f,i)=>{if(Math.abs(f-d)<bd){bd=Math.abs(f-d);best=i+1}});return best}
 function setZoom(l){l=Math.max(1,Math.min(5,l));const dir=camera.position.clone().sub(controls.target).normalize();zoomAnim={from:camera.position.clone(),to:controls.target.clone().add(dir.multiplyScalar(BASE*ZL[l-1])),t:0};markZoom(l)}
-zoomEl.addEventListener('click',e=>{const b=e.target.closest('[data-z]'),d=e.target.closest('[data-l]');if(b)setZoom(ZLEV+(b.dataset.z==='in'?1:-1));else if(d)setZoom(+d.dataset.l)});
+function rotateView(dir){const off=camera.position.clone().sub(controls.target);off.applyAxisAngle(new THREE.Vector3(0,1,0),dir*Math.PI/6);zoomAnim={from:camera.position.clone(),to:controls.target.clone().add(off),t:0}}
+function panView(dx,dz){const f=camera.position.clone().sub(controls.target);f.y=0;f.normalize();const r=new THREE.Vector3(-f.z,0,f.x);const st=camera.position.distanceTo(controls.target)*.08;const mv=r.multiplyScalar(dx*st).add(f.multiplyScalar(-dz*st));controls.target.add(mv);camera.position.add(mv)}
+addEventListener('keydown',e=>{if(!view.isConnected||e.target.closest&&e.target.closest('input,textarea,select,[contenteditable]')||document.querySelector('#layer .overlay'))return;const k=e.key;
+  if(k==='ArrowLeft'){panView(-1,0);e.preventDefault()}else if(k==='ArrowRight'){panView(1,0);e.preventDefault()}else if(k==='ArrowUp'){panView(0,-1);e.preventDefault()}else if(k==='ArrowDown'){panView(0,1);e.preventDefault()}else if(k==='+'||k==='='){setZoom(ZLEV+1)}else if(k==='-'||k==='_'){setZoom(ZLEV-1)}});
+zoomEl.addEventListener('click',e=>{const rb=e.target.closest('[data-r]');if(rb){rotateView(+rb.dataset.r);return}const b=e.target.closest('[data-z]'),d=e.target.closest('[data-l]');if(b)setZoom(ZLEV+(b.dataset.z==='in'?1:-1));else if(d)setZoom(+d.dataset.l)});
 controls.addEventListener('change',()=>{if(!zoomAnim)markZoom(curZoom())});
 let wheelAcc=0,wheelT=0;
 view.addEventListener('wheel',e=>{if(!e.target.closest||!e.target.closest('canvas'))return;e.preventDefault();e.stopImmediatePropagation();
@@ -1108,7 +1131,7 @@ const at=(x,z,dy)=>()=>v3.set(x,h(x,z)+dy,z);
 /* key places */
 const P={tap:{x:-3,z:1.2},food:{x:1.6,z:1.3},desk:{x:-7.6,z:1.1},hlp:{x:-10.2,z:-4.6},tree:{x:-4,z:-7.5},fire:{x:-1.4,z:5.3},
   market:{x:8.6,z:0.7},clinic:{x:13.6,z:-5.6},office:{x:19.6,z:-5.6},pump:{x:16.6,z:-12.6},village:{x:-15.5,z:-10.5},
-  A:{x:8.6,z:7.7},B:{x:6.8,z:-6.6},C:{x:7.1,z:-12.8},primary:{x:-0.5,z:-5.4},solar:{x:29,z:-14.5},tower:{x:30.5,z:-21.5}};
+  A:{x:8.6,z:7.7},B:{x:6.8,z:-6.6},C:{x:7.1,z:-12.8},primary:{x:-0.5,z:-5.4},hafir:{x:-12.5,z:-19.6},solar:{x:29,z:-14.5},tower:{x:30.5,z:-21.5}};
 const W3={};
 
 function buildWorld(){
@@ -1171,7 +1194,7 @@ function buildWorld(){
   // health centre
   {const g=grp(P.clinic.x,P.clinic.z);obB(P.clinic.x,P.clinic.z,1.42,.88,0);obC(P.clinic.x+1.55,P.clinic.z+.6,.1);mesh(new THREE.BoxGeometry(2.8,1.15,1.7),mat('#f4f1ea'),0,.58,0,g);mesh(new THREE.BoxGeometry(2.86,.12,1.76),mat('#d9d3c6'),0,1.2,0,g);
     mesh(new THREE.BoxGeometry(2.82,.16,1.72),mat('#3e7fc2'),0,.85,0,g);mesh(new THREE.BoxGeometry(.4,.6,.05),mat('#5a3b26'),.6,.3,.86,g);
-    W3.cross=new THREE.Group();W3.cross.position.set(-.6,.58,.87);g.add(W3.cross);W3.crossMat=mat('#c9c5ba',{unique:true});
+    W3.cross=new THREE.Group();W3.cross.position.set(-.6,.58,.87);g.add(W3.cross);W3.crossMat=mat('#d62f2f',{unique:true});W3.cross.scale.setScalar(1.35);for(const [w,d] of [[1,.3],[.3,1]])mesh(new THREE.BoxGeometry(w,.04,d),mat('#d62f2f'),0,1.29,0,g);mesh(new THREE.BoxGeometry(1.3,.03,1.3),mat('#ffffff'),0,1.275,0,g);
     mesh(new THREE.BoxGeometry(.42,.13,.04),W3.crossMat,0,0,0,W3.cross);mesh(new THREE.BoxGeometry(.13,.42,.04),W3.crossMat,0,0,0,W3.cross);
     W3.clinicFlag=new THREE.Group();g.add(W3.clinicFlag);mesh(new THREE.BoxGeometry(.05,1.3,.05),mat('#888'),1.55,.65,.6,W3.clinicFlag);mesh(new THREE.BoxGeometry(.5,.3,.03),mat('#3e7fc2'),1.8,1.15,.6,W3.clinicFlag)}
   // locality office
@@ -1199,7 +1222,7 @@ function buildWorld(){
     for(const [a,b] of [[-s,-s],[s,-s],[s,s],[-s,s]])mesh(new THREE.BoxGeometry(.07,.4,.07),mat('#7a5a3c'),p.x+a,h(p.x+a,p.z+b)+.2,p.z+b,g);
     W3.plots[k]=g}
   // borehole and school (positioned on sync)
-  W3.bore=makeBorehole();W3.school=makeSchool();W3.primary=makePrimary();W3.dam=makeDam();W3.tower=makeTower();
+  W3.bore=makeBorehole();W3.school=makeSchool();W3.primary=makePrimary();W3.dam=makeDam();W3.tower=makeTower();W3.hafir=makeHafir();
   // truck
   {const src=MODELS.deliveryFlat,tb=new THREE.Box3().setFromObject(src),ts=new THREE.Vector3();tb.getSize(ts);const tk=2.3/Math.max(ts.x,ts.z),long=ts.z>ts.x;
     const tr=src.clone(true);tr.scale.setScalar(tk);tr.userData={base:-tb.min.y*tk,long,t:0};
@@ -1252,10 +1275,12 @@ function makePrimary(){
 function makeDam(){
   const x=DAMX,zc=zr(x),g=new THREE.Group();g.position.set(x,0,zc);g.rotation.y=-Math.atan(.225*Math.cos(x*.15));scene.add(g);
   const full=new THREE.Group(),scaf=new THREE.Group(),broken=new THREE.Group();g.add(full,scaf,broken);const conc=mat('#b9b6ad'),dark=mat('#6f747a'),old=mat('#a39f94');
-  // damaged dam: two wall sections with a breach in the middle, rubble, cracks
-  for(const sz of [-1,1]){mesh(new THREE.BoxGeometry(1.1,1.3,2.5),old,0,-.25,sz*2.35,broken);mesh(new THREE.BoxGeometry(1.2,.07,2.5),dark,0,.42,sz*2.35,broken)}
-  for(let i=0;i<7;i++){const r=mesh(new THREE.DodecahedronGeometry(.16+R(i+300)*.14,0),old,(R(i+301)-.5)*1.6,-.42+R(i+302)*.12,(R(i+303)-.5)*2.0,broken);r.rotation.set(R(i)*3,R(i+1)*3,0)}
-  for(const sz of [-1.15,1.2,-3.1])mesh(new THREE.BoxGeometry(.02,.9,.05),mat('#3d3a35'),.56,-.05,sz,broken).rotation.x=.4;
+  // damaged dam: whole wall, cracks and a small leak
+  mesh(new THREE.BoxGeometry(1.1,1.3,7.2),old,0,-.25,0,broken);mesh(new THREE.BoxGeometry(1.2,.07,7.3),dark,0,.42,0,broken);
+  [[.3,.5,.1],[-1.1,.7,-.5],[1.6,.6,.45],[-2.4,.5,.3],[2.7,.45,-.4]].forEach(([z,l,r])=>{const c=mesh(new THREE.BoxGeometry(.02,l,.035),mat('#3d3a35'),.57,.05,z,broken);c.rotation.x=r;const c2=mesh(new THREE.BoxGeometry(.02,l*.5,.03),mat('#3d3a35'),.57,.05+l*.35,z+Math.sin(r)*l*.3,broken);c2.rotation.x=-r*1.6});
+  for(const sz of [-1,1])mesh(new THREE.BoxGeometry(.5,.55,.7),mat('#5d6168'),.62,-.05,sz*.95,broken);
+  const leak=mesh(new THREE.BoxGeometry(.05,.6,.22),mat('#6fa7d6',{transparent:true,opacity:.8}),.6,-.25,.3,broken);leak.castShadow=false;
+  mesh(new THREE.CylinderGeometry(.22,.3,.04,10),mat('#8fb9dc',{transparent:true,opacity:.6}),.95,-.3,.3,broken);
   mesh(new THREE.BoxGeometry(1.1,1.3,7.2),conc,0,-.25,0,full);mesh(new THREE.BoxGeometry(1.3,.08,7.4),dark,0,.42,0,full);
   for(let i=-1;i<=1;i++){mesh(new THREE.BoxGeometry(.5,.55,.7),dark,.62,-.05,i*.95,full);mesh(new THREE.BoxGeometry(.06,.5,.6),mat('#4c8ec4',{transparent:true,opacity:.75}),.92,-.1,i*.95,full)}
   for(const sz of [-1,1])mesh(new THREE.BoxGeometry(1.2,.3,.05),dark,0,.6,sz*3.6,full);
@@ -1275,7 +1300,7 @@ function makePower(){
   for(let c=0;c<4;c++){const x=fx-2.4+c*1.6;mesh(new THREE.BoxGeometry(1.4,.05,.9),mat('#a4741c'),x,h(x,fz)+.1,fz,scaf)}
   // poles along the south side of the main road
   const tops=[];const bulbs=[];
-  for(let x=fx-3.5;x>-8.5;x-=3.4){const z=roadZ(x)+1.2;const v=new THREE.Vector2(x,z);const v0=v.clone();freePoint(v);if(v.distanceTo(v0)>.25||Math.abs(z-zr(x))<3)continue;
+  for(let x=fx-3.5;x>-8.5;x-=3.4){const z=roadZ(x)+1.2;if(Math.abs(x-12.2)<.9||Math.abs(x-26.6)<.9)continue;const v=new THREE.Vector2(x,z);const v0=v.clone();freePoint(v);if(v.distanceTo(v0)>.25||Math.abs(z-zr(x))<3)continue;
     const y=h(x,z);mesh(new THREE.CylinderGeometry(.05,.06,2.3,6),mat('#7a5a3c'),x,y+1.15,z,g);const cb=mesh(new THREE.BoxGeometry(.6,.05,.05),mat('#7a5a3c'),x,y+2.15,z,g);cb.rotation.y=-.05;
     const bulb=mesh(new THREE.SphereGeometry(.07,8,6),mat('#fff2b0',{emissive:'#ffcc33',emissiveIntensity:0,unique:true}),x,y+2.0,z+.18,full);bulbs.push(bulb);obC(x,z,.1);tops.push(new THREE.Vector3(x,y+2.15,z))}
   const pts=[];for(let i=0;i<tops.length-1;i++){const a=tops[i],b=tops[i+1];for(let k=0;k<=6;k++){const t=k/6;pts.push(new THREE.Vector3(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t-Math.sin(t*Math.PI)*.22,a.z+(b.z-a.z)*t));if(k>0&&k<6)pts.push(pts[pts.length-1].clone())}}
@@ -1285,6 +1310,32 @@ function makePower(){
     full.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([near,new THREE.Vector3(q.x,h(q.x,q.z)+1.2,q.z+(q.z<z?.9:-.6))]),new THREE.LineBasicMaterial({color:'#2b2b2b'})))}
   return{g,full,scaf,bulbs}}
 function beam(a,b,r,m,parent){const d=new THREE.Vector3().subVectors(b,a),L=d.length();const o=mesh(new THREE.CylinderGeometry(r,r,L,5),m,(a.x+b.x)/2,(a.y+b.y)/2,(a.z+b.z)/2,parent);o.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());return o}
+function makeHafir(){
+  const x=P.hafir.x,z=P.hafir.z,g=grp(x,z,.2);obB(x,z,3.2,2.2,.2);const earth=mat('#a07a50'),silt=mat('#8a6a48');
+  const bank=new THREE.Mesh(new THREE.TorusGeometry(2.6,.45,6,28),earth);bank.rotation.x=Math.PI/2;bank.scale.set(1,1.55/2.6*1.0,1);bank.scale.set(1,.62,.55);bank.position.y=.12;bank.castShadow=true;bank.receiveShadow=true;g.add(bank);
+  const siltM=new THREE.Mesh(new THREE.CircleGeometry(2.45,28),silt);siltM.rotation.x=-Math.PI/2;siltM.scale.set(1,.6,1);siltM.position.y=.05;siltM.receiveShadow=true;g.add(siltM);
+  for(let i=0;i<6;i++){const c=mesh(new THREE.BoxGeometry(1.2*R(i+600)+.4,.01,.03),mat('#5d4632'),(R(i+601)-.5)*3,.065,(R(i+602)-.5)*1.6,g);c.rotation.y=R(i+603)*3}
+  const water=new THREE.Mesh(new THREE.CircleGeometry(2.4,28),mat('#4c8ec4',{transparent:true,opacity:.9,roughness:.2,unique:true}));water.rotation.x=-Math.PI/2;water.scale.set(1,.6,1);water.position.y=.1;g.add(water);
+  const scaf=new THREE.Group();g.add(scaf);for(const [a,b] of [[-1.6,.4],[1.2,-.5],[.2,.8]]){mesh(new THREE.ConeGeometry(.45,.35,7),earth,a,.2,b,scaf)}
+  const wb=new THREE.Group();wb.position.set(2.9,0,.9);scaf.add(wb);mesh(new THREE.BoxGeometry(.5,.18,.35),mat('#3f6fb0'),0,.28,0,wb);mesh(new THREE.CylinderGeometry(.09,.09,.05,10),mat('#333'),.28,.12,0,wb).rotation.x=Math.PI/2;
+  mesh(new THREE.BoxGeometry(.03,.6,.03),mat('#7a5a3c'),2.4,.3,1.2,scaf).rotation.z=.4;
+  const goats=[];for(let k=0;k<4;k++){const gt=new THREE.Group();const a=k*1.4+.6;gt.position.set(Math.cos(a)*2.9,.05,Math.sin(a)*1.85);gt.rotation.y=-a+Math.PI/2;g.add(gt);const col=mat(k%2?'#f1ebe0':'#4a3a2e');
+    mesh(new THREE.BoxGeometry(.18,.13,.32),col,0,.24,0,gt);mesh(new THREE.BoxGeometry(.1,.1,.14),col,0,.27,.2,gt).rotation.x=.6;for(const [lx,lz] of [[-.06,-.11],[.06,-.11],[-.06,.11],[.06,.11]])mesh(new THREE.CylinderGeometry(.018,.018,.18,4),col,lx,.09,lz,gt);goats.push(gt)}
+  TIPS.push({o:g,dy:.8,tip:()=>S.built.hafir!==undefined?'<b>Hafir</b><span class="ts self">Holding water</span>A dug pond that catches rainwater. Herders and farmers use it for livestock and small gardens through the dry months.':'<b>Hafir</b><span class="ts acute">Silted up</span>A dug pond that should catch rainwater for livestock and gardens. Years of silt mean it now stays dry.'});
+  return{g,water,silt:siltM,scaf,goats}}
+function makeDonkey(){
+  const g=new THREE.Group();scene.add(g);const fur=mat('#8c8279'),dark=mat('#4a4440'),wood=mat('#8a6a48');
+  const d=new THREE.Group();d.position.z=.55;g.add(d);
+  mesh(new THREE.BoxGeometry(.24,.24,.56),fur,0,.48,0,d);const neck=mesh(new THREE.BoxGeometry(.14,.3,.14),fur,0,.66,.3,d);neck.rotation.x=.5;
+  mesh(new THREE.BoxGeometry(.13,.14,.28),fur,0,.8,.46,d);mesh(new THREE.BoxGeometry(.1,.08,.08),mat('#d8d0c4'),0,.76,.6,d);
+  for(const sx of [-1,1])mesh(new THREE.BoxGeometry(.03,.16,.06),fur,sx*.05,.94,.4,d).rotation.z=sx*.25;
+  mesh(new THREE.BoxGeometry(.03,.22,.03),dark,0,.42,-.3,d).rotation.x=-.4;
+  const legs=[];for(const [lx,lz] of [[-.08,.2],[.08,.2],[-.08,-.2],[.08,-.2]]){const lg=new THREE.Group();lg.position.set(lx,.36,lz);d.add(lg);mesh(new THREE.CylinderGeometry(.03,.025,.36,5),fur,0,-.18,0,lg);legs.push(lg)}
+  const cart=new THREE.Group();cart.position.z=-.25;g.add(cart);
+  mesh(new THREE.BoxGeometry(.7,.06,.8),wood,0,.36,0,cart);for(const sx of [-1,1]){const w=mesh(new THREE.CylinderGeometry(.24,.24,.05,12),dark,sx*.4,.24,0,cart);w.rotation.z=Math.PI/2;mesh(new THREE.BoxGeometry(.03,.03,.7),wood,sx*.12,.38,.62,cart)}
+  const barrel=mesh(new THREE.CylinderGeometry(.24,.24,.6,12),mat('#3e7fc2'),0,.62,0,cart);barrel.rotation.z=Math.PI/2;
+  g.scale.setScalar(1.15);g.traverse(m=>{if(m.isMesh)m.receiveShadow=false});
+  return{g,legs,barrel}}
 function makeTower(){
   const x=P.tower.x,z=P.tower.z,g=grp(x,z,.3);obC(x,z,1.1);const full=new THREE.Group(),scaf=new THREE.Group();g.add(full,scaf);
   const red=mat('#c8402f'),wht=mat('#f1eee8'),steel=mat('#8b9099');const H=8,seg=6,V=(px,py,pz)=>new THREE.Vector3(px,py,pz);
@@ -1311,7 +1362,7 @@ function buildLabels(){
   for(const k of ['A','B','C'])LB['plot'+k]=label(at(P[k].x,P[k].z,.6),{cls:'plot'});
   LB.bore=label(()=>v3.set(W3.bore.g.position.x,W3.bore.g.position.y+3.3,W3.bore.g.position.z));
   LB.school=label(()=>v3.set(W3.school.g.position.x,W3.school.g.position.y+2,W3.school.g.position.z));
-  LB.primary=label(at(P.primary.x,P.primary.z,1.9));LB.dam=label(at(DAMX,zr(DAMX),1.3));LB.power=label(at(P.solar.x,P.solar.z,1.6));LB.tower=label(at(P.tower.x,P.tower.z,9.6));
+  LB.primary=label(at(P.primary.x,P.primary.z,1.9));LB.dam=label(at(DAMX,zr(DAMX),1.3));LB.power=label(at(P.solar.x,P.solar.z,1.6));LB.tower=label(at(P.tower.x,P.tower.z,9.6));LB.hafir=label(at(P.hafir.x,P.hafir.z,1.3));
   LB.flood=label(()=>v3.set(1,state.level+.9,7.8),{cls:'alert'});LB.flood.el.innerHTML='Flood water in the IDP site';
   LB.returns=label(at(-21,-1.6,1.4),{cls:'alert'});LB.returns.el.innerHTML='+4,000 people returning';
   LB.prices=label(at(P.market.x,P.market.z,2.4),{cls:'alert'});LB.prices.el.innerHTML='Sorghum prices up';
@@ -1340,7 +1391,7 @@ function makeBody(i,o={}){
   if(o.child){if(woman)mesh(geo.scarf,cloth,0,.745,0,body).rotation.x=-.25}
   else if(woman){mesh(geo.scarf,cloth,0,.745,0,body).rotation.x=-.25;mesh(geo.drape,cloth,0,.62,-.01,body)}
   else{mesh(geo.turban,mat('#ffffff'),0,.79,0,body).rotation.x=Math.PI/2;mesh(geo.cap,mat('#ffffff'),0,.8,0,body)}
-  g.scale.setScalar(o.scale||1.12+R(i*3)*.16);(o.parent||scene).add(g);
+  g.scale.setScalar(o.scale||1.12+R(i*3)*.16);(o.parent||scene).add(g);g.traverse(m=>{if(m.isMesh)m.receiveShadow=false});
   return{i,woman,g,body,legL,legR,armL,armR,phase:R(i)*6}}
 function sitPose(b,on){b.legL.rotation.x=b.legR.rotation.x=on?-1.45:0;b.body.position.y=on?-.22:0}
 function makeHoe(arm){const g=new THREE.Group();arm.add(g);g.position.set(0,-.24,0);mesh(new THREE.CylinderGeometry(.012,.012,.62,4),mat('#7a5a3c'),0,0,.06,g).rotation.x=1.2;mesh(new THREE.BoxGeometry(.1,.02,.08),mat('#6c6f75'),0,-.12,.33,g);g.visible=false;return g}
@@ -1386,14 +1437,16 @@ function pickTarget(p){
   p.task=ch[3];p.mode=ch[4]||null;return jit(ch[1],ch[2])}
 const SPEED={self:.85,coping:.72,aid:.62,acute:.42};const TMP=new THREE.Vector2();
 function walk(p,dt,speed){
-  const dx=p.target.x-p.pos.x,dz=p.target.y-p.pos.y,d=Math.hypot(dx,dz);if(d<.08)return'arrived';
+  const dx=p.target.x-p.pos.x,dz=p.target.y-p.pos.y,d=Math.hypot(dx,dz);if(d<.08){p.vs=0;return'arrived'}
+  if(p._tg!==p.target){p._tg=p.target;p.progT=0;p.progD=d}p.progT+=dt;if(p.progT>2){if(p.progD-d<.35){p.vs=0;p.progT=0;return'stuck'}p.progT=0;p.progD=d}
   const step=Math.min(d,speed*dt),ux=dx/d,uz=dz/d,ox=p.pos.x,oz=p.pos.y;
   p.pos.x+=ux*step;p.pos.y+=uz*step;pushOut(p.pos);let mv=Math.hypot(p.pos.x-ox,p.pos.y-oz);
   if(step>1e-5&&mv<step*.4){for(const sg of [p.side,-p.side])for(const a of [.9,1.5]){const an=sg*a,rx=ux*Math.cos(an)-uz*Math.sin(an),rz=ux*Math.sin(an)+uz*Math.cos(an);
       TMP.set(ox+rx*step,oz+rz*step);pushOut(TMP);const m2=Math.hypot(TMP.x-ox,TMP.y-oz);if(m2>mv+step*.2&&(sg===p.side||!(p.sideT>0))){p.pos.copy(TMP);mv=m2;if(sg!==p.side){p.side=sg;p.sideT=1.5}}}}
   p.sideT=(p.sideT||0)-dt;
-  p.stuck=mv<step*.5?p.stuck+dt:Math.max(0,p.stuck-dt*.5);if(p.stuck>1.4){p.stuck=0;return'stuck'}
-  if(mv>step*.5&&mv>1e-4){const hx=p.pos.x-ox,hz=p.pos.y-oz;const want=Math.atan2(hx,hz);let da=want-p.g.rotation.y;da=Math.atan2(Math.sin(da),Math.cos(da));p.g.rotation.y+=da*Math.min(1,dt*7);p.phase+=dt*speed*9*(mv/step);return'moving'}return'still'}
+  p.vs=(p.vs||0)+((dt>0?mv/dt:0)-(p.vs||0))*Math.min(1,dt*6);
+  p.stuck=mv<step*.5?p.stuck+dt:Math.max(0,p.stuck-dt*.5);if(p.stuck>1.4){p.stuck=0;p.vs=0;return'stuck'}
+  if(p.vs>speed*.45&&mv>1e-4){const hx=p.pos.x-ox,hz=p.pos.y-oz;const want=Math.atan2(hx,hz);let da=want-p.g.rotation.y;da=Math.atan2(Math.sin(da),Math.cos(da));p.g.rotation.y+=da*Math.min(1,dt*7);p.phase+=dt*p.vs*9;return'moving'}return'still'}
 function animWalk(b,moving,t,armRFree=true){const sw=moving?Math.sin(b.phase):0;b.legL.rotation.x=sw*.55;b.legR.rotation.x=-sw*.55;b.armL.rotation.x=-sw*.45;if(armRFree)b.armR.rotation.x=sw*.45;
   b.body.position.y=moving?Math.abs(Math.cos(b.phase))*.02:Math.sin(t*1.3+b.i)*.004;b.body.rotation.y=moving?0:Math.sin(t*.35+b.i*1.7)*.28}
 function separate(){const n=PEOPLE.length,R2=.34;for(let a=0;a<n;a++){const A=PEOPLE[a].pos;for(let b=a+1;b<n;b++){const B=PEOPLE[b].pos,dx=B.x-A.x,dz=B.y-A.y;if(dx>R2||dx<-R2||dz>R2||dz<-R2)continue;const d=Math.hypot(dx,dz);if(d<R2){const k=(R2-Math.max(d,.01))/2,ux=d>1e-3?dx/d:1,uz=d>1e-3?dz/d:0;A.x-=ux*k;A.y-=uz*k;B.x+=ux*k;B.y+=uz*k}}}for(const p of PEOPLE)pushOut(p.pos)}
@@ -1442,11 +1495,11 @@ function buildLife(){
     const W={g,chair,wheels,b,k};LIFE.wc.push(W);
     TIPS.push({o:g,dy:.8,tip:()=>'<b>Person with a disability</b><span class="ts acute">Stuck</span>The wheelchair has sunk into deep sand. There is no accessible path to '+(S&&S.active.includes('food')?'the food distribution, ':'')+'the tap stand or the health centre, so they depend on others to bring everything.'})});
   // children
-  const kidHome=[[-10.6,3.0],[-9.7,4.1],[-10.9,4.6],[-9.3,2.7],[6.3,3.4],[7.2,4.6],[6.0,4.9],[7.4,3.1],[-16.4,-4.1],[-15.2,-3.4],[-16.6,-3.0],[-14.6,-4.4],[-13.8,-3.2],[-17.4,-3.7]];
-  kidHome.forEach(([x,z],k)=>{const v=freePoint(new THREE.Vector2(x,z));const b=makeBody(600+k,{child:true,scale:.8,woman:k%3===0,cloth:['#e07a3a','#3f6fb0','#2f8f8a','#d9a521','#c2477a','#7a4fa0','#b8433a','#2f8f8a','#e07a3a','#d9a521','#3f6fb0','#c2477a','#7a4fa0','#2f8f8a'][k]});
+  const kidHome=[[-2.3,-3.5],[-1.7,-3.2],[-0.9,-3.4],[0.6,-3.6],[1.6,-4.3],[2.0,-5.2],[-2.8,-4.6],[-2.9,-6.1],[1.9,-6.3],[-1.2,-6.9],[-0.7,-7.2],[0.8,-7.4]];
+  kidHome.forEach(([x,z],k)=>{const v=freePoint(new THREE.Vector2(x,z));const b=makeBody(600+k,{child:true,scale:.8,woman:k%3===0,cloth:['#e07a3a','#3f6fb0','#2f8f8a','#d9a521','#c2477a','#7a4fa0','#b8433a','#2f8f8a','#e07a3a','#d9a521','#3f6fb0','#c2477a'][k]});
     const K={...b,home:v.clone(),pos:v.clone(),target:null,side:1,stuck:0,phase:k,role:(k%4<2||k>11)?'sit':'ball',pair:-1,atSchool:false,spot:null};
     if(K.role==='sit')K.g.rotation.y=R(k)*6;LIFE.kids.push(K);
-    TIPS.push({o:b.g,dy:.6,tip:()=>K.atSchool?'<b>Children at the primary school</b>Classes have reopened, so children are learning again instead of sitting idle.':'<b>Children with nothing to do</b>No school is operating, so children spend the day sitting around or playing in the sand instead of learning.'})});
+    TIPS.push({o:b.g,dy:.6,tip:()=>K.atSchool?'<b>Children at the primary school</b>Classes have reopened, so children are learning again instead of sitting idle.':'<b>Children with nothing to do</b>The primary school is closed, so children spend the day outside it, sitting around or playing in the sand instead of learning.'})});
   LIFE.balls=[0,4,8].map(k=>{const m=mesh(new THREE.IcosahedronGeometry(.07,1),mat('#f2f2f2'),0,0,0);return{m,a:k+2,b:k+3}});
   // protest at the locality office
   for(let k=0;k<11;k++){const row=k<6?0:1,col=row?k-6:k,x=P.office.x-1.7+col*.68+(row?.34:0)+(R(k)-.5)*.15,z=-4.05+row*.62;
@@ -1467,6 +1520,12 @@ function buildLife(){
   for(let k=0;k<9;k++){const b=makeBody(1100+k,{woman:true});const can=mesh(geo.can,mat('#e2b632'),0,-.26,0,b.armR);const head=mesh(geo.can,mat('#e2b632'),0,.9,0,b.body);head.visible=false;
     const Cw={...b,can,head,u:k/9,dir:k%2?1:-1,wait:0,lane:(R(k+70)-.5)*.3,speed:.42+R(k+71)*.1};LIFE.carriers.push(Cw);
     TIPS.push({o:b.g,dy:.95,vis:()=>b.g.visible,tip:()=>Cw.dir>0?'<b>Woman fetching water</b><span class="ts acute">No safe water nearby</span>Walking about 5 km to the old well with an empty jerrycan. The trip takes hours, often twice a day.':'<b>Woman fetching water</b><span class="ts acute">No safe water nearby</span>Carrying 20 litres back from the old well on her head.'})}
+  // donkey carts selling water
+  const DP=[[[12.2,10.9],[12.2,-2.6],[0.5,-2.1]],[[12.2,10.9],[12.2,-2.6],[0.5,-2.1]],[[26.6,8.4],[26.6,-8.6],[23.6,-9.6]]];
+  LIFE.donkeys=DP.map((path,k)=>{const D=makeDonkey();const lens=[];let L=0;for(let i=0;i<path.length-1;i++){const l=Math.hypot(path[i+1][0]-path[i][0],path[i+1][1]-path[i][1]);lens.push(l);L+=l}
+    const man=makeBody(1300+k,{woman:false});const Dn={...D,man,path,lens,L,u:k===1?.55:(k?.3:.1),dir:k===1?-1:1,wait:0,speed:.55,phase:k};
+    TIPS.push({o:D.g,dy:.9,vis:()=>D.g.visible,tip:()=>'<b>Water seller with a donkey cart</b><span class="ts aid">Costly water</span>'+(Dn.dir>0?'Taking a barrel of river water to sell by the jerrycan. Poor families pay more for water than anyone else.':'Heading back to the river to refill the barrel.')});
+    TIPS.push({o:man.g,dy:.95,vis:()=>D.g.visible,tip:()=>'<b>Water seller</b>Leads the donkey cart between the river and the settlements.'});return Dn});
   // farmers on the far bank
   for(let k=0;k<5;k++){const x=-20+k*3.6+(R(k+80)-.5),z=17.6+R(k+81)*3.8;const b=makeBody(1200+k,{woman:k%2===0});b.g.position.set(x,h(x,z),z);b.g.rotation.y=R(k+82)*6;const hoe=makeHoe(b.armR);hoe.visible=true;
     LIFE.farmers=LIFE.farmers||[];LIFE.farmers.push({...b,hoe,x,z});TIPS.push({o:b.g,dy:.95,tip:()=>'<b>'+(b.woman?'Woman':'Man')+' farming on the far bank</b>Hoeing sorghum and groundnut fields across the footbridge.'})}
@@ -1494,7 +1553,7 @@ function buildLife(){
     LIFE.fishers.push({...b,rod,tip,line,x,z});TIPS.push({o:b.g,dy:.95,tip:()=>'<b>Fishing from the bank</b>Catching fish to feed the family while there is little other work.'})});
 }
 function IC2(k){return'<span class="li">'+(typeof ICONS2!=='undefined'&&ICONS2[k]?ICONS2[k]:'')+'</span>'}
-function schoolSpot(k){return freePoint(new THREE.Vector2(P.primary.x-2.1+(k%6)*.8,P.primary.z-1.7-Math.floor(k/6)*.6))}
+function schoolSpot(k){return freePoint(new THREE.Vector2(P.primary.x-2.1+(k%6)*.8,P.primary.z-1.9-Math.floor(k/6)*.6))}
 function syncLife(){
   const sch=S.built.primary!==undefined;
   if(sch!==LIFE.school){LIFE.school=sch;LIFE.kids.forEach((K,k)=>{K.atSchool=sch;K.target=sch?schoolSpot(k):K.home.clone();sitPose(K,false)})}
@@ -1526,6 +1585,13 @@ function updateLife(dt,t){
     let d=Cw.u*LIFE.pathL,i=0;while(i<LIFE.segL.length-1&&d>LIFE.segL[i]){d-=LIFE.segL[i];i++}const a=WPATH[i],b=WPATH[i+1],f=Math.min(1,d/LIFE.segL[i]);const dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz);
     const ox=-dz/L*Cw.lane*Cw.dir,oz=dx/L*Cw.lane*Cw.dir,x=a[0]+dx*f+ox,z=a[1]+dz*f+oz;Cw.g.position.set(x,h(x,z),z);Cw.g.rotation.y=Math.atan2(dx*Cw.dir,dz*Cw.dir);
     const full=Cw.dir<0;Cw.head.visible=full;Cw.can.visible=!full;Cw.armR.rotation.x=0;if(full){Cw.armL.rotation.x=-2.9;Cw.armL.rotation.z=.25}else Cw.armL.rotation.z=0}
+  // donkey carts
+  for(const Dn of LIFE.donkeys||[]){Dn.man.g.visible=Dn.g.visible;if(!Dn.g.visible)continue;let mov=false;
+    if(Dn.wait>0)Dn.wait-=dt;else{Dn.u+=Dn.dir*Dn.speed*dt/Dn.L;mov=true;if(Dn.u>=1){Dn.u=1;Dn.dir=-1;Dn.wait=4+rand()*3}else if(Dn.u<=0){Dn.u=0;Dn.dir=1;Dn.wait=5+rand()*3}}
+    let d=Dn.u*Dn.L,i=0;while(i<Dn.lens.length-1&&d>Dn.lens[i]){d-=Dn.lens[i];i++}const a=Dn.path[i],b=Dn.path[i+1],f=Math.min(1,d/Dn.lens[i]),dx=b[0]-a[0],dz=b[1]-a[1],L=Math.hypot(dx,dz);
+    const x=a[0]+dx*f,z=a[1]+dz*f,yaw=Math.atan2(dx*Dn.dir,dz*Dn.dir);Dn.g.position.set(x,h(x,z),z);Dn.g.rotation.y=yaw;
+    Dn.phase+=mov?dt*7:0;Dn.legs.forEach((lg,j)=>lg.rotation.x=mov?Math.sin(Dn.phase+(j%2?Math.PI:0)+(j>1?Math.PI/2:0))*.5:0);
+    const sx=Math.cos(yaw)*.5,sz=-Math.sin(yaw)*.5,mx=x+sx+Math.sin(yaw)*.7,mz=z+sz+Math.cos(yaw)*.7;Dn.man.g.position.set(mx,h(mx,mz),mz);Dn.man.g.rotation.y=yaw;Dn.man.phase+=mov?dt*6:0;animWalk(Dn.man,mov,t);Dn.man.armL.rotation.x=-.6}
   // far-bank farmers
   for(const F of (LIFE.farmers||[])){const sw=Math.sin(t*3+F.i);F.body.rotation.x=.42;F.armR.rotation.x=F.armL.rotation.x=-1+sw*.55}
   // bridge crossings (hidden in a flood)
@@ -1567,7 +1633,7 @@ function syncPeople(){
   const dlg=S.active.includes('dialogue');PEOPLE.forEach((p,k)=>{const want=dlg&&R(p.i*9.7)<.22;if(want!==p.dialogue){p.dialogue=want;p.target=null;p.wait=rand()}});
 }
 function placeBuild(obj,id,key){
-  const pend=S.pending.find(q=>q.id===id),built=S.built[key]!==undefined,site=S.sites[key]||(S.selSite[id]);
+  let pend=S.pending.find(q=>q.id===id);const built=S.built[key]!==undefined,site=S.sites[key]||(S.selSite[id]),plan=!pend&&!built&&S.sel.includes(id);if(plan)pend={due:S.season+CARD[id].lag,plan:true};
   obj.g.visible=!!(site&&(pend||built));if(!obj.g.visible)return{site:null};
   const shared=S.sites.borehole&&S.sites.school&&S.sites.borehole===S.sites.school&&(S.built.borehole!==undefined||S.pending.some(q=>q.id==='borehole'))&&(S.built.school!==undefined||S.pending.some(q=>q.id==='school'));
   const p=P[site],dx=shared?(id==='borehole'?-.9:.9):0;obj.g.position.set(p.x+dx,h(p.x+dx,p.z),p.z);
@@ -1579,23 +1645,27 @@ function sync(){
   const act=id=>S.active.includes(id),ev=S.lastEvent;
   // builds
   const b=placeBuild(W3.bore,'borehole','borehole');W3.bore.tankM.color.set(b.dmg?'#8b9099':'#3e7fc2');
-  setL(LB.bore,!!b.site,li('borehole')+(b.built?(b.dmg?'Borehole damaged by flood':'Solar borehole'):(b.site?'Drilling, ready in season '+(b.pend.due+1):'')));LB.bore.el.className='lbl3d '+(b.dmg?'alert':(b.built?'':'build'));
+  setL(LB.bore,!!b.site,li('borehole')+(b.built?(b.dmg?'Borehole damaged by flood':'Solar borehole'):(b.site?(b.pend.plan?'Planned, ready in season ':'Drilling, ready in season ')+(b.pend.due+1):'')));LB.bore.el.className='lbl3d '+(b.dmg?'alert':(b.built?'':'build'));
   const sc=placeBuild(W3.school,'school','school');W3.school.wm.color.set(sc.dmg?'#a8916c':'#f0e2c4');W3.school.r1.visible=W3.school.r2.visible=!sc.dmg;
-  setL(LB.school,!!sc.site,li('school')+(sc.built?(sc.dmg?'Vocational centre flooded':'Vocational education centre'):(sc.site?'Rebuilding, ready in season '+(sc.pend.due+1):'')));LB.school.el.className='lbl3d '+(sc.dmg?'alert':(sc.built?'':'build'));
+  setL(LB.school,!!sc.site,li('school')+(sc.built?(sc.dmg?'Vocational centre flooded':'Vocational education centre'):(sc.site?(sc.pend.plan?'Planned, ready in season ':'Rebuilding, ready in season ')+(sc.pend.due+1):'')));LB.school.el.className='lbl3d '+(sc.dmg?'alert':(sc.built?'':'build'));
   for(const k of ['A','B','C']){const used=(b.site===k)||(sc.site===k);W3.plots[k].visible=!used;setL(LB['plot'+k],!used,'<b>'+k+'</b> Plot '+k+(k==='A'?', floods':''))}
   // new builds: primary school, dam, power, tower
-  const st3=id=>S.built[id]!==undefined?'built':(S.pending.some(q=>q.id===id)?'pend':'none');
+  const st3=id=>S.built[id]!==undefined?'built':((S.pending.some(q=>q.id===id)||S.sel.includes(id))?'pend':'none');
+  const dueOf=id=>{const q=S.pending.find(q=>q.id===id);return q?q.due+1:S.season+CARD[id].lag+1};const planW=id=>S.sel.includes(id)&&!S.pending.some(q=>q.id===id)?'Planned':'';
   {const k=st3('primary');W3.primary.full.visible=k==='built';W3.primary.closed.visible=k!=='built';W3.primary.scaf.visible=k==='pend';
-    setL(LB.primary,true,(k!=='none'?li('primary'):'')+'Primary school'+(k==='built'?'<small>classes running</small>':(k==='pend'?'<small>reopening next season</small>':'<small>closed</small>')));LB.primary.el.className='lbl3d '+(k==='built'?'':(k==='pend'?'build':''))}
+    setL(LB.primary,true,(k!=='none'?li('primary'):'')+'Primary school'+(k==='built'?'<small>classes running</small>':(k==='pend'?'<small>'+(planW('primary')?'planned, ':'')+'reopens in season '+dueOf('primary')+'</small>':'<small>closed</small>')));LB.primary.el.className='lbl3d '+(k==='built'?'':(k==='pend'?'build':''))}
   {const k=st3('dam');W3.dam.full.visible=k==='built';W3.dam.broken.visible=k!=='built';W3.dam.scaf.visible=k==='pend';W3.dam.res.visible=k==='built';
-    setL(LB.dam,true,(k!=='none'?li('dam'):'')+(k==='built'?'Dam repaired<small>reservoir filling</small>':(k==='pend'?'Dam under repair<small>ready in season '+(S.pending.find(q=>q.id==='dam').due+1)+'</small>':'Damaged dam<small>needs repair</small>')));LB.dam.el.className='lbl3d '+(k==='pend'?'build':(k==='none'?'alert':''))}
+    setL(LB.dam,true,(k!=='none'?li('dam'):'')+(k==='built'?'Dam repaired<small>reservoir filling</small>':(k==='pend'?(planW('dam')?'Dam repair planned':'Dam under repair')+'<small>ready in season '+dueOf('dam')+'</small>':'Damaged dam<small>needs repair</small>')));LB.dam.el.className='lbl3d '+(k==='pend'?'build':(k==='none'?'alert':''))}
   {const k=st3('power');W3.power.g.visible=k!=='none';W3.power.full.visible=k==='built';W3.power.scaf.visible=k==='pend';
-    setL(LB.power,k!=='none',li('power')+(k==='built'?'Solar mini-grid':'Mini-grid under construction'));LB.power.el.className='lbl3d '+(k==='pend'?'build':'')}
+    setL(LB.power,k!=='none',li('power')+(k==='built'?'Solar mini-grid':(planW('power')?'Mini-grid planned':'Mini-grid under construction')+'<small>ready in season '+dueOf('power')+'</small>'));LB.power.el.className='lbl3d '+(k==='pend'?'build':'')}
   {const k=st3('tower');W3.tower.g.visible=k!=='none';W3.tower.full.visible=k==='built';W3.tower.scaf.visible=k==='pend';
-    setL(LB.tower,k!=='none',li('tower')+(k==='built'?'Mobile phone tower':'Tower under construction'));LB.tower.el.className='lbl3d '+(k==='pend'?'build':'')}
+    setL(LB.tower,k!=='none',li('tower')+(k==='built'?'Mobile phone tower':(planW('tower')?'Tower planned':'Tower under construction')+'<small>ready in season '+dueOf('tower')+'</small>'));LB.tower.el.className='lbl3d '+(k==='pend'?'build':'')}
+  {const k=st3('hafir');W3.hafir.water.visible=k==='built';W3.hafir.silt.visible=k!=='built';W3.hafir.scaf.visible=k==='pend';W3.hafir.goats.forEach(g=>g.visible=k==='built');
+    setL(LB.hafir,true,(k!=='none'?li('hafir'):'')+(k==='built'?'Hafir<small>holding rainwater</small>':(k==='pend'?(planW('hafir')?'Hafir desilting planned':'Desilting the hafir')+'<small>ready in season '+dueOf('hafir')+'</small>':'Hafir<small>silted up, dry</small>')));LB.hafir.el.className='lbl3d '+(k==='pend'?'build':(k==='none'?'alert':''))}
+  LIFE.donkeys&&LIFE.donkeys.forEach((d,i)=>d.g.visible=i<(safeWater('idp')?1:3));
   state.power=S.built.power!==undefined;
   // services
-  const clinic=S.built.clinic!==undefined;W3.crossMat.color.set(clinic?'#d62f2f':'#c9c5ba');W3.clinicFlag.visible=clinic;
+  const clinic=S.built.clinic!==undefined;W3.clinicFlag.visible=clinic;
   setL(LB.clinic,true,(clinic||S.pending.some(q=>q.id==='health')?li('health'):'')+'Health centre'+(clinic?'':(S.pending.some(q=>q.id==='health')?'<small>support starting</small>':'<small>understaffed</small>')));
   setL(LB.office,true,(act('lap')?li('lap'):'')+'Locality office<small>capacity '+Math.round(S.cap)+(act('lap')?', planners in training':'')+'</small>');
   setL(LB.market,true,(act('cash')?li('cash'):'')+'Market'+(act('cash')?'<small>cash day</small>':''));
@@ -1690,7 +1760,7 @@ function delta(now,prev,goodUp=true,suffix=''){
 }
 function header(){
   let h='<div class="brand"><span class="brand-title">Pathways Home</span><span class="brand-kicker">Durable Solutions Hub | Sudan</span></div><div class="stepper">';
-  SEASONS.forEach((x,i)=>{h+='<div class="step '+(!S.over&&i===S.season?'now':(i<S.season||S.over?'done':''))+'" title="Year '+x.yr+', '+x.name+'"><b>Y'+x.yr+'</b> '+x.name.replace(' season','')+'</div>'});
+  SEASONS.forEach((x,i)=>{h+='<div class="step '+(!S.over&&i===S.season?'now':(i<S.season||S.over?'done':''))+'" title="Year '+x.yr+', '+x.name+'"><b>Year '+x.yr+'</b> '+x.name.replace(' season','')+'</div>'});
   h+='</div><div class="score"><small>Score</small><span>'+score(S).toLocaleString('en-US')+'</span><small class="of">of 10,000</small></div>';
   h+='<button class="btn btn-sm ibtn" id="fs" title="Full screen" aria-label="Full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'+(isFull()?'<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>':'<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>')+'</svg></button><button class="btn btn-sm" id="restart">Restart</button>';
   $('#hdr').innerHTML=h;$('#restart').onclick=confirmRestart;$('#fs').onclick=toggleFull;
@@ -1795,7 +1865,7 @@ function bindCardTips(){
   let tip=document.getElementById('ctip');if(!tip){tip=document.createElement('div');tip.id='ctip';tip.setAttribute('role','tooltip');document.body.appendChild(tip)}tip.style.display='none';
   if(!matchMedia('(hover:hover) and (pointer:fine)').matches||innerWidth<=860)return;
   document.querySelectorAll('.card2').forEach(cd=>{
-    cd.onmouseenter=()=>{if(cd.classList.contains('sel')||cd.classList.contains('open'))return;const r=cd.getBoundingClientRect();tip.innerHTML='<b>'+cd.querySelector('.cn b').textContent+'</b>'+cd.querySelector('.cdet').innerHTML;tip.style.display='block';
+    cd.onmouseenter=()=>{if(cd.classList.contains('open'))return;const r=cd.getBoundingClientRect();tip.innerHTML='<b>'+cd.querySelector('.cn b').textContent+'</b>'+cd.querySelector('.cdet').innerHTML;tip.style.display='block';
       const th=tip.offsetHeight;tip.style.left=Math.max(8,r.left-tip.offsetWidth-10)+'px';tip.style.top=Math.max(8,Math.min(innerHeight-th-8,r.top))+'px'};
     cd.onmouseleave=()=>{tip.style.display='none'}});
 }
@@ -1811,17 +1881,17 @@ function render(){
   h+='<section class="mapcol"><div id="slot3d"></div>';
   h+='<div class="hud top">'+critCard(proj);
   if(S.history.length>1||S.sel.length){const tot=S.sel.reduce((a,id)=>a+CARD[id].cost,0);
-    h+='<div class="hud-card fstrip">'+(S.history.length>1?'<span class="event-chip">Last season: '+esc(lastEventTitle())+'</span>':'')+(S.sel.length?'<b>Funded</b><div class="chips">'+S.sel.map(id=>{const c=cardAt(S,id);let nm=(c.lvName||c.name).split(':')[0].split(',')[0].replace('Solar borehole and water committee','Borehole').replace('Vocational education centre','Vocational centre').replace('Solar mini-grid and electricity connection','Mini-grid').replace('Repair the dam and reservoir','Dam repair');return'<span class="chip '+c.win+'"><span class="ci">'+ICON(id)+'</span>'+esc(nm)+(c.site?' (Plot '+S.selSite[id]+')':'')+'</span>'}).join('')+'</div><span class="ftot">'+m1(tot)+' points</span>':'<span class="fnone">Nothing funded yet this season</span>')+'</div>'}
+    h+='<div class="hud-card fstrip">'+(S.history.length>1?'<span class="event-chip">Last season: '+esc(lastEventTitle())+'</span>':'')+(S.sel.length?'<b>Funded</b><div class="chips">'+S.sel.map(id=>{const c=cardAt(S,id);let nm=(c.lvName||c.name).split(':')[0].split(',')[0].replace('Solar borehole and water committee','Borehole').replace('Vocational education centre','Vocational centre').replace('Solar mini-grid and electricity connection','Mini-grid').replace('Repair the dam and reservoir','Dam repair');return'<span class="chip '+c.win+'"><span class="ci">'+ICON(id)+'</span>'+esc(nm)+(c.site?' (Plot '+S.selSite[id]+')':'')+'</span>'}).join('')+'</div><span class="ftot">'+usdS(tot)+'</span>':'<span class="fnone">Nothing funded yet this season</span>')+'</div>'}
   h+='</div>';
 
   const tot={self:0,coping:0,aid:0,acute:0};for(const g of GROUPS){const c=statusCounts(S,g);for(const k in tot)tot[k]+=c[k]}
   h+='<div class="hud bl"><div class="hud-card legend"><span class="lg-note">Each figure is about 1,000 people. Hover or tap figures to see what they are doing.</span><span><i class="dot" style="background:var(--s-self)"></i>Getting by ('+tot.self+')</span><span><i class="dot" style="background:var(--s-coping)"></i>Coping ('+tot.coping+')</span><span><i class="dot" style="background:var(--s-aid)"></i>Relying on aid ('+tot.aid+')</span><span><i class="dot" style="background:var(--s-acute)"></i>Acute need ('+tot.acute+')</span><button class="btn btn-sm" id="rings">'+(RINGS?'Hide':'Show')+' rings</button></div></div></section>';
   h+='<button class="opener lo" id="lp-show">\u203a Indicators and missions</button><button class="opener ro" id="rp-show">Options \u2039</button>';
   const spentNow={H:0,D:0,P:0};S.sel.forEach(id=>spentNow[CARD[id].win]+=CARD[id].cost);
-  h+='<aside class="panel side"><button class="collapse" id="rp-hide" aria-label="Hide options">Hide \u203a</button><div class="budget1"><div class="bt"><span class="k">Budget for season '+(S.season+1)+'</span><span class="v">'+m1(rem)+' <small>of '+m1(S.budget)+' points left</small></span></div>';
-  h+='<div class="stack">'+['H','D','P'].map(w=>'<i class="'+w+'" style="width:'+(100*spentNow[w]/S.budget)+'%"></i>').join('')+'</div><div class="split">'+['H','D','P'].map(w=>'<span class="'+w+'"><i></i>'+WIN[w]+' <b>'+m1(spentNow[w])+'</b></span>').join('')+'</div></div>';
+  h+='<aside class="panel side"><button class="collapse" id="rp-hide" aria-label="Hide options">Hide \u203a</button><div class="budget1"><div class="bt"><span class="k">Budget for season '+(S.season+1)+'</span><span class="v">'+usdS(rem)+' <small>left of '+usdS(S.budget)+'</small></span></div>';
+  h+='<div class="stack">'+['H','D','P'].map(w=>'<i class="'+w+'" style="width:'+(100*spentNow[w]/S.budget)+'%"></i>').join('')+'</div><div class="split">'+['H','D','P'].map(w=>'<span class="'+w+'"><i></i>'+WIN[w]+' <b>'+usdS(spentNow[w])+'</b></span>').join('')+'</div></div>';
   const G=gate();
-  h+='<p class="potnote">Year '+sn.yr+', '+sn.name+' ('+sn.months+'). One budget each season (1 point = USD 50,000). Unspent points do not carry over.</p>';
+  h+='<p class="potnote">Year '+sn.yr+', '+sn.name+' ('+sn.months+'). One budget each season. Money you do not spend goes to general humanitarian assistance at the end of the season.</p>';
   h+='<div class="need '+(G.ok?'ok':'no')+'"><span class="ni">'+IC('people-in-need')+'</span><span><b>'+(G.ok?(G.exhausted?'Every humanitarian option is funded':'Critical needs covered'):'Meet critical needs first')+'</b>'+
     (G.ok?(G.exhausted?'Acute need stays high, but you have done what relief can do this season. Self-reliance and peace are open.':(G.acute<100?'With your choices, almost no one would be in acute need next season.':'With your choices, about '+fmtPeople(G.acute)+' people would be in acute need next season.')+' Self-reliance and peace are open.')
       :'With your choices, about '+fmtPeople(G.acute)+' people would be in acute need next season. Fund humanitarian options until this is under 5,000 to unlock self-reliance and peace.')+'</span></div>';
@@ -1830,11 +1900,11 @@ function render(){
   if(!CAT){
     h+='<div class="types"><div class="th">Choose a type of intervention</div>';
     for(const w of ['H','D','P']){const lock=w!=='H'&&!G.ok;const n=CARDS.filter(c=>c.win===w).length,ns=S.sel.filter(id=>CARD[id].win===w).length;
-      h+='<button class="type '+w+(lock?' locked':'')+'" data-cat="'+w+'"'+(lock?' aria-disabled="true"':'')+'><span class="tic">'+IC(TYPE[w].ic)+'</span><span class="tt"><b>'+WIN[w]+'</b><span>'+TYPE[w].d+'</span><small>'+(lock?'Locked until critical needs are met':(ns?ns+' chosen, '+m1(spentNow[w])+' points':n+' options'))+'</small></span><span class="tgo">'+(lock?'&#128274;':'›')+'</span></button>'}
+      h+='<button class="type '+w+(lock?' locked':'')+'" data-cat="'+w+'"'+(lock?' aria-disabled="true"':'')+'><span class="tic">'+IC(TYPE[w].ic)+'</span><span class="tt"><b>'+WIN[w]+'</b><span>'+TYPE[w].d+'</span><small>'+(lock?'Locked until critical needs are met':(ns?ns+' chosen, '+usdS(spentNow[w]):n+' options'))+'</small></span><span class="tgo">'+(lock?'&#128274;':'›')+'</span></button>'}
     h+='</div>';
   }else{
     const lock=CAT!=='H'&&!G.ok;
-    h+='<div class="tabs3" role="tablist">'+['H','D','P'].map(w=>{const lk=w!=='H'&&!G.ok;return'<button class="tab3 '+w+(CAT===w?' on':'')+(lk?' locked':'')+'" data-cat="'+w+'" role="tab" aria-selected="'+(CAT===w)+'"'+(lk?' title="Locked until critical needs are met"':'')+'><span class="tic">'+IC(TYPE[w].ic)+'</span><span class="tn">'+WIN[w]+(lk?' &#128274;':'')+'</span><small>'+m1(spentNow[w])+' pts</small></button>'}).join('')+'</div>';
+    h+='<div class="tabs3" role="tablist">'+['H','D','P'].map(w=>{const lk=w!=='H'&&!G.ok;return'<button class="tab3 '+w+(CAT===w?' on':'')+(lk?' locked':'')+'" data-cat="'+w+'" role="tab" aria-selected="'+(CAT===w)+'"'+(lk?' title="Locked until critical needs are met"':'')+'><span class="tic">'+IC(TYPE[w].ic)+'</span><span class="tn">'+WIN[w]+(lk?' &#128274;':'')+'</span><small>'+usdS(spentNow[w])+'</small></button>'}).join('')+'</div>';
     if(lock)h+='<p class="locknote">Locked until critical needs are met. You can still remove options you chose earlier.</p>';
     h+='<div class="cards">';
     for(const c0 of CARDS){if(c0.win!==CAT)continue;const c=cardAt(S,c0.id);
@@ -1845,7 +1915,7 @@ function render(){
       let state='';
       if(st==='built')state=c.levels?'Completed':(S.damaged[c.fx.build]?'Damaged':'Built'+(S.sites[c.fx.build]?' on Plot '+S.sites[c.fx.build]:''));
       else if(st==='building')state='Under construction';
-      else if(!afford)state='Not enough points left';
+      else if(!afford)state='Not enough money left';
       else if(lock&&!sel)state='Locked';
       let tags=c.tags.map(t=>'<span class="tag">'+esc(t)+'</span>').join('');
       if(c.pair)tags+='<span class="tag pair">'+esc(c.pair)+'</span>';
@@ -1853,7 +1923,7 @@ function render(){
       if(c.decay&&S.count[c.id])tags+='<span class="tag">Funded '+S.count[c.id]+'x, smaller gains now</span>';
       const det='<p>'+esc(ds)+'</p>'+(st==='open'?'<div class="fxrow">'+effectChips(c.id)+'</div>':'')+'<div class="tags">'+tags+'</div>';
       const row=st==='open'?chips3(c.id):'';
-      h+='<div class="card2 '+c.win+(sel?' sel':'')+(OPEN.has(c.id)?' open':'')+(dis?' off':'')+'" data-id="'+c.id+'"><button class="card '+c.win+(sel?' sel':'')+'" data-id="'+c.id+'" '+(dis?'disabled':'')+' aria-pressed="'+sel+'"><span class="ic">'+ICON(c.id)+'</span><span class="cn"><b>'+esc(nm)+'</b>'+badge+'</span><span class="cost">'+m1(c.cost)+'</span><span class="fx2">'+(state?'<span class="stt">'+state+'</span>':'')+row+'</span></button><button class="cinfo" data-info="'+c.id+'" aria-label="Details for '+esc(nm)+'" aria-expanded="'+(OPEN.has(c.id)||sel)+'">i</button><div class="cdet">'+det+'</div></div>';
+      h+='<div class="card2 '+c.win+(sel?' sel':'')+(OPEN.has(c.id)?' open':'')+(dis?' off':'')+'" data-id="'+c.id+'"><button class="card '+c.win+(sel?' sel':'')+'" data-id="'+c.id+'" '+(dis?'disabled':'')+' aria-pressed="'+sel+'"><span class="ic">'+ICON(c.id)+'</span><span class="cn"><b>'+esc(nm)+'</b>'+badge+'</span><span class="cost">'+usdS(c.cost)+'</span><span class="fx2">'+(state?'<span class="stt">'+state+'</span>':'')+row+'</span></button><button class="cinfo" data-info="'+c.id+'" aria-label="Details for '+esc(nm)+'" aria-expanded="'+(OPEN.has(c.id)||sel)+'">i</button><div class="cdet">'+det+'</div></div>';
     }
     h+='</div><p class="potnote">Chips show what an option can do on its own, before any shock. Hover over an option, or tap i, for details.</p>';
   }
@@ -1863,7 +1933,7 @@ function render(){
   applyInsets();ENGINE.sync();
   $('#lp-hide').onclick=()=>{LP=false;render()};$('#rp-hide').onclick=()=>{RP=false;render()};$('#lp-show').onclick=()=>{LP=true;render()};$('#rp-show').onclick=()=>{RP=true;render()};
   if($('.lpanel'))$('.lpanel').scrollTop=keep.l;if($('.side .tabbody'))$('.side .tabbody').scrollTop=keep.r;
-  document.querySelectorAll('.card').forEach(b=>b.onclick=()=>toggleCard(b.dataset.id));
+  document.querySelectorAll('.card2').forEach(cd=>cd.onclick=e=>{if(e.target.closest('.cinfo'))return;const id=cd.dataset.id;if(cd.classList.contains('off')&&!S.sel.includes(id))return;toggleCard(id)});
   document.querySelectorAll('.cinfo').forEach(b=>b.onclick=e=>{e.stopPropagation();const id=b.dataset.info;OPEN.has(id)?OPEN.delete(id):OPEN.add(id);render()});
   bindCardTips();
   $('#end').onclick=endSeason;
@@ -1925,7 +1995,7 @@ let PORTRAIT='';
 function showAdvisor(){if(!ADVISOR||!S||S.over||$('#layer').innerHTML)return;const sn=SEASONS[S.season];
   const A=advisorTips(S),ms=missions(S).filter(m=>!m.limit&&m.ok).length;
   modal('<div class="advpop"><div class="avbig">'+amnaSVG(S.season)+'</div><div class="advtx"><div class="who"><b>Amna</b>, locality coordinator</div><h2>'+esc(A.head)+'</h2><ul class="tips">'+A.tips.map(([i,t])=>'<li><span class="ti">'+IC(i)+'</span><span>'+esc(t)+'</span></li>').join('')+'</ul></div></div>'+
-    '<div class="advstrip"><span><b>Season '+(S.season+1)+' of 6</b> Year '+sn.yr+', '+sn.name.toLowerCase()+'</span><span><b>'+m1(S.budget)+'</b> points to spend</span><span><b>'+ms+' of 6</b> missions met</span></div>'+
+    '<div class="advstrip"><span><b>Season '+(S.season+1)+' of 6</b> Year '+sn.yr+', '+sn.name.toLowerCase()+'</span><span><b>'+usdL(S.budget)+'</b> to spend</span><span><b>'+ms+' of 6</b> missions met</span></div>'+
     '<div class="foot"><button class="btn btn-primary btn-lg" data-act="ok">Got it</button></div>',()=>{ADVISOR=false;render()})}
 function modal(html,onClose){
   const L=$('#layer');L.innerHTML='<div class="overlay" role="dialog" aria-modal="true"><div class="modal">'+html+'</div></div>';
@@ -1983,7 +2053,7 @@ function reportHTML(){
   const rows=[['Average self-reliance',Math.round(first.avg)+' to '+Math.round(last.avg)],['People in acute need now',fmtPeople(last.acute)],['Worst season for acute need',fmtPeople(peak)],['Aid dependency',Math.round(last.dep)+'%'],['Social cohesion',Math.round(last.coh)],['Authority capacity',Math.round(last.cap)]];
   rows.forEach(([a,b])=>h+='<tr><td>'+a+'</td><td>'+b+'</td></tr>');
   h+='</table><h3 style="margin-top:16px">How the score adds up</h3><table class="sheet">'+scoreParts(st).filter(p=>p[2]||p[1]).map(p=>'<tr><td>'+p[0]+'</td><td>'+p[1].toLocaleString('en-US')+(p[2]?' of '+p[2].toLocaleString('en-US'):'')+'</td></tr>').join('')+'</table><h3 style="margin-top:16px">Missions</h3><table class="sheet">'+ms.map(m=>'<tr><td>'+esc(m.text)+'</td><td class="'+(m.ok?'pass':'fail')+'">'+(m.ok?'Pass':'Fail')+'</td></tr>').join('')+'</table>';
-  h+='<h3 style="margin-top:16px">Where the money went</h3><div class="spend">'+['H','D','P'].map(w=>'<i style="width:'+(100*st.spent[w]/tot)+'%;background:var(--'+({H:'hum',D:'dev',P:'peace'})[w]+')"></i>').join('')+'</div><div class="small-legend">'+['H','D','P'].map(w=>'<span><em style="background:var(--'+({H:'hum',D:'dev',P:'peace'})[w]+')"></em>'+WIN[w]+' '+m1(st.spent[w])+' ('+Math.round(100*st.spent[w]/tot)+'%)</span>').join('')+'</div></div>';
+  h+='<h3 style="margin-top:16px">Where the money went</h3><div class="spend">'+['H','D','P'].map(w=>'<i style="width:'+(100*st.spent[w]/tot)+'%;background:var(--'+({H:'hum',D:'dev',P:'peace'})[w]+')"></i>').join('')+'</div><div class="small-legend">'+['H','D','P'].map(w=>'<span><em style="background:var(--'+({H:'hum',D:'dev',P:'peace'})[w]+')"></em>'+WIN[w]+' '+usdS(st.spent[w])+' ('+Math.round(100*st.spent[w]/tot)+'%)</span>').join('')+'</div></div>';
   h+='<div class="col"><div class="panel rpanel chart"><h3>Self-reliance by group</h3>'+chartSVG()+'</div><div class="panel rpanel"><h3>Lessons from your strategy</h3><ul class="lessons">'+lessons(st).map(([t,d])=>'<li><b>'+esc(t)+'</b>'+esc(d)+'</li>').join('')+'</ul></div></div></div>';
   h+='<div class="panel rpanel"><h3>For the facilitator</h3><p style="margin:0;max-width:80ch">Ask each team: which shock hurt most, and what would have prevented it? Where did you site the borehole and the school, and who did that leave out? When did you start long-term investments, and why then?</p></div>';
   h+='<div style="display:flex;justify-content:center"><button class="btn btn-primary btn-lg" id="again">Play again</button></div></div>';
@@ -2003,7 +2073,7 @@ function confirmRestart(){modal('<h2>Start again?</h2><p>Your progress in this g
 function intro(){
   modal('<h2>You coordinate durable solutions in Nahr Al-Amal</h2><div class="sub">A fictional locality in Sudan. Two years, six seasons.</div>'+
   '<p>Three groups share the locality: 18,000 internally displaced people on a floodplain site, 12,000 returnees rebuilding their village, and 30,000 residents of the host town. Each figure on the map is about 1,000 people, coloured by how they are doing.</p>'+
-  '<p>Each season you receive one budget of 200 points. Choose a type of intervention (humanitarian, self-reliance or peace), fund options, choose sites for new buildings, then end the season. A shock follows every season.</p><p><b>Critical needs come first.</b> Self-reliance and peace options unlock once your choices bring acute need below 5,000 people for the next season.</p>'+
+  '<p>Each season you receive one budget of USD 10 million. Choose a type of intervention (humanitarian, self-reliance or peace), fund options, choose sites for new buildings, then end the season. A shock follows every season.</p><p><b>Critical needs come first.</b> Self-reliance and peace options unlock once your choices bring acute need below 5,000 people for the next season.</p>'+
   '<h3>Your missions</h3><ul><li>Fewer than 5,000 people in acute need at the end, and never more than 15,000 along the way.</li><li>A shared water point the floods cannot reach.</li><li>The vocational education centre open, and children back in primary school.</li><li>Authority capacity and social cohesion at 50 or above.</li></ul>'+
   '<h3>Watch for</h3><ul><li>Relief lifts people for one season only.</li><li>Builds take one or two seasons. Plot A floods.</li><li>Some interventions are stronger together, and timing matters.</li></ul>'+
   '<div class="foot"><button class="btn btn-primary btn-lg" data-act="go">Start season 1</button></div>');
