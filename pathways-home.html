@@ -595,6 +595,12 @@ body.immersive .site-header{position:fixed}
 @media (max-width:560px){.advpop{flex-direction:column;align-items:center;text-align:left}.advpop .avbig{width:96px;height:96px}}
 .fstrip .chip{font-size:12px;padding:2px 9px 2px 4px}
 .nol .hud.top{left:206px}.nor .hud.top{right:112px}@media (max-width:860px){.nol .hud.top{left:12px}.nor .hud.top{right:12px}}
+.advpop .avbig{width:150px;height:165px;border-radius:16px;background:none;display:block}
+.advpop .avbig svg.amna{width:150px;height:165px;display:block;border-radius:16px}
+.amna .amfig{animation:advBob 2.6s ease-in-out infinite;transform-origin:100px 210px}
+.amna .eyes{animation:blink 4.5s infinite;transform-origin:100px 90px}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+@media (max-width:560px){.advpop .avbig,.advpop .avbig svg.amna{width:120px;height:132px}}
 
 /* footer */
 .site-footer{border-top:1px solid var(--line);background:var(--panel)}
@@ -622,7 +628,7 @@ body.immersive .site-header{position:fixed}
 </div></div>
 <script>
 (function(){
-  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 224077},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
+  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 227386},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
   var t0=performance.now(),got={},raw=0,xfer=0,first=null,last=null,done=false;
   var nc=navigator.connection||{},guess=nc.downlink?nc.downlink:null;
   function fileOf(n){for(var f in FILES)if(n.split('?')[0].slice(-f.length)===f)return f;return null}
@@ -1895,11 +1901,30 @@ function advisorTips(st){
   const msg=advisorMsg(st);if(st.season>0)tips.push(['partnership',msg]);
   return{head,tips:tips.slice(0,3)};
 }
+function amnaSVG(season){
+  const k=season===2?'rain':(season===3?'harvest':(season===1||season===5?'lean':'dry'));
+  const sky={dry:'#f4ecd9',lean:'#f1e2c3',rain:'#cdd6db',harvest:'#f6e2b8'}[k],ground={dry:'#dcc493',lean:'#d6bb86',rain:'#b9ab7a',harvest:'#d9b45a'}[k];
+  let bg='<rect width="200" height="220" fill="'+sky+'"/><rect y="176" width="200" height="44" fill="'+ground+'"/>';
+  if(k==='dry'||k==='lean'){bg+='<polygon points="16,176 40,140 64,176" fill="#efe7d6"/><polygon points="32,176 40,158 48,176" fill="#c9b892"/>';
+    bg+=k==='dry'?'<rect x="164" y="130" width="7" height="46" fill="#7a5a3c"/><ellipse cx="167" cy="120" rx="24" ry="17" fill="#7f9a44"/><ellipse cx="158" cy="110" rx="14" ry="10" fill="#8fac4e"/>':'<rect x="164" y="132" width="6" height="44" fill="#7a5a3c"/><path d="M167 134 L152 112 M167 138 L182 116 M167 128 L168 104" stroke="#7a5a3c" stroke-width="3" stroke-linecap="round"/><ellipse cx="152" cy="110" rx="8" ry="5" fill="#b4a46a"/><ellipse cx="182" cy="114" rx="8" ry="5" fill="#b4a46a"/>';
+    bg+='<circle cx="176" cy="34" r="12" fill="#f3d27a"/>'}
+  if(k==='rain'){bg+='<path d="M0 196 C40 188 80 204 120 196 C150 190 180 198 200 194 V220 H0 Z" fill="#4c8ec4"/><ellipse cx="44" cy="40" rx="30" ry="13" fill="#9aa6ae"/><ellipse cx="66" cy="34" rx="22" ry="12" fill="#a9b4bb"/><ellipse cx="160" cy="48" rx="26" ry="11" fill="#9aa6ae"/>';
+    for(let i=0;i<16;i++){const x=8+i*12.5,y=56+(i%4)*22;bg+='<path d="M'+x+' '+y+' l-4 10" stroke="#7f98aa" stroke-width="1.6" stroke-linecap="round"/>'}}
+  if(k==='harvest'){bg+='<circle cx="30" cy="36" r="14" fill="#f3a93b"/>';for(let i=0;i<9;i++){const x=10+i*22;if(x>96&&x<140)continue;bg+='<path d="M'+x+' 178 v-22 M'+(x-5)+' 166 l5 -6 l5 6" stroke="#b07d22" stroke-width="2" fill="none" stroke-linecap="round"/>'}}
+  const amna='<path d="M74 208 L80 120 C80 104 90 98 100 98 C110 98 120 104 120 120 L126 208 Z" fill="#e07a3a"/>'+
+    '<path d="M82 126 C80 90 90 72 100 72 C110 72 120 90 118 126 C116 108 110 104 100 104 C90 104 84 108 82 126 Z" fill="#d06424"/>'+
+    '<ellipse cx="100" cy="92" rx="13" ry="15" fill="#6e4630"/>'+
+    '<path d="M86 92 C86 76 92 70 100 70 C108 70 114 76 114 92 C112 80 108 76 100 76 C92 76 88 80 86 92 Z" fill="#e07a3a"/>'+
+    '<g class="eyes"><circle cx="95" cy="90" r="1.8" fill="#1c1410"/><circle cx="105" cy="90" r="1.8" fill="#1c1410"/></g>'+
+    '<path d="M95 98 Q100 102 105 98" fill="none" stroke="#3a1d10" stroke-width="1.6" stroke-linecap="round"/>'+
+    '<rect x="102" y="130" width="20" height="26" rx="3" fill="#2e3238"/><rect x="105" y="133" width="14" height="18" fill="#7aa4c9"/>'+
+    '<ellipse cx="104" cy="146" rx="5" ry="6" fill="#6e4630"/>'+
+    '<rect x="88" y="208" width="8" height="8" fill="#5a3b26"/><rect x="104" y="208" width="8" height="8" fill="#5a3b26"/>';
+  return'<svg viewBox="0 0 200 220" role="img" aria-label="Amna, the locality coordinator" class="amna">'+bg+'<g class="amfig">'+amna+'</g></svg>'}
 let PORTRAIT='';
 function showAdvisor(){if(!ADVISOR||!S||S.over||$('#layer').innerHTML)return;const sn=SEASONS[S.season];
-  if(!PORTRAIT&&typeof ENGINE!=='undefined'&&ENGINE.portrait)try{PORTRAIT=ENGINE.portrait()}catch(e){}
   const A=advisorTips(S),ms=missions(S).filter(m=>!m.limit&&m.ok).length;
-  modal('<div class="advpop"><div class="avbig">'+(PORTRAIT?'<img src="'+PORTRAIT+'" alt="">':CUSTOM.person)+'</div><div class="advtx"><div class="who"><b>Amna</b>, locality coordinator</div><h2>'+esc(A.head)+'</h2><ul class="tips">'+A.tips.map(([i,t])=>'<li><span class="ti">'+IC(i)+'</span><span>'+esc(t)+'</span></li>').join('')+'</ul></div></div>'+
+  modal('<div class="advpop"><div class="avbig">'+amnaSVG(S.season)+'</div><div class="advtx"><div class="who"><b>Amna</b>, locality coordinator</div><h2>'+esc(A.head)+'</h2><ul class="tips">'+A.tips.map(([i,t])=>'<li><span class="ti">'+IC(i)+'</span><span>'+esc(t)+'</span></li>').join('')+'</ul></div></div>'+
     '<div class="advstrip"><span><b>Season '+(S.season+1)+' of 6</b> Year '+sn.yr+', '+sn.name.toLowerCase()+'</span><span><b>'+m1(S.budget)+'</b> points to spend</span><span><b>'+ms+' of 6</b> missions met</span></div>'+
     '<div class="foot"><button class="btn btn-primary btn-lg" data-act="ok">Got it</button></div>',()=>{ADVISOR=false;render()})}
 function modal(html,onClose){
