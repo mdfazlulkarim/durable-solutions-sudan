@@ -729,7 +729,7 @@ body.immersive .site-header{position:fixed}
 </div></div>
 <script>
 (function(){
-  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 387594},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
+  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 388272},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
   var t0=performance.now(),got={},raw=0,xfer=0,first=null,last=null,done=false;
   var nc=navigator.connection||{},guess=nc.downlink?nc.downlink:null;
   function fileOf(n){for(var f in FILES)if(n.split('?')[0].slice(-f.length)===f)return f;return null}
@@ -1175,12 +1175,13 @@ function curZoom(){const d=camera.position.distanceTo(controls.target)/BASE;let 
 function setZoom(l){l=Math.max(1,Math.min(5,l));const dir=camera.position.clone().sub(controls.target).normalize();zoomAnim={from:camera.position.clone(),to:controls.target.clone().add(dir.multiplyScalar(BASE*ZL[l-1])),t:0};markZoom(l)}
 function rotateView(dir){const off=camera.position.clone().sub(controls.target);off.applyAxisAngle(new THREE.Vector3(0,1,0),dir*Math.PI/6);zoomAnim={from:camera.position.clone(),to:controls.target.clone().add(off),t:0}}
 function panView(dx,dz){const f=camera.position.clone().sub(controls.target);f.y=0;f.normalize();const r=new THREE.Vector3(-f.z,0,f.x);const st=camera.position.distanceTo(controls.target)*.08;const mv=r.multiplyScalar(dx*st).add(f.multiplyScalar(-dz*st));controls.target.add(mv);camera.position.add(mv)}
-addEventListener('keydown',e=>{if(!view.isConnected||e.target.closest&&e.target.closest('input,textarea,select,[contenteditable]')||document.querySelector('#layer .overlay'))return;const k=e.key;
+const KX={keyGrab:false,hooks:[]};
+addEventListener('keydown',e=>{if(KX.keyGrab||!view.isConnected||e.target.closest&&e.target.closest('input,textarea,select,[contenteditable]')||document.querySelector('#layer .overlay'))return;const k=e.key;
   if(k==='ArrowLeft'){panView(-1,0);e.preventDefault()}else if(k==='ArrowRight'){panView(1,0);e.preventDefault()}else if(k==='ArrowUp'){panView(0,-1);e.preventDefault()}else if(k==='ArrowDown'){panView(0,1);e.preventDefault()}else if(k==='+'||k==='='){setZoom(ZLEV+1)}else if(k==='-'||k==='_'){setZoom(ZLEV-1)}});
 zoomEl.addEventListener('click',e=>{const rb=e.target.closest('[data-r]');if(rb){rotateView(+rb.dataset.r);return}const b=e.target.closest('[data-z]'),d=e.target.closest('[data-l]');if(b)setZoom(ZLEV+(b.dataset.z==='in'?1:-1));else if(d)setZoom(+d.dataset.l)});
 controls.addEventListener('change',()=>{if(!zoomAnim)markZoom(curZoom())});
 let wheelAcc=0,wheelT=0;
-view.addEventListener('wheel',e=>{if(!e.target.closest||!e.target.closest('canvas'))return;e.preventDefault();e.stopImmediatePropagation();
+view.addEventListener('wheel',e=>{if(KX.keyGrab||!e.target.closest||!e.target.closest('canvas'))return;e.preventDefault();e.stopImmediatePropagation();
   const now=performance.now();if(now-wheelT>400)wheelAcc=0;wheelAcc+=e.deltaMode===1?e.deltaY*30:e.deltaY;
   if(Math.abs(wheelAcc)>=50&&now-wheelT>220){setZoom(ZLEV+(wheelAcc<0?1:-1));wheelAcc=0;wheelT=now}},{capture:true,passive:false});
 let fitted=false;
@@ -2220,6 +2221,7 @@ function update(dt,t){
   if(KITS.food&&KITS.food.visible)obB(P.ftruck.x,P.ftruck.z,1.25,.6,Math.atan2(RDIR.x,RDIR.z)-Math.PI/2,DYN);if(KITS.cash&&KITS.cash.visible)obB(P.agent.x,P.agent.z,.5,.3,0,DYN);if(KITS.lap&&KITS.lap.visible)obB(P.board.x,P.board.z,.6,.15,.2,DYN);if(KITS.inclusion&&KITS.inclusion.visible)obB(P.permit.x,P.permit.z,.6,.3,0,DYN);if(KITS.dialogue&&KITS.dialogue.visible)obC(P.tree.x+2.4,P.tree.z-.7,.35,DYN);
   if(LIFE.prot[0]&&LIFE.prot[0].g.visible)obB(P.office.x,-3.75,2.1,.65,0,DYN);
   if(LIFE.queueN>3)obB(11.9,-4.05,2.5,.32,0,DYN);
+  for(const f of KX.hooks)f(dt,t);
   updateLife(reduceMotion?0:dt,t);
   updatePeople(reduceMotion?0:dt,t);if(typeof HQ!=='undefined'&&HQ.bodies)HQ.animBodies(reduceMotion?0:dt)}
 function resize(){const w=view.clientWidth,hh=view.clientHeight;if(!w||!hh)return;renderer.setSize(w,hh,false);if(typeof HQ!=='undefined')HQ.resize(w,hh);camera.aspect=w/hh;camera.fov=(w-INS.l-INS.r)/hh<1?46:30;
@@ -2234,8 +2236,12 @@ function setRings(v){state.rings=v}
 const b64=s=>{const bin=atob(s),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return u.buffer};
 const names=['tent_detailedOpen','tent_smallClosed','tent_detailedClosed','tree_plateau','tree_default','plant_bush','grass','crops_cornStageD','crops_cornStageC','rock_smallA','rock_largeA','pot_large','campfire_stones','log_stack','fence_simple','deliveryFlat'];
 Promise.all(names.map(n=>loader.parseAsync(b64(GLB[n]),'').then(g=>{recolor(g.scene);MODELS[n]=g.scene})).concat(typeof HQ!=='undefined'?[HQ.loadPeople()]:[])).then(()=>{
-  buildWorld();state.ready=true;resize();const ld=view.querySelector('.loading3d');ld.style.opacity=0;setTimeout(()=>ld.remove(),450);if(S)sync();loop();window.__bootDone&&window.__bootDone();
+  buildWorld();state.ready=true;resize();loadExtras();const ld=view.querySelector('.loading3d');ld.style.opacity=0;setTimeout(()=>ld.remove(),450);if(S)sync();loop();window.__bootDone&&window.__bootDone();
 }).catch(e=>{view.querySelector('.loading3d').textContent='The 3D view could not load on this device. You can still play using the panels.';window.__bootDone&&window.__bootDone(true);console.error(e)});
+function loadExtras(){
+  Object.assign(KX,{THREE,scene,camera,controls,renderer,view,ground,h,zr,roadZ,roadD,pushOut,freePoint,makeBody,makeTuk,makeDonkey,sitPose,animWalk,mesh,mat,grp,label,setL,P,FIELDS,WELL,DAMX,BRIDGE,W,D,LIFE,TIPS,state,LB,setInsets,fitCam,R,IC2,geo,showTip,S:()=>S,INS,safeWater,sr,SEASONS,WPATH});
+  const go=()=>import('./assets/game/lib/extras.js').then(m=>m.install(KX)).catch(e=>console.warn('Extras did not load',e));
+  setTimeout(()=>('requestIdleCallback' in window)?requestIdleCallback(go,{timeout:4000}):go(),2500)}
 function overlaps(){let n=0;for(const p of PEOPLE){const v=p.pos.clone();pushOut(v);if(v.distanceTo(p.pos)>.06)n++}return{people:PEOPLE.length,inside:n}}
 function portrait(){
   const sc=new THREE.Scene(),r=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});r.setSize(220,220);r.setClearColor(0x000000,0);
@@ -2383,6 +2389,7 @@ function bindCardTips(){
     cd.onmouseleave=()=>{tip.style.display='none'}});
 }
 function applyInsets(){if(!$('.lpanel'))return;const wide=innerWidth>860;const cr=$('.hud.top .crit'),sl=$('#slot3d');let t=0;if(wide&&cr&&sl){t=Math.max(0,cr.getBoundingClientRect().bottom-sl.getBoundingClientRect().top)}ENGINE.setInsets(wide&&LP?$('.lpanel').offsetWidth+12:0,wide&&RP?$('.side').offsetWidth+12:0,t)}
+window.__applyInsets=applyInsets;
 let rzT;addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTimeout(applyInsets,150)});
 function render(){
   header();
