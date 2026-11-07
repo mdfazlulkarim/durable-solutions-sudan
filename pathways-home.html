@@ -640,7 +640,7 @@ body.immersive .site-header{position:fixed}
 </div></div>
 <script>
 (function(){
-  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 315109},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
+  var FILES={"lib/three.module.min.js": 670681, "lib/models.js": 476397, "lib/jsm/loaders/GLTFLoader.js": 108522, "lib/jsm/controls/OrbitControls.js": 29868, "lib/jsm/utils/BufferGeometryUtils.js": 31906, "index.html": 315445},TOTAL=0,k;for(k in FILES)TOTAL+=FILES[k];
   var t0=performance.now(),got={},raw=0,xfer=0,first=null,last=null,done=false;
   var nc=navigator.connection||{},guess=nc.downlink?nc.downlink:null;
   function fileOf(n){for(var f in FILES)if(n.split('?')[0].slice(-f.length)===f)return f;return null}
@@ -1260,7 +1260,7 @@ function makeSite(parent,o){
     let tool=null;if(role==='hammer'){tool=new THREE.Group();b.armR.add(tool);tool.position.set(0,-.25,0);mesh(new THREE.CylinderGeometry(.012,.012,.22,4),mat('#7a5a3c'),0,-.06,.05,tool).rotation.x=1.3;mesh(new THREE.BoxGeometry(.06,.05,.05),mat('#555'),0,-.08,.15,tool)}
     if(role==='dig'){const hoe=makeHoe(b.armR);hoe.visible=true}
     let load=null;if(role==='carry'){load=mesh(new THREE.BoxGeometry(.24,.1,.14),mat('#b8433a'),0,.92,0,b.body)}
-    const W0={...b,role,x0:x,z0:z,ry,load,ph:R(k+SITES.length)*6};S0.workers.push(W0);
+    b.hqRole=({hammer:'hammer',mix:'work',dig:'dig',carry:'carry'})[role];const W0={...b,role,x0:x,z0:z,ry,load,ph:R(k+SITES.length)*6};S0.workers.push(W0);
     TIPS.push({o:b.g,dy:.95,vis:()=>g.visible&&b.g.visible,tip:()=>'<b>Builder at work</b>'+({hammer:'Fixing the walls and frames.',carry:'Carrying bricks from the pile.',mix:'Mixing concrete.',dig:'Digging out silt by hand.'})[role]+'<small>Local workers hired for the build earn a wage too.</small>'})});
   SITES.push(S0);return S0}
 function stageOf(id){const q=S.pending.find(q=>q.id===id);if(!q)return S.sel.includes(id)?0:null;const el=S.season-q.from,lag=CARD[id].lag;return lag<=1?2:(el>=lag?2:1)}
@@ -1424,6 +1424,7 @@ const PEOPLE=[],TIPS=[];let pid=0;
 const AREAS={idp:{x0:-8,x1:5,z0:2.2,z1:8.4},ret:{x0:-20.5,x1:-10.5,z0:-13.5,z1:-7.5},host:{x0:10.5,x1:23,z0:-17,z1:-8.6}};
 function homeFor(g,i){const a=AREAS[g];const v=freePoint(new THREE.Vector2(a.x0+R(i*17+3)*(a.x1-a.x0),a.z0+R(i*19+5)*(a.z1-a.z0)));return[v.x,v.y]}
 function makeBody(i,o={}){
+  if(typeof HQ!=='undefined'&&HQ.man)return HQ.makeBody(i,o);
   const woman=o.woman!==undefined?o.woman:R(i*13)<.55,skin=mat(SKIN[i%4]),cloth=mat(o.cloth||(woman?TOBE[Math.floor(R(i*5)*TOBE.length)]:'#f3efe4')),g=new THREE.Group(),body=new THREE.Group();g.add(body);
   const legL=new THREE.Group(),legR=new THREE.Group();legL.position.set(-.05,.26,0);legR.position.set(.05,.26,0);body.add(legL,legR);
   mesh(geo.leg,skin,0,-.13,0,legL);mesh(geo.leg,skin,0,-.13,0,legR);mesh(woman?geo.robeW:geo.robeM,cloth,0,.38,0,body);mesh(geo.chest,cloth,0,.6,0,body);
@@ -1542,7 +1543,7 @@ function buildLife(){
     const b=makeBody(500+k,{woman:k===1,parent:chair,scale:1});b.g.position.set(0,.04,-.02);sitPose(b,false);b.legL.rotation.x=b.legR.rotation.x=-1.45;b.body.position.y=.03;
     const sand=mesh(new THREE.ConeGeometry(.16,.1,8),mat('#d6bd8b'),.19,.04,.02,g);mesh(new THREE.ConeGeometry(.16,.1,8),mat('#d6bd8b'),-.19,.04,.02,g);
     g.scale.setScalar(1.15);obC(v.x,v.y,.4);
-    const W={g,chair,wheels,b,k};LIFE.wc.push(W);
+    b.hqRole='sitChair';const W={g,chair,wheels,b,k};LIFE.wc.push(W);
     TIPS.push({o:g,dy:.8,tip:()=>'<b>Person with a disability</b><span class="ts acute">Stuck</span>The wheelchair has sunk into deep sand. There is no accessible path to '+(S&&S.active.includes('food')?'the food distribution, ':'')+'the tap stand or the health centre, so they depend on others to bring everything.'})});
   // children
   const kidHome=[[-2.3,-3.5],[-1.7,-3.2],[-0.9,-3.4],[0.6,-3.6],[1.6,-4.3],[2.0,-5.2],[-2.8,-4.6],[-2.9,-6.1],[1.9,-6.3],[-1.2,-6.9],[-0.7,-7.2],[0.8,-7.4]];
@@ -1556,7 +1557,7 @@ function buildLife(){
     const b=makeBody(700+k,{woman:k%3===1});b.g.position.set(x,h(x,z),z);b.g.rotation.y=Math.PI+(R(k+3)-.5)*.5;b.g.visible=false;
     let sign=null;if(k%2===0){sign=new THREE.Group();b.armR.add(sign);sign.position.set(0,-.28,0);mesh(new THREE.CylinderGeometry(.012,.012,.5,4),mat('#7a5a3c'),0,-.18,0,sign);
       mesh(new THREE.BoxGeometry(.36,.24,.02),mat(['#f4f1ea','#e9c46a','#f4f1ea'][k%3]),0,-.46,0,sign);mesh(new THREE.BoxGeometry(.26,.03,.025),mat('#b3261e'),0,-.43,0,sign);mesh(new THREE.BoxGeometry(.2,.03,.025),mat('#1c2230'),0,-.5,0,sign)}
-    LIFE.prot.push({...b,sign});TIPS.push({o:b.g,dy:.95,vis:()=>b.g.visible,tip:()=>'<b>Protest at the locality office</b><span class="ts acute">Social cohesion '+Math.round(S.coh)+'</span>Residents accuse other groups of taking land, water and aid. The crowd grows as cohesion falls.'})}
+    b.hqRole='cheer';LIFE.prot.push({...b,sign});TIPS.push({o:b.g,dy:.95,vis:()=>b.g.visible,tip:()=>'<b>Protest at the locality office</b><span class="ts acute">Social cohesion '+Math.round(S.coh)+'</span>Residents accuse other groups of taking land, water and aid. The crowd grows as cohesion falls.'})}
   LB.protest=label(at(P.office.x,-3.7,1.75),{cls:'alert'});
   // queue outside the health centre
   [['idp',-1.5,4.5,2.4],['ret',P.village.x,P.village.z,2.6],['host',17,-12.5,2.4]].forEach(([g,x,z,dy])=>{const o=new THREE.Object3D();o.position.set(x,h(x,z)+dy-.4,z);scene.add(o);
@@ -1577,7 +1578,7 @@ function buildLife(){
     TIPS.push({o:D.g,dy:.9,vis:()=>D.g.visible,tip:()=>'<b>Water seller with a donkey cart</b><span class="ts aid">Costly water</span>'+(Dn.dir>0?'Taking a barrel of river water to sell by the jerrycan. Poor families pay more for water than anyone else.':'Heading back to the river to refill the barrel.')});
     TIPS.push({o:man.g,dy:.95,vis:()=>D.g.visible,tip:()=>'<b>Water seller</b>Leads the donkey cart between the river and the settlements.'});return Dn});
   // farmers on the far bank
-  for(let k=0;k<5;k++){const x=-20+k*3.6+(R(k+80)-.5),z=17.6+R(k+81)*3.8;const b=makeBody(1200+k,{woman:k%2===0});b.g.position.set(x,h(x,z),z);b.g.rotation.y=R(k+82)*6;const hoe=makeHoe(b.armR);hoe.visible=true;
+  for(let k=0;k<5;k++){const x=-20+k*3.6+(R(k+80)-.5),z=17.6+R(k+81)*3.8;const b=makeBody(1200+k,{woman:k%2===0});b.g.position.set(x,h(x,z),z);b.g.rotation.y=R(k+82)*6;const hoe=makeHoe(b.armR);hoe.visible=true;b.hqRole='dig';
     LIFE.farmers=LIFE.farmers||[];LIFE.farmers.push({...b,hoe,x,z});TIPS.push({o:b.g,dy:.95,tip:()=>'<b>'+(b.woman?'Woman':'Man')+' farming on the far bank</b>Hoeing sorghum and groundnut fields across the footbridge.'})}
   // bridge
   {const x=BRIDGE.x,zc=zr(x),z0=zc-2.3,z1=zc+2.3,L=z1-z0,g=new THREE.Group();g.position.set(x,0,zc);g.rotation.y=-Math.atan(.225*Math.cos(x*.15));scene.add(g);
@@ -1600,7 +1601,7 @@ function buildLife(){
     b.armR.rotation.x=b.armL.rotation.x=-1.05;if(k===1){b.legL.rotation.x=b.legR.rotation.x=-1.45;b.body.position.y=-.22}
     const rod=new THREE.Group();b.armR.add(rod);rod.position.set(-.05,-.22,0);const r1=mesh(new THREE.CylinderGeometry(.008,.014,1.5,4),mat('#5a3b26'),0,-.7,0,rod);const tip=new THREE.Object3D();tip.position.set(0,-1.45,0);rod.add(tip);
     const line=mesh(new THREE.CylinderGeometry(.003,.003,1,3),mat('#e8e8e8'),0,0,0,scene);line.castShadow=false;obC(x,z,.3);
-    LIFE.fishers.push({...b,rod,tip,line,x,z});TIPS.push({o:b.g,dy:.95,tip:()=>'<b>Fishing from the bank</b>Catching fish to feed the family while there is little other work.'})});
+    b.hqRole=k===1?'sit':'fish';LIFE.fishers.push({...b,rod,tip,line,x,z});TIPS.push({o:b.g,dy:.95,tip:()=>'<b>Fishing from the bank</b>Catching fish to feed the family while there is little other work.'})});
 }
 function IC2(k){return'<span class="li">'+(typeof ICONS2!=='undefined'&&ICONS2[k]?ICONS2[k]:'')+'</span>'}
 function schoolSpot(k){return freePoint(new THREE.Vector2(P.primary.x-2.1+(k%6)*.8,P.primary.z-1.9-Math.floor(k/6)*.6))}
@@ -1785,7 +1786,7 @@ function update(dt,t){
   if(LIFE.prot[0]&&LIFE.prot[0].g.visible)obB(P.office.x,-3.75,2.1,.65,0,DYN);
   if(LIFE.queueN>3)obB(11.9,-4.05,2.5,.32,0,DYN);
   updateLife(reduceMotion?0:dt,t);
-  updatePeople(reduceMotion?0:dt,t)}
+  updatePeople(reduceMotion?0:dt,t);if(typeof HQ!=='undefined'&&HQ.bodies)HQ.animBodies(reduceMotion?0:dt)}
 function resize(){const w=view.clientWidth,hh=view.clientHeight;if(!w||!hh)return;renderer.setSize(w,hh,false);if(typeof HQ!=='undefined')HQ.resize(w,hh);camera.aspect=w/hh;camera.fov=(w-INS.l-INS.r)/hh<1?46:30;
   if(INS.l||INS.r||INS.t)camera.setViewOffset(w,hh,(INS.r-INS.l)/2,-INS.t*.4,w,hh);else camera.clearViewOffset();camera.updateProjectionMatrix();if(!fitted&&state.ready){fitCam();fitted=true}}
 function setInsets(l,r,t=0){const side=Math.abs(l-INS.l)>=2||Math.abs(r-INS.r)>=2;if(!side&&Math.abs(t-INS.t)<2)return;INS.l=l;INS.r=r;INS.t=t;if(side)fitted=false;resize()}
@@ -1797,7 +1798,7 @@ function snapshot(){if(!state.ready)return'';sync();renderer.render(scene,camera
 function setRings(v){state.rings=v}
 const b64=s=>{const bin=atob(s),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return u.buffer};
 const names=['tent_detailedOpen','tent_smallClosed','tent_detailedClosed','tree_plateau','tree_default','plant_bush','grass','crops_cornStageD','crops_cornStageC','rock_smallA','rock_largeA','pot_large','campfire_stones','log_stack','fence_simple','deliveryFlat'];
-Promise.all(names.map(n=>loader.parseAsync(b64(GLB[n]),'').then(g=>{recolor(g.scene);MODELS[n]=g.scene}))).then(()=>{
+Promise.all(names.map(n=>loader.parseAsync(b64(GLB[n]),'').then(g=>{recolor(g.scene);MODELS[n]=g.scene})).concat(typeof HQ!=='undefined'?[HQ.loadPeople()]:[])).then(()=>{
   buildWorld();state.ready=true;resize();const ld=view.querySelector('.loading3d');ld.style.opacity=0;setTimeout(()=>ld.remove(),450);if(S)sync();loop();window.__bootDone&&window.__bootDone();
 }).catch(e=>{view.querySelector('.loading3d').textContent='The 3D view could not load on this device. You can still play using the panels.';window.__bootDone&&window.__bootDone(true);console.error(e)});
 function overlaps(){let n=0;for(const p of PEOPLE){const v=p.pos.clone();pushOut(v);if(v.distanceTo(p.pos)>.06)n++}return{people:PEOPLE.length,inside:n}}
