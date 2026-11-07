@@ -75,6 +75,12 @@ body.gmode .zoom3d,body.gmode .lbl3d{display:none!important}
 .gcard .res span:nth-child(even){text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
 .gcard .src{font-size:11px;color:var(--muted);margin-top:8px}
 .gcard .ok{color:#1f6b42;font-weight:800}.gcard .no{color:#b3261e;font-weight:800}
+.edgearr{position:absolute;z-index:4;width:46px;height:46px;margin:-23px 0 0 -23px;pointer-events:none;display:none}
+.edgearr svg{width:100%;height:100%;filter:drop-shadow(0 3px 6px rgba(0,0,0,.3))}
+.gzoom{display:flex;flex-direction:column;gap:2px;justify-content:center}
+.gzoom button,.ghud .tog{font:inherit;font-size:15px;font-weight:800;width:30px;height:24px;border:1px solid var(--line-2);background:#fff;border-radius:7px;cursor:pointer;line-height:1}
+.gbtn{font:inherit;font-size:12px;border:1px solid var(--line-2);background:#fff;border-radius:8px;padding:3px 9px;cursor:pointer}
+.ghud .gc.fuel b{font-size:16px}.ghud .gc.fuel .bar i{background:#e39a27}.ghud .gc.fuel.low .bar i{background:#c62f25}
 `;document.head.appendChild(css);
 
 /* ---------- buttons on the map ---------- */
@@ -200,7 +206,7 @@ const PLACES=[
    [-3.2,zr(-3.2)-1.85,1,'Fishing',()=>'Fish add food and a little income for families who have lost their land.'],
    [2,zr(2)-1.9,.8,'Water for sale',()=>'Donkey cart sellers fill their barrels here. The water is not treated.']]}];
 let VI=-1,pins=[],panel=null,sel=-1;
-function startVisit(i){if(G.on)return;if(VI<0)enterMode('vmode');VI=i;sel=-1;view.classList.add('visiting');const pl=PLACES[i];flyTo(pl.x,pl.z,pl.d,pl.a||0);drawVisit()}
+function startVisit(i){if(G.on)return;if(VI<0)enterMode('vmode');VI=i;sel=-1;view.classList.add('visiting');const pl=PLACES[i];flyTo(pl.x,pl.z,pl.d*1.35,pl.a||0);drawVisit()}
 function drawVisit(){const pl=PLACES[VI];pins.forEach(p=>p.el.remove());pins=[];if(panel)panel.remove();
   panel=document.createElement('div');panel.className='vpanel';const sn=K.SEASONS[Math.min(S().season,5)];
   panel.innerHTML='<div class="vh"><div class="vk">Visit '+(VI+1)+' of '+PLACES.length+'</div><h3>'+esc(pl.name)+'</h3><div class="vs">'+(S().over?'After two years':'Year '+sn.yr+', '+sn.name.toLowerCase()+', '+sn.short)+'</div></div><div class="vb">'+pl.story()+'<ol>'+pl.pts.map((p,k)=>'<li><button type="button" data-k="'+k+'"><span class="n">'+(k+1)+'</span><span><b>'+esc(p[3])+'</b><span class="t">'+esc(p[4]())+'</span></span></button></li>').join('')+'</ol><div class="fic">What you see changes with the season and with what you fund. Visiting does not change your score.</div></div><div class="vf"><button class="btn btn-sm" data-n="-1">‹ Previous</button><button class="btn btn-sm" data-n="1">Next ›</button><button class="btn btn-sm btn-primary" data-n="0">Back to the map</button></div>';
@@ -217,6 +223,8 @@ const G={on:false};
 const keys={};
 addEventListener('keydown',e=>{if(!G.on||G.state!=='play')return;const k=e.key.toLowerCase();if(['arrowup','arrowdown','arrowleft','arrowright','w','a','s','d',' '].includes(k)){keys[k]=true;G.auto=null;e.preventDefault()}});
 addEventListener('keyup',e=>{keys[e.key.toLowerCase()]=false});
+addEventListener('keydown',e=>{if(!G.on)return;if(e.key==='+'||e.key==='=')G.zoom=Math.max(1,G.zoom-1);else if(e.key==='-'||e.key==='_')G.zoom=Math.min(3,G.zoom+1)});
+let wAcc=0,wT=0;view.addEventListener('wheel',e=>{if(!G.on||!e.target.closest('canvas'))return;e.preventDefault();const now=performance.now();if(now-wT>400)wAcc=0;wAcc+=e.deltaY;if(Math.abs(wAcc)>50&&now-wT>220){G.zoom=Math.max(1,Math.min(3,G.zoom+(wAcc>0?1:-1)));wAcc=0;wT=now}},{passive:false});
 const ray=new THREE.Raycaster(),ndc=new THREE.Vector2();let downAt=null;
 view.addEventListener('pointerdown',e=>{if(G.on)downAt=[e.clientX,e.clientY]});
 view.addEventListener('pointerup',e=>{if(!G.on||G.state!=='play'||!downAt||!e.target.closest('canvas'))return;if(Math.hypot(e.clientX-downAt[0],e.clientY-downAt[1])>8)return;
@@ -237,17 +245,47 @@ for(const t of TROUGHS){const g=new THREE.Group();g.position.set(t.x,h(t.x,t.z),
 const QG=new THREE.Group();scene.add(QG);QG.visible=false;
 for(const B of BUYERS){B.q=[];for(let k=0;k<3;k++){const b=figure(3200+BUYERS.indexOf(B)*5+k,{woman:k!==1,parent:QG});const can=K.mesh(K.geo.can,K.mat(['#e2b632','#3f8fd0','#e8e2d0'][k]),0,-.26,0,b.armR);const x=B.x+.5+k*.45,z=B.z+.35;b.g.position.set(x,h(x,z),z);b.g.rotation.y=-Math.PI/2;B.q.push(b)}}
 let veh=null;
+const arShape=new THREE.Shape();arShape.moveTo(0,.95);arShape.lineTo(.5,.25);arShape.lineTo(.19,.25);arShape.lineTo(.19,-.55);arShape.lineTo(-.19,-.55);arShape.lineTo(-.19,.25);arShape.lineTo(-.5,.25);arShape.closePath();
+const arGeo=new THREE.ShapeGeometry(arShape);arGeo.rotateX(Math.PI/2);
+const AR=new THREE.Mesh(arGeo,new THREE.MeshBasicMaterial({color:'#1d5fae',transparent:true,opacity:.9,depthWrite:false,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:-6,polygonOffsetUnits:-6}));AR.renderOrder=5;AR.visible=false;scene.add(AR);
+const rgGeo=new THREE.RingGeometry(.85,1.1,40);rgGeo.rotateX(-Math.PI/2);
+const RG=new THREE.Mesh(rgGeo,new THREE.MeshBasicMaterial({color:'#1d5fae',transparent:true,opacity:.85,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-6,polygonOffsetUnits:-6}));RG.renderOrder=5;RG.visible=false;scene.add(RG);
+const EA=document.createElement('div');EA.className='edgearr';EA.innerHTML='<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#1d5fae" stroke="#fff" stroke-width="3"/><path d="M14 24h17M24 15l9 9-9 9" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>';view.appendChild(EA);
+const ZM=[1,1.55,2.2];
+const UNIT_M=50;
+function nearest(list,f=()=>true){let b=null,bd=1e9;for(const o of list){if(!f(o))continue;const d=Math.hypot(o.x-G.x,o.z-G.z);if(d<bd){bd=d;b=o}}return b}
+function target(){
+  if(G.kind==='tuk'){if(G.state==='queue')return null;
+    if(G.tank<=18&&!G.ride){const e=K.FUEL.end;return{x:e.x,z:e.z,n:'Petrol station',r:1.6,col:'#e39a27'}}
+    if(G.ride){const d=STOPS[G.ride.to];return{x:d.x,z:d.z,n:d.n,r:G.ride.kind?1.15:2.1,col:G.ride.kind?'#e07a3a':'#1d5fae'}}
+    const p=nearest(G.pass.map(p=>({x:STOPS[p.from].x,z:STOPS[p.from].z,p})));return p?{x:p.x,z:p.z,n:'Passenger at '+STOPS[p.p.from].n,r:1.9,col:'#1d5fae'}:null}
+  if(G.energy<30){const t=nearest(TROUGHS);return{x:t.x,z:t.z,n:'Water trough',r:1.8,col:'#8a6a48'}}
+  if(G.barrel<=0){const f=nearest(FILLS);return{x:f.x,z:f.z,n:'River fill point',r:1.8,col:'#3f8fd0'}}
+  const b=nearest(BUYERS,B=>B.dem>=1)||nearest(BUYERS);return{x:b.x,z:b.z,n:b.n,r:2.1,col:'#2e8b57',b}}
+function guide(dt,t){const T=G.on&&G.state==='play'?target():null;G.tgt=T;
+  if(!T||!G.arrow){AR.visible=RG.visible=false;EA.style.display='none';return}
+  const dx=T.x-G.x,dz=T.z-G.z,d=Math.hypot(dx,dz),ux=dx/(d||1),uz=dz/(d||1);
+  AR.visible=d>T.r;AR.material.color.set(T.col);const ax=G.x+ux*1.9,az=G.z+uz*1.9;AR.position.set(ax,h(ax,az)+.14,az);AR.rotation.y=Math.atan2(dx,dz);AR.scale.setScalar(1+Math.sin(t*5)*.06);
+  RG.visible=true;RG.material.color.set(T.col);RG.position.set(T.x,h(T.x,T.z)+.1,T.z);const k=T.r*(1+Math.sin(t*4)*.08);RG.scale.set(k,1,k);
+  TV.set(T.x,h(T.x,T.z)+.5,T.z).project(camera);const W=view.clientWidth,H=view.clientHeight;let sx=(TV.x+1)/2*W,sy=(1-TV.y)/2*H;const behind=TV.z>1;
+  const off=behind||sx<30||sx>W-30||sy<90||sy>H-30;
+  if(!off){EA.style.display='none';return}
+  let vx=sx-W/2,vy=sy-H/2;if(behind){vx=-vx;vy=-vy}const L=Math.hypot(vx,vy)||1;vx/=L;vy/=L;
+  const mx=W/2-40,my=H/2-60,s2=Math.min(Math.abs(vx)>1e-3?mx/Math.abs(vx):1e9,Math.abs(vy)>1e-3?my/Math.abs(vy):1e9);
+  EA.style.display='block';EA.style.left=(W/2+vx*s2)+'px';EA.style.top=(H/2+vy*s2+10)+'px';EA.style.transform='rotate('+Math.atan2(vy,vx)+'rad)';EA.querySelector('circle').setAttribute('fill',T.col)}
+const distTxt=T=>T?Math.max(10,Math.round(Math.hypot(T.x-G.x,T.z-G.z)*UNIT_M/10)*10).toLocaleString('en-US')+' m':'';
 function makeVehicle(kind){
   if(kind==='tuk'){const T=K.makeTuk('#d9a521');T.pass.g.visible=false;return{g:T.g,pass:T.pass,driver:T.driver}}
   const D=K.makeDonkey();const man=figure(3301,{woman:false,parent:D.g,scale:.87});man.g.position.set(0,.33,.14);K.sitPose(man,true);man.armL.rotation.x=man.armR.rotation.x=-.9;return{g:D.g,legs:D.legs,barrel:D.barrel,man}}
 function startJob(kind){if(G.on)return;if(VI>=0)endVisit();
-  Object.assign(G,{on:true,kind,state:'intro',time:180,money:0,fuel:0,fares:0,trips:0,spd:0,auto:null,pass:[],ride:null,barrel:0,sold:0,energy:100,act:0,sinceSpawn:0,nino:S().season>=4});
+  Object.assign(G,{on:true,kind,state:'intro',time:180,money:0,fuel:0,fares:0,trips:0,spd:0,auto:null,pass:[],ride:null,barrel:0,sold:0,energy:100,act:0,sinceSpawn:0,nino:S().season>=4,tank:50,zoom:G.zoom||2,arrow:G.arrow!==false,qWait:0,qDone:false});
   enterMode('gmode');controls.enabled=false;K.keyGrab=true;
   const start=kind==='tuk'?free(K.LIFE.stand.x,K.LIFE.stand.z+.6):free(FILLS[0].x+1,FILLS[0].z-1.2);
   veh=makeVehicle(kind);G.x=start.x;G.z=start.z;G.yaw=kind==='tuk'?Math.PI/2:Math.PI;placeVeh();
-  camera.position.set(G.x,9,G.z+11);controls.target.set(G.x,0,G.z);
+  const zm=ZM[G.zoom-1];camera.position.set(G.x,8.5*zm,G.z+10.5*zm);controls.target.set(G.x,0,G.z);
   hud=document.createElement('div');hud.className='ghud';view.appendChild(hud);toastEl=document.createElement('div');toastEl.className='gtoast';view.appendChild(toastEl);
-  const kb=document.createElement('div');kb.className='gkeys';kb.innerHTML='<b>Drive:</b> arrow keys or W A S D, or click the ground to drive there. <b>Esc</b> to leave.';view.appendChild(kb);G.kb=kb;
+  const kb=document.createElement('div');kb.className='gkeys';kb.innerHTML='<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span><b>Drive:</b> arrow keys or W A S D, or click the ground. <b>Esc</b> to leave.</span><span class="gzoom" style="flex-direction:row"><button type="button" data-z="-1" aria-label="Zoom in" title="Zoom in">+</button><button type="button" data-z="1" aria-label="Zoom out" title="Zoom out">−</button></span><button type="button" data-a class="gbtn">Hide arrow</button><button type="button" data-q class="gbtn"><b>Leave</b></button></div>';view.appendChild(kb);G.kb=kb;
+  kb.querySelectorAll('[data-z]').forEach(b=>b.onclick=()=>{G.zoom=Math.max(1,Math.min(3,G.zoom+(+b.dataset.z)))});kb.querySelector('[data-a]').onclick=e=>{G.arrow=!G.arrow;e.currentTarget.textContent=G.arrow?'Hide arrow':'Show arrow'};kb.querySelector('[data-q]').onclick=quitJob;
   if(kind==='tuk'){for(let k=0;k<3;k++)spawnPassenger();G.dpin=gpin('dest')}
   else{TRG.visible=QG.visible=true;G.fpins=FILLS.map(f=>{const p=gpin('fill');p.x=f.x;p.z=f.z;p.show=true;p.el.innerHTML='Fill here';return p});
     G.tpins=TROUGHS.map(t=>{const p=gpin('trough');p.x=t.x;p.z=t.z;p.dy=1;p.show=true;p.el.innerHTML='Water trough';return p});
@@ -255,8 +293,8 @@ function startJob(kind){if(G.on)return;if(VI>=0)endVisit();
   drawHud();
   const bh=K.safeWater('idp');
   const intro=kind==='tuk'?
-   '<h2>Tuk-tuk driver</h2><div class="sub">3 minutes. Goal: take home 25,000 SDG after fuel.</div><ul><li>Drive to a passenger waving at a stop, then slow down to let them in.</li><li>Take them to the stop shown on the map. Short trips pay 2,000 SDG, middle ones 3,000 SDG, long ones 5,000 SDG.</li><li>Fuel costs money for every metre you drive'+(G.nino?', and in this El Niño year it costs a third more':'')+'.</li><li>Passengers using a wheelchair or going to the health centre need you to stop right at the door.</li></ul><p>Fares are based on recent shared rides in Khartoum, where a short trip cost about 2,000 to 3,000 SDG.</p>'
-   :'<h2>Donkey water seller</h2><div class="sub">3 minutes. Goal: sell 4 barrels of water, about 20,000 SDG.</div><ul><li>Ride to the river and stop at a fill point to fill your barrel (11 jerrycans).</li><li>Sell by the jerrycan at the IDP site, the refugee camp, the host town and the returnee village, for 450 SDG each.</li><li>Your donkey gets tired. Stop at a water trough to rest it, or it slows down.</li></ul><p>'+(bh?'The solar borehole now gives free clean water at the IDP site, so fewer families there buy from carts.':'With no safe water nearby, many families depend on carts like yours.')+' A barrel sells for about 5,000 SDG, as in recent reports from Khartoum.</p>';
+   '<h2>Tuk-tuk driver</h2><div class="sub">3 minutes. Goal: take home 25,000 SDG after fuel.</div><ul><li>Drive to a passenger waving at a stop, then slow down to let them in.</li><li>Take them to the stop shown on the map. Short trips pay 2,000 SDG, middle ones 3,000 SDG, long ones 5,000 SDG.</li><li>You start with half a tank. When it runs low, the arrow takes you to the petrol station: join the back of the queue, wait your turn, and pay to fill up'+(G.nino?'. In this El Niño year the queue is longer and fuel costs a third more':'')+'. If the tank runs dry, you push the tuk-tuk at walking pace.</li><li>Follow the blue arrow. It points to the next passenger, then to their stop.</li><li>Passengers using a wheelchair or going to the health centre need you to stop right at the door.</li></ul><p>Fares are based on recent shared rides in Khartoum, where a short trip cost about 2,000 to 3,000 SDG.</p>'
+   :'<h2>Donkey water seller</h2><div class="sub">3 minutes. Goal: sell 4 barrels of water, about 20,000 SDG.</div><ul><li>Ride to the river and stop at a fill point to fill your barrel (11 jerrycans).</li><li>Sell by the jerrycan at the IDP site, the refugee camp, the host town and the returnee village, for 450 SDG each.</li><li>Your donkey gets tired. Stop at a water trough to rest it, or it slows down.</li><li>Follow the arrow: to the river when the barrel is empty, then to the places where families are waiting to buy.</li></ul><p>'+(bh?'The solar borehole now gives free clean water at the IDP site, so fewer families there buy from carts.':'With no safe water nearby, many families depend on carts like yours.')+' A barrel sells for about 5,000 SDG, as in recent reports from Khartoum.</p>';
   card(intro+'<div class="foot"><button class="btn" data-g="leave">Not now</button><button class="btn btn-primary" data-g="go">Start</button></div>',{go:()=>{G.state='play'},leave:quitJob})}
 function spawnPassenger(){const used=new Set(G.pass.map(p=>p.from).concat(G.ride?[G.ride.from]:[]));const opts=STOPS.map((s,i)=>i).filter(i=>!used.has(i));if(!opts.length)return;
   const from=opts[Math.floor(Math.random()*opts.length)];let to;do{to=Math.floor(Math.random()*STOPS.length)}while(to===from);
@@ -268,20 +306,29 @@ function spawnPassenger(){const used=new Set(G.pass.map(p=>p.from).concat(G.ride
   G.pass.push({from,to,fare,kind,f,pin,wave:Math.random()*6})}
 function placeVeh(){veh.g.position.set(G.x,h(G.x,G.z),G.z);veh.g.rotation.y=G.yaw}
 function drawHud(){if(!hud)return;const t=Math.max(0,G.time),mm=Math.floor(t/60),ss=String(Math.floor(t%60)).padStart(2,'0');
-  let task='',goal,pct;
-  if(G.kind==='tuk'){const net=G.fares-G.fuel;goal='<small>Take-home</small><b>'+fmt(net)+' SDG</b><span class="bar"><i style="width:'+Math.max(0,Math.min(100,net/250))+'%"></i></span>';
-    task=G.ride?('Take your passenger to <b style="display:inline">'+esc(STOPS[G.ride.to].n)+'</b>'+(G.ride.kind?' and stop right at the door':'')):'Pick up a passenger waiting at a stop';
-    hud.innerHTML='<div class="gc"><small>Time</small><b>'+mm+':'+ss+'</b></div><div class="gc goal">'+goal+'</div><div class="gc"><small>Fares</small><b>'+fmt(G.fares)+'</b></div><div class="gc"><small>Fuel</small><b>−'+fmt(G.fuel)+'</b></div><div class="gc task"><small>Now</small><b>'+task+'</b></div><button class="quit" type="button">Leave</button>'}
-  else{const brl=G.sold/11;goal='<small>Barrels sold</small><b>'+brl.toFixed(1)+' of 4</b><span class="bar"><i style="width:'+Math.min(100,brl/4*100)+'%"></i></span>';
-    task=G.barrel>0?'Sell water: '+G.barrel+(G.barrel===1?' jerrycan':' jerrycans')+' left in the barrel':'Your barrel is empty. Ride to the river and fill it';if(G.energy<30)task='Your donkey is tired. Rest it at a water trough';
-    hud.innerHTML='<div class="gc"><small>Time</small><b>'+mm+':'+ss+'</b></div><div class="gc goal">'+goal+'</div><div class="gc"><small>Earned</small><b>'+fmt(G.money)+' SDG</b></div><div class="gc"><small>Donkey</small><b>'+Math.round(G.energy)+'%</b></div><div class="gc task"><small>Now</small><b>'+task+'</b></div><button class="quit" type="button">Leave</button>'}
-  hud.querySelector('.quit').onclick=quitJob}
+  const T=G.tgt,dist=distTxt(T);let task,cards='';
+  if(G.kind==='tuk'){const net=G.fares-G.fuel;
+    if(G.state==='queue')task='Waiting in the fuel queue: '+Math.ceil(G.qWait)+' s';
+    else if(G.tank<=0)task='Out of fuel. Push the tuk-tuk to the petrol station'+(dist&&!G.ride?', '+dist:'');
+    else if(G.tank<=18&&!G.ride)task='Fuel is low. Go to the petrol station, '+dist;
+    else if(G.ride)task='Take your passenger to '+esc(STOPS[G.ride.to].n)+', '+dist+(G.ride.kind?'. Stop right at the door':'');
+    else task=T?'Pick up the passenger waiting at '+esc(T.n.replace('Passenger at ',''))+', '+dist:'Wait for a passenger';
+    cards='<div class="gc goal"><small>Take-home</small><b>'+fmt(net)+' SDG</b><span class="bar"><i style="width:'+Math.max(0,Math.min(100,net/250))+'%"></i></span></div><div class="gc"><small>Fares</small><b>'+fmt(G.fares)+'</b></div><div class="gc fuel'+(G.tank<=18?' low':'')+'"><small>Tank</small><b>'+Math.round(G.tank)+'%</b><span class="bar"><i style="width:'+G.tank+'%"></i></span></div><div class="gc"><small>Fuel bought</small><b>−'+fmt(G.fuel)+'</b></div>'}
+  else{const brl=G.sold/11;
+    if(G.energy<30)task='Your donkey is tired. Rest it at the water trough, '+dist;
+    else if(G.barrel<=0)task='Your barrel is empty. Fill it at the river, '+dist;
+    else if(T&&T.b)task=T.b.dem>=1?'Sell water at '+esc(T.b.n)+': '+Math.floor(T.b.dem)+(Math.floor(T.b.dem)===1?' family':' families')+' waiting, '+dist:'No one needs water right now. Try another place';
+    else task='Sell your water';
+    task+=' ('+G.barrel+(G.barrel===1?' jerrycan':' jerrycans')+' left)';
+    cards='<div class="gc goal"><small>Barrels sold</small><b>'+brl.toFixed(1)+' of 4</b><span class="bar"><i style="width:'+Math.min(100,brl/4*100)+'%"></i></span></div><div class="gc"><small>Earned</small><b>'+fmt(G.money)+' SDG</b></div><div class="gc fuel'+(G.energy<30?' low':'')+'"><small>Donkey</small><b>'+Math.round(G.energy)+'%</b><span class="bar"><i style="width:'+G.energy+'%"></i></span></div>'}
+  hud.innerHTML='<div class="gc"><small>Time</small><b>'+mm+':'+ss+'</b></div>'+cards+'<div class="gc task"><small>Now</small><b>'+task+'</b></div>';
+}
 function quitJob(){if(!G.on)return;cleanup();exitMode()}
 function cleanup(){G.on=false;G.state='off';if(veh){veh.g.parent&&veh.g.parent.remove(veh.g);veh=null}for(const p of G.pass||[])p.f.g.parent&&p.f.g.parent.remove(p.f.g);G.pass=[];G.ride=null;
-  gpins.forEach(p=>p.el.remove());gpins=[];hud&&hud.remove();hud=null;toastEl&&toastEl.remove();toastEl=null;G.kb&&G.kb.remove();TRG.visible=QG.visible=false;document.querySelectorAll('.gcard').forEach(c=>c.remove());for(const k in keys)keys[k]=false}
+  gpins.forEach(p=>p.el.remove());gpins=[];hud&&hud.remove();hud=null;toastEl&&toastEl.remove();toastEl=null;G.kb&&G.kb.remove();TRG.visible=QG.visible=false;AR.visible=RG.visible=false;EA.style.display='none';document.querySelectorAll('.gcard').forEach(c=>c.remove());for(const k in keys)keys[k]=false}
 function finish(){G.state='done';const kind=G.kind;let html;
   if(kind==='tuk'){const net=G.fares-G.fuel,ok=net>=25000;
-    html='<h2>'+(ok?'A good day on the road':'A hard day on the road')+'</h2><div class="sub">Tuk-tuk driver, 3 minutes</div><div class="big">'+fmt(net)+' SDG</div><div class="res"><span>Trips</span><span>'+G.trips+'</span><span>Fares</span><span>'+fmt(G.fares)+'</span><span>Fuel'+(G.nino?' (El Niño prices)':'')+'</span><span>−'+fmt(G.fuel)+'</span><span>Goal: 25,000 SDG</span><span class="'+(ok?'ok':'no')+'">'+(ok?'Met':'Not met')+'</span></div>'}
+    html='<h2>'+(ok?'A good day on the road':'A hard day on the road')+'</h2><div class="sub">Tuk-tuk driver, 3 minutes</div><div class="big">'+fmt(net)+' SDG</div><div class="res"><span>Trips</span><span>'+G.trips+'</span><span>Fares</span><span>'+fmt(G.fares)+'</span><span>Fuel bought'+(G.nino?' (El Niño prices)':'')+'</span><span>−'+fmt(G.fuel)+'</span><span>Goal: 25,000 SDG</span><span class="'+(ok?'ok':'no')+'">'+(ok?'Met':'Not met')+'</span></div>'}
   else{const brl=G.sold/11,ok=brl>=4;
     html='<h2>'+(ok?'Four barrels sold':'Not enough water sold')+'</h2><div class="sub">Donkey water seller, 3 minutes</div><div class="big">'+fmt(G.money)+' SDG</div><div class="res"><span>Jerrycans sold</span><span>'+G.sold+'</span><span>Barrels</span><span>'+brl.toFixed(1)+'</span><span>Goal: 4 barrels</span><span class="'+(ok?'ok':'no')+'">'+(ok?'Met':'Not met')+'</span></div>'+
       (K.safeWater('idp')?'<p>Families at the IDP site now get free clean water from the borehole, so fewer bought from you. Cleaner water for everyone means less income for water sellers, unless they find other work.</p>':'<p>With no safe water at the IDP site, families there had to buy from carts like yours, often untreated river water.</p>')}
@@ -290,14 +337,17 @@ function finish(){G.state='done';const kind=G.kind;let html;
   html+='<div class="foot"><button class="btn" data-g="map">Back to the map</button><button class="btn btn-primary" data-g="again">Play again</button></div>';
   card(html,{map:quitJob,again:()=>{const k=kind;cleanup();exitMode();setTimeout(()=>startJob(k),120)}})}
 const tmpV=new THREE.Vector2();
+function camFollow(dt){const zm=ZM[G.zoom-1];controls.target.lerp(TV.set(G.x,0,G.z),Math.min(1,dt*4));camera.position.lerp(TV.set(G.x,8.5*zm,G.z+10.5*zm),Math.min(1,dt*3));camera.lookAt(controls.target)}
 function stepGame(dt){
+  if(G.state==='queue'){G.time-=dt;G.qWait-=dt;G.spd=0;placeVeh();if(G.qWait<=0){const cost=Math.round((100-G.tank)*50*(G.nino?1.35:1)/10)*10;G.fuel+=cost;G.tank=100;G.state='play';G.qDone=true;toast('Tank full. You paid '+fmt(cost)+' SDG for fuel.','good')}
+    if(G.time<=0){G.time=0;drawHud();finish();return}camFollow(dt);G.hudT=(G.hudT||0)+dt;if(G.hudT>.25){G.hudT=0;drawHud()}return}
   if(G.state!=='play'){if(veh)placeVeh();return}
   G.time-=dt;if(G.time<=0){G.time=0;drawHud();finish();return}
   // input
   let f=(keys.arrowup||keys.w?1:0)-(keys.arrowdown||keys.s?1:0),turn=(keys.arrowleft||keys.a?1:0)-(keys.arrowright||keys.d?1:0);
   if(G.auto){const dx=G.auto.x-G.x,dz=G.auto.z-G.z,d=Math.hypot(dx,dz);if(d<.5){G.auto=null}else{let da=Math.atan2(dx,dz)-G.yaw;da=Math.atan2(Math.sin(da),Math.cos(da));turn=Math.max(-1,Math.min(1,da*2.2));f=Math.abs(da)>1.6?.3:(d<1.5?.5:1)}}
   const onRoad=K.roadD(G.x,G.z)<1.1;
-  let max=G.kind==='tuk'?(onRoad?4.6:2.7):2.3*(G.energy<30?.5:1);
+  let max=G.kind==='tuk'?(G.tank<=0?.7:(onRoad?4.6:2.7)):2.3*(G.energy<30?.5:1);
   const want=f>0?f*max:(f<0?-max*.4:0);G.spd+=(want-G.spd)*Math.min(1,dt*(f?1.8:3.2));
   G.yaw+=turn*dt*2.4*(Math.min(1,Math.abs(G.spd)/1.2)*.8+.2)*(G.spd<-.05?-1:1);
   const ox=G.x,oz=G.z;tmpV.set(G.x+Math.sin(G.yaw)*G.spd*dt,G.z+Math.cos(G.yaw)*G.spd*dt);K.pushOut(tmpV);K.pushOut(tmpV);
@@ -307,7 +357,8 @@ function stepGame(dt){
   if(veh.legs){veh.phase=(veh.phase||0)+moved*7;veh.legs.forEach((lg,j)=>lg.rotation.x=moved>1e-4?Math.sin(veh.phase+(j%2?Math.PI:0)+(j>1?Math.PI/2:0))*.5:0)}
   else veh.g.rotation.z=moved>1e-4?Math.sin(performance.now()/60)*.01:0;
   const slow=Math.abs(G.spd)<.7;
-  if(G.kind==='tuk'){G.fuel+=moved*16*(G.nino?1.35:1);
+  if(G.kind==='tuk'){G.tank=Math.max(0,G.tank-moved*.34);
+    {const e=K.FUEL.end,de=Math.hypot(e.x-G.x,e.z-G.z);if(de>3)G.qDone=false;if(!G.qDone&&de<2&&slow&&G.tank<70){G.state='queue';G.qWait=G.nino?16:10;toast('You join the back of the fuel queue.')}}
     for(const p of G.pass){p.wave+=dt*6;p.f.armR.rotation.x=-2.6+Math.sin(p.wave)*.4;p.f.g.rotation.y=Math.atan2(G.x-p.f.g.position.x,G.z-p.f.g.position.z)}
     if(!G.ride){const p=G.pass.find(p=>Math.hypot(STOPS[p.from].x-G.x,STOPS[p.from].z-G.z)<1.9);if(p&&slow){G.ride=p;G.pass=G.pass.filter(q=>q!==p);p.f.g.parent.remove(p.f.g);p.pin.show=false;p.pin.el.remove();gpins=gpins.filter(q=>q!==p.pin);veh.pass.g.visible=true;
         toast((p.kind==='chair'?'A passenger who uses a wheelchair':(p.kind==='sick'?'A sick passenger':'A passenger'))+' gets in. To '+STOPS[p.to].n+'.');G.sinceSpawn=0}}
@@ -327,7 +378,7 @@ function stepGame(dt){
     for(const B of BUYERS){B.acc+=dt*B.rate;if(B.acc>=1&&B.dem<12){B.dem++;B.acc=0}B.q.forEach((b,k)=>b.g.visible=k<Math.min(3,Math.floor(B.dem)));B.pin.el.innerHTML=esc(B.n)+' <small>'+Math.floor(B.dem)+' want water</small>'}
     if(veh.barrel)veh.barrel.material.color.set(G.barrel>0?'#3e7fc2':'#8b9099')}
   // camera follows
-  const cx=G.x,cz=G.z;controls.target.lerp(TV.set(cx,0,cz),Math.min(1,dt*4));camera.position.lerp(TV.set(cx,8.5,cz+10.5),Math.min(1,dt*3));camera.lookAt(controls.target);
+  camFollow(dt);
   if(toastT>0){toastT-=dt;if(toastT<=0&&toastEl)toastEl.classList.remove('on')}
   G.hudT=(G.hudT||0)+dt;if(G.hudT>.25){G.hudT=0;drawHud()}}
 
@@ -336,6 +387,7 @@ K.hooks.push((dt,t)=>{
   stepFly(dt);
   const dist=camera.position.distanceTo(controls.target);DET.visible=VI>=0||G.on||dist<22;
   if(G.on)stepGame(dt);
+  guide(dt,t);
   for(const p of pins){const s=project(p.x,h(p.x,p.z)+p.dy,p.z);if(!s){p.el.style.display='none';continue}p.el.style.display='';p.el.style.left=s.x+'px';p.el.style.top=s.y+'px'}
   for(const p of gpins){if(!p.show){p.el.style.display='none';continue}const s=project(p.x,h(p.x,p.z)+p.dy,p.z);if(!s){p.el.style.display='none';continue}p.el.style.display='';p.el.style.left=s.x+'px';p.el.style.top=s.y+'px'}
 });
