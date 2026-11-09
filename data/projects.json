@@ -2614,6 +2614,67 @@
    "ref": "SD-059-UNHCR-24-27"
   },
   {
+   "id": "unhcr-prospects-durable-solutions-window",
+   "name": "PROSPECTS Durable Solutions Window",
+   "description": "Support to MPCCs, community engagement for social cohesion, equitable accesss and peaceful coexistence and access to restored water services",
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
+   "lead": "UNHCR",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [
+    "ILO",
+    "UNICEF",
+    "JHSO"
+   ],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Khartoum"
+   ],
+   "localities": [],
+   "criteria": [
+    2
+   ],
+   "coordination": "Durable Solutions Working Group (DSWG)",
+   "start": "2026-09-01",
+   "end": "2027-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 1200000,
+   "share": 1,
+   "dsFunding": 1200000,
+   "donor": "Netherlands",
+   "donors": [
+    {
+     "name": "Netherlands",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": 1200,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 1200
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": true,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": "Also supporting 3 MPCCs in Khartoum.",
+   "photos": [],
+   "leadName": "UNHCR, United Nations High Commissioner for Refugees",
+   "ref": "SD-060-UNHCR-26-27"
+  },
+  {
    "id": "unhcr-prospects-project-protection-education-economic-inclusion-and-cr",
    "name": "PROSPECTS PROJECT-Protection, Education, Economic Inclusion and Critical Infrastructure",
    "description": null,
