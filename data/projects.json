@@ -2543,6 +2543,77 @@
    "ref": "SD-058-UNHCR-25-27"
   },
   {
+   "id": "unhcr-multi-sectoral-assistance-in-sudan",
+   "name": "Multi-sectoral assistance in Sudan",
+   "description": "Provision of protection (GBV and Child Protection case management), Livelihoods, rehabilitation of WASH infrastucture (latrines), registration and documentation",
+   "interventionTypes": [
+    "Livelihoods and cash-for-work",
+    "Basic services rehabilitation",
+    "Legal aid and documentation"
+   ],
+   "lead": "UNHCR",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [
+    "ILO",
+    "UNICEF",
+    "Ministry of Education - Kassala",
+    "WHH",
+    "JHSO",
+    "CDF",
+    "ADRA",
+    "Water Environment and Sanitation Project - White Nile"
+   ],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "White Nile",
+    "Kassala"
+   ],
+   "localities": [],
+   "criteria": [
+    2,
+    3,
+    5
+   ],
+   "coordination": "Durable Solutions Working Group (DSWG)",
+   "start": "2024-01-01",
+   "end": "2027-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 8266165,
+   "share": 0.38,
+   "dsFunding": 3141142.7,
+   "donor": "Netherlands",
+   "donors": [
+    {
+     "name": "Netherlands",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": null
+   },
+   "peopleV": 2,
+   "peopleUnknown": true,
+   "breakdownUnknown": false,
+   "femaleUnknown": true,
+   "pwdUnknown": true,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "photos": [],
+   "leadName": "UNHCR, United Nations High Commissioner for Refugees",
+   "ref": "SD-059-UNHCR-24-27"
+  },
+  {
    "id": "unhcr-prospects-project-protection-education-economic-inclusion-and-cr",
    "name": "PROSPECTS PROJECT-Protection, Education, Economic Inclusion and Critical Infrastructure",
    "description": null,
