@@ -2418,6 +2418,65 @@
    "ref": "SD-040-UNFPA-26-27"
   },
   {
+   "id": "unhcr-multi-sector-assistance-to-forcibly-displaced-and-host-communiti",
+   "name": "Multi-sector assistance to forcibly displaced and host communities in Sudan",
+   "description": "Rehabilitation of schools, health facilities and WASH infrastructures",
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
+   "lead": "UNHCR",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [
+    "WHH"
+   ],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Kassala"
+   ],
+   "localities": [],
+   "criteria": [
+    2
+   ],
+   "coordination": "Durable Solutions Working Group (DSWG)",
+   "start": "2025-10-01",
+   "end": "2027-09-30",
+   "reportedStatus": "Ongoing",
+   "budget": 2500000,
+   "share": 1,
+   "dsFunding": 2500000,
+   "donor": "Kuwait Development Fund for Arab Economic Development",
+   "donors": [
+    {
+     "name": "Kuwait Development Fund for Arab Economic Development",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": 361707,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 361707
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": true,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "photos": [],
+   "leadName": "UNHCR, United Nations High Commissioner for Refugees",
+   "ref": "SD-058-UNHCR-25-27"
+  },
+  {
    "id": "unhcr-prospects-project-protection-education-economic-inclusion-and-cr",
    "name": "PROSPECTS PROJECT-Protection, Education, Economic Inclusion and Critical Infrastructure",
    "description": null,
