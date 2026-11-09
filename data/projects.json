@@ -2580,18 +2580,19 @@
   },
   {
    "id": "unhcr-sudan-eu-igad-platform-programme-kassala-state",
-   "name": "Sudan EU IGAD Platform programme, Kassala State",
-   "description": null,
-   "interventionTypes": [],
+   "name": "Regional Programme on Climate Action and Urban Interventions in Response to the Sudan Regional Crisis",
+   "description": "Increase livelihoods opportunities, strengthening WASH systems, solarization of public facilities, and grants to FDPLOs",
+   "interventionTypes": [
+    "Livelihoods and cash-for-work",
+    "Basic services rehabilitation"
+   ],
    "lead": "UNHCR",
    "orgType": "UN agency",
    "leadership": [],
    "partners": [
     "UN-Habitat"
    ],
-   "partnerTypes": [
-    "UN agency"
-   ],
+   "partnerTypes": [],
    "nationwide": false,
    "states": [
     "Kassala"
@@ -2604,24 +2605,41 @@
     5
    ],
    "coordination": "Durable Solutions Working Group (DSWG)",
-   "start": "2026-06-01",
-   "end": "2027-06-30",
+   "start": "2026-04-01",
+   "end": "2028-08-31",
    "reportedStatus": "Ongoing",
-   "budget": null,
-   "share": null,
-   "dsFunding": null,
-   "donor": null,
+   "budget": 2441861,
+   "share": 1,
+   "dsFunding": 2441861,
+   "donor": "EU-INTPA",
+   "donors": [
+    {
+     "name": "EU-INTPA",
+     "amount": null
+    }
+   ],
    "people": {
-    "total": null,
+    "total": 112757,
     "idps": null,
     "returnees": null,
     "refugees": null,
     "host": null,
-    "other": null
+    "other": null,
+    "unspec": 112757
    },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": true,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
    "remarks": null,
    "photos": [],
-   "ref": "SD-036-UNHCR-26-27"
+   "leadName": "UNHCR, United Nations High Commissioner for Refugees",
+   "ref": "SD-036-UNHCR-26-28"
   },
   {
    "id": "unhcr-unhcr-project-funded-by-mastercard-foundation",
