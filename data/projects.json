@@ -2491,6 +2491,80 @@
    "remarks": null,
    "photos": [],
    "ref": "SD-031-UNHCR-26-30"
+  },
+  {
+   "id": "wvi-cash-and-food-assistance-program-and-nutrition",
+   "name": "Cash and food assistance program and nutrition",
+   "description": null,
+   "interventionTypes": [
+    "Livelihoods and cash-for-work",
+    "Social cohesion and peacebuilding",
+    "Data, evidence and preparedness"
+   ],
+   "lead": "WVI",
+   "orgType": "International NGO",
+   "leadership": [],
+   "partners": [
+    "WVI"
+   ],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "East Darfur"
+   ],
+   "localities": [
+    "Abu Jabrah",
+    "Abu Karinka",
+    "Ad Du'ayn",
+    "Adila",
+    "Al Firdous",
+    "Assalaya",
+    "Bahr Al Arab",
+    "Shia'ria",
+    "Yassin"
+   ],
+   "criteria": [
+    2,
+    3
+   ],
+   "coordination": null,
+   "start": "2026-05-01",
+   "end": "2026-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 400000000,
+   "share": 1,
+   "dsFunding": 400000000,
+   "donor": "230",
+   "donors": [
+    {
+     "name": "230",
+     "amount": 400000000
+    }
+   ],
+   "people": {
+    "total": 112000,
+    "idps": 85000,
+    "returnees": 0,
+    "refugees": 27000,
+    "host": null,
+    "other": null,
+    "unspec": null
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": false,
+   "femaleUnknown": true,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "photos": [
+    "assets/photos/SD-056-1.jpg"
+   ],
+   "leadName": "WVI, World Vision International",
+   "ref": "SD-056-WVI-26-26"
   }
  ]
 }
