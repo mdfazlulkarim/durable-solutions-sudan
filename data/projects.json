@@ -2418,6 +2418,72 @@
    "ref": "SD-040-UNFPA-26-27"
   },
   {
+   "id": "unhcr-unhcr-project-funded-by-mastercard-foundation",
+   "name": "From Displacement to Opportunity: Building Self-Reliant and Resilient Communities in Sudan through Equitable Education, Dignified Livelihoods, and Empowered Advocacy",
+   "description": "Grants to Forcibly Displaced Persons-led Organisations (FDPLOs), increase access to secondary & tertiary education, increase access to livelihoods opportunities and support refugee-inclusive policies at the national and regional levels",
+   "interventionTypes": [
+    "Livelihoods and cash-for-work",
+    "Social cohesion and peacebuilding"
+   ],
+   "lead": "UNHCR",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [
+    "CDF",
+    "ADD",
+    "JHSO",
+    "WHH",
+    "HFDO",
+    "WVI",
+    "SORR"
+   ],
+   "partnerTypes": [],
+   "nationwide": true,
+   "states": [],
+   "localities": [],
+   "criteria": [
+    2,
+    3,
+    7
+   ],
+   "coordination": "Durable Solutions Working Group (DSWG)",
+   "start": "2025-04-01",
+   "end": "2030-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 25740000,
+   "share": 0.73,
+   "dsFunding": 18790200,
+   "donor": "The Mastercard Foundation",
+   "donors": [
+    {
+     "name": "The Mastercard Foundation",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": 64332,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 64332
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": true,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": "Total number of beneficiaries is for students supported through the education component and livelihoods component only. The project also aims to support 50 FDPLOs through grants and capacity building.",
+   "photos": [],
+   "leadName": "UNHCR, United Nations High Commissioner for Refugees",
+   "ref": "SD-031-UNHCR-25-30"
+  },
+  {
    "id": "unhcr-multi-sector-assistance-to-forcibly-displaced-and-host-communiti",
    "name": "Multi-sector assistance to forcibly displaced and host communities in Sudan",
    "description": "Rehabilitation of schools, health facilities and WASH infrastructures",
@@ -2640,61 +2706,6 @@
    "photos": [],
    "leadName": "UNHCR, United Nations High Commissioner for Refugees",
    "ref": "SD-036-UNHCR-26-28"
-  },
-  {
-   "id": "unhcr-unhcr-project-funded-by-mastercard-foundation",
-   "name": "UNHCR project funded by Mastercard Foundation",
-   "description": null,
-   "interventionTypes": [],
-   "lead": "UNHCR",
-   "orgType": "UN agency",
-   "leadership": [],
-   "partners": [
-    "CDF",
-    "ADD",
-    "JHSO",
-    "WHH"
-   ],
-   "partnerTypes": [
-    "National NGO",
-    "National NGO",
-    "National NGO",
-    "International NGO"
-   ],
-   "nationwide": false,
-   "states": [
-    "Blue Nile",
-    "Gedaref",
-    "Kassala",
-    "Khartoum",
-    "Northern",
-    "White Nile"
-   ],
-   "localities": [],
-   "criteria": [
-    2,
-    3,
-    7
-   ],
-   "coordination": "Durable Solutions Working Group (DSWG)",
-   "start": "2026-01-01",
-   "end": "2030-12-31",
-   "reportedStatus": "Ongoing",
-   "budget": null,
-   "share": null,
-   "dsFunding": null,
-   "donor": "Mastercard Foundation",
-   "people": {
-    "total": null,
-    "idps": null,
-    "returnees": null,
-    "refugees": null,
-    "host": null,
-    "other": null
-   },
-   "remarks": null,
-   "photos": [],
-   "ref": "SD-031-UNHCR-26-30"
   },
   {
    "id": "wvi-cash-and-food-assistance-program-and-nutrition",
