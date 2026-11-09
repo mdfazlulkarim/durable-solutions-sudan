@@ -263,6 +263,78 @@
    "ref": "SD-048-ADRA-25-27"
   },
   {
+   "id": "cdf-child-protection-and-access-to-specialized-essential-services-for-",
+   "name": "Child Protection and Access to Specialized Essential Services for Children",
+   "description": "Strengthening child protection and access to specialized essential services for children on the move in Shagarab refugee camp and vulnerable children in the host community of Wad Baou village, Kassala State.",
+   "interventionTypes": [
+    "Legal aid and documentation",
+    "Data, evidence and preparedness",
+    "Family reunification support"
+   ],
+   "lead": "CDF",
+   "orgType": "National NGO",
+   "leadership": [
+    "RLO"
+   ],
+   "partners": [
+    "CDF"
+   ],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Kassala"
+   ],
+   "localities": [
+    "Reifi Khashm Elgirba",
+    "Reifi Wad Elhilaiw"
+   ],
+   "criteria": [
+    1,
+    5,
+    6,
+    8
+   ],
+   "coordination": null,
+   "start": "2026-08-01",
+   "end": "2027-11-30",
+   "reportedStatus": "Ongoing",
+   "budget": 460000,
+   "share": 0.6,
+   "dsFunding": 276000,
+   "donor": "Donor 1",
+   "donors": [
+    {
+     "name": "Donor 1",
+     "amount": 460000
+    }
+   ],
+   "people": {
+    "total": 37000,
+    "idps": 5000,
+    "returnees": 6000,
+    "refugees": 20000,
+    "host": 6000,
+    "other": null,
+    "unspec": null
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": false,
+   "femaleUnknown": true,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "photos": [
+    "assets/photos/SD-055-1.jpg",
+    "assets/photos/SD-055-2.jpg"
+   ],
+   "leadName": "CDF, Child Development Foundation",
+   "ref": "SD-055-CDF-26-27"
+  },
+  {
    "id": "cdf-strengthening-the-resilience-of-idps-refugees-and-vulnerable-host-",
    "name": "Strengthening the resilience of IDPs, refugees and vulnerable host communities in Eastern Sudan",
    "description": "The project implemented in New Halfa localitiy and targeting Refugees,  IDPs and hosting communities through the UNDP partnership and Swiss agency for development",
