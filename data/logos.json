@@ -4,6 +4,11 @@
   "mark": "assets/img/logos/ADRA-mark.jpg",
   "name": "Adventist Development and Relief Agency"
  },
+ "CDF": {
+  "full": "assets/img/logos/CDF.jpg",
+  "mark": "assets/img/logos/CDF-mark.jpg",
+  "name": "Child Development Foundation"
+ },
  "DRC": {
   "full": "assets/img/logos/DRC.jpg",
   "mark": "assets/img/logos/DRC-mark.jpg",
