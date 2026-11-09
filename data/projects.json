@@ -2465,6 +2465,61 @@
    "ref": "SD-011-UNHCR-25-27"
   },
   {
+   "id": "unhcr-provision-of-drinking-water-to-conflict-affected-communities-in-",
+   "name": "Provision of drinking water to conflict-affected communities in Sudan",
+   "description": "Construction and Rehabilitation of WASH infrastructures",
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
+   "lead": "UNHCR",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": true,
+   "states": [],
+   "localities": [],
+   "criteria": [
+    2
+   ],
+   "coordination": "WASH Cluster",
+   "start": "2026-01-01",
+   "end": "2028-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 10000000,
+   "share": 1,
+   "dsFunding": 10000000,
+   "donor": "Saudi Fund for Development",
+   "donors": [
+    {
+     "name": "Saudi Fund for Development",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": 856000,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 856000
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": true,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "photos": [],
+   "leadName": "UNHCR, United Nations High Commissioner for Refugees",
+   "ref": "SD-057-UNHCR-26-28"
+  },
+  {
    "id": "unhcr-sudan-eu-igad-platform-programme-kassala-state",
    "name": "Sudan EU IGAD Platform programme, Kassala State",
    "description": null,
