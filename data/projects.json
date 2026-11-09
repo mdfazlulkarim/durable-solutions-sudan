@@ -2898,16 +2898,11 @@
    "start": "2026-05-01",
    "end": "2026-12-31",
    "reportedStatus": "Ongoing",
-   "budget": 400000000,
+   "budget": 400000,
    "share": 1,
-   "dsFunding": 400000000,
-   "donor": "230",
-   "donors": [
-    {
-     "name": "230",
-     "amount": 400000000
-    }
-   ],
+   "dsFunding": 400000,
+   "donor": null,
+   "donors": [],
    "people": {
     "total": 112000,
     "idps": 85000,
