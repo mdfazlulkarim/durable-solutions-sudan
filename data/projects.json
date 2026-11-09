@@ -2676,20 +2676,22 @@
   },
   {
    "id": "unhcr-prospects-project-protection-education-economic-inclusion-and-cr",
-   "name": "PROSPECTS PROJECT-Protection, Education, Economic Inclusion and Critical Infrastructure",
-   "description": null,
-   "interventionTypes": [],
+   "name": "PROSPECTS Inclusion Window",
+   "description": "Providing second learning opportunities, livelihoods opportunities, identity and legal status documentation, and providing integrated services through MPCCs",
+   "interventionTypes": [
+    "Livelihoods and cash-for-work",
+    "Legal aid and documentation"
+   ],
    "lead": "UNHCR",
    "orgType": "UN agency",
    "leadership": [],
    "partners": [
     "ILO",
-    "UNICEF"
+    "UNICEF",
+    "JHSO",
+    "ADRA"
    ],
-   "partnerTypes": [
-    "UN agency",
-    "UN agency"
-   ],
+   "partnerTypes": [],
    "nationwide": false,
    "states": [
     "Kassala",
@@ -2699,27 +2701,45 @@
    "criteria": [
     1,
     2,
-    3
+    3,
+    5
    ],
    "coordination": "Durable Solutions Working Group (DSWG)",
-   "start": "2025-01-01",
-   "end": "2027-06-30",
+   "start": "2026-05-01",
+   "end": "2027-12-31",
    "reportedStatus": "Ongoing",
-   "budget": 25000000,
-   "share": 0.9,
-   "dsFunding": 22000000,
-   "donor": "Government of the Netherlands",
+   "budget": 2100000,
+   "share": 1,
+   "dsFunding": 2100000,
+   "donor": "Netherlands",
+   "donors": [
+    {
+     "name": "Netherlands",
+     "amount": null
+    }
+   ],
    "people": {
-    "total": null,
+    "total": 6070,
     "idps": null,
     "returnees": null,
     "refugees": null,
     "host": null,
-    "other": null
+    "other": null,
+    "unspec": 6070
    },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": true,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
    "remarks": null,
    "photos": [],
-   "ref": "SD-011-UNHCR-25-27"
+   "leadName": "UNHCR, United Nations High Commissioner for Refugees",
+   "ref": "SD-011-UNHCR-26-27"
   },
   {
    "id": "unhcr-provision-of-drinking-water-to-conflict-affected-communities-in-",
