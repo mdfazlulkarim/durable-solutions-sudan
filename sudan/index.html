@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Durable Solutions Hub | Sudan</title>
+  <link rel="canonical" href="https://durablesolutionshub.org/sudan/">
+  <script>
+  /* Git copy of the Overview: this page is a copy of https://durablesolutionshub.org/sudan/ and every other link opens on the Hub */
+  (function () {
+    var HUB = "https://durablesolutionshub.org";
+    var BASE = location.pathname.replace(/\/sudan\/(index\.html)?$/, "");
+    function set(a, v) { if (a.getAttribute("href") !== v) a.setAttribute("href", v); }
+    function fix(a) {
+      var h = a.getAttribute("href");
+      if (!h || h.charAt(0) === "#" || /^(mailto:|tel:|javascript:)/i.test(h)) return;
+      var u; try { u = new URL(h, location.href); } catch (e) { return; }
+      if (u.origin !== location.origin) return;
+      var p = u.pathname.indexOf(BASE) === 0 ? u.pathname.slice(BASE.length) : u.pathname;
+      if (/^\/sudan\/(index\.html)?$/.test(p)) { set(a, u.hash || "./"); return; }
+      if (p.indexOf("/sudan/") === 0) set(a, HUB + p + u.search + u.hash);
+    }
+    function all(root) { (root.querySelectorAll ? root : document).querySelectorAll("a[href]").forEach(fix); if (root.matches && root.matches("a[href]")) fix(root); }
+    new MutationObserver(function (ms) { ms.forEach(function (m) { if (m.type === "attributes") fix(m.target); else m.addedNodes.forEach(function (n) { if (n.nodeType === 1) all(n); }); }); })
+      .observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ["href"] });
+    document.addEventListener("DOMContentLoaded", function () { all(document); });
+  })();
+  </script>
+
+<meta name="description" content="Durable solutions in Sudan: the latest displacement and return figures, the eight IASC criteria, stories of solutions, how the working groups coordinate, key documents and Solutions Mapping.">
+<link rel="icon" href="mapping/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<link rel="stylesheet" href="assets/hub/hub.css?v=20261109g">
+<script src="assets/hub/hub.js?v=20261109g"></script>
+<style>
+/* Layout: Durable Solutions Hub header, then hero banner, then one band per section (figures, solutions, criteria, states, stories, how we work, documents, dashboard, contact). Single light theme, matching the live site. */
+:root{
+  color-scheme: light;
+  --bg:#ffffff; --band:#f3f6f9; --ink:#1d2733; --ink2:#566170; --line:#d8dee5;
+  --navy:#1f4e79; --un:#009edb; --tint:#e8f5fc; --soft:#cfe6f5; --chip:#e3eef7;
+  --idp:#255faa; --ret:#0099d5; --track:#eef1f4; --warn:#fff4d6; --warn-ink:#6b5300;
+  --font:"Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --wrap:1480px; /* same width as Solutions Mapping */
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font)}
+img{max-width:100%;display:block}
+a{color:var(--idp)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--un);outline-offset:2px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+@media (min-width:641px){.wrap{padding-left:max(24px, env(safe-area-inset-left, 0px));padding-right:max(24px, env(safe-area-inset-right, 0px))}}
+h1,h2,h3,h4{margin:0;text-wrap:balance;line-height:1.2}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink2)}
+.src{font-size:12px;color:var(--ink2)}
+.num{font-variant-numeric:tabular-nums}
+
+/* Site header */
+.site{border-bottom:1px solid var(--line);background:var(--bg)}
+.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;padding-block:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
+.brand img{height:42px;width:auto}
+.brand .div{width:1px;height:34px;background:var(--line)}
+.brand .kick{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--idp)}
+.menu{display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px;font-size:15px;font-weight:500}
+.menu a{color:var(--ink);text-decoration:none}
+.menu a:hover{color:var(--un)}
+.menu a.go{background:var(--navy-bg,#1f4e79);color:#fff;padding:8px 14px}
+.menu a.go:hover{background:var(--idp-bg,var(--idp));color:#fff}
+@media (max-width:640px){.brand .div,.brand .kick{display:none}.menu{gap:6px 14px;font-size:14px}}
+
+/* Hero */
+.hero{position:relative;color:#fff;background:var(--navy-bg,#1f4e79);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:url("assets/img/hero.jpg");background-size:cover;background-position:70% 35%;opacity:1}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(31,78,121,.95) 0%, rgba(31,78,121,.86) 55%, rgba(31,78,121,.70) 100%)}
+.hero .wrap{position:relative;z-index:1;padding-block:56px 40px;display:flex;flex-direction:column;gap:14px}
+.hero .eyebrow{color:var(--soft)}
+.hero h1{font-size:clamp(32px,5vw,52px);font-weight:700;letter-spacing:-.01em}
+.hero p{margin:0;font-size:clamp(17px,2vw,20px);color:#eef6fb}
+.hero .credit{font-size:12px;color:var(--soft);margin-top:18px}
+.hero-rule{height:6px;background:var(--un)}
+
+/* Lead and in-page menu */
+.lead{font-size:clamp(17px,1.8vw,19px);color:var(--navy);margin:32px 0 20px}
+.subnav{position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;background:rgba(255,255,255,.96);backdrop-filter:blur(4px);border-block:1px solid var(--line)}
+.subnav .wrap{display:flex;gap:6px 18px;flex-wrap:wrap;padding-block:10px;font-size:14px;font-weight:500}
+.subnav a{text-decoration:none;color:var(--idp)}
+.subnav a:hover{color:var(--un)}
+@media (max-width:640px){.subnav .wrap{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none;gap:16px}.subnav .wrap::-webkit-scrollbar{display:none}}
+
+/* Sections */
+section{padding-block:48px}
+section.band{background:var(--band)}
+.sec-head{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.sec-head h2{font-size:clamp(26px,3vw,34px);color:var(--navy)}
+.sec-head h2::after{content:"";display:block;width:56px;height:4px;background:var(--un);margin-top:12px}
+.sec-head p{margin:0;color:var(--ink2)}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:960px){.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:1fr}}
+@media (max-width:640px){.grid4,.grid2{grid-template-columns:1fr}}
+.grid4>*,.grid3>*,.grid2>*{min-width:0}
+.ico{width:34px;height:34px;flex:none}
+.ico-lg{width:44px;height:44px;flex:none}
+
+/* Headline figures */
+.stat{background:var(--navy-bg,#1f4e79);color:#fff;padding:20px;display:flex;flex-direction:column;gap:8px}
+.stat .top{display:flex;align-items:center;gap:12px}
+.stat b{font-size:clamp(30px,3.4vw,40px);font-weight:700;line-height:1}
+.stat .lbl{font-weight:500}
+.stat .sub{font-size:14px;color:var(--soft)}
+.stat .src{color:var(--soft);margin-top:auto}
+.tile{background:var(--tint);border-top:4px solid var(--un);padding:18px;display:flex;flex-direction:column;gap:8px}
+.tile .top{display:flex;align-items:center;gap:10px}
+.tile b{font-size:30px;color:var(--un);line-height:1}
+.tile p{margin:0;font-size:15px}
+.tile .src{margin-top:auto}
+.group-lbl{margin:32px 0 12px}
+.sources{border-top:1px solid var(--line);margin-top:28px;padding-top:14px;font-size:13px;color:var(--ink2)}
+
+/* Charts */
+.chart{background:var(--bg);border:1px solid var(--line);padding:20px;display:flex;flex-direction:column;gap:10px;position:relative}
+.band .chart{background:var(--card)}
+.chart h3{font-size:18px;color:var(--navy)}
+.chart .sub{font-size:14px;color:var(--ink2);margin-top:-4px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:18px;height:3px;border-radius:2px;display:inline-block}
+.svgwrap{position:relative;overflow-x:auto}
+@media (max-width:640px){.svgwrap svg{min-width:620px}}
+.svgwrap svg{width:100%;height:auto;display:block;overflow:visible}
+.charts-row{margin-top:24px}
+.bars{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 12px;align-items:center;font-size:14px}
+.bars .lab{color:var(--ink);text-align:right;white-space:nowrap;display:flex;align-items:center;justify-content:flex-end;gap:8px}
+.bars .lab .flag{width:24px;height:18px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.12);flex:none}
+.bars .lab .bi{width:22px;height:22px;flex:none}
+.bars .row{display:flex;align-items:center;gap:8px;min-width:0;cursor:default}
+.bars .trk{flex:1;height:18px;position:relative;min-width:0}
+.bars .trk.t{background:var(--track)}
+.bars .fill{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0}
+.bars .val{font-weight:700;font-size:13px;white-space:nowrap;min-width:46px}
+@media (max-width:520px){.bars .lab{white-space:normal;text-align:left;grid-column:1/-1;margin-bottom:-6px}.bars{grid-template-columns:1fr}}
+.fly{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:7px 12px;align-items:center;font-size:14px}
+.fly .hd{font-weight:700;color:var(--ink)}
+.fly .hd.l{text-align:right}
+.fly .st{font-weight:700;text-align:center;white-space:nowrap}
+.fly .side{display:flex;align-items:center;gap:8px;min-width:0}
+.fly .side.l{flex-direction:row-reverse}
+.fly .bar{height:18px;flex:none}
+.fly .side.l .bar{border-radius:4px 0 0 4px;background:var(--idp-bg,var(--idp))}
+.fly .side.r .bar{border-radius:0 4px 4px 0;background:var(--ret)}
+.fly .v{font-weight:700;font-size:13px;white-space:nowrap}
+.fly .none{font-style:italic;color:var(--ink2);font-size:13px}
+.total{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--navy-bg,#1f4e79);color:#fff;padding:10px 14px;margin-top:12px;font-weight:500}
+#tip{position:fixed;z-index:20;pointer-events:none;background:var(--ink);color:#fff;font-size:13px;line-height:1.4;padding:8px 10px;border-radius:4px;max-width:260px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+
+/* Solutions */
+.quote{background:var(--tint);padding:24px 28px;font-size:clamp(18px,2vw,21px);font-style:italic;color:var(--navy);margin:0}
+.quote cite{display:block;font-size:13px;font-style:normal;color:var(--ink2);margin-top:12px}
+.pair{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:center}
+@media (max-width:820px){.pair{grid-template-columns:1fr}}
+.path{background:var(--bg);border-top:5px solid var(--un);padding:22px;display:flex;flex-direction:column;gap:10px}
+.band .path{background:var(--card)}
+.path h3{font-size:21px;color:var(--navy);display:flex;align-items:center;gap:10px}
+.path p{margin:0}
+.path .ins{border-top:1px solid var(--line);padding-top:10px;display:flex;flex-direction:column;gap:6px}
+.path .ins .eyebrow{color:var(--idp)}
+.note{font-style:italic;color:var(--ink2);margin:16px 0 0}
+.h3row{font-size:20px;color:var(--navy);margin:40px 0 16px}
+
+/* Criteria */
+.crit{background:var(--tint);border-top:4px solid var(--un);padding:18px;display:flex;flex-direction:column;gap:8px}
+.crit .top{display:flex;align-items:center;gap:10px}
+.crit .n{font-size:28px;font-weight:700;color:var(--un);line-height:1}
+.crit h3{font-size:17px;color:var(--navy)}
+.crit p{margin:0;font-size:14.5px}
+
+/* Stories */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;align-items:center}
+.chips .lbl{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);margin-right:4px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;font:500 14px var(--font);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--navy-bg,#1f4e79);border-color:var(--navy);color:#fff}
+.story{background:var(--card);display:flex;flex-direction:column;min-width:0;border:1px solid var(--line)}
+.story .ph{aspect-ratio:16/10;overflow:hidden;background:var(--track)}
+.story .ph img{width:100%;height:100%;object-fit:cover}
+.story .body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--idp);background:var(--chip);padding:3px 8px;border-radius:3px}
+.story h3{font-size:19px;color:var(--navy)}
+.story .meta{font-size:13px;color:var(--ink2)}
+.story p{margin:0;font-size:15px}
+.story blockquote{margin:4px 0 0;font-style:italic;color:var(--navy);font-size:17px}
+.story blockquote span{display:block;font-style:normal;font-size:13px;color:var(--ink2);margin-top:2px}
+.story .more{margin-top:auto;padding-top:6px;font-weight:700;font-size:14px}
+.story .credit{font-size:12px;color:var(--ink2);font-style:italic}
+.empty{color:var(--ink2);font-style:italic}
+
+/* How we work */
+.mini{background:var(--band);padding:20px;display:flex;flex-direction:column;gap:8px}
+.mini h3{font-size:22px;color:var(--navy);display:flex;align-items:center;gap:10px}
+.mini .full{font-size:13px;font-weight:700;color:var(--idp)}
+.mini p{margin:0;font-size:15px}
+.logos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line);margin-top:12px}
+.logos div{display:flex;align-items:center;justify-content:center;padding:10px;min-height:68px}
+.logos img{max-height:38px;width:auto}
+.logos img.tall{max-height:56px}
+@media (max-width:640px){.logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Documents */
+.docs{border-top:2px solid var(--navy);border-bottom:2px solid var(--navy)}
+.docs .grp{display:flex;align-items:center;gap:10px;background:var(--tint);padding:10px 14px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+.docs .grp img{width:20px;height:20px}
+.docs .row{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr) auto;gap:16px;padding:12px 14px;border-top:1px solid var(--line);align-items:center}
+.docs .row b{color:var(--navy);font-size:15px}
+.docs .row span{font-size:14.5px;color:var(--ink)}
+.docs .row a{font-weight:700;font-size:14px;white-space:nowrap}
+@media (max-width:700px){.docs .row{grid-template-columns:1fr;gap:4px}}
+
+/* Dashboard */
+.dash{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);border:2px solid var(--un)}
+@media (max-width:760px){.dash{grid-template-columns:1fr}}
+.dash .img{background:#f5f5f2;padding:18px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.dash .img img{max-height:360px;width:auto}
+.dash .img a{display:block}
+.dash .txt{background:var(--tint);padding:28px;display:flex;flex-direction:column;gap:14px;justify-content:center}
+.dash h3{font-size:24px;color:var(--navy)}
+.dash p{margin:0}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--navy-bg,#1f4e79);color:#fff;text-decoration:none;font-weight:700;padding:10px 18px;align-self:flex-start}
+.btn:hover{background:var(--idp-bg,var(--idp))}
+.dash .add{border-top:1px solid var(--soft);padding-top:12px;font-style:italic;color:var(--ink2);font-size:14px}
+
+/* Projection */
+.info{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--chip);color:var(--idp);font-size:11px;font-weight:700;text-decoration:none;cursor:help}
+/* Tabs (shorter page: one panel at a time) */
+.tabbox{background:var(--card);border:1px solid var(--line);margin-top:24px}
+.tablist{display:flex;gap:0;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.tablist::-webkit-scrollbar{display:none}
+.tablist button{flex:none;border:0;background:none;font:500 15px var(--font);color:var(--ink2);padding:13px 18px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tablist button:hover{color:var(--idp)}
+.tablist button[aria-selected="true"]{color:var(--navy);font-weight:700;border-bottom-color:var(--un)}
+.tabpanel{padding:20px}
+.tabpanel>.chart{border:0;padding:0}
+.tabpanel .grid4{margin-top:0}
+.tabpanel .grid2.charts-row{margin-top:0}
+/* Criteria: compact picker with one description box */
+.crit-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:960px){.crit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.crit-btn{display:flex;align-items:center;gap:10px;text-align:left;background:var(--tint);border:0;border-top:3px solid var(--un);padding:12px 14px;font:500 15px var(--font);color:var(--navy);cursor:pointer;min-width:0}
+.crit-btn .ico{width:26px;height:26px}
+.crit-btn .n{font-size:20px;font-weight:700;color:var(--un);line-height:1}
+.crit-btn[aria-pressed="true"]{background:var(--navy-bg,#1f4e79);color:#fff;border-top-color:var(--navy)}
+.crit-btn[aria-pressed="true"] .n{color:#fff}
+.crit-btn[aria-pressed="true"] .ico{filter:brightness(0) invert(1)}
+.crit-desc{margin-top:10px;background:var(--card);border-left:4px solid var(--un);padding:12px 16px;font-size:15.5px;min-height:48px}
+.crit-desc b{color:var(--navy)}
+.sub-h{font-size:20px;color:var(--navy);margin:36px 0 8px}
+.sub-p{margin:0 0 14px;color:var(--ink2)}
+/* Stories: compact cards, pathway badge, tag icons */
+.story-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+@media (max-width:1200px){.story-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.story-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.story-grid{grid-template-columns:1fr}}
+.story-grid>*{min-width:0}
+.story .ph{position:relative}
+.story-grid .story .body{padding:12px 14px 14px;gap:6px}
+.story-grid .story h3{font-size:16px;line-height:1.25}
+.story h3 a{color:var(--navy);text-decoration:none}.story h3 a:hover{text-decoration:underline;color:var(--idp)}
+.story h3 a::after{content:"";position:absolute;inset:0}
+.story{position:relative}
+.story p.one{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.story-grid .story .meta{font-size:12px}
+.story-grid .story p{font-size:13.5px;line-height:1.45;text-align:left}
+.story-grid .story blockquote{font-size:14px}
+.story-grid .story .more{font-size:13px}
+.story-grid .story .credit{font-size:11px}
+.story .tag{display:inline-flex;align-items:center;gap:4px;font-size:10px;padding:2px 6px}
+.story .tag img{width:13px;height:13px}
+.pathway-badge{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:50%;background:var(--card);display:grid;place-items:center;box-shadow:0 2px 8px rgba(15,43,69,.25);border:2px solid var(--ret)}
+.pathway-badge img,.story .ph .pathway-badge img{width:22px;height:22px;object-fit:contain}
+.story .ph .no-photo img{width:64px;height:64px;object-fit:contain}
+.pathway-badge.pw-return{border-color:var(--ret)}
+.pathway-badge.pw-local-integration{border-color:var(--idp)}
+.pathway-badge.pw-in-displacement{border-color:var(--navy)}
+.pathway-badge.pw-elsewhere{border-color:var(--un)}
+.pw-legend{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin:-10px 0 18px;font-size:13.5px;color:var(--ink2)}
+.pw-legend .lbl{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.pw-legend .pw-f{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 12px 3px 4px;font:500 13.5px var(--font);color:var(--ink);cursor:pointer}
+.pw-legend .pw-f:hover{border-color:var(--idp)}
+.pw-legend .pw-f[aria-pressed="true"]{background:var(--navy-bg,#1f4e79);color:#fff;border-color:var(--navy)}
+.pw-legend .pathway-badge{position:static;width:26px;height:26px;box-shadow:none}
+.pw-legend .pathway-badge img{width:15px;height:15px}
+.no-photo{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--tint);color:var(--navy);font-weight:700}
+.no-photo img{width:64px;height:64px}
+/* Stories: one row, then show all */
+.show-all{display:flex;justify-content:center;margin-top:18px}
+.show-all button{border:1px solid var(--navy);background:var(--card);color:var(--navy);font:700 14px var(--font);padding:9px 18px;border-radius:999px;cursor:pointer}
+.show-all button:hover{background:var(--navy-bg,#1f4e79);color:#fff}
+/* Documents: open and close each group */
+.docs details>summary{list-style:none;cursor:pointer}
+.docs details>summary::-webkit-details-marker{display:none}
+.docs details>summary.grp::after{content:"";margin-left:auto;width:9px;height:9px;border-right:2px solid var(--navy);border-bottom:2px solid var(--navy);transform:rotate(45deg);transition:transform .15s}
+.docs details[open]>summary.grp::after{transform:rotate(-135deg)}
+.docs details+details .grp{border-top:1px solid #fff}
+.docs .grp .cnt{font-weight:500;letter-spacing:0;text-transform:none;color:var(--ink2);font-size:13px}
+/* How we work: contact inside */
+.reach{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;background:var(--navy-bg,#1f4e79);color:#fff;padding:18px 22px;margin-top:22px}
+.reach h3{font-size:20px;color:#fff}
+.reach p{margin:4px 0 0;color:#eef6fb;font-size:15px;text-align:left}
+.reach a{color:#fff;font-weight:700;font-size:18px}
+/* Dashboard: slim banner */
+.dash.slim{grid-template-columns:minmax(0,.45fr) minmax(0,1.55fr)}
+.dash.slim .img{padding:12px}
+.dash.slim .img img{max-height:190px}
+.dash.slim .txt{padding:20px 26px;gap:10px}
+.dash.slim h3{font-size:21px}
+@media (max-width:760px){.dash.slim{grid-template-columns:1fr}}
+
+/* Display options: text size and colour-blind palette */
+.site .wrap{position:relative}
+.disp-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 14px var(--font);padding:6px 12px;border-radius:999px;cursor:pointer}
+.disp-btn span{font-weight:700;color:var(--idp)}
+.disp-btn[aria-expanded="true"]{border-color:var(--idp)}
+.disp-panel{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:calc(100% - 4px);z-index:30;background:var(--card);border:1px solid var(--line);box-shadow:0 10px 28px rgba(15,43,69,.16);padding:14px 16px;display:flex;flex-direction:column;gap:12px;min-width:300px}
+.disp-row{display:flex;flex-direction:column;gap:6px}
+.disp-lbl{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{flex:1;border:0;background:var(--card);color:var(--ink);font:500 14px var(--font);padding:8px 10px;cursor:pointer;line-height:1}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--navy-bg,#1f4e79);color:#fff}
+html.cb{--idp:#005f95;--ret:#e69f00}
+html.cb .pathway-badge.pw-return{border-color:#e69f00}
+html.cb .pathway-badge.pw-local-integration{border-color:#0072b2}
+html.cb .pathway-badge.pw-in-displacement{border-color:#000}
+@media (max-width:640px){.disp-panel{left:16px;right:16px;min-width:0}}
+
+/* Accessibility */
+.skip{position:absolute;left:12px;top:-60px;z-index:50;background:var(--navy-bg,#1f4e79);color:#fff;padding:10px 16px;font-weight:700;text-decoration:none}
+.skip:focus{top:12px}
+main:focus{outline:none}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+footer .a11y summary{font-size:13px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:#fff;font-weight:700;list-style:none;border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:5px 12px 5px 6px}
+footer .a11y summary::-webkit-details-marker{display:none}
+footer .a11y summary svg{width:18px;height:18px}
+footer .a11y[open] summary{background:rgba(255,255,255,.1)}
+footer .a11y .a11y-body{margin-top:10px;max-width:720px;font-size:13.5px;color:#dbe5ee}
+footer .a11y .a11y-body p{margin:0 0 6px;text-align:left}
+footer .a11y .a11y-body ul{margin:0 0 8px;padding-left:20px}
+footer .a11y a{color:#fff}
+
+.hw-more{margin:22px 0 0}.hw-btn{display:inline-flex;gap:8px;align-items:center;background:var(--navy-bg,#1f4e79);color:#fff;font-weight:700;padding:10px 16px;text-decoration:none}.hw-btn:hover{background:var(--idp-bg,var(--idp))}
+
+/* Contact and footer */
+.contact{background:var(--navy-bg,#1f4e79);color:#fff}
+.contact .wrap{padding-block:44px;display:flex;flex-direction:column;gap:10px}
+.contact h2{font-size:28px}
+.contact p{margin:0;color:#eef6fb}
+.contact .mail{font-size:20px;font-weight:700;color:#fff}
+footer.site-foot{background:#0f2b45;color:#c9d6e2;font-size:14px}
+footer.site-foot .wrap{padding-block:18px;display:flex;flex-direction:column;gap:10px}
+footer .foot-row1{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:8px 22px}
+footer .foot-row1 .fm{align-self:center}
+footer .foot-r{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;justify-content:flex-end}
+footer .foot-top{font-size:13px;padding-top:6px;text-decoration:underline!important;text-underline-offset:2px}
+footer .foot-row1:has(.a11y[open]) .foot-r{flex-basis:100%;justify-content:flex-start}
+.top-btn{transition:opacity .2s}
+.top-btn.off{opacity:0;pointer-events:none}
+footer .foot-row2{line-height:1.5}
+footer.site-foot .fm{display:flex;flex-wrap:wrap;gap:6px 22px}
+footer.site-foot a{color:#fff;text-decoration:none}
+footer .small{font-size:12px;color:#b9c8d6}
+footer .foot-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+
+.src a,.sources a,.credit a,cite a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.src a:hover,.sources a:hover,.credit a:hover,cite a:hover{color:var(--un)}
+footer .small a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+/* Go to top */
+.top-btn{position:fixed;right:calc(18px + env(safe-area-inset-right, 0px));bottom:calc(18px + env(safe-area-inset-bottom, 0px));z-index:15;display:flex;align-items:center;gap:6px;background:var(--card);color:var(--idp);border:1px solid var(--line);border-radius:999px;padding:8px 14px 8px 10px;font:700 13px var(--font);text-decoration:none;box-shadow:0 4px 14px rgba(15,43,69,.16)}
+.top-btn img{width:18px;height:18px}
+.top-btn:hover{border-color:var(--un)}
+/* Text fills the full width and is justified; words are never split with a hyphen */
+p,section li,.lead,.sources{text-align:justify;hyphens:none;-webkit-hyphens:none}
+/* Narrow cards stay left aligned: justified text in short lines leaves wide gaps between words */
+:is(.grid3,.grid4,.crit) :is(p,li){text-align:left}
+
+/* Dark background, only when the person picks it in Display (pages always open white) */
+:root{--card:#fff}
+:root[data-theme="dark"]{color-scheme:dark;--idp-bg:#255faa;--bg:#12161d;--band:#171e27;--card:#1b2029;--ink:#e8ebf0;--ink2:#a9b4c1;--line:#2d3440;--navy:#9cc3ec;--tint:#16283a;--soft:#22405c;--chip:#1f3150;--idp:#6ea6ec;--ret:#3fb4e6;--track:#2c3340;--warn:#3a2f12;--warn-ink:#f2cf7f}
+:root[data-theme="dark"] img.logo-on-white,:root[data-theme="dark"] .nd-logo img,:root[data-theme="dark"] .cochair img,:root[data-theme="dark"] .co img{background:#fff;padding:2px}
+:root[data-theme="dark"] .hero .eyebrow,:root[data-theme="dark"] .hero .credit,:root[data-theme="dark"] .hero .credit a{color:#cfe6f5}
+</style>
+</head>
+<body id="top">
+
+<div id="hub-header"></div>
+<script>HUB.header({ active: "overview", title: "Overview", sub: { stick: true, label: "On this page", items: [["At a glance", "#glance"], ["Solutions for IDPs", "#solutions"], ["The eight criteria", "#criteria"], ["Top 10 states", "#states"], ["Stories", "#stories"], ["How we work", "#how"], ["Key documents", "#documents"], ["Solutions Mapping", "#dashboard"], ["Contact", "#contact"]].map(([label, href]) => ({ label, href })) } });</script>
+
+<main id="main" tabindex="-1">
+<div class="hero"><div class="wrap">
+  <div class="eyebrow">Durable Solutions Hub</div>
+  <h1>Durable Solutions in Sudan</h1>
+  <p>Helping people affected by displacement rebuild safe, dignified and self-reliant lives.</p>
+  <div class="credit">Photo: <a href="https://www.undp.org/sudan" target="_blank" rel="noopener">UNDP Sudan</a></div>
+</div></div>
+<div class="hero-rule"></div>
+
+<div class="wrap"><p class="lead">Since April 2023, conflict has driven one of the largest displacement crises in the world. More people are now returning, but millions remain displaced. Durable solutions help them rebuild safe and self-reliant lives, whether they return home, integrate where they are, or settle elsewhere in Sudan.</p></div>
+
+<!-- 1. Sudan at a glance -->
+<section id="glance"><div class="wrap">
+  <div class="sec-head"><h2>Sudan at a glance</h2><p>The latest figures on displacement and returns across Sudan.</p></div>
+  <div class="grid4" id="stats"></div>
+  <div class="tabbox" data-tabs>
+  <div class="tablist" role="tablist" aria-label="More figures"><button role="tab">IDPs and returns over time</button><button role="tab">Displacement</button><button role="tab">Returns</button><button role="tab">Where people are</button></div>
+  <div class="tabpanel" role="tabpanel"><div class="chart">
+    <h3>IDPs are falling as returns rise</h3>
+    <div class="sub">Internally displaced people and returnees in Sudan, January 2025 to September 2026, with a projection to March 2027. Point at the chart to see the values.</div>
+    <div class="legend"><span><i style="background:var(--idp-bg,var(--idp))"></i>IDPs</span><span><i style="background:var(--ret)"></i>Returnees</span></div>
+    <div class="svgwrap" id="trend"></div>
+    <div class="src">Source: IOM DTM, Sudan Displacement and Return Snapshot 10, 18 Oct 2026 (Figure 1). Values rounded as published.</div>
+  </div></div>
+  <div class="tabpanel" role="tabpanel" hidden><div class="grid4" id="tiles-disp"></div></div>
+  <div class="tabpanel" role="tabpanel" hidden><div class="grid4" id="tiles-ret"></div></div>
+  <div class="tabpanel" role="tabpanel" hidden><div class="grid2 charts-row">
+    <div class="chart"><h3>Where people have crossed to</h3><div class="sub">People who left Sudan since April 2023, by country</div><div id="c-cross"></div><div class="src">Source: IOM DTM, cross-border data as of 17 Sep 2026</div></div>
+    <div class="chart"><h3>Where IDPs are living</h3><div class="sub">Share of displaced households, by type of shelter</div><div id="c-shelter"></div><div class="src">Source: IOM DTM, 29 Sep 2026</div></div>
+  </div></div>
+  </div>
+  <p class="sources"><b>Sources:</b> <a href="https://dtm.iom.int/reports/dtm-sudan-displacement-and-return-snapshot-10" target="_blank" rel="noopener">IOM DTM, Sudan Displacement and Return Snapshot (10)</a>, 18 October 2026; <a href="https://data.unhcr.org/en/documents/details/124475" target="_blank" rel="noopener">UNHCR Sudan, Overview of Refugees and Asylum-seekers</a>, 30 September 2026. <span class="info" id="src-info" role="note">?</span></p>
+</div></section>
+
+<!-- 2. Durable solutions for IDPs -->
+<section id="solutions" class="band"><div class="wrap">
+  <div class="sec-head"><h2>Durable solutions for IDPs</h2></div>
+  <div class="pair">
+    <blockquote class="quote">“A durable solution is achieved when internally displaced persons no longer have any specific assistance and protection needs that are linked to their displacement and can enjoy their human rights without discrimination on account of their displacement.”<cite><a href="https://interagencystandingcommittee.org/sites/default/files/migrated/2014-11/Framework%20for%20Durable%20Solutions%20for%20Internally%20Displaced%20Persons%20FINAL.pdf" target="_blank" rel="noopener">IASC Framework on Durable Solutions for Internally Displaced Persons, 2010</a></cite></blockquote>
+    <div>
+      <p style="margin:0 0 12px">Achieving a durable solution is a gradual process. It is not only about where people live, but whether they can live in safety, earn an income, access services and take part in community life on an equal footing with their neighbours.</p>
+      <p class="note" style="margin:0">The choice of pathway belongs to displaced people themselves. It should be voluntary, informed, and made in safety and dignity.</p>
+    </div>
+  </div>
+  <h3 class="h3row">Three pathways, and where Sudan stands</h3>
+  <div class="grid3" id="paths"></div>
+  <div class="grid2 charts-row">
+    <div class="chart"><h3>Why people return</h3><div class="sub">Share of returned households, by main reason</div><div id="c-reasons"></div><div class="src">Source: IOM DTM, 30 Sep 2026</div></div>
+    <div class="chart"><h3>How far returns have come, by state</h3><div class="sub">IDPs from each state who have returned, as a share of the highest recorded number, and the number of returnees in the state</div><div id="c-progress"></div><div class="src">Source: IOM DTM, end of Sep 2026. States with recorded returns only.</div></div>
+  </div>
+  <div id="criteria" style="scroll-margin-top:60px">
+  <h3 class="sub-h">The eight criteria</h3>
+  <p class="sub-p">How do we know whether displaced people have found a lasting solution? The IASC Framework sets out eight criteria. Together, they help partners in Sudan plan their support and measure progress. Select a criterion to read it.</p>
+  <div class="crit-grid" id="crit" role="group" aria-label="The eight criteria"></div>
+  <div class="crit-desc" id="crit-desc" aria-live="polite"></div>
+  </div>
+</div></section>
+
+<!-- 4. Top 10 states -->
+<section id="states"><div class="wrap">
+  <div class="sec-head"><h2>Top 10 states</h2><p id="states-intro"></p></div>
+  <div class="chart">
+    <h3>IDPs hosted and returnees, by state</h3>
+    <div class="sub">Point at a state to see exact figures and the share of its IDPs who have returned.</div>
+    <div class="fly" id="fly"></div>
+    <div class="total num" id="fly-total"></div>
+    <div class="src">Source: IOM DTM, Sudan Displacement and Return Snapshot 10, 18 Oct 2026 (data as of 29 and 30 Sep 2026). Returnees include people returning from inside Sudan and from abroad. Refugee figures: UNHCR, 30 Sep 2026.</div>
+  </div>
+</div></section>
+
+<!-- 5. Stories -->
+<section id="stories" class="band"><div class="wrap">
+  <div class="sec-head"><h2>Stories of solutions</h2><p>Women, children and persons with disabilities across Sudan are rebuilding their lives. These published stories show what support for lasting solutions looks like on the ground.</p></div>
+  <div class="chips" id="story-chips" role="group" aria-label="Filter stories"></div>
+  <div class="pw-legend" id="pw-chips" role="group" aria-label="Filter by pathway"><span class="lbl">Pathway</span><button type="button" class="pw-f" data-p="return" aria-pressed="false"><i class="pathway-badge pw-return"><img src="assets/img/pathway-return.svg" alt=""></i>Return</button><button type="button" class="pw-f" data-p="local-integration" aria-pressed="false"><i class="pathway-badge pw-local-integration"><img src="assets/img/pathway-local-integration.svg" alt=""></i>Local integration</button><button type="button" class="pw-f" data-p="in-displacement" aria-pressed="false"><i class="pathway-badge pw-in-displacement"><img src="assets/img/pathway-in-displacement.svg" alt=""></i>In displacement</button></div>
+  <div class="story-grid" id="more"></div>
+  <div class="show-all" id="show-all" hidden><button type="button"></button></div>
+  <p class="empty" id="no-stories" hidden>No stories match this filter yet.</p>
+  <p class="src" style="margin-top:18px">Stories and photos are by the organizations named. Select a headline to read the full story, with photo credits, on their website.</p>
+</div></section>
+
+<!-- 6. How we work -->
+<section id="how"><div class="wrap">
+  <div class="sec-head"><h2>How we work</h2><p>The Durable Solutions Unit (DSU) is hosted by the United Nations Resident Coordinator’s Office in Sudan and supports coordination at national and state level.</p></div>
+  <div class="grid3">
+    <div class="mini" style="background:var(--card)"><h3><img class="ico" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA2NzM8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PGNpcmNsZSBjbGFzcz0iY2xzLTEiIGN4PSIyMy45OTk4OCIgY3k9IjI0IiByPSI2Ii8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzIsMThoOWEyLDIsMCwwLDAsMC00SDM2LjgyODEyTDQ3LjQxNDA2LDMuNDE0MDZBMS45OTk3OCwxLjk5OTc4LDAsMSwwLDQ0LjU4NTk0LjU4NTk0TDM0LDExLjE3MTg4VjdhMiwyLDAsMCwwLTQsMHY5QTIuMDAwMSwyLjAwMDEsMCwwLDAsMzIsMThaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTEuMTcxODgsMTRIN2EyLDIsMCwwLDAsMCw0aDlhMi4wMDAxLDIuMDAwMSwwLDAsMCwyLTJWN2EyLDIsMCwwLDAtNCwwdjQuMTcxODhMMy40MTQwNi41ODU5NEExLjk5OTc4LDEuOTk5NzgsMCwwLDAsLjU4NTk0LDMuNDE0MDZaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzYuODI4MTIsMzRINDFhMiwyLDAsMCwwLDAtNEgzMmEyLjAwMDEsMi4wMDAxLDAsMCwwLTIsMnY5YTIsMiwwLDAsMCw0LDBWMzYuODI4MTJMNDQuNTg1OTQsNDcuNDE0MDZhMS45OTk3OCwxLjk5OTc4LDAsMCwwLDIuODI4MTItMi44MjgxMloiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xNiwzMEg3YTIsMiwwLDAsMCwwLDRoNC4xNzE4OEwuNTg1OTQsNDQuNTg1OTRhMS45OTk3OCwxLjk5OTc4LDAsMSwwLDIuODI4MTIsMi44MjgxMkwxNCwzNi44MjgxMlY0MWEyLDIsMCwwLDAsNCwwVjMyQTIuMDAwMSwyLjAwMDEsMCwwLDAsMTYsMzBaIi8+PC9nPjwvZz48L3N2Zz4=" alt="">NDSWG</h3><div class="full">National Durable Solutions Working Group</div><p>Sets the national direction and brings partners together.</p></div>
+    <div class="mini" style="background:var(--card)"><h3><img class="ico" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiA0Ny44Njc0MyI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA3Njk8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTYsMEM3LjE1OTkxLDAsMCw3LjYsMCwxNi45NiwwLDI1LjAxOTksMTEuODMwMDgsNDIuNjMsMTUuMTUsNDcuNDFhMS4wMTg0NSwxLjAxODQ1LDAsMCwwLDEuNywwQzIwLjE2OTkyLDQyLjYzLDMyLDI1LjAxOTksMzIsMTYuOTYsMzIsNy42LDI0Ljg0MDA5LDAsMTYsMFptMCwyMy44N2E4LDgsMCwxLDEsOC04QTcuOTk3OSw3Ljk5NzksMCwwLDEsMTYsMjMuODdaIi8+PC9nPjwvZz48L3N2Zz4=" alt="">ADSWGs</h3><div class="full">Area Durable Solutions Working Groups</div><p>Turn national direction into local action in Aj Jazirah, Blue Nile, Gedaref, Kassala and White Nile.</p></div>
+    <div class="mini" style="background:var(--card)"><h3><img class="ico" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OC4wMDAwMiA0Ny45OTk5NyI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA3MzQ8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNOC4zOCwzMy44LDEuMiw0MC45OEE0LjExNTM3LDQuMTE1MzcsMCwwLDAsNy4wMiw0Ni44bDcuMTgtNy4xOEEyNC4wMDk2MywyNC4wMDk2MywwLDAsMSw4LjM4LDMzLjhaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjIsMjBIMThhMS4wMDMsMS4wMDMsMCwwLDAtMSwxdjQuOTRhMTIuNTc0MSwxMi41NzQxLDAsMCwwLDYsNS41MlYyMUExLjAwMywxLjAwMywwLDAsMCwyMiwyMFoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zOCwxNEgzNGExLjAwMywxLjAwMywwLDAsMC0xLDFWMzEuNDZhMTIuNTc0MTksMTIuNTc0MTksMCwwLDAsNi01LjUyVjE1QTEuMDAzLDEuMDAzLDAsMCwwLDM4LDE0WiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTMwLDE3SDI2YTEuMDAzLDEuMDAzLDAsMCwwLTEsMVYzMi4xNGExMi42ODAzNCwxMi42ODAzNCwwLDAsMCw2LDBWMThBMS4wMDMsMS4wMDMsMCwwLDAsMzAsMTdaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjgsMEEyMCwyMCwwLDEsMCw0OCwyMCwxOS45OTQ1LDE5Ljk5NDUsMCwwLDAsMjgsMFpNMzksMzAuMThBMTUsMTUsMCwwLDEsMTMsMjAsMTUsMTUsMCwxLDEsMzksMzAuMThaIi8+PC9nPjwvZz48L3N2Zz4=" alt="">DSU</h3><div class="full">Durable Solutions Unit</div><p>Secretariat to both groups, with data, analysis and field missions.</p></div>
+  </div>
+  <h3 class="h3row" style="font-size:16px;margin-top:32px">The NDSWG is co-chaired by:</h3>
+  <div class="logos">
+    <div><img src="assets/img/cochair-drc.png" alt="Danish Refugee Council (DRC)"></div>
+    <div><img src="assets/img/cochair-iom.png" alt="International Organization for Migration (IOM)"></div>
+    <div><img class="tall" src="assets/img/cochair-undp.png" alt="United Nations Development Programme (UNDP)"></div>
+    <div><img src="assets/img/cochair-unhcr.png" alt="UNHCR, the UN Refugee Agency"></div>
+  </div>
+  <p class="hw-more"><a class="hw-btn" href="howwework/">See the working groups, co-chairs and documents <span aria-hidden="true">→</span></a></p>
+  <div class="reach" id="contact"><div><h3>Get in touch</h3><p>Organizations working on durable solutions in Sudan are welcome to contact the secretariat to learn more about the working groups or to share their work.</p></div><a href="mailto:dswg.sd@undp.org">dswg.sd@undp.org</a></div>
+</div></section>
+
+<!-- 7. Key documents -->
+<section id="documents" class="band"><div class="wrap">
+  <div class="sec-head"><h2>Key documents</h2><p>Reference documents, tools and products for partners working on durable solutions in Sudan. Documents not yet published online are available from the secretariat.</p></div>
+  <div class="docs" id="docs"></div>
+</div></section>
+
+<!-- 8. Solutions Mapping -->
+<section id="dashboard"><div class="wrap">
+  <div class="sec-head"><h2>Solutions Mapping</h2></div>
+  <div class="dash slim">
+    <div class="img"><a href="mapping/"><img src="assets/img/dashboard-preview.jpg" alt="Map of Sudan showing the number of mapped projects in each state"></a><div class="src"><a href="mapping/">Projects by state on Solutions Mapping</a>, November 2026</div></div>
+    <div class="txt">
+      <h3>Solutions Mapping</h3>
+      <p>Find out who is doing what, and where, to help people affected by displacement move toward lasting solutions. The dashboard maps projects that build self-reliance, such as boreholes instead of water trucking, or seed distribution instead of food distribution.</p>
+      <a class="btn" href="mapping/">Open Solutions Mapping <span aria-hidden="true">→</span></a>
+      <div class="add">Is your organization implementing a project that supports durable solutions? <a href="mapping/add.html">Add your project</a>. The Durable Solutions Unit reviews each entry before it appears on the map.</div>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<div id="hub-footer"></div>
+<script>HUB.footer({ src: `Figures: <a href="https://dtm.iom.int/reports/dtm-sudan-displacement-and-return-snapshot-10" target="_blank" rel="noopener">IOM DTM Snapshot (10)</a>, <a href="https://data.unhcr.org/en/documents/details/124475" target="_blank" rel="noopener">UNHCR Sudan, 30 Sep 2026</a>. Icons: <a href="https://brand.unocha.org/d/xEPytAUjC3sH/icons" target="_blank" rel="noopener">OCHA</a>. Flags: <a href="https://github.com/lipis/flag-icons" target="_blank" rel="noopener">flag-icons</a>. Stories and photos belong to the organizations named.` });</script>
+
+<nav aria-label="Back to top"><a class="top-btn" href="#top"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OC4wMDAyNCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJGSU5BTCI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMCw0NC4wMDAxMmEzLjk4ODgyLDMuOTg4ODIsMCwwLDEsMS4xNzEzOS0yLjgyODYxbDIwLTE5YTQuMDAwNiw0LjAwMDYsMCwwLDEsNS42NTcyMiwwbDIwLjAwMDI1LDE5YTQuMDAwMjcsNC4wMDAyNywwLDAsMS01LjY1NzIzLDUuNjU3MjNMMjQsMzEsNi44Mjg2MSw0Ni44Mjg3NEE0LDQsMCwwLDEsMCw0NC4wMDAxMlpNMS4xNzEzOSwyNS44Mjg3NGE0LjAwMDYsNC4wMDA2LDAsMCwwLDUuNjU3MjIsMEwyNCwxMCw0MS4xNzE2MywyNS44Mjg3NGE0LjAwMDI3LDQuMDAwMjcsMCwwLDAsNS42NTcyMy01LjY1NzIzbC0yMC4wMDAyNS0xOWE0LjAwMDYsNC4wMDA2LDAsMCwwLTUuNjU3MjIsMGwtMjAsMTlhNC4wMDA5LDQuMDAwOSwwLDAsMCwwLDUuNjU3MjNaIi8+PC9nPjwvZz48L3N2Zz4=" alt="">Go to top</a></nav>
+<div id="tip" hidden></div>
+
+<script>
+/* ------------------------------------------------------------------
+   DATA. DSU can update the figures below without touching the design.
+   Sources: IOM DTM Sudan Displacement and Return Snapshot 10 (18 Oct 2026; IDPs 29 Sep, returnees 30 Sep 2026);
+   UNHCR Sudan, Overview of Refugees and Asylum-seekers in Sudan (30 Sep 2026).
+------------------------------------------------------------------- */
+const DATA = {
+  stats: [
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OC4wMDAwNCA0Mi45ODgzIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZmZmZjt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPkFzc2V0IDY5MjwvdGl0bGU+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PGcgaWQ9Ikljb25zIj48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik00Ny41NDUyLDIwLjM5MDg4bC02Ljk0Nzc1LTYuOTQ3NzZhMS41NTIzMiwxLjU1MjMyLDAsMCwwLTIuMTk1MzEsMi4xOTUzMkw0Mi43NTIsMTkuOTg4MjlIMjkuNWExLjUsMS41LDAsMCwwLDAsM0g0Mi43NTIzNWwtNC4zNTAyMSw0LjM0OTg1YTEuNTUyMzIsMS41NTIzMiwwLDEsMCwyLjE5NTMxLDIuMTk1MzJsNi45NDc3NS02Ljk0NzI3YTEuNTUxODksMS41NTE4OSwwLDAsMCwwLTIuMTk1MzFaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjkuNzk4MzgsMi43NTAzMWE0LDQsMCwxLDAtMi41NDg1OSw1LjA1MDE3QTQsNCwwLDAsMCwyOS43OTgzOCwyLjc1MDMxWiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTIwLjczNDc4LDIzLjUwMDc0LDI0LjY2NiwxNS43MTEwN2E0Ljg1Mjk0LDQuODUyOTQsMCwwLDAtMi4xNDYtNi41MTg4bC0yLjU1NjM5LTEuMjkwMWExLjk3MDIsMS45NzAyLDAsMCwwLS40MjYzOS0uMTUyNTlBMTQuMTgwMzMsMTQuMTgwMzMsMCwwLDAsMS4yMzQ3OCwxNC4yNTc1MmEyLjA2Nzg4LDIuMDY3ODgsMCwwLDAsMy42ODE2NCwxLjg4NDE1QTEwLjA0NjY1LDEwLjA0NjY1LDAsMCwxLDE1LjExMywxMC43Njc0TC4yMjgwNiwzOS45NTI2NGEyLjA4NzIxLDIuMDg3MjEsMCwxLDAsMy43MTg3NSwxLjg5NjQ5bDkuMDQxODctMTcuNzI4NjQsNC40NzU3MSwyLjI1ODczYTEwLjEzNzQxLDEwLjEzNzQxLDAsMCwxLDQuMTUyMSwxMy41NTk5NCwyLjA4Njc1LDIuMDg2NzUsMCwxLDAsMy43MDM4NiwxLjkyMzRBMTQuMzE2NjEsMTQuMzE2NjEsMCwwLDAsMjAuNzM0NzgsMjMuNTAwNzRaIi8+PC9nPjwvZz48L3N2Zz4=", big:"8.59M", label:"internally displaced people (IDPs) across all 18 states", sub:"6.41 million displaced since April 2023 and 2.17 million before", src:"Source: IOM DTM, 29 Sep 2026"},
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ny45OTYxMyA0Mi45ODgzIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZmZmZjt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPkFzc2V0IDY5NzwvdGl0bGU+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PGcgaWQ9Ikljb25zIj48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zOC44OTQ1NywzMC45NzE2OWMuMDM1ODkuMDAyNTYuMDcwMDcuMDEwNzQuMTA2NDQuMDEwNzRhOC45OTUxMiw4Ljk5NTEyLDAsMSwwLDAtMTcuOTkwMjNsLTkuNTAxNTguMDAxNGExLjUsMS41LDAsMCwwLDAsM2w5LjUwMTU4LS4wMDE0YTUuOTk1MTIsNS45OTUxMiwwLDEsMSwwLDExLjk5MDIzLDEuNDc2NCwxLjQ3NjQsMCwwLDAtLjE2NDU1LjAxNjZjLS4wMzU4OS0uMDAyNTYtLjA3MDA3LS4wMTA3NC0uMTA2NDQtLjAxMDc0SDM1LjEzMWw0LjE1MjQ2LTQuMTUyMWExLjQ5OTg0LDEuNDk5ODQsMCwxLDAtMi4xMjEwOS0yLjEyMTA5TDMwLjQ0OTUsMjguNDI3NWExLjQ5OTQ2LDEuNDk5NDYsMCwwLDAsMCwyLjEyMTA5bDYuNzEyODksNi43MTI4OWExLjQ5OTg0LDEuNDk5ODQsMCwxLDAsMi4xMjEwOS0yLjEyMTA5bC00LjE1MjEtNC4xNTIxSDM4LjczQTEuNDc2NCwxLjQ3NjQsMCwwLDAsMzguODk0NTcsMzAuOTcxNjlaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjkuNzk4MzgsMi43NTAzMWE0LDQsMCwxLDAtMi41NDg1OSw1LjA1MDE3QTQsNCwwLDAsMCwyOS43OTgzOCwyLjc1MDMxWiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTIwLjczNDc4LDIzLjUwMDc0LDI0LjY2NiwxNS43MTEwN2E0Ljg1Mjk0LDQuODUyOTQsMCwwLDAtMi4xNDYtNi41MTg4bC0yLjU1NjM5LTEuMjkwMWExLjk3MDIsMS45NzAyLDAsMCwwLS40MjYzOS0uMTUyNTlBMTQuMTgwMzMsMTQuMTgwMzMsMCwwLDAsMS4yMzQ3OCwxNC4yNTc1MmEyLjA2Nzg4LDIuMDY3ODgsMCwwLDAsMy42ODE2NCwxLjg4NDE1QTEwLjA0NjY1LDEwLjA0NjY1LDAsMCwxLDE1LjExMywxMC43Njc0TC4yMjgwNiwzOS45NTI2NGEyLjA4NzIxLDIuMDg3MjEsMCwxLDAsMy43MTg3NSwxLjg5NjQ5bDkuMDQxODctMTcuNzI4NjQsNC40NzU3MSwyLjI1ODczYTEwLjEzNzQxLDEwLjEzNzQxLDAsMCwxLDQuMTUyMSwxMy41NTk5NCwyLjA4Njc1LDIuMDg2NzUsMCwxLDAsMy43MDM4NiwxLjkyMzRBMTQuMzE2NjEsMTQuMzE2NjEsMCwwLDAsMjAuNzM0NzgsMjMuNTAwNzRaIi8+PC9nPjwvZz48L3N2Zz4=", big:"5.27M", label:"people have returned to their areas of origin", sub:"4.31 million from inside Sudan and 964,398 from abroad", src:"Source: IOM DTM, 30 Sep 2026"},
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNmZmZmZmY7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA4MzM8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSI0MCIgeT0iMTkiIHdpZHRoPSI4IiBoZWlnaHQ9IjkiLz48cmVjdCBjbGFzcz0iY2xzLTEiIHg9IjIwIiB5PSIxOSIgd2lkdGg9IjgiIGhlaWdodD0iOSIvPjxyZWN0IGNsYXNzPSJjbHMtMSIgeT0iMTkiIHdpZHRoPSI4IiBoZWlnaHQ9IjkiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik00MC44Nzg5MSwxNC4xMjEwOWEyLjk5OTY3LDIuOTk5NjcsMCwxLDAsNC4yNDIxOC00LjI0MjE4TDM2LjEyNDk0Ljg4MjgxYTMuMDE5MTEsMy4wMTkxMSwwLDAsMC0uNDYyNzctLjM3ODljLS4wNjY2NS0uMDQ0NDQtLjEzOTE2LS4wNzQ0Ny0uMjA4MzctLjExM0EyLjkzMjg3LDIuOTMyODcsMCwwLDAsMzUuMTQ2My4yMjlhMi45MzQ4NCwyLjkzNDg0LDAsMCwwLS4yOTItLjA5MDU3Yy0uMDg5MTctLjAyNjYxLS4xNzQ4MS0uMDYxLS4yNjcyNy0uMDc5MzVhMy4wMTEzLDMuMDExMywwLDAsMC0xLjE3NCwwYy0uMDkyNzEuMDE4NTYtLjE3ODUyLjA1Mjc0LS4yNjc5NC4wNzk1OUEyLjkyOCwyLjkyOCwwLDAsMCwzMi44NTM3LjIyOWEyLjk1MjY0LDIuOTUyNjQsMCwwLDAtLjMwODc4LjE2MjZjLS4wNjg3Mi4wMzgzMy0uMTQwNzUuMDY4MTItLjIwNjkxLjExMjMxYTMuMDA5ODQsMy4wMDk4NCwwLDAsMC0uNDYyOTUuMzc4OWwtOC45OTYxNSw4Ljk5NjFhMi45OTk2NywyLjk5OTY3LDAsMSwwLDQuMjQyMTgsNC4yNDIxOEwzMSwxMC4yNDIxOVY0NWEzLDMsMCwwLDAsNiwwVjEwLjI0MjE5WiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTIwLjg3ODkxLDMzLjg3ODkxLDE3LDM3Ljc1NzgxVjNhMywzLDAsMCwwLTYsMFYzNy43NTc4MWwtMy44Nzg5MS0zLjg3ODlhMi45OTk2NywyLjk5OTY3LDAsMCwwLTQuMjQyMTgsNC4yNDIxOGw4Ljk5NjE1LDguOTk2MWEzLjAwOTg0LDMuMDA5ODQsMCwwLDAsLjQ2My4zNzg5Yy4wNjYyMy4wNDQxOS4xMzgxOS4wNzQuMjA2OTEuMTEyMzFhMi45NTI2NCwyLjk1MjY0LDAsMCwwLC4zMDg3OC4xNjI2LDIuOTIzMSwyLjkyMzEsMCwwLDAsLjI5MTM4LjA5MDMzYy4wODk0Mi4wMjY4NS4xNzUyMy4wNjEuMjY3OTQuMDc5NTlhMi45NDU3NiwyLjk0NTc2LDAsMCwwLDEuMTc0LDBjLjA5MjQ2LS4wMTgzMS4xNzgxLS4wNTI3NC4yNjcyNy0uMDc5MzVhMi45MzQ4NCwyLjkzNDg0LDAsMCwwLC4yOTItLjA5MDU3LDIuOTMyODcsMi45MzI4NywwLDAsMCwuMzA3NS0uMTYxODdjLjA2OTI3LS4wMzg1Ny4xNDE3Mi0uMDY4Ni4yMDgzNy0uMTEzYTMuMDE5MTEsMy4wMTkxMSwwLDAsMCwuNDYyNzctLjM3ODlsOC45OTYxNS04Ljk5NjFhMi45OTk2NywyLjk5OTY3LDAsMCwwLTQuMjQyMTgtNC4yNDIxOFoiLz48L2c+PC9nPjwvc3ZnPg==", big:"4.68M", label:"people have crossed into neighbouring countries since April 2023", sub:"Mostly to Egypt, South Sudan and Chad", src:"Source: IOM DTM, 17 Sep 2026"},
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ny45OTk5NyA0Ny4wNTMyMyI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNmZmZmZmY7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA2OTg8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjkuNzk4MzgsNi44MTUxOWE0LDQsMCwxLDAtMi41NDg1OSw1LjA1MDI5QTQuMDAwMDcsNC4wMDAwNywwLDAsMCwyOS43OTgzOCw2LjgxNTE5WiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTIwLjczNDc4LDI3LjU2NTY3LDI0LjY2NiwxOS43NzZhNC44NTMsNC44NTMsMCwwLDAtMi4xNDYtNi41MTg4TDE5Ljk2MzY2LDExLjk2N2ExLjk3NzExLDEuOTc3MTEsMCwwLDAtLjQyNjM5LS4xNTI1OUExNC4xODAzOCwxNC4xODAzOCwwLDAsMCwxLjIzNDc4LDE4LjMyMjUxYTIuMDY3ODUsMi4wNjc4NSwwLDEsMCwzLjY4MTY0LDEuODg0QTEwLjA0NjksMTAuMDQ2OSwwLDAsMSwxNS4xMTMsMTQuODMyMjhMLjIyODA2LDQ0LjAxNzU4YTIuMDg3MjEsMi4wODcyMSwwLDEsMCwzLjcxODc1LDEuODk2NDhsOS4wNDE4Ny0xNy43Mjg2NCw0LjQ3NTcxLDIuMjU4NjdhMTAuMTM3NTcsMTAuMTM3NTcsMCwwLDEsNC4xNTIxLDEzLjU2MDA2LDIuMDg2NzMsMi4wODY3MywwLDEsMCwzLjcwMzg2LDEuOTIzMzRBMTQuMzE2NjEsMTQuMzE2NjEsMCwwLDAsMjAuNzM0NzgsMjcuNTY1NjdaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNDcuNTQ1MTQsMjIuNDAyNTlsLTYuOTQ3NzUtNi45NDc3NmExLjU1MjMzLDEuNTUyMzMsMCwxLDAtMi4xOTUzMiwyLjE5NTMyTDQyLjc1MTkzLDIySDI5LjVhMS41LDEuNSwwLDAsMCwwLDNINDIuNzUyMjlsLTQuMzUwMjIsNC4zNDk4NWExLjU1MjMzLDEuNTUyMzMsMCwxLDAsMi4xOTUzMiwyLjE5NTMybDYuOTQ3NzUtNi45NDcyN2ExLjU1MTkyLDEuNTUxOTIsMCwwLDAsMC0yLjE5NTMxWiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTMzLjUsMjhBMS41MDAwOCwxLjUwMDA4LDAsMCwwLDMyLDI5LjV2NWExLjUsMS41LDAsMCwwLDMsMHYtNUExLjUwMDA3LDEuNTAwMDcsMCwwLDAsMzMuNSwyOFoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zMy41LDE5QTEuNTAwMDcsMS41MDAwNywwLDAsMCwzNSwxNy41di01YTEuNSwxLjUsMCwxLDAtMywwdjVBMS41MDAwOCwxLjUwMDA4LDAsMCwwLDMzLjUsMTlaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzMuNSw4QTEuNTAwMDcsMS41MDAwNywwLDAsMCwzNSw2LjV2LTVhMS41LDEuNSwwLDEsMC0zLDB2NUExLjUwMDA4LDEuNTAwMDgsMCwwLDAsMzMuNSw4WiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTMzLjQ5OTg1LDM5YTEuNSwxLjUsMCwwLDAtMS41LDEuNXY1YTEuNSwxLjUsMCwxLDAsMywwdi01QTEuNSwxLjUsMCwwLDAsMzMuNDk5ODUsMzlaIi8+PC9nPjwvZz48L3N2Zz4=", big:"910K", label:"refugees are hosted in Sudan", sub:"68% of them live in camps", src:"Source: UNHCR, 30 Sep 2026"}
+  ],
+  tilesDisp: [
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OC4wMDAwNCA0Mi45ODgzIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzAwOWVkYjt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPkFzc2V0IDY5MjwvdGl0bGU+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PGcgaWQ9Ikljb25zIj48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik00Ny41NDUyLDIwLjM5MDg4bC02Ljk0Nzc1LTYuOTQ3NzZhMS41NTIzMiwxLjU1MjMyLDAsMCwwLTIuMTk1MzEsMi4xOTUzMkw0Mi43NTIsMTkuOTg4MjlIMjkuNWExLjUsMS41LDAsMCwwLDAsM0g0Mi43NTIzNWwtNC4zNTAyMSw0LjM0OTg1YTEuNTUyMzIsMS41NTIzMiwwLDEsMCwyLjE5NTMxLDIuMTk1MzJsNi45NDc3NS02Ljk0NzI3YTEuNTUxODksMS41NTE4OSwwLDAsMCwwLTIuMTk1MzFaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjkuNzk4MzgsMi43NTAzMWE0LDQsMCwxLDAtMi41NDg1OSw1LjA1MDE3QTQsNCwwLDAsMCwyOS43OTgzOCwyLjc1MDMxWiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTIwLjczNDc4LDIzLjUwMDc0LDI0LjY2NiwxNS43MTEwN2E0Ljg1Mjk0LDQuODUyOTQsMCwwLDAtMi4xNDYtNi41MTg4bC0yLjU1NjM5LTEuMjkwMWExLjk3MDIsMS45NzAyLDAsMCwwLS40MjYzOS0uMTUyNTlBMTQuMTgwMzMsMTQuMTgwMzMsMCwwLDAsMS4yMzQ3OCwxNC4yNTc1MmEyLjA2Nzg4LDIuMDY3ODgsMCwwLDAsMy42ODE2NCwxLjg4NDE1QTEwLjA0NjY1LDEwLjA0NjY1LDAsMCwxLDE1LjExMywxMC43Njc0TC4yMjgwNiwzOS45NTI2NGEyLjA4NzIxLDIuMDg3MjEsMCwxLDAsMy43MTg3NSwxLjg5NjQ5bDkuMDQxODctMTcuNzI4NjQsNC40NzU3MSwyLjI1ODczYTEwLjEzNzQxLDEwLjEzNzQxLDAsMCwxLDQuMTUyMSwxMy41NTk5NCwyLjA4Njc1LDIuMDg2NzUsMCwxLDAsMy43MDM4NiwxLjkyMzRBMTQuMzE2NjEsMTQuMzE2NjEsMCwwLDAsMjAuNzM0NzgsMjMuNTAwNzRaIi8+PC9nPjwvZz48L3N2Zz4=", big:"26%", text:"fewer IDPs than at the January 2025 peak of 11.59 million"},
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiA0Ny44Njc0MyI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA3Njk8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTYsMEM3LjE1OTkxLDAsMCw3LjYsMCwxNi45NiwwLDI1LjAxOTksMTEuODMwMDgsNDIuNjMsMTUuMTUsNDcuNDFhMS4wMTg0NSwxLjAxODQ1LDAsMCwwLDEuNywwQzIwLjE2OTkyLDQyLjYzLDMyLDI1LjAxOTksMzIsMTYuOTYsMzIsNy42LDI0Ljg0MDA5LDAsMTYsMFptMCwyMy44N2E4LDgsMCwxLDEsOC04QTcuOTk3OSw3Ljk5NzksMCwwLDEsMTYsMjMuODdaIi8+PC9nPjwvZz48L3N2Zz4=", big:"65%", text:"of IDPs are hosted in the five Darfur states"},
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ny45OTkwMiAzNyI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA3MjA8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNOS45OTYwOSwxMC4wMTcwOUM0LjI5Nzg1LDEwLjAxNzA5LDAsMTQuMDcxMjksMCwxOS41YTEuNSwxLjUsMCwwLDAsMywwLDYuMjM0MzIsNi4yMzQzMiwwLDAsMSwyLjk5OTI3LTUuMzc4NDhWMzUuNWExLjUsMS41LDAsMCwwLDMsMFYyNWgyVjM1LjVhMS41LDEuNSwwLDAsMCwzLDBWMTQuMTI1ODVBNi4yMzM4NSw2LjIzMzg1LDAsMCwxLDE2Ljk5MjE5LDE5LjVhMS41LDEuNSwwLDAsMCwzLDBDMTkuOTkyMTksMTQuMDcxMjksMTUuNjk0MzQsMTAuMDE3MDksOS45OTYwOSwxMC4wMTcwOVoiLz48Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjkuOTk5MjciIGN5PSI0IiByPSI0Ii8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzguMDAyOTMsMTAuMDE3MDljLTUuNjk4MjQsMC05Ljk5NjA5LDQuMDU0Mi05Ljk5NjA5LDkuNDgyOTFhMS41LDEuNSwwLDAsMCwzLDBBNi4yNTgsNi4yNTgsMCwwLDEsMzQuNDQ3LDEzLjg3M0wzMi4xMzk3NywyNS44NzZBMSwxLDAsMCwwLDMzLjEzMjA4LDI3aC44NjcxOXY4LjVhMS41LDEuNSwwLDAsMCwzLDBWMjdoMnY4LjVhMS41LDEuNSwwLDAsMCwzLDBWMjdoLjg2NzE5YTEsMSwwLDAsMCwuOTkyMy0xLjEyNGwtMi4zMDgxLTEyLjAwNzUxQTYuMjU4NjgsNi4yNTg2OCwwLDAsMSw0NC45OTksMTkuNWExLjUsMS41LDAsMCwwLDMsMEM0Ny45OTksMTQuMDcxMjksNDMuNzAxMTcsMTAuMDE3MDksMzguMDAyOTMsMTAuMDE3MDlaIi8+PGNpcmNsZSBjbGFzcz0iY2xzLTEiIGN4PSIzNy45OTkyNyIgY3k9IjQiIHI9IjQiLz48L2c+PC9nPjwvc3ZnPg==", big:"56%", text:"of IDPs are children under 18"},
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OC4wMDAyNCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA2NzA8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjQsMTcuOTk0MzhjLTUuOTg2MzMsMC0xMC41LDQuMDg0LTEwLjUsOS41YTEuNSwxLjUsMCwwLDAsMywwQTYuMjMwNCw2LjIzMDQsMCwwLDEsMjAsMjEuOTQ0MjF2OS4wNTZoMHYxNS41YTEuNSwxLjUsMCwwLDAsMywwdi0xMi41aDJ2MTIuNWExLjUsMS41LDAsMCwwLDMsMHYtMjQuNTU2YTYuMjMwNCw2LjIzMDQsMCwwLDEsMy41LDUuNTUwMTcsMS41LDEuNSwwLDAsMCwzLDBDMzQuNSwyMi4wNzgzNywyOS45ODYzMywxNy45OTQzOCwyNCwxNy45OTQzOFoiLz48Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjI0LjA1MTc2IiBjeT0iMTMuMDAwMjQiIHI9IjMiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik00Ni43NTY4NCwxMi44MzkxMWwtMjEuNS0xMi41YTIuNDk4NjUsMi40OTg2NSwwLDAsMC0yLjUxMzY4LDBsLTIxLjUsMTIuNUEyLjQ5OTU0LDIuNDk5NTQsMCwwLDAsMCwxNS4wMDAyNHYzMC41YTIuNSwyLjUsMCwwLDAsNSwwVjE2LjQzODcyTDI0LDUuMzkxODUsNDMsMTYuNDM4NzJWNDUuNTAwMjRhMi41LDIuNSwwLDAsMCw1LDB2LTMwLjVBMi40OTk1NCwyLjQ5OTU0LDAsMCwwLDQ2Ljc1Njg0LDEyLjgzOTExWiIvPjwvZz48L2c+PC9zdmc+", big:"38%", text:"of displaced households live with host families"}
+  ],
+  tilesRet: [
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ny45OTYxMyA0Mi45ODgzIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzAwOWVkYjt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPkFzc2V0IDY5NzwvdGl0bGU+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PGcgaWQ9Ikljb25zIj48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zOC44OTQ1NywzMC45NzE2OWMuMDM1ODkuMDAyNTYuMDcwMDcuMDEwNzQuMTA2NDQuMDEwNzRhOC45OTUxMiw4Ljk5NTEyLDAsMSwwLDAtMTcuOTkwMjNsLTkuNTAxNTguMDAxNGExLjUsMS41LDAsMCwwLDAsM2w5LjUwMTU4LS4wMDE0YTUuOTk1MTIsNS45OTUxMiwwLDEsMSwwLDExLjk5MDIzLDEuNDc2NCwxLjQ3NjQsMCwwLDAtLjE2NDU1LjAxNjZjLS4wMzU4OS0uMDAyNTYtLjA3MDA3LS4wMTA3NC0uMTA2NDQtLjAxMDc0SDM1LjEzMWw0LjE1MjQ2LTQuMTUyMWExLjQ5OTg0LDEuNDk5ODQsMCwxLDAtMi4xMjEwOS0yLjEyMTA5TDMwLjQ0OTUsMjguNDI3NWExLjQ5OTQ2LDEuNDk5NDYsMCwwLDAsMCwyLjEyMTA5bDYuNzEyODksNi43MTI4OWExLjQ5OTg0LDEuNDk5ODQsMCwxLDAsMi4xMjEwOS0yLjEyMTA5bC00LjE1MjEtNC4xNTIxSDM4LjczQTEuNDc2NCwxLjQ3NjQsMCwwLDAsMzguODk0NTcsMzAuOTcxNjlaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjkuNzk4MzgsMi43NTAzMWE0LDQsMCwxLDAtMi41NDg1OSw1LjA1MDE3QTQsNCwwLDAsMCwyOS43OTgzOCwyLjc1MDMxWiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTIwLjczNDc4LDIzLjUwMDc0LDI0LjY2NiwxNS43MTEwN2E0Ljg1Mjk0LDQuODUyOTQsMCwwLDAtMi4xNDYtNi41MTg4bC0yLjU1NjM5LTEuMjkwMWExLjk3MDIsMS45NzAyLDAsMCwwLS40MjYzOS0uMTUyNTlBMTQuMTgwMzMsMTQuMTgwMzMsMCwwLDAsMS4yMzQ3OCwxNC4yNTc1MmEyLjA2Nzg4LDIuMDY3ODgsMCwwLDAsMy42ODE2NCwxLjg4NDE1QTEwLjA0NjY1LDEwLjA0NjY1LDAsMCwxLDE1LjExMywxMC43Njc0TC4yMjgwNiwzOS45NTI2NGEyLjA4NzIxLDIuMDg3MjEsMCwxLDAsMy43MTg3NSwxLjg5NjQ5bDkuMDQxODctMTcuNzI4NjQsNC40NzU3MSwyLjI1ODczYTEwLjEzNzQxLDEwLjEzNzQxLDAsMCwxLDQuMTUyMSwxMy41NTk5NCwyLjA4Njc1LDIuMDg2NzUsMCwxLDAsMy43MDM4NiwxLjkyMzRBMTQuMzE2NjEsMTQuMzE2NjEsMCwwLDAsMjAuNzM0NzgsMjMuNTAwNzRaIi8+PC9nPjwvZz48L3N2Zz4=", big:"37%", text:"of the peak IDP population has returned from internal displacement"},
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiA0MS45ODI0OCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA2Nzg8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzEuMTg5OTQsMi45NzI0N2wtMTUtMi45NDk5NWEuODEyMTguODEyMTgsMCwwLDAtLjM3OTg4LDBsLTE1LDIuOTVBLjk5NjkzLjk5NjkzLDAsMCwwLDAsMy45NTI0NVYyNC4xMzI1MWMwLDkuODYsNy4zMDAwNSwxNy44NSwxNiwxNy44NXMxNi03Ljk5LDE2LTE3Ljg1VjMuOTUyNDVBLjk5NjkzLjk5NjkzLDAsMCwwLDMxLjE4OTk0LDIuOTcyNDdabS04LjUxLDE4LjMwMDA1LS42OTk5NS42ODk5NC01LjYyLDUuODdhLjUwNjg1LjUwNjg1LDAsMCwxLS43MiwwbC01LjYyLTUuODctLjctLjY4OTk0YTQuMzM0NDksNC4zMzQ0OSwwLDAsMS0uMDYwMDYtNi4xNyw0LjIzMDk0LDQuMjMwOTQsMCwwLDEsMi44OS0xLjEzLDQuMjc0MDUsNC4yNzQwNSwwLDAsMSwyLjk5LDEuMjJsLjg2Ljc5Ljg2LS43OWE0LjI3NDA1LDQuMjc0MDUsMCwwLDEsMi45OS0xLjIyLDQuMjMwOTQsNC4yMzA5NCwwLDAsMSwyLjg5LDEuMTNBNC4zMzQ0OSw0LjMzNDQ5LDAsMCwxLDIyLjY3OTkzLDIxLjI3MjUyWiIvPjwvZz48L2c+PC9zdmc+", big:"87%", text:"of returned households cite improved security as the reason"},
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNiA0NC4wMDAwNiI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA4ODA8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTguNjY0MzcuMjUyNWExLjAwMDI4LDEuMDAwMjgsMCwwLDAtMS4zMjg3NCwwbC0xNy4wMDgsMTUuNDVBMSwxLDAsMCwwLDAsMTYuNDQyNjZ2MjcuNTU3NEgxNHYtMTBhMi4wMDU4OCwyLjAwNTg4LDAsMCwxLDItMmg0YTIuMDA1ODgsMi4wMDU4OCwwLDAsMSwyLDJ2MTBIMzZWMTYuNDQyNjZhMSwxLDAsMCwwLS4zMjc2MS0uNzQwMloiLz48L2c+PC9nPjwvc3ZnPg==", big:"93%", text:"of returned households are back in their own homes, even where damaged"},
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NCA0NCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJGSU5BTCI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjIsMEEyMiwyMiwwLDEsMCw0NCwyMiwyMiwyMiwwLDAsMCwyMiwwWk0zNC43Mjc1NCwxMy41MTQ2NSwyNSwyMy4yNDIxOXY4LjY1NzIyYTMsMywwLDAsMS02LDBWMjJhMy4wMTAzLDMuMDEwMywwLDAsMSwuMDU5MjctLjU4NzUyYy4wMTc3LS4wODkyNC4wNTEtLjE3MTc2LjA3NjQxLS4yNTc5NGExLjc2NTYyLDEuNzY1NjIsMCwwLDEsLjI0ODExLS41OTUyMWMuMDQwODMtLjA3NC4wNzMyNC0uMTUxMjUuMTIwNzktLjIyMjQyYTMuMDAzNDYsMy4wMDM0NiwwLDAsMSwuMzc3MjYtLjQ2MDkzTDMwLjQ4NTM1LDkuMjcyNDZhMi45OTk2OCwyLjk5OTY4LDAsMSwxLDQuMjQyMTksNC4yNDIxOVoiLz48L2c+PC9nPjwvc3ZnPg==", big:"6.03M", text:"IDPs from states where returns are under way have yet to return", src:"Source: IOM DTM estimate, Sep 2026"}
+  ],
+  tileSrc: "Source: IOM DTM, Sep 2026",
+  /* Trend: labelled points of DTM Figure 1 (millions) */
+  trend: [
+    ["2025-01", 11.59, 0.1], ["2025-04", 10.5, 0.6], ["2025-06", 10.1, 2.0], ["2025-08", 9.8, 2.0],
+    ["2025-11", 9.3, 3.3], ["2026-01", 9.1, 3.7], ["2026-03", 8.9, 4.0], ["2026-05", 8.8, 4.4],
+    ["2026-07", 8.6, 4.9], ["2026-09", 8.59, 5.27]
+  ],
+  crossBorder: [["Egypt",1514827],["South Sudan",1433567],["Chad",1345218],["Ethiopia",184055],["Libya",159125],["Central African Rep.",44522]],
+  shelter: [["Host families",38],["Gathering sites",29],["Camps",20],["Schools or public buildings",7],["Rented accommodation",3],["Improvised shelter",3]],
+  reasons: [["Improved security",87,"87%"],["No means to stay where displaced",6,"6%"],["Family reunification",5,"5%"],["Services in area of origin",1,"1%"],["Returned by authorities",0.4,"<1%"],["Humanitarian assistance",0.4,"<1%"]],
+  /* State: [IDPs hosted, returnees (null = none recorded), share of the state's IDPs who have returned (null = n/a), refugees hosted (UNHCR, rounded)] */
+  states: {
+    "Aj Jazirah":[46665,1291885,"84%","6K"], "Blue Nile":[417714,231562,"21%","30K"], "Central Darfur":[995212,null,null,"3.8K"],
+    "East Darfur":[809660,null,null,"42K"], "Gedaref":[155125,null,null,"60K"], "Kassala":[42180,null,null,"116K"],
+    "Khartoum":[444037,2806478,"65%","32K"], "North Darfur":[1670083,262036,"13%","20K"], "North Kordofan":[247143,null,null,"12.5K"],
+    "Northern":[309671,null,null,"11K"], "Red Sea":[89136,null,null,"15K"], "River Nile":[256891,47858,"67%","11K"],
+    "Sennar":[18221,262655,"74%","2K"], "South Darfur":[1755100,109072,"5%","18K"], "South Kordofan":[339254,null,null,"38.5K"],
+    "West Darfur":[352262,27420,"<1%","300"], "West Kordofan":[420918,null,null,"35.5K"], "White Nile":[216339,234368,"90%","455K"]
+  },
+  progress: [["White Nile",90.3,"90%",234368],["Aj Jazirah",83.9,"84%",1291885],["Sennar",74.5,"74%",262655],["River Nile",67.0,"67%",47858],["Khartoum",65.0,"65%",2806478],["Blue Nile",20.5,"21%",231562],["North Darfur",12.7,"13%",262036],["South Darfur",5.1,"5%",109072],["West Darfur",0.2,"<1%",27420]],
+  paths: [
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ny45OTYxMyA0Mi45ODgzIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzAwOWVkYjt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPkFzc2V0IDY5NzwvdGl0bGU+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PGcgaWQ9Ikljb25zIj48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zOC44OTQ1NywzMC45NzE2OWMuMDM1ODkuMDAyNTYuMDcwMDcuMDEwNzQuMTA2NDQuMDEwNzRhOC45OTUxMiw4Ljk5NTEyLDAsMSwwLDAtMTcuOTkwMjNsLTkuNTAxNTguMDAxNGExLjUsMS41LDAsMCwwLDAsM2w5LjUwMTU4LS4wMDE0YTUuOTk1MTIsNS45OTUxMiwwLDEsMSwwLDExLjk5MDIzLDEuNDc2NCwxLjQ3NjQsMCwwLDAtLjE2NDU1LjAxNjZjLS4wMzU4OS0uMDAyNTYtLjA3MDA3LS4wMTA3NC0uMTA2NDQtLjAxMDc0SDM1LjEzMWw0LjE1MjQ2LTQuMTUyMWExLjQ5OTg0LDEuNDk5ODQsMCwxLDAtMi4xMjEwOS0yLjEyMTA5TDMwLjQ0OTUsMjguNDI3NWExLjQ5OTQ2LDEuNDk5NDYsMCwwLDAsMCwyLjEyMTA5bDYuNzEyODksNi43MTI4OWExLjQ5OTg0LDEuNDk5ODQsMCwxLDAsMi4xMjEwOS0yLjEyMTA5bC00LjE1MjEtNC4xNTIxSDM4LjczQTEuNDc2NCwxLjQ3NjQsMCwwLDAsMzguODk0NTcsMzAuOTcxNjlaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjkuNzk4MzgsMi43NTAzMWE0LDQsMCwxLDAtMi41NDg1OSw1LjA1MDE3QTQsNCwwLDAsMCwyOS43OTgzOCwyLjc1MDMxWiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTIwLjczNDc4LDIzLjUwMDc0LDI0LjY2NiwxNS43MTEwN2E0Ljg1Mjk0LDQuODUyOTQsMCwwLDAtMi4xNDYtNi41MTg4bC0yLjU1NjM5LTEuMjkwMWExLjk3MDIsMS45NzAyLDAsMCwwLS40MjYzOS0uMTUyNTlBMTQuMTgwMzMsMTQuMTgwMzMsMCwwLDAsMS4yMzQ3OCwxNC4yNTc1MmEyLjA2Nzg4LDIuMDY3ODgsMCwwLDAsMy42ODE2NCwxLjg4NDE1QTEwLjA0NjY1LDEwLjA0NjY1LDAsMCwxLDE1LjExMywxMC43Njc0TC4yMjgwNiwzOS45NTI2NGEyLjA4NzIxLDIuMDg3MjEsMCwxLDAsMy43MTg3NSwxLjg5NjQ5bDkuMDQxODctMTcuNzI4NjQsNC40NzU3MSwyLjI1ODczYTEwLjEzNzQxLDEwLjEzNzQxLDAsMCwxLDQuMTUyMSwxMy41NTk5NCwyLjA4Njc1LDIuMDg2NzUsMCwxLDAsMy43MDM4NiwxLjkyMzRBMTQuMzE2NjEsMTQuMzE2NjEsMCwwLDAsMjAuNzM0NzgsMjMuNTAwNzRaIi8+PC9nPjwvZz48L3N2Zz4=", title:"Return", text:"Sustainable reintegration in the place of origin.", sudan:"4.31 million people have returned from internal displacement, most of them to Khartoum and Aj Jazirah.", src:"Source: IOM DTM, 30 Sep 2026"},
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCAzMiI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA5Mjg8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzksMTVIMzdhOC45NTY5MSw4Ljk1NjkxLDAsMCwwLTMuNjU5MTIuNzgyMzVBMTMuOTczMjQsMTMuOTczMjQsMCwwLDEsMzksMjdoOVYyNEE5LDksMCwwLDAsMzksMTVaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTQuNjU5MTIsMTUuNzgyMzVBOC45NTY5MSw4Ljk1NjkxLDAsMCwwLDExLDE1SDlhOSw5LDAsMCwwLTksOXYzSDlBMTMuOTczMjQsMTMuOTczMjQsMCwwLDEsMTQuNjU5MTIsMTUuNzgyMzVaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjUsMTZIMjNBMTEsMTEsMCwwLDAsMTIsMjd2NUgzNlYyN0ExMSwxMSwwLDAsMCwyNSwxNloiLz48Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjI0IiBjeT0iNyIgcj0iNyIvPjxjaXJjbGUgY2xhc3M9ImNscy0xIiBjeD0iMTAiIGN5PSI4IiByPSI1Ii8+PGNpcmNsZSBjbGFzcz0iY2xzLTEiIGN4PSIzOCIgY3k9IjgiIHI9IjUiLz48L2c+PC9nPjwvc3ZnPg==", title:"Local integration", text:"Sustainable integration in the area where people have taken refuge.", sudan:"2.17 million people were displaced before April 2023, many for years. 38% of displaced households live with host families.", src:"Source: IOM DTM, 29 Sep 2026"},
+    {icon:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiA0Ny44Njc0MyI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA3Njk8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTYsMEM3LjE1OTkxLDAsMCw3LjYsMCwxNi45NiwwLDI1LjAxOTksMTEuODMwMDgsNDIuNjMsMTUuMTUsNDcuNDFhMS4wMTg0NSwxLjAxODQ1LDAsMCwwLDEuNywwQzIwLjE2OTkyLDQyLjYzLDMyLDI1LjAxOTksMzIsMTYuOTYsMzIsNy42LDI0Ljg0MDA5LDAsMTYsMFptMCwyMy44N2E4LDgsMCwxLDEsOC04QTcuOTk3OSw3Ljk5NzksMCwwLDEsMTYsMjMuODdaIi8+PC9nPjwvZz48L3N2Zz4=", title:"Settlement elsewhere", text:"Sustainable integration in another part of the country.", sudan:"No national data are available yet on people settling in a new location.", src:"Data gap"}
+  ],
+  criteria: [
+    ["data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiA0MS45ODI0OCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA2Nzg8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzEuMTg5OTQsMi45NzI0N2wtMTUtMi45NDk5NWEuODEyMTguODEyMTgsMCwwLDAtLjM3OTg4LDBsLTE1LDIuOTVBLjk5NjkzLjk5NjkzLDAsMCwwLDAsMy45NTI0NVYyNC4xMzI1MWMwLDkuODYsNy4zMDAwNSwxNy44NSwxNiwxNy44NXMxNi03Ljk5LDE2LTE3Ljg1VjMuOTUyNDVBLjk5NjkzLjk5NjkzLDAsMCwwLDMxLjE4OTk0LDIuOTcyNDdabS04LjUxLDE4LjMwMDA1LS42OTk5NS42ODk5NC01LjYyLDUuODdhLjUwNjg1LjUwNjg1LDAsMCwxLS43MiwwbC01LjYyLTUuODctLjctLjY4OTk0YTQuMzM0NDksNC4zMzQ0OSwwLDAsMS0uMDYwMDYtNi4xNyw0LjIzMDk0LDQuMjMwOTQsMCwwLDEsMi44OS0xLjEzLDQuMjc0MDUsNC4yNzQwNSwwLDAsMSwyLjk5LDEuMjJsLjg2Ljc5Ljg2LS43OWE0LjI3NDA1LDQuMjc0MDUsMCwwLDEsMi45OS0xLjIyLDQuMjMwOTQsNC4yMzA5NCwwLDAsMSwyLjg5LDEuMTNBNC4zMzQ0OSw0LjMzNDQ5LDAsMCwxLDIyLjY3OTkzLDIxLjI3MjUyWiIvPjwvZz48L2c+PC9zdmc+","Safety and security","Long-term safety, security and freedom of movement."],
+    ["data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCAzNi44NTU4MyI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA2NjU8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNDcsMjIuODU1ODNIMWExLDEsMCwwLDAtMSwxLDEzLDEzLDAsMCwwLDEzLDEzSDM1YTEzLDEzLDAsMCwwLDEzLTEzQTEsMSwwLDAsMCw0NywyMi44NTU4M1oiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yMC44ODg0OSwxMi4wNzkxLDE4LjQwMSwxMS40MTI2YTUuMDAwMDcsNS4wMDAwNywwLDAsMC02LjEyMzcyLDMuNTM1NTJsLS4xNzYzMy42NTgyLDIuNDg3NDMuNjY2NTFBNC45OTk5Myw0Ljk5OTkzLDAsMCwwLDIwLjcxMjEsMTIuNzM3M1oiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yMC4zMzI2NCwxNy44MTJsMi40ODc0OS42NjY1QTUsNSwwLDAsMCwyOC45NDM4NSwxNC45NDNsLjE3NjMzLS42NTgyLTIuNDg3NDMtLjY2NjUxQTUsNSwwLDAsMCwyMC41MDksMTcuMTUzODFaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjguNTY0MzksMjAuMDE3N2wyLjQ4NzQzLjY2NjVhNSw1LDAsMCwwLDYuMTIzNzItMy41MzU1MmwuMTc2MzktLjY1ODJMMzQuODY0NDQsMTUuODI0YTUsNSwwLDAsMC02LjEyMzcyLDMuNTM1NTNaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTkuMTM2MjMsOC42Njg3bDIuNDg3NDkuNjY2NS4xNzYzMy0uNjU4MTRhNSw1LDAsMCwwLTMuNTM1NTItNi4xMjM3MmwtMi40ODc0My0uNjY2NS0uMTc2MzkuNjU4MTRBNSw1LDAsMCwwLDE5LjEzNjIzLDguNjY4N1oiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yNy4zNjgsMTAuODc0MzlsMi40ODc0My42NjY1LjE3NjM5LS42NTgxNEE1LDUsMCwwLDAsMjYuNDk2MjgsNC43NTlsLTIuNDg3NDktLjY2NjU2LS4xNzYzMy42NTgyQTUsNSwwLDAsMCwyNy4zNjgsMTAuODc0MzlaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzUuNTk5NjcsMTMuMDgwMDhsMi40ODc0OS42NjY1LjE3NjMzLS42NTgyQTQuOTk5ODksNC45OTk4OSwwLDAsMCwzNC43MjgsNi45NjQ3MmwtMi40ODc0My0uNjY2NTYtLjE3NjM5LjY1ODJBNSw1LDAsMCwwLDM1LjU5OTY3LDEzLjA4MDA4WiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTQ1Ljk1MTIzLDE3LjMyNDIyYTEuNDIwMjgsMS40MjAyOCwwLDAsMC0xLjAwNDMzLTEuNzM5NTdsLTUuMDMwNDYtMS4zNDc5LS43MzUyMywyLjc0MzksNS4wMzA0NiwxLjM0NzlBMS40MjAzLDEuNDIwMywwLDAsMCw0NS45NTEyMywxNy4zMjQyMloiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik01Ljk3NjM4LDExLjAyNDM1YTEuNDIwMzUsMS40MjAzNSwwLDAsMC0uNzM1MjMsMi43NDM5bDMuNjU4NTcuOTgwMjhBMS40MjAzNCwxLjQyMDM0LDAsMSwwLDkuNjM1LDEyLjAwNDY0WiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTguMTgyMDcsMi43OTI2NmwzLjY1ODU3Ljk4MDI5YTEuNDIwMzUsMS40MjAzNSwwLDAsMCwuNzM1MjMtMi43NDM5TDguOTE3My4wNDg3N2ExLjQyMDM0LDEuNDIwMzQsMCwxLDAtLjczNTIzLDIuNzQzODlaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMy4wNTMxLDcuMzAwMTdsMTAuMDYxLDIuNjk1OGExLjQyMDM1LDEuNDIwMzUsMCwxLDAsLjczNTIzLTIuNzQzOWwtMTAuMDYxLTIuNjk1OGExLjQyMDM1LDEuNDIwMzUsMCwwLDAtLjczNTIzLDIuNzQzOVoiLz48L2c+PC9nPjwvc3ZnPg==","Adequate standard of living","Access, at a minimum, to adequate food, water, housing, health care and basic education."],
+    ["data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0My45OTk5OSA0Ny44NTU4MSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA3MDk8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNDMuMTUsMjQuODU1ODFINi44NWEuODU3ODcuODU3ODcsMCwwLDAtLjg1Ljg2djIuMTRINDAuMDVhLjk0MzI0Ljk0MzI0LDAsMCwxLC45NS45NXYxNC4wNWgyLjE1YS44NDkyOC44NDkyOCwwLDAsMCwuODUtLjg1di0xNi4yOUEuODU3ODcuODU3ODcsMCwwLDAsNDMuMTUsMjQuODU1ODFaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzguMTUsMjkuODU1ODFIMS44NWEuODQ5MjguODQ5MjgsMCwwLDAtLjg1Ljg1djE2LjI5YS44NTc4OC44NTc4OCwwLDAsMCwuODUuODZIMzguMTVhLjg1Nzg3Ljg1Nzg3LDAsMCwwLC44NS0uODZ2LTE2LjI5QS44NDkyNy44NDkyNywwLDAsMCwzOC4xNSwyOS44NTU4MVptLTMxLjE1LDExYTIsMiwwLDEsMSwyLTJBMi4wMDU5MiwyLjAwNTkyLDAsMCwxLDcsNDAuODU1ODFabTEzLDRhNiw2LDAsMSwxLDYtNkE2LjAwNDc2LDYuMDA0NzYsMCwwLDEsMjAsNDQuODU1ODFabTEzLTRhMiwyLDAsMSwxLDItMkEyLjAwNTkyLDIuMDA1OTIsMCwwLDEsMzMsNDAuODU1ODFaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTguODg4NDgsMTIuMDc5MTQsMTYuNDAxLDExLjQxMjYzYTUsNSwwLDAsMC02LjEyMzcyLDMuNTM1NTJsLS4xNzYzMy42NTgxNSwyLjQ4NzQyLjY2NjU2YTUsNSwwLDAsMCw2LjEyMzcyLTMuNTM1NThaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTguMzMyNjQsMTcuODEybDIuNDg3NDguNjY2NUE1LDUsMCwwLDAsMjYuOTQzODQsMTQuOTQzbC4xNzYzMy0uNjU4MTUtMi40ODc0Mi0uNjY2NTZBNSw1LDAsMCwwLDE4LjUwOSwxNy4xNTM4NFoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yNi41NjQzOSwyMC4wMTc2N2wyLjQ4NzQyLjY2NjUxYTQuOTk5OTMsNC45OTk5MywwLDAsMCw2LjEyMzcyLTMuNTM1NTJsLjE3NjM5LS42NTgxNUwzMi44NjQ0NCwxNS44MjRhNS4wMDAwNyw1LjAwMDA3LDAsMCwwLTYuMTIzNzIsMy41MzU1MloiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xNy4xMzYyMiw4LjY2ODY3bDIuNDg3NDkuNjY2NTdMMTkuOCw4LjY3N2E1LDUsMCwwLDAtMy41MzU1Mi02LjEyMzcybC0yLjQ4NzQzLS42NjY1MUwxMy42MDA3LDIuNTQ1QTQuOTk5OTMsNC45OTk5MywwLDAsMCwxNy4xMzYyMiw4LjY2ODY3WiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTI1LjM2OCwxMC44NzQzNmwyLjQ4NzQyLjY2NjU3LjE3NjM5LS42NTgyMUE1LDUsMCwwLDAsMjQuNDk2MjcsNC43NTlMMjIuMDA4NzgsNC4wOTI1bC0uMTc2MzMuNjU4MTRBNC45OTk5Myw0Ljk5OTkzLDAsMCwwLDI1LjM2OCwxMC44NzQzNloiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zMy41OTk2NiwxMy4wODAwNWwyLjQ4NzQ5LjY2NjUxLjE3NjMzLS42NTgxNUE0Ljk5OTk0LDQuOTk5OTQsMCwwLDAsMzIuNzI4LDYuOTY0N2wtMi40ODc0My0uNjY2NTEtLjE3NjM5LjY1ODE0QTUsNSwwLDAsMCwzMy41OTk2NiwxMy4wODAwNVoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik00My45NTEyMywxNy4zMjQxOWExLjQyMDMsMS40MjAzLDAsMCwwLTEuMDA0MzQtMS43Mzk1NmwtNS4wMzA0NS0xLjM0NzktLjczNTIzLDIuNzQzOSw1LjAzMDQ1LDEuMzQ3OUExLjQyMDI3LDEuNDIwMjcsMCwwLDAsNDMuOTUxMjMsMTcuMzI0MTlaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMy45NzYzNywxMS4wMjQzM2ExLjQyMDM0LDEuNDIwMzQsMCwxLDAtLjczNTIzLDIuNzQzODlsMy42NTg1Ny45ODAzNWExLjQyMDM1LDEuNDIwMzUsMCwxLDAsLjczNTIzLTIuNzQzOVoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik02LjE4MjA2LDIuNzkyNjRsMy42NTg1Ny45ODAyOEExLjQyMDM0LDEuNDIwMzQsMCwwLDAsMTAuNTc1ODYsMS4wMjlMNi45MTcyOS4wNDg3NGExLjQyMDM1LDEuNDIwMzUsMCwwLDAtLjczNTIzLDIuNzQzOVoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMS4xMTQwNyw5Ljk5NmExLjQyMDM1LDEuNDIwMzUsMCwwLDAsLjczNTIzLTIuNzQzOUwxLjc4ODMyLDQuNTU2MjVhMS40MjAzNCwxLjQyMDM0LDAsMCwwLS43MzUyMywyLjc0Mzg5WiIvPjwvZz48L2c+PC9zdmc+","Livelihoods and employment","Access to employment and livelihoods."],
+    ["data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNiA0NC4wMDAwNiI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA4ODA8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTguNjY0MzcuMjUyNWExLjAwMDI4LDEuMDAwMjgsMCwwLDAtMS4zMjg3NCwwbC0xNy4wMDgsMTUuNDVBMSwxLDAsMCwwLDAsMTYuNDQyNjZ2MjcuNTU3NEgxNHYtMTBhMi4wMDU4OCwyLjAwNTg4LDAsMCwxLDItMmg0YTIuMDA1ODgsMi4wMDU4OCwwLDAsMSwyLDJ2MTBIMzZWMTYuNDQyNjZhMSwxLDAsMCwwLS4zMjc2MS0uNzQwMloiLz48L2c+PC9nPjwvc3ZnPg==","Housing, land and property","Effective mechanisms to restore housing, land and property, or to provide compensation."],
+    ["data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCAzMiI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA4MTU8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNDUsMEgzQTMuMDA4ODcsMy4wMDg4NywwLDAsMCwwLDNWMjlhMy4wMDg4NywzLjAwODg3LDAsMCwwLDMsM0g0NWEzLjAwODg3LDMuMDA4ODcsMCwwLDAsMy0zVjNBMy4wMDg4NywzLjAwODg3LDAsMCwwLDQ1LDBaTTguNDYsNS40NkE1LjAyMTg0LDUuMDIxODQsMCwxLDEsNyw5LDUuMDIyMjUsNS4wMjIyNSwwLDAsMSw4LjQ2LDUuNDZaTTIwLDI2SDRWMjVhOCw4LDAsMSwxLDE2LDBabTIwLjUyLTJIMjUuNDlhMS41LDEuNSwwLDAsMSwwLTNINDAuNTJhMS41LDEuNSwwLDAsMSwwLDNabTAtNkgyNS40OWExLjUsMS41LDAsMCwxLDAtM0g0MC41MmExLjUsMS41LDAsMCwxLDAsM1ptMC02SDI1LjQ5YTEuNSwxLjUsMCwwLDEsMC0zSDQwLjUyYTEuNSwxLjUsMCwwLDEsMCwzWiIvPjwvZz48L2c+PC9zdmc+","Documentation","Access to, and replacement of, personal and other documentation."],
+    ["data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OC4wMDExIDM0Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzAwOWVkYjt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPkFzc2V0IDk2MzwvdGl0bGU+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PGcgaWQ9IkVkaXRhYmxlX0ljb25zIiBkYXRhLW5hbWU9IkVkaXRhYmxlIEljb25zIj48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xLjUwMjU2LDE4Ljk3OWExLjQ5OTc1LDEuNDk5NzUsMCwwLDAsMS41LTEuNSw2LjIxODA4LDYuMjE4MDgsMCwwLDEsMi45OTk4OC01LjM2MDFWMjFhNCw0LDAsMCwwLDgsMFYxMi4xMjEzNEE2LjIxNzY3LDYuMjE3NjcsMCwwLDEsMTYuOTk5MTUsMTcuNDc5YTEuNSwxLjUsMCwwLDAsMywwbC0uMDAxMjMtLjAyNjEyLjAwMTIzLS4wMTI5NGE0Ljc1NCw0Ljc1NCwwLDAsMSwxLjAwNDYzLTIuOTM3MjV2My40OTg2NWEyLjk5ODY2LDIuOTk4NjYsMCwwLDAsNS45OTczMiwwVjE0LjUwMTQ2YTQuNzU0MzQsNC43NTQzNCwwLDAsMSwxLjAwNTM3LDIuOTM4NDhjMCwuMDEzMTgtLjAwMi4wMjU4OC0uMDAyLjAzOTA2YTEuNSwxLjUsMCwwLDAsMywwLDYuNjQwMTcsNi42NDAxNywwLDAsMSwzLjk5NjU4LTUuNjkzTDMzLjA3MzM2LDE5YTUuMDE4MzQsNS4wMTgzNCwwLDEsMCw5Ljg0Mjc4LDBsLTEuOTE1LTcuMjE0YTYuNjQzNjksNi42NDM2OSwwLDAsMSw0LDUuNjkzLDEuNSwxLjUsMCwwLDAsMywwYzAtNS4zODg2Ny00LjI5ODM0LTkuNDUyNjMtOS45OTg1NC05LjQ1MjYzQTkuOTE2NSw5LjkxNjUsMCwwLDAsMjkuMzUwNzEsMTIuNjJhNi43MDQzOSw2LjcwNDM5LDAsMCwwLTEwLjY5NjkuMDAxNDYsOS45MTYzNyw5LjkxNjM3LDAsMCwwLTguNjUzMi00LjU5NTA5Yy01LjY5OTcxLDAtOS45OTgsNC4wNjQtOS45OTgsOS40NTI2M0ExLjQ5OTc2LDEuNDk5NzYsMCwwLDAsMS41MDI1NiwxOC45NzlaIi8+PGNpcmNsZSBjbGFzcz0iY2xzLTEiIGN4PSIzOC4wMDI4MSIgY3k9IjMiIHI9IjMiLz48Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjEwLjAwMTgzIiBjeT0iMyIgcj0iMyIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTI0LjAwMTgzLDhhMi41MDUxOSwyLjUwNTE5LDAsMSwwLTIuNTA1MjUtMi41MDUxM0EyLjUwNTEyLDIuNTA1MTIsMCwwLDAsMjQuMDAxODMsOFoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik00NiwzMEgyYTIsMiwwLDAsMCwwLDRINDZhMiwyLDAsMCwwLDAtNFoiLz48L2c+PC9nPjwvc3ZnPg==","Family reunification","Voluntary reunification with family members separated during displacement."],
+    ["data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA3NTE8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzIsMjFhMi4wMDU5MSwyLjAwNTkxLDAsMCwwLDItMlYyYTIuMDA1ODcsMi4wMDU4NywwLDAsMC0yLTJIMkEyLjAwNTg3LDIuMDA1ODcsMCwwLDAsMCwyVjE5YTIuMDA1OTEsMi4wMDU5MSwwLDAsMCwyLDJIOC4yMDg4Nmw0LjEzMjY5LDMuNzQxOTRBLjk5Ny45OTcsMCwwLDAsMTQsMjMuOTYzMTNWMjFaTTYuNSw1aDIxYTEuNSwxLjUsMCwwLDEsMCwzSDYuNWExLjUsMS41LDAsMCwxLDAtM1pNNSwxMy41QTEuNDk3OTMsMS40OTc5MywwLDAsMSw2LjUsMTJoMjFhMS41LDEuNSwwLDAsMSwwLDNINi41QTEuNDk4LDEuNDk4LDAsMCwxLDUsMTMuNVoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik00NS4yMiwyNy43OEE5LjQ3NzgzLDkuNDc3ODMsMCwwLDAsMzguNSwyNWgtMTJhOS41LDkuNSwwLDEsMCwwLDE5SDMzdjIuOTk4YTEsMSwwLDAsMCwxLjY1ODQ1Ljc1MjU2TDM5LDQ0YTguMzQyLDguMzQyLDAsMCwwLDEuMDcwMDctLjEzaC4wMUE5LjUwNTc5LDkuNTA1NzksMCwwLDAsNDUuMjIsMjcuNzhaTTQwLjUsMzloLTE2YTEuNSwxLjUsMCwwLDEsMC0zaDE2YTEuNSwxLjUsMCwwLDEsMCwzWm0wLTZoLTE2YTEuNSwxLjUsMCwxLDEsMC0zaDE2YTEuNSwxLjUsMCwwLDEsMCwzWiIvPjwvZz48L2c+PC9zdmc+","Participation in public affairs","Participation at all levels on an equal basis with the resident population."],
+    ["data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ny44NzUzNCA0OCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA2Nzc8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzYuOTM3NjcsNDRoLTExVjdIMzYuMjM3ODRMMzEuNTE2NTMsMTguOTUyNTFhMS40OTczNSwxLjQ5NzM1LDAsMSwwLDIuNzg1MjgsMS4xMDAyMkwzOC40Mzc2Nyw5LjU4MDA4bDQuMTM1ODcsMTAuNDcyNjVhMS40OTczNSwxLjQ5NzM1LDAsMSwwLDIuNzg1MjctMS4xMDAyMkwzOS44Mjc2OSw0Ljk1YTEuNDg3NjksMS40ODc2OSwwLDAsMC0xLjM5LS45NWgtMTIuNVYyYTIsMiwwLDAsMC00LDBWNGgtMTIuNWExLjQ4NzY3LDEuNDg3NjcsMCwwLDAtMS4zOS45NUwyLjUxNjUzLDE4Ljk1MjUxYTEuNDk3MzUsMS40OTczNSwwLDEsMCwyLjc4NTI4LDEuMTAwMjJMOS40Mzc2Nyw5LjU4MDA4bDQuMTM1ODcsMTAuNDcyNjVhMS40OTczNSwxLjQ5NzM1LDAsMSwwLDIuNzg1MjctMS4xMDAyMkwxMS42Mzc1LDdIMjEuOTM3NjdWNDRoLTExYTIsMiwwLDEsMCwwLDRoMjZhMiwyLDAsMCwwLDAtNFoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xOC44Njg1OCwyNC4zMTJBLjI1NjcyLjI1NjcyLDAsMCwwLDE4LjYxOTA3LDI0SC4yNTYyN2EuMjU2NzMuMjU2NzMsMCwwLDAtLjI0OTUxLjMxMiw5LjY5NjM0LDkuNjk2MzQsMCwwLDAsMTguODYxODIsMFoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik00Ny42MTkwNywyNEgyOS4yNTYyN2EuMjU2NzMuMjU2NzMsMCwwLDAtLjI0OTUxLjMxMiw5LjY5NjM0LDkuNjk2MzQsMCwwLDAsMTguODYxODIsMEEuMjU2NzIuMjU2NzIsMCwwLDAsNDcuNjE5MDcsMjRaIi8+PC9nPjwvZz48L3N2Zz4=","Remedies and justice","Effective remedies for displacement-related violations, including access to justice, reparations and information on their causes."]
+  ],
+  /* Stories: groups are used by the filter buttons */
+  stories: [
+    {groups:["children","disability"], tags:["Return","Children","Persons with disabilities"], title:"Rebuilding childhood under rubble", meta:"UNICEF  |  14 January 2026  |  Khartoum",
+     text:"As families return to Khartoum, services for children are reopening. Hussein, 11, lost a leg in the war and now learns at one of 49 digital learning centres, which reach more than 5,000 children. Child-friendly spaces offer play, learning and psychosocial support.",
+     quote:"“Despite what happened to me, life has not stopped.”", by:"Hussein, 11", img:"assets/img/story-unicef-khartoum.jpg", alt:"Hussein, on crutches, in a digital learning centre in Khartoum", credit:"Photo: UNICEF/Ahmed Mohamdeen Elfatih",
+     link:"https://www.unicef.org/sudan/stories/rebuilding-childhood-under-rubble", site:"unicef.org"},
+    {groups:["children","disability"], tags:["In displacement","Children","Persons with disabilities"], title:"Defeating Disability and Displacement", meta:"UNICEF  |  11 December 2025  |  Geneina, West Darfur",
+     text:"Omar, 16, lost the ability to walk after severe leg and back pain and dropped out of school. After his family fled, he found his way back to learning at a UNICEF-supported Safe Learning Space, where psychosocial support helped him regain his confidence. It is one of 150 such spaces funded by Education Cannot Wait.",
+     img:"assets/img/story-unicef-geneina.jpg", alt:"Omar in his wheelchair at a Safe Learning Space in Geneina", credit:"Photo: UNICEF 2025/Tariq",
+     link:"https://www.unicef.org/sudan/stories/defeating-disability-and-displacement", site:"unicef.org"},
+    {groups:["women","children"], tags:["Local integration","Girls","Education"], title:"How education is helping heal communities in Sudan", meta:"UNHCR  |  23 January 2026  |  Al Jabalain, White Nile",
+     text:"Omnia, 17, fled Khartoum with her family and is back in class at Al Jabalain Secondary School for Girls, reopened with support from UNHCR and partners. Displaced girls, refugees and girls from the host community now learn side by side.",
+     img:"assets/img/story-unhcr-white-nile.jpg", alt:"Girls in class at Al Jabalain Secondary School for Girls", credit:"Photo: UNHCR", link:"https://www.unhcr.org/node/31506", site:"unhcr.org"},
+    {groups:["women"], tags:["Return","Women","Standard of living"], title:"How families are restoring water and healthcare in Khartoum", meta:"CARE  |  22 June 2026  |  Omdurman, Khartoum",
+     text:"Amel, a mother of four, came back to Omdurman from Kassala to find water and health services working again. Community committees rebuilt a local health centre with small grants, and 18 women-led groups are supported across Khartoum.",
+     img:"assets/img/story-care-omdurman.jpg", alt:"A health worker vaccinates a baby held by her mother", credit:"Photo: CARE", link:"https://care.org/news-and-stories/restoring-water-healthcare-khartoum-sudan", site:"care.org"},
+    {groups:["women"], tags:["Local integration","Women","Livelihoods"], title:"Sudanese women rebuilding their lives in displacement", meta:"EU Delegation to Sudan  |  19 March 2025  |  Gedaref and Kassala",
+     text:"Women who fled Khartoum are building new lives in eastern Sudan through farm work, skills training and a community savings fund, under a WFP programme funded by the European Union. Manahel, a mother of two, now works on a farm in Gedaref.",
+     img:"assets/img/story-eu-gedaref.jpg", alt:"A woman sells leafy greens she has grown", credit:"Photo: EU Delegation to Sudan", link:"https://www.eeas.europa.eu/delegations/sudan/sudanese-women-rebuilding-their-lives-displacement_en", site:"eeas.europa.eu"},
+    {groups:["women","children"], tags:["Return","Women and girls","Water"], title:"When water flows again", meta:"UNICEF  |  7 May 2026  |  Sennar and Blue Nile",
+     text:"Families returning to Kabosh, Sennar, have water again from a restored solar-powered borehole. Salma, a mother of three in Blue Nile, has a new water point near her shelter, and a girls’ school with more than 700 pupils has new latrines and drinking water.",
+     img:"assets/img/story-unicef-water.jpg", alt:"Schoolgirls skipping rope in a school yard", credit:"Photo: UNICEF Sudan", link:"https://www.unicef.org/sudan/stories/when-water-flows-again", site:"unicef.org"},
+    {groups:["children"], tags:["Local integration", "Children", "Health"], title:"Care closer to home for children and families in Sennar", meta:"UNICEF  |  13 October 2026  |  Sennar", text:"Alwehida health centre was overwhelmed as families arrived from Khartoum, Aj Jazirah and Darfur. After rehabilitation by UNICEF and the World Bank, it has clean water, a laboratory and a free pharmacy. It now serves about 500 patients a month from displaced and host communities.", img:"assets/img/story-unicef-sennar-health.jpg", alt:"Parents and caregivers at Alwehida Primary Healthcare Centre in Sennar State", credit:"Photo: UNICEF/UNI1019063/Mohamed Dawod", link:"https://www.unicef.org/sudan/stories/care-closer-home-children-and-families-sennar", site:"unicef.org"},
+    {groups:["women"], tags:["In displacement", "Women", "Participation"], title:"From the ashes of war: how Sudanese women are rebuilding lives and communities", meta:"UN Women  |  19 August 2026  |  White Nile, River Nile and Northern State", text:"Eshtiyag Ali and Majeeda Al Nour, both 27, were displaced by the war and now help other women. Eshtiyag trained in mediation and peacebuilding. Majeeda coordinates a project for a local women's organisation, linking survivors of violence to services.", img:"assets/img/story-unwomen-women-leaders.jpg", alt:"Women take part in a community consultation in Talkok locality, Red Sea State", credit:"Photo: UN Women", link:"https://africa.unwomen.org/en/stories/feature-story/2026/08/from-the-ashes-of-war-how-sudanese-women-are-rebuilding-lives-and-communities-amid-conflict", site:"unwomen.org"},
+    {groups:["women"], tags:["In displacement", "Women", "Environment"], title:"Leading change in Kaima camp", meta:"UNICEF  |  12 August 2026  |  Tawila, North Darfur", text:"Nura, a former teacher, fled with her three children and started a \"cut one tree, plant five\" drive in Kaima camp. Her community has planted more than 1,700 trees. Her fuel-efficient mud stoves and home gardens have spread to over 60 women.", img:"assets/img/story-unicef-tawila-trees.jpg", alt:"A mother displaced from Al Fasher holds tree seedlings in Tawila, North Darfur", credit:"Photo: UNICEF/UN0905809/Mohammed Jamal", link:"https://www.unicef.org/sudan/stories/leading-change-kaima-camp", site:"unicef.org"},
+    {groups:["women"], tags:["Return", "Women", "Water"], title:"Saving $1 million and cutting carbon: solar water in Aj Jazirah", meta:"UNDP  |  26 July 2026  |  Madani, Um Algura and Sharg Aj Jazirah", text:"UNDP solarised and repaired 44 water stations, bringing safe water to 256,640 host residents, IDPs, refugees and returnees. The work cuts running costs by about USD 1 million a year. Fatima Abdulkareem says reliable water in her village is what made her bring her family home.", img:"assets/img/story-undp-gezira-water.jpg", alt:"A woman stands in front of a water tower in Aj Jazirah", credit:"Photo: UNDP Sudan", link:"https://undpsudan.exposure.co/saving-1-million-and-cutting-carbon-solar-water-systems-restore-lifesaving-access-in-sudans-most-fertile-regions", site:"undp.org"},
+    {groups:["children"], tags:["Local integration", "Children", "Education"], title:"Restoring school and learning in Sudan", meta:"UNICEF  |  8 June 2026  |  Gedaref", text:"Alban Jadeed primary school was badly damaged while it sheltered displaced families. A school grant paid for repairs, benches and learning materials. Enrolment rose from about 600 to more than 900, and displaced children now make up around one in five pupils.", img:"assets/img/story-unicef-gedaref-school.jpg", alt:"Children in class at Alban Jadeed Mixed Primary School in Gedaref", credit:"Photo: UNICEF/UNI934828/Osman Rajab", link:"https://www.unicef.org/sudan/stories/restoring-school-and-learning-sudan", site:"unicef.org"},
+    {groups:["women"], tags:["Local integration", "Women", "Livelihoods"], title:"Powering resilience: solar irrigation helps refugees and host communities thrive", meta:"UNHCR  |  22 May 2026  |  White Nile", text:"Solar pumps bring Nile water to shared farmland worked by about 10,000 refugees, displaced people and host residents. The farmers run the plots as cooperatives. Fatima Hassan Mohamed, who arrived displaced and depending on aid, now grows sorghum alongside host farmers.", img:"assets/img/story-unhcr-white-nile-irrigation.jpg", alt:"A woman carries a child through a sorghum field in White Nile State", credit:"Photo: UNHCR/Antonia Vadala", link:"https://www.unhcr.org/africa/news/stories/powering-resilience-solar-irrigation-helps-refugees-and-host-communities-thrive-sudan", site:"unhcr.org"},
+    {groups:["women"], tags:["Return", "Women", "Livelihoods"], title:"From survival to stability", meta:"UNICEF  |  6 May 2026  |  Madani, Aj Jazirah", text:"Khadija's family fled to Gedaref and came back to a damaged Madani. Cash transfers covered food and medicine. She invested part of the money in a roasted-seed business that now supports her family of 11.", img:"assets/img/story-unicef-madani-cash.jpg", alt:"A woman buys vegetables at a market stall in Madani, Aj Jazirah State", credit:"Photo: UNICEF/UNI963629/Ahmed Mohamdeen Elfatih", link:"https://www.unicef.org/sudan/stories/survival-stability", site:"unicef.org"},
+    {groups:["women"], tags:["Return", "Women", "Livelihoods"], title:"After 1,000 days of war, Sudan's people can't wait to rebuild their lives", meta:"UNDP  |  12 January 2026  |  Khartoum, Kassala and Gedaref", text:"Sameera fled Khartoum when the war began. She has now returned and sells tea again as people come back to the streets. The story also covers water yards run by local committees in Kassala, and farm support for 160,000 displaced and host families.", img:"assets/img/story-undp-khartoum-tea.jpg", alt:"A woman sits beside kettles and a small stove at her tea stall", credit:"Photo: UNDP Sudan", link:"https://undpsudan.exposure.co/1000-days_recovery", site:"undp.org"},
+    {groups:[], tags:["Return", "Farmers", "Livelihoods"], title:"Sudan: when home calls, farmers answer", meta:"FAO  |  11 November 2025  |  Roweina village, South Al Jazirah", text:"Mudathir Yousif fled his village in December 2023 and was among the first to return in March 2025, finding the Gezira Scheme in ruins. FAO and partners gave 1,000 tonnes of sorghum seed to 100,000 farming households so returning farmers could plant again.", img:"assets/img/story-fao-gezira-farmers.jpg", alt:"Mudathir Yousif shares his story during a field visit in Roweina village", credit:"Photo: FAO/Mohamed Ahmed", link:"https://www.fao.org/emergencies/resources-repository/news/detail/sudan--when-home-calls--farmers-answer/en", site:"fao.org"},
+    {groups:["women", "disability"], tags:["Local integration", "Women", "Persons with disabilities"], title:"Sowing hope for a better tomorrow through farming", meta:"UNHCR  |  23 October 2025  |  White Nile", text:"Haifa, 19, fled Khartoum with her mother and now farms a group plot in a host community. James Abal, a refugee who lost his arm, guards his group's crops. Shared farms, seeds and savings groups reach 20,000 refugees, displaced people and host residents.", img:"assets/img/story-unhcr-white-nile-farming.jpg", alt:"Farmers thresh the harvest in White Nile State", credit:"Photo: UNHCR/Mohamed Ahmed Ishag", link:"https://www.unhcr.org/africa/news/stories/sowing-hope-better-tomorrow-through-farming-sudan", site:"unhcr.org"},
+    {groups:["women"], tags:["Local integration", "Women", "Livelihoods"], title:"Anchors of hope: women driving recovery and resilience", meta:"UN Sudan (FAO)  |  15 September 2025  |  Kalahoot Scheme, Kassala", text:"Madina Ibrahim Mohamed shared her home with three displaced families for nearly two years. She then organised 218 women farmers. With FAO seed they harvested sorghum and vegetables, and 48 of them started small businesses and repaid their loans.", img:"assets/img/story-fao-kassala-women.jpg", pos:"center 20%", alt:"Madina Ibrahim Mohamed, a farmer and community leader in Kassala", credit:"Photo: FAO", link:"https://sudan.un.org/en/301706-anchors-hope-women-driving-recovery-and-resilience", site:"sudan.un.org"},
+    {groups:["women"], tags:["Local integration", "Women", "Livelihoods"], title:"Empowered to empower", meta:"UN Women  |  27 August 2025  |  Red Sea and Gedaref", text:"More than 1,000 women trained in tailoring, soap making and other skills, taught by women who were themselves displaced. Huda now runs a tailoring station in a camp. Mona, who fled Khartoum, teaches soap making in Gedaref.", img:"assets/img/story-unwomen-red-sea-tailoring.jpg", alt:"Huda leads a tailoring session for displaced and local women", credit:"Photo: UN Women", link:"https://africa.unwomen.org/en/stories/news/2025/08/empowered-to-empower-building-women-resilience-amid-conflict-and-displacement-in-sudan", site:"unwomen.org"},
+    {groups:["women", "disability"], tags:["In displacement", "Women", "Persons with disabilities"], title:"A new beginning: rebuilding through resilience and kindness", meta:"UN Women  |  27 August 2025  |  Port Sudan", text:"Kitchen kits helped displaced women restart small businesses. Bakhita, displaced three times and caring for a son with disabilities, expanded her shop at the gathering site. Gisma, a widow raising four orphaned children, is baking for income again.", img:"assets/img/story-unwomen-port-sudan-kits.jpg", alt:"A UN Women team member hands kitchen supplies to a displaced woman in Port Sudan", credit:"Photo: UN Women", link:"https://africa.unwomen.org/en/stories/news/2025/08/a-new-beginning-rebuilding-through-resilience-and-kindness", site:"unwomen.org"},
+    {groups:["women"], tags:["Return", "Women", "Health"], title:"Sudan: born in the shadows of shattered walls", meta:"UNFPA  |  July 2025  |  Khartoum", text:"As families return to Khartoum, UNFPA is helping restore maternity care in war-damaged hospitals, including solar power at Al Saudi Hospital. The story includes a baby born there after her mother came home from two years of displacement.", img:"assets/img/story-unfpa-khartoum-maternity.jpg", alt:"A newborn baby in Khartoum", credit:"Photo: UNFPA Sudan/Sufian Abdulmouty", link:"https://www.unfpa.org/stories/sudan-born-shadows-shattered-walls", site:"unfpa.org"},
+    {groups:["women", "children"], tags:["Local integration", "Girls", "Education"], title:"Hope in a backpack", meta:"UNICEF  |  1 July 2025  |  Damazin, Blue Nile", text:"Back-to-learning campaigns lifted enrolment at a Damazin girls' school to 500, including 120 displaced and refugee children who now learn alongside host pupils. Tawasol, displaced from Khartoum, is finding new friends and joy in drawing again.", img:"assets/img/story-unicef-blue-nile-school.jpg", alt:"Girls with new school backpacks at a school in Damazin, Blue Nile State", credit:"Photo: UNICEF/UNI823137/Mohamed Dawod", link:"https://www.unicef.org/sudan/stories/hope-backpack", site:"unicef.org"},
+    {groups:["children"], tags:["Return", "Children", "Family unity"], title:"After two years of displacement, Sudanese families begin their journey home", meta:"SOS Children's Villages  |  16 April 2025  |  Red Sea State to Wad Madani", text:"SOS Children's Villages and the Red Sea State social welfare ministry helped 510 displaced people, including children, return voluntarily to Wad Madani. The families had spent more than a year in crowded shelters and camps.", img:"", alt:"", credit:"", link:"https://www.soschildrensvillages.ca/news/after-two-years-displacement-sudanese-families-begin-their-journey-home-136", site:"soschildrensvillages.ca"}
+  ],
+  documents: [
+    ["Global frameworks","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiA0NCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA3Njc8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzAsMEgyQTIuMDA1ODMsMi4wMDU4MywwLDAsMCwwLDJWNDJhMi4wMDU5MSwyLjAwNTkxLDAsMCwwLDIsMkgyMVYzN2EzLjk5OSwzLjk5OSwwLDAsMSw0LTRoN1YyQTIuMDA1ODMsMi4wMDU4MywwLDAsMCwzMCwwWk0yNS41LDI4SDYuNWExLjUsMS41LDAsMCwxLDAtM2gxOWExLjUsMS41LDAsMCwxLDAsM1ptMC04SDYuNWExLjUsMS41LDAsMCwxLDAtM2gxOWExLjUsMS41LDAsMCwxLDAsM1ptMC04SDYuNWExLjUsMS41LDAsMCwxLDAtM2gxOWExLjUsMS41LDAsMCwxLDAsM1oiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yMywzN3Y3bDktOUgyNUEyLjAwNTgzLDIuMDA1ODMsMCwwLDAsMjMsMzdaIi8+PC9nPjwvZz48L3N2Zz4=",[
+      ["IASC Framework on Durable Solutions for Internally Displaced Persons (2010)","The global reference that defines durable solutions and sets out the eight criteria.","https://interagencystandingcommittee.org/sites/default/files/migrated/2014-11/Framework%20for%20Durable%20Solutions%20for%20Internally%20Displaced%20Persons%20FINAL.pdf","Download"],
+      ["United Nations Secretary-General’s Action Agenda on Internal Displacement (2022)","Sets out the United Nations system’s commitments to help internally displaced persons find durable solutions, prevent new displacement crises and ensure effective protection and assistance.","https://www.un.org/en/content/action-agenda-on-internal-displacement/","Open"]]],
+    ["Coordination","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA2NzM8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PGNpcmNsZSBjbGFzcz0iY2xzLTEiIGN4PSIyMy45OTk4OCIgY3k9IjI0IiByPSI2Ii8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzIsMThoOWEyLDIsMCwwLDAsMC00SDM2LjgyODEyTDQ3LjQxNDA2LDMuNDE0MDZBMS45OTk3OCwxLjk5OTc4LDAsMSwwLDQ0LjU4NTk0LjU4NTk0TDM0LDExLjE3MTg4VjdhMiwyLDAsMCwwLTQsMHY5QTIuMDAwMSwyLjAwMDEsMCwwLDAsMzIsMThaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTEuMTcxODgsMTRIN2EyLDIsMCwwLDAsMCw0aDlhMi4wMDAxLDIuMDAwMSwwLDAsMCwyLTJWN2EyLDIsMCwwLDAtNCwwdjQuMTcxODhMMy40MTQwNi41ODU5NEExLjk5OTc4LDEuOTk5NzgsMCwwLDAsLjU4NTk0LDMuNDE0MDZaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzYuODI4MTIsMzRINDFhMiwyLDAsMCwwLDAtNEgzMmEyLjAwMDEsMi4wMDAxLDAsMCwwLTIsMnY5YTIsMiwwLDAsMCw0LDBWMzYuODI4MTJMNDQuNTg1OTQsNDcuNDE0MDZhMS45OTk3OCwxLjk5OTc4LDAsMCwwLDIuODI4MTItMi44MjgxMloiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xNiwzMEg3YTIsMiwwLDAsMCwwLDRoNC4xNzE4OEwuNTg1OTQsNDQuNTg1OTRhMS45OTk3OCwxLjk5OTc4LDAsMSwwLDIuODI4MTIsMi44MjgxMkwxNCwzNi44MjgxMlY0MWEyLDIsMCwwLDAsNCwwVjMyQTIuMDAwMSwyLjAwMDEsMCwwLDAsMTYsMzBaIi8+PC9nPjwvZz48L3N2Zz4=",[
+      ["National Durable Solutions Working Group: Terms of Reference","Purpose, membership and ways of working of the national group."],
+      ["Area Durable Solutions Working Groups: Terms of Reference","Role, membership and ways of working of the groups in the five priority states."],
+      ["Consolidated Durable Solutions Policy Document in Sudan, September 2026","The policy frameworks, coordination structure and operational tools for durable solutions in Sudan, in one document.","docs/consolidated-durable-solutions-policy-document-sudan-sept-2026.pdf","Download PDF"],
+      ["The DSU area-based model, August 2026","Coordination architecture, the three operational tools and how the eight criteria link to the clusters. Extract from a briefing to the UN Country Team.","docs/dsu-area-based-model-unct-briefing-aug-2026.pdf","Download PDF"]]],
+    ["Data and analysis","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OC4wMDAwMiA0Ny45OTk5NyI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA3MzQ8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNOC4zOCwzMy44LDEuMiw0MC45OEE0LjExNTM3LDQuMTE1MzcsMCwwLDAsNy4wMiw0Ni44bDcuMTgtNy4xOEEyNC4wMDk2MywyNC4wMDk2MywwLDAsMSw4LjM4LDMzLjhaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjIsMjBIMThhMS4wMDMsMS4wMDMsMCwwLDAtMSwxdjQuOTRhMTIuNTc0MSwxMi41NzQxLDAsMCwwLDYsNS41MlYyMUExLjAwMywxLjAwMywwLDAsMCwyMiwyMFoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zOCwxNEgzNGExLjAwMywxLjAwMywwLDAsMC0xLDFWMzEuNDZhMTIuNTc0MTksMTIuNTc0MTksMCwwLDAsNi01LjUyVjE1QTEuMDAzLDEuMDAzLDAsMCwwLDM4LDE0WiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTMwLDE3SDI2YTEuMDAzLDEuMDAzLDAsMCwwLTEsMVYzMi4xNGExMi42ODAzNCwxMi42ODAzNCwwLDAsMCw2LDBWMThBMS4wMDMsMS4wMDMsMCwwLDAsMzAsMTdaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjgsMEEyMCwyMCwwLDEsMCw0OCwyMCwxOS45OTQ1LDE5Ljk5NDUsMCwwLDAsMjgsMFpNMzksMzAuMThBMTUsMTUsMCwwLDEsMTMsMjAsMTUsMTUsMCwxLDEsMzksMzAuMThaIi8+PC9nPjwvZz48L3N2Zz4=",[
+      ["Sudan Returns and Solutions Snapshot, Q3 2026","A quarterly overview of displacement and return trends, based on IOM and UNHCR data.","docs/sudan-returns-and-solutions-snapshot-q3-2026.pdf","Download PDF"],
+      ["Data for Solutions Practice Brief","Practical guidance on using data to plan for, and measure progress toward, durable solutions."],
+      ["State snapshots, Q3 2026","One-page profiles of the situation and solutions in each of the five priority states. Open a state on the How we work page.","howwework/","See the states"]]],
+    ["Field work and planning tools","data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiA0Ny44Njc0MyI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA3Njk8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTYsMEM3LjE1OTkxLDAsMCw3LjYsMCwxNi45NiwwLDI1LjAxOTksMTEuODMwMDgsNDIuNjMsMTUuMTUsNDcuNDFhMS4wMTg0NSwxLjAxODQ1LDAsMCwwLDEuNywwQzIwLjE2OTkyLDQyLjYzLDMyLDI1LjAxOTksMzIsMTYuOTYsMzIsNy42LDI0Ljg0MDA5LDAsMTYsMFptMCwyMy44N2E4LDgsMCwxLDEsOC04QTcuOTk3OSw3Ljk5NzksMCwwLDEsMTYsMjMuODdaIi8+PC9nPjwvZz48L3N2Zz4=",[
+      ["DSU field mission reports","Findings and recommendations from DSU visits to areas of displacement and return."],
+      ["Local Action Plan template","A tool to plan local integration together with displacement-affected communities, through participatory consultations."]]]
+  ]
+};
+
+/* ------------------------------------------------------------------ helpers */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+/* Sources are always clickable: IOM DTM and UNHCR open their Sudan data pages */
+/* Every source links to the exact report, never to an organisation home page. Update these when the figures are updated. */
+const SRC_LINKS = [[/IOM DTM/g, "https://dtm.iom.int/reports/dtm-sudan-displacement-and-return-snapshot-10"], [/UNHCR/g, "https://data.unhcr.org/en/documents/details/124475"]];
+const linkSrc = t => SRC_LINKS.reduce((h, [re, u]) => h.replace(re, m => `<a href="${u}" target="_blank" rel="noopener">${m}</a>`), esc(t));
+function linkAllSources(){ document.querySelectorAll(".src").forEach(e => { if (!e.querySelector("a") && /IOM DTM|UNHCR/.test(e.textContent)) e.innerHTML = linkSrc(e.textContent); }); }
+const fmt = n => n.toLocaleString("en-US");
+const compact = n => n >= 1e6 ? (n/1e6).toFixed(2) + "M" : n >= 1e3 ? Math.round(n/1e3) + "K" : String(n);
+const tip = $("#tip");
+function showTip(html, x, y){
+  tip.innerHTML = html; tip.hidden = false;
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  let left = x + 14, top = y + 14;
+  if (left + w > window.innerWidth - 8) left = x - w - 14;
+  if (top + h > window.innerHeight - 8) top = y - h - 14;
+  tip.style.left = Math.max(8, left) + "px"; tip.style.top = Math.max(8, top) + "px";
+}
+function hideTip(){ tip.hidden = true; }
+function hoverable(el, html){
+  el.tabIndex = 0;
+  if (!el.hasAttribute("aria-label")) { const t = document.createElement("div"); t.innerHTML = html.replace(/<br\s*\/?>/g, ". "); el.setAttribute("aria-label", t.textContent.replace(/\s+/g, " ").trim()); }
+  if (!el.getAttribute("role")) el.setAttribute("role", "img");
+  el.addEventListener("pointermove", e => showTip(html, e.clientX, e.clientY));
+  el.addEventListener("pointerleave", hideTip);
+  el.addEventListener("focus", () => { const r = el.getBoundingClientRect(); showTip(html, r.left + r.width/2, r.bottom); });
+  el.addEventListener("blur", hideTip);
+}
+
+/* ------------------------------------------------------------------ figures */
+$("#stats").innerHTML = DATA.stats.map(s => `<div class="stat"><div class="top"><img class="ico-lg" src="${s.icon}" alt=""><b class="num">${s.big}</b></div><div class="lbl">${esc(s.label)}</div><div class="sub">${esc(s.sub)}</div><div class="src">${esc(s.src)}</div></div>`).join("");
+const tileHTML = t => `<div class="tile"><div class="top"><img class="ico" src="${t.icon}" alt=""><b class="num">${t.big}</b></div><p>${esc(t.text)}</p><div class="src">${esc(t.src || DATA.tileSrc)}</div></div>`;
+$("#tiles-disp").innerHTML = DATA.tilesDisp.map(tileHTML).join("");
+$("#tiles-ret").innerHTML = DATA.tilesRet.map(tileHTML).join("");
+
+/* ------------------------------------------------------------------ trend chart (SVG, crosshair tooltip) */
+(function trend(){
+  /* drawn at the width of its box (at least 820), so it fills the card on wide screens */
+  const W = Math.max(820, Math.round($("#trend").clientWidth || 820)), H = 340, m = {l:52, r:150, t:30, b:40};
+  const pts = DATA.trend.map(([d, a, b]) => { const [y, mo] = d.split("-").map(Number); return {t:(y - 2025)*12 + (mo - 1), d, a, b}; });
+  const PV = "a"; /* projection shown on the chart */
+  const L = pts[pts.length - 1], at = (tt, k) => { for (let i = 1; i < pts.length; i++) if (pts[i].t >= tt) { const p = pts[i-1], q = pts[i]; return p[k] + (q[k] - p[k]) * (tt - p.t) / (q.t - p.t); } return L[k]; };
+  const rate = (n, k) => (L[k] - at(L.t - n, k)) / n;           // average change per month over the last n months
+  const proj = [3, 6].map(n => ({t: L.t + n, b: L.b + rate(6, "b") * n, lo: L.b + Math.min(rate(2, "b"), rate(12, "b"), rate(6, "b")) * n, hi: L.b + Math.max(rate(2, "b"), rate(12, "b"), rate(6, "b")) * n, a: L.a + rate(6, "a") * n}));
+  const t0 = 0, t1 = PV === "b" ? L.t : L.t + 6, ymax = 13;
+  const x = t => m.l + (t - t0) / (t1 - t0) * (W - m.l - m.r);
+  const y = v => m.t + (1 - v / ymax) * (H - m.t - m.b);
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const lab = p => months[p.t % 12] + " " + (2025 + Math.floor(p.t / 12));
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Line chart: IDPs fell from 11.59 million in January 2025 to 8.59 million in September 2026, while returnees rose from 0.1 million to 5.27 million. If the recent pace continues, about 6.5 million returnees and 8.3 million IDPs by March 2027. A table with all values follows.">`;
+  if (PV === "a") s += `<rect x="${x(L.t)}" y="${m.t}" width="${x(t1) - x(L.t)}" height="${H - m.t - m.b}" fill="var(--track)" opacity=".6"/>`;
+  [0,3,6,9,12].forEach(v => { s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/><text x="${m.l - 10}" y="${y(v) + 4}" text-anchor="end" font-size="12" fill="var(--ink2)">${v ? v + "M" : "0"}</text>`; });
+  [0,3,6,9,12,15,18].forEach(t => { if (t <= t1) s += `<text x="${x(t)}" y="${H - 14}" text-anchor="middle" font-size="12" fill="var(--ink2)">${months[t % 12]} ${2025 + Math.floor(t / 12)}</text>`; });
+  for (const [key, col] of [["a","var(--idp)"],["b","var(--ret)"]]) {
+    const line = pts.map((p, i) => (i ? "L" : "M") + x(p.t).toFixed(1) + "," + y(p[key]).toFixed(1)).join("");
+    s += `<path d="${line}L${x(L.t)},${y(0)}L${x(t0)},${y(0)}Z" fill="${col}" fill-opacity="0.10"/>`;
+    s += `<path d="${line}" fill="none" stroke="${col}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+    pts.forEach(p => s += `<circle cx="${x(p.t)}" cy="${y(p[key])}" r="4.5" fill="${col}" stroke="#fff" stroke-width="2"/>`);
+  }
+  const last = pts[pts.length - 1];
+  const lx = x(t1) + 12;
+  if (PV === "a") {
+    s += `<text x="${x(L.t)}" y="${y(L.a) - 12}" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)" paint-order="stroke" stroke="#fff" stroke-width="4">${L.a}M</text>`;
+    s += `<text x="${x(L.t)}" y="${y(L.b) - 12}" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)" paint-order="stroke" stroke="#fff" stroke-width="4">${L.b}M</text>`;
+    s += `<text x="${lx}" y="${y(proj[1].a) + 4}" font-size="14" font-weight="700" fill="var(--ink)">IDPs</text>`;
+    s += `<text x="${lx}" y="${y(proj[1].b) + 4}" font-size="14" font-weight="700" fill="var(--ink)">Returnees</text>`;
+  } else {
+    s += `<text x="${lx}" y="${y(last.a) + 4}" font-size="14" font-weight="700" fill="var(--ink)">${last.a}M IDPs</text>`;
+    s += `<text x="${lx}" y="${y(last.b) + 4}" font-size="14" font-weight="700" fill="var(--ink)">${last.b}M returnees</text>`;
+  }
+  s += `<text x="${x(0) + 10}" y="${y(pts[0].a) - 12}" font-size="12" fill="var(--ink2)">Peak: 11.59M IDPs, January 2025</text>`;
+  if (PV === "a") {
+    const xl = x(L.t);
+    s += `<text x="${(xl + x(t1)) / 2}" y="${m.t - 8}" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink2)">Projection</text>`;
+    s += `<path d="M${xl},${y(L.b)}L${x(proj[1].t)},${y(proj[1].hi)}L${x(proj[1].t)},${y(proj[1].lo)}Z" fill="var(--ret)" fill-opacity=".18"/>`;
+    s += `<path d="M${xl},${y(L.b)}L${x(proj[0].t)},${y(proj[0].b)}L${x(proj[1].t)},${y(proj[1].b)}" fill="none" stroke="var(--ret)" stroke-width="2.5" stroke-dasharray="6 5"/>`;
+    s += `<path d="M${xl},${y(L.a)}L${x(proj[1].t)},${y(proj[1].a)}" fill="none" stroke="var(--idp)" stroke-width="2.5" stroke-dasharray="6 5"/>`;
+    proj.forEach((p, i) => { s += `<circle cx="${x(p.t)}" cy="${y(p.b)}" r="5" fill="#fff" stroke="var(--ret)" stroke-width="2.5"/><text x="${x(p.t)}" y="${y(p.b) - 12}" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">${p.b.toFixed(1)}M</text><text x="${x(p.t)}" y="${H - 14}" text-anchor="middle" font-size="12" fill="var(--ink2)">${months[p.t % 12]} ${2025 + Math.floor(p.t / 12)}</text>`; });
+  }
+  s += `<line id="xh" x1="0" x2="0" y1="${m.t}" y2="${H - m.b}" stroke="var(--ink2)" stroke-dasharray="3 3" visibility="hidden"/>`;
+  s += `<rect id="hit" x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="transparent"/></svg>`;
+  const box = $("#trend"); box.innerHTML = s;
+  box.insertAdjacentHTML("afterend", `<div class="sr-only"><table><caption>IDPs and returnees in Sudan by month, in millions, with projection</caption><thead><tr><th scope="col">Month</th><th scope="col">IDPs</th><th scope="col">Returnees</th></tr></thead><tbody>${pts.map(p => `<tr><th scope="row">${lab(p)}</th><td>${p.a.toFixed(2)}</td><td>${p.b.toFixed(2)}</td></tr>`).join("")}${proj.map(p => `<tr><th scope="row">${lab(p)} (projection)</th><td>about ${p.a.toFixed(1)}</td><td>about ${p.b.toFixed(1)} (range ${p.lo.toFixed(1)} to ${p.hi.toFixed(1)})</td></tr>`).join("")}</tbody></table></div>`);
+  const note = `Projection: the average monthly change of the last six months (March to September 2026), carried forward. The range uses the slowest and fastest recent pace. A trend, not a forecast; it does not account for new displacement or changes in security.`;
+  const leg = document.querySelector("#glance .legend");
+  if (PV === "a" && leg && !leg.querySelector(".pl")) leg.insertAdjacentHTML("beforeend", `<span class="pl"><i style="background:repeating-linear-gradient(90deg,var(--ret) 0 5px,transparent 5px 9px)"></i>Projection, if the recent pace continues <span class="info" role="note">?</span></span>`);
+  const inf = document.querySelector("#glance .legend .info"); if (inf) hoverable(inf, note);
+
+  const svg = box.querySelector("svg"), xh = svg.querySelector("#xh"), hit = svg.querySelector("#hit");
+  hit.addEventListener("pointermove", e => {
+    const r = svg.getBoundingClientRect(), sx = (e.clientX - r.left) * W / r.width;
+    const all = pts.concat(proj.map(p => ({...p, pr: true})));
+    let best = all[0]; for (const p of all) if (Math.abs(x(p.t) - sx) < Math.abs(x(best.t) - sx)) best = p;
+    xh.setAttribute("x1", x(best.t)); xh.setAttribute("x2", x(best.t)); xh.setAttribute("visibility", "visible");
+    showTip(best.pr
+      ? `<b>${lab(best)}, projection</b><br>IDPs: about ${best.a.toFixed(1)} million<br>Returnees: about ${best.b.toFixed(1)} million (range ${best.lo.toFixed(1)} to ${best.hi.toFixed(1)})<br><span style="opacity:.8">If the pace of March to September 2026 continues</span>`
+      : `<b>${lab(best)}</b><br>IDPs: ${best.a.toFixed(2)} million<br>Returnees: ${best.b.toFixed(2)} million`, e.clientX, e.clientY);
+  });
+  hit.addEventListener("pointerleave", () => { xh.setAttribute("visibility", "hidden"); hideTip(); });
+})();
+
+/* ------------------------------------------------------------------ horizontal bars (HTML) */
+function bars(sel, rows, {max, color, track = false, value, tipText, icon, flag}){
+  const el = $(sel); el.className = "bars";
+  const pic = r => flag ? `<img class="flag" src="assets/img/flags/${flag(r)}.svg" alt="">` : icon && icon(r) ? `<img class="bi" src="assets/img/icons/${icon(r)}.svg" alt="">` : "";
+  el.innerHTML = rows.map(r => `<div class="lab">${esc(r[0])}${pic(r)}</div><div class="row"><div class="trk${track ? " t" : ""}"><div class="fill" style="width:${Math.max(0.6, r[1] / max * 100)}%;background:${color}"></div></div><span class="val num">${esc(value(r))}</span></div>`).join("");
+  el.querySelectorAll(".row").forEach((row, i) => hoverable(row, tipText(rows[i])));
+}
+bars("#c-cross", DATA.crossBorder, {max:1600000, color:"var(--idp)", value:r => compact(r[1]), tipText:r => `<b>${esc(r[0])}</b><br>${fmt(r[1])} people`,
+  flag:r => ({"Egypt":"eg","South Sudan":"ss","Chad":"td","Ethiopia":"et","Libya":"ly","Central African Rep.":"cf"})[r[0]]});
+bars("#c-shelter", DATA.shelter, {max:40, color:"var(--idp)", value:r => r[1] + "%", tipText:r => `<b>${esc(r[0])}</b><br>${r[1]}% of displaced households`,
+  icon:r => ({"Host families":"House","Gathering sites":"Spontaneous-site","Camps":"IDP-refugee-camp","Schools or public buildings":"School","Rented accommodation":"Building","Improvised shelter":"Tent"})[r[0]]});
+bars("#c-reasons", DATA.reasons, {max:100, color:"var(--ret)", track:true, value:r => r[2], tipText:r => `<b>${esc(r[0])}</b><br>${r[2]} of returned households`,
+  icon:r => ({"Improved security":"Safety-and-security","No means to stay where displaced":"Poverty","Family reunification":"People-in-need","Services in area of origin":"Services-and-tools","Returned by authorities":"Government-office","Humanitarian assistance":"Relief-goods"})[r[0]]});
+bars("#c-progress", DATA.progress, {max:100, color:"var(--ret)", track:true, value:r => `${r[2]} · ${compact(r[3])}`, tipText:r => `<b>${esc(r[0])}</b><br>${r[2]} of IDPs from this state have returned<br>${fmt(r[3])} returnees recorded in the state`});
+
+/* ------------------------------------------------------------------ pathways and criteria */
+$("#paths").innerHTML = DATA.paths.map(p => `<div class="path"><h3><img class="ico" src="${p.icon}" alt="">${esc(p.title)}</h3><p>${esc(p.text)}</p><div class="ins"><div class="eyebrow">In Sudan</div><p>${esc(p.sudan)}</p><div class="src">${esc(p.src)}</div></div></div>`).join("");
+$("#crit").innerHTML = DATA.criteria.map((c, i) => `<button type="button" class="crit-btn" data-i="${i}" aria-pressed="${i === 0}"><img class="ico" src="${c[0]}" alt=""><span class="n">${i + 1}</span><span>${esc(c[1])}</span></button>`).join("");
+function showCrit(i){
+  const c = DATA.criteria[i];
+  $("#crit-desc").innerHTML = `<b>${i + 1}. ${esc(c[1])}.</b> ${esc(c[2])}`;
+  document.querySelectorAll(".crit-btn").forEach(b => b.setAttribute("aria-pressed", b.dataset.i == i));
+}
+document.querySelectorAll(".crit-btn").forEach(b => {
+  b.onclick = () => showCrit(+b.dataset.i);
+  b.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") showCrit(+b.dataset.i); });
+});
+showCrit(0);
+
+/* ------------------------------------------------------------------ top 10 states (butterfly) */
+(function states(){
+  const all = Object.entries(DATA.states);
+  const tIdp = all.reduce((a, [, v]) => a + v[0], 0), tRet = all.reduce((a, [, v]) => a + (v[1] || 0), 0);
+  const top = all.sort((a, b) => (b[1][0] + (b[1][1] || 0)) - (a[1][0] + (a[1][1] || 0))).slice(0, 10);
+  const sIdp = top.reduce((a, [, v]) => a + v[0], 0), sRet = top.reduce((a, [, v]) => a + (v[1] || 0), 0);
+  $("#states-intro").textContent = `The 10 states with the most IDPs and returnees combined. Together they host ${Math.round(sIdp / tIdp * 100)}% of IDPs and ${Math.round(sRet / tRet * 100)}% of returnees in Sudan.`;
+  const max = Math.max(...top.map(([, v]) => Math.max(v[0], v[1] || 0)));
+  let h = `<div class="hd l">IDPs hosted</div><div></div><div class="hd">Returnees</div>`;
+  top.forEach(([name, v]) => {
+    h += `<div class="side l" data-s="${esc(name)}"><div class="bar" style="width:${v[0] / max * 82}%"></div><span class="v num">${compact(v[0])}</span></div>`;
+    h += `<div class="st" data-s="${esc(name)}">${esc(name)}</div>`;
+    h += v[1] ? `<div class="side r" data-s="${esc(name)}"><div class="bar" style="width:${v[1] / max * 82}%"></div><span class="v num">${compact(v[1])}</span></div>`
+              : `<div class="side r" data-s="${esc(name)}"><span class="none">None recorded</span></div>`;
+  });
+  $("#fly").innerHTML = h;
+  $("#fly").insertAdjacentHTML("afterend", `<div class="sr-only"><table><caption>Top 10 states: IDPs hosted, returnees, share of IDPs from the state who have returned, refugees hosted</caption><thead><tr><th scope="col">State</th><th scope="col">IDPs hosted</th><th scope="col">Returnees</th><th scope="col">Share returned</th><th scope="col">Refugees (UNHCR)</th></tr></thead><tbody>${top.map(([n, v]) => `<tr><th scope="row">${esc(n)}</th><td>${fmt(v[0])}</td><td>${v[1] ? fmt(v[1]) : "none recorded"}</td><td>${v[2] || "not applicable"}</td><td>${v[3]}</td></tr>`).join("")}</tbody></table></div>`);
+  $("#fly").setAttribute("aria-hidden", "true"); $("#fly").querySelectorAll("[tabindex]").forEach(e => e.tabIndex = -1);
+  document.querySelectorAll("#fly [data-s]").forEach(el => {
+    const v = DATA.states[el.dataset.s];
+    hoverable(el, `<b>${esc(el.dataset.s)}</b><br>IDPs hosted: ${fmt(v[0])}<br>Returnees: ${v[1] ? fmt(v[1]) : "none recorded"}<br>IDPs from this state who have returned: ${v[2] || "not applicable"}<br>Refugees hosted (UNHCR): ${v[3]}`);
+  });
+  $("#fly-total").innerHTML = `<span>Sudan, all 18 states</span><span>${fmt(tIdp)} IDPs</span><span>${fmt(tRet)} returnees</span>`;
+})();
+
+/* ------------------------------------------------------------------ stories with filter */
+const FILTERS = [["all","All stories"],["women","Women and girls"],["children","Children"],["disability","Persons with disabilities"]];
+let filter = "all", showAll = false, pwf = "";
+document.querySelectorAll("#pw-chips .pw-f").forEach(b => b.onclick = () => {
+  pwf = pwf === b.dataset.p ? "" : b.dataset.p; showAll = false;
+  document.querySelectorAll("#pw-chips .pw-f").forEach(x => x.setAttribute("aria-pressed", x.dataset.p === pwf));
+  renderStories();
+});
+document.querySelector("#show-all button").onclick = () => { showAll = !showAll; renderStories(); if (!showAll) $("#stories").scrollIntoView(); };
+try { const f = localStorage.getItem("dsh-filter"); if (f && FILTERS.some(x => x[0] === f)) filter = f; } catch (e) {}
+const PATHWAY = {"Return":"return","Local integration":"local-integration","In displacement":"in-displacement","Settlement elsewhere":"elsewhere"};
+const TAG_ICON = {"Return":"Population-return","Local integration":"Group","In displacement":"Internally-displaced","Settlement elsewhere":"Location",
+  "Women":"Person-1","Girls":"Person-1","Women and girls":"Person-1","Children":"Children","Persons with disabilities":"People-with-physical-impairments","Farmers":"Agriculture",
+  "Education":"Education","Health":"Health-facility","Water":"Water-source","Livelihoods":"Livelihood","Environment":"Environment","Participation":"Meeting",
+  "Standard of living":"Food-Security","Family unity":"People-in-need"};
+const SHOW = 10;
+function storyHTML(s){
+  const pw = s.tags[0], key = PATHWAY[pw] || "return";
+  const badge = `<span class="pathway-badge pw-${key}" role="img" aria-label="Pathway: ${esc(pw)}" title="Pathway: ${esc(pw)}"><img src="assets/img/pathway-${key}.svg" alt="" aria-hidden="true"></span>`;
+  const ph = s.img
+    ? `<img src="${s.img}" alt="${esc(s.alt)}" loading="lazy"${s.pos ? ` style="object-position:${s.pos}"` : ""}>`
+    : `<div class="no-photo pw-${key}"><img src="assets/img/pathway-${key}.svg" alt=""><span>${esc(pw)}</span></div>`;
+  return `<article class="story" data-pathway="${key}"><div class="ph">${ph}${badge}</div><div class="body">
+    <div class="tags">${s.tags.map(t => `<span class="tag">${TAG_ICON[t] ? `<img src="assets/img/icons/${TAG_ICON[t]}.svg" alt="">` : ""}${esc(t)}</span>`).join("")}</div>
+    <h3><a href="${s.link}" target="_blank" rel="noopener">${esc(s.title)}<span class="sr-only"> (opens ${esc(s.site)})</span></a></h3><div class="meta">${esc(s.meta)}</div><p class="one" title="${esc(s.text)}">${esc(s.text)}</p></div></article>`;
+}
+function renderStories(){
+  const list = DATA.stories.filter(s => (filter === "all" || s.groups.includes(filter)) && (!pwf || PATHWAY[s.tags[0]] === pwf));
+  const shown = showAll ? list : list.slice(0, SHOW);
+  $("#more").innerHTML = shown.map(storyHTML).join("");
+  $("#show-all").hidden = list.length <= SHOW;
+  $("#show-all button").textContent = showAll ? "Show fewer stories" : `Show all ${list.length} stories`;
+  $("#no-stories").hidden = list.length > 0;
+  $("#story-chips").innerHTML = `<span class="lbl">Show</span>` + FILTERS.map(([k, l]) => {
+    const base = DATA.stories.filter(s => !pwf || PATHWAY[s.tags[0]] === pwf);
+    const n = k === "all" ? base.length : base.filter(s => s.groups.includes(k)).length;
+    return `<button class="chip" data-f="${k}" aria-pressed="${k === filter}">${l} (${n})</button>`;
+  }).join("");
+  document.querySelectorAll("#story-chips .chip").forEach(b => b.onclick = () => {
+    filter = b.dataset.f; try { localStorage.setItem("dsh-filter", filter); } catch (e) {} renderStories();
+  });
+}
+renderStories();
+
+/* ------------------------------------------------------------------ documents */
+$("#docs").innerHTML = DATA.documents.map(([g, icon, items], gi) => `<details${gi === 0 ? " open" : ""}><summary class="grp"><img src="${icon}" alt="">${esc(g)} <span class="cnt">(${items.length})</span></summary>` +
+  items.map(([t, d, url, label]) => `<div class="row"><b>${esc(t)}</b><span>${esc(d)}</span>${url
+    ? `<a href="${url}" target="_blank" rel="noopener">${label || "Download"}</a>`
+    : `<a href="mailto:dswg.sd@undp.org?subject=${encodeURIComponent("Request: " + t)}">Request a copy</a>`}</div>`).join("") + `</details>`).join("");
+
+/* ------------------------------------------------------------------ tabs */
+document.querySelectorAll("[data-tabs]").forEach((box, bi) => {
+  const tabs = [...box.querySelectorAll(":scope > .tablist [role=tab]")], panels = [...box.querySelectorAll(":scope > [role=tabpanel]")];
+  function pick(i, focus){
+    tabs.forEach((t, j) => { t.setAttribute("aria-selected", i === j); t.tabIndex = i === j ? 0 : -1; panels[j].hidden = i !== j; });
+    if (focus) tabs[i].focus();
+  }
+  tabs.forEach((t, i) => {
+    t.id = `tab-${bi}-${i}`; panels[i].id = `panel-${bi}-${i}`;
+    t.setAttribute("aria-controls", panels[i].id); panels[i].setAttribute("aria-labelledby", t.id); panels[i].tabIndex = 0;
+    t.onclick = () => pick(i);
+    t.onkeydown = e => { if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); pick((i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length, true); } };
+  });
+  pick(0);
+});
+
+/* notes behind the sources line */
+hoverable($("#src-info"), `IDP data as of 29 September 2026, returnee data as of 30 September 2026, cross-border data as of 17 September 2026 (IOM DTM). Refugee data as of 30 September 2026 (UNHCR). All figures are estimates and will be updated as new data are published.<br>Icons: OCHA Humanitarian Icons. Flags: flag-icons (MIT licence).`);
+
+/* display options: in the shared hub header (sudan/assets/hub/hub.js) */
+
+/* the floating Go to top button steps aside when the footer is on screen */
+try { const tb = document.querySelector(".top-btn"); new IntersectionObserver(es => tb.classList.toggle("off", es[0].isIntersecting)).observe(document.querySelector("footer.fx")); } catch (e) {}
+
+/* run last, after every chart and tile is drawn */
+linkAllSources();
+</script>
+<script>
+/* Our own PDFs download straight away when clicked, instead of opening in a new tab */
+document.addEventListener("click", function (e) {
+  var a = e.target.closest && e.target.closest('a[href$=".pdf"]');
+  if (!a || a.origin !== location.origin) return;
+  a.setAttribute("download", decodeURIComponent(a.pathname.split("/").pop()));
+  a.removeAttribute("target");
+}, true);
+</script>
+</body>
+</html>
