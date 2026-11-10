@@ -727,8 +727,8 @@ $("#tiles-ret").innerHTML = DATA.tilesRet.map(tileHTML).join("");
   const last = pts[pts.length - 1];
   const lx = x(t1) + 12;
   if (PV === "a") {
-    s += `<text x="${x(L.t)}" y="${y(L.a) - 12}" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)" paint-order="stroke" stroke="#fff" stroke-width="4">${L.a}M</text>`;
-    s += `<text x="${x(L.t)}" y="${y(L.b) - 12}" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)" paint-order="stroke" stroke="#fff" stroke-width="4">${L.b}M</text>`;
+    s += `<text x="${x(L.t)}" y="${y(L.a) - 12}" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink)" paint-order="stroke" stroke="var(--card,#fff)" stroke-width="4">${L.a}M</text>`;
+    s += `<text x="${x(L.t)}" y="${y(L.b) - 12}" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink)" paint-order="stroke" stroke="var(--card,#fff)" stroke-width="4">${L.b}M</text>`;
     s += `<text x="${lx}" y="${y(proj[1].a) + 4}" font-size="14" font-weight="700" fill="var(--ink)">IDPs</text>`;
     s += `<text x="${lx}" y="${y(proj[1].b) + 4}" font-size="14" font-weight="700" fill="var(--ink)">Returnees</text>`;
   } else {
@@ -742,7 +742,7 @@ $("#tiles-ret").innerHTML = DATA.tilesRet.map(tileHTML).join("");
     s += `<path d="M${xl},${y(L.b)}L${x(proj[1].t)},${y(proj[1].hi)}L${x(proj[1].t)},${y(proj[1].lo)}Z" fill="var(--ret)" fill-opacity=".18"/>`;
     s += `<path d="M${xl},${y(L.b)}L${x(proj[0].t)},${y(proj[0].b)}L${x(proj[1].t)},${y(proj[1].b)}" fill="none" stroke="var(--ret)" stroke-width="2.5" stroke-dasharray="6 5"/>`;
     s += `<path d="M${xl},${y(L.a)}L${x(proj[1].t)},${y(proj[1].a)}" fill="none" stroke="var(--idp)" stroke-width="2.5" stroke-dasharray="6 5"/>`;
-    proj.forEach((p, i) => { s += `<circle cx="${x(p.t)}" cy="${y(p.b)}" r="5" fill="#fff" stroke="var(--ret)" stroke-width="2.5"/><text x="${x(p.t)}" y="${y(p.b) - 12}" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">${p.b.toFixed(1)}M</text><text x="${x(p.t)}" y="${H - 14}" text-anchor="middle" font-size="12" fill="var(--ink2)">${months[p.t % 12]} ${2025 + Math.floor(p.t / 12)}</text>`; });
+    proj.forEach((p, i) => { s += `<circle cx="${x(p.t)}" cy="${y(p.b)}" r="5" fill="#fff" stroke="var(--ret)" stroke-width="2.5"/><text x="${x(p.t)}" y="${y(p.b) - 12}" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink2)">${p.b.toFixed(1)}M</text><text x="${x(p.t)}" y="${H - 14}" text-anchor="middle" font-size="12" fill="var(--ink2)">${months[p.t % 12]} ${2025 + Math.floor(p.t / 12)}</text>`; });
   }
   s += `<line id="xh" x1="0" x2="0" y1="${m.t}" y2="${H - m.b}" stroke="var(--ink2)" stroke-dasharray="3 3" visibility="hidden"/>`;
   s += `<rect id="hit" x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="transparent"/></svg>`;
