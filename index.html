@@ -724,6 +724,12 @@ $("#tiles-ret").innerHTML = DATA.tilesRet.map(tileHTML).join("");
     s += `<path d="${line}" fill="none" stroke="${col}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
     pts.forEach(p => s += `<circle cx="${x(p.t)}" cy="${y(p[key])}" r="4.5" fill="${col}" stroke="#fff" stroke-width="2"/>`);
   }
+  /* earlier months: their values in grey (the peak is named in its own note) */
+  const fmtM = v => (v % 1 ? v : v.toFixed(1)) + "M";
+  pts.slice(0, -1).forEach((p, i) => {
+    if (i) s += `<text x="${x(p.t)}" y="${y(p.a) - 11}" text-anchor="middle" font-size="11.5" fill="var(--ink2)" paint-order="stroke" stroke="var(--card,#fff)" stroke-width="3">${fmtM(p.a)}</text>`;
+    s += `<text x="${x(p.t)}" y="${y(p.b) - 11}" text-anchor="middle" font-size="11.5" fill="var(--ink2)" paint-order="stroke" stroke="var(--card,#fff)" stroke-width="3">${fmtM(p.b)}</text>`;
+  });
   const last = pts[pts.length - 1];
   const lx = x(t1) + 12;
   if (PV === "a") {
