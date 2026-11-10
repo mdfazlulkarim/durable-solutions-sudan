@@ -67,21 +67,11 @@ SHIM = r'''
   })();
   </script>'''
 
-# A shorter page for the git copy (about 30% shorter): How we work and the Solutions Mapping
-# panel are left out (both are in the menu, on the Hub), stories show one row, sections are tighter.
+# The Hub's overview is already the short version; the git copy only sends "all stories" to the Hub.
 SHORT = """
   <style id="git-short">
-    #how, #dashboard { display: none !important; }
-    a[href="#how"], a[href="#dashboard"] { display: none !important; }
-    main section { padding-top: 24px !important; padding-bottom: 24px !important; }
-    #stories .chips, #show-all { display: none !important; }
-    .hero .wrap { padding-block: 32px 22px !important; gap: 10px !important; }
-    .hero .credit { margin-top: 4px !important; }
-    .sec-head { margin-bottom: 14px !important; }
-    .sec-head h2 + * { margin-top: 0 !important; }
-    .story-grid > :nth-child(n+6) { display: none !important; }
-    @media (max-width:1200px) { .story-grid > :nth-child(n+4) { display: none !important; } }
-    @media (max-width:760px) { .story-grid > :nth-child(n+3) { display: none !important; } }
+    /* the Hub's "Show all stories" opens the full list on the Hub instead */
+    #show-all { display: none !important; }
     .git-more { margin: 14px 0 0; font-weight: 600; }
   </style>
   <script>

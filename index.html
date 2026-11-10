@@ -76,11 +76,11 @@ h1,h2,h3,h4{margin:0;text-wrap:balance;line-height:1.2}
 .hero{position:relative;color:#fff;background:var(--navy-bg,#1f4e79);overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;background-image:url("sudan/assets/img/hero.jpg");background-size:cover;background-position:70% 35%;opacity:1}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg, rgba(31,78,121,.95) 0%, rgba(31,78,121,.86) 55%, rgba(31,78,121,.70) 100%)}
-.hero .wrap{position:relative;z-index:1;padding-block:56px 40px;display:flex;flex-direction:column;gap:14px}
+.hero .wrap{position:relative;z-index:1;padding-block:36px 24px;display:flex;flex-direction:column;gap:10px}
 .hero .eyebrow{color:var(--soft)}
 .hero h1{font-size:clamp(32px,5vw,52px);font-weight:700;letter-spacing:-.01em}
 .hero p{margin:0;font-size:clamp(17px,2vw,20px);color:#eef6fb}
-.hero .credit{font-size:12px;color:var(--soft);margin-top:18px}
+.hero .credit{font-size:12px;color:var(--soft);margin-top:4px}
 .hero-rule{height:6px;background:var(--un)}
 
 /* Lead and in-page menu */
@@ -92,9 +92,9 @@ h1,h2,h3,h4{margin:0;text-wrap:balance;line-height:1.2}
 @media (max-width:640px){.subnav .wrap{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;scrollbar-width:none;gap:16px}.subnav .wrap::-webkit-scrollbar{display:none}}
 
 /* Sections */
-section{padding-block:48px}
+section{padding-block:28px}
 section.band{background:var(--band)}
-.sec-head{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.sec-head{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
 .sec-head h2{font-size:clamp(26px,3vw,34px);color:var(--navy)}
 .sec-head h2::after{content:"";display:block;width:56px;height:4px;background:var(--un);margin-top:12px}
 .sec-head p{margin:0;color:var(--ink2)}
@@ -308,6 +308,7 @@ section.band{background:var(--band)}
 .docs .grp .cnt{font-weight:500;letter-spacing:0;text-transform:none;color:var(--ink2);font-size:13px}
 /* How we work: contact inside */
 .reach{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;background:var(--navy-bg,#1f4e79);color:#fff;padding:18px 22px;margin-top:22px}
+#touch .reach{margin-top:0}
 .reach h3{font-size:20px;color:#fff}
 .reach p{margin:4px 0 0;color:#eef6fb;font-size:15px;text-align:left}
 .reach a{color:#fff;font-weight:700;font-size:18px}
@@ -394,17 +395,8 @@ p,section li,.lead,.sources{text-align:justify;hyphens:none;-webkit-hyphens:none
 </style>
 
   <style id="git-short">
-    #how, #dashboard { display: none !important; }
-    a[href="#how"], a[href="#dashboard"] { display: none !important; }
-    main section { padding-top: 24px !important; padding-bottom: 24px !important; }
-    #stories .chips, #show-all { display: none !important; }
-    .hero .wrap { padding-block: 32px 22px !important; gap: 10px !important; }
-    .hero .credit { margin-top: 4px !important; }
-    .sec-head { margin-bottom: 14px !important; }
-    .sec-head h2 + * { margin-top: 0 !important; }
-    .story-grid > :nth-child(n+6) { display: none !important; }
-    @media (max-width:1200px) { .story-grid > :nth-child(n+4) { display: none !important; } }
-    @media (max-width:760px) { .story-grid > :nth-child(n+3) { display: none !important; } }
+    /* the Hub's "Show all stories" opens the full list on the Hub instead */
+    #show-all { display: none !important; }
     .git-more { margin: 14px 0 0; font-weight: 600; }
   </style>
   <script>
@@ -417,7 +409,7 @@ p,section li,.lead,.sources{text-align:justify;hyphens:none;-webkit-hyphens:none
 <body id="top">
 
 <div id="hub-header"></div>
-<script>HUB.header({ active: "overview", title: "Overview", sub: { stick: true, label: "On this page", items: [["At a glance", "#glance"], ["Solutions for IDPs", "#solutions"], ["The eight criteria", "#criteria"], ["Top 10 states", "#states"], ["Stories", "#stories"], ["How we work", "#how"], ["Key documents", "#documents"], ["Solutions Mapping", "#dashboard"], ["Contact", "#contact"]].map(([label, href]) => ({ label, href })) } });</script>
+<script>HUB.header({ active: "overview", title: "Overview", sub: { stick: true, label: "On this page", items: [["At a glance", "#glance"], ["Solutions for IDPs", "#solutions"], ["The eight criteria", "#criteria"], ["Top 10 states", "#states"], ["Stories", "#stories"], ["Key documents", "#documents"], ["Contact", "#contact"]].map(([label, href]) => ({ label, href })) } });</script>
 
 <main id="main" tabindex="-1">
 <div class="hero"><div class="wrap">
@@ -500,44 +492,17 @@ p,section li,.lead,.sources{text-align:justify;hyphens:none;-webkit-hyphens:none
   <p class="src" style="margin-top:18px">Stories and photos are by the organizations named. Select a headline to read the full story, with photo credits, on their website.</p>
 </div></section>
 
-<!-- 6. How we work -->
-<section id="how"><div class="wrap">
-  <div class="sec-head"><h2>How we work</h2><p>The Durable Solutions Unit (DSU) is hosted by the United Nations Resident Coordinator’s Office in Sudan and supports coordination at national and state level.</p></div>
-  <div class="grid3">
-    <div class="mini" style="background:var(--card)"><h3><img class="ico" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA2NzM8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PGNpcmNsZSBjbGFzcz0iY2xzLTEiIGN4PSIyMy45OTk4OCIgY3k9IjI0IiByPSI2Ii8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzIsMThoOWEyLDIsMCwwLDAsMC00SDM2LjgyODEyTDQ3LjQxNDA2LDMuNDE0MDZBMS45OTk3OCwxLjk5OTc4LDAsMSwwLDQ0LjU4NTk0LjU4NTk0TDM0LDExLjE3MTg4VjdhMiwyLDAsMCwwLTQsMHY5QTIuMDAwMSwyLjAwMDEsMCwwLDAsMzIsMThaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTEuMTcxODgsMTRIN2EyLDIsMCwwLDAsMCw0aDlhMi4wMDAxLDIuMDAwMSwwLDAsMCwyLTJWN2EyLDIsMCwwLDAtNCwwdjQuMTcxODhMMy40MTQwNi41ODU5NEExLjk5OTc4LDEuOTk5NzgsMCwwLDAsLjU4NTk0LDMuNDE0MDZaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzYuODI4MTIsMzRINDFhMiwyLDAsMCwwLDAtNEgzMmEyLjAwMDEsMi4wMDAxLDAsMCwwLTIsMnY5YTIsMiwwLDAsMCw0LDBWMzYuODI4MTJMNDQuNTg1OTQsNDcuNDE0MDZhMS45OTk3OCwxLjk5OTc4LDAsMCwwLDIuODI4MTItMi44MjgxMloiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xNiwzMEg3YTIsMiwwLDAsMCwwLDRoNC4xNzE4OEwuNTg1OTQsNDQuNTg1OTRhMS45OTk3OCwxLjk5OTc4LDAsMSwwLDIuODI4MTIsMi44MjgxMkwxNCwzNi44MjgxMlY0MWEyLDIsMCwwLDAsNCwwVjMyQTIuMDAwMSwyLjAwMDEsMCwwLDAsMTYsMzBaIi8+PC9nPjwvZz48L3N2Zz4=" alt="">NDSWG</h3><div class="full">National Durable Solutions Working Group</div><p>Sets the national direction and brings partners together.</p></div>
-    <div class="mini" style="background:var(--card)"><h3><img class="ico" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiA0Ny44Njc0MyI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA3Njk8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTYsMEM3LjE1OTkxLDAsMCw3LjYsMCwxNi45NiwwLDI1LjAxOTksMTEuODMwMDgsNDIuNjMsMTUuMTUsNDcuNDFhMS4wMTg0NSwxLjAxODQ1LDAsMCwwLDEuNywwQzIwLjE2OTkyLDQyLjYzLDMyLDI1LjAxOTksMzIsMTYuOTYsMzIsNy42LDI0Ljg0MDA5LDAsMTYsMFptMCwyMy44N2E4LDgsMCwxLDEsOC04QTcuOTk3OSw3Ljk5NzksMCwwLDEsMTYsMjMuODdaIi8+PC9nPjwvZz48L3N2Zz4=" alt="">ADSWGs</h3><div class="full">Area Durable Solutions Working Groups</div><p>Turn national direction into local action in Aj Jazirah, Blue Nile, Gedaref, Kassala and White Nile.</p></div>
-    <div class="mini" style="background:var(--card)"><h3><img class="ico" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OC4wMDAwMiA0Ny45OTk5NyI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDllZGI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Bc3NldCA3MzQ8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJJY29ucyI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNOC4zOCwzMy44LDEuMiw0MC45OEE0LjExNTM3LDQuMTE1MzcsMCwwLDAsNy4wMiw0Ni44bDcuMTgtNy4xOEEyNC4wMDk2MywyNC4wMDk2MywwLDAsMSw4LjM4LDMzLjhaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjIsMjBIMThhMS4wMDMsMS4wMDMsMCwwLDAtMSwxdjQuOTRhMTIuNTc0MSwxMi41NzQxLDAsMCwwLDYsNS41MlYyMUExLjAwMywxLjAwMywwLDAsMCwyMiwyMFoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zOCwxNEgzNGExLjAwMywxLjAwMywwLDAsMC0xLDFWMzEuNDZhMTIuNTc0MTksMTIuNTc0MTksMCwwLDAsNi01LjUyVjE1QTEuMDAzLDEuMDAzLDAsMCwwLDM4LDE0WiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTMwLDE3SDI2YTEuMDAzLDEuMDAzLDAsMCwwLTEsMVYzMi4xNGExMi42ODAzNCwxMi42ODAzNCwwLDAsMCw2LDBWMThBMS4wMDMsMS4wMDMsMCwwLDAsMzAsMTdaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjgsMEEyMCwyMCwwLDEsMCw0OCwyMCwxOS45OTQ1LDE5Ljk5NDUsMCwwLDAsMjgsMFpNMzksMzAuMThBMTUsMTUsMCwwLDEsMTMsMjAsMTUsMTUsMCwxLDEsMzksMzAuMThaIi8+PC9nPjwvZz48L3N2Zz4=" alt="">DSU</h3><div class="full">Durable Solutions Unit</div><p>Secretariat to both groups, with data, analysis and field missions.</p></div>
-  </div>
-  <h3 class="h3row" style="font-size:16px;margin-top:32px">The NDSWG is co-chaired by:</h3>
-  <div class="logos">
-    <div><img src="sudan/assets/img/cochair-drc.png" alt="Danish Refugee Council (DRC)"></div>
-    <div><img src="sudan/assets/img/cochair-iom.png" alt="International Organization for Migration (IOM)"></div>
-    <div><img class="tall" src="sudan/assets/img/cochair-undp.png" alt="United Nations Development Programme (UNDP)"></div>
-    <div><img src="sudan/assets/img/cochair-unhcr.png" alt="UNHCR, the UN Refugee Agency"></div>
-  </div>
-  <p class="hw-more"><a class="hw-btn" href="howwework/">See the working groups, co-chairs and documents <span aria-hidden="true">→</span></a></p>
-  <div class="reach" id="contact"><div><h3>Get in touch</h3><p>Organizations working on durable solutions in Sudan are welcome to contact the secretariat to learn more about the working groups or to share their work.</p></div><a href="mailto:dswg.sd@undp.org">dswg.sd@undp.org</a></div>
-</div></section>
-
 <!-- 7. Key documents -->
 <section id="documents" class="band"><div class="wrap">
   <div class="sec-head"><h2>Key documents</h2><p>Reference documents, tools and products for partners working on durable solutions in Sudan. Documents not yet published online are available from the secretariat.</p></div>
   <div class="docs" id="docs"></div>
 </div></section>
 
-<!-- 8. Solutions Mapping -->
-<section id="dashboard"><div class="wrap">
-  <div class="sec-head"><h2>Solutions Mapping</h2></div>
-  <div class="dash slim">
-    <div class="img"><a href="mapping/"><img src="sudan/assets/img/dashboard-preview.jpg" alt="Map of Sudan showing the number of mapped projects in each state"></a><div class="src"><a href="mapping/">Projects by state on Solutions Mapping</a>, November 2026</div></div>
-    <div class="txt">
-      <h3>Solutions Mapping</h3>
-      <p>Find out who is doing what, and where, to help people affected by displacement move toward lasting solutions. The dashboard maps projects that build self-reliance, such as boreholes instead of water trucking, or seed distribution instead of food distribution.</p>
-      <a class="btn" href="mapping/">Open Solutions Mapping <span aria-hidden="true">→</span></a>
-      <div class="add">Is your organization implementing a project that supports durable solutions? <a href="mapping/add.html">Add your project</a>. The Durable Solutions Unit reviews each entry before it appears on the map.</div>
-    </div>
-  </div>
+<!-- 8. Get in touch (How we work has its own page) -->
+<section id="touch" class="tight"><div class="wrap">
+  <div class="reach" id="contact"><div><h3>Get in touch</h3><p>Organizations working on durable solutions in Sudan are welcome to contact the secretariat to learn more about the working groups or to share their work.</p></div><a href="mailto:dswg.sd@undp.org">dswg.sd@undp.org</a></div>
 </div></section>
+
 </main>
 
 <div id="hub-footer"></div>
@@ -841,7 +806,7 @@ const TAG_ICON = {"Return":"Population-return","Local integration":"Group","In d
   "Women":"Person-1","Girls":"Person-1","Women and girls":"Person-1","Children":"Children","Persons with disabilities":"People-with-physical-impairments","Farmers":"Agriculture",
   "Education":"Education","Health":"Health-facility","Water":"Water-source","Livelihoods":"Livelihood","Environment":"Environment","Participation":"Meeting",
   "Standard of living":"Food-Security","Family unity":"People-in-need"};
-const SHOW = 10;
+const SHOW = innerWidth < 760 ? 2 : innerWidth < 1200 ? 3 : 5; // one row of stories; the rest behind "Show all"
 function storyHTML(s){
   const pw = s.tags[0], key = PATHWAY[pw] || "return";
   const badge = `<span class="pathway-badge pw-${key}" role="img" aria-label="Pathway: ${esc(pw)}" title="Pathway: ${esc(pw)}"><img src="sudan/assets/img/pathway-${key}.svg" alt="" aria-hidden="true"></span>`;
