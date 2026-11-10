@@ -836,7 +836,7 @@ function renderStories(){
 renderStories();
 
 /* ------------------------------------------------------------------ documents */
-$("#docs").innerHTML = DATA.documents.map(([g, icon, items], gi) => `<details${gi === 0 ? " open" : ""}><summary class="grp"><img src="${icon}" alt="">${esc(g)} <span class="cnt">(${items.length})</span></summary>` +
+$("#docs").innerHTML = DATA.documents.map(([g, icon, items], gi) => `<details><summary class="grp"><img src="${icon}" alt="">${esc(g)} <span class="cnt">(${items.length})</span></summary>` +
   items.map(([t, d, url, label]) => `<div class="row"><b>${esc(t)}</b><span>${esc(d)}</span>${url
     ? `<a href="${url}" target="_blank" rel="noopener">${label || "Download"}</a>`
     : `<a href="mailto:dswg.sd@undp.org?subject=${encodeURIComponent("Request: " + t)}">Request a copy</a>`}</div>`).join("") + `</details>`).join("");
