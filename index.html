@@ -37,7 +37,7 @@
 /* Layout: Durable Solutions Hub header, then hero banner, then one band per section (figures, solutions, criteria, states, stories, how we work, documents, dashboard, contact). Single light theme, matching the live site. */
 :root{
   color-scheme: light;
-  --bg:#ffffff; --band:#f3f6f9; --ink:#1d2733; --ink2:#566170; --line:#d8dee5;
+  --bg:#f5f8fc; --band:#eaf1f9; --ink:#1d2733; --ink2:#566170; --line:#d8dee5;
   --navy:#1f4e79; --un:#009edb; --tint:#e8f5fc; --soft:#cfe6f5; --chip:#e3eef7;
   --idp:#255faa; --ret:#0099d5; --track:#eef1f4; --warn:#fff4d6; --warn-ink:#6b5300;
   --font:"Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
@@ -134,7 +134,8 @@ section.band{background:var(--band)}
 @media (max-width:640px){.svgwrap svg{min-width:620px}}
 .svgwrap svg{width:100%;height:auto;display:block;overflow:visible}
 .charts-row{margin-top:18px}
-.bars{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 12px;align-items:center;font-size:14px}
+.bars{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 12px;align-items:center;font-size:14px}
+.bars>*{padding-block:4px}
 .bars .lab{color:var(--ink);text-align:right;white-space:nowrap;display:flex;align-items:center;justify-content:flex-end;gap:8px}
 .bars .lab .flag{width:24px;height:18px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.12);flex:none}
 .bars .lab .bi{width:22px;height:22px;flex:none}
@@ -298,6 +299,10 @@ section.band{background:var(--band)}
 /* Stories: one row, then show all */
 .show-all{display:flex;justify-content:center;margin-top:18px}
 #fly:not(.all) .more{display:none}
+/* hidden rows keep their width, so the bars do not move when all are shown */
+.bars:not(.all) .more{height:0;padding-block:0;overflow:hidden;visibility:hidden}
+.bars-more{margin-top:10px}
+.bars-more button{padding:6px 14px;font-size:13px}
 .fly-more{margin:10px 0 14px}
 .show-all button{border:1px solid var(--navy);background:var(--card);color:var(--navy);font:700 14px var(--font);padding:9px 18px;border-radius:999px;cursor:pointer}
 .show-all button:hover{background:var(--navy-bg,#1f4e79);color:#fff}
@@ -741,11 +746,18 @@ $("#tiles-ret").innerHTML = DATA.tilesRet.map(tileHTML).join("");
 })();
 
 /* ------------------------------------------------------------------ horizontal bars (HTML) */
-function bars(sel, rows, {max, color, track = false, value, tipText, icon, flag}){
+function bars(sel, rows, {max, color, track = false, value, tipText, icon, flag, limit, noun = "rows"}){
   const el = $(sel); el.className = "bars";
   const pic = r => flag ? `<img class="flag" src="sudan/assets/img/flags/${flag(r)}.svg" alt="">` : icon && icon(r) ? `<img class="bi" src="sudan/assets/img/icons/${icon(r)}.svg" alt="">` : "";
-  el.innerHTML = rows.map(r => `<div class="lab">${esc(r[0])}${pic(r)}</div><div class="row"><div class="trk${track ? " t" : ""}"><div class="fill" style="width:${Math.max(0.6, r[1] / max * 100)}%;background:${color}"></div></div><span class="val num">${esc(value(r))}</span></div>`).join("");
+  const mo = i => limit && i >= limit ? " more" : "";
+  el.innerHTML = rows.map((r, i) => `<div class="lab${mo(i)}">${esc(r[0])}${pic(r)}</div><div class="row${mo(i)}"><div class="trk${track ? " t" : ""}"><div class="fill" style="width:${Math.max(0.6, r[1] / max * 100)}%;background:${color}"></div></div><span class="val num">${esc(value(r))}</span></div>`).join("");
   el.querySelectorAll(".row").forEach((row, i) => hoverable(row, tipText(rows[i])));
+  if (limit && rows.length > limit) {   // the first rows, the rest on request
+    el.insertAdjacentHTML("afterend", `<div class="show-all bars-more"><button type="button" aria-expanded="false"></button></div>`);
+    const b = el.nextElementSibling.querySelector("button");
+    const set = open => { el.classList.toggle("all", open); b.setAttribute("aria-expanded", open); b.textContent = open ? `Show the top ${limit} only` : `Show all ${rows.length} ${noun}`; };
+    b.onclick = () => set(!el.classList.contains("all")); set(false);
+  }
 }
 bars("#c-cross", DATA.crossBorder, {max:1600000, color:"var(--idp)", value:r => compact(r[1]), tipText:r => `<b>${esc(r[0])}</b><br>${fmt(r[1])} people`,
   flag:r => ({"Egypt":"eg","South Sudan":"ss","Chad":"td","Ethiopia":"et","Libya":"ly","Central African Rep.":"cf"})[r[0]]});
@@ -753,7 +765,7 @@ bars("#c-shelter", DATA.shelter, {max:40, color:"var(--idp)", value:r => r[1] + 
   icon:r => ({"Host families":"House","Gathering sites":"Spontaneous-site","Camps":"IDP-refugee-camp","Schools or public buildings":"School","Rented accommodation":"Building","Improvised shelter":"Tent"})[r[0]]});
 bars("#c-reasons", DATA.reasons, {max:100, color:"var(--ret)", track:true, value:r => r[2], tipText:r => `<b>${esc(r[0])}</b><br>${r[2]} of returned households`,
   icon:r => ({"Improved security":"Safety-and-security","No means to stay where displaced":"Poverty","Family reunification":"People-in-need","Services in area of origin":"Services-and-tools","Returned by authorities":"Government-office","Humanitarian assistance":"Relief-goods"})[r[0]]});
-bars("#c-progress", DATA.progress, {max:100, color:"var(--ret)", track:true, value:r => `${r[2]} · ${compact(r[3])}`, tipText:r => `<b>${esc(r[0])}</b><br>${r[2]} of IDPs from this state have returned<br>${fmt(r[3])} returnees recorded in the state`});
+bars("#c-progress", DATA.progress, {max:100, color:"var(--ret)", track:true, limit:6, noun:"states", value:r => `${r[2]} · ${compact(r[3])}`, tipText:r => `<b>${esc(r[0])}</b><br>${r[2]} of IDPs from this state have returned<br>${fmt(r[3])} returnees recorded in the state`});
 
 /* ------------------------------------------------------------------ pathways and criteria */
 $("#paths").innerHTML = DATA.paths.map(p => `<div class="path"><h3><img class="ico" src="${p.icon}" alt="">${esc(p.title)}</h3><p>${esc(p.text)}</p><div class="ins"><div class="eyebrow">In Sudan</div><p>${esc(p.sudan)}</p><div class="src">${esc(p.src)}</div></div></div>`).join("");
