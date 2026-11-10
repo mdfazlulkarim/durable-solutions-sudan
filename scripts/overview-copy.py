@@ -6,7 +6,7 @@ Copies the overview from the Hub repository (durablesolutionshub) into this repo
   sudan/index.html      forwards to the root (kept for links to /sudan/)
   sudan/assets/...      the styles, script and images the overview uses
 Every other link on the page opens on https://durablesolutionshub.org.
-Old links to a project on the old git map (#project=... or ?...) open that project on the Hub.
+Old links to a project on the old git map (#project=...) open that project on the Hub.
 
 Run after the overview changes on the live Hub:
   python3 scripts/overview-copy.py /path/to/durablesolutionshub
