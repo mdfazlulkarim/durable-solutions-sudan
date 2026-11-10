@@ -297,6 +297,8 @@ section.band{background:var(--band)}
 .no-photo img{width:64px;height:64px}
 /* Stories: one row, then show all */
 .show-all{display:flex;justify-content:center;margin-top:18px}
+#fly:not(.all) .more{display:none}
+.fly-more{margin:10px 0 14px}
 .show-all button{border:1px solid var(--navy);background:var(--card);color:var(--navy);font:700 14px var(--font);padding:9px 18px;border-radius:999px;cursor:pointer}
 .show-all button:hover{background:var(--navy-bg,#1f4e79);color:#fff}
 /* Documents: open and close each group */
@@ -409,7 +411,7 @@ p,section li,.lead,.sources{text-align:justify;hyphens:none;-webkit-hyphens:none
 <body id="top">
 
 <div id="hub-header"></div>
-<script>HUB.header({ active: "overview", title: "Overview", sub: { stick: true, label: "On this page", items: [["At a glance", "#glance"], ["Solutions for IDPs", "#solutions"], ["The eight criteria", "#criteria"], ["Top 10 states", "#states"], ["Stories", "#stories"], ["Key documents", "#documents"], ["Contact", "#contact"]].map(([label, href]) => ({ label, href })) } });</script>
+<script>HUB.header({ active: "overview", title: "Overview", sub: { stick: true, label: "On this page", items: [["At a glance", "#glance"], ["Solutions for IDPs", "#solutions"], ["The eight criteria", "#criteria"], ["By state", "#states"], ["Stories", "#stories"], ["Key documents", "#documents"], ["Contact", "#contact"]].map(([label, href]) => ({ label, href })) } });</script>
 
 <main id="main" tabindex="-1">
 <div class="hero"><div class="wrap">
@@ -469,13 +471,14 @@ p,section li,.lead,.sources{text-align:justify;hyphens:none;-webkit-hyphens:none
   </div>
 </div></section>
 
-<!-- 4. Top 10 states -->
+<!-- 4. States (top 6, all 18 on request) -->
 <section id="states"><div class="wrap">
-  <div class="sec-head"><h2>Top 10 states</h2><p id="states-intro"></p></div>
+  <div class="sec-head"><h2>IDPs and returnees by state</h2><p id="states-intro"></p></div>
   <div class="chart">
     <h3>IDPs hosted and returnees, by state</h3>
     <div class="sub">Point at a state to see exact figures and the share of its IDPs who have returned.</div>
     <div class="fly" id="fly"></div>
+    <div class="show-all fly-more"><button type="button" id="fly-btn" aria-expanded="false" aria-controls="fly"></button></div>
     <div class="total num" id="fly-total"></div>
     <div class="src">Source: IOM DTM, Sudan Displacement and Return Snapshot 10, 18 Oct 2026 (data as of 29 and 30 Sep 2026). Returnees include people returning from inside Sudan and from abroad. Refugee figures: UNHCR, 30 Sep 2026.</div>
   </div>
@@ -766,23 +769,30 @@ document.querySelectorAll(".crit-btn").forEach(b => {
 });
 showCrit(0);
 
-/* ------------------------------------------------------------------ top 10 states (butterfly) */
+/* ------------------------------------------------------------------ states (butterfly): top 6, all 18 on request */
 (function states(){
   const all = Object.entries(DATA.states);
   const tIdp = all.reduce((a, [, v]) => a + v[0], 0), tRet = all.reduce((a, [, v]) => a + (v[1] || 0), 0);
-  const top = all.sort((a, b) => (b[1][0] + (b[1][1] || 0)) - (a[1][0] + (a[1][1] || 0))).slice(0, 10);
-  const sIdp = top.reduce((a, [, v]) => a + v[0], 0), sRet = top.reduce((a, [, v]) => a + (v[1] || 0), 0);
-  $("#states-intro").textContent = `The 10 states with the most IDPs and returnees combined. Together they host ${Math.round(sIdp / tIdp * 100)}% of IDPs and ${Math.round(sRet / tRet * 100)}% of returnees in Sudan.`;
+  const TOP = 6;
+  const top = all.sort((a, b) => (b[1][0] + (b[1][1] || 0)) - (a[1][0] + (a[1][1] || 0)));
+  const six = top.slice(0, TOP), sIdp = six.reduce((a, [, v]) => a + v[0], 0), sRet = six.reduce((a, [, v]) => a + (v[1] || 0), 0);
+  const intro = (open) => open
+    ? `All ${top.length} states, with the most IDPs and returnees combined first.`
+    : `The ${TOP} states with the most IDPs and returnees combined. Together they host ${Math.round(sIdp / tIdp * 100)}% of IDPs and ${Math.round(sRet / tRet * 100)}% of returnees in Sudan.`;
   const max = Math.max(...top.map(([, v]) => Math.max(v[0], v[1] || 0)));
   let h = `<div class="hd l">IDPs hosted</div><div></div><div class="hd">Returnees</div>`;
-  top.forEach(([name, v]) => {
-    h += `<div class="side l" data-s="${esc(name)}"><div class="bar" style="width:${v[0] / max * 82}%"></div><span class="v num">${compact(v[0])}</span></div>`;
-    h += `<div class="st" data-s="${esc(name)}">${esc(name)}</div>`;
-    h += v[1] ? `<div class="side r" data-s="${esc(name)}"><div class="bar" style="width:${v[1] / max * 82}%"></div><span class="v num">${compact(v[1])}</span></div>`
-              : `<div class="side r" data-s="${esc(name)}"><span class="none">None recorded</span></div>`;
+  top.forEach(([name, v], i) => {
+    const x = i >= TOP ? " more" : "";
+    h += `<div class="side l${x}" data-s="${esc(name)}"><div class="bar" style="width:${v[0] / max * 82}%"></div><span class="v num">${compact(v[0])}</span></div>`;
+    h += `<div class="st${x}" data-s="${esc(name)}">${esc(name)}</div>`;
+    h += v[1] ? `<div class="side r${x}" data-s="${esc(name)}"><div class="bar" style="width:${v[1] / max * 82}%"></div><span class="v num">${compact(v[1])}</span></div>`
+              : `<div class="side r${x}" data-s="${esc(name)}"><span class="none">None recorded</span></div>`;
   });
   $("#fly").innerHTML = h;
-  $("#fly").insertAdjacentHTML("afterend", `<div class="sr-only"><table><caption>Top 10 states: IDPs hosted, returnees, share of IDPs from the state who have returned, refugees hosted</caption><thead><tr><th scope="col">State</th><th scope="col">IDPs hosted</th><th scope="col">Returnees</th><th scope="col">Share returned</th><th scope="col">Refugees (UNHCR)</th></tr></thead><tbody>${top.map(([n, v]) => `<tr><th scope="row">${esc(n)}</th><td>${fmt(v[0])}</td><td>${v[1] ? fmt(v[1]) : "none recorded"}</td><td>${v[2] || "not applicable"}</td><td>${v[3]}</td></tr>`).join("")}</tbody></table></div>`);
+  const flySet = (open) => { $("#fly").classList.toggle("all", open); $("#fly-btn").setAttribute("aria-expanded", open); $("#fly-btn").textContent = open ? `Show the top ${TOP} only` : `Show all ${top.length} states`; $("#states-intro").textContent = intro(open); };
+  $("#fly-btn").onclick = () => { const open = !$("#fly").classList.contains("all"); flySet(open); if (!open) $("#states").scrollIntoView(); };
+  flySet(false);
+  $("#fly").insertAdjacentHTML("afterend", `<div class="sr-only"><table><caption>All states: IDPs hosted, returnees, share of IDPs from the state who have returned, refugees hosted</caption><thead><tr><th scope="col">State</th><th scope="col">IDPs hosted</th><th scope="col">Returnees</th><th scope="col">Share returned</th><th scope="col">Refugees (UNHCR)</th></tr></thead><tbody>${top.map(([n, v]) => `<tr><th scope="row">${esc(n)}</th><td>${fmt(v[0])}</td><td>${v[1] ? fmt(v[1]) : "none recorded"}</td><td>${v[2] || "not applicable"}</td><td>${v[3]}</td></tr>`).join("")}</tbody></table></div>`);
   $("#fly").setAttribute("aria-hidden", "true"); $("#fly").querySelectorAll("[tabindex]").forEach(e => e.tabIndex = -1);
   document.querySelectorAll("#fly [data-s]").forEach(el => {
     const v = DATA.states[el.dataset.s];
