@@ -3,7 +3,7 @@
    Display choices (background, text size, colour-blind friendly) are kept in this browser:
    the background in "sf-theme" (always white until the person picks Dark), the rest in "dsh-display". */
 (function () {
-  var ROOT = "./"; // git copy: the overview sits in sudan/, links are sent to the Hub by the page
+  var ROOT = "sudan/"; // git copy: links are sent to the Hub by the page
   var MAIN = [
     { key: "overview", label: "Overview", href: ROOT },
     { key: "howwework", label: "How we work", href: ROOT + "howwework/" },
