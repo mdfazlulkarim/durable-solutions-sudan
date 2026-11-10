@@ -9,7 +9,7 @@
   /* Git copy of the overview at https://durablesolutionshub.org/sudan/: every other link opens on the Hub */
   (function () {
     var HUB = "https://durablesolutionshub.org/sudan";
-    if (/^#project=/.test(location.hash) || location.search.length > 1) { location.replace(HUB + "/mapping/" + location.search + location.hash); return; }
+    if (/^#project=/.test(location.hash)) { location.replace(HUB + "/mapping/" + location.hash); return; }
     var BASE = location.pathname.replace(/\/(index\.html)?$/, "");
     function set(a, v) { if (a.getAttribute("href") !== v) a.setAttribute("href", v); }
     function fix(a) {
