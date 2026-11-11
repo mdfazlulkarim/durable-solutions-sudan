@@ -31,7 +31,7 @@
 <link rel="icon" href="sudan/mapping/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap">
-<link rel="stylesheet" href="sudan/assets/hub/hub.css?v=20261109g">
+<link rel="stylesheet" href="sudan/assets/hub/hub.css?v=20261111a">
 <script src="sudan/assets/hub/hub.js?v=20261109g"></script>
 <style>
 /* Layout: Durable Solutions Hub header, then hero banner, then one band per section (figures, solutions, criteria, states, stories, how we work, documents, dashboard, contact). Single light theme, matching the live site. */
@@ -294,6 +294,10 @@ section.band{background:var(--band)}
 .pw-legend .pw-f[aria-pressed="true"]{background:var(--navy-bg,#1f4e79);color:#fff;border-color:var(--navy)}
 .pw-legend .pathway-badge{position:static;width:26px;height:26px;box-shadow:none}
 .pw-legend .pathway-badge img{width:15px;height:15px}
+.chips .lbl,.pw-legend .lbl{min-width:118px;margin-right:0}
+.pw-legend{gap:8px}
+.pw-legend .pathway-badge.org-b{border-color:var(--line)}
+.pw-legend + .pw-legend{margin-top:-8px}
 .no-photo{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--tint);color:var(--navy);font-weight:700}
 .no-photo img{width:64px;height:64px}
 /* Stories: one row, then show all */
@@ -494,6 +498,7 @@ p,section li,.lead,.sources{text-align:justify;hyphens:none;-webkit-hyphens:none
   <div class="sec-head"><h2>Stories of solutions</h2><p>Women, children and persons with disabilities across Sudan are rebuilding their lives. These published stories show what support for lasting solutions looks like on the ground.</p></div>
   <div class="chips" id="story-chips" role="group" aria-label="Filter stories"></div>
   <div class="pw-legend" id="pw-chips" role="group" aria-label="Filter by pathway"><span class="lbl">Pathway</span><button type="button" class="pw-f" data-p="return" aria-pressed="false"><i class="pathway-badge pw-return"><img src="sudan/assets/img/pathway-return.svg" alt=""></i>Return</button><button type="button" class="pw-f" data-p="local-integration" aria-pressed="false"><i class="pathway-badge pw-local-integration"><img src="sudan/assets/img/pathway-local-integration.svg" alt=""></i>Local integration</button><button type="button" class="pw-f" data-p="in-displacement" aria-pressed="false"><i class="pathway-badge pw-in-displacement"><img src="sudan/assets/img/pathway-in-displacement.svg" alt=""></i>In displacement</button></div>
+  <div class="pw-legend" id="org-chips" role="group" aria-label="Filter by organisation"><span class="lbl">Organisation</span><button type="button" class="pw-f" data-o="un" aria-pressed="false"><i class="pathway-badge org-b"><img src="sudan/assets/img/icons/Coordination.svg" alt=""></i>UN<span class="n"></span></button><button type="button" class="pw-f" data-o="ngo" aria-pressed="false"><i class="pathway-badge org-b"><img src="sudan/assets/img/icons/Community-building.svg" alt=""></i>INGO and NNGO<span class="n"></span></button></div>
   <div class="story-grid" id="more"></div>
   <div class="show-all" id="show-all" hidden><button type="button"></button></div>
   <p class="empty" id="no-stories" hidden>No stories match this filter yet.</p>
@@ -613,6 +618,7 @@ const DATA = {
     {groups:["women", "children"], tags:["In displacement", "Girls", "Education"], title:"Mariam's journey back to the classroom", meta:"UNICEF  |  30 September 2026  |  Goz Al Salam camp, Kosti, White Nile", text:"Mariam, 14, was forced from Heglig in South Kordofan and lives in Goz Al Salam camp with her grandparents, apart from her mother. After more than two years out of school, she is back in class at an alternative learning centre and still plans to become a doctor.", img:"sudan/assets/img/story-unicef-kosti-mariam.jpg", alt:"Girls and boys raise their hands at an alternative learning centre in Goz Al Salam camp", credit:"Photo: UNICEF/UN0935513/Ahmed Mohamdeen Elfatih", link:"https://www.unicef.org/sudan/stories/mariams-journey-back-classroom", site:"unicef.org"},
     {groups:["women"], tags:["In displacement", "Women", "Participation"], title:"From the ashes of war: how Sudanese women are rebuilding lives and communities", meta:"UN Women  |  19 August 2026  |  White Nile, River Nile and Northern State", text:"Eshtiyag Ali and Majeeda Al Nour, both 27, were displaced by the war and now help other women. Eshtiyag trained in mediation and peacebuilding. Majeeda coordinates a project for a local women's organisation, linking survivors of violence to services.", img:"sudan/assets/img/story-unwomen-women-leaders.jpg", alt:"Women take part in a community consultation in Talkok locality, Red Sea State", credit:"Photo: UN Women", link:"https://africa.unwomen.org/en/stories/feature-story/2026/08/from-the-ashes-of-war-how-sudanese-women-are-rebuilding-lives-and-communities-amid-conflict", site:"unwomen.org"},
     {groups:["women"], tags:["In displacement", "Women", "Environment"], title:"Leading change in Kaima camp", meta:"UNICEF  |  12 August 2026  |  Tawila, North Darfur", text:"Nura, a former teacher, fled with her three children and started a \"cut one tree, plant five\" drive in Kaima camp. Her community has planted more than 1,700 trees. Her fuel-efficient mud stoves and home gardens have spread to over 60 women.", img:"sudan/assets/img/story-unicef-tawila-trees.jpg", alt:"A mother displaced from Al Fasher holds tree seedlings in Tawila, North Darfur", credit:"Photo: UNICEF/UN0905809/Mohammed Jamal", link:"https://www.unicef.org/sudan/stories/leading-change-kaima-camp", site:"unicef.org"},
+    {groups:["women"], tags:["Return", "Women", "Livelihoods"], title:"Rebuilding a livelihood through cash assistance", meta:"ACTED  |  30 July 2026  |  Tadamon, Blue Nile", text:"Alaa, a widow and mother of five, was displaced to Damazin and has returned home to Roro. With unconditional cash from ACTED, funded by the Sudan Humanitarian Fund, she bought her own tea-selling equipment instead of renting it, so more of what she earns now stays with her family.", link:"https://www.acted.org/en/rebuilding-a-livelihood-through-cash-assistance/", site:"acted.org"},
     {groups:["women"], tags:["Return", "Women", "Water"], title:"Saving $1 million and cutting carbon: solar water in Aj Jazirah", meta:"UNDP  |  26 July 2026  |  Madani, Um Algura and Sharg Aj Jazirah", text:"UNDP solarised and repaired 44 water stations, bringing safe water to 256,640 host residents, IDPs, refugees and returnees. The work cuts running costs by about USD 1 million a year. Fatima Abdulkareem says reliable water in her village is what made her bring her family home.", img:"sudan/assets/img/story-undp-gezira-water.jpg", alt:"A woman stands in front of a water tower in Aj Jazirah", credit:"Photo: UNDP Sudan", link:"https://undpsudan.exposure.co/saving-1-million-and-cutting-carbon-solar-water-systems-restore-lifesaving-access-in-sudans-most-fertile-regions", site:"undp.org"},
     {groups:["women"], tags:["In displacement", "Women", "Education"], title:"\u201cIt made me dream again\u201d: students affected by displacement in Sudan keep their dreams alive through higher education", meta:"UNHCR  |  4 August 2026  |  Port Sudan, Red Sea", text:"DAFI scholarships, supported by UNHCR and the Mastercard Foundation, help refugee and displaced students stay in university with fees, a monthly allowance and mentoring. Sarah, an Eritrean refugee displaced from Khartoum to Madani and then Port Sudan, is completing her degree and teaches kindergarten.", img:"sudan/assets/img/story-unhcr-port-sudan-dafi.jpg", alt:"Sarah reads a picture book to children in a kindergarten classroom", credit:"Photo: UNHCR/Sarah Tehklu", link:"https://www.unhcr.org/africa/news/stories/it-made-me-dream-again-students-affected-displacement-sudan-keep-their-dreams-alive", site:"unhcr.org"},
     {groups:["women"], tags:["Local integration", "Women", "Livelihoods"], title:"Small loans, lasting change: how women are building resilience together in Sudan's White Nile State", meta:"UNHCR  |  13 July 2026  |  Al Jabalain, White Nile", text:"In Mahada village, host and displaced women run a Village Savings and Loans Association with seed money and financial training from UNHCR and the Mastercard Foundation. Hanan used her first loan to cover school costs and build a steadier income for her family.", img:"sudan/assets/img/story-unhcr-white-nile-savings.jpg", alt:"Halima sorts clothing and everyday goods she sells in the shop she opened with a savings group loan", credit:"Photo: UNHCR/Antonia Vadala", link:"https://www.unhcr.org/africa/news/stories/small-loans-lasting-change-how-women-are-building-resilience-together-sudans-white", site:"unhcr.org"},
@@ -826,7 +832,16 @@ showCrit(0);
 
 /* ------------------------------------------------------------------ stories with filter */
 const FILTERS = [["all","All stories"],["women","Women and girls"],["children","Children"],["disability","Persons with disabilities"]];
-let filter = "all", showAll = false, pwf = "";
+let filter = "all", showAll = false, pwf = "", orgf = "";
+// Organisation type from the first part of "meta": UN entities, or international and national NGOs; donors and others count under neither
+const UN_ORG = /^(UN\b|UN |UNICEF|UNHCR|UNDP|UNFPA|UNOPS|UNEP|UN-Habitat|FAO|WFP|IOM|WHO|ILO|OCHA)/;
+const OTHER_ORG = /^(EU\b|European|Embassy|Government|Ministry)/;
+const orgType = s => { const o = s.meta.split("|")[0].trim(); return UN_ORG.test(o) ? "un" : OTHER_ORG.test(o) ? "other" : "ngo"; };
+document.querySelectorAll("#org-chips .pw-f").forEach(b => b.onclick = () => {
+  orgf = orgf === b.dataset.o ? "" : b.dataset.o; showAll = false;
+  document.querySelectorAll("#org-chips .pw-f").forEach(x => x.setAttribute("aria-pressed", x.dataset.o === orgf));
+  renderStories();
+});
 document.querySelectorAll("#pw-chips .pw-f").forEach(b => b.onclick = () => {
   pwf = pwf === b.dataset.p ? "" : b.dataset.p; showAll = false;
   document.querySelectorAll("#pw-chips .pw-f").forEach(x => x.setAttribute("aria-pressed", x.dataset.p === pwf));
@@ -854,14 +869,16 @@ function storyHTML(s){
     <h3><a href="${s.link}" target="_blank" rel="noopener">${esc(s.title)}<span class="sr-only"> (opens ${esc(s.site)})</span></a></h3><div class="meta">${esc(s.meta)}</div><p class="one" title="${esc(s.text)}">${esc(s.text)}</p></div></article>`;
 }
 function renderStories(){
-  const list = DATA.stories.filter(s => (filter === "all" || s.groups.includes(filter)) && (!pwf || PATHWAY[s.tags[0]] === pwf));
+  const byPw = s => !pwf || PATHWAY[s.tags[0]] === pwf, byOrg = s => !orgf || orgType(s) === orgf, byGroup = s => filter === "all" || s.groups.includes(filter);
+  const list = DATA.stories.filter(s => byGroup(s) && byPw(s) && byOrg(s));
+  document.querySelectorAll("#org-chips .pw-f").forEach(b => { b.querySelector(".n").textContent = `(${DATA.stories.filter(s => byGroup(s) && byPw(s) && orgType(s) === b.dataset.o).length})`; });
   const shown = showAll ? list : list.slice(0, SHOW);
   $("#more").innerHTML = shown.map(storyHTML).join("");
   $("#show-all").hidden = list.length <= SHOW;
   $("#show-all button").textContent = showAll ? "Show fewer stories" : `Show all ${list.length} stories`;
   $("#no-stories").hidden = list.length > 0;
   $("#story-chips").innerHTML = `<span class="lbl">Show</span>` + FILTERS.map(([k, l]) => {
-    const base = DATA.stories.filter(s => !pwf || PATHWAY[s.tags[0]] === pwf);
+    const base = DATA.stories.filter(s => byPw(s) && byOrg(s));
     const n = k === "all" ? base.length : base.filter(s => s.groups.includes(k)).length;
     return `<button class="chip" data-f="${k}" aria-pressed="${k === filter}">${l} (${n})</button>`;
   }).join("");
