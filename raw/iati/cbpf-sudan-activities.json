@@ -1590,7 +1590,7 @@
    "43010"
   ],
   "start": "2025-10-16",
-  "end": "2026-10-15",
+  "end": "2026-12-15",
   "budget": 1254763.44,
   "locations": []
  },
@@ -1614,7 +1614,7 @@
    "43010"
   ],
   "start": "2025-11-03",
-  "end": "2026-11-02",
+  "end": "2026-12-02",
   "budget": 1000000.09,
   "locations": []
  },
@@ -1755,7 +1755,7 @@
    "43010"
   ],
   "start": "2025-11-03",
-  "end": "2026-11-02",
+  "end": "2027-01-02",
   "budget": 760000.0,
   "locations": []
  },
@@ -2239,7 +2239,7 @@
   "id": "XM-OCHA-CBPF-CBPF-SUD-25-S-NGO-39052",
   "year": 2025,
   "title": "Provision of Integrated Emergency Shelter, Non-Food Items, and Food Security and Livelihood Support to Crisis-Affected Households in Jebel Awlia Locality, Khartoum State",
-  "description": "ltpgtThis project aims to provide integrated, life-saving Emergency Shelter and Non-Food Items (ES/NFI) and Food Security and Livelihoods (FSL) assistance to crisis-affected populations in Al-Kalakla and Al-Dikhina within Jebel Awlia locality, Khartoum State. The intervention targets internally displaced persons and highly vulnerable non-displaced households residing in severity level 3 areas, in alignment with the 2026 HNRP and relevant cluster strategies.lt/pgtltpgtltbrgtUnder the ES/NFI sector, the project will support 1,000 crisis-affected households, including 750 internally displaced hou",
+  "description": "ltpgtThis project aims to provide integrated, life-saving Emergency Shelter and Non-Food Items (ES/NFI) and Food Security and Livelihoods (FSL) assistance to crisis-affected populations in Al-Kalakla and Al-Dikhinat within Jebel Awlia locality, Khartoum State. The intervention targets internally displaced persons and highly vulnerable non-displaced households residing in severity level 3 areas, in alignment with the 2026 HNRP and relevant cluster strategies.lt/pgtltpgtltbrgtUnder the ES/NFI sector, the project will support 1,000 crisis-affected households, including 750 internally displaced ho",
   "implementers": [
    "National NGO"
   ],
@@ -2498,7 +2498,13 @@
   "title": "48-Hour Rapid Response WASH, Shelter/NFI and Protection Interventions to mitigate morbidity and mortality among children and families in response to sudden-onset emergencies and new access scenarios.",
   "description": "ltpgtSudan has become one of the world’s largest and most complex humanitarian crises, with more than 33 million people projected to require humanitarian assistance in 2026. Vulnerable families bear the brunt through loss of shelters and livelihoods, many displaced and returnees, often finding homes looted or damaged, now live in unsafe, overcrowded, or open areas exposed to elements of harsh weather, insecurity and protection risks. WASH and shelter crisis is worsening due to the destruction of infrastructure, collapse of banking systems, and rampant looting. Communicable diseases are spreadi",
   "implementers": [
-   "International NGO"
+   "International NGO",
+   "xxxx (Secured)",
+   "xxxx (Secured)",
+   "xxxx (Secured)",
+   "xxxx (Secured)",
+   "xxxx (Secured)",
+   "xxxx (Secured)"
   ],
   "sectors": [
    "Camp Coordination / Management",
@@ -3186,7 +3192,7 @@
   "id": "XM-OCHA-CBPF-CBPF-SUD-26-S-INGO-39884",
   "year": 2026,
   "title": "Emergency Nutrition response in North Darfur, Sudan",
-  "description": "ltpgtltbrgtThe proposed project is a 12-month emergency nutrition intervention with a total budget of USD 911,082, to be implemented by Welthungerhilfe (WHH) in partnership with Alrayan for Social Development (RSD) in North Darfur State. The project will deliver integrated, lifesaving humanitarian assistance to approximately 65,577 vulnerable people, including internally displaced people (IDPs), host communities, and returnees across the four target localities of Kutum, Mellit, Al Tina, and Kernoi. The intervention will screen 26,642 children aged 6–59 months for acute malnutrition, provide tr",
+  "description": "ltpgtWelthungerhilfe (WHH), in partnership with Alrayan for Social Development (RSD), will implement an integrated, lifesaving nutrition intervention in North Darfur State, targeting approximately 65,577 vulnerable people, including IDPs, host communities, and returnees across Kutum, Mellit, Al Tina, and Kornoi.ltbrgtThe project will strengthen the prevention, early detection, referral, and treatment of acute malnutrition among children aged 6–59 months and pregnant and breastfeeding women (PBW). It will screen approximately 26,642 children and treat 8,391 children with acute malnutrition thro",
   "implementers": [
    "International NGO",
    "xxxx (Secured)"

@@ -5,8 +5,8 @@ search dtm: 15 of 18
 search health: 15 of 112
 search education: 15 of 21
 search water: 15 of 142
-search ipc: 15 of 115
-  saved _catalog.json (395,365 bytes)
+search ipc: 15 of 99
+  saved _catalog.json (408,085 bytes)
 package cod-ps-sdn: Sudan - Subnational Population Statistics | [2024-07-01T00:00:00 TO 2025-08-01T23:59:59] | 2025-12-29T15:24:05.830727
   retry 1 https://data.humdata.org/dataset/f4d30e65-a162-437a-a35d-d81b99723bd6/resource/dfddbc15-77c4-4875-a640-d50e37ef7b6d/download/sdn_admpop_2025.xlsx: HTTP Error 404: Not Found
   retry 2 https://data.humdata.org/dataset/f4d30e65-a162-437a-a35d-d81b99723bd6/resource/dfddbc15-77c4-4875-a640-d50e37ef7b6d/download/sdn_admpop_2025.xlsx: HTTP Error 404: Not Found
@@ -32,10 +32,10 @@ package sudan-humanitarian-needs: Sudan: Humanitarian Needs | [2015-01-01T00:00:
 package sudan-operational-presence: Sudan: Operational Presence | [2014-12-31T00:00:00 TO 2026-07-31T23:59:59] | 2026-08-31T06:54:03.130631
   saved presence/ocha-sudan-3w/_meta.json (15,412 bytes)
   saved presence/ocha-sudan-3w/2026-consolidated-3w-data-january-to-july.xlsx (339,441 bytes)
-package sudan-displacement-situation-countrywide-idps-iom-dtm: Sudan: Displacement Situation - IDPs [IOM DTM] | [2023-01-29T00:00:00 TO 2026-07-31T23:59:59] | 2026-08-24T12:53:43.170089
-  saved dtm/snapshot/_meta.json (12,891 bytes)
-  saved dtm/snapshot/DTM_Sudan_Displacement_and_Return_Snapshot_8_.xlsx (238,546 bytes)
-package hdx-hapi-sdn: HDX HAPI Data for Sudan | [1997-01-01T00:00:00 TO 2029-12-31T23:59:59] | 2026-10-28T08:52:45.797702
+package sudan-displacement-situation-countrywide-idps-iom-dtm: Sudan: Displacement Situation - IDPs [IOM DTM] | [2023-01-29T00:00:00 TO 2026-09-30T23:59:59] | 2026-11-04T05:23:42.387192
+  saved dtm/snapshot/_meta.json (15,096 bytes)
+  saved dtm/snapshot/DTM_Sudan_Displacement_and_Return_Snapshot_10_.xlsx (240,490 bytes)
+package hdx-hapi-sdn: HDX HAPI Data for Sudan | [1997-01-01T00:00:00 TO 2029-12-31T23:59:59] | 2026-11-10T08:43:55.272642
   saved hapi/_meta.json (4,902 bytes)
   saved hapi/Affected_People_Internally-Displaced_Persons_for_Sudan.csv (2,657,581 bytes)
   saved hapi/Affected_People_Returnees_for_Sudan.csv (34,710 bytes)
@@ -53,20 +53,20 @@ package sudan---risk-assessment-indicators: Sudan - Risk Assessment Indicators |
   saved heigit/SDN_ADM2_facilities.csv (4,346 bytes)
   saved heigit/SDN_ADM2_evacuability.csv (14,258 bytes)
   saved heigit/SDN_ADM2_rai.csv (16,985 bytes)
-package sudan-acute-food-insecurity-classification-september-2026-january-2027: Sudan: Acute Food Insecurity Classification (September 2026 - January 2027) | [2026-09-01T00:00:00 TO 2027-01-31T23:59:59] | 2026-10-28T10:56:31.594420
+package sudan-acute-food-insecurity-classification-september-2026-january-2027: Sudan: Acute Food Insecurity Classification (September 2026 - January 2027) | [2026-09-01T00:00:00 TO 2027-01-31T23:59:59] | 2026-11-05T08:44:12.228707
   saved ipc/_meta.json (2,307 bytes)
   saved ipc/Sudan_Acute_Food_Insecurity_Classification_September_2026_.geojson_.geojson (1,002,759 bytes)
-package hotosm_sdn_health_facilities: 2026-10-06T11:26:10.267066
-  saved osm/health/points.csv (98,010 bytes)
-  1455 points
+package hotosm_sdn_health_facilities: 2026-11-05T17:57:40.114795
+  saved osm/health/points.csv (98,488 bytes)
+  1462 points
   saved osm/health/_meta.json (2,573 bytes)
-package hotosm_sdn_education_facilities: 2026-10-06T11:25:44.515464
-  saved osm/education/points.csv (234,308 bytes)
-  6428 points
-  saved osm/education/_meta.json (2,651 bytes)
+package hotosm_sdn_education_facilities: 2026-11-05T17:57:27
+  saved osm/education/points.csv (236,693 bytes)
+  6486 points
+  saved osm/education/_meta.json (2,616 bytes)
 IATI unocha-cbpf-sudan-allocation-2025: https://cbpfapi.unocha.org/iati/iati/15/2025/GetAllocation.xml
-  saved iati/unocha-cbpf-sudan-allocation-2025.xml (938,037 bytes)
+  saved iati/unocha-cbpf-sudan-allocation-2025.xml (939,131 bytes)
 IATI unocha-cbpf-sudan-allocation-2026: https://cbpfapi.unocha.org/iati/iati/15/2026/GetAllocation.xml
-  saved iati/unocha-cbpf-sudan-allocation-2026.xml (454,586 bytes)
-  saved iati/cbpf-sudan-activities.json (193,931 bytes)
+  saved iati/unocha-cbpf-sudan-allocation-2026.xml (458,156 bytes)
+  saved iati/cbpf-sudan-activities.json (194,057 bytes)
 IATI: 180 activities

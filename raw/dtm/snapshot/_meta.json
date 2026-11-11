@@ -2,10 +2,24 @@
  "name": "sudan-displacement-situation-countrywide-idps-iom-dtm",
  "title": "Sudan: Displacement Situation - IDPs [IOM DTM]",
  "org": "International Organization for Migration (IOM)",
- "dataset_date": "[2023-01-29T00:00:00 TO 2026-07-31T23:59:59]",
- "last_modified": "2026-08-24T12:53:43.170089",
+ "dataset_date": "[2023-01-29T00:00:00 TO 2026-09-30T23:59:59]",
+ "last_modified": "2026-11-04T05:23:42.387192",
  "url": "https://data.humdata.org/dataset/sudan-displacement-situation-countrywide-idps-iom-dtm",
  "resources": [
+  {
+   "name": "DTM Sudan Displacement and Return Snapshot (10).xlsx",
+   "format": "XLSX",
+   "size": 240490,
+   "last_modified": "2026-11-04T05:23:42.387192",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/87791a22-3232-4856-b0ef-8de8b3abb2ba/download/2026_dtm_sdn_idps_returnees_snapshot_010_29092026_public_vf.xlsx"
+  },
+  {
+   "name": "DTM Sudan Displacement and Return Snapshot (9).xlsx",
+   "format": "XLSX",
+   "size": 243256,
+   "last_modified": "2026-11-04T05:22:15.436245",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/d94a41b8-6448-4886-8e9a-513a61f9dcca/download/2026_dtm_sdn_idps_returnees_snapshot_009_26082026_public_vf.xlsx"
+  },
   {
    "name": "DTM Sudan Displacement and Return Snapshot (8).xlsx",
    "format": "XLSX",
@@ -250,6 +264,34 @@
    "size": 957250,
    "last_modified": "2024-05-30T12:36:59.383961",
    "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/f5fbf970-d07b-4c68-99f3-c3061905435b/download/dtm_sdn_bi-weekly01_20240502_v02_public.xlsx"
+  },
+  {
+   "name": "DTM Sudan Displacement and Return Snapshot (10).xlsx",
+   "format": "XLSX",
+   "size": 240490,
+   "last_modified": "2026-11-04T05:14:59.375756",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/17e27eeb-00cf-4a3e-8383-8b6736b1f114/download/2026_dtm_sdn_idps_returnees_snapshot_010_29092026_public_vf.xlsx"
+  },
+  {
+   "name": "DTM Sudan Displacement and Return Snapshot (9).xlsx",
+   "format": "XLSX",
+   "size": 243256,
+   "last_modified": "2026-11-04T05:15:04.988823",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/25ce760b-565f-4b1b-bf05-65a92dfef9e8/download/2026_dtm_sdn_idps_returnees_snapshot_009_26082026_public_vf.xlsx"
+  },
+  {
+   "name": "DTM Sudan Displacement and Return Snapshot (10).xlsx",
+   "format": "XLSX",
+   "size": 240490,
+   "last_modified": "2026-11-04T05:20:19.637611",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/7af35dce-c307-4d89-a3fa-855ec4a57b47/download/2026_dtm_sdn_idps_returnees_snapshot_010_29092026_public_vf.xlsx"
+  },
+  {
+   "name": "DTM Sudan Displacement and Return Snapshot (9).xlsx",
+   "format": "XLSX",
+   "size": 243256,
+   "last_modified": "2026-11-04T05:20:29.806490",
+   "url": "https://data.humdata.org/dataset/44594ae2-dde9-417f-acae-523bc012c162/resource/3f3024dd-9475-4b5d-a87f-e887e6aa10c2/download/2026_dtm_sdn_idps_returnees_snapshot_009_26082026_public_vf.xlsx"
   }
  ]
 }
