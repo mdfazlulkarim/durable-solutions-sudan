@@ -9,7 +9,7 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
 <script type="importmap">{"imports":{"three":"./assets/game/lib/three.module.min.js"}}</script>
 <style>
 :root{
@@ -178,11 +178,11 @@ svg.ico{width:1em;height:1em;display:inline-block;vertical-align:-.15em;flex:non
 .risk.r5{background:#fdf1f0;color:var(--err)}
 
 /* newspaper */
-.paper{max-width:720px;background:#fbfaf6;border:1px solid var(--line-2);border-radius:6px;padding:22px 26px;font-family:Georgia,"Times New Roman",serif;color:#1d1d1d}
+.paper{max-width:720px;background:#fbfaf6;border:1px solid var(--line-2);border-radius:6px;padding:22px 26px;font-family:Roboto,Arial,sans-serif;color:#1d1d1d}
 .paper .mast{display:flex;justify-content:space-between;align-items:baseline;border-bottom:3px double #1d1d1d;padding-bottom:6px;margin-bottom:12px;gap:10px;flex-wrap:wrap}
 .paper .mast b{font-size:28px;letter-spacing:.02em}
 .paper .mast span{font-size:12.5px;font-family:var(--font);color:#555}
-.paper h2{font-family:Georgia,serif;font-size:30px;line-height:1.1;margin:0 0 10px}
+.paper h2{font-family:Roboto,Arial,sans-serif;font-size:30px;line-height:1.1;margin:0 0 10px}
 .paper .cols{display:grid;grid-template-columns:200px 1fr;gap:16px}
 @media (max-width:600px){.paper .cols{grid-template-columns:1fr}}
 .paper p{font-size:15.5px;line-height:1.5;margin:0 0 10px}
@@ -726,8 +726,8 @@ body.immersive .site-header{position:fixed}
    small laptop gets a denser layout and a large screen a roomier one.
    ============================================================ */
 :root{
-  --font:"Barlow",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-  --cond:"Barlow Semi Condensed","Barlow",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --font:"Roboto",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --cond:"Roboto",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   --nile:#0f2233; --nile-2:#18324a; --nile-3:#234661;
   --glass:rgba(15,34,51,.9); --glass-line:rgba(255,255,255,.13);
   --sand:#f6efdf; --sand-2:#b8c5d1; --sand-3:#8496a6;
@@ -948,7 +948,7 @@ body.play #app{flex:1;min-height:0;position:relative}
 .fx .fi{width:1.05rem;height:1.05rem}.fx svg{width:.8rem;height:.8rem}
 .fx.s{font-size:.74rem;padding:0 .4rem 0 .12rem;gap:.12rem}.fx.s .fi{width:.95rem;height:.95rem}.fx.s svg{width:.72rem;height:.72rem}
 .fx.when,.fx.when.s{padding:0 .45rem 0 .12rem}
-.oinfo{position:absolute;right:.35rem;top:.4rem;width:1.35rem;height:1.35rem;border-radius:50%;border:1px solid var(--line-2);background:#fff;color:var(--muted);font:italic 700 .8rem Georgia,serif;cursor:pointer;padding:0;line-height:1}
+.oinfo{position:absolute;right:.35rem;top:.4rem;width:1.35rem;height:1.35rem;border-radius:50%;border:1px solid var(--line-2);background:#fff;color:var(--muted);font:italic 700 .8rem Roboto,Arial,sans-serif;cursor:pointer;padding:0;line-height:1}
 .oinfo:hover,.oinfo[aria-expanded="true"]{background:var(--nile);border-color:var(--nile);color:#fff}
 .odet{display:none;padding:0 .6rem .55rem 2.95rem;font-size:.82rem;color:var(--ink-2)}
 .opt.open .odet{display:block}
@@ -2698,7 +2698,7 @@ function buildWorld2(){
 /* ---------- agency branding (invented stand-in marks), shown or removed with one click ---------- */
 function buildBrand(){
   const G=new THREE.Group();scene.add(G);G.visible=false;W2.brandG=G;let N=0;
-  const mk=(bg,fg,draw,txt)=>{const c=document.createElement('canvas');c.width=256;c.height=160;const g=c.getContext('2d');g.fillStyle=bg;g.fillRect(0,0,256,160);g.strokeStyle=fg;g.fillStyle=fg;g.lineWidth=10;g.lineJoin='round';draw(g);g.font='700 32px Barlow, Arial, sans-serif';g.textAlign='center';g.fillText(txt,128,146);
+  const mk=(bg,fg,draw,txt)=>{const c=document.createElement('canvas');c.width=256;c.height=160;const g=c.getContext('2d');g.fillStyle=bg;g.fillRect(0,0,256,160);g.strokeStyle=fg;g.fillStyle=fg;g.lineWidth=10;g.lineJoin='round';draw(g);g.font='700 32px Roboto, Arial, sans-serif';g.textAlign='center';g.fillText(txt,128,146);
     const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return new THREE.MeshBasicMaterial({map:t,side:THREE.DoubleSide})};
   const M=[mk('#1f6fd0','#ffffff',g=>{g.beginPath();g.arc(128,60,40,0,7);g.stroke();g.beginPath();g.arc(128,60,13,0,7);g.fill()},'AGENCY A'),
     mk('#ffffff','#1f6fd0',g=>{for(let i=0;i<3;i++)g.fillRect(84+i*34,88-(i+1)*22,22,(i+1)*22+6)},'AGENCY B'),
@@ -3420,9 +3420,8 @@ function intro(){ADVISOR=false;tour(0)}
 function start(data){
   if(data&&data.state&&data.state.history){S=data.state;render()}
   else{S=newState();render();intro()}
-  window.claude?.hot?.snapshot?.(()=>({state:S}));
 }
-window.__ENGINE=ENGINE;window.__S=()=>S;window.claude?.hot?.ready?window.claude.hot.ready(start):start(window.claude?.hot?.data??{});
+window.__ENGINE=ENGINE;window.__S=()=>S;start({});
 </script>
 </body>
 </html>

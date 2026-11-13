@@ -178,11 +178,11 @@ svg.ico{width:1em;height:1em;display:inline-block;vertical-align:-.15em;flex:non
 .risk.r5{background:#fdf1f0;color:var(--err)}
 
 /* newspaper */
-.paper{max-width:720px;background:#fbfaf6;border:1px solid var(--line-2);border-radius:6px;padding:22px 26px;font-family:Georgia,"Times New Roman",serif;color:#1d1d1d}
+.paper{max-width:720px;background:#fbfaf6;border:1px solid var(--line-2);border-radius:6px;padding:22px 26px;font-family:Roboto,Arial,sans-serif;color:#1d1d1d}
 .paper .mast{display:flex;justify-content:space-between;align-items:baseline;border-bottom:3px double #1d1d1d;padding-bottom:6px;margin-bottom:12px;gap:10px;flex-wrap:wrap}
 .paper .mast b{font-size:28px;letter-spacing:.02em}
 .paper .mast span{font-size:12.5px;font-family:var(--font);color:#555}
-.paper h2{font-family:Georgia,serif;font-size:30px;line-height:1.1;margin:0 0 10px}
+.paper h2{font-family:Roboto,Arial,sans-serif;font-size:30px;line-height:1.1;margin:0 0 10px}
 .paper .cols{display:grid;grid-template-columns:200px 1fr;gap:16px}
 @media (max-width:600px){.paper .cols{grid-template-columns:1fr}}
 .paper p{font-size:15.5px;line-height:1.5;margin:0 0 10px}
@@ -2673,9 +2673,8 @@ function intro(){
 function start(data){
   if(data&&data.state&&data.state.history){S=data.state;render()}
   else{S=newState();render();intro()}
-  window.claude?.hot?.snapshot?.(()=>({state:S}));
 }
-window.__ENGINE=ENGINE;window.__S=()=>S;window.claude?.hot?.ready?window.claude.hot.ready(start):start(window.claude?.hot?.data??{});
+window.__ENGINE=ENGINE;window.__S=()=>S;start({});
 </script>
 </body>
 </html>
