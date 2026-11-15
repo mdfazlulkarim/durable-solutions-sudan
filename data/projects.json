@@ -1,5 +1,5 @@
 {
- "lastUpdated": "2026-11-09",
+ "lastUpdated": "2026-11-15",
  "projects": [
   {
    "id": "adra-female-literacy-and-opportunities-for-work-flow",
@@ -260,6 +260,9 @@
    "remarks": null,
    "photos": [],
    "leadName": "ADRA, Adventist Development and Relief Agency",
+   "services": [
+    "food"
+   ],
    "ref": "SD-048-ADRA-25-27"
   },
   {
@@ -519,6 +522,16 @@
    "remarks": null,
    "photos": [],
    "leadName": "DRC, Danish Refugee Council",
+   "services": [
+    "food",
+    "health"
+   ],
+   "news": [
+    {
+     "url": "https://www.afd.fr/en/press-releases/afd-and-danish-refugee-council-launch-eu8-million-project-support-womens-economic",
+     "title": "AFD and Danish Refugee Council launch EUR 8 million project to support women's economic resilience in Sudan and Ethiopia"
+    }
+   ],
    "ref": "SD-044-DRC-26-27"
   },
   {
@@ -874,6 +887,17 @@
    },
    "remarks": null,
    "photos": [],
+   "services": [
+    "wash",
+    "health",
+    "education"
+   ],
+   "news": [
+    {
+     "url": "https://allafrica.com/stories/202510130759.html",
+     "title": "African Development Bank and IOM Sign $62 Million Agreement to Rebuild Sudan's Social Infrastructure"
+    }
+   ],
    "ref": "SD-019-IOM-25-27"
   },
   {
@@ -1100,6 +1124,9 @@
    },
    "remarks": null,
    "photos": [],
+   "services": [
+    "wash"
+   ],
    "ref": "SD-016-UNDP-25-26"
   },
   {
@@ -1148,6 +1175,9 @@
    },
    "remarks": "Budget converted from EUR 1,000,000 at the UN operational rate of 15 October 2026.",
    "photos": [],
+   "services": [
+    "food"
+   ],
    "ref": "SD-008-UNDP-24-27"
   },
   {
@@ -1277,6 +1307,15 @@
    },
    "remarks": "Name in the agreement: Support and Empowerment in the Water and Sanitation Sector in Sudan.",
    "photos": [],
+   "services": [
+    "wash"
+   ],
+   "news": [
+    {
+     "url": "https://www.ksrelief.org/en/Pages/NewsDetails/086a3fbd-7109-4136-bd6e-394f64a55f43",
+     "title": "UNDP Launches USD 3.5 Million Initiative to Improve Water and Sanitation in Sudan"
+    }
+   ],
    "ref": "SD-006-UNDP-24-26"
   },
   {
@@ -1321,6 +1360,15 @@
    },
    "remarks": null,
    "photos": [],
+   "services": [
+    "food"
+   ],
+   "news": [
+    {
+     "url": "https://www.undp.org/sudan/press-releases/silatech-qffd-and-undp-join-forces-support-youth-employment-and-livelihood-security-conflict-affected-populations-sudan",
+     "title": "Silatech, QFFD and UNDP join forces to support youth employment and livelihood security of conflict-affected populations in Sudan"
+    }
+   ],
    "ref": "SD-007-UNDP-24-26"
   },
   {
@@ -1364,6 +1412,15 @@
    },
    "remarks": null,
    "photos": [],
+   "services": [
+    "wash"
+   ],
+   "news": [
+    {
+     "url": "https://www.undp.org/arab-states/press-releases/new-us2-million-kuwait-funded-project-expand-access-safe-water-idps-refugees-and-host-communities-sudan",
+     "title": "New US$2 million Kuwait-funded project to expand access to safe water for IDPs, refugees and host communities in Sudan"
+    }
+   ],
    "ref": "SD-013-UNDP-25-26"
   },
   {
@@ -1410,6 +1467,16 @@
    },
    "remarks": null,
    "photos": [],
+   "services": [
+    "wash",
+    "food"
+   ],
+   "news": [
+    {
+     "url": "https://www.undp.org/sudan/press-releases/kuwait-fund-provides-usd-4-million-new-projects-sudan",
+     "title": "Kuwait Fund Provides USD 4 Million for New Projects in Sudan"
+    }
+   ],
    "ref": "SD-020-UNDP-25-27"
   },
   {
@@ -1455,6 +1522,9 @@
    "peopleSex": null,
    "remarks": null,
    "photos": [],
+   "services": [
+    "wash"
+   ],
    "ref": "SD-042-UNDP-00-00"
   },
   {
@@ -1493,6 +1563,9 @@
    },
    "remarks": null,
    "photos": [],
+   "services": [
+    "health"
+   ],
    "ref": "SD-043-UNDP-00-00"
   },
   {
@@ -1544,6 +1617,19 @@
    },
    "remarks": null,
    "photos": [],
+   "services": [
+    "wash"
+   ],
+   "news": [
+    {
+     "url": "https://www.undp.org/sudan/press-releases/undp-sudan-and-republic-korea-launch-revive-ii-help-communities-move-beyond-crisis",
+     "title": "UNDP Sudan and Republic of Korea launch REVIVE II to help communities move beyond crisis"
+    },
+    {
+     "url": "https://www.undp.org/sudan/press-releases/republic-korea-expands-revive-ii-support-sudan-additional-usd-2-million",
+     "title": "Republic of Korea expands REVIVE II support in Sudan with additional USD 2 million"
+    }
+   ],
    "ref": "SD-038-UNDP-26-27"
   },
   {
@@ -1590,6 +1676,15 @@
    },
    "remarks": null,
    "photos": [],
+   "services": [
+    "food"
+   ],
+   "news": [
+    {
+     "url": "https://www.undp.org/sudan/press-releases/government-japan-and-undp-launch-us1-million-project-boost-food-security-and-incomes-idps-and-host-communities-sudans-red-sea",
+     "title": "Government of Japan and UNDP launch US$1 million project to boost food security and incomes of IDPs and host communities in Sudan's Red Sea"
+    }
+   ],
    "ref": "SD-012-UNDP-25-26"
   },
   {
@@ -1635,6 +1730,16 @@
    },
    "remarks": null,
    "photos": [],
+   "services": [
+    "wash",
+    "food"
+   ],
+   "news": [
+    {
+     "url": "https://www.undp.org/sudan/press-releases/kuwait-fund-provides-usd-4-million-new-projects-sudan",
+     "title": "Kuwait Fund Provides USD 4 Million for New Projects in Sudan"
+    }
+   ],
    "ref": "SD-021-UNDP-25-27"
   },
   {
@@ -1681,6 +1786,16 @@
    },
    "remarks": "Budget converted from CHF 5,000,000 at the UN operational rate of 15 October 2026. Includes a top-up that added Blue Nile and Central Darfur.",
    "photos": [],
+   "services": [
+    "wash",
+    "food"
+   ],
+   "news": [
+    {
+     "url": "https://www.undp.org/sudan/press-releases/switzerland-and-undp-sign-chf-35-million-agreement-boost-resilience-vulnerable-communities-east-sudan",
+     "title": "Switzerland and UNDP Sign CHF 3.5 Million Agreement to Boost Resilience of Vulnerable Communities in East Sudan"
+    }
+   ],
    "ref": "SD-017-UNDP-25-27"
   },
   {
@@ -1797,6 +1912,9 @@
     "assets/photos/SD-053-3.jpg"
    ],
    "leadName": "UNDP, United Nations Development Programme",
+   "services": [
+    "health"
+   ],
    "ref": "SD-053-UNDP-22-26"
   },
   {
@@ -1986,6 +2104,9 @@
    },
    "remarks": null,
    "photos": [],
+   "services": [
+    "health"
+   ],
    "ref": "SD-035-UNFPA-26-26"
   },
   {
@@ -2368,6 +2489,9 @@
    },
    "remarks": null,
    "photos": [],
+   "services": [
+    "health"
+   ],
    "ref": "SD-025-UNFPA-26-26"
   },
   {
@@ -2481,6 +2605,9 @@
    "remarks": "Total number of beneficiaries is for students supported through the education component and livelihoods component only. The project also aims to support 50 FDPLOs through grants and capacity building.",
    "photos": [],
    "leadName": "UNHCR, United Nations High Commissioner for Refugees",
+   "services": [
+    "education"
+   ],
    "ref": "SD-031-UNHCR-25-30"
   },
   {
@@ -2540,6 +2667,17 @@
    "remarks": null,
    "photos": [],
    "leadName": "UNHCR, United Nations High Commissioner for Refugees",
+   "services": [
+    "wash",
+    "health",
+    "education"
+   ],
+   "news": [
+    {
+     "url": "https://www.unhcr.org/kw/en/node/104",
+     "title": "Concluding visit to Kuwait, UN High Commissioner for Refugees Grandi calls for scaled-up support"
+    }
+   ],
    "ref": "SD-058-UNHCR-25-27"
   },
   {
@@ -2611,6 +2749,9 @@
    "remarks": null,
    "photos": [],
    "leadName": "UNHCR, United Nations High Commissioner for Refugees",
+   "services": [
+    "wash"
+   ],
    "ref": "SD-059-UNHCR-24-27"
   },
   {
@@ -2672,6 +2813,9 @@
    "remarks": "Also supporting 3 MPCCs in Khartoum.",
    "photos": [],
    "leadName": "UNHCR, United Nations High Commissioner for Refugees",
+   "services": [
+    "wash"
+   ],
    "ref": "SD-060-UNHCR-26-27"
   },
   {
@@ -2739,6 +2883,9 @@
    "remarks": null,
    "photos": [],
    "leadName": "UNHCR, United Nations High Commissioner for Refugees",
+   "services": [
+    "education"
+   ],
    "ref": "SD-011-UNHCR-26-27"
   },
   {
@@ -2794,6 +2941,15 @@
    "remarks": null,
    "photos": [],
    "leadName": "UNHCR, United Nations High Commissioner for Refugees",
+   "services": [
+    "wash"
+   ],
+   "news": [
+    {
+     "url": "https://www.arabnews.com/node/2630970/saudi-arabia",
+     "title": "Saudi fund provides $10m to UN to supply Sudan with drinking water"
+    }
+   ],
    "ref": "SD-057-UNHCR-26-28"
   },
   {
@@ -2857,7 +3013,97 @@
    "remarks": null,
    "photos": [],
    "leadName": "UNHCR, United Nations High Commissioner for Refugees",
+   "services": [
+    "wash"
+   ],
    "ref": "SD-036-UNHCR-26-28"
+  },
+  {
+   "id": "unops-enhancing-food-security-and-resilience-of-rural-communities-efsr",
+   "name": "Enhancing Food Security and Resilience of Rural Communities (EFSR) Sudan",
+   "description": "The EFSR project is a comprehensive initiative aimed to contribute to sustainable livelihoods and food security in rural communities most affected by food insecurity, climate change and conflicts. To build long-term resilience, the project integrates the rehabilitation of critical infrastructure and cash assistance. Furthermore, the initiative empowers smallholder farmers by enhancing agricultural and livestock productivity and developing nutritious, short value chains. The project also seeks to drive economic recovery by generating sustainable and decent jobs opportunities.",
+   "interventionTypes": [
+    "Basic services rehabilitation",
+    "Livelihoods and cash-for-work"
+   ],
+   "lead": "UNOPS",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [
+    "PA"
+   ],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Gedaref",
+    "Kassala",
+    "Red Sea"
+   ],
+   "localities": [
+    "Al Galabat Al Gharbyah - Kassab",
+    "Gala'a Al Nahal",
+    "Galabat Ash-Shargiah",
+    "Wasat Al Gedaref",
+    "Halfa Aj Jadeedah",
+    "Madeinat Kassala",
+    "Reifi Aroma",
+    "Reifi Wad Elhilaiw",
+    "Al Ganab",
+    "Haya",
+    "Port Sudan",
+    "Sawakin",
+    "Sinkat",
+    "Tawkar"
+   ],
+   "criteria": [
+    2,
+    3
+   ],
+   "services": [
+    "food"
+   ],
+   "coordination": null,
+   "start": "2024-12-01",
+   "end": "2028-11-30",
+   "reportedStatus": "Ongoing",
+   "budget": 17907134,
+   "share": 0.947,
+   "dsFunding": 16958055.9,
+   "donor": "European Union",
+   "donors": [
+    {
+     "name": "European Union",
+     "amount": 17907134
+    }
+   ],
+   "people": {
+    "total": 176137,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 176137
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": true,
+   "pwdUnknown": true,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "news": [
+    {
+     "url": "https://x.com/UNOPS_HoA/status/2086736584309682648",
+     "title": "Drinking water returns to the Digain and Matatib communities after 8 years"
+    }
+   ],
+   "photos": [],
+   "leadName": "UNOPS, United Nations Office for Project Services",
+   "ref": "SD-061-UNOPS-24-28"
   },
   {
    "id": "wvi-cash-and-food-assistance-program-and-nutrition",
@@ -2926,6 +3172,9 @@
     "assets/photos/SD-056-1.jpg"
    ],
    "leadName": "WVI, World Vision International",
+   "services": [
+    "food"
+   ],
    "ref": "SD-056-WVI-26-26"
   }
  ]
