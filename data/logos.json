@@ -32,6 +32,10 @@
   "full": "assets/img/logos/ADRA.webp",
   "mark": "assets/img/logos/ADRA-mark.webp"
  },
+ "AfDB": {
+  "name": "African Development Bank",
+  "full": "assets/img/logos/AFDB-mwkebyur.png"
+ },
  "AGWA": {
   "name": "Sudan Agwa Organization",
   "full": "assets/img/logos/AGWA.webp"
@@ -39,6 +43,10 @@
  "AHDO": {
   "name": "Alegtinam Human Development Organization",
   "full": "assets/img/logos/AHDO.webp"
+ },
+ "AICS": {
+  "name": "Italian Agency for Development Cooperation",
+  "full": "https://commons.wikimedia.org/wiki/Special:FilePath/LOGO%20AGENZIA.png?width=320"
  },
  "AIDO": {
   "name": "Aid for Impact and Development Organization",
@@ -88,6 +96,14 @@
   "name": "Building Foundation for Development",
   "full": "assets/img/logos/BFD.webp"
  },
+ "BfdW": {
+  "name": "Brot für die Welt",
+  "full": "assets/img/logos/BFDW-mwke9qlw.png"
+ },
+ "BMGF": {
+  "name": "Gates Foundation",
+  "full": "assets/img/logos/BMGF-mwkea28z.png"
+ },
  "CADUS": {
   "name": "CADUS for International Disaster Response",
   "full": "assets/img/logos/CADUS.webp"
@@ -117,6 +133,10 @@
   "name": "International Committee for the Development of Peoples",
   "full": "assets/img/logos/CISP.webp"
  },
+ "COOPI": {
+  "name": "COOPI, Cooperazione Internazionale",
+  "full": "https://www.coopi.org/images/logo.svg"
+ },
  "CORE": {
   "name": "Community Organized Relief Effort",
   "full": "assets/img/logos/CORE.webp"
@@ -145,6 +165,14 @@
   "name": "EMERGENCY NGO",
   "full": "assets/img/logos/EMERGENCYNGO.webp"
  },
+ "EU (FPI)": {
+  "name": "European Union (Service for Foreign Policy Instruments)",
+  "full": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Europe.svg?width=320"
+ },
+ "EU (INTPA)": {
+  "name": "European Union (International Partnerships)",
+  "full": "https://commons.wikimedia.org/wiki/Special:FilePath/Flag%20of%20Europe.svg?width=320"
+ },
  "FAO": {
   "name": "Food and Agriculture Organization",
   "full": "assets/img/logos/FAO.webp"
@@ -152,6 +180,14 @@
  "FSC": {
   "name": "Future Stars Center for Development and Capacity Building",
   "full": "assets/img/logos/FSC.webp"
+ },
+ "Geneva Call": {
+  "name": "Geneva Call",
+  "full": "https://commons.wikimedia.org/wiki/Special:FilePath/Geneva%20Call%20logo.png?width=320"
+ },
+ "GF": {
+  "name": "Global Fund",
+  "full": "assets/img/logos/GF-mwke9jld.png"
  },
  "GOAL": {
   "name": "GOAL Global",
@@ -189,6 +225,22 @@
   "name": "IAS/LM International",
   "full": "assets/img/logos/IASLMI.webp"
  },
+ "ICRC": {
+  "name": "International Committee of the Red Cross",
+  "full": "https://commons.wikimedia.org/wiki/Special:FilePath/Emblem%20of%20the%20ICRC.svg?width=320"
+ },
+ "IFAD": {
+  "name": "International Fund for Agricultural Development",
+  "full": "assets/img/logos/IFAD-mwke9n3z.png"
+ },
+ "IFDC": {
+  "name": "IFDC",
+  "full": "https://commons.wikimedia.org/wiki/Special:FilePath/IFDC%20Logo.jpg?width=320"
+ },
+ "IFRC": {
+  "name": "International Federation of Red Cross and Red Crescent Societies",
+  "full": "https://commons.wikimedia.org/wiki/Special:FilePath/IFRC%20logo%202020.svg?width=320"
+ },
  "ILO": {
   "name": "International Labour Organization",
   "full": "assets/img/logos/ILO.webp"
@@ -205,6 +257,10 @@
   "name": "International Organization for Migration",
   "full": "assets/img/logos/IOM.webp",
   "mark": "assets/img/logos/IOM-mark.webp"
+ },
+ "IPPF": {
+  "name": "International Planned Parenthood Federation",
+  "full": "https://commons.wikimedia.org/wiki/Special:FilePath/Logo%20IPPF.svg?width=320"
  },
  "IRC": {
   "name": "International Rescue Committee",
@@ -226,6 +282,10 @@
   "name": "Kuwaiti Patients Helping Funds",
   "full": "assets/img/logos/KPHF.webp"
  },
+ "KSrelief": {
+  "name": "King Salman Humanitarian Aid and Relief Centre",
+  "full": "https://en.wikipedia.org/wiki/Special:FilePath/King%20Salman%20Humanitarian%20Aid%20and%20Relief%20Center%20Logo.svg?width=320"
+ },
  "LM/IAS": {
   "name": "LM International (formerly known as International Aid Services)",
   "full": "assets/img/logos/LMIAS.webp"
@@ -237,6 +297,10 @@
  "MC": {
   "name": "Mercy Corps",
   "full": "assets/img/logos/MC.webp"
+ },
+ "MCF": {
+  "name": "Mastercard Foundation",
+  "full": "assets/img/logos/MCF-mwke9uhl.png"
  },
  "Medair": {
   "name": "Medair",
@@ -282,6 +346,14 @@
   "name": "National Initiative Development Organization",
   "full": "assets/img/logos/NIDO.webp"
  },
+ "Norwegian People's Aid": {
+  "name": "Norwegian People's Aid",
+  "full": "https://commons.wikimedia.org/wiki/Special:FilePath/Logo%20Norwegian%20People%27s%20Aid%20%285228000783%29.jpg?width=320"
+ },
+ "Norwegian Red Cross": {
+  "name": "Norwegian Red Cross",
+  "full": "https://commons.wikimedia.org/wiki/Special:FilePath/Norwegian%20Red%20Cross%20logo.svg?width=320"
+ },
  "NP": {
   "name": "Nonviolent Peaceforce",
   "full": "assets/img/logos/NP.webp"
@@ -325,6 +397,14 @@
  "PUI": {
   "name": "Premiere Urgence Internationale",
   "full": "assets/img/logos/PUI.webp"
+ },
+ "Qatar Charity": {
+  "name": "Qatar Charity",
+  "full": "https://commons.wikimedia.org/wiki/Special:FilePath/Qatar%20Charity%20Logo.jpg?width=320"
+ },
+ "Qatar Red Crescent Society": {
+  "name": "Qatar Red Crescent Society",
+  "full": "https://commons.wikimedia.org/wiki/Special:FilePath/Qatar%20Red%20Crescent%20Society%20logo.png?width=320"
  },
  "RAISE": {
   "name": "Raise for Development and Humanitarian Aid",
@@ -426,6 +506,10 @@
   "name": "Trust for Rehabilitation and Development Organization",
   "full": "assets/img/logos/TDO.webp"
  },
+ "Trocaire": {
+  "name": "Trócaire",
+  "full": "https://commons.wikimedia.org/wiki/Special:FilePath/Trocaire%20logo.png?width=320"
+ },
  "UN Women": {
   "name": "United Nations Entity for Gender Equality and the Empowerment of Women",
   "full": "assets/img/logos/UNWOMEN.webp"
@@ -479,6 +563,10 @@
  "VSF-G": {
   "name": "Veterinaires Sans Frontieres Germany",
   "full": "assets/img/logos/VSFG.webp"
+ },
+ "WB": {
+  "name": "World Bank",
+  "full": "assets/img/logos/WB-mwke9g34.png"
  },
  "WFP": {
   "name": "World Food Programme",

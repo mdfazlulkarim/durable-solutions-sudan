@@ -1,6 +1,811 @@
 {
- "lastUpdated": "2026-11-15",
+ "lastUpdated": "2026-11-19",
  "projects": [
+  {
+   "id": "acted-area-based-durable-solutions-coordination-planning-and-emergency",
+   "name": "Area-Based Durable Solutions Coordination, Planning and Emergency Sanitation Support",
+   "description": "This project supports the Blue Nile Area Durable Solutions Working Group (ADSWG), chaired by the State Ministry of Finance, to plan and coordinate durable solutions for returnees, IDPs and host communities: a stakeholder and resource mapping (3W), a state-level joint analysis and durable solutions action plans for the priority return localities of Baw and At Tadamon. It also installs 30 emergency toilets in priority displacement sites.",
+   "interventionTypes": [
+    "Basic services rehabilitation",
+    "Local governance and urban planning",
+    "Data, evidence and preparedness"
+   ],
+   "lead": "ACTED",
+   "orgType": "International NGO",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Blue Nile"
+   ],
+   "localities": [
+    "At Tadamon - BN",
+    "Baw"
+   ],
+   "criteria": [
+    2
+   ],
+   "services": [
+    "wash"
+   ],
+   "coordination": "Area Durable Solutions Working Group (ADSWG)",
+   "start": "2026-11-01",
+   "end": "2027-02-28",
+   "reportedStatus": "Ongoing",
+   "budget": 50000,
+   "share": 1,
+   "dsFunding": 50000,
+   "donor": "UNDP (Durable Solutions Unit)",
+   "donors": [
+    {
+     "name": "UNDP (Durable Solutions Unit)",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": 600,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 600
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": true,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "news": [],
+   "photos": [],
+   "leadName": "ACTED, Agency for Technical Cooperation and Development",
+   "ref": "SD-073-ACTED-26-27"
+  },
+  {
+   "id": "acted-cash-consortium-of-sudan-echo-acted-component-emergency-markets-",
+   "name": "Cash Consortium of Sudan - ECHO (Acted component: emergency markets support, Khartoum)",
+   "description": "This component supports market recovery in Khartoum through Emergency Business Grants to about 54 vendors and small businesses. Grants come with bookkeeping, financial literacy and business training, mentorship and milestone follow-up, market and price monitoring, and vendor forums.",
+   "interventionTypes": [
+    "Livelihoods and cash-for-work"
+   ],
+   "lead": "ACTED",
+   "orgType": "International NGO",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Khartoum"
+   ],
+   "localities": [],
+   "criteria": [
+    3
+   ],
+   "services": [],
+   "coordination": "Other",
+   "start": "2026-11-01",
+   "end": "2027-03-31",
+   "reportedStatus": "Pipeline",
+   "budget": 109000,
+   "share": 1,
+   "dsFunding": 109000,
+   "donor": "CCS (ECHO)",
+   "donors": [
+    {
+     "name": "CCS (ECHO)",
+     "amount": 109000
+    }
+   ],
+   "people": {
+    "total": 54,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 54
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": true,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "news": [],
+   "photos": [],
+   "leadName": "ACTED, Agency for Technical Cooperation and Development",
+   "ref": "SD-066-ACTED-26-27"
+  },
+  {
+   "id": "acted-cash-consortium-of-sudan-resilience-acted-component-emergency-bu",
+   "name": "Cash Consortium of Sudan - Resilience (Acted component: emergency business grants, Bahri)",
+   "description": "This project strengthened the resilience of local traders and vendors affected by disrupted markets and liquidity shortages through Emergency Business Grants (EBG), targeted business training, and support to informal credit networks. IMPACT conducted an assessment aiming to generate comparable evidence on market functionality specific to vendor characteristics that can directly feed into the EBG programming.",
+   "interventionTypes": [
+    "Livelihoods and cash-for-work"
+   ],
+   "lead": "ACTED",
+   "orgType": "International NGO",
+   "leadership": [],
+   "partners": [
+    "IMPACT Initiatives"
+   ],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Khartoum"
+   ],
+   "localities": [
+    "Bahri"
+   ],
+   "criteria": [
+    3
+   ],
+   "services": [],
+   "coordination": "Other",
+   "start": "2025-11-01",
+   "end": "2026-03-31",
+   "reportedStatus": "Ended",
+   "budget": 270690,
+   "share": 1,
+   "dsFunding": 270690,
+   "donor": "British Council (FCDO SSU / RAF), via CCS / Mercy Corps",
+   "donors": [
+    {
+     "name": "British Council (FCDO SSU / RAF), via CCS / Mercy Corps",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": 54,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 54
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": false,
+   "pwdUnknown": false,
+   "femaleShare": 0.148,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "news": [],
+   "photos": [],
+   "leadName": "ACTED, Agency for Technical Cooperation and Development",
+   "ref": "SD-062-ACTED-25-26"
+  },
+  {
+   "id": "acted-emergency-shelter-support-for-conflict-displaced-households-in-b",
+   "name": "Emergency Shelter Support for Conflict-Displaced Households in Blue Nile",
+   "description": "This project provides emergency shelter kits to 400 newly displaced households relocating to the new Al Azaza IDP site (Ar Rusayris, Blue Nile), with safe-shelter training and 50 solar streetlights to improve safety in the site.",
+   "interventionTypes": [
+    "Shelter and housing"
+   ],
+   "lead": "ACTED",
+   "orgType": "International NGO",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Blue Nile"
+   ],
+   "localities": [
+    "Ar Rusayris"
+   ],
+   "criteria": [
+    2
+   ],
+   "services": [],
+   "coordination": "Shelter Cluster",
+   "start": "2026-07-01",
+   "end": "2026-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 500000,
+   "share": 1,
+   "dsFunding": 500000,
+   "donor": "SHF, via Save the Children 48H consortium",
+   "donors": [
+    {
+     "name": "SHF, via Save the Children 48H consortium",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": 2400,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 2400
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": true,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "news": [],
+   "photos": [],
+   "leadName": "ACTED, Agency for Technical Cooperation and Development",
+   "ref": "SD-068-ACTED-26-26"
+  },
+  {
+   "id": "acted-emergency-wash-response-for-conflict-displaced-populations-in-bl",
+   "name": "Emergency WASH Response for Conflict-Displaced Populations in Blue Nile",
+   "description": "This project supports an integrated emergency WASH response, with a primary focus on the Al Azaza site in Ar Rusayris locality - Blue Nile, while also implementing complementary activities in Al Karama 5 and 6 sites to address urgent gaps in water, sanitation, and hygiene. The intervention combines rapid construction of water points and communal latrines and showers with hygiene promotion and distribution of hygiene and cholera prevention kits, in line with WASH Cluster standards and identified beneficiary priorities.",
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
+   "lead": "ACTED",
+   "orgType": "International NGO",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Blue Nile"
+   ],
+   "localities": [
+    "Ar Rusayris",
+    "Baw"
+   ],
+   "criteria": [
+    2
+   ],
+   "services": [
+    "wash"
+   ],
+   "coordination": "WASH Cluster",
+   "start": "2026-07-01",
+   "end": "2026-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 500000,
+   "share": 0.349,
+   "dsFunding": 174500,
+   "donor": "SHF, via Save the Children 48H consortium",
+   "donors": [
+    {
+     "name": "SHF, via Save the Children 48H consortium",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": 45673,
+    "idps": 15071,
+    "returnees": 30602,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": null
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": false,
+   "femaleUnknown": false,
+   "pwdUnknown": false,
+   "femaleShare": 0.46,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": {
+    "idps": {
+     "women": 3120,
+     "girls": 3813,
+     "men": 3662,
+     "boys": 4476
+    },
+    "returnees": {
+     "women": 6335,
+     "girls": 7742,
+     "men": 7436,
+     "boys": 9089
+    }
+   },
+   "remarks": null,
+   "news": [],
+   "photos": [],
+   "leadName": "ACTED, Agency for Technical Cooperation and Development",
+   "ref": "SD-067-ACTED-26-26"
+  },
+  {
+   "id": "acted-improving-access-to-water-through-the-solarisation-of-a-water-po",
+   "name": "Improving access to water through the solarisation of a water point in Khartoum",
+   "description": "This project improved access to safe drinking water in Khartoum through the solarization of an existing borehole, including coordination with local authorities and community awareness-raising. A local Water Management Committee was also established and trained to ensure sustainable management.",
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
+   "lead": "ACTED",
+   "orgType": "International NGO",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Khartoum"
+   ],
+   "localities": [
+    "Jebel Awlia"
+   ],
+   "criteria": [
+    2
+   ],
+   "services": [
+    "wash"
+   ],
+   "coordination": "WASH Cluster",
+   "start": "2025-12-01",
+   "end": "2026-05-31",
+   "reportedStatus": "Ended",
+   "budget": 23431,
+   "share": 1,
+   "dsFunding": 23431,
+   "donor": "Synergie Renouvelable",
+   "donors": [
+    {
+     "name": "Synergie Renouvelable",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": 8000,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 8000
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": false,
+   "pwdUnknown": false,
+   "femaleShare": 0.55,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "news": [],
+   "photos": [],
+   "leadName": "ACTED, Agency for Technical Cooperation and Development",
+   "ref": "SD-063-ACTED-25-26"
+  },
+  {
+   "id": "acted-integrated-food-security-and-wash-assistance-for-conflict-affect",
+   "name": "Integrated Food Security and WASH Assistance for Conflict-Affected Communities in Sharq Al Jazirah",
+   "description": "This project is delivering integrated Food Security and WASH assistance to 42,840 conflict-affected individuals in Sharq Al Jazirah, where displacement, food insecurity and limited access to safe water and health services have severely affected vulnerable populations. The project aims to improve food production and strengthen access to safe water, sanitation and hygiene services while reinforcing health facility and community capacity. It will support 3,640 farming households with seeds, tools and agricultural training, while 800 vulnerable households, patients and caregivers will receive hygi",
+   "interventionTypes": [
+    "Basic services rehabilitation",
+    "Livelihoods and cash-for-work"
+   ],
+   "lead": "ACTED",
+   "orgType": "International NGO",
+   "leadership": [],
+   "partners": [
+    "MOD (Mubdeoon Organization for Development)"
+   ],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Aj Jazirah"
+   ],
+   "localities": [
+    "Sharg Al Jazirah"
+   ],
+   "criteria": [
+    2,
+    3
+   ],
+   "services": [
+    "wash",
+    "food"
+   ],
+   "coordination": "Food Security and Livelihoods Cluster",
+   "start": "2026-03-01",
+   "end": "2027-03-31",
+   "reportedStatus": "Ongoing",
+   "budget": 1300000,
+   "share": 0.819,
+   "dsFunding": 1064700,
+   "donor": "Sudan Humanitarian Fund (SHF)",
+   "donors": [
+    {
+     "name": "Sudan Humanitarian Fund (SHF)",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": 42840,
+    "idps": null,
+    "returnees": 34272,
+    "refugees": null,
+    "host": 8568,
+    "other": null,
+    "unspec": null
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": false,
+   "femaleUnknown": false,
+   "pwdUnknown": false,
+   "femaleShare": 0.46,
+   "pwdShare": 0.05,
+   "pwdFemaleShare": 0.46,
+   "peopleSex": {
+    "returnees": {
+     "women": 6854,
+     "girls": 8910,
+     "men": 8226,
+     "boys": 10282
+    },
+    "host": {
+     "women": 1714,
+     "girls": 2228,
+     "men": 2056,
+     "boys": 2570
+    }
+   },
+   "remarks": null,
+   "news": [],
+   "photos": [],
+   "leadName": "ACTED, Agency for Technical Cooperation and Development",
+   "ref": "SD-065-ACTED-26-27"
+  },
+  {
+   "id": "acted-integrated-wash-lifesaving-response-for-conflict-affected-popula",
+   "name": "Integrated WASH Lifesaving Response for Conflict-Affected Populations and Reinforcing Local Response Capacities in Blue Nile, Sudan",
+   "description": "This project aims to provide an integrated WASH response to conflict-affected populations in Blue Nile State facing critical humanitarian needs. The overall objective is to contribute to improved health, dignity and living conditions, while reducing the risk of waterborne disease outbreaks. The project will directly benefit approximately 39,000 vulnerable individuals, including displaced and host communities.",
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
+   "lead": "ACTED",
+   "orgType": "International NGO",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Blue Nile"
+   ],
+   "localities": [
+    "Ed Damazine"
+   ],
+   "criteria": [
+    2
+   ],
+   "services": [
+    "wash"
+   ],
+   "coordination": "WASH Cluster",
+   "start": "2026-08-01",
+   "end": "2027-08-31",
+   "reportedStatus": "Ongoing",
+   "budget": 573800,
+   "share": 1,
+   "dsFunding": 573800,
+   "donor": "CDCS",
+   "donors": [
+    {
+     "name": "CDCS",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": 39000,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 39000
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": false,
+   "pwdUnknown": false,
+   "femaleShare": 0.52,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "news": [],
+   "photos": [],
+   "leadName": "ACTED, Agency for Technical Cooperation and Development",
+   "ref": "SD-070-ACTED-26-27"
+  },
+  {
+   "id": "acted-primary-health-care-provision-for-vulnerable-populations-affecte",
+   "name": "Primary health care provision for vulnerable populations affected by food insecurity and malnutrition",
+   "description": "This project supports an integrated Nutrition and WASH response for vulnerable conflict- and food security-affected populations in White Nile and Gedaref States over 16 months. The action strengthens primary healthcare facilities through improved water, sanitation, and solar infrastructures, while providing MPCA to 480 caregivers of children with severe and moderate acute malnutrition and referred pregnant and lactating women.",
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
+   "lead": "ACTED",
+   "orgType": "International NGO",
+   "leadership": [],
+   "partners": [
+    "ALIGHT (lead applicant)",
+    "INTERSOS",
+    "HOPE"
+   ],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Gedaref",
+    "White Nile"
+   ],
+   "localities": [
+    "Ad Diwaim",
+    "Rabak"
+   ],
+   "criteria": [
+    2
+   ],
+   "services": [
+    "wash",
+    "health"
+   ],
+   "coordination": "WASH Cluster",
+   "start": "2026-07-01",
+   "end": "2027-10-31",
+   "reportedStatus": "Ongoing",
+   "budget": 684088,
+   "share": 0.55,
+   "dsFunding": 376248.4,
+   "donor": "AICS, via ALIGHT",
+   "donors": [
+    {
+     "name": "AICS, via ALIGHT",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": null,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": null
+   },
+   "peopleV": 2,
+   "peopleUnknown": true,
+   "breakdownUnknown": false,
+   "femaleUnknown": true,
+   "pwdUnknown": true,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "news": [],
+   "photos": [],
+   "leadName": "ACTED, Agency for Technical Cooperation and Development",
+   "ref": "SD-069-ACTED-26-27"
+  },
+  {
+   "id": "acted-supporting-vulnerable-populations-in-sudan",
+   "name": "Supporting vulnerable populations in Sudan",
+   "description": "This project solarised the Campo Mohamed borehole (Al Gitaina, White Nile) serving about 4,000 people, with a water users' committee, and constructed 12 emergency latrines at Al Makhada IDP site (Aj Jabalain) serving about 1,470 people.",
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
+   "lead": "ACTED",
+   "orgType": "International NGO",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "White Nile"
+   ],
+   "localities": [
+    "Aj Jabalain",
+    "Al Gitaina"
+   ],
+   "criteria": [
+    2
+   ],
+   "services": [
+    "wash"
+   ],
+   "coordination": "WASH Cluster",
+   "start": "2025-12-01",
+   "end": "2026-07-31",
+   "reportedStatus": "Ended",
+   "budget": 64434,
+   "share": 0.565,
+   "dsFunding": 36405.21,
+   "donor": "Ville de Paris",
+   "donors": [
+    {
+     "name": "Ville de Paris",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": 5470,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 5470
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": false,
+   "pwdUnknown": false,
+   "femaleShare": 0.555,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "news": [],
+   "photos": [],
+   "leadName": "ACTED, Agency for Technical Cooperation and Development",
+   "ref": "SD-064-ACTED-25-26"
+  },
+  {
+   "id": "acted-ta-afi-enhance-impact-of-local-responders-for-community-led-reco",
+   "name": "TA'AFI - Enhance impact of local responders for community-led recovery and resilience efforts in Sudan",
+   "description": "This project provides Group Cash transfers (GCTs) to Mutual Aid Groups (MAGs) across Blue Nile, supporting locally led recovery and resilience activities and strengthening local responders' capacities.",
+   "interventionTypes": [
+    "Basic services rehabilitation",
+    "Livelihoods and cash-for-work",
+    "Social cohesion and peacebuilding"
+   ],
+   "lead": "ACTED",
+   "orgType": "International NGO",
+   "leadership": [],
+   "partners": [
+    "MOD (Mubdeoon Organization for Development)"
+   ],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Blue Nile"
+   ],
+   "localities": [],
+   "criteria": [
+    1,
+    2,
+    3
+   ],
+   "services": [
+    "wash",
+    "food",
+    "health",
+    "education"
+   ],
+   "coordination": "Other",
+   "start": "2026-10-01",
+   "end": "2028-03-31",
+   "reportedStatus": "Ongoing",
+   "budget": 405015,
+   "share": 1,
+   "dsFunding": 405015,
+   "donor": "European Union (FPI), via CCS / Prosper Global",
+   "donors": [
+    {
+     "name": "European Union (FPI), via CCS / Prosper Global",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": 10200,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 10200
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": true,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "news": [],
+   "photos": [],
+   "leadName": "ACTED, Agency for Technical Cooperation and Development",
+   "ref": "SD-072-ACTED-26-28"
+  },
+  {
+   "id": "acted-urgent-and-lifesaving-support-for-conflict-related-sexual-violen",
+   "name": "Urgent and Lifesaving support for conflict-related sexual violence survivors in Sudan: Supporting women-led shelters, protection services, and livelihood recovery for survivors",
+   "description": "This project aims to strengthen the protection, economic empowerment and access to justice of women and girls at risk of gender-based violence in the states of White Nile and Khartoum. Key activities include vocational and entrepreneurship training, support for women’s cooperatives and savings groups, support for small businesses, as well as counselling and legal assistance, legal representation and community awareness-raising.",
+   "interventionTypes": [
+    "Livelihoods and cash-for-work",
+    "Legal aid and documentation"
+   ],
+   "lead": "ACTED",
+   "orgType": "International NGO",
+   "leadership": [],
+   "partners": [
+    "Afag for Development (Women Lawyers Association)"
+   ],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Khartoum",
+    "White Nile"
+   ],
+   "localities": [
+    "Aj Jabalain",
+    "Tendalti"
+   ],
+   "criteria": [
+    1,
+    3,
+    8
+   ],
+   "services": [],
+   "coordination": "Protection Cluster",
+   "start": "2026-09-01",
+   "end": "2027-06-30",
+   "reportedStatus": "Ongoing",
+   "budget": 392778,
+   "share": 1,
+   "dsFunding": 392778,
+   "donor": "UNDP",
+   "donors": [
+    {
+     "name": "UNDP",
+     "amount": null
+    }
+   ],
+   "people": {
+    "total": 1187,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 1187
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": true,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "news": [],
+   "photos": [],
+   "leadName": "ACTED, Agency for Technical Cooperation and Development",
+   "ref": "SD-071-ACTED-26-27"
+  },
   {
    "id": "adra-female-literacy-and-opportunities-for-work-flow",
    "name": "Female Literacy and Opportunities for Work (FLOW)",
