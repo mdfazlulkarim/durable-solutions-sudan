@@ -1,5 +1,5 @@
 {
- "lastUpdated": "2026-11-19",
+ "lastUpdated": "2026-11-23",
  "projects": [
   {
    "id": "acted-area-based-durable-solutions-coordination-planning-and-emergency",
@@ -3909,6 +3909,73 @@
    "photos": [],
    "leadName": "UNOPS, United Nations Office for Project Services",
    "ref": "SD-061-UNOPS-24-28"
+  },
+  {
+   "id": "unops-improvement-of-water-supply-facilities-and-health-facilities-in-",
+   "name": "Improvement of Water Supply Facilities and Health Facilities in Kassala and Read Sea States",
+   "description": "The project is addressing urgent barriers to healthcare and clean water access in Port Sudan and Kassala. The project is working to construct and equip pumping stations, transmission lines, and distribution networks, while procuring essential equipment to maintain water quality and hygiene standards. Concurrently, the project strengthens local healthcare delivery by rehabilitating hospital facilities and supplying critical medical equipment. To ensure sustainability, all infrastructure and equipment investments are complemented by targeted institutional capacity building.",
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
+   "lead": "UNOPS",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Kassala",
+    "Red Sea"
+   ],
+   "localities": [
+    "Madeinat Kassala",
+    "Al Ganab",
+    "Port Sudan"
+   ],
+   "criteria": [
+    2
+   ],
+   "services": [
+    "wash",
+    "health"
+   ],
+   "coordination": null,
+   "start": "2024-11-01",
+   "end": "2027-11-30",
+   "reportedStatus": "Ongoing",
+   "budget": 4541097,
+   "share": 1,
+   "dsFunding": 4541097,
+   "donor": "Government of Japan",
+   "donors": [
+    {
+     "name": "Government of Japan",
+     "amount": 4541097
+    }
+   ],
+   "people": {
+    "total": 1501592,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 1501592
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": true,
+   "pwdUnknown": true,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "news": [],
+   "photos": [],
+   "leadName": "UNOPS, United Nations Office for Project Services",
+   "ref": "SD-074-UNOPS-24-27"
   },
   {
    "id": "wvi-cash-and-food-assistance-program-and-nutrition",
