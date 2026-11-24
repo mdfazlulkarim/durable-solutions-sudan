@@ -1030,12 +1030,9 @@
     "Kereneik"
    ],
    "criteria": [
-    1,
-    2,
-    3,
-    7,
-    8
+    3
    ],
+   "services": [],
    "coordination": "Food Security and Livelihoods Cluster",
    "start": "2025-10-01",
    "end": "2027-03-31",
@@ -1056,18 +1053,22 @@
     "returnees": null,
     "refugees": null,
     "host": 8250,
-    "other": null
+    "other": null,
+    "unspec": null
    },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": false,
+   "femaleUnknown": false,
+   "pwdUnknown": false,
    "femaleShare": 0.75,
    "pwdShare": 0.15,
    "pwdFemaleShare": 0.75,
    "peopleSex": null,
    "remarks": null,
+   "news": [],
    "photos": [],
    "leadName": "ADRA, Adventist Development and Relief Agency",
-   "services": [
-    "food"
-   ],
    "ref": "SD-048-ADRA-25-27"
   },
   {
