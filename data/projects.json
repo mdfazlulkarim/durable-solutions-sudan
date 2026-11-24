@@ -3147,7 +3147,9 @@
    "id": "unfpa-rehabilitation-of-health-facilities",
    "name": "Rehabilitation of health facilities",
    "description": "Rehabilitation of health facilities to restore damaged or non-functional health infrastructure and enable displaced and returning populations, as well as host communities, to access essential health services sustainably.",
-   "interventionTypes": [],
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
    "lead": "UNFPA",
    "orgType": "UN agency",
    "leadership": [],
@@ -3160,15 +3162,7 @@
     "MTI",
     "JHSO"
    ],
-   "partnerTypes": [
-    "International NGO",
-    "International NGO",
-    "National NGO",
-    "National NGO",
-    "National NGO",
-    "International NGO",
-    "National NGO"
-   ],
+   "partnerTypes": [],
    "nationwide": false,
    "states": [
     "Aj Jazirah",
@@ -3183,7 +3177,12 @@
     "White Nile"
    ],
    "localities": [],
-   "criteria": [],
+   "criteria": [
+    2
+   ],
+   "services": [
+    "health"
+   ],
    "coordination": "Health Cluster",
    "start": "2026-01-01",
    "end": "2027-09-30",
@@ -3192,15 +3191,32 @@
    "share": null,
    "dsFunding": null,
    "donor": "Norway, Sida",
+   "donors": [
+    {
+     "name": "Norway, Sida",
+     "amount": null
+    }
+   ],
    "people": {
     "total": null,
     "idps": null,
     "returnees": null,
     "refugees": null,
     "host": null,
-    "other": null
+    "other": null,
+    "unspec": null
    },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": false,
+   "femaleUnknown": false,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
    "remarks": null,
+   "news": [],
    "photos": [],
    "ref": "SD-029-UNFPA-26-27"
   },
