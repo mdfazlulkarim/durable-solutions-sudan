@@ -4019,6 +4019,74 @@
    "ref": "SD-074-UNOPS-24-27"
   },
   {
+   "id": "unops-promoting-quality-health-care-service-provision-in-kassala-healt",
+   "name": "Promoting Quality Health Care Service Provision in Kassala Health Citadel (PROCASE)",
+   "description": "Through targeted infrastructure construction/ rehabilitation at the Kassala Health Citadel, this project strengthens Kassala State’s health system and alleviates the suffering of its most vulnerable populations. By creating a safer, more accessible environment for both healthcare workers and patients living with disabilities, the intervention directly increases service uptake and elevates the quality of care—ensuring inclusive, reliable health service delivery across the Citadel facilities.",
+   "interventionTypes": [
+    "Basic services rehabilitation"
+   ],
+   "lead": "UNOPS",
+   "orgType": "UN agency",
+   "leadership": [],
+   "partners": [],
+   "partnerTypes": [],
+   "nationwide": false,
+   "states": [
+    "Kassala"
+   ],
+   "localities": [
+    "Madeinat Kassala"
+   ],
+   "criteria": [
+    2
+   ],
+   "services": [
+    "health"
+   ],
+   "coordination": null,
+   "start": "2024-04-01",
+   "end": "2027-12-31",
+   "reportedStatus": "Ongoing",
+   "budget": 4535735,
+   "share": 0.75,
+   "dsFunding": 3401801.25,
+   "donor": "AICS",
+   "donors": [
+    {
+     "name": "AICS",
+     "amount": 4535735
+    }
+   ],
+   "people": {
+    "total": 2800000,
+    "idps": null,
+    "returnees": null,
+    "refugees": null,
+    "host": null,
+    "other": null,
+    "unspec": 2800000
+   },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": true,
+   "femaleUnknown": true,
+   "pwdUnknown": true,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
+   "remarks": null,
+   "news": [
+    {
+     "url": "https://web.facebook.com/story.php?story_fbid=122177220428736357&id=61572090719180&mibextid=wwXIfr&rdid=NjRfphcpuJEPDopE#",
+     "title": null
+    }
+   ],
+   "photos": [],
+   "leadName": "UNOPS, United Nations Office for Project Services",
+   "ref": "SD-075-UNOPS-24-27"
+  },
+  {
    "id": "wvi-cash-and-food-assistance-program-and-nutrition",
    "name": "Cash and food assistance program and nutrition",
    "description": null,
