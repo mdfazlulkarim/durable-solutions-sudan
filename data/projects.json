@@ -1,5 +1,5 @@
 {
- "lastUpdated": "2026-11-23",
+ "lastUpdated": "2026-11-24",
  "projects": [
   {
    "id": "acted-area-based-durable-solutions-coordination-planning-and-emergency",
@@ -3039,15 +3039,7 @@
     "MTI",
     "JHSO"
    ],
-   "partnerTypes": [
-    "International NGO",
-    "International NGO",
-    "National NGO",
-    "National NGO",
-    "National NGO",
-    "International NGO",
-    "National NGO"
-   ],
+   "partnerTypes": [],
    "nationwide": false,
    "states": [
     "Aj Jazirah",
@@ -3063,7 +3055,10 @@
    ],
    "localities": [],
    "criteria": [
-    1
+    2
+   ],
+   "services": [
+    "health"
    ],
    "coordination": "Health Cluster",
    "start": "2026-01-01",
@@ -3073,15 +3068,32 @@
    "share": null,
    "dsFunding": null,
    "donor": "Sudan Humanitarian Fund, ECHO",
+   "donors": [
+    {
+     "name": "Sudan Humanitarian Fund, ECHO",
+     "amount": null
+    }
+   ],
    "people": {
     "total": null,
     "idps": null,
     "returnees": null,
     "refugees": null,
     "host": null,
-    "other": null
+    "other": null,
+    "unspec": null
    },
+   "peopleV": 2,
+   "peopleUnknown": false,
+   "breakdownUnknown": false,
+   "femaleUnknown": false,
+   "pwdUnknown": false,
+   "femaleShare": null,
+   "pwdShare": null,
+   "pwdFemaleShare": null,
+   "peopleSex": null,
    "remarks": null,
+   "news": [],
    "photos": [],
    "ref": "SD-027-UNFPA-26-26"
   },
